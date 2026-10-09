@@ -1,0 +1,15 @@
+# Godot editor/import cache and local toolchain
+.godot/
+.tools/
+
+# Local exports are kept out of source history. Publish packaged builds as releases.
+/release/*.exe
+/release/*.zip
+/release/*.pck
+
+# Temporary and machine-local files
+*.tmp
+*.log
+*.bak
+Thumbs.db
+Desktop.ini
