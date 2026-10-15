@@ -77,6 +77,9 @@ def main() -> None:
     if args.version != current_version():
         raise RuntimeError(f"Requested version {args.version} does not match source version {current_version()}")
 
+    # Capture repository state before creating the temporary staging directory;
+    # otherwise git status sees that directory and incorrectly marks the build dirty.
+    commit, tree_state, manifest = git_state()
     RELEASE.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".metro-atlas-stage-", dir=RELEASE) as temp_name:
         stage = Path(temp_name)
@@ -93,7 +96,6 @@ def main() -> None:
         readme_text = re.sub(r"(?m)^测试记录：[^\r\n]+$", "测试记录：压缩包内 test-record.txt", readme_text)
         staged_readme.write_text(readme_text, encoding="utf-8")
 
-        commit, tree_state, manifest = git_state()
         build_time = datetime.now().astimezone().isoformat(timespec="seconds")
         staged_build_info.write_text(
             f"游戏：造一座地铁\n版本：{args.version}\n构建日期：{build_time}\n"
