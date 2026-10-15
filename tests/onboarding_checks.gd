@@ -43,52 +43,77 @@ func _run() -> void:
 	var main: Variant = main_scene.instantiate()
 	root.add_child(main)
 	await process_frame
-	main.map_view.allow_network_tiles = false
 	var guide := WorldData.new_world("shanghai", "blank")
 	guide["onboarding"] = Onboarding.create_state("shanghai", "blank", false)
 	guide.onboarding.active = true
 	guide["tutorialDone"] = true
 	main._load_world(guide)
 	await process_frame
+	for _frame in range(600):
+		if not main.map_view.base_map_features.is_empty() and not main.map_view._base_map_thread_busy and main.map_view._base_map_pending_request.is_empty(): break
+		await create_timer(0.02).timeout
 	_check(bool(main.world.onboarding.active), "空白开局任务卡已经启用")
 	_check(main.onboarding_panel.visible, "地图上显示独立的新手任务卡")
 	_check(not main._left_panel.visible and not main._right_panel.visible, "教学开局默认收起两侧抽屉")
 	_check(main.map_view.filter_demand_to_task, "教学只显示 A、B 需求点")
-	_check(main.map_view.clean_map_style, "新手地图默认使用清爽底图")
+	_check(main.map_view.base_map_available and not main.map_view.base_map_features.is_empty(), "新手开局加载本地矢量底图")
+	var has_unwanted_basemap_symbols := false
+	for feature in main.map_view.base_map_features:
+		if str(feature.get("kind", "")) not in ["road_major", "road_primary", "road_secondary", "road_local", "water_line", "water_area", "park", "building"]:
+			has_unwanted_basemap_symbols = true
+	_check(not has_unwanted_basemap_symbols, "地图底图只含道路、水系、绿地和建筑轮廓")
 	_check(main.map_view.current_zoom >= 14, "镜头聚焦教学街区")
 
 	main._onboarding_primary_action()
 	_check(int(main.world.onboarding.step) == 1, "查看需求后才进入第一站任务")
 	var origin: Dictionary = main._find_demand(str(main.world.onboarding.originId))
 	var destination: Dictionary = main._find_demand(str(main.world.onboarding.destinationId))
-	var route_id := str(main.active_route_id)
 	var heading: float = main._onboarding_station_heading()
 	main.current_tool = "station"; main.map_view.tool = "station"
-	main.map_view.draft_station = {"id":"draft-a", "name":"A站", "latlng":origin.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[route_id]}
+	main.map_view.draft_station = {"id":"draft-a", "name":"A站", "latlng":origin.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[]}
 	main._confirm_station()
 	_check(int(main.world.onboarding.step) == 2 and not str(main.world.onboarding.originStationId).is_empty(), "只有确认且覆盖 A 的新站才完成第一站")
 	var source_id := str(main.world.onboarding.originStationId)
 	await create_timer(0.01).timeout
 	main.current_tool = "station"; main.map_view.tool = "station"
-	main.map_view.draft_station = {"id":"draft-b", "name":"B站", "latlng":destination.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[route_id]}
+	main.map_view.draft_station = {"id":"draft-b", "name":"B站", "latlng":destination.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[]}
 	main._confirm_station()
 	_check(int(main.world.onboarding.step) == 3 and str(main.world.onboarding.destinationStationId) != source_id, "第二座不同的确认车站覆盖 B 终点")
 	var destination_id := str(main.world.onboarding.destinationStationId)
-	main.current_tool = "connect"; main.map_view.tool = "connect"
+	var source_station: Dictionary = WorldData.find_station(main.world, source_id)
+	var destination_station: Dictionary = WorldData.find_station(main.world, destination_id)
+	var task_endpoints := [
+		main.map_view._to_screen(WorldData.station_endpoint(source_station, "start")),
+		main.map_view._to_screen(WorldData.station_endpoint(source_station, "end")),
+		main.map_view._to_screen(WorldData.station_endpoint(destination_station, "start")),
+		main.map_view._to_screen(WorldData.station_endpoint(destination_station, "end"))
+	]
+	var endpoints_visible := true
+	for endpoint in task_endpoints:
+		if not Rect2(Vector2.ZERO, main.map_view.size).grow(-24.0).has_point(endpoint): endpoints_visible = false
+	_check(endpoints_visible, "进入铺轨教学后镜头同时容纳两站的 A/B 接轨端点")
+	main._set_tool("track")
 	main._on_map_clicked(WorldData.station_endpoint(WorldData.find_station(main.world, source_id), "end"), "endpoint", source_id, "end")
 	main._on_map_clicked(WorldData.station_endpoint(WorldData.find_station(main.world, destination_id), "start"), "endpoint", destination_id, "start")
+	main._commit_track_preview()
 	_check(int(main.world.onboarding.step) == 4, "只有任务两站连续接轨才进入开通检查")
 	main._onboarding_primary_action()
-	_check(int(main.world.onboarding.step) == 5 and bool(WorldData.find_route(main.world, route_id).get("open", false)), "任务线路开通后进入观察")
+	main._on_map_clicked(origin.latlng, "station", source_id, "")
+	main._on_map_clicked(destination.latlng, "station", destination_id, "")
+	main._confirm_operating_line()
+	var route_id := str(main.active_route_id)
+	_check(int(main.world.onboarding.step) == 5 and not route_id.is_empty(), "物理轨网接好后才创建任务运营线路")
+	main._onboarding_primary_action()
+	_check(int(main.world.onboarding.step) == 6 and bool(WorldData.find_route(main.world, route_id).get("open", false)), "任务线路开通后进入观察")
 	var flow: Dictionary = main._onboarding_flow()
 	_check(bool(flow.get("valid", false)) and float(flow.get("tripMinutes", 0.0)) < 120.0, "教学展示有效且单位合理的模拟出行估算")
 	main._onboarding_primary_action()
 	for minute in range(240):
-		if int(main.world.onboarding.step) >= 6: break
+		if int(main.world.onboarding.step) >= 7: break
 		main._simulate_one_minute()
 	_check(int(main.world.onboarding.observedTargetArrivals) > 0, "教学等待目标需求真实进入模拟批次")
 	_check(int(main.world.onboarding.observedTargetServed) > 0, "教学等待目标需求真实获得线路服务")
-	_check(int(main.world.onboarding.step) == 6 and bool(main.world.simulation.paused), "观察到目标服务后完成引导并自动暂停")
+	_check(int(main.world.onboarding.step) == 7 and bool(main.world.simulation.paused), "观察到目标服务后完成引导并自动暂停")
 	Preferences.save_onboarding_completed(false)
 	main.world["onboarding"] = Onboarding.create_state("shanghai", "blank", false)
 	main.world.onboarding.active = true

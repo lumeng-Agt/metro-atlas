@@ -1,15 +1,25 @@
 # Godot editor/import cache and local toolchain
 .godot/
 .tools/
+__pycache__/
+*.pyc
 
 # Local exports are kept out of source history. Publish packaged builds as releases.
 /release/*.exe
 /release/*.zip
 /release/*.pck
+/release/build-info.txt
+/release/SHA256SUMS.txt
+
+# Machine-local Godot editor settings, templates, and signing keys
+/Godot/
 
 # Temporary and machine-local files
 *.tmp
 *.log
 *.bak
+/test-artifacts/
+/test-*/
+/docs/*.import
 Thumbs.db
 Desktop.ini

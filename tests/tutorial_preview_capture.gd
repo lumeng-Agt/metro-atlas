@@ -20,24 +20,22 @@ func _capture() -> void:
 	state["tutorialDone"] = true
 	main.world = state
 	main.active_city_id = "shanghai"
-	main.active_route_id = str(state.routes[0].get("id", ""))
+	main.active_route_id = ""
 	main.history.attach(state)
 	main._left_requested = false
 	main._right_requested = false
 	main.map_view.visible = true
-	main.map_view.allow_network_tiles = true
 	main.map_view.set_context(WorldData.city("shanghai"), state)
 	main._build_game_ui()
 	main._sync_onboarding_map(true)
 	main._refresh_ui()
 	main.map_view.requested_redraw()
-	# Capture only after visible tiles have had time to load, without hanging when
-	# the OSM tile service is unavailable. The mission still remains playable on
-	# the grid/offline fallback in that case.
+	# The local vector package is loaded synchronously for the initial view; the
+	# small frame wait only lets the game UI settle before capture.
 	var deadline := Time.get_ticks_msec() + 25000
 	while Time.get_ticks_msec() < deadline:
 		await create_timer(0.5).timeout
-		if main.map_view._requests.is_empty() and main.map_view._tile_queue.is_empty(): break
+		if not main.map_view.base_map_features.is_empty(): break
 	for frame in range(5): await process_frame
 	var texture := root.get_texture()
 	if texture == null:
@@ -51,5 +49,5 @@ func _capture() -> void:
 		push_error("无法保存引导截图：%s" % error)
 		quit(1)
 		return
-	print("Saved tutorial preview %dx%d to %s (%d map tiles)" % [image.get_width(), image.get_height(), screenshot_path, main.map_view._tile_textures.size()])
+	print("Saved tutorial preview %dx%d to %s (%d local map features)" % [image.get_width(), image.get_height(), screenshot_path, main.map_view.base_map_features.size()])
 	quit(0)

@@ -1,22 +1,40 @@
 class_name MapView
 extends Control
 
-signal map_clicked(latlng: Array, hit_type: String, hit_id: String, side: String)
+class TrainOverlay extends Control:
+	var map_view: MapView
+	func _draw() -> void:
+		if is_instance_valid(map_view): map_view._draw_trains_on(self)
+
+const RoutePathScript = preload("res://scripts/route_path.gd")
+const BASEMAP_CACHE_BUDGET_BYTES := 256 * 1024 * 1024
+
+signal map_clicked(latlng: Array, hit_type: String, hit_id: String, side: String, hit_t: float)
 signal station_dragged(station_id: String, latlng: Array)
 signal station_drag_finished(station_id: String, latlng: Array)
+signal curve_control_previewed(link_id: String, control_name: String, offset_m: Array)
 signal curve_control_finished(link_id: String, control_name: String, offset_m: Array)
 signal camera_changed(center: Array, zoom: int)
 signal cancel_requested
 signal draft_station_changed
 
-const OSM_URL := "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-const TILE_CACHE := "user://tile_cache"
-const OSM_BLOCKED_TILE_SHA256 := "b02c44252dac5a5e820ecef1e9bf9200e9407c042df668a466a1aa81a9ecca7a"
-const MAX_CONCURRENT := 4
 const PALETTE := {"housing": Color("#e57272"), "employment": Color("#55a4ed"), "education": Color("#b585e8"), "health": Color("#ed8b9b"), "hub": Color("#3dbba7"), "commerce": Color("#edaf57"), "culture": Color("#4abc91"), "service": Color("#edaf57")}
 
 var city_data: Dictionary = {}
 var world: Dictionary = {}
+var route_path_cache: Dictionary = {}
+var route_path_cache_revision := -1
+var simulation_fraction := 0.0
+var link_geometry_cache: Dictionary = {}
+var station_local_cache: Dictionary = {}
+var route_cache_by_id: Dictionary = {}
+var geometry_ref_lat := 31.23
+var _camera_cache_center: Array = []
+var _camera_cache_size := Vector2.ZERO
+var _camera_cache_zoom := -1
+var _camera_center_pixel := Vector2.ZERO
+var _camera_local_center := Vector2.ZERO
+var _camera_mpp := 1.0
 var selected_id := ""
 var selected_type := ""
 var active_route_id := ""
@@ -30,27 +48,49 @@ var task_recommended_latlng: Array = []
 var task_coverage_visible := false
 var focus_demand_ids: Array[String] = []
 var filter_demand_to_task := false
-var clean_map_style := true
+var show_road_names := true
+var base_map_features: Array[Dictionary] = []
+var base_map_draw_batches: Dictionary = {}
+var base_map_bounds := Rect2()
+var base_map_snapshot := "未安装"
+var base_map_available := false
+var base_map_city_path := ""
+var base_map_chunk_degrees := 0.05
+var base_map_chunk_paths: Array = []
+var base_map_chunk_available: Dictionary = {}
+var base_map_chunk_cache: Dictionary = {}
+var base_map_chunk_cache_order: Array[String] = []
+var base_map_chunk_cache_bytes: Dictionary = {}
+var base_map_cache_bytes := 0
+var base_map_cache_over_budget_bytes := 0
+var base_map_loaded_signature := ""
+var _base_map_thread := Thread.new()
+var _base_map_thread_busy := false
+var _base_map_pending_request: Dictionary = {}
 var bold_font: Font
 var ui_scale := 1.0
 var tool := "select"
 var hover_latlng: Array = []
 var draft_station: Dictionary = {}
 var link_start: Dictionary = {}
+var track_start_ref: Dictionary = {}
+var track_end_ref: Dictionary = {}
+var track_control_latlng: Array = []
+var line_draft_points: Array[Array] = []
+var track_preview_conflict := ""
+var track_preview_notice := ""
+var endpoint_choice_candidates: Array[Dictionary] = []
+var station_preview_edges: Dictionary = {}
+var station_preview_issue := ""
+var current_depth_m := -15.0
+var show_all_depths := false
+var continuous_track := true
 var show_demand := true
 var show_network := true
 var show_stations := true
 var show_halls := true
-var allow_network_tiles := true
 var current_center: Array = [31.2304, 121.4737]
 var current_zoom := 13
-var _tile_textures: Dictionary = {}
-var _tile_expiry: Dictionary = {}
-var _tile_queue: Array[Dictionary] = []
-var _queued_tiles: Dictionary = {}
-var _requests: Array[HTTPRequest] = []
-var _active_request_by_key: Dictionary = {}
-var _requested: Dictionary = {}
 var _mouse_down := false
 var _pan_active := false
 var _press_pos := Vector2.ZERO
@@ -59,35 +99,104 @@ var _drag_station_id := ""
 var _drag_preview: Array = []
 var _drag_curve: Array = []
 var _curve_preview: Dictionary = {}
-var _tile_redraw_pending := false
-var _network_unavailable := false
-var _network_blocked := false
+var _curve_commit_pending := false
+var curve_preview_issue := ""
 var draft_conflict := false
 var _drag_draft_station := false
 var _label_rects: Array[Rect2] = []
-var _tile_valid_count := 0
-var _tile_placeholder_rejections := 0
-var _https_proxy_host := ""
-var _https_proxy_port := 0
+var _train_overlay: TrainOverlay
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	clip_contents = true
 	set_process(false)
-	var proxy := _detect_system_https_proxy()
-	_https_proxy_host = str(proxy.get("host", ""))
-	_https_proxy_port = int(proxy.get("port", 0))
+	_train_overlay = TrainOverlay.new()
+	_train_overlay.name = "TrainOverlay"
+	_train_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_train_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_train_overlay.map_view = self
+	add_child(_train_overlay)
+
+func _exit_tree() -> void:
+	if _base_map_thread_busy:
+		_base_map_thread.wait_to_finish()
+		_base_map_thread_busy = false
 
 func set_context(city: Dictionary, state: Dictionary) -> void:
 	city_data = city
 	world = state
+	_rebuild_route_path_cache()
 	current_center = state.get("view", {}).get("center", city.get("center", [31.2304, 121.4737])).duplicate()
 	current_zoom = int(state.get("view", {}).get("zoom", city.get("zoom", 12)))
+	_refresh_camera_cache()
+	_load_local_basemap(str(city.get("id", "")))
 	requested_redraw()
 
 func set_world(state: Dictionary) -> void:
 	world = state
+	_rebuild_route_path_cache()
 	requested_redraw()
+
+func _rebuild_route_path_cache() -> void:
+	route_path_cache.clear()
+	link_geometry_cache.clear()
+	station_local_cache.clear()
+	route_cache_by_id.clear()
+	geometry_ref_lat = float(city_data.get("center", [31.23, 121.47])[0])
+	var station_by_id: Dictionary = {}
+	for station in world.get("stations", []):
+		var station_id := str(station.get("id", ""))
+		station_by_id[station_id] = station
+		station_local_cache[station_id] = Geo.local_m(station.get("latlng", [0.0, 0.0]), geometry_ref_lat)
+	for route in world.get("routes", []):
+		route_cache_by_id[str(route.get("id", ""))] = route
+		if not bool(route.get("open", false)): continue
+		route_path_cache[str(route.get("id", ""))] = RoutePathScript.for_route(route, world, geometry_ref_lat)
+	for link in world.get("trackLinks", []):
+		var a_ref: Dictionary = link.get("a", {})
+		var b_ref: Dictionary = link.get("b", {})
+		var a: Dictionary = station_by_id.get(str(a_ref.get("stationId", "")), {})
+		var b: Dictionary = station_by_id.get(str(b_ref.get("stationId", "")), {})
+		if a.is_empty() or b.is_empty(): continue
+		var local_points: Array[Vector2] = []
+		if bool(link.get("schematic", false)):
+			local_points.append(station_local_cache[str(a.get("id", ""))])
+			local_points.append(station_local_cache[str(b.get("id", ""))])
+		else:
+			var controls := _link_control_local(link, a, b)
+			for index in range(25):
+				local_points.append(_bezier(controls[0], controls[1], controls[2], controls[3], float(index) / 24.0))
+		if local_points.size() < 2: continue
+		var min_point := local_points[0]
+		var max_point := local_points[0]
+		for point in local_points:
+			min_point.x = minf(min_point.x, point.x); min_point.y = minf(min_point.y, point.y)
+			max_point.x = maxf(max_point.x, point.x); max_point.y = maxf(max_point.y, point.y)
+		link_geometry_cache[str(link.get("id", ""))] = {"points": local_points, "bounds": Rect2(min_point, max_point - min_point).grow(1.0)}
+	TrackNetwork.ensure_station_nodes(world)
+	for edge in world.get("trackEdges", []):
+		var geographic_points := TrackNetwork.edge_points(edge, world, geometry_ref_lat, 24)
+		var local_points: Array[Vector2] = []
+		for point in geographic_points: local_points.append(Geo.local_m(point, geometry_ref_lat))
+		if local_points.size() < 2: continue
+		var minimum := local_points[0]
+		var maximum := local_points[0]
+		for point in local_points:
+			minimum.x = minf(minimum.x, point.x); minimum.y = minf(minimum.y, point.y)
+			maximum.x = maxf(maximum.x, point.x); maximum.y = maxf(maximum.y, point.y)
+		link_geometry_cache[str(edge.get("id", ""))] = {"points": local_points, "bounds": Rect2(minimum, maximum - minimum).grow(1.0)}
+	route_path_cache_revision = int(world.get("revision", 0))
+	_camera_cache_zoom = -1
+
+func _link_control_local(link: Dictionary, a: Dictionary, b: Dictionary) -> Array[Vector2]:
+	var a_side := str(link.get("a", {}).get("side", "end"))
+	var b_side := str(link.get("b", {}).get("side", "start"))
+	var p0 := Geo.local_m(WorldData.station_endpoint(a, a_side), geometry_ref_lat)
+	var p3 := Geo.local_m(WorldData.station_endpoint(b, b_side), geometry_ref_lat)
+	var defaults := WorldData.default_curve_vectors(a, a_side, b, b_side, geometry_ref_lat)
+	var va: Array = link.get("curveA", defaults.a)
+	var vb: Array = link.get("curveB", defaults.b)
+	return [p0, p0 + Vector2(float(va[0]), float(va[1])), p3 + Vector2(float(vb[0]), float(vb[1])), p3]
 
 func center_on(latlng: Array, zoom_level: int = -1) -> void:
 	current_center = [float(latlng[0]), float(latlng[1])]
@@ -98,40 +207,503 @@ func center_on(latlng: Array, zoom_level: int = -1) -> void:
 
 func requested_redraw() -> void:
 	queue_redraw()
-	if not _tile_redraw_pending:
-		_tile_redraw_pending = true
-		call_deferred("_queue_visible_tiles")
+	requested_train_redraw()
+
+func requested_train_redraw() -> void:
+	if is_instance_valid(_train_overlay): _train_overlay.queue_redraw()
+
+func clear_curve_preview() -> void:
+	_curve_preview.clear()
+	_curve_commit_pending = false
+	curve_preview_issue = ""
+	requested_redraw()
+
+func cancel_pointer_interaction() -> void:
+	_mouse_down = false
+	_pan_active = false
+	_drag_station_id = ""
+	_drag_curve = []
+	_drag_draft_station = false
+	_drag_preview.clear()
+	clear_curve_preview()
+	requested_redraw()
+
+func _load_local_basemap(city_id: String) -> void:
+	base_map_loaded_signature = ""
+	_base_map_pending_request = {}
+	base_map_chunk_cache.clear()
+	base_map_chunk_cache_order.clear()
+	base_map_chunk_cache_bytes.clear()
+	base_map_cache_bytes = 0
+	base_map_cache_over_budget_bytes = 0
+	base_map_features.clear()
+	base_map_bounds = Rect2()
+	base_map_snapshot = "未安装"
+	base_map_available = false
+	base_map_city_path = ""
+	base_map_chunk_paths.clear()
+	base_map_chunk_available.clear()
+	base_map_loaded_signature = ""
+	var manifest_file := FileAccess.open("res://data/basemap/manifest.json", FileAccess.READ)
+	if manifest_file == null: return
+	var manifest: Variant = JSON.parse_string(manifest_file.get_as_text())
+	manifest_file.close()
+	if not manifest is Dictionary: return
+	var city_package: Dictionary = manifest.get("cities", {}).get(city_id, {})
+	if city_package.is_empty(): return
+	var ref_lat := float(city_data.get("center", [31.23, 121.47])[0])
+	var bbox: Array = city_package.get("bounds", [])
+	if bbox.size() == 4:
+		var southwest := Geo.local_m([float(bbox[0]), float(bbox[1])], ref_lat)
+		var northeast := Geo.local_m([float(bbox[2]), float(bbox[3])], ref_lat)
+		base_map_bounds = Rect2(southwest, northeast - southwest)
+	base_map_city_path = str(city_package.get("path", city_id))
+	base_map_chunk_degrees = float(city_package.get("chunkDegrees", 0.05))
+	base_map_chunk_paths = city_package.get("chunks", [])
+	for path in base_map_chunk_paths:
+		base_map_chunk_available[str(path).trim_suffix(".json.gz")] = true
+	base_map_snapshot = str(city_package.get("sourceModified", "未知日期"))
+	base_map_available = not base_map_chunk_paths.is_empty()
+	_load_visible_base_chunks()
+
+func _load_visible_base_chunks() -> void:
+	if base_map_city_path.is_empty() or base_map_chunk_paths.is_empty(): return
+	var southwest := Geo.from_local(_camera_local_center - size * 0.5 * _camera_mpp, geometry_ref_lat)
+	var northeast := Geo.from_local(_camera_local_center + size * 0.5 * _camera_mpp, geometry_ref_lat)
+	# Chunk assignment duplicates long features into every cell crossed by their
+	# bounds, so a full chunk of padding is unnecessary. Keep only enough margin
+	# for the offscreen draw gutter; this avoids loading an entire ring of dense
+	# city blocks around a neighborhood-scale view.
+	var pad := 120.0 * _camera_mpp / (111_132.0 * cos(deg_to_rad(geometry_ref_lat)))
+	var row_min := int(floor((float(southwest[0]) - pad) / base_map_chunk_degrees))
+	var row_max := int(floor((float(northeast[0]) + pad) / base_map_chunk_degrees))
+	var col_min := int(floor((float(southwest[1]) - pad) / base_map_chunk_degrees))
+	var col_max := int(floor((float(northeast[1]) + pad) / base_map_chunk_degrees))
+	var wanted: Array[String] = []
+	for row in range(row_min, row_max + 1):
+		for col in range(col_min, col_max + 1):
+			var key := "%d_%d" % [row, col]
+			if base_map_chunk_available.has(key): wanted.append(key)
+	wanted.sort()
+	var signature := "%s|%s" % [str(city_data.get("id", "")), ",".join(wanted)]
+	# Feature preparation uses actual zoom and scale. Cache on that same level so
+	# approaching a view from either direction cannot reuse a coarse filtered set.
+	var detail_band := current_zoom
+	signature += "|%d" % detail_band
+	if signature == base_map_loaded_signature: return
+	base_map_loaded_signature = signature
+	var missing: Array[Dictionary] = []
+	var cached_chunks: Dictionary = {}
+	for key in wanted:
+		var cache_key := "%s|%d" % [key, detail_band]
+		if not base_map_chunk_cache.has(cache_key):
+			missing.append({"key": cache_key, "path": "res://data/basemap/%s/%s.json.gz" % [base_map_city_path, key]})
+		else:
+			cached_chunks[cache_key] = base_map_chunk_cache[cache_key]
+			base_map_chunk_cache_order.erase(cache_key)
+			base_map_chunk_cache_order.append(cache_key)
+	var request := {"signature": signature, "cityId": str(city_data.get("id", "")), "wanted": wanted, "detailBand": detail_band, "zoom": current_zoom, "mpp": _camera_mpp, "refLat": geometry_ref_lat, "chunks": missing, "cachedChunks": cached_chunks}
+	if _base_map_thread_busy:
+		_base_map_pending_request = request
+	else:
+		_start_base_map_worker(request)
+
+func _rebuild_visible_base_features(wanted: Array[String], detail_band: int) -> void:
+	base_map_features.clear()
+	base_map_draw_batches.clear()
+	var seen_feature_ids: Dictionary = {}
+	for key in wanted:
+		var prepared_features: Array = base_map_chunk_cache.get("%s|%d" % [key, detail_band], [])
+		for feature in prepared_features:
+			var feature_id := str(feature.get("id", ""))
+			if feature_id.is_empty(): feature_id = "%s|%s|%s" % [feature.get("kind", ""), feature.get("name", ""), feature.get("bounds", Rect2())]
+			if seen_feature_ids.has(feature_id): continue
+			seen_feature_ids[feature_id] = true
+			base_map_features.append(feature)
+	_prepare_basemap_draw_batches()
+
+func _prepare_basemap_draw_batches() -> void:
+	base_map_draw_batches = _prepare_basemap_draw_batches_for(base_map_features, current_zoom, _camera_mpp)
+
+static func _prepare_basemap_draw_batches_for(features: Array, zoom_level: int, meters_per_pixel: float) -> Dictionary:
+	# Preparing line and polygon arrays while drawing made every pan rescan and
+	# repack thousands of OSM ways. Build once when the visible tile set changes;
+	# panning within those tiles now only submits a few cached draw batches.
+	var batches := {
+		"waterPoints": PackedVector2Array(), "waterIndices": PackedInt32Array(), "waterColors": PackedColorArray(), "waterOutline": PackedVector2Array(),
+		"parkPoints": PackedVector2Array(), "parkIndices": PackedInt32Array(), "parkColors": PackedColorArray(), "parkOutline": PackedVector2Array(),
+		"majorLines": PackedVector2Array(), "primaryLines": PackedVector2Array(), "secondaryLines": PackedVector2Array(), "localLines": PackedVector2Array(), "waterLines": PackedVector2Array(),
+		"buildingPoints": PackedVector2Array(), "buildingIndices": PackedInt32Array(), "buildingColors": PackedColorArray(), "buildingOutline": PackedVector2Array(),
+		"roadLabels": []
+	}
+	for feature in features:
+		var kind := str(feature.get("kind", ""))
+		var points: PackedVector2Array = feature.get("points", PackedVector2Array())
+		var pairs: PackedVector2Array = feature.get("pairs", PackedVector2Array())
+		if kind in ["water_area", "park"] and points.size() >= 3:
+			var triangles: PackedInt32Array = feature.get("fillIndices", PackedInt32Array())
+			var point_key := "waterPoints" if kind == "water_area" else "parkPoints"
+			var index_key := "waterIndices" if kind == "water_area" else "parkIndices"
+			var color_key := "waterColors" if kind == "water_area" else "parkColors"
+			var outline_key := "waterOutline" if kind == "water_area" else "parkOutline"
+			if not triangles.is_empty():
+				var polygon_points: PackedVector2Array = batches[point_key]
+				var polygon_indices: PackedInt32Array = batches[index_key]
+				var polygon_colors: PackedColorArray = batches[color_key]
+				var base := polygon_points.size()
+				polygon_points.append_array(points)
+				for index in triangles: polygon_indices.append(base + index)
+				var fill := Color("#dcebf0") if kind == "water_area" else Color("#e4ecdf")
+				for _index in points.size(): polygon_colors.append(fill)
+				batches[point_key] = polygon_points
+				batches[index_key] = polygon_indices
+				batches[color_key] = polygon_colors
+			var polygon_outline: PackedVector2Array = batches[outline_key]
+			polygon_outline.append_array(pairs)
+			batches[outline_key] = polygon_outline
+		elif kind in ["road_major", "road_primary", "road_secondary", "road_local", "water_line"]:
+			var line_key: String = str({"road_major":"majorLines", "road_primary":"primaryLines", "road_secondary":"secondaryLines", "road_local":"localLines", "water_line":"waterLines"}.get(kind, ""))
+			var line_batch: PackedVector2Array = batches[line_key]
+			line_batch.append_array(pairs)
+			batches[line_key] = line_batch
+			if zoom_level >= 15 and kind != "water_line" and not str(feature.get("name", "")).is_empty() and points.size() >= 2:
+				batches.roadLabels.append({"position": points[points.size() / 2], "name": str(feature.name), "kind": kind, "priority": _road_label_priority(kind), "bounds": feature.get("bounds", Rect2())})
+		elif kind == "building" and zoom_level >= 17 and points.size() >= 3:
+			var triangles: PackedInt32Array = feature.get("fillIndices", PackedInt32Array())
+			if not triangles.is_empty():
+				var building_points: PackedVector2Array = batches.buildingPoints
+				var building_indices: PackedInt32Array = batches.buildingIndices
+				var building_colors: PackedColorArray = batches.buildingColors
+				var base := building_points.size()
+				building_points.append_array(points)
+				for index in triangles: building_indices.append(base + index)
+				for _index in points.size(): building_colors.append(Color("#e9e8e4"))
+				batches.buildingPoints = building_points
+				batches.buildingIndices = building_indices
+				batches.buildingColors = building_colors
+			var bounds: Rect2 = feature.get("bounds", Rect2())
+			var projected_area: float = bounds.size.x * bounds.size.y / maxf(meters_per_pixel * meters_per_pixel, 0.001)
+			if projected_area >= 400.0:
+				var building_outline: PackedVector2Array = batches.buildingOutline
+				building_outline.append_array(pairs)
+				batches.buildingOutline = building_outline
+	return batches
+
+func _start_base_map_worker(request: Dictionary) -> void:
+	if request.is_empty(): return
+	var error := _base_map_thread.start(_load_and_prepare_base_chunks.bind(request), Thread.PRIORITY_LOW)
+	if error != OK:
+		_base_map_pending_request = request
+		set_process(true)
+		return
+	_base_map_thread_busy = true
+	set_process(true)
+
+func _process(_delta: float) -> void:
+	if _base_map_thread_busy:
+		if _base_map_thread.is_alive(): return
+		var result: Variant = _base_map_thread.wait_to_finish()
+		_base_map_thread_busy = false
+		if result is Dictionary and str(result.get("cityId", "")) == str(city_data.get("id", "")) and str(result.get("signature", "")) == base_map_loaded_signature:
+			for cache_key in result.get("chunks", {}):
+				var normalized_key := str(cache_key)
+				if base_map_chunk_cache_bytes.has(normalized_key):
+					base_map_cache_bytes -= int(base_map_chunk_cache_bytes[normalized_key])
+				var chunk_features: Array = result.chunks[cache_key]
+				var chunk_bytes := _estimate_prepared_chunk_bytes(chunk_features)
+				base_map_chunk_cache[normalized_key] = chunk_features
+				base_map_chunk_cache_bytes[normalized_key] = chunk_bytes
+				base_map_cache_bytes += chunk_bytes
+				base_map_chunk_cache_order.erase(normalized_key)
+				base_map_chunk_cache_order.append(normalized_key)
+			base_map_features.clear()
+			for feature in result.get("features", []): base_map_features.append(feature)
+			base_map_draw_batches = result.get("drawBatches", {})
+			_trim_basemap_cache(result.get("wanted", []), int(result.get("detailBand", current_zoom)))
+			requested_redraw()
+	if not _base_map_pending_request.is_empty():
+		var next_request := _base_map_pending_request
+		_base_map_pending_request = {}
+		_start_base_map_worker(next_request)
+	else:
+		set_process(false)
+
+func _trim_basemap_cache(wanted: Array, detail_band: int) -> void:
+	var protected: Dictionary = {}
+	for key in wanted: protected["%s|%d" % [str(key), detail_band]] = true
+	var attempts := base_map_chunk_cache_order.size()
+	while base_map_cache_bytes > BASEMAP_CACHE_BUDGET_BYTES and attempts > 0:
+		attempts -= 1
+		var candidate: String = base_map_chunk_cache_order.pop_front()
+		if protected.has(candidate):
+			base_map_chunk_cache_order.append(candidate)
+			continue
+		base_map_cache_bytes -= int(base_map_chunk_cache_bytes.get(candidate, 0))
+		base_map_chunk_cache_bytes.erase(candidate)
+		base_map_chunk_cache.erase(candidate)
+	base_map_cache_over_budget_bytes = maxi(0, base_map_cache_bytes - BASEMAP_CACHE_BUDGET_BYTES)
+
+func _estimate_prepared_chunk_bytes(features: Array) -> int:
+	var total := 0
+	for feature in features:
+		if not feature is Dictionary: continue
+		total += 128
+		total += str(feature.get("id", "")).length() * 2
+		total += str(feature.get("name", "")).length() * 2
+		total += feature.get("points", PackedVector2Array()).size() * 8
+		total += feature.get("pairs", PackedVector2Array()).size() * 8
+		total += feature.get("fillIndices", PackedInt32Array()).size() * 4
+	return total
+
+func _load_and_prepare_base_chunks(request: Dictionary) -> Dictionary:
+	var prepared: Dictionary = {}
+	for chunk in request.get("chunks", []):
+		if not chunk is Dictionary: continue
+		var compressed_bytes := FileAccess.get_file_as_bytes(str(chunk.get("path", "")))
+		if compressed_bytes.is_empty(): continue
+		var decoded_bytes := compressed_bytes.decompress_dynamic(32 * 1024 * 1024, FileAccess.COMPRESSION_GZIP)
+		if decoded_bytes.is_empty(): continue
+		var parsed: Variant = JSON.parse_string(decoded_bytes.get_string_from_utf8())
+		if not parsed is Dictionary or str(parsed.get("cityId", "")) != str(request.get("cityId", "")): continue
+		prepared[str(chunk.get("key", ""))] = _prepare_base_features_for(parsed.get("features", []), int(request.get("zoom", 12)), float(request.get("mpp", 1.0)), float(request.get("refLat", 31.23)))
+	var all_chunks: Dictionary = request.get("cachedChunks", {}).duplicate()
+	for cache_key in prepared: all_chunks[cache_key] = prepared[cache_key]
+	var combined_features: Array[Dictionary] = []
+	var seen_feature_ids: Dictionary = {}
+	for key in request.get("wanted", []):
+		var cache_key := "%s|%d" % [str(key), int(request.get("detailBand", 12))]
+		for feature in all_chunks.get(cache_key, []):
+			var feature_id := str(feature.get("id", ""))
+			if feature_id.is_empty(): feature_id = "%s|%s|%s" % [feature.get("kind", ""), feature.get("name", ""), feature.get("bounds", Rect2())]
+			if seen_feature_ids.has(feature_id): continue
+			seen_feature_ids[feature_id] = true
+			combined_features.append(feature)
+	var draw_batches := _prepare_basemap_draw_batches_for(combined_features, int(request.get("zoom", 12)), float(request.get("mpp", 1.0)))
+	return {"signature": request.get("signature", ""), "cityId": request.get("cityId", ""), "wanted": request.get("wanted", []), "detailBand": request.get("detailBand", 12), "chunks": prepared, "features": combined_features, "drawBatches": draw_batches}
+
+func _prepare_base_features(raw_features: Array) -> Array[Dictionary]:
+	return _prepare_base_features_for(raw_features, current_zoom, _camera_mpp, geometry_ref_lat)
+
+static func _prepare_base_features_for(raw_features: Array, zoom_level: int, meters_per_pixel: float, ref_lat: float) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for raw in raw_features:
+		if not raw is Dictionary: continue
+		var kind := str(raw.get("kind", ""))
+		if kind == "building" and zoom_level < 17: continue
+		if kind == "road_local" and zoom_level < 16: continue
+		if kind == "road_secondary" and zoom_level < 15: continue
+		if kind == "road_primary" and zoom_level < 13: continue
+		if kind == "road_major" and zoom_level < 10: continue
+		var points: Array[Vector2] = []
+		for point in raw.get("points", []):
+			if point is Array and point.size() >= 2: points.append(Geo.local_m([float(point[0]), float(point[1])], ref_lat))
+		if points.size() < 2: continue
+		var path_length := 0.0
+		for point_index in range(1, points.size()):
+			path_length += points[point_index - 1].distance_to(points[point_index])
+		var maximum := points[0]
+		var minimum := points[0]
+		for point in points:
+			minimum.x = minf(minimum.x, point.x); minimum.y = minf(minimum.y, point.y)
+			maximum.x = maxf(maximum.x, point.x); maximum.y = maxf(maximum.y, point.y)
+		# OSM roads are commonly split into short ways at intersections. Filter
+		# only lines that occupy less than a pixel; length-based city thresholds
+		# caused visible holes in otherwise continuous streets.
+		var screen_path_length := path_length / maxf(meters_per_pixel, 0.01)
+		if kind == "water_line" and screen_path_length < 2.0: continue
+		if kind in ["water_area", "park", "building"]:
+			var projected_area := (maximum.x - minimum.x) * (maximum.y - minimum.y) / maxf(meters_per_pixel * meters_per_pixel, 0.001)
+			var area_threshold := 1800.0 if zoom_level < 14 and kind in ["water_area", "park"] else 160.0 if kind == "building" else 32.0
+			if projected_area < area_threshold: continue
+		if zoom_level < 15: points = _simplify_local_points(points, maxf(4.0, 1.5 * meters_per_pixel))
+		var packed_points := PackedVector2Array(points)
+		var fill_indices := PackedInt32Array()
+		if kind in ["water_area", "park", "building"] and packed_points.size() >= 3:
+			fill_indices = Geometry2D.triangulate_polygon(packed_points)
+		for point in points:
+			minimum.x = minf(minimum.x, point.x); minimum.y = minf(minimum.y, point.y)
+			maximum.x = maxf(maximum.x, point.x); maximum.y = maxf(maximum.y, point.y)
+		var pairs := _polyline_pairs(packed_points, kind in ["water_area", "park", "building"])
+		result.append({"id": str(raw.get("id", "")), "kind": kind, "name": str(raw.get("name", "")), "points": packed_points, "pairs": pairs, "bounds": Rect2(minimum, maximum - minimum), "fillValid": not fill_indices.is_empty(), "fillIndices": fill_indices})
+	return result
+
+static func _simplify_local_points(points: Array[Vector2], tolerance_m: float) -> Array[Vector2]:
+	if points.size() <= 3: return points
+	var result: Array[Vector2] = [points[0]]
+	var last_kept: Vector2 = points[0]
+	var tolerance_sq := tolerance_m * tolerance_m
+	for point_index in range(1, points.size() - 1):
+		var point: Vector2 = points[point_index]
+		if last_kept.distance_squared_to(point) >= tolerance_sq:
+			result.append(point)
+			last_kept = point
+	result.append(points[points.size() - 1])
+	return result
 
 func _draw() -> void:
+	_refresh_camera_cache()
 	_label_rects.clear()
 	draw_rect(Rect2(Vector2.ZERO, size), Color("#e8e5dd"))
-	_draw_tiles()
+	_draw_local_basemap()
 	_draw_built_links()
-	_draw_trains()
+	_draw_station_preview_links()
 	_draw_demand()
 	_draw_stations()
 	_draw_task_pair()
 	_draw_draft()
 	_draw_view_hints()
 
-func _draw_tiles() -> void:
-	var bounds := _visible_tile_bounds()
-	for y in range(bounds.top, bounds.bottom + 1):
-		for x in range(bounds.left, bounds.right + 1):
-			var key := "%d/%d/%d" % [current_zoom, x, y]
-			if _tile_textures.has(key):
-				var pos := _tile_screen_pos(x, y)
-				var tile_rect := Rect2(pos, Vector2(256, 256))
-				draw_texture_rect(_tile_textures[key], tile_rect, false)
-				if clean_map_style:
-					# Map labels are baked into raster tiles; soften the whole tile while keeping streets readable.
-					draw_rect(tile_rect, Color(0.98, 0.97, 0.93, 0.40))
-			else:
-				var pos := _tile_screen_pos(x, y)
-				draw_rect(Rect2(pos, Vector2(256, 256)), Color("#eeece7"))
-				draw_rect(Rect2(pos, Vector2(256, 256)), Color("#ddd9d0"), false, 1.0)
-	if _tile_textures.is_empty():
+func _draw_local_basemap() -> void:
+	if not base_map_available:
+		draw_rect(Rect2(Vector2.ZERO, size), Color("#eef0ee"))
 		_draw_fallback_grid()
+		return
+	var view_half := size * 0.5 * _camera_mpp
+	var visible := Rect2(_camera_local_center - view_half, view_half * 2.0).grow(80.0 * _camera_mpp)
+	var inside_package := base_map_bounds.intersects(visible)
+	if not base_map_draw_batches.is_empty():
+		_draw_cached_local_basemap(visible, inside_package)
+		return
+	var pixel_scale := 1.0 / _camera_mpp
+	var local_to_screen_origin := Vector2(size.x * 0.5 - _camera_local_center.x * pixel_scale, size.y * 0.5 + _camera_local_center.y * pixel_scale)
+	# Base geometry stays in local meters. Panning changes one transform instead
+	# of projecting every feature vertex into screen pixels on every redraw.
+	draw_set_transform(local_to_screen_origin, 0.0, Vector2(pixel_scale, -pixel_scale))
+	var water_points := PackedVector2Array(); var water_indices := PackedInt32Array(); var water_colors := PackedColorArray()
+	var park_points := PackedVector2Array(); var park_indices := PackedInt32Array(); var park_colors := PackedColorArray()
+	var water_outline := PackedVector2Array(); var park_outline := PackedVector2Array()
+	# Batch polygon fills and outlines; the dense neighborhood data contains
+	# thousands of small features, and one draw call per feature stalls panning.
+	for feature in base_map_features:
+		var kind := str(feature.kind)
+		if kind not in ["water_area", "park"] or not visible.intersects(feature.bounds): continue
+		var points: PackedVector2Array = feature.points
+		if points.size() < 3: continue
+		var fill := Color("#dcebf0") if kind == "water_area" else Color("#e4ecdf")
+		var base := water_points.size() if kind == "water_area" else park_points.size()
+		var triangles: PackedInt32Array = feature.get("fillIndices", PackedInt32Array())
+		if not triangles.is_empty():
+			if kind == "water_area":
+				water_points.append_array(points)
+				for index in triangles: water_indices.append(base + index)
+				for _index in points.size(): water_colors.append(fill)
+			else:
+				park_points.append_array(points)
+				for index in triangles: park_indices.append(base + index)
+				for _index in points.size(): park_colors.append(fill)
+		var outline: PackedVector2Array = feature.pairs
+		if kind == "water_area": water_outline.append_array(outline)
+		else: park_outline.append_array(outline)
+	if not water_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), water_indices, water_points, water_colors)
+	if not park_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), park_indices, park_points, park_colors)
+	if not water_outline.is_empty(): draw_multiline(water_outline, Color("#d0e2e8"), _camera_mpp, false)
+	if not park_outline.is_empty(): draw_multiline(park_outline, Color("#d7e2d1"), _camera_mpp, false)
+	var major_outline := PackedVector2Array(); var major_lines := PackedVector2Array()
+	var secondary_outline := PackedVector2Array(); var secondary_lines := PackedVector2Array()
+	var local_lines := PackedVector2Array(); var water_lines := PackedVector2Array()
+	var road_labels: Array[Dictionary] = []
+	for feature in base_map_features:
+		var kind := str(feature.kind)
+		if kind not in ["road_major", "road_primary", "road_secondary", "road_local", "water_line"]: continue
+		if kind == "road_local" and current_zoom < 16: continue
+		if kind == "road_secondary" and current_zoom < 15: continue
+		if kind == "road_primary" and current_zoom < 13: continue
+		if kind == "road_major" and current_zoom < 10: continue
+		if kind == "water_line" and current_zoom < 11: continue
+		if not visible.intersects(feature.bounds): continue
+		var points: PackedVector2Array = feature.points
+		if points.size() < 2: continue
+		var pairs: PackedVector2Array = feature.pairs
+		match kind:
+			"road_major": major_lines.append_array(pairs); major_outline.append_array(pairs)
+			"road_primary": secondary_lines.append_array(pairs); secondary_outline.append_array(pairs)
+			"road_secondary": secondary_lines.append_array(pairs); secondary_outline.append_array(pairs)
+			"road_local": local_lines.append_array(pairs)
+			"water_line": water_lines.append_array(pairs)
+		if show_road_names and current_zoom >= 15 and kind != "water_line" and not str(feature.name).is_empty():
+			road_labels.append({"position": points[points.size() / 2], "name": str(feature.name), "kind": kind, "priority": _road_label_priority(kind)})
+	if not water_lines.is_empty(): draw_multiline(water_lines, Color("#b5cbd1"), 3.5 * _camera_mpp, false)
+	if not major_outline.is_empty(): draw_multiline(major_outline, Color("#d5d9d5"), 5.3 * _camera_mpp, false)
+	if not secondary_outline.is_empty(): draw_multiline(secondary_outline, Color("#d5d9d5"), 3.8 * _camera_mpp, false)
+	if not major_lines.is_empty(): draw_multiline(major_lines, Color("#fdfdfb"), 3.8 * _camera_mpp, false)
+	if not secondary_lines.is_empty(): draw_multiline(secondary_lines, Color("#ffffff"), 2.3 * _camera_mpp, false)
+	if not local_lines.is_empty(): draw_multiline(local_lines, Color("#ffffff"), 1.15 * _camera_mpp, false)
+	if current_zoom >= 17:
+		var building_points := PackedVector2Array(); var building_indices := PackedInt32Array(); var building_colors := PackedColorArray(); var building_outline := PackedVector2Array()
+		for feature in base_map_features:
+			if str(feature.kind) != "building" or not visible.intersects(feature.bounds): continue
+			var points: PackedVector2Array = feature.points
+			var feature_bounds: Rect2 = feature.get("bounds", Rect2())
+			var projected_area: float = feature_bounds.size.x * feature_bounds.size.y / maxf(_camera_mpp * _camera_mpp, 0.001)
+			if points.size() >= 3:
+				var base := building_points.size()
+				var triangles: PackedInt32Array = feature.get("fillIndices", PackedInt32Array())
+				if not triangles.is_empty():
+					building_points.append_array(points)
+					for index in triangles: building_indices.append(base + index)
+					for _index in points.size(): building_colors.append(Color("#e9e8e4"))
+				if projected_area >= 400.0: building_outline.append_array(feature.pairs)
+		if not building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), building_indices, building_points, building_colors)
+		if not building_outline.is_empty(): draw_multiline(building_outline, Color("#d8d7d2"), 0.7 * _camera_mpp, false)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	_draw_road_labels(road_labels)
+	if not inside_package:
+		_draw_map_hint("超出本地底图范围 · 规划仍可继续")
+
+func _draw_cached_local_basemap(visible: Rect2, inside_package: bool) -> void:
+	var pixel_scale := 1.0 / _camera_mpp
+	var origin := Vector2(size.x * 0.5 - _camera_local_center.x * pixel_scale, size.y * 0.5 + _camera_local_center.y * pixel_scale)
+	draw_set_transform(origin, 0.0, Vector2(pixel_scale, -pixel_scale))
+	var batches := base_map_draw_batches
+	var water_indices: PackedInt32Array = batches.get("waterIndices", PackedInt32Array())
+	var park_indices: PackedInt32Array = batches.get("parkIndices", PackedInt32Array())
+	if not water_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), water_indices, batches.waterPoints, batches.waterColors)
+	if not park_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), park_indices, batches.parkPoints, batches.parkColors)
+	var water_outline: PackedVector2Array = batches.get("waterOutline", PackedVector2Array())
+	var park_outline: PackedVector2Array = batches.get("parkOutline", PackedVector2Array())
+	if not water_outline.is_empty(): draw_multiline(water_outline, Color("#d0e2e8"), _camera_mpp, false)
+	if not park_outline.is_empty(): draw_multiline(park_outline, Color("#d7e2d1"), _camera_mpp, false)
+	var water_lines: PackedVector2Array = batches.get("waterLines", PackedVector2Array())
+	var major_lines: PackedVector2Array = batches.get("majorLines", PackedVector2Array())
+	var primary_lines: PackedVector2Array = batches.get("primaryLines", PackedVector2Array())
+	var secondary_lines: PackedVector2Array = batches.get("secondaryLines", PackedVector2Array())
+	var local_lines: PackedVector2Array = batches.get("localLines", PackedVector2Array())
+	if not water_lines.is_empty(): draw_multiline(water_lines, Color("#b5cbd1"), (2.5 if current_zoom < 14 else 3.5) * _camera_mpp, false)
+	if not major_lines.is_empty():
+		if current_zoom < 13:
+			draw_multiline(major_lines, Color("#fdfdfb"), 2.0 * _camera_mpp, false)
+		else:
+			draw_multiline(major_lines, Color("#d5d9d5"), 5.3 * _camera_mpp, false)
+			draw_multiline(major_lines, Color("#fdfdfb"), 3.8 * _camera_mpp, false)
+	if not primary_lines.is_empty(): draw_multiline(primary_lines, Color("#ffffff"), 1.8 * _camera_mpp, false)
+	if not secondary_lines.is_empty():
+		draw_multiline(secondary_lines, Color("#d5d9d5"), 3.8 * _camera_mpp, false)
+		draw_multiline(secondary_lines, Color("#ffffff"), 2.3 * _camera_mpp, false)
+	if not local_lines.is_empty(): draw_multiline(local_lines, Color("#ffffff"), 1.15 * _camera_mpp, false)
+	var building_indices: PackedInt32Array = batches.get("buildingIndices", PackedInt32Array())
+	var building_outline: PackedVector2Array = batches.get("buildingOutline", PackedVector2Array())
+	if not building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), building_indices, batches.buildingPoints, batches.buildingColors)
+	if not building_outline.is_empty(): draw_multiline(building_outline, Color("#d8d7d2"), 0.7 * _camera_mpp, false)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	if show_road_names and current_zoom >= 15:
+		var visible_road_labels: Array[Dictionary] = []
+		for road_label in batches.get("roadLabels", []):
+			if visible.intersects(road_label.get("bounds", Rect2())):
+				var visible_label: Dictionary = road_label.duplicate()
+				visible_label["screenPosition"] = _local_to_screen_cached(road_label.get("position", Vector2.ZERO))
+				visible_road_labels.append(visible_label)
+		_draw_road_labels(visible_road_labels, true)
+	if not inside_package:
+		_draw_map_hint("超出本地底图范围 · 规划仍可继续")
+
+static func _polyline_pairs(points: PackedVector2Array, close_loop: bool = false) -> PackedVector2Array:
+	var result := PackedVector2Array()
+	if points.size() < 2: return result
+	for index in range(points.size() - 1):
+		result.append(points[index]); result.append(points[index + 1])
+	if close_loop:
+		result.append(points[-1]); result.append(points[0])
+	return result
 
 func _draw_fallback_grid() -> void:
 	var step := 64.0
@@ -164,122 +736,184 @@ func _draw_schematic_network() -> void:
 
 func _draw_built_links() -> void:
 	if not show_network: return
-	var stations: Dictionary = {}
-	var routes: Dictionary = {}
-	for station in world.get("stations", []): stations[str(station.get("id", ""))] = station
-	for route in world.get("routes", []): routes[str(route.get("id", ""))] = route
+	var view_half := size * 0.5 * _camera_mpp
+	var visible_local := Rect2(_camera_local_center - view_half, view_half * 2.0).grow(700.0)
 	for link in world.get("trackLinks", []):
-		var a_ref: Dictionary = link.get("a", {})
-		var b_ref: Dictionary = link.get("b", {})
-		var a: Dictionary = stations.get(str(a_ref.get("stationId", "")), {})
-		var b: Dictionary = stations.get(str(b_ref.get("stationId", "")), {})
-		if a.is_empty() or b.is_empty(): continue
-		var draw_link: Dictionary = link
-		if not _curve_preview.is_empty() and str(_curve_preview.get("linkId", "")) == str(link.get("id", "")):
-			draw_link = link.duplicate(true)
-			draw_link[str(_curve_preview.get("controlName", "curveA"))] = _curve_preview.get("offset", [])
-		var ref_lat := float(city_data.get("center", [31.23,121.47])[0])
-		var geo_points: Array = WorldData.track_points(draw_link, world, ref_lat, 24)
-		if link.get("schematic", false): geo_points = [a.get("latlng", [0,0]), b.get("latlng", [0,0])]
-		if geo_points.size() < 2: continue
+		var geometry: Dictionary = link_geometry_cache.get(str(link.get("id", "")), {})
+		var local_points: Array[Vector2] = geometry.get("points", [])
+		var is_preview_link := not _curve_preview.is_empty() and str(_curve_preview.get("linkId", "")) == str(link.get("id", ""))
+		if is_preview_link:
+			var a: Dictionary = WorldData.find_station(world, str(link.get("a", {}).get("stationId", "")))
+			var b: Dictionary = WorldData.find_station(world, str(link.get("b", {}).get("stationId", "")))
+			if a.is_empty() or b.is_empty(): continue
+			var preview_link: Dictionary = link.duplicate(true)
+			preview_link[str(_curve_preview.get("controlName", "curveA"))] = _curve_preview.get("offset", [])
+			var controls := _link_control_local(preview_link, a, b)
+			local_points = []
+			for index in range(25): local_points.append(_bezier(controls[0], controls[1], controls[2], controls[3], float(index) / 24.0))
+		if local_points.size() < 2: continue
+		if not is_preview_link and not visible_local.intersects(geometry.get("bounds", Rect2())): continue
 		var points := PackedVector2Array()
-		for geo_point in geo_points: points.append(_to_screen(geo_point))
+		for local_point in local_points: points.append(_local_to_screen(local_point))
 		var p0: Vector2 = points[0]
 		var p3: Vector2 = points[-1]
-		if not _segment_visible(p0, p3): continue
+		if bool(link.get("schematic", false)) and not _segment_visible(p0, p3): continue
 		var route_ids: Array = link.get("routeIds", [])
-		var route: Dictionary = routes.get(str(route_ids[0]) if not route_ids.is_empty() else "", {})
+		var route: Dictionary = route_cache_by_id.get(str(route_ids[0]) if not route_ids.is_empty() else "", {})
 		var color := Color.from_string(str(route.get("color", "#4a91e8")), Color("#4a91e8"))
 		var selected_link := selected_type == "link" and str(selected_id) == str(link.get("id", ""))
 		if link.get("schematic", false):
 			for i in range(0, points.size() - 1, 2):
 				draw_line(points[i], points[i + 1], Color("#f2bd58") if selected_link else color.darkened(0.12), 5.0 if selected_link else 2.8, true)
 		else:
+			var preview_tint := Color("#df5360") if is_preview_link and not curve_preview_issue.is_empty() else (Color("#f2bd58") if selected_link else color)
 			draw_polyline(points, Color("#ffffff"), 10.0 if selected_link else 8.0, true)
-			draw_polyline(points, Color("#f2bd58") if selected_link else color, 6.0 if selected_link else 4.0, true)
+			draw_polyline(points, preview_tint, 6.0 if selected_link or is_preview_link else 4.0, true)
 			if tool == "curve" and link.get("routeIds", []).has(active_route_id):
-				var controls := WorldData.link_control_points(draw_link, world, ref_lat)
-				if controls.size() == 4:
-					var ca := _to_screen(Geo.from_local(controls[1], ref_lat)); var cb := _to_screen(Geo.from_local(controls[2], ref_lat))
+				var a: Dictionary = WorldData.find_station(world, str(link.get("a", {}).get("stationId", "")))
+				var b: Dictionary = WorldData.find_station(world, str(link.get("b", {}).get("stationId", "")))
+				if not a.is_empty() and not b.is_empty():
+					var controls := _link_control_local(link, a, b)
+					var ca := _local_to_screen(controls[1]); var cb := _local_to_screen(controls[2])
 					draw_line(p0, ca, Color(0.08, 0.35, 0.53, 0.65), 1.5, true)
 					draw_line(p3, cb, Color(0.08, 0.35, 0.53, 0.65), 1.5, true)
 					draw_circle(ca, 10.0, Color("#ffffff")); draw_circle(ca, 7.0, Color("#297ab7"))
 					draw_circle(cb, 10.0, Color("#ffffff")); draw_circle(cb, 7.0, Color("#297ab7"))
+	for edge in world.get("trackEdges", []):
+		var geometry: Dictionary = link_geometry_cache.get(str(edge.get("id", "")), {})
+		var local_points: Array[Vector2] = geometry.get("points", [])
+		if local_points.size() < 2 or not visible_local.intersects(geometry.get("bounds", Rect2())): continue
+		var points := PackedVector2Array()
+		for local_point in local_points: points.append(_local_to_screen(local_point))
+		var depth := float(edge.get("depthM", -15.0))
+		var faded := not show_all_depths and absf(depth - current_depth_m) > 2.5 and tool in ["track", "track_curve", "station"]
+		var base_color := Color("#98a5ac") if faded else Color("#ffffff")
+		var selected_link := selected_type == "link" and str(selected_id) == str(edge.get("id", ""))
+		draw_polyline(points, base_color, 9.0 if selected_link else 7.0, true)
+		var route_ids: Array = edge.get("routeIds", [])
+		if route_ids.is_empty():
+			var rail_color := Color("#7a8790") if faded else Color("#566b78")
+			draw_polyline(_offset_screen_polyline(points, -2.3), rail_color, 2.2 if selected_link else 1.8, true)
+			draw_polyline(_offset_screen_polyline(points, 2.3), rail_color, 2.2 if selected_link else 1.8, true)
+		else:
+			var lane_width := 2.2 if route_ids.size() > 1 else 3.2
+			for lane_index in range(mini(3, route_ids.size())):
+				var route: Dictionary = route_cache_by_id.get(str(route_ids[lane_index]), {})
+				var color := Color.from_string(str(route.get("color", "#4a91e8")), Color("#4a91e8"))
+				var lane_points := points
+				if route_ids.size() > 1:
+					lane_points = PackedVector2Array()
+					var lane_offset := (float(lane_index) - float(mini(3, route_ids.size()) - 1) * 0.5) * 2.6
+					for point_index in range(points.size()):
+						var before: Vector2 = points[maxi(0, point_index - 1)]
+						var after: Vector2 = points[mini(points.size() - 1, point_index + 1)]
+						var direction := (after - before).normalized()
+						lane_points.append(points[point_index] + Vector2(-direction.y, direction.x) * lane_offset)
+				draw_polyline(lane_points, color.darkened(0.25) if faded else color, lane_width, true)
+		var is_preview_edge := not _curve_preview.is_empty() and str(_curve_preview.get("linkId", "")) == str(edge.get("id", ""))
+		if is_preview_edge:
+			var preview_edge: Dictionary = edge.duplicate(true)
+			preview_edge["controlA" if str(_curve_preview.get("controlName", "curveA")) == "curveA" else "controlB"] = _curve_preview.get("offset", [])
+			var preview_points: PackedVector2Array = []
+			for point in TrackNetwork.edge_points(preview_edge, world, geometry_ref_lat, 24): preview_points.append(_local_to_screen(Geo.local_m(point, geometry_ref_lat)))
+			points = preview_points
+			if points.size() >= 2:
+				draw_polyline(points, Color("#ffffff"), 10.0, true)
+				draw_polyline(points, Color("#df5360") if not curve_preview_issue.is_empty() else Color("#f2bd58"), 6.0, true)
+		if tool == "curve" and str(edge.get("geometry", "straight")) == "bezier":
+			var ends := TrackNetwork._edge_node_ids(edge, world)
+			if ends.size() == 2:
+				var node_a := TrackNetwork.find_node(world, ends[0]); var node_b := TrackNetwork.find_node(world, ends[1])
+				if not node_a.is_empty() and not node_b.is_empty():
+					var p0 := Geo.local_m(node_a.get("latlng", [0, 0]), geometry_ref_lat)
+					var p3 := Geo.local_m(node_b.get("latlng", [0, 0]), geometry_ref_lat)
+					var delta := p3 - p0
+					var ca: Array = edge.get("controlA", [delta.x / 3.0, delta.y / 3.0]); var cb: Array = edge.get("controlB", [-delta.x / 3.0, -delta.y / 3.0])
+					var ca_screen := _local_to_screen(p0 + Vector2(float(ca[0]), float(ca[1])))
+					var cb_screen := _local_to_screen(p3 + Vector2(float(cb[0]), float(cb[1])))
+					draw_line(_local_to_screen(p0), ca_screen, Color(0.08, 0.35, 0.53, 0.65), 1.5, true)
+					draw_line(_local_to_screen(p3), cb_screen, Color(0.08, 0.35, 0.53, 0.65), 1.5, true)
+					draw_circle(ca_screen, 10.0, Color("#ffffff")); draw_circle(ca_screen, 7.0, Color("#297ab7"))
+					draw_circle(cb_screen, 10.0, Color("#ffffff")); draw_circle(cb_screen, 7.0, Color("#297ab7"))
+		if selected_link: _draw_label(points[points.size() / 2] + Vector2(7, -8), "地下轨道 · %.0f 米" % TrackNetwork.edge_length_m(edge, world, geometry_ref_lat), Color("#243847"), get_theme_default_font(), 13, true, true)
+		elif faded and current_zoom >= 14:
+			_draw_label(points[points.size() / 2] + Vector2(4, -5), "深 %.0f m" % depth, Color("#52636d"), get_theme_default_font(), 10)
 
-func _draw_trains() -> void:
+func _offset_screen_polyline(points: PackedVector2Array, amount: float) -> PackedVector2Array:
+	var result := PackedVector2Array()
+	for index in range(points.size()):
+		var before: Vector2 = points[maxi(0, index - 1)]
+		var after: Vector2 = points[mini(points.size() - 1, index + 1)]
+		var direction := (after - before).normalized()
+		result.append(points[index] + Vector2(-direction.y, direction.x) * amount)
+	return result
+
+func _draw_trains_on(target: CanvasItem) -> void:
 	if current_zoom < 11 or not show_network: return
-	var minute := float(world.get("simulation", {}).get("minute", 420))
-	var ref_lat := float(city_data.get("center", [31.23,121.47])[0])
-	var total_trains := 0
-	for route in world.get("routes", []):
-		if not route.get("open", false): continue
-		var stop_ids: Array = route.get("stationOrder", [])
-		var directions: Array = route.get("directions", [])
-		if not directions.is_empty():
-			var first_direction: Array = directions[0].get("stationIds", [])
-			if first_direction.size() >= 2: stop_ids = first_direction
-		if stop_ids.size() < 2: continue
-		var path: Array[Dictionary] = []
-		var route_length := 0.0
-		for i in range(stop_ids.size() - 1):
-			var from_id := str(stop_ids[i]); var to_id := str(stop_ids[i+1])
-			var link: Dictionary = {}
-			for candidate in world.get("trackLinks", []):
-				if not candidate.get("routeIds", []).has(str(route.get("id", ""))): continue
-				var a_id := str(candidate.get("a", {}).get("stationId", "")); var b_id := str(candidate.get("b", {}).get("stationId", ""))
-				if (a_id == from_id and b_id == to_id) or (a_id == to_id and b_id == from_id): link = candidate; break
-			if link.is_empty(): continue
-			var length := WorldData.track_length_m(link, world, ref_lat)
-			if length <= 0.0: continue
-			path.append({"link": link, "from": from_id, "to": to_id, "length": length})
-			route_length += length
-		if path.is_empty() or route_length <= 0.0: continue
-		var profile := WorldData.vehicle(str(route.get("vehicleId", "B-6")))
-		var trip_minutes := route_length / maxf(1.0, float(profile.get("maxSpeedKmh", 80))) * 60.0 * 1.18 + float(stop_ids.size()) * 0.5
-		var train_count := mini(8, maxi(1, int(ceil(trip_minutes / maxf(1.0, float(route.get("headway", 3)))))))
+	if route_path_cache_revision != int(world.get("revision", 0)): _rebuild_route_path_cache()
+	var simulation: Dictionary = world.get("simulation", {})
+	var trains: Array = simulation.get("trainTrips", [])
+	var projected_segments: Dictionary = {}
+	for trip in trains:
+		var route_id := str(trip.get("routeId", ""))
+		var path_data: Dictionary = route_path_cache.get(route_id, {})
+		var route: Dictionary = route_cache_by_id.get(route_id, {})
 		var color := Color.from_string(str(route.get("color", "#397fc5")), Color("#397fc5"))
-		for train_index in range(train_count):
-			if total_trains >= 160: return
-			var traveled := fposmod(minute / maxf(1.0, trip_minutes) + float(train_index) / float(train_count), 1.0) * route_length
-			var train_pos := Vector2.ZERO
-			var train_direction := Vector2.RIGHT
-			for step in path:
-				var step_length := float(step.length)
-				if traveled > step_length:
-					traveled -= step_length
-					continue
-				var points: Array = []
-				if step.link.get("schematic", false):
-					var from_station := WorldData.find_station(world, str(step.from))
-					var to_station := WorldData.find_station(world, str(step.to))
-					if not from_station.is_empty() and not to_station.is_empty(): points = [from_station.get("latlng", [0,0]), to_station.get("latlng", [0,0])]
-				else:
-					points = WorldData.track_points(step.link, world, ref_lat, 24)
-					var link_a_id := str(step.link.get("a", {}).get("stationId", ""))
-					if link_a_id != str(step.from): points.reverse()
-				if points.size() < 2: break
-				var segment_lengths: Array[float] = []
-				var poly_length := 0.0
-				for pindex in range(points.size() - 1):
-					var local_a := Geo.local_m(points[pindex], ref_lat); var local_b := Geo.local_m(points[pindex+1], ref_lat)
-					var piece := local_a.distance_to(local_b)
-					segment_lengths.append(piece); poly_length += piece
-				var curve_target := traveled / maxf(1.0, step_length) * poly_length
-				for pindex in range(segment_lengths.size()):
-					if curve_target > segment_lengths[pindex]:
-						curve_target -= segment_lengths[pindex]
-						continue
-					var from_screen := _to_screen(points[pindex]); var to_screen := _to_screen(points[pindex+1])
-					var fraction := curve_target / maxf(0.01, segment_lengths[pindex])
-					train_pos = from_screen.lerp(to_screen, fraction)
+		var direction: Dictionary = trip.get("directionSnapshot", {})
+		if direction.is_empty():
+			for candidate in path_data.get("directions", []):
+				if str(candidate.get("id", "")) == str(trip.get("directionId", "")): direction = candidate; break
+		if direction.is_empty(): continue
+		var traveled_minutes := float(trip.get("elapsedSeconds", float(trip.get("elapsedMinutes", 0.0)) * 60.0)) / 60.0 + simulation_fraction
+		var train_pos := Vector2.ZERO
+		var train_direction := Vector2.RIGHT
+		var timetable: Array = trip.get("stationTimetable", [])
+		var segments: Array = direction.get("segments", [])
+		for segment_index in range(segments.size()):
+			var step: Dictionary = segments[segment_index]
+			var step_minutes := float(step.get("movingMinutes", step.get("travelMinutes", 0.0)))
+			var from_id := str(step.get("fromStationId", ""))
+			var departure_offset := 0.0
+			var arrival_offset := departure_offset + step_minutes
+			var next_departure_offset := arrival_offset + float(step.get("dwellMinutes", 0.0))
+			if segment_index < timetable.size(): departure_offset = float(timetable[segment_index].get("departureOffsetMinutes", departure_offset))
+			if segment_index + 1 < timetable.size():
+				arrival_offset = float(timetable[segment_index + 1].get("arrivalOffsetMinutes", departure_offset + step_minutes))
+				next_departure_offset = float(timetable[segment_index + 1].get("departureOffsetMinutes", arrival_offset + float(step.get("dwellMinutes", 0.0))))
+			if traveled_minutes < departure_offset - 0.0001 or traveled_minutes > next_departure_offset + 0.0001: continue
+			var moving_duration := maxf(0.001, arrival_offset - departure_offset)
+			if traveled_minutes >= arrival_offset:
+				var station := WorldData.find_station(world, str(step.get("toStationId", "")))
+				if station.is_empty(): continue
+				train_pos = _to_screen(station.get("latlng", [0, 0]))
+			else:
+				var fraction := clampf((traveled_minutes - departure_offset) / moving_duration, 0.0, 1.0)
+				var cache_key := "%s|%s" % [str(step.get("linkId", "")), from_id]
+				if not projected_segments.has(cache_key):
+					var screen_points: Array[Vector2] = []
+					var piece_lengths: Array[float] = []
+					var poly_length := 0.0
+					for point in step.get("points", []): screen_points.append(_to_screen(point))
+					for pindex in range(screen_points.size() - 1):
+						var piece := screen_points[pindex].distance_to(screen_points[pindex + 1])
+						piece_lengths.append(piece); poly_length += piece
+					projected_segments[cache_key] = {"points": screen_points, "pieces": piece_lengths, "length": poly_length}
+				var geometry: Dictionary = projected_segments[cache_key]
+				var screen_points: Array = geometry.get("points", [])
+				var piece_lengths: Array = geometry.get("pieces", [])
+				var curve_target := fraction * float(geometry.get("length", 0.0))
+				for pindex in range(piece_lengths.size()):
+					if curve_target > float(piece_lengths[pindex]): curve_target -= float(piece_lengths[pindex]); continue
+					var from_screen: Vector2 = screen_points[pindex]
+					var to_screen: Vector2 = screen_points[pindex + 1]
+					train_pos = from_screen.lerp(to_screen, curve_target / maxf(0.01, float(piece_lengths[pindex])))
 					train_direction = (to_screen - from_screen).normalized()
 					break
-				break
-			var half := train_direction * 7.0
-			draw_line(train_pos - half, train_pos + half, Color("#ffffff"), 8.0, true)
-			draw_line(train_pos - half, train_pos + half, color.lightened(0.18), 5.0, true)
-			draw_circle(train_pos, 2.0, Color("#fff5d5"))
-			total_trains += 1
+			break
+		var half := train_direction * 7.0
+		target.draw_line(train_pos - half, train_pos + half, Color("#ffffff"), 8.0, true)
+		target.draw_line(train_pos - half, train_pos + half, color.lightened(0.18), 5.0, true)
+		target.draw_circle(train_pos, 2.0, Color("#fff5d5"))
 
 func _draw_demand() -> void:
 	if not show_demand: return
@@ -287,6 +921,8 @@ func _draw_demand() -> void:
 	for demand in city_data.get("demand", []):
 		var demand_id := str(demand.get("id", ""))
 		var selected := demand_id == selected_id and selected_type == "demand"
+		if not task_origin.is_empty() and demand_id == task_origin_id: continue
+		if not task_destination.is_empty() and demand_id == task_destination_id: continue
 		if filter_demand_to_task and focus_demand_ids.has(demand_id): continue
 		if filter_demand_to_task and not focus_demand_ids.has(demand_id) and not selected: continue
 		var pos := _to_screen(demand.get("latlng", [0, 0]))
@@ -318,45 +954,65 @@ func _draw_demand_symbol(pos: Vector2, radius: float, kind: String, color: Color
 			for index in range(6): points.append(pos + Vector2.from_angle(TAU * float(index) / 6.0) * (radius + 1.0))
 			draw_colored_polygon(points, color)
 
+func _draw_station_preview_links() -> void:
+	if station_preview_edges.is_empty(): return
+	var tint := Color("#df5360") if not station_preview_issue.is_empty() else Color("#f2bd58")
+	for local_points_variant in station_preview_edges.values():
+		var local_points: Array = local_points_variant
+		if local_points.size() < 2: continue
+		var points := PackedVector2Array()
+		for point in local_points: points.append(_local_to_screen(point))
+		draw_polyline(points, Color(1.0, 1.0, 1.0, 0.92), 10.0, true)
+		draw_polyline(points, tint, 6.0, true)
+
 func _draw_stations() -> void:
 	if not show_stations: return
 	for station in world.get("stations", []):
-		var pos := _station_screen(station)
+		var display_station: Dictionary = station
+		if not _drag_preview.is_empty() and str(_drag_preview[0]) == str(station.get("id", "")):
+			display_station = station.duplicate(true)
+			display_station["latlng"] = _drag_preview[1].duplicate()
+		var pos := _to_screen(display_station.get("latlng", [0, 0]))
 		if not Rect2(Vector2(-80, -80), size + Vector2(160, 160)).has_point(pos): continue
-		var bearing := deg_to_rad(float(station.get("heading", 90.0)) - 90.0)
+		var selected := str(station.get("id", "")) == selected_id and selected_type == "station"
+		var bearing := deg_to_rad(float(display_station.get("heading", 90.0)) - 90.0)
 		var axis := Vector2(cos(bearing), sin(bearing))
 		var normal := Vector2(-axis.y, axis.x)
-		var mpp := Geo.meters_per_pixel(float(station.get("latlng", [0,0])[0]), current_zoom)
-		var half_len := float(station.get("lengthM", 118.788)) / mpp * 0.5
-		var half_w := float(station.get("widthM", 20.0)) / mpp * 0.5
+		var mpp := Geo.meters_per_pixel(float(display_station.get("latlng", [0,0])[0]), current_zoom)
+		var half_len := float(display_station.get("lengthM", 118.788)) / mpp * 0.5
+		var half_w := float(display_station.get("widthM", 20.0)) / mpp * 0.5
 		var footprint := PackedVector2Array([pos - axis * half_len - normal * half_w, pos + axis * half_len - normal * half_w, pos + axis * half_len + normal * half_w, pos - axis * half_len + normal * half_w])
-		if show_halls and current_zoom >= 13:
+		if show_halls and (current_zoom >= 15 or selected):
 			draw_colored_polygon(footprint, Color(0.12, 0.3, 0.48, 0.42))
 			draw_polyline(PackedVector2Array([footprint[0], footprint[1], footprint[2], footprint[3], footprint[0]]), Color("#176d92"), 2.0, true)
 			var rail_delta := normal * maxf(2.0, half_w * 0.3)
 			draw_line(pos - axis * half_len + rail_delta, pos + axis * half_len + rail_delta, Color("#344654"), 2.0)
 			draw_line(pos - axis * half_len - rail_delta, pos + axis * half_len - rail_delta, Color("#344654"), 2.0)
-		var selected := str(station.get("id", "")) == selected_id and selected_type == "station"
 		var marker_color := Color("#213342")
 		for route_id in station.get("routeIds", []):
-			var route := WorldData.find_route(world, str(route_id))
+			var route: Dictionary = route_cache_by_id.get(str(route_id), {})
 			if not route.is_empty(): marker_color = Color.from_string(str(route.get("color", "#4a91e8")), marker_color); break
 		draw_circle(pos, 10.5 if selected else 8.0, Color("#ffffff"))
 		draw_circle(pos, 7.5 if selected else 5.5, marker_color)
-		if current_zoom >= 14 or selected or station.get("existing", false) == false:
+		if (current_zoom >= 14 or selected or station.get("existing", false) == false) and (selected or not _near_task_label_anchor(pos)):
 			_draw_label(pos + Vector2(10, -9), str(station.get("name", "车站")), Color("#1b2d3b"), get_theme_default_font(), 14 if selected else 12, selected, selected)
-		if tool == "connect" or selected:
-			var start_pos := _to_screen(WorldData.station_endpoint(station, "start"))
-			var end_pos := _to_screen(WorldData.station_endpoint(station, "end"))
+		if tool in ["connect", "track", "track_curve"] or selected:
+			var start_pos := _to_screen(WorldData.station_endpoint(display_station, "start"))
+			var end_pos := _to_screen(WorldData.station_endpoint(display_station, "end"))
 			draw_circle(start_pos, 9.0 if tool == "connect" else 7.0, Color("#2b9e77"))
 			draw_circle(end_pos, 9.0 if tool == "connect" else 7.0, Color("#e38d3a"))
 			var endpoint_hover := false
 			if not hover_latlng.is_empty():
 				endpoint_hover = _to_screen(hover_latlng).distance_to(start_pos) <= 44.0 or _to_screen(hover_latlng).distance_to(end_pos) <= 44.0
-			var show_endpoint_names := tool == "connect" and (selected or str(link_start.get("stationId", "")) == str(station.get("id", "")) or endpoint_hover)
+			var show_endpoint_names := tool in ["connect", "track", "track_curve"] and (selected or str(link_start.get("stationId", "")) == str(station.get("id", "")) or endpoint_hover)
 			if show_endpoint_names:
 				_draw_label(start_pos + Vector2(8, -6), "A端", Color("#145c46"), get_theme_default_font(), 12, true)
 				_draw_label(end_pos + Vector2(8, -6), "B端", Color("#8c4d17"), get_theme_default_font(), 12, true)
+	if tool in ["track", "track_curve"]:
+		for node in world.get("trackNodes", []):
+			var point := _to_screen(node.get("latlng", [0, 0]))
+			if not Rect2(Vector2(-16, -16), size + Vector2(32, 32)).has_point(point): continue
+			draw_circle(point, 7.0, Color("#ffffff")); draw_circle(point, 4.0, Color("#2589ae"))
 
 func _draw_task_pair() -> void:
 	if task_origin.is_empty() or task_destination.is_empty(): return
@@ -385,6 +1041,12 @@ func _draw_task_pair() -> void:
 		draw_circle(pos, 13, data[3])
 		draw_circle(pos, 4, Color.WHITE)
 		_draw_label(pos + Vector2(20, -8), "%s · %s" % [data[1], data[2]], Color("#192837"), get_theme_default_font(), 14, true, true)
+
+func _near_task_label_anchor(point: Vector2) -> bool:
+	for anchor in [task_origin, task_destination]:
+		if anchor.is_empty(): continue
+		if point.distance_to(_to_screen(anchor)) < 110.0 * ui_scale: return true
+	return false
 
 func _draw_draft() -> void:
 	if not draft_station.is_empty():
@@ -419,6 +1081,56 @@ func _draw_draft() -> void:
 			else:
 				var end_point := _to_screen(hover_latlng)
 				draw_dashed_line(start_point, end_point, Color("#37a6e8"), 3.0, 8.0, true)
+	if not track_start_ref.is_empty() and (not hover_latlng.is_empty() or not track_end_ref.is_empty()):
+		var start_geo: Array = track_start_ref.get("latlng", [])
+		if not str(track_start_ref.get("nodeId", "")).is_empty():
+			var start_node := TrackNetwork.find_node(world, str(track_start_ref.get("nodeId", "")))
+			if not start_node.is_empty(): start_geo = start_node.get("latlng", [])
+		if start_geo.size() >= 2:
+			var p0 := _to_screen(start_geo)
+			var end_geo: Array = track_end_ref.get("latlng", hover_latlng) if not track_end_ref.is_empty() else hover_latlng
+			if not track_end_ref.is_empty() and not str(track_end_ref.get("nodeId", "")).is_empty():
+				var end_node := TrackNetwork.find_node(world, str(track_end_ref.get("nodeId", "")))
+				if not end_node.is_empty(): end_geo = end_node.get("latlng", end_geo)
+			var hovered := _pick(_to_screen(end_geo))
+			if str(hovered.get("type", "")) == "endpoint":
+				var hovered_station := WorldData.find_station(world, str(hovered.get("id", "")))
+				if not hovered_station.is_empty(): end_geo = WorldData.station_endpoint(hovered_station, str(hovered.get("side", "end")))
+			elif str(hovered.get("type", "")) == "track_node":
+				var hovered_node := TrackNetwork.find_node(world, str(hovered.get("id", "")))
+				if not hovered_node.is_empty(): end_geo = hovered_node.get("latlng", hover_latlng)
+			var p3 := _to_screen(end_geo)
+			var points := PackedVector2Array()
+			if not track_control_latlng.is_empty():
+				var ref_lat := float(city_data.get("center", [31.23,121.47])[0])
+				var a := Geo.local_m(start_geo, ref_lat); var b := Geo.local_m(end_geo, ref_lat)
+				var midpoint := (a + b) * 0.5
+				var offset := Geo.local_m(track_control_latlng, ref_lat) - midpoint
+				for index in range(25):
+					var t := float(index) / 24.0; var u := 1.0 - t
+					var point := a * u * u * u + (a + (b - a) / 3.0 + offset) * 3.0 * u * u * t + (a + (b - a) * 2.0 / 3.0 + offset) * 3.0 * u * t * t + b * t * t * t
+					points.append(_local_to_screen(point))
+			else:
+				points = PackedVector2Array([p0, p3])
+			var conflict_color := Color("#dd5963") if not track_preview_conflict.is_empty() else Color("#2f9dca")
+			draw_polyline(points, Color("#ffffff", 0.9), 8.0, true); draw_polyline(points, conflict_color, 4.0, true)
+			draw_circle(p0, 8.0, Color("#f1bd54")); draw_circle(p3, 8.0, conflict_color)
+			var preview_length_px := 0.0
+			for index in range(points.size() - 1): preview_length_px += points[index].distance_to(points[index + 1])
+			var preview_start_depth := float(track_start_ref.get("depthM", current_depth_m))
+			var preview_end_depth := float(track_end_ref.get("depthM", current_depth_m)) if not track_end_ref.is_empty() else current_depth_m
+			_draw_label((p0 + p3) * 0.5 + Vector2(0, -12), "地下轨道 · %.0f m · 深度 %.0f → %.0f m" % [preview_length_px * _camera_mpp, preview_start_depth, preview_end_depth], Color("#214455"), get_theme_default_font(), 13, true, true)
+			if not track_preview_conflict.is_empty(): _draw_map_hint(track_preview_conflict)
+	if tool in ["line", "repair_route_segment"] and not _line_draft_stops().is_empty():
+		var line_points := PackedVector2Array()
+		for point in line_draft_points: line_points.append(_to_screen(point))
+		for station_id in _line_draft_stops():
+			var station := WorldData.find_station(world, station_id)
+			if station.is_empty(): continue
+			var point := _to_screen(station.get("latlng", [0, 0]))
+			draw_circle(point, 12.0, Color("#f1bd54"))
+			draw_circle(point, 7.0, Color("#254d61"))
+		if line_points.size() >= 2: draw_polyline(line_points, Color("#f1bd54"), 3.0, true)
 	if not _drag_preview.is_empty():
 		var id := str(_drag_preview[0])
 		var pos_ll: Array = _drag_preview[1]
@@ -426,27 +1138,37 @@ func _draw_draft() -> void:
 		if not station.is_empty(): draw_circle(_to_screen(pos_ll), 18, Color(0.05, 0.45, 0.72, 0.3))
 
 func _draw_view_hints() -> void:
-	if _tile_textures.is_empty():
-		var status := "地图瓦片加载中…"
-		if _network_blocked:
-			status = "底图服务拒绝请求 · 仍可继续规划和保存"
-		elif _network_unavailable:
-			status = "底图暂不可用 · 仍可继续规划和保存"
-		var font := get_theme_default_font()
-		var pos := Vector2(16, 34)
-		var rect := Rect2(pos - Vector2(8, 23), Vector2(font.get_string_size(status, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 18, 32))
-		draw_rect(rect, Color("#182936"))
-		draw_string(font, pos, status, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("#e7edf0"))
+	if not base_map_available:
+		_draw_map_hint("本地城市底图未安装 · 仍可继续规划")
 	if not hover_latlng.is_empty() and tool == "station":
 		var p := _to_screen(hover_latlng)
 		draw_circle(p, 18, Color(0.04, 0.55, 0.63, 0.22))
 		draw_circle(p, 4, Color("#087b8d"))
+	if tool in ["station", "track", "track_curve"]:
+		_draw_map_hint("地下建设视图 · 当前深度 %.0f m · PageUp / PageDown 调整" % current_depth_m)
 	if draft_conflict and not draft_station.is_empty():
 		var warning := "站体与现有车站冲突 · 移动或旋转后再确认"
 		var font := get_theme_default_font()
 		var pos := Vector2(16, 66)
 		draw_rect(Rect2(pos - Vector2(8, 24), Vector2(font.get_string_size(warning, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x + 18, 38)), Color("#55252a"))
 		draw_string(bold_font if is_instance_valid(bold_font) else font, pos, warning, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.WHITE)
+	if not station_preview_issue.is_empty() and not _drag_preview.is_empty():
+		_draw_map_hint("移动预览无效：%s" % station_preview_issue)
+
+func _draw_map_hint(status: String) -> void:
+	var font := get_theme_default_font()
+	var pos := Vector2(16, 34)
+	var rect := Rect2(pos - Vector2(8, 23), Vector2(font.get_string_size(status, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 18, 32))
+	draw_rect(rect, Color("#182936"))
+	draw_string(font, pos, status, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("#e7edf0"))
+
+func _line_draft_stops() -> Array[String]:
+	var controller := get_parent()
+	if controller != null and controller.get("line_draft_stops") is Array:
+		var values: Array[String] = []
+		for id in controller.get("line_draft_stops"): values.append(str(id))
+		return values
+	return []
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -471,7 +1193,7 @@ func _gui_input(event: InputEvent) -> void:
 					var hit := _pick(event.position)
 					if tool == "curve" and str(hit.get("type", "")) == "curve_handle":
 						_drag_curve = [str(hit.id), str(hit.side)]
-					elif tool == "select" and str(hit.get("type", "")) == "station" and str(hit.get("id", "")) == selected_id:
+					elif tool in ["select", "move_station"] and str(hit.get("type", "")) == "station" and str(hit.get("id", "")) == selected_id:
 						_drag_station_id = selected_id
 				accept_event()
 			else:
@@ -479,19 +1201,20 @@ func _gui_input(event: InputEvent) -> void:
 					if _drag_station_id != "" and not _drag_preview.is_empty():
 						station_drag_finished.emit(_drag_station_id, _drag_preview[1])
 					elif not _drag_curve.is_empty() and not _curve_preview.is_empty():
+						_curve_commit_pending = true
 						curve_control_finished.emit(str(_drag_curve[0]), str(_drag_curve[1]), _curve_preview.offset)
 					elif _drag_draft_station and _press_pos.distance_to(event.position) >= 6.0:
 						pass
 					elif not _pan_active and _press_pos.distance_to(event.position) < 6.0 and event.button_index == MOUSE_BUTTON_LEFT:
-						var click_ll := _screen_to_geo(event.position)
 						var hit := _pick(event.position)
-						map_clicked.emit(click_ll, str(hit.get("type", "")), str(hit.get("id", "")), str(hit.get("side", "")))
+						var click_ll: Array = hit.get("latlng", _screen_to_geo(event.position))
+						map_clicked.emit(click_ll, str(hit.get("type", "")), str(hit.get("id", "")), str(hit.get("side", "")), float(hit.get("t", -1.0)))
 				_mouse_down = false
 				_pan_active = false
 				_drag_station_id = ""
 				_drag_curve = []
 				_drag_draft_station = false
-				_curve_preview = {}
+				if not _curve_commit_pending: _curve_preview = {}
 				_drag_preview.clear()
 				requested_redraw()
 			accept_event()
@@ -508,13 +1231,24 @@ func _gui_input(event: InputEvent) -> void:
 			elif not _drag_curve.is_empty() and _press_pos.distance_to(event.position) > 6.0:
 				var link := _find_link(str(_drag_curve[0]))
 				if not link.is_empty():
-					var controls := WorldData.link_control_points(link, world, float(city_data.get("center", [31.23,121.47])[0]))
+					var ref_lat := float(city_data.get("center", [31.23,121.47])[0])
 					var is_a := str(_drag_curve[1]) == "curveA"
-					var endpoint_geo := WorldData.station_endpoint(WorldData.find_station(world, str(link.get("a" if is_a else "b", {}).get("stationId", ""))), str(link.get("a" if is_a else "b", {}).get("side", "end")))
-					var endpoint_local := Geo.local_m(endpoint_geo, float(city_data.get("center", [31.23,121.47])[0]))
-					var cursor_local := Geo.local_m(hover_latlng, float(city_data.get("center", [31.23,121.47])[0]))
+					var endpoint_geo: Array = []
+					if link.has("aNodeId"):
+						var ends := TrackNetwork._edge_node_ids(link, world)
+						var node := TrackNetwork.find_node(world, ends[0] if is_a else ends[1]) if ends.size() == 2 else {}
+						endpoint_geo = node.get("latlng", [])
+					else:
+						var endpoint_ref: Dictionary = link.get("a" if is_a else "b", {})
+						var station := WorldData.find_station(world, str(endpoint_ref.get("stationId", "")))
+						if not station.is_empty(): endpoint_geo = WorldData.station_endpoint(station, str(endpoint_ref.get("side", "end")))
+					if endpoint_geo.size() < 2: return
+					var endpoint_local := Geo.local_m(endpoint_geo, ref_lat)
+					var cursor_local := Geo.local_m(hover_latlng, ref_lat)
 					var offset := cursor_local - endpoint_local
 					_curve_preview = {"linkId": str(_drag_curve[0]), "controlName": str(_drag_curve[1]), "offset": [offset.x, offset.y]}
+					curve_control_previewed.emit(str(_drag_curve[0]), str(_drag_curve[1]), _curve_preview.offset)
+					requested_redraw()
 			elif _pan_active or _press_pos.distance_to(event.position) > 6.0 and tool == "select":
 				var movement: Vector2 = event.position - _last_pos
 				_pan_active = true
@@ -547,29 +1281,73 @@ func _screen_to_geo(position: Vector2) -> Array:
 	return Geo.unproject(center_pixel + position - size * .5, current_zoom)
 
 func _to_screen(latlng: Array) -> Vector2:
-	return Geo.project(latlng, current_zoom) - Geo.project(current_center, current_zoom) + size * .5
+	_refresh_camera_cache()
+	return Geo.project(latlng, current_zoom) - _camera_center_pixel + size * .5
+
+func _local_to_screen(position: Vector2) -> Vector2:
+	_refresh_camera_cache()
+	return _local_to_screen_cached(position)
+
+func _local_to_screen_cached(position: Vector2) -> Vector2:
+	return Vector2((position.x - _camera_local_center.x) / _camera_mpp + size.x * 0.5, (_camera_local_center.y - position.y) / _camera_mpp + size.y * 0.5)
+
+func _refresh_camera_cache() -> void:
+	if _camera_cache_zoom == current_zoom and _camera_cache_center == current_center and _camera_cache_size == size:
+		return
+	_camera_cache_zoom = current_zoom
+	_camera_cache_center = current_center.duplicate()
+	_camera_cache_size = size
+	_camera_center_pixel = Geo.project(current_center, current_zoom)
+	_camera_local_center = Geo.local_m(current_center, geometry_ref_lat)
+	_camera_mpp = maxf(0.01, Geo.meters_per_pixel(float(current_center[0]), current_zoom))
+	_load_visible_base_chunks()
 
 func _station_screen(station: Dictionary) -> Vector2:
 	if station.get("id", "") == selected_id and station_drag_preview_active(): return _to_screen(_drag_preview[1])
+	var station_id := str(station.get("id", ""))
+	if station_local_cache.has(station_id): return _local_to_screen(station_local_cache[station_id])
 	return _to_screen(station.get("latlng", [0, 0]))
 
 func station_drag_preview_active() -> bool:
 	return not _drag_preview.is_empty() and str(_drag_preview[0]) == selected_id
 
 func _pick(point: Vector2) -> Dictionary:
-	if tool == "connect":
-		var endpoint: Dictionary = {}
-		var endpoint_distance := 20.0
+	endpoint_choice_candidates.clear()
+	var snap_disabled := tool in ["track", "track_curve"] and Input.is_key_pressed(KEY_ALT)
+	if tool in ["connect", "track", "track_curve"] and not snap_disabled:
+		var snap_candidates: Array[Dictionary] = []
 		for station in world.get("stations", []):
 			if str(station.get("id", "")) == str(link_start.get("stationId", "")): continue
 			for side in ["start", "end"]:
-				var distance := point.distance_to(_to_screen(WorldData.station_endpoint(station, side)))
-				if distance <= endpoint_distance:
-					endpoint_distance = distance
-					endpoint = {"type": "endpoint", "id": str(station.get("id", "")), "side": side}
-		if not endpoint.is_empty(): return endpoint
+				var endpoint_ll := WorldData.station_endpoint(station, side)
+				var endpoint_screen := _to_screen(endpoint_ll)
+				var distance := point.distance_to(endpoint_screen)
+				if distance <= 20.0:
+					snap_candidates.append({"type": "endpoint", "id": str(station.get("id", "")), "side": side, "distance": distance, "screen": endpoint_screen, "latlng": endpoint_ll})
+		if tool in ["track", "track_curve"]:
+			for node in world.get("trackNodes", []):
+				if not str(node.get("stationId", "")).is_empty(): continue
+				var node_pos := _to_screen(node.get("latlng", [0, 0]))
+				var distance := point.distance_to(node_pos)
+				if distance <= 20.0:
+					snap_candidates.append({"type": "track_node", "id": str(node.get("id", "")), "side": "", "distance": distance, "screen": node_pos, "latlng": node.get("latlng", []).duplicate()})
+		snap_candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return float(a.get("distance", INF)) < float(b.get("distance", INF)))
+		if not snap_candidates.is_empty():
+			if snap_candidates.size() > 1 and float(snap_candidates[1].distance) - float(snap_candidates[0].distance) <= 2.0 and (snap_candidates[0].screen as Vector2).distance_to(snap_candidates[1].screen as Vector2) <= 8.0:
+				endpoint_choice_candidates = [snap_candidates[0].duplicate(true), snap_candidates[1].duplicate(true)]
+				return {"type": "endpoint_choice", "id": "", "side": ""}
+			var best_snap: Dictionary = snap_candidates[0].duplicate(true)
+			best_snap.erase("distance"); best_snap.erase("screen")
+			return best_snap
 	for station in world.get("stations", []):
-		if point.distance_to(_station_screen(station)) <= 20.0:
+		var center := _station_screen(station)
+		var angle := deg_to_rad(float(station.get("heading", 90.0)))
+		var along := Vector2(sin(angle), -cos(angle))
+		var across := Vector2(cos(angle), sin(angle))
+		var local := point - center
+		var longitudinal_limit := float(station.get("lengthM", 118.8)) * 0.5 / _camera_mpp + 10.0
+		var lateral_limit := float(station.get("widthM", 20.0)) * 0.5 / _camera_mpp + 10.0
+		if absf(local.dot(along)) <= longitudinal_limit and absf(local.dot(across)) <= lateral_limit:
 			return {"type": "station", "id": str(station.get("id", "")), "side": ""}
 	if tool == "curve":
 		var ref_lat := float(city_data.get("center", [31.23,121.47])[0])
@@ -586,21 +1364,46 @@ func _pick(point: Vector2) -> Dictionary:
 					handle_distance = distance
 					best_handle = {"type": "curve_handle", "id": str(link.id), "side": control_name}
 		if not best_handle.is_empty(): return best_handle
-	if tool in ["select", "delete", "curve"]:
-		var ref_lat := float(city_data.get("center", [31.23,121.47])[0])
+		for edge in world.get("trackEdges", []):
+			if str(edge.get("geometry", "straight")) != "bezier": continue
+			var ends := TrackNetwork._edge_node_ids(edge, world)
+			if ends.size() != 2: continue
+			var node_a := TrackNetwork.find_node(world, ends[0])
+			var node_b := TrackNetwork.find_node(world, ends[1])
+			if node_a.is_empty() or node_b.is_empty(): continue
+			var p0 := Geo.local_m(node_a.get("latlng", [0, 0]), ref_lat)
+			var p3 := Geo.local_m(node_b.get("latlng", [0, 0]), ref_lat)
+			var delta := p3 - p0
+			var ca: Array = edge.get("controlA", [delta.x / 3.0, delta.y / 3.0])
+			var cb: Array = edge.get("controlB", [-delta.x / 3.0, -delta.y / 3.0])
+			for control_name in ["curveA", "curveB"]:
+				var cp := p0 + Vector2(float(ca[0]), float(ca[1])) if control_name == "curveA" else p3 + Vector2(float(cb[0]), float(cb[1]))
+				var distance := point.distance_to(_to_screen(Geo.from_local(cp, ref_lat)))
+				if distance <= handle_distance:
+					handle_distance = distance
+					best_handle = {"type": "curve_handle", "id": str(edge.get("id", "")), "side": control_name}
+		if not best_handle.is_empty(): return best_handle
+	var can_snap_edge := tool in ["select", "delete", "curve"] or tool == "track" and not snap_disabled or tool == "track_curve" and (track_start_ref.is_empty() or not track_control_latlng.is_empty()) and not snap_disabled
+	if can_snap_edge:
 		var nearest_link: Dictionary = {}
 		var nearest_distance := 12.0
-		for link in world.get("trackLinks", []):
-			var points: Array = WorldData.track_points(link, world, ref_lat, 24)
-			if points.size() < 2: continue
-			var previous := _to_screen(points[0])
-			for index in range(1, points.size()):
-				var current := _to_screen(points[index])
+		for link in TrackNetwork.all_physical_edges(world):
+			var geometry: Dictionary = link_geometry_cache.get(str(link.get("id", "")), {})
+			var local_points: Array[Vector2] = geometry.get("points", [])
+			if local_points.size() < 2: continue
+			var previous := _local_to_screen(local_points[0])
+			for index in range(1, local_points.size()):
+				var current := _local_to_screen(local_points[index])
 				var closest := Geometry2D.get_closest_point_to_segment(point, previous, current)
 				var distance := point.distance_to(closest)
 				if distance <= nearest_distance:
 					nearest_distance = distance
-					nearest_link = {"type": "link", "id": str(link.get("id", "")), "side": ""}
+					var segment_fraction := 0.0
+					var segment := current - previous
+					if segment.length_squared() > 0.001: segment_fraction = clampf((closest - previous).dot(segment) / segment.length_squared(), 0.0, 1.0)
+					var snapped_t := (float(index - 1) + segment_fraction) / float(local_points.size() - 1)
+					var edge_type := "track_edge" if tool in ["track", "track_curve"] else "link"
+					nearest_link = {"type": edge_type, "id": str(link.get("id", "")), "side": "", "t": snapped_t, "latlng": _screen_to_geo(closest)}
 				previous = current
 		if not nearest_link.is_empty(): return nearest_link
 	if show_demand and tool in ["select", "delete", "station"]:
@@ -617,12 +1420,13 @@ func _pick(point: Vector2) -> Dictionary:
 	return {}
 
 func _find_link(link_id: String) -> Dictionary:
-	for link in world.get("trackLinks", []):
+	for link in TrackNetwork.all_physical_edges(world):
 		if str(link.get("id", "")) == link_id: return link
 	return {}
 
 func _station_drag_preview_update(station_id: String, latlng: Array) -> void:
 	_drag_preview = [station_id, latlng]
+	requested_redraw()
 
 func _store_view() -> void:
 	if world.is_empty(): return
@@ -638,246 +1442,61 @@ func _bezier(p0: Vector2, p1: Vector2, p2: Vector2, p3: Vector2, t: float) -> Ve
 	var u := 1.0 - t
 	return p0 * u * u * u + p1 * 3.0 * u * u * t + p2 * 3.0 * u * t * t + p3 * t * t * t
 
-func _draw_label(position: Vector2, text: String, color: Color, font: Font, font_size: int, force: bool = false, bold: bool = false) -> void:
+func _draw_road_labels(labels: Array[Dictionary], positions_are_screen: bool = false) -> void:
+	if not show_road_names or current_zoom < 15: return
+	var candidates: Array[Dictionary] = []
+	for road_label in labels:
+		var candidate: Dictionary = road_label.duplicate()
+		candidate["screenPosition"] = road_label.get("screenPosition", road_label.get("position", Vector2.ZERO)) if positions_are_screen else _local_to_screen_cached(road_label.get("position", Vector2.ZERO))
+		candidates.append(candidate)
+	for road_label in deduplicate_road_labels(candidates, 220.0 * ui_scale, 72):
+		var position: Vector2 = road_label.get("screenPosition", Vector2.ZERO)
+		_draw_label(position + Vector2(3, -2), str(road_label.get("name", "")), Color("#687983"), get_theme_default_font(), 12)
+
+static func deduplicate_road_labels(labels: Array[Dictionary], minimum_spacing_px: float = 220.0, maximum_labels: int = 72) -> Array[Dictionary]:
+	var ordered := labels.duplicate()
+	ordered.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return int(a.get("priority", 0)) > int(b.get("priority", 0))
+	)
+	var accepted: Array[Dictionary] = []
+	var accepted_positions_by_name: Dictionary = {}
+	for road_label in ordered:
+		var road_name := str(road_label.get("name", "")).strip_edges()
+		if road_name.is_empty(): continue
+		var position: Vector2 = road_label.get("screenPosition", road_label.get("position", Vector2.ZERO))
+		var existing_positions: Array = accepted_positions_by_name.get(road_name, [])
+		var too_close := false
+		for existing_position in existing_positions:
+			if (existing_position as Vector2).distance_to(position) < minimum_spacing_px:
+				too_close = true
+				break
+		if too_close: continue
+		accepted.append(road_label)
+		existing_positions.append(position)
+		accepted_positions_by_name[road_name] = existing_positions
+		if accepted.size() >= maxi(1, maximum_labels): break
+	return accepted
+
+static func _road_label_priority(kind: String) -> int:
+	match kind:
+		"road_major": return 4
+		"road_primary": return 3
+		"road_secondary": return 2
+		"road_local": return 1
+	return 0
+
+func _draw_label(position: Vector2, text: String, color: Color, font: Font, font_size: int, force: bool = false, bold: bool = false) -> bool:
 	var display_font: Font = bold_font if bold and is_instance_valid(bold_font) else font
 	var size := maxi(14, roundi(float(font_size) * ui_scale))
 	var measured := display_font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, size)
 	var rect := Rect2(position + Vector2(-5, -size - 4), Vector2(measured.x + 10, size + 9))
 	if not force:
 		for occupied in _label_rects:
-			if rect.intersects(occupied): return
+			if rect.intersects(occupied): return false
 	_label_rects.append(rect)
 	draw_rect(rect, Color(1, 1, 1, 0.94 if force else 0.88))
 	draw_string(display_font, position, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
-
-func _visible_tile_bounds() -> Dictionary:
-	var center := Geo.project(current_center, current_zoom)
-	var min_x := int(floor((center.x - size.x * .5) / 256.0))
-	var max_x := int(floor((center.x + size.x * .5) / 256.0))
-	var min_y := int(floor((center.y - size.y * .5) / 256.0))
-	var max_y := int(floor((center.y + size.y * .5) / 256.0))
-	var n := int(pow(2.0, current_zoom))
-	return {"left": min_x, "right": max_x, "top": clampi(min_y, 0, n - 1), "bottom": clampi(max_y, 0, n - 1), "world_n": n}
-
-func _tile_screen_pos(x: int, y: int) -> Vector2:
-	var center := Geo.project(current_center, current_zoom)
-	return Vector2(float(x) * 256.0, float(y) * 256.0) - center + size * .5
-
-func _queue_visible_tiles() -> void:
-	_tile_redraw_pending = false
-	if not is_inside_tree() or city_data.is_empty() or not allow_network_tiles: return
-	var loaded_cached_tile := false
-	var b := _visible_tile_bounds()
-	var visible_keys: Dictionary = {}
-	for y in range(b.top, b.bottom + 1):
-		for x in range(b.left, b.right + 1):
-			var normalized_x := posmod(x, int(b.world_n))
-			var key := "%d/%d/%d" % [current_zoom, normalized_x, y]
-			visible_keys[key] = true
-	var kept_queue: Array[Dictionary] = []
-	for item in _tile_queue:
-		var queued_key := str(item.get("key", ""))
-		if visible_keys.has(queued_key): kept_queue.append(item)
-		else: _queued_tiles.erase(queued_key)
-	_tile_queue = kept_queue
-	for active_key in _active_request_by_key.keys():
-		if visible_keys.has(str(active_key)): continue
-		var stale_request: HTTPRequest = _active_request_by_key[active_key]
-		stale_request.cancel_request()
-		_active_request_by_key.erase(active_key)
-		_requested.erase(active_key)
-		_requests.erase(stale_request)
-	for raw_key in visible_keys:
-		var key: String = str(raw_key)
-		var expired := _tile_expiry.has(key) and int(_tile_expiry[key]) < int(Time.get_unix_time_from_system())
-		if _tile_textures.has(key) and not expired: continue
-		if _requested.has(key) or _queued_tiles.has(key): continue
-		var loaded_count := _tile_textures.size()
-		if _load_cached_tile(key):
-			loaded_cached_tile = loaded_cached_tile or _tile_textures.size() > loaded_count
-			continue
-		loaded_cached_tile = loaded_cached_tile or _tile_textures.size() > loaded_count
-		if _network_blocked: continue
-		var parts: PackedStringArray = key.split("/")
-		_tile_queue.append({"z": int(parts[0]), "x": int(parts[1]), "y": int(parts[2]), "key": key})
-		_queued_tiles[key] = true
-	# Cache hits do not receive an HTTP callback to schedule a redraw. Without
-	# this, first launch can display the fallback grid until the camera moves.
-	if loaded_cached_tile: queue_redraw()
-	_pump_tile_requests()
-
-func _load_cached_tile(key: String) -> bool:
-	var parts := key.split("/")
-	var path := "%s/%s/%s/%s.png" % [TILE_CACHE, parts[0], parts[1], parts[2]]
-	var meta_path := path + ".json"
-	if not FileAccess.file_exists(path): return false
-	var bytes := FileAccess.get_file_as_bytes(path)
-	if _is_osm_blocked_tile(bytes):
-		_tile_placeholder_rejections += 1
-		DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
-		if FileAccess.file_exists(meta_path): DirAccess.remove_absolute(ProjectSettings.globalize_path(meta_path))
-		_tile_textures.erase(key)
-		_tile_expiry.erase(key)
-		return false
-	var expiry := 0
-	if FileAccess.file_exists(meta_path):
-		var meta := FileAccess.open(meta_path, FileAccess.READ)
-		if meta:
-			var parsed: Variant = JSON.parse_string(meta.get_as_text())
-			if parsed is Dictionary: expiry = int(parsed.get("expires", 0))
-	else:
-		expiry = int(FileAccess.get_modified_time(path)) + 604800
-	var fresh := expiry >= int(Time.get_unix_time_from_system())
-	var img := Image.new()
-	if img.load(path) != OK: return false
-	_tile_textures[key] = ImageTexture.create_from_image(img)
-	_tile_valid_count += 1
-	_tile_expiry[key] = expiry
-	return fresh
-
-func _is_osm_blocked_tile(bytes: PackedByteArray) -> bool:
-	if bytes.is_empty(): return false
-	var digest := HashingContext.new()
-	digest.start(HashingContext.HASH_SHA256)
-	digest.update(bytes)
-	return digest.finish().hex_encode() == OSM_BLOCKED_TILE_SHA256
-
-func _pump_tile_requests() -> void:
-	while _requests.size() < MAX_CONCURRENT and not _tile_queue.is_empty():
-		var item: Dictionary = _tile_queue.pop_front()
-		var key := str(item.key)
-		_queued_tiles.erase(key)
-		if _requested.has(key): continue
-		var req := HTTPRequest.new()
-		req.timeout = 12.0
-		req.max_redirects = 3
-		req.accept_gzip = true
-		req.use_threads = true
-		if not _https_proxy_host.is_empty() and _https_proxy_port > 0:
-			req.set_https_proxy(_https_proxy_host, _https_proxy_port)
-		add_child(req)
-		_requests.append(req)
-		_requested[key] = true
-		_active_request_by_key[key] = req
-		req.request_completed.connect(_on_tile_completed.bind(key, req, item))
-		var url := OSM_URL.replace("{z}", str(item.z)).replace("{x}", str(item.x)).replace("{y}", str(item.y))
-		var error := req.request(url, ["User-Agent: MetroAtlasDesktop/0.1", "Accept: image/png"])
-		if error != OK:
-			_requests.erase(req)
-			_requested.erase(key)
-			_active_request_by_key.erase(key)
-			req.queue_free()
-
-func _on_tile_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, key: String, req: HTTPRequest, item: Dictionary) -> void:
-	_requests.erase(req)
-	_requested.erase(key)
-	_active_request_by_key.erase(key)
-	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200:
-		if _is_osm_blocked_tile(body):
-			_tile_placeholder_rejections += 1
-			_network_unavailable = true
-			_network_blocked = true
-			_tile_queue.clear()
-			_queued_tiles.clear()
-			push_warning("地图服务返回了访问提示图，已停止后续请求；仍可继续规划和保存。")
-			requested_redraw()
-			if is_instance_valid(req): req.queue_free()
-			_pump_tile_requests()
-			return
-		var image := Image.new()
-		if image.load_png_from_buffer(body) == OK:
-			_network_unavailable = false
-			_tile_textures[key] = ImageTexture.create_from_image(image)
-			_tile_valid_count += 1
-			var max_age := 604800
-			var cache_allowed := true
-			for header in headers:
-				var h := str(header).to_lower()
-				if h.begins_with("cache-control:"):
-					if h.contains("no-store"): cache_allowed = false
-					if h.contains("no-cache"): max_age = 0
-					var cache_regex := RegEx.new()
-					cache_regex.compile("max-age=(\\d+)")
-					var found := cache_regex.search(h)
-					if found: max_age = int(found.get_string(1))
-			var expiry := int(Time.get_unix_time_from_system()) + maxi(0, max_age)
-			_tile_expiry[key] = expiry if cache_allowed and max_age > 0 else 9223372036854775807
-			if cache_allowed:
-				var parts := key.split("/")
-				var base := "%s/%s/%s" % [TILE_CACHE, parts[0], parts[1]]
-				DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(base))
-				var png_path := "%s/%s.png" % [base, parts[2]]
-				var image_file := FileAccess.open(png_path, FileAccess.WRITE)
-				if image_file: image_file.store_buffer(body)
-				var meta_file := FileAccess.open(png_path + ".json", FileAccess.WRITE)
-				if meta_file: meta_file.store_string(JSON.stringify({"expires": expiry}))
-			requested_redraw()
-	else:
-		_network_unavailable = true
-		requested_redraw()
-		if response_code == 403 or response_code == 429:
-			push_warning("OpenStreetMap 瓦片服务暂时拒绝请求；仍可离线规划和保存。")
-	if is_instance_valid(req): req.queue_free()
-	_pump_tile_requests()
-
-func _detect_system_https_proxy() -> Dictionary:
-	if OS.get_name() == "Windows":
-		const INTERNET_SETTINGS := "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"
-		var enable_output: Array = []
-		var enable_code := OS.execute("reg.exe", ["query", INTERNET_SETTINGS, "/v", "ProxyEnable"], enable_output, true)
-		if enable_code == 0:
-			var enable_regex := RegEx.new()
-			enable_regex.compile("ProxyEnable\\s+REG_DWORD\\s+(0x[0-9a-fA-F]+|\\d+)")
-			var enable_match := enable_regex.search("\n".join(enable_output))
-			if enable_match and enable_match.get_string(1).to_lower() in ["0x1", "0x00000001", "1"]:
-				var server_output: Array = []
-				if OS.execute("reg.exe", ["query", INTERNET_SETTINGS, "/v", "ProxyServer"], server_output, true) == 0:
-					var server_regex := RegEx.new()
-					server_regex.compile("ProxyServer\\s+REG_SZ\\s+(.+)")
-					var server_match := server_regex.search("\n".join(server_output))
-					if server_match:
-						var setting := server_match.get_string(1).strip_edges()
-						var https_setting := ""
-						var simple_setting := setting
-						for entry in setting.split(";"):
-							var parts := str(entry).split("=", false, 1)
-							if parts.size() == 2 and str(parts[0]).strip_edges().to_lower() == "https":
-								https_setting = str(parts[1]).strip_edges()
-							elif parts.size() == 1:
-								simple_setting = str(parts[0]).strip_edges()
-						var proxy_text := https_setting if not https_setting.is_empty() else simple_setting
-						if not proxy_text.is_empty():
-							var proxy := _parse_proxy(proxy_text)
-							if not proxy.is_empty() and not _proxy_bypasses_osm(INTERNET_SETTINGS): return proxy
-		var env_proxy := OS.get_environment("HTTPS_PROXY")
-		if env_proxy.is_empty(): env_proxy = OS.get_environment("https_proxy")
-		return _parse_proxy(env_proxy)
-	return {}
-
-func _parse_proxy(value: String) -> Dictionary:
-	var text := value.strip_edges().trim_prefix("http://").trim_prefix("https://").trim_suffix("/")
-	if text.contains("@"): text = text.get_slice("@", text.get_slice_count("@") - 1)
-	if text.begins_with("[") and text.contains("]:"):
-		var closing := text.find("]")
-		return {"host": text.substr(1, closing - 1), "port": int(text.substr(closing + 2))}
-	var colon := text.rfind(":")
-	if colon <= 0: return {}
-	var port := int(text.substr(colon + 1))
-	if port <= 0 or port > 65535: return {}
-	return {"host": text.left(colon), "port": port}
-
-func _proxy_bypasses_osm(registry_path: String) -> bool:
-	var bypass_output: Array = []
-	if OS.execute("reg.exe", ["query", registry_path, "/v", "ProxyOverride"], bypass_output, true) != 0: return false
-	var bypass_regex := RegEx.new()
-	bypass_regex.compile("ProxyOverride\\s+REG_SZ\\s+(.+)")
-	var bypass_match := bypass_regex.search("\n".join(bypass_output))
-	if not bypass_match: return false
-	for pattern in bypass_match.get_string(1).split(";"):
-		var clean := str(pattern).strip_edges().to_lower()
-		if clean == "<local>": continue
-		if "tile.openstreetmap.org".matchn(clean) or clean == "openstreetmap.org" or clean == "*.openstreetmap.org": return true
-	return false
+	return true
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED: requested_redraw()

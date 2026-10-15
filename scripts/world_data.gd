@@ -1,7 +1,7 @@
 class_name WorldData
 extends RefCounted
 
-const SAVE_VERSION := 8
+const SAVE_VERSION := 13
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
 
@@ -36,8 +36,9 @@ static func new_world(city_id: String, mode: String) -> Dictionary:
 		"cityName": c.get("name", city_id),
 		"mode": mode,
 		"dataVersion": _dataset.get("generatedAt", "unknown"),
-		"stations": [], "routes": [], "trackLinks": [], "depots": [],
-		"simulation": {"minute": 420, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0},
+		"stations": [], "routes": [], "trackLinks": [], "trackNodes": [], "trackEdges": [], "depots": [],
+		"simulation": {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "trainTripsInitialized": false, "nextDepartureSeconds": {}, "peakCrowding": 0.0, "crowdingSamples": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "flowSamples": {}},
+		"goalBoard": {"active": [], "completed": []},
 		"fleetMode": "automatic", "tutorialStep": 0, "tutorialDone": false,
 		"randomSeed": 45281, "revision": 1,
 		"view": {"center": c.get("center", [31.2304, 121.4737]), "zoom": int(c.get("zoom", 12))},
@@ -46,8 +47,7 @@ static func new_world(city_id: String, mode: String) -> Dictionary:
 	}
 	if mode == "expand":
 		_import_existing_network(state, c)
-	else:
-		_add_route(state, "1号线", "#e23f56")
+	TrackNetwork.ensure_station_nodes(state)
 	return state
 
 static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:
@@ -167,12 +167,14 @@ static func track_length_m(link: Dictionary, state: Dictionary, ref_lat: float) 
 		previous = point
 	return length
 
-static func create_station(state: Dictionary, latlng: Array, heading: float, route_id: String) -> Dictionary:
+static func create_station(state: Dictionary, latlng: Array, heading: float, route_id: String = "", vehicle_id_override: String = "B-6", depth_m: float = -15.0) -> Dictionary:
 	var vehicle_id := "B-6"
 	var route := find_route(state, route_id)
-	if not route.is_empty(): vehicle_id = str(route.get("vehicleId", "B-6"))
+	if not vehicle_id_override.is_empty(): vehicle_id = vehicle_id_override
+	elif not route.is_empty(): vehicle_id = str(route.get("vehicleId", "B-6"))
 	var profile := vehicle(vehicle_id)
-	var station := {"id": "st_%d" % Time.get_ticks_msec(), "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "vehicleId": vehicle_id, "schematic": false, "existing": false, "routeIds": [route_id] if not route_id.is_empty() else []}
+	var station := {"id": "st_%d" % Time.get_ticks_msec(), "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": depth_m, "vehicleId": vehicle_id, "schematic": false, "existing": false, "routeIds": [route_id] if not route_id.is_empty() else []}
 	state["stations"].append(station)
 	if not route.is_empty(): route["stationOrder"].append(station.id)
+	TrackNetwork.ensure_station_nodes(state)
 	return station

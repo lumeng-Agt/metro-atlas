@@ -4,22 +4,53 @@ func _initialize() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
-	var main: Variant = load("res://scenes/main.tscn").instantiate()
-	root.add_child(main)
-	await process_frame
-	main._load_world(WorldData.new_world("shanghai", "blank"))
-	main.map_view.center_on([31.19779295, 121.54595875], 14)
-	await create_timer(8.0).timeout
-	var count: int = main.map_view._tile_textures.size()
-	var valid_count: int = main.map_view._tile_valid_count
-	var visible_tile_keys: Dictionary = main.map_view._visible_tile_bounds()
-	var visible_cached := 0
-	for y in range(visible_tile_keys.top, visible_tile_keys.bottom + 1):
-		for x in range(visible_tile_keys.left, visible_tile_keys.right + 1):
-			if main.map_view._tile_textures.has("14/%d/%d" % [x, y]): visible_cached += 1
-	if count > 0 and valid_count > 0 and visible_cached > 0 and not main.map_view._network_blocked:
-		print("PASS: real map tiles loaded; visible=%d valid=%d visible_cached=%d stale blocked placeholders rejected=%d" % [count, valid_count, visible_cached, main.map_view._tile_placeholder_rejections])
+	WorldData.load_assets()
+	var manifest_file := FileAccess.open("res://data/basemap/manifest.json", FileAccess.READ)
+	if manifest_file == null:
+		push_error("Offline vector basemap manifest is missing")
+		quit(1)
+		return
+	var manifest: Dictionary = JSON.parse_string(manifest_file.get_as_text())
+	manifest_file.close()
+	var ok: bool = manifest.get("cities", {}).size() == 5
+	var verified_chunks := 0
+	for city in WorldData.cities():
+		var city_id := str(city.get("id", ""))
+		var package: Dictionary = manifest.get("cities", {}).get(city_id, {})
+		var chunks: Array = package.get("chunks", [])
+		if chunks.is_empty():
+			ok = false
+			push_error("No offline map chunks for %s" % city_id)
+			continue
+		for raw_name in chunks:
+			var chunk_name := str(raw_name)
+			var chunk_path := "res://data/basemap/%s/%s" % [city_id, chunk_name]
+			var bytes := FileAccess.get_file_as_bytes(chunk_path)
+			if bytes.is_empty():
+				ok = false
+				push_error("Offline map chunk is missing or empty: %s/%s" % [city_id, chunk_name])
+				continue
+			var hashing := HashingContext.new()
+			hashing.start(HashingContext.HASH_SHA256)
+			hashing.update(bytes)
+			var checksum := hashing.finish().hex_encode()
+			if checksum != str(package.get("chunkSha256", {}).get(chunk_name, "")):
+				ok = false
+				push_error("Offline map chunk checksum mismatch: %s/%s" % [city_id, chunk_name])
+				continue
+			verified_chunks += 1
+		var sample_chunk_name := str(chunks[0])
+		var sample_chunk_path := "res://data/basemap/%s/%s" % [city_id, sample_chunk_name]
+		var sample_bytes := FileAccess.get_file_as_bytes(sample_chunk_path)
+		var decoded_bytes := sample_bytes.decompress_dynamic(32 * 1024 * 1024, FileAccess.COMPRESSION_GZIP)
+		var parsed: Variant = JSON.parse_string(decoded_bytes.get_string_from_utf8()) if not decoded_bytes.is_empty() else null
+		if not parsed is Dictionary or str(parsed.get("cityId", "")) != city_id or parsed.get("features", []).is_empty():
+			ok = false
+			push_error("Offline map chunk cannot be read: %s/%s" % [city_id, sample_chunk_name])
+		else:
+			print("PASS: %s offline map chunk · %d features · checksum OK" % [city_id, parsed.get("features", []).size()])
+	if ok:
+		print("PASS: all five cities have readable offline vector map packages · %d chunks checksummed" % verified_chunks)
 		quit(0)
 	else:
-		push_error("No valid OSM map tile loaded; visible=%d valid=%d blocked=%s rejected=%d queued=%d active=%d city=%s map_size=%s" % [count, valid_count, str(main.map_view._network_blocked), main.map_view._tile_placeholder_rejections, main.map_view._tile_queue.size(), main.map_view._requests.size(), str(main.map_view.city_data.get("id", "")), str(main.map_view.size)])
 		quit(1)

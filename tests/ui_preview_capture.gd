@@ -14,9 +14,17 @@ func _capture() -> void:
 	var preview_scale := float(OS.get_environment("METRO_UI_SCALE"))
 	if preview_scale > 1.0:
 		main._apply_ui_scale(preview_scale)
-	for frame in range(8): await process_frame
-	await create_timer(8.0).timeout
-	print("Map preview: scale=%.2f visible_tiles=%d queued=%d active=%d unavailable=%s blocked=%s" % [main._ui_scale, main.map_view._tile_textures.size(), main.map_view._tile_queue.size(), main.map_view._requests.size(), str(main.map_view._network_unavailable), str(main.map_view._network_blocked)])
+	var map_deadline := Time.get_ticks_msec() + 25000
+	while Time.get_ticks_msec() < map_deadline:
+		await create_timer(0.25).timeout
+		if not main.map_view.base_map_features.is_empty() and not main.map_view._base_map_thread_busy and main.map_view._base_map_pending_request.is_empty():
+			break
+	if main.map_view.base_map_features.is_empty():
+		push_error("本地矢量底图未在25秒内加载，不能生成有效的规划界面截图。")
+		quit(1)
+		return
+	for frame in range(4): await process_frame
+	print("Map preview: scale=%.2f local_vector_features=%d snapshot=%s" % [main._ui_scale, main.map_view.base_map_features.size(), main.map_view.base_map_snapshot])
 	main.map_view.requested_redraw()
 	await process_frame
 	await process_frame
