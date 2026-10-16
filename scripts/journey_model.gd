@@ -3,6 +3,7 @@ extends RefCounted
 
 const TRANSFER_WALK_MINUTES := 3.0
 const MAX_ACCESS_METERS := 800.0
+const ServiceScheduleScript = preload("res://scripts/service_schedule.gd")
 static var _network_cache_key := ""
 static var _network_cache: Dictionary = {}
 
@@ -50,7 +51,8 @@ static func build_network(state: Dictionary, ref_lat: float) -> Dictionary:
 				if from_route == to_route: continue
 				var to_key := _state_key(str(station_id), str(to_route))
 				var next_route := WorldData.find_route(state, str(to_route))
-				var half_headway := maxf(0.0, float(next_route.get("headway", 3.0)) * 0.5)
+				var current_seconds := int(state.get("simulation", {}).get("elapsedSeconds", int(state.get("simulation", {}).get("elapsedMinutes", 420)) * 60))
+				var half_headway := maxf(0.0, float(ServiceScheduleScript.headway_minutes(next_route, current_seconds)) * 0.5)
 				adjacency[from_key].append({"to": to_key, "type": "transfer", "routeId": str(to_route), "fromRouteId": str(from_route), "stationId": str(station_id), "minutes": TRANSFER_WALK_MINUTES + half_headway, "transferMinutes": TRANSFER_WALK_MINUTES, "waitMinutes": half_headway})
 	var result := {"adjacency": adjacency, "stationRoutes": station_routes, "routePaths": paths, "searchCache": {}}
 	_network_cache_key = cache_key
@@ -91,7 +93,8 @@ static func find_journey(origin: Dictionary, destination: Dictionary, state: Dic
 		if from_distance <= MAX_ACCESS_METERS:
 			for route_id in routes:
 				var route := WorldData.find_route(state, str(route_id))
-				starts.append({"key": _state_key(station_id, str(route_id)), "stationId": station_id, "routeId": str(route_id), "distanceM": from_distance, "walkMinutes": TravelModel.walk_minutes(from_distance), "waitMinutes": maxf(0.0, float(route.get("headway", 3.0)) * 0.5)})
+				var current_seconds := int(state.get("simulation", {}).get("elapsedSeconds", int(state.get("simulation", {}).get("elapsedMinutes", 420)) * 60))
+				starts.append({"key": _state_key(station_id, str(route_id)), "stationId": station_id, "routeId": str(route_id), "distanceM": from_distance, "walkMinutes": TravelModel.walk_minutes(from_distance), "waitMinutes": maxf(0.0, float(ServiceScheduleScript.headway_minutes(route, current_seconds)) * 0.5)})
 		var to_distance := _distance(destination_ll, station.get("latlng", []), ref_lat)
 		if to_distance <= MAX_ACCESS_METERS:
 			for route_id in routes:

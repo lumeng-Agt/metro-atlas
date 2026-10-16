@@ -41,6 +41,32 @@ static func save_road_names(value: bool) -> Error:
 	config.set_value("map", "show_road_names", value)
 	return config.save(target)
 
+static func load_feedback_enabled() -> bool:
+	var config := ConfigFile.new()
+	if config.load(path()) != OK: return true
+	return bool(config.get_value("audio", "feedback_enabled", true))
+
+static func save_feedback_enabled(value: bool) -> Error:
+	var config := ConfigFile.new()
+	var target := path()
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
+	config.load(target)
+	config.set_value("audio", "feedback_enabled", value)
+	return config.save(target)
+
+static func load_feedback_volume() -> float:
+	var config := ConfigFile.new()
+	if config.load(path()) != OK: return 0.35
+	return clampf(float(config.get_value("audio", "feedback_volume", 0.35)), 0.0, 1.0)
+
+static func save_feedback_volume(value: float) -> Error:
+	var config := ConfigFile.new()
+	var target := path()
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
+	config.load(target)
+	config.set_value("audio", "feedback_volume", clampf(value, 0.0, 1.0))
+	return config.save(target)
+
 static func load_onboarding_completed() -> bool:
 	var config := ConfigFile.new()
 	if config.load(path()) != OK:

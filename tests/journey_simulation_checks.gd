@@ -4,6 +4,7 @@ const Journey = preload("res://scripts/journey_model.gd")
 const PathModel = preload("res://scripts/route_path.gd")
 const Simulation = preload("res://scripts/simulation_engine.gd")
 const Goals = preload("res://scripts/neighborhood_goals.gd")
+const ServiceSchedule = preload("res://scripts/service_schedule.gd")
 
 var checks := 0
 var failures: Array[String] = []
@@ -13,6 +14,38 @@ func _initialize() -> void:
 
 func _run() -> void:
 	WorldData.load_assets()
+	var schedule_probe := {"headway": 9, "serviceSchedule": {"mode": "time_of_day", "peakAM": 4, "peakPM": 5, "offPeak": 12}}
+	_check(ServiceSchedule.headway_minutes(schedule_probe, 6 * 3600 + 59 * 60) == 12 and ServiceSchedule.headway_minutes(schedule_probe, 7 * 3600) == 4, "分时班距在早高峰边界切换")
+	_check(ServiceSchedule.headway_minutes(schedule_probe, 10 * 3600) == 12 and ServiceSchedule.headway_minutes(schedule_probe, 16 * 3600) == 5 and ServiceSchedule.headway_minutes(schedule_probe, 19 * 3600) == 12, "分时班距在早晚高峰结束与晚高峰开始时正确切换")
+	_check(ServiceSchedule.next_boundary_after(6 * 3600 + 59 * 60) == 7 * 3600 and ServiceSchedule.next_boundary_after(20 * 3600) == 31 * 3600, "班次边界跨日计算保持累计游戏秒")
+	var boundary_world := WorldData.new_world("shanghai", "blank")
+	var boundary_route: Dictionary = WorldData.add_route(boundary_world, "边界切换测试线", "#34a67f")
+	boundary_route.id = "boundary-line"; boundary_route.networkBased = true; boundary_route.headway = 12; boundary_route.vehicleId = "B-4"; boundary_route.open = true
+	ServiceSchedule.set_mode(boundary_route, "time_of_day")
+	ServiceSchedule.set_headway(boundary_route, "peakAM", 4)
+	boundary_world.stations = [_station("bd-a", [31.23, 121.47], ["boundary-line"]), _station("bd-b", [31.24, 121.47], ["boundary-line"])]
+	TrackNetwork.ensure_station_nodes(boundary_world)
+	boundary_world.trackEdges = [{"id":"boundary-ab", "aNodeId":TrackNetwork.station_node_id(boundary_world.stations[0], "end"), "bNodeId":TrackNetwork.station_node_id(boundary_world.stations[1], "start"), "geometry":"straight", "depthM":-15.0}]
+	boundary_route.stationOrder = ["bd-a", "bd-b"]
+	boundary_route.directions = [{"id":"out", "stationIds":["bd-a", "bd-b"], "edgeIdsBySegment":[["boundary-ab"]]}, {"id":"back", "stationIds":["bd-b", "bd-a"], "edgeIdsBySegment":[["boundary-ab"]]}]
+	boundary_world.simulation.elapsedSeconds = 6 * 3600 + 59 * 60
+	boundary_world.simulation.elapsedMinutes = floori(float(boundary_world.simulation.elapsedSeconds) / 60.0)
+	boundary_world.simulation.minute = posmod(boundary_world.simulation.elapsedMinutes, 1440)
+	boundary_world.simulation.nextDepartureSeconds = {"boundary-line|out": 7 * 3600 + 9 * 60, "boundary-line|back": 7 * 3600 + 9 * 60}
+	var no_flows: Array[Dictionary] = []
+	Simulation.step_one_minute(boundary_world, no_flows, 1.0)
+	_check(int(boundary_world.simulation.nextDepartureSeconds.get("boundary-line|out", -1)) == 7 * 3600 + 4 * 60, "跨入早高峰时将尚未发出的班次按新班距重新锚定")
+	boundary_world.simulation.elapsedSeconds = 7 * 3600 - 60
+	boundary_world.simulation.elapsedMinutes = 7 * 60 - 1
+	boundary_world.simulation.minute = 7 * 60 - 1
+	boundary_world.simulation.trainTrips = []
+	boundary_world.simulation.capacityLoads = {}
+	boundary_world.simulation.nextDepartureSeconds = {"boundary-line|out": 7 * 3600, "boundary-line|back": 7 * 3600}
+	Simulation.step_one_minute(boundary_world, no_flows, 1.0)
+	var boundary_departures := 0
+	for boundary_trip in boundary_world.simulation.trainTrips:
+		if int(boundary_trip.get("departureSeconds", -1)) == 7 * 3600: boundary_departures += 1
+	_check(boundary_departures == 2 and int(boundary_world.simulation.nextDepartureSeconds.get("boundary-line|out", -1)) == 7 * 3600 + 4 * 60, "恰在时段边界发车的两个方向均保留且后续按新班距运行")
 	var world := WorldData.new_world("shanghai", "blank")
 	var route_a: Dictionary = WorldData.add_route(world, "1号线", "#e25263")
 	route_a.id = "route-a"
@@ -122,6 +155,20 @@ func _run() -> void:
 	for i in range(mini(existing_departures.size(), current_trips.size())):
 		if int(current_trips[i].get("departureSeconds", -2)) != existing_departures[i]: departures_unchanged = false
 	_check(departures_unchanged, "调整发车间隔不会改写已经发出的列车时刻")
+	ServiceSchedule.set_mode(schedule_route, "time_of_day")
+	ServiceSchedule.set_headway(schedule_route, "peakAM", 4)
+	var schedule_history := CommandHistory.new()
+	schedule_history.attach(schedule_world)
+	var schedule_clock_before := int(schedule_world.simulation.get("elapsedSeconds", 0))
+	schedule_history.execute("调整早高峰班距", func(state: Dictionary): ServiceSchedule.set_headway(WorldData.find_route(state, "schedule-line"), "peakAM", 7))
+	Simulation.reschedule_route(schedule_world, "schedule-line")
+	_check(int(schedule_world.simulation.nextDepartureSeconds.get("schedule-line|out", -1)) == schedule_clock_before + 420, "分时班次配置应用后按当前时段安排下一班")
+	schedule_history.undo()
+	Simulation.reschedule_route(schedule_world, "schedule-line")
+	_check(int(schedule_world.simulation.get("elapsedSeconds", -1)) == schedule_clock_before and int(schedule_world.simulation.nextDepartureSeconds.get("schedule-line|out", -1)) == schedule_clock_before + 240, "撤销班次配置恢复原班距且不回退游戏时钟")
+	schedule_history.redo()
+	Simulation.reschedule_route(schedule_world, "schedule-line")
+	_check(int(schedule_world.simulation.get("elapsedSeconds", -1)) == schedule_clock_before and int(schedule_world.simulation.nextDepartureSeconds.get("schedule-line|out", -1)) == schedule_clock_before + 420, "重做班次配置只重排未来发车")
 
 	# A demand group must remain in the queue, then abandon after the stated wait limit.
 	var waiting_world := WorldData.new_world("shanghai", "blank")
@@ -273,6 +320,24 @@ func _run() -> void:
 	_check(int(midnight_world.simulation.elapsedMinutes) == 1440 and int(midnight_world.simulation.minute) == 0, "模擬跨日後累計時間不歸零")
 	Simulation.step_one_minute(midnight_world, [], 1.0)
 	_check(int(midnight_world.simulation.elapsedMinutes) == 1441, "跨日后第二分钟仍保持累计计时")
+	_check(not midnight_world.simulation.get("statisticsBuckets", []).is_empty(), "模拟推进会生成可供统计页读取的15分钟数据桶")
+
+	var sampled_totals := {"completed": 0, "completedByFlow": {}, "tripMinutesAdded": 0.0, "tripMinutesByFlow": {}, "journeyRecords": []}
+	var sampled_batch_id := "journey-sample"
+	for sample_index in range(512):
+		if Simulation._is_sampled_journey_record("%s|1800|2" % sampled_batch_id): break
+		sampled_batch_id += "x"
+	Simulation._add_completion(sampled_totals, {"id": sampled_batch_id, "flowId": "origin>destination", "count": 2, "bornAtSeconds": 1200, "steps": [{"type":"rail", "routeId":"r", "fromStationId":"a", "toStationId":"b"}], "events": [{"type":"train_board", "timeSeconds":1500, "stationId":"a"}]}, 1800)
+	_check(sampled_totals.journeyRecords.size() == 1 and sampled_totals.journeyRecords[0].get("events", []).size() == 1 and sampled_totals.journeyRecords[0].get("steps", []).size() == 1, "确定性抽样保留实际批次事件和规划旅程步骤")
+
+	var v13_world := WorldData.new_world("shanghai", "blank")
+	v13_world.schemaVersion = 13
+	var v13_route: Dictionary = WorldData.add_route(v13_world, "旧班次迁移线", "#4a91e8")
+	v13_route.headway = 7
+	var migrated_v13 := SaveManager.migrate(v13_world)
+	var migrated_v13_route := WorldData.find_route(migrated_v13, str(v13_route.get("id", "")))
+	_check(int(migrated_v13.schemaVersion) == WorldData.SAVE_VERSION and migrated_v13_route.get("serviceSchedule", {}).get("mode", "") == "uniform" and int(migrated_v13_route.serviceSchedule.get("offPeak", 0)) == 7, "13版固定班距迁移为保留原值的全天统一配置")
+	_check(migrated_v13.simulation.get("statisticsBuckets", []) is Array and migrated_v13.simulation.get("journeyRecords", []) is Array and migrated_v13.get("challengeMode", "") == "free", "13版迁移初始化挑战与统计记录容器")
 
 	var old_v8 := {"schemaVersion": 8, "cityId": "migration-test", "mode": "blank", "stations": [], "routes": [], "trackLinks": [], "simulation": {"minute": 615, "completed": 47, "attempted": 80, "served": 53, "paused": false}, "history": {"undo": [{"label":"old patch"}], "redo": []}}
 	var migrated := SaveManager.migrate(old_v8)

@@ -89,6 +89,8 @@ var show_demand := true
 var show_network := true
 var show_stations := true
 var show_halls := true
+var analysis_mode := "planning"
+var reachability_minutes_by_demand: Dictionary = {}
 var current_center: Array = [31.2304, 121.4737]
 var current_zoom := 13
 var _mouse_down := false
@@ -736,6 +738,11 @@ func _draw_schematic_network() -> void:
 
 func _draw_built_links() -> void:
 	if not show_network: return
+	var crowded_edge_ids: Dictionary = {}
+	if analysis_mode == "operations":
+		for crowded_key in world.get("simulation", {}).get("crowdedLinks", {}):
+			var parts := str(crowded_key).split("|")
+			if parts.size() >= 2: crowded_edge_ids[str(parts[parts.size() - 2])] = true
 	var view_half := size * 0.5 * _camera_mpp
 	var visible_local := Rect2(_camera_local_center - view_half, view_half * 2.0).grow(700.0)
 	for link in world.get("trackLinks", []):
@@ -765,10 +772,12 @@ func _draw_built_links() -> void:
 		if link.get("schematic", false):
 			for i in range(0, points.size() - 1, 2):
 				draw_line(points[i], points[i + 1], Color("#f2bd58") if selected_link else color.darkened(0.12), 5.0 if selected_link else 2.8, true)
+				if crowded_edge_ids.has(str(link.get("id", ""))): draw_line(points[i], points[i + 1], Color("#e45c54"), 7.0, true)
 		else:
 			var preview_tint := Color("#df5360") if is_preview_link and not curve_preview_issue.is_empty() else (Color("#f2bd58") if selected_link else color)
 			draw_polyline(points, Color("#ffffff"), 10.0 if selected_link else 8.0, true)
 			draw_polyline(points, preview_tint, 6.0 if selected_link or is_preview_link else 4.0, true)
+			if crowded_edge_ids.has(str(link.get("id", ""))): draw_polyline(points, Color("#e45c54"), 7.5, true)
 			if tool == "curve" and link.get("routeIds", []).has(active_route_id):
 				var a: Dictionary = WorldData.find_station(world, str(link.get("a", {}).get("stationId", "")))
 				var b: Dictionary = WorldData.find_station(world, str(link.get("b", {}).get("stationId", "")))
@@ -810,6 +819,7 @@ func _draw_built_links() -> void:
 						var direction := (after - before).normalized()
 						lane_points.append(points[point_index] + Vector2(-direction.y, direction.x) * lane_offset)
 				draw_polyline(lane_points, color.darkened(0.25) if faded else color, lane_width, true)
+		if crowded_edge_ids.has(str(edge.get("id", ""))): draw_polyline(points, Color("#e45c54"), 7.5, true)
 		var is_preview_edge := not _curve_preview.is_empty() and str(_curve_preview.get("linkId", "")) == str(edge.get("id", ""))
 		if is_preview_edge:
 			var preview_edge: Dictionary = edge.duplicate(true)
@@ -929,10 +939,17 @@ func _draw_demand() -> void:
 		if not Rect2(Vector2(-25, -25), size + Vector2(50, 50)).has_point(pos): continue
 		var d_type := str(demand.get("type", "commerce"))
 		var color: Color = PALETTE.get(d_type, PALETTE.get("service"))
+		var reach_minutes := float(reachability_minutes_by_demand.get(demand_id, INF))
+		if analysis_mode == "accessibility":
+			if reach_minutes <= 15.0: color = Color("#228c69")
+			elif reach_minutes <= 30.0: color = Color("#3d9eb1")
+			elif reach_minutes <= 45.0: color = Color("#d79b3c")
+			else: color = Color("#9aa5aa")
 		var radius := 5.0 if current_zoom < 14 else 7.0
 		_draw_demand_symbol(pos, radius, d_type, color)
-		if current_zoom >= 14 or selected:
-			_draw_label(pos + Vector2(9, 3), str(demand.get("name", "需求点")), Color("#263746"), font, 14 if selected else 12, selected, selected)
+		if current_zoom >= 14 or selected or analysis_mode == "accessibility":
+			var label := "%s · %d分" % [str(demand.get("name", "需求点")), roundi(reach_minutes)] if analysis_mode == "accessibility" and is_finite(reach_minutes) and reach_minutes <= 45.0 else str(demand.get("name", "需求点"))
+			_draw_label(pos + Vector2(9, 3), label, Color("#263746"), font, 14 if selected else 12, selected, selected)
 
 func _draw_demand_symbol(pos: Vector2, radius: float, kind: String, color: Color) -> void:
 	draw_circle(pos, radius + 3.0, Color(1, 1, 1, 0.96))
@@ -992,10 +1009,15 @@ func _draw_stations() -> void:
 		for route_id in station.get("routeIds", []):
 			var route: Dictionary = route_cache_by_id.get(str(route_id), {})
 			if not route.is_empty(): marker_color = Color.from_string(str(route.get("color", "#4a91e8")), marker_color); break
+		if bool(station.get("plannedTransfer", false)):
+			draw_arc(pos, 16.0, 0.0, TAU, 32, Color("#e2a747"), 2.0, true)
+			draw_dashed_line(pos + Vector2(-12.0, 13.0), pos + Vector2(12.0, -13.0), Color("#e2a747"), 2.0, 3.0, true)
 		draw_circle(pos, 10.5 if selected else 8.0, Color("#ffffff"))
 		draw_circle(pos, 7.5 if selected else 5.5, marker_color)
 		if (current_zoom >= 14 or selected or station.get("existing", false) == false) and (selected or not _near_task_label_anchor(pos)):
 			_draw_label(pos + Vector2(10, -9), str(station.get("name", "车站")), Color("#1b2d3b"), get_theme_default_font(), 14 if selected else 12, selected, selected)
+		if bool(station.get("plannedTransfer", false)) and (selected or current_zoom >= 14):
+			_draw_label(pos + Vector2(11, 13), "拟换乘", Color("#76561c"), get_theme_default_font(), 11, true)
 		if tool in ["connect", "track", "track_curve"] or selected:
 			var start_pos := _to_screen(WorldData.station_endpoint(display_station, "start"))
 			var end_pos := _to_screen(WorldData.station_endpoint(display_station, "end"))

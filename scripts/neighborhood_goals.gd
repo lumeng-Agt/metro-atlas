@@ -145,6 +145,24 @@ static func update(state: Dictionary, flows: Array[Dictionary], absolute_minute:
 	board["active"] = active
 	board["completed"] = finished
 	state["goalBoard"] = board
+	if str(state.get("challengeMode", "free")) == "neighborhood":
+		var challenge: Dictionary = state.get("challengeState", {"step": 0, "startedAt": absolute_minute, "completedAt": -1})
+		if int(challenge.get("startedAt", -1)) < 0:
+			challenge["startedAt"] = absolute_minute
+			changed = true
+		var completed_coverage := 0
+		var completed_transfer := false
+		for result in finished:
+			if str(result.get("type", "")) == "coverage": completed_coverage += 1
+			if str(result.get("type", "")) == "transfer": completed_transfer = true
+		var challenge_step := 0 if completed_coverage == 0 else (1 if completed_coverage == 1 else (2 if not completed_transfer else 3))
+		if int(challenge.get("step", 0)) != challenge_step:
+			challenge["step"] = challenge_step
+			changed = true
+		if challenge_step >= 3 and int(challenge.get("completedAt", -1)) < 0:
+			challenge["completedAt"] = absolute_minute
+			changed = true
+		state["challengeState"] = challenge
 	return changed
 
 static func _find_flow(flows: Array[Dictionary], flow_id: String) -> Dictionary:

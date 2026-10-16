@@ -1,7 +1,8 @@
 class_name WorldData
 extends RefCounted
 
-const SAVE_VERSION := 13
+const SAVE_VERSION := 15
+const CityProgressionScript = preload("res://scripts/city_progression.gd")
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
 
@@ -37,8 +38,12 @@ static func new_world(city_id: String, mode: String) -> Dictionary:
 		"mode": mode,
 		"dataVersion": _dataset.get("generatedAt", "unknown"),
 		"stations": [], "routes": [], "trackLinks": [], "trackNodes": [], "trackEdges": [], "depots": [],
-		"simulation": {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "trainTripsInitialized": false, "nextDepartureSeconds": {}, "peakCrowding": 0.0, "crowdingSamples": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "flowSamples": {}},
+		"simulation": {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "trainTripsInitialized": false, "nextDepartureSeconds": {}, "peakCrowding": 0.0, "crowdingSamples": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": []},
 		"goalBoard": {"active": [], "completed": []},
+		"cityProgression": CityProgressionScript.create_state(city_id),
+		"planningPhases": [{"id":"phase_1", "name":"一期建设", "createdAt":420, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}],
+		"currentPlanningPhaseId": "phase_1",
+		"challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1},
 		"fleetMode": "automatic", "tutorialStep": 0, "tutorialDone": false,
 		"randomSeed": 45281, "revision": 1,
 		"view": {"center": c.get("center", [31.2304, 121.4737]), "zoom": int(c.get("zoom", 12))},
@@ -53,12 +58,12 @@ static func new_world(city_id: String, mode: String) -> Dictionary:
 static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:
 	var station_lookup: Dictionary = {}
 	for raw in c.get("stations", []):
-		var station := {"id": str(raw.get("id", "")), "name": str(raw.get("name", "未命名站")), "latlng": raw.get("latlng", c.get("center", [0, 0])), "heading": 90.0, "lengthM": 118.788, "widthM": 20.0, "vehicleId": "B-6", "schematic": true, "existing": true, "routeIds": []}
+		var station := {"id": str(raw.get("id", "")), "name": str(raw.get("name", "未命名站")), "latlng": raw.get("latlng", c.get("center", [0, 0])), "heading": 90.0, "lengthM": 118.788, "widthM": 20.0, "vehicleId": "B-6", "schematic": true, "existing": true, "planningPhaseId":"phase_1", "routeIds": []}
 		state["stations"].append(station)
 		station_lookup[station.id] = station
 	var link_lookup: Dictionary = {}
 	for raw_route in c.get("lines", []):
-		var route := {"id": str(raw_route.get("id", "route_%d" % state.routes.size())), "name": str(raw_route.get("name", "线路")), "color": str(raw_route.get("color", "#e23f56")), "vehicleId": "B-6", "headway": 4, "open": true, "schematic": true, "stationOrder": [], "directions": raw_route.get("directions", [])}
+		var route := {"id": str(raw_route.get("id", "route_%d" % state.routes.size())), "name": str(raw_route.get("name", "线路")), "color": str(raw_route.get("color", "#e23f56")), "vehicleId": "B-6", "headway": 4, "open": true, "schematic": true, "stationOrder": [], "directions": raw_route.get("directions", []), "planningPhaseId":"phase_1"}
 		var directions: Array = raw_route.get("directions", [])
 		for direction in directions:
 			var ids: Array = direction.get("stationIds", [])
@@ -80,14 +85,24 @@ static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:
 					state["trackLinks"].append(link)
 					link_lookup[link_key] = link
 		state["routes"].append(route)
+		state["planningPhases"][0]["routeIds"].append(str(route.get("id", "")))
+	state["planningPhases"][0]["stationIds"] = state.get("stations", []).map(func(item: Dictionary): return str(item.get("id", "")))
+	state["planningPhases"][0]["edgeIds"] = state.get("trackLinks", []).map(func(item: Dictionary): return str(item.get("id", "")))
 
 static func _add_route(state: Dictionary, route_name: String, color: String) -> Dictionary:
-	var route := {"id": "r_%d" % Time.get_ticks_msec(), "name": route_name, "color": color, "vehicleId": "B-6", "headway": 3, "open": false, "schematic": false, "stationOrder": [], "directions": []}
+	var route := {"id": "r_%d" % Time.get_ticks_msec(), "name": route_name, "color": color, "vehicleId": "B-6", "headway": 3, "open": false, "schematic": false, "stationOrder": [], "directions": [], "planningPhaseId": str(state.get("currentPlanningPhaseId", "phase_1"))}
 	state["routes"].append(route)
 	return route
 
 static func add_route(state: Dictionary, route_name: String, color: String) -> Dictionary:
-	return _add_route(state, route_name, color)
+	var route := _add_route(state, route_name, color)
+	var phase_id := str(route.get("planningPhaseId", "phase_1"))
+	for phase in state.get("planningPhases", []):
+		if str(phase.get("id", "")) != phase_id: continue
+		if not phase.has("routeIds"): phase["routeIds"] = []
+		if not phase.routeIds.has(str(route.get("id", ""))): phase.routeIds.append(str(route.get("id", "")))
+		break
+	return route
 
 static func find_station(state: Dictionary, station_id: String) -> Dictionary:
 	for station in state.get("stations", []):
@@ -173,8 +188,14 @@ static func create_station(state: Dictionary, latlng: Array, heading: float, rou
 	if not vehicle_id_override.is_empty(): vehicle_id = vehicle_id_override
 	elif not route.is_empty(): vehicle_id = str(route.get("vehicleId", "B-6"))
 	var profile := vehicle(vehicle_id)
-	var station := {"id": "st_%d" % Time.get_ticks_msec(), "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": depth_m, "vehicleId": vehicle_id, "schematic": false, "existing": false, "routeIds": [route_id] if not route_id.is_empty() else []}
+	var phase_id := str(state.get("currentPlanningPhaseId", "phase_1"))
+	var station := {"id": "st_%d" % Time.get_ticks_msec(), "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": depth_m, "vehicleId": vehicle_id, "schematic": false, "existing": false, "planningPhaseId":phase_id, "routeIds": [route_id] if not route_id.is_empty() else []}
 	state["stations"].append(station)
+	for phase in state.get("planningPhases", []):
+		if str(phase.get("id", "")) != phase_id: continue
+		if not phase.has("stationIds"): phase["stationIds"] = []
+		if not phase.stationIds.has(str(station.id)): phase.stationIds.append(str(station.id))
+		break
 	if not route.is_empty(): route["stationOrder"].append(station.id)
 	TrackNetwork.ensure_station_nodes(state)
 	return station

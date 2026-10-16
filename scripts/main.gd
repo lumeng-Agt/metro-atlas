@@ -8,8 +8,11 @@ const TravelModelScript = preload("res://scripts/travel_model.gd")
 const RoutePathScript = preload("res://scripts/route_path.gd")
 const JourneyModelScript = preload("res://scripts/journey_model.gd")
 const SimulationEngineScript = preload("res://scripts/simulation_engine.gd")
+const ServiceScheduleScript = preload("res://scripts/service_schedule.gd")
 const NeighborhoodGoalsScript = preload("res://scripts/neighborhood_goals.gd")
-const BUILD_VERSION := "0.13.5 · 2026.10.16"
+const CityProgressionScript = preload("res://scripts/city_progression.gd")
+const AudioFeedbackScript = preload("res://scripts/audio_feedback.gd")
+const BUILD_VERSION := "0.14.0 · 2026.10.16"
 const APP_BG := Color("#101b25")
 const PANEL := Color("#162532")
 const PANEL_LIGHT := Color("#1c3040")
@@ -54,6 +57,11 @@ var time_label: Label
 var stats_label: Label
 var demand_toggle: CheckButton
 var hall_toggle: CheckButton
+var analysis_picker: OptionButton
+var accessibility_minutes_by_demand: Dictionary = {}
+var ui_audio_player: AudioStreamPlayer
+var feedback_enabled := true
+var feedback_volume := 0.35
 var menu_layer: Control
 var menu_city_picker: OptionButton
 var menu_continue_button: Button
@@ -100,6 +108,7 @@ var _right_requested := true
 var _layout_narrow := false
 var onboarding_panel: PanelContainer
 var _more_tools_expanded := false
+var _complexity_expanded := false
 var _onboarding_reason_expanded := false
 var _station_preview_last_usec := 0
 var _curve_preview_last_usec := 0
@@ -178,6 +187,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _build_application() -> void:
 	_ui_scale = UiPreferencesScript.load_scale()
+	feedback_enabled = UiPreferencesScript.load_feedback_enabled()
+	feedback_volume = UiPreferencesScript.load_feedback_volume()
 	_base_font = load("res://fonts/NotoSansSC.ttf")
 	_base_font = _font_weight(_base_font, 500)
 	_bold_font = _font_weight(load("res://fonts/NotoSansSC.ttf"), 700)
@@ -191,6 +202,10 @@ func _build_application() -> void:
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(background)
+	ui_audio_player = AudioStreamPlayer.new()
+	ui_audio_player.name = "UiFeedbackAudio"
+	ui_audio_player.bus = "Master"
+	add_child(ui_audio_player)
 	map_view = MapViewScript.new()
 	map_view.name = "CityMap"
 	map_view.bold_font = _bold_font
@@ -449,6 +464,11 @@ func _render_planning_menu(new_city: bool) -> void:
 		blank.custom_minimum_size.y = 56
 		blank.pressed.connect(func(): _start_new_game(active_city_id, "blank"))
 		actions.add_child(blank)
+		var challenge := _button("街区挑战", Color("#e9bd69"), Color("#3a3020"), 18)
+		challenge.custom_minimum_size.y = 52
+		challenge.tooltip_text = "在同一份城市规划中逐步完成需求覆盖、扩建和换乘目标。"
+		challenge.pressed.connect(func(): _start_neighborhood_challenge(active_city_id))
+		actions.add_child(challenge)
 		var expand := _button("扩建现实路网", Color("#123650"), Color("#a9d8fa"), 18)
 		expand.custom_minimum_size.y = 54
 		expand.pressed.connect(func(): _start_new_game(active_city_id, "expand"))
@@ -653,6 +673,7 @@ func _show_settings() -> void:
 	content_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	content_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	content_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
 	var viewport_size := get_viewport_rect().size
 	content_scroll.custom_minimum_size = Vector2(
 		minf(440.0 * _ui_scale, maxf(240.0, viewport_size.x - 96.0)),
@@ -660,6 +681,7 @@ func _show_settings() -> void:
 	)
 	var content := VBoxContainer.new()
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	content.custom_minimum_size.x = maxf(0.0, content_scroll.custom_minimum_size.x - 2.0)
 	content.add_theme_constant_override("separation", 12)
 	var settings_title := _label("界面文字大小", 18, TEXT, true)
 	settings_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -680,6 +702,36 @@ func _show_settings() -> void:
 			_show_toast("界面设置保存失败；本次缩放仍已生效")
 		_apply_ui_scale(value, true)
 	)
+	content.add_child(HSeparator.new())
+	content.add_child(_label("操作反馈", 18, TEXT, true))
+	var feedback_toggle := CheckButton.new()
+	feedback_toggle.text = "启用轻量操作提示音"
+	feedback_toggle.button_pressed = feedback_enabled
+	feedback_toggle.custom_minimum_size.y = 44.0 * _ui_scale
+	feedback_toggle.toggled.connect(func(enabled: bool):
+		feedback_enabled = enabled
+		if UiPreferencesScript.save_feedback_enabled(enabled) != OK: _show_toast("提示音设置保存失败")
+		if enabled: _play_ui_feedback("confirm")
+	)
+	content.add_child(feedback_toggle)
+	var volume_row := HBoxContainer.new()
+	volume_row.add_child(_label("音量", 15, MUTED))
+	var volume_slider := HSlider.new()
+	volume_slider.min_value = 0.0; volume_slider.max_value = 1.0; volume_slider.step = 0.05; volume_slider.value = feedback_volume
+	volume_slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	volume_slider.custom_minimum_size.y = 38.0 * _ui_scale
+	volume_slider.editable = feedback_enabled
+	volume_slider.value_changed.connect(func(value: float):
+		feedback_volume = value
+		if UiPreferencesScript.save_feedback_volume(value) != OK: _show_toast("音量设置保存失败")
+	)
+	feedback_toggle.toggled.connect(func(enabled: bool): volume_slider.editable = enabled)
+	volume_row.add_child(volume_slider)
+	var preview_sound := _button("试听", TEXT, PANEL_LIGHT, 14)
+	preview_sound.custom_minimum_size.y = 44.0 * _ui_scale
+	preview_sound.pressed.connect(func(): _play_ui_feedback("confirm"))
+	volume_row.add_child(preview_sound)
+	content.add_child(volume_row)
 	var settings_info := _label("地图：随游戏附带五城 OSM 矢量底图，断网也能规划。\n模拟速度使用固定游戏时间步长。", 14, MUTED)
 	settings_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.add_child(settings_info)
@@ -688,7 +740,7 @@ func _show_settings() -> void:
 	menu_layer.add_child(dialog)
 	dialog.popup_centered(Vector2i(mini(roundi(520.0 * _ui_scale), int(viewport_size.x - 32.0)), mini(roundi(360.0 * _ui_scale), int(viewport_size.y - 32.0))))
 
-func _start_new_game(city_id: String, mode: String) -> void:
+func _start_new_game(city_id: String, mode: String, challenge_mode: String = "free") -> void:
 	if SaveManager.save_exists(city_id, mode):
 		var confirm := ConfirmationDialog.new()
 		confirm.title = "替换本地进度？"
@@ -696,15 +748,41 @@ func _start_new_game(city_id: String, mode: String) -> void:
 		add_child(confirm)
 		confirm.confirmed.connect(func():
 			confirm.queue_free()
-			_load_world(_prepared_new_world(city_id, mode))
+			_load_world(_prepared_new_world(city_id, mode, challenge_mode))
 		)
 		confirm.canceled.connect(func(): confirm.queue_free())
 		confirm.popup_centered()
 		return
-	_load_world(_prepared_new_world(city_id, mode))
+	_load_world(_prepared_new_world(city_id, mode, challenge_mode))
 
-func _prepared_new_world(city_id: String, mode: String) -> Dictionary:
+func _start_neighborhood_challenge(city_id: String) -> void:
+	# Challenge mode is a goal layer on the same blank-city save, never a duplicate world.
+	if SaveManager.save_exists(city_id, "blank"):
+		var loaded := SaveManager.load_world(city_id, "blank", true)
+		if not bool(loaded.get("ok", false)):
+			_show_issue(str(loaded.get("error", "无法载入这座城市的本地进度")), "挑战载入失败")
+			return
+		if bool(loaded.get("pendingRecoveryConfirmation", false)):
+			_confirm_recovery_before_load(loaded, Callable(self, "_enter_neighborhood_challenge"))
+		else:
+			_enter_neighborhood_challenge(loaded)
+		return
+	_start_new_game(city_id, "blank", "neighborhood")
+
+func _enter_neighborhood_challenge(loaded: Dictionary) -> void:
+	var challenge_world: Dictionary = loaded.get("world", {})
+	challenge_world["challengeMode"] = "neighborhood"
+	var challenge_state: Dictionary = challenge_world.get("challengeState", {"step": 0, "startedAt": -1, "completedAt": -1})
+	if int(challenge_state.get("startedAt", -1)) < 0:
+		challenge_state["startedAt"] = int(challenge_world.get("simulation", {}).get("elapsedMinutes", 420))
+	challenge_world["challengeState"] = challenge_state
+	_load_world(challenge_world)
+
+func _prepared_new_world(city_id: String, mode: String, challenge_mode: String = "free") -> Dictionary:
 	var state := WorldData.new_world(city_id, mode)
+	state["challengeMode"] = challenge_mode
+	if challenge_mode == "neighborhood":
+		state["challengeState"] = {"step": 0, "startedAt": int(state.get("simulation", {}).get("elapsedMinutes", 420)), "completedAt": -1}
 	state["onboarding"] = OnboardingScript.create_state(city_id, mode, UiPreferencesScript.load_onboarding_completed())
 	# The previous tutorial is retained only for old saves; new games use the location-based guide.
 	state["tutorialDone"] = true
@@ -784,7 +862,16 @@ func _load_world(state: Dictionary) -> void:
 	if not world.simulation.has("trainTrips"): world.simulation.trainTrips = []
 	if not world.simulation.has("flowSamples"): world.simulation.flowSamples = {}
 	if not world.has("goalBoard"): world["goalBoard"] = {"active": [], "completed": []}
+	if not world.has("cityProgression"): world["cityProgression"] = CityProgressionScript.create_state(active_city_id)
+	if not world.has("planningPhases") or world.get("planningPhases", []).is_empty():
+		world["planningPhases"] = [{"id":"phase_1", "name":"一期建设", "createdAt":int(world.simulation.get("elapsedMinutes", 420)), "routeIds":world.get("routes", []).map(func(route: Dictionary): return str(route.get("id", ""))), "stationIds":world.get("stations", []).map(func(station: Dictionary): return str(station.get("id", ""))), "edgeIds":[], "flowIds":[]}]
+	for phase in world.get("planningPhases", []):
+		for key in ["routeIds", "stationIds", "edgeIds", "flowIds"]:
+			if not phase.get(key, []) is Array: phase[key] = []
+	if not world.has("currentPlanningPhaseId"): world["currentPlanningPhaseId"] = str(world.planningPhases.back().get("id", "phase_1"))
 	world.simulation.paused = true
+	if not bool(world.get("onboarding", {}).get("active", false)):
+		CityProgressionScript.start(world, int(world.simulation.get("elapsedMinutes", 420)))
 	active_route_id = str(world.get("selectedRoute", world.get("activeRouteId", world.get("routes", [{}])[0].get("id", "")))) if not world.get("routes", []).is_empty() else ""
 	if WorldData.find_route(world, active_route_id).is_empty() and not world.get("routes", []).is_empty(): active_route_id = str(world.routes[0].get("id", ""))
 	selected_type = ""; selected_id = ""; current_tool = "select"
@@ -799,6 +886,9 @@ func _load_world(state: Dictionary) -> void:
 	history.changed.connect(_on_history_changed)
 	map_view.set_context(WorldData.city(active_city_id), world)
 	map_view.show_road_names = UiPreferencesScript.load_road_names()
+	map_view.analysis_mode = "planning"
+	map_view.show_demand = false
+	map_view.reachability_minutes_by_demand.clear()
 	map_view.selected_id = ""; map_view.selected_type = ""; map_view.tool = "select"
 	map_view.visible = true
 	_build_game_ui()
@@ -949,8 +1039,12 @@ func _build_game_ui() -> void:
 	_layer_panel.add_theme_stylebox_override("panel", _style(Color("#172836"), BORDER, 10, 1))
 	var layers := HBoxContainer.new(); layers.add_theme_constant_override("separation", 8); _layer_panel.add_child(layers)
 	var halls_toggle := CheckButton.new(); halls_toggle.text = "站体"; halls_toggle.button_pressed = map_view.show_halls; _set_control_base_font(halls_toggle, 14); halls_toggle.toggled.connect(func(on: bool): map_view.show_halls = on; map_view.requested_redraw()); layers.add_child(halls_toggle)
-	var demand_toggle := CheckButton.new(); demand_toggle.text = "需求"; demand_toggle.button_pressed = map_view.show_demand; _set_control_base_font(demand_toggle, 14); demand_toggle.toggled.connect(func(on: bool): map_view.show_demand = on; map_view.requested_redraw()); layers.add_child(demand_toggle)
-	var network_toggle := CheckButton.new(); network_toggle.text = "线路"; network_toggle.button_pressed = map_view.show_network; _set_control_base_font(network_toggle, 14); network_toggle.toggled.connect(func(on: bool): map_view.show_network = on; map_view.requested_redraw()); layers.add_child(network_toggle)
+	analysis_picker = OptionButton.new()
+	for mode_label in ["规划", "需求", "可达性", "运营问题"]: analysis_picker.add_item(mode_label)
+	analysis_picker.custom_minimum_size = Vector2(126.0 * _ui_scale, 38.0 * _ui_scale)
+	analysis_picker.select(0)
+	analysis_picker.item_selected.connect(func(index: int): _set_map_analysis_mode(["planning", "demand", "accessibility", "operations"][index]))
+	layers.add_child(analysis_picker)
 	var roads_toggle := CheckButton.new()
 	roads_toggle.text = "路名"
 	roads_toggle.button_pressed = map_view.show_road_names
@@ -1007,8 +1101,6 @@ func _refresh_left_panel() -> void:
 	if not is_instance_valid(left_content): return
 	for child in left_content.get_children(): child.queue_free()
 	if _flow_cache_revision != int(world.get("revision", 0)): _rebuild_flow_cache()
-	var elapsed := int(world.get("simulation", {}).get("elapsedMinutes", world.get("simulation", {}).get("minute", 420)))
-	NeighborhoodGoalsScript.update(world, _flow_cache, elapsed)
 	for tab_id in left_tab_buttons:
 		var button: Button = left_tab_buttons[tab_id]
 		var active := str(tab_id) == left_tab
@@ -1075,6 +1167,29 @@ func _refresh_routes_tab() -> void:
 
 func _refresh_tasks_tab() -> void:
 	left_content.add_child(_label("任务与扩建", 20, TEXT, true))
+	var onboarding_state: Dictionary = world.get("onboarding", {})
+	var progression_state: Dictionary = world.get("cityProgression", {})
+	if bool(progression_state.get("started", false)) and not bool(onboarding_state.get("active", false)) and str(world.get("challengeMode", "free")) != "neighborhood":
+		_refresh_city_campaign_tab()
+		return
+	if str(world.get("challengeMode", "free")) == "neighborhood":
+		var challenge_state: Dictionary = world.get("challengeState", {})
+		var challenge_step := int(challenge_state.get("step", 0))
+		var challenge_text := "1/3 · 接通一组基础出行需求" if challenge_step == 0 else ("2/3 · 补足附近另一组出行需求" if challenge_step == 1 else ("3/3 · 建立可实际乘坐的换乘路径" if challenge_step == 2 else "挑战完成 · 继续改善街区网络"))
+		var challenge_card := PanelContainer.new()
+		challenge_card.add_theme_stylebox_override("panel", _style(Color("#352e20"), Color("#a8823c"), 9, 1))
+		left_content.add_child(challenge_card)
+		var challenge_box := VBoxContainer.new()
+		challenge_box.add_theme_constant_override("separation", 5)
+		challenge_box.add_theme_constant_override("margin_left", 10); challenge_box.add_theme_constant_override("margin_right", 10)
+		challenge_box.add_theme_constant_override("margin_top", 9); challenge_box.add_theme_constant_override("margin_bottom", 9)
+		challenge_card.add_child(challenge_box)
+		challenge_box.add_child(_label("街区挑战 · %s" % challenge_text, 15, Color("#f1ca79"), true))
+		challenge_box.add_child(_label("目标随当前城市规划推进；退出挑战不会另建或覆盖一份网络。", 13, MUTED))
+		var leave_challenge := _button("继续自由扩建", MUTED, PANEL_LIGHT, 14)
+		leave_challenge.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+		leave_challenge.pressed.connect(_leave_neighborhood_challenge)
+		challenge_box.add_child(leave_challenge)
 	var onboarding: Dictionary = world.get("onboarding", {})
 	var tutorial_card := PanelContainer.new()
 	tutorial_card.add_theme_stylebox_override("panel", _style(Color("#1a3533"), Color("#2f6258"), 9, 1))
@@ -1176,6 +1291,317 @@ func _refresh_tasks_tab() -> void:
 		notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		left_content.add_child(notice)
 
+func _refresh_city_campaign_tab() -> void:
+	var progression: Dictionary = world.get("cityProgression", {})
+	var stage := CityProgressionScript.current_stage(world)
+	var elapsed := int(world.get("simulation", {}).get("elapsedMinutes", 420))
+	var phases: Array = world.get("planningPhases", [])
+	var current_phase_id := str(world.get("currentPlanningPhaseId", "phase_1"))
+	var current_phase: Dictionary = {}
+	for phase in phases:
+		if str(phase.get("id", "")) == current_phase_id: current_phase = phase; break
+	left_content.add_child(_label("城市议程 · 第 %d 天 %02d:%02d" % [elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60)], 14, MUTED))
+	if not stage.is_empty():
+		var chapter := PanelContainer.new()
+		chapter.add_theme_stylebox_override("panel", _style(Color("#1a3533"), Color("#398773"), 9, 1))
+		left_content.add_child(chapter)
+		var box := VBoxContainer.new()
+		box.add_theme_constant_override("separation", 7)
+		box.add_theme_constant_override("margin_left", 11); box.add_theme_constant_override("margin_right", 11)
+		box.add_theme_constant_override("margin_top", 10); box.add_theme_constant_override("margin_bottom", 10)
+		chapter.add_child(box)
+		box.add_child(_label("当前主目标 · %s" % str(stage.get("title", "城市议程")), 18, TEAL, true))
+		box.add_child(_label(str(stage.get("description", "")), 15, TEXT))
+		box.add_child(_label("为什么：%s" % str(stage.get("why", "")), 14, MUTED))
+		box.add_child(_label("完成条件：%s" % str(stage.get("action", "")), 14, MUTED))
+		var flow: Dictionary = _campaign_stage_flow(progression, stage)
+		if not flow.is_empty():
+			var coverage_text := "已有完整地铁路径；等待真实乘客到达。" if bool(flow.get("valid", false)) else "目前没有连续、已开通的完整旅程。"
+			box.add_child(_label("%s → %s · 游戏设定约 %s 人次/日\n%s" % [str(flow.get("from", "起点")), str(flow.get("to", "目的地")), _number(int(round(float(flow.get("peoplePerDay", 0.0))))), coverage_text], 14, Color("#f1d291") if not bool(flow.get("valid", false)) else TEXT))
+			var actions := HFlowContainer.new()
+			actions.add_theme_constant_override("h_separation", 6)
+			var focus := _button("定位这条出行", Color("#9ad8f3"), PANEL_LIGHT, 14)
+			focus.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+			focus.pressed.connect(func(): _focus_flow(flow))
+			actions.add_child(focus)
+			var expected := _button("查看预计旅程", TEXT, PANEL_LIGHT, 14)
+			expected.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+			expected.disabled = not bool(flow.get("valid", false))
+			expected.pressed.connect(func(): _show_expected_journey(flow))
+			actions.add_child(expected)
+			box.add_child(actions)
+		elif str(stage.get("kind", "")) == "transfer":
+			box.add_child(_label("先在车站详情标记拟换乘站，再比较周边需求。标记仅是规划提示；两条已开通线路实际停靠同一站后才形成换乘。", 14, MUTED))
+		elif str(stage.get("kind", "")) == "operations":
+			var sim: Dictionary = world.get("simulation", {})
+			var waiting := int(sim.get("waiting", 0))
+			var crowded := str(sim.get("peakCrowdedRoute", ""))
+			var issue_text := "目前等候 %s 人。" % _number(waiting)
+			if not crowded.is_empty(): issue_text += "近期拥挤区间位于 %s。" % str(WorldData.find_route(world, crowded).get("name", "运营线路"))
+			if waiting == 0 and crowded.is_empty(): issue_text = "目前没有持续排队或明显拥挤；持续观察 60 个游戏分钟即可完成本阶段。"
+			box.add_child(_label(issue_text + "停运或乘客放弃不计作改善。", 14, TEXT))
+	else:
+		left_content.add_child(_label("本城连续章节已完成。城市议程会继续显示尚未服务的出行和实际运营问题。", 15, TEAL, true))
+		var current := _next_neighborhood_flow(world.get("onboarding", {}))
+		if not current.is_empty():
+			left_content.add_child(_label("可自主选择的下一片区", 17, TEXT, true))
+			left_content.add_child(_label("%s → %s · 游戏估算 %s 人次/日" % [current.get("from", "居住区"), current.get("to", "目的地"), _number(int(round(float(current.get("peoplePerDay", 0.0)))))], 15, MUTED))
+			var locate_next := _button("查看附近需求", Color("#9ad8f3"), PANEL_LIGHT, 14)
+			locate_next.pressed.connect(func(): _focus_flow(current))
+			left_content.add_child(locate_next)
+	var upcoming := CityProgressionScript.next_event(world, elapsed)
+	if not upcoming.is_empty():
+		var announce_in := maxi(0, int(upcoming.get("announceMinute", elapsed)) - elapsed)
+		var start_in := maxi(0, int(upcoming.get("startMinute", elapsed)) - elapsed)
+		var upcoming_text := "城市变化预告：%s · %s" % [str(upcoming.get("title", "城市变化")), str(upcoming.get("description", "客流变化为游戏设定。"))]
+		if announce_in > 0: upcoming_text += "\n约 %d 游戏分钟后预告；约 %d 分钟后开始。" % [announce_in, start_in]
+		else: upcoming_text += "\n即将开始 · 客流变化幅度为游戏设定。"
+		var upcoming_label := _label(upcoming_text, 14, Color("#f1c97b"))
+		upcoming_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		left_content.add_child(upcoming_label)
+	var active_events: Array[String] = CityProgressionScript.active_event_ids(world)
+	if not active_events.is_empty():
+		left_content.add_child(_label("当前城市变化", 16, TEXT, true))
+		for event in CityProgressionScript.events_for_city(active_city_id):
+			if active_events.has(str(event.get("id", ""))):
+				left_content.add_child(_label("● %s · 需求增幅为游戏设定" % str(event.get("title", "城市变化")), 14, Color("#eacb85")))
+	var event_history: Array = progression.get("eventHistory", [])
+	if not event_history.is_empty():
+		var last_event: Dictionary = event_history.back()
+		left_content.add_child(_label("最近事件：%s · %s" % [str(last_event.get("title", "城市变化")), "已结束" if str(last_event.get("status", "")) == "ended" else "需求已变化"], 13, MUTED))
+	var completed_stages: Array = progression.get("completedStages", [])
+	if not completed_stages.is_empty():
+		left_content.add_child(_label("已完成章节", 16, TEXT, true))
+		for result in completed_stages.slice(maxi(0, completed_stages.size() - 4), completed_stages.size()):
+			var result_flow := _find_cached_flow(str(result.get("flowId", "")))
+			var outcome := "实际完成 %s 人次" % _number(int(result.get("completed", 0))) if result.has("completed") else str(result.get("note", "已记录当前服务状态"))
+			if result.has("actualAverageMinutes"): outcome += " · 这批乘客平均 %.1f 分钟" % float(result.get("actualAverageMinutes", 0.0))
+			left_content.add_child(_label("✓ %s · %s" % [str(result.get("title", "规划目标")), outcome], 14, TEAL))
+			if not result_flow.is_empty():
+				var compare := CityProgressionScript.compare_flow_windows(world, str(result.get("flowId", "")), elapsed)
+				left_content.add_child(_label(str(compare.get("label", "暂无可比的同一时段数据。")), 12, MUTED))
+	left_content.add_child(HSeparator.new())
+	left_content.add_child(_label("建设阶段", 17, TEXT, true))
+	var phase_actions := HFlowContainer.new()
+	var create_phase := _button("＋ 新建阶段", TEAL, Color("#15362f"), 14)
+	create_phase.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+	create_phase.pressed.connect(_prompt_new_planning_phase)
+	phase_actions.add_child(create_phase)
+	left_content.add_child(phase_actions)
+	for phase in phases:
+		var phase_id := str(phase.get("id", ""))
+		var route_ids: Array = phase.get("routeIds", [])
+		var route_names: Array[String] = []
+		var pending := 0
+		for route_id in route_ids:
+			var route := WorldData.find_route(world, str(route_id))
+			if route.is_empty(): continue
+			route_names.append(str(route.get("name", "线路")))
+			if not bool(route.get("open", false)): pending += _route_pending_segment_count(route)
+		var title := ("● " if phase_id == current_phase_id else "○ ") + str(phase.get("name", "建设阶段"))
+		var station_count := 0
+		for station_id in phase.get("stationIds", []):
+			if not WorldData.find_station(world, str(station_id)).is_empty(): station_count += 1
+		var edge_count := 0
+		for edge_id in phase.get("edgeIds", []):
+			if not _find_link(str(edge_id)).is_empty(): edge_count += 1
+		var summary := "%d 站 · %d 段轨道 · %d 条线路" % [station_count, edge_count, route_names.size()]
+		if pending > 0: summary += " · %d 段尚未开通" % pending
+		if not route_names.is_empty(): summary += " · " + "、".join(route_names.slice(0, 3))
+		var phase_button := _button(title + "\n" + summary, TEXT, PANEL_LIGHT, 14)
+		phase_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		phase_button.custom_minimum_size.y = 54.0 * minf(_ui_scale, 1.2)
+		phase_button.pressed.connect(func(): _set_current_planning_phase(phase_id))
+		left_content.add_child(phase_button)
+		var phase_flows: Array = phase.get("flowIds", [])
+		if phase_id == current_phase_id:
+			var assign_targets := _button("为本阶段选择服务目标", Color("#9ad8f3"), PANEL_LIGHT, 14)
+			assign_targets.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+			assign_targets.pressed.connect(func(): _prompt_phase_flow_goals(phase_id))
+			left_content.add_child(assign_targets)
+		if not phase_flows.is_empty():
+			var targets: Array[String] = []
+			for flow_id in phase_flows:
+				var target_flow := _find_cached_flow(str(flow_id))
+				if target_flow.is_empty(): continue
+				var serves_from_phase := false
+				if bool(target_flow.get("valid", false)):
+					for used_route_id in target_flow.get("routeIds", []):
+						if str(WorldData.find_route(world, str(used_route_id)).get("planningPhaseId", "")) == phase_id: serves_from_phase = true
+				var status := "本阶段已接通" if serves_from_phase else ("其他阶段已有服务" if bool(target_flow.get("valid", false)) else "尚未接通")
+				targets.append("%s → %s：%s" % [str(target_flow.get("from", "起点")), str(target_flow.get("to", "目的地")), status])
+			if not targets.is_empty(): left_content.add_child(_label("本阶段服务目标\n" + "\n".join(targets), 13, Color("#c8d8e2")))
+	if not current_phase.is_empty(): left_content.add_child(_label("新建线路会归入当前阶段“%s”。未通过检查或未开通的线路不会计入已服务乘客。" % str(current_phase.get("name", "")), 13, MUTED))
+	var optional := CityProgressionScript.optional_goals(world, _flow_cache)
+	if not optional.is_empty():
+		left_content.add_child(HSeparator.new())
+		left_content.add_child(_label("可选委托 · 最多 2 项", 16, TEXT, true))
+		for goal in optional:
+			var flow := _find_cached_flow(str(goal.get("flowId", "")))
+			var row := VBoxContainer.new()
+			left_content.add_child(row)
+			row.add_child(_label(str(goal.get("title", "街区委托")), 15, TEAL, true))
+			row.add_child(_label("受影响出行约 %s 人次/日；需使用完整可达路径。" % _number(int(round(float(goal.get("peoplePerDay", 0.0))))), 13, MUTED))
+			var button := _button("查看位置", Color("#9ad8f3"), PANEL_LIGHT, 13)
+			button.pressed.connect(func(): _focus_flow(flow))
+			row.add_child(button)
+	var transfer_stations: Array[Dictionary] = []
+	for station in world.get("stations", []):
+		if bool(station.get("plannedTransfer", false)): transfer_stations.append(station)
+	if not transfer_stations.is_empty():
+		left_content.add_child(HSeparator.new())
+		left_content.add_child(_label("拟换乘站 · 仅作规划标记", 15, Color("#e5b96d"), true))
+		for station in transfer_stations.slice(0, 4):
+			var locate_station := _button("◎ %s · 查看周边出行" % str(station.get("name", "车站")), TEXT, PANEL_LIGHT, 14)
+			locate_station.pressed.connect(func(): _select_object("station", str(station.get("id", ""))); map_view.center_on(station.get("latlng", [0, 0]), maxi(map_view.current_zoom, 14)))
+			left_content.add_child(locate_station)
+	if not str(world.get("migrationNotice", "")).is_empty():
+		var migration := _label(str(world.get("migrationNotice", "")), 13, Color("#e1b975"))
+		migration.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		left_content.add_child(migration)
+
+func _campaign_stage_flow(progression: Dictionary, stage: Dictionary) -> Dictionary:
+	var stage_index := int(progression.get("chapterIndex", 0))
+	if str(stage.get("kind", "")) != "flow": return {}
+	var configured: Array = CityProgressionScript.config(active_city_id).get("flows", [])
+	var flow_index := 0 if stage_index == 0 else 1
+	if flow_index >= configured.size(): return {}
+	return _find_cached_flow(str(configured[flow_index]))
+
+func _route_pending_segment_count(route: Dictionary) -> int:
+	var missing := 0
+	for direction in route.get("directions", []):
+		for segment in direction.get("edgePathsBySegment", []):
+			if not segment is Array or segment.is_empty(): missing += 1
+	return missing
+
+func _create_planning_phase(raw_name: String) -> void:
+	var phase_name := raw_name.strip_edges()
+	if phase_name.is_empty(): _show_toast("先给这个建设阶段起个名字"); return
+	var phase_id := "phase_%d_%d" % [int(world.get("planningPhases", []).size() + 1), Time.get_ticks_msec()]
+	var now := int(world.get("simulation", {}).get("elapsedMinutes", 420))
+	history.execute("新建建设阶段%s" % phase_name, func(state: Dictionary):
+		var phase := {"id":phase_id, "name":phase_name, "createdAt":now, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}
+		state.get("planningPhases", []).append(phase)
+		state["currentPlanningPhaseId"] = phase_id
+	)
+	_refresh_left_panel(); _autosave(); _show_toast("已新建建设阶段：%s" % phase_name)
+
+func _prompt_new_planning_phase() -> void:
+	var dialog := ConfirmationDialog.new()
+	dialog.title = "新建建设阶段"
+	dialog.get_ok_button().text = "创建并切换"
+	dialog.get_cancel_button().text = "取消"
+	var input := LineEdit.new()
+	input.placeholder_text = "例如：二期 · 北蔡走廊"
+	_set_control_base_font(input, 16)
+	dialog.add_child(input)
+	add_child(dialog)
+	dialog.confirmed.connect(func(): _create_planning_phase(input.text); dialog.queue_free())
+	dialog.canceled.connect(func(): dialog.queue_free())
+	dialog.popup_centered(Vector2i(480, 180))
+	input.grab_focus()
+
+func _prompt_phase_flow_goals(phase_id: String) -> void:
+	var phase := _find_planning_phase(phase_id)
+	if phase.is_empty(): return
+	if _flow_cache.is_empty(): _rebuild_flow_cache()
+	var candidates: Array[Dictionary] = []
+	var included: Dictionary = {}
+	for flow in _flow_cache:
+		var flow_id := str(flow.get("id", ""))
+		if flow_id.is_empty(): continue
+		candidates.append(flow)
+		included[flow_id] = true
+	for flow_id in CityProgressionScript.config(active_city_id).get("flows", []):
+		if included.has(str(flow_id)): continue
+		var flow := _find_cached_flow(str(flow_id))
+		if not flow.is_empty(): candidates.append(flow)
+	candidates.sort_custom(func(a: Dictionary, b: Dictionary): return float(a.get("peoplePerDay", 0.0)) > float(b.get("peoplePerDay", 0.0)))
+	var chosen: Array = phase.get("flowIds", []).duplicate()
+	var dialog := ConfirmationDialog.new()
+	dialog.title = "选择本阶段要服务的出行"
+	dialog.get_ok_button().text = "保存目标"
+	dialog.get_cancel_button().text = "取消"
+	var explanation := Label.new()
+	explanation.text = "最多选择 3 组。状态会在这里显示：本阶段已接通、其他阶段已有服务或尚未接通。"
+	explanation.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	dialog.add_child(explanation)
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(480, 340)
+	dialog.add_child(scroll)
+	var rows := VBoxContainer.new()
+	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(rows)
+	var checks: Array[CheckBox] = []
+	for flow in candidates.slice(0, 24):
+		var flow_id := str(flow.get("id", ""))
+		var from_point := _find_demand(str(flow.get("fromId", "")))
+		var to_point := _find_demand(str(flow.get("toId", "")))
+		var checkbox := CheckBox.new()
+		checkbox.text = "%s → %s · 游戏设定约 %s 人次/日%s" % [str(flow.get("from", "起点")), str(flow.get("to", "目的地")), _number(int(round(float(flow.get("peoplePerDay", 0.0))))), " · 待核验" if not bool(from_point.get("verified", false)) or not bool(to_point.get("verified", false)) else ""]
+		checkbox.button_pressed = chosen.has(flow_id)
+		checkbox.tooltip_text = "地点类别：%s → %s；覆盖与接驳是游戏估算。" % [_type_name(str(from_point.get("type", ""))), _type_name(str(to_point.get("type", "")))]
+		checkbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		rows.add_child(checkbox)
+		checks.append(checkbox)
+	for checkbox in checks:
+		checkbox.toggled.connect(_on_phase_flow_goal_toggled.bind(checks, checkbox))
+	var allowed_ids: Array[String] = []
+	for flow in candidates.slice(0, 24): allowed_ids.append(str(flow.get("id", "")))
+	for raw_flow_id in chosen:
+		if not allowed_ids.has(str(raw_flow_id)):
+			var old_flow := _find_cached_flow(str(raw_flow_id))
+			if not old_flow.is_empty():
+				var old_check := CheckBox.new()
+				old_check.text = "%s → %s · 已选目标" % [str(old_flow.get("from", "起点")), str(old_flow.get("to", "目的地"))]
+				old_check.button_pressed = true
+				old_check.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				rows.add_child(old_check)
+				checks.append(old_check)
+				allowed_ids.append(str(raw_flow_id))
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		var selected_flows: Array[String] = []
+		for index in range(checks.size()):
+			if checks[index].button_pressed and index < allowed_ids.size(): selected_flows.append(allowed_ids[index])
+		if selected_flows.size() > 3:
+			_show_toast("每个阶段最多选择 3 组服务目标")
+			dialog.queue_free()
+			return
+		history.execute("设置阶段服务目标", func(state: Dictionary):
+			var target_phase := _find_planning_phase_in(state, phase_id)
+			if not target_phase.is_empty(): target_phase["flowIds"] = selected_flows.duplicate()
+		)
+		dialog.queue_free()
+		_refresh_left_panel()
+		_autosave()
+	)
+	dialog.canceled.connect(func(): dialog.queue_free())
+	dialog.popup_centered(Vector2i(600, 470))
+
+func _on_phase_flow_goal_toggled(pressed: bool, checkboxes: Array[CheckBox], checkbox: CheckBox) -> void:
+	if not pressed: return
+	var selected_count := 0
+	for item in checkboxes:
+		if item.button_pressed: selected_count += 1
+	if selected_count > 3:
+		checkbox.set_pressed_no_signal(false)
+		_show_toast("每个建设阶段最多指定 3 组出行")
+
+func _find_planning_phase(phase_id: String) -> Dictionary:
+	return _find_planning_phase_in(world, phase_id)
+
+func _find_planning_phase_in(state: Dictionary, phase_id: String) -> Dictionary:
+	for phase in state.get("planningPhases", []):
+		if str(phase.get("id", "")) == phase_id: return phase
+	return {}
+
+func _set_current_planning_phase(phase_id: String) -> void:
+	if str(world.get("currentPlanningPhaseId", "")) == phase_id: return
+	history.execute("切换当前建设阶段", func(state: Dictionary): state["currentPlanningPhaseId"] = phase_id)
+	_refresh_left_panel(); _autosave()
+
 func _next_neighborhood_flow(onboarding: Dictionary) -> Dictionary:
 	_ensure_flow_cache()
 	var origin := _find_demand(str(onboarding.get("originId", "")))
@@ -1241,12 +1667,138 @@ func _refresh_stats_tab() -> void:
 	left_content.add_child(_label("线路候车", 17, TEXT, true))
 	for route in world.get("routes", []):
 		var route_id := str(route.get("id", ""))
-		var line_row := _button("%s   等待 %s 人 · 班距 %d 分钟" % [str(route.get("name", "线路")), _number(int(waiting_by_route.get(route_id, 0))), int(route.get("headway", 3))], TEXT, PANEL_LIGHT, 14)
+		var current_headway := ServiceScheduleScript.headway_minutes(route, int(sim.get("elapsedSeconds", int(elapsed) * 60)))
+		var line_row := _button("%s   等待 %s 人 · 当前班距 %d 分钟" % [str(route.get("name", "线路")), _number(int(waiting_by_route.get(route_id, 0))), current_headway], TEXT, PANEL_LIGHT, 14)
 		line_row.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		line_row.custom_minimum_size.y = 42.0 * _ui_scale
 		line_row.pressed.connect(func(): _focus_route(route_id))
 		left_content.add_child(line_row)
+	left_content.add_child(HSeparator.new())
+	left_content.add_child(_label("15分钟统计 · 最近7个游戏日", 17, TEXT, true))
+	var buckets: Array = sim.get("statisticsBuckets", [])
+	for bucket in buckets.slice(maxi(0, buckets.size() - 8), buckets.size()):
+		var attempted_total := 0
+		var completed_total := 0
+		for count in bucket.get("attemptedByFlow", {}).values(): attempted_total += int(count)
+		for count in bucket.get("completedByFlow", {}).values(): completed_total += int(count)
+		var start_minute := int(bucket.get("startMinute", 0))
+		var clock := "%02d:%02d" % [posmod(start_minute, 1440) / 60, posmod(start_minute, 60)]
+		left_content.add_child(_label("第%d天 %s · 发起 %s · 到达 %s" % [start_minute / 1440 + 1, clock, _number(attempted_total), _number(completed_total)], 13, MUTED))
+	left_content.add_child(HSeparator.new())
+	left_content.add_child(_label("实际旅程抽样 · 全城完成批次", 17, TEXT, true))
+	var journey_records: Array = sim.get("journeyRecords", [])
+	if journey_records.is_empty(): left_content.add_child(_label("暂无抽样记录；记录只展示实际完成的乘客批次。", 14, MUTED))
+	for record_index in range(journey_records.size() - 1, maxi(-1, journey_records.size() - 9), -1):
+		var raw_record: Variant = journey_records[record_index]
+		if not raw_record is Dictionary: continue
+		var record: Dictionary = raw_record
+		var ids := str(record.get("flowId", "")).split(">")
+		var from_demand := _find_demand(ids[0]) if ids.size() > 0 else {}
+		var to_demand := _find_demand(ids[1]) if ids.size() > 1 else {}
+		var record_button := _button("%s → %s\n%d人 · %.1f分钟 · %s" % [str(from_demand.get("name", "起点")), str(to_demand.get("name", "目的地")), int(record.get("count", 0)), float(record.get("durationMinutes", 0.0)), _format_game_clock(int(record.get("arrivalSeconds", 0)))], TEXT, PANEL_LIGHT, 13)
+		record_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		record_button.custom_minimum_size.y = 54.0 * _ui_scale
+		record_button.pressed.connect(_show_journey_record.bind(record.duplicate(true)))
+		left_content.add_child(record_button)
 	left_content.add_child(_label("以上均为游戏模拟。地图上的示意线路与客流数字不是现实运营预测。", 13, MUTED))
+
+func _format_game_clock(absolute_seconds: int) -> String:
+	var absolute_minutes := floori(float(absolute_seconds) / 60.0)
+	return "第%d天 %02d:%02d" % [absolute_minutes / 1440 + 1, posmod(absolute_minutes, 1440) / 60, posmod(absolute_minutes, 60)]
+
+func _show_journey_record(record: Dictionary) -> void:
+	var flow_parts := str(record.get("flowId", "")).split(">")
+	var origin := _find_demand(flow_parts[0]) if flow_parts.size() > 0 else {}
+	var destination := _find_demand(flow_parts[1]) if flow_parts.size() > 1 else {}
+	var lines: Array[String] = []
+	lines.append("出发：%s" % _format_game_clock(int(record.get("departureSeconds", 0))))
+	lines.append("到达：%s · 用时 %.1f 分钟 · 批次 %d 人" % [_format_game_clock(int(record.get("arrivalSeconds", 0))), float(record.get("durationMinutes", 0.0)), int(record.get("count", 0))])
+	lines.append("\n实际经过：")
+	var steps: Array = record.get("steps", [])
+	for step in steps:
+		if not step is Dictionary: continue
+		match str(step.get("type", "")):
+			"rail":
+				var route := WorldData.find_route(world, str(step.get("routeId", "")))
+				var from_station := WorldData.find_station(world, str(step.get("fromStationId", "")))
+				var to_station := WorldData.find_station(world, str(step.get("toStationId", "")))
+				lines.append("· 乘坐%s：%s → %s" % [str(route.get("name", "地铁线路")), str(from_station.get("name", "车站")), str(to_station.get("name", "车站"))])
+			"walk", "access": lines.append("· 地面步行约 %.0f 米（直线估算）" % float(step.get("distanceM", 0.0)))
+			"transfer": lines.append("· 站内换乘步行，游戏估算 %.1f 分钟" % float(step.get("transferMinutes", step.get("minutes", 0.0))))
+			"wait": lines.append("· 候车，游戏估算 %.1f 分钟" % float(step.get("minutes", 0.0)))
+	var events: Array = record.get("events", [])
+	if not events.is_empty():
+		lines.append("\n批次事件：")
+		for event in events:
+			if not event is Dictionary: continue
+			var station := WorldData.find_station(world, str(event.get("stationId", "")))
+			var event_text := str(event.get("type", "事件"))
+			match event_text:
+				"departure": event_text = "需求出发"
+				"train_board": event_text = "上车 · %s" % str(station.get("name", "车站"))
+				"train_arrive": event_text = "列车到站 · %s" % str(station.get("name", "车站"))
+				"step_complete": event_text = "步行／换乘完成"
+			lines.append("· %s · %s" % [_format_game_clock(int(event.get("timeSeconds", 0))), event_text])
+	var dialog := ConfirmationDialog.new()
+	dialog.title = "实际旅程记录 · %s → %s" % [str(origin.get("name", "起点")), str(destination.get("name", "目的地"))]
+	dialog.dialog_text = "\n".join(lines)
+	dialog.add_button("定位起点", false, "origin")
+	dialog.add_button("定位终点", false, "destination")
+	var follow_index := 0
+	for event in events:
+		if not event is Dictionary or str(event.get("type", "")) not in ["train_board", "train_arrive"]: continue
+		var event_station := WorldData.find_station(world, str(event.get("stationId", "")))
+		if event_station.is_empty(): continue
+		dialog.add_button("跟随 %s · %s" % [_format_game_clock(int(event.get("timeSeconds", 0))), str(event_station.get("name", "车站"))], false, "event_%d" % follow_index)
+		follow_index += 1
+		if follow_index >= 6: break
+	add_child(dialog)
+	dialog.custom_action.connect(func(action: StringName):
+		dialog.queue_free()
+		if str(action).begins_with("event_"):
+			var action_index := int(str(action).trim_prefix("event_"))
+			var followed := 0
+			for event in events:
+				if not event is Dictionary or str(event.get("type", "")) not in ["train_board", "train_arrive"]: continue
+				var event_station := WorldData.find_station(world, str(event.get("stationId", "")))
+				if event_station.is_empty(): continue
+				if followed == action_index:
+					_select_object("station", str(event_station.get("id", "")))
+					map_view.center_on(event_station.get("latlng", [0, 0]), maxi(map_view.current_zoom, 14))
+					return
+				followed += 1
+			return
+		var demand: Dictionary = origin if action == &"origin" else destination
+		if not demand.is_empty():
+			_select_object("demand", str(demand.get("id", "")))
+			map_view.center_on(demand.get("latlng", [0, 0]), maxi(map_view.current_zoom, 14))
+	)
+	dialog.popup_centered(Vector2i(mini(640, int(get_viewport_rect().size.x - 32.0)), mini(560, int(get_viewport_rect().size.y - 32.0))))
+
+func _show_expected_journey(flow: Dictionary) -> void:
+	var journey: Dictionary = flow.get("journey", {})
+	if journey.is_empty() or not bool(flow.get("valid", false)):
+		_show_issue("当前没有可用的完整路径。请检查站点覆盖、连续轨道及线路开通状态。", "预计旅程")
+		return
+	var lines: Array[String] = ["这是按当前规划与班次计算的预计旅程，不是实际乘客记录。", "", "预计总耗时：%.1f 分钟" % float(journey.get("totalMinutes", 0.0))]
+	for step in journey.get("steps", []):
+		if not step is Dictionary: continue
+		match str(step.get("type", "")):
+			"access", "walk": lines.append("· 地面步行约 %.0f 米，游戏估算 %.1f 分钟（直线接驳）" % [float(step.get("distanceM", 0.0)), float(step.get("minutes", 0.0))])
+			"wait": lines.append("· 候车约 %.1f 分钟，按当前班距估算" % float(step.get("minutes", 0.0)))
+			"transfer": lines.append("· 换乘步行约 %.1f 分钟" % float(step.get("transferMinutes", step.get("minutes", 0.0))))
+			"rail":
+				var route := WorldData.find_route(world, str(step.get("routeId", "")))
+				var from_station := WorldData.find_station(world, str(step.get("fromStationId", "")))
+				var to_station := WorldData.find_station(world, str(step.get("toStationId", "")))
+				lines.append("· 乘坐%s：%s → %s，约 %.1f 分钟" % [str(route.get("name", "地铁线路")), str(from_station.get("name", "车站")), str(to_station.get("name", "车站")), float(step.get("minutes", 0.0))])
+	var dialog := AcceptDialog.new()
+	dialog.title = "预计旅程 · %s → %s" % [str(flow.get("from", "起点")), str(flow.get("to", "目的地"))]
+	dialog.dialog_text = "\n".join(lines)
+	add_child(dialog)
+	dialog.confirmed.connect(func(): dialog.queue_free())
+	dialog.canceled.connect(func(): dialog.queue_free())
+	dialog.popup_centered(Vector2i(mini(620, int(get_viewport_rect().size.x - 32.0)), mini(520, int(get_viewport_rect().size.y - 32.0))))
 
 
 func _tutorial_detail(step: int) -> String:
@@ -1295,6 +1847,40 @@ func _refresh_right_panel() -> void:
 		var note := _label("阻断：断连、零长度、站体重叠\n建议：站间距、覆盖、曲线\n资料未知：现实路网为站间示意", 11, MUTED)
 		note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		right_content.add_child(note)
+		right_content.add_child(HSeparator.new())
+		var complexity_toggle := _button("规划复杂度　%s" % ("▾" if _complexity_expanded else "▸"), TEXT, PANEL_LIGHT, 14)
+		complexity_toggle.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+		complexity_toggle.pressed.connect(func(): _complexity_expanded = not _complexity_expanded; _refresh_right_panel())
+		right_content.add_child(complexity_toggle)
+		if _complexity_expanded:
+			var complexity := _network_complexity_summary()
+			right_content.add_child(_label("线路总里程　%.1f 公里\n最深施工　%.0f 米\n曲线区间　%d 段\n换乘车站　%d 座\n\n这些是游戏中的方案比较指标，不合成为工程评分。" % [float(complexity.get("lengthKm", 0.0)), float(complexity.get("deepestM", 0.0)), int(complexity.get("curves", 0)), int(complexity.get("transfers", 0))], 14, MUTED))
+
+func _leave_neighborhood_challenge() -> void:
+	if world.is_empty() or str(world.get("challengeMode", "free")) != "neighborhood": return
+	world["challengeMode"] = "free"
+	save_dirty = true
+	_update_topbar()
+	_refresh_left_panel()
+	_refresh_right_panel()
+	if not _autosave(false):
+		_show_issue("挑战进度已保留在当前会话；保存失败，可从顶部重试。", "切回自由扩建")
+
+func _network_complexity_summary() -> Dictionary:
+	var ref_lat := float(WorldData.city(active_city_id).get("center", [31.23, 121.47])[0])
+	var total_length := 0.0
+	var deepest := 0.0
+	var curves := 0
+	for edge in TrackNetwork.all_physical_edges(world):
+		total_length += TrackNetwork.edge_length_m(edge, world, ref_lat)
+		if str(edge.get("geometry", "")) in ["bezier", "curve"]: curves += 1
+		for node_id in TrackNetwork._edge_node_ids(edge, world):
+			var node := TrackNetwork.find_node(world, node_id)
+			deepest = minf(deepest, float(node.get("depthM", edge.get("depthM", -15.0))))
+	var transfers := 0
+	for station in world.get("stations", []):
+		if station.get("routeIds", []).size() > 1: transfers += 1
+	return {"lengthKm": total_length / 1000.0, "deepestM": absf(deepest), "curves": curves, "transfers": transfers}
 
 func _station_details(station: Dictionary) -> void:
 	var fixed_header: Control = _right_pinned_header if is_instance_valid(_right_pinned_header) else right_content
@@ -1371,6 +1957,20 @@ func _station_details(station: Dictionary) -> void:
 	var depth_down := _button("深度 −5 米", TEXT, PANEL_LIGHT, 13); depth_down.pressed.connect(func(): _change_station_depth(str(station.id), -5.0)); depth_row.add_child(depth_down)
 	var depth_up := _button("深度 +5 米", TEXT, PANEL_LIGHT, 13); depth_up.pressed.connect(func(): _change_station_depth(str(station.id), 5.0)); depth_row.add_child(depth_up)
 	right_content.add_child(depth_row)
+	var transfer_marked := bool(station.get("plannedTransfer", false))
+	var transfer_mark := _button("◎ %s拟换乘站" % ("取消" if transfer_marked else "标记为"), Color("#edc477"), Color("#3b3020"), 14)
+	transfer_mark.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+	transfer_mark.pressed.connect(func(): _toggle_planned_transfer(str(station.id)))
+	right_content.add_child(transfer_mark)
+	if transfer_marked:
+		var nearby_flows := _flows_near_station(station)
+		var candidate_text := "标记只表示预留规划意向，不产生换乘。"
+		if not nearby_flows.is_empty():
+			candidate_text += "\n附近需求："
+			for candidate in nearby_flows.slice(0, 2): candidate_text += "\n· %s → %s" % [str(candidate.get("from", "起点")), str(candidate.get("to", "目的地"))]
+		var candidate_label := _label(candidate_text, 13, MUTED)
+		candidate_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		right_content.add_child(candidate_label)
 	right_content.add_child(HSeparator.new())
 	if station.get("schematic", false):
 		var schematic := _label("既有站点坐标来自 OSM 快照。站厅位置与尺寸是游戏简化示意，不代表实测建筑。", 10, Color("#d4af6b")); schematic.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; right_content.add_child(schematic)
@@ -1400,11 +2000,37 @@ func _begin_station_track(station_id: String, side: String) -> void:
 	_refresh_ui()
 	_show_toast("从 %s · %s 端开始铺设地下轨道；终点可接另一站端或轨道节点" % [station.get("name", "车站"), "A" if side == "start" else "B"])
 
+func _toggle_planned_transfer(station_id: String) -> void:
+	var station := WorldData.find_station(world, station_id)
+	if station.is_empty(): return
+	var marked := not bool(station.get("plannedTransfer", false))
+	history.execute("%s拟换乘站标记" % ("设置" if marked else "取消"), func(state: Dictionary): WorldData.find_station(state, station_id)["plannedTransfer"] = marked)
+	map_view.requested_redraw(); _refresh_right_panel(); _refresh_left_panel(); _autosave()
+	_show_toast("已标记为预留换乘位置" if marked else "已取消拟换乘标记；实际换乘仍由运营路径决定")
+
+func _flows_near_station(station: Dictionary) -> Array[Dictionary]:
+	_ensure_flow_cache()
+	var position: Array = station.get("latlng", [])
+	var ranked: Array[Dictionary] = []
+	for flow in _flow_cache:
+		if position.size() < 2: continue
+		var origin: Array = flow.get("originLatLng", [])
+		var destination: Array = flow.get("destinationLatLng", [])
+		if origin.size() < 2 or destination.size() < 2: continue
+		var d0 := _distance_m(position, origin)
+		var d1 := _distance_m(position, destination)
+		if mini(d0, d1) > 2500.0: continue
+		var copy: Dictionary = flow.duplicate(false)
+		copy["nearbyDistanceM"] = mini(d0, d1)
+		ranked.append(copy)
+	ranked.sort_custom(func(a: Dictionary, b: Dictionary): return float(a.get("peoplePerDay", 0.0)) > float(b.get("peoplePerDay", 0.0)))
+	return ranked
+
 func _route_details(route: Dictionary) -> void:
 	right_content.add_child(_label("线路详情", 17, TEXT, true))
 	right_content.add_child(_label("线路名称", 11, MUTED))
 	var name_edit := LineEdit.new(); name_edit.text = str(route.get("name", "")); name_edit.text_submitted.connect(func(value: String): _rename_route(str(route.id), value)); name_edit.focus_exited.connect(func(): _rename_route(str(route.id), name_edit.text)); right_content.add_child(name_edit)
-	right_content.add_child(_label("车辆与发车间隔", 12, MUTED))
+	right_content.add_child(_label("车辆与发车间隔", 14, MUTED))
 	var vehicle_picker := OptionButton.new()
 	for profile in WorldData.vehicles():
 		vehicle_picker.add_item(str(profile.get("name", profile.get("id", "车型"))))
@@ -1413,9 +2039,26 @@ func _route_details(route: Dictionary) -> void:
 		if vehicle_picker.get_item_metadata(i) == str(route.get("vehicleId", "B-6")): vehicle_picker.select(i)
 	vehicle_picker.item_selected.connect(func(index: int): _change_route_vehicle(str(route.id), str(vehicle_picker.get_item_metadata(index))))
 	right_content.add_child(vehicle_picker)
-	var headway := SpinBox.new(); headway.min_value = 1; headway.max_value = 20; headway.step = 1; headway.value = int(route.get("headway", 3)); headway.suffix = " 分钟"
-	headway.value_changed.connect(func(value: float): _change_headway(str(route.id), int(value)))
-	right_content.add_child(headway)
+	var schedule: Dictionary = ServiceScheduleScript.ensure_profile(route)
+	var schedule_picker := OptionButton.new()
+	schedule_picker.add_item("全天统一班距")
+	schedule_picker.add_item("分时段班距")
+	schedule_picker.select(1 if str(schedule.get("mode", "uniform")) == "time_of_day" else 0)
+	schedule_picker.item_selected.connect(func(index: int): _change_schedule_mode(str(route.id), "time_of_day" if index == 1 else "uniform"))
+	right_content.add_child(schedule_picker)
+	if str(schedule.get("mode", "uniform")) == "time_of_day":
+		for period in [["早高峰 · 07—10时", "peakAM"], ["晚高峰 · 16—19时", "peakPM"], ["平峰", "offPeak"]]:
+			var schedule_row := HBoxContainer.new()
+			schedule_row.add_child(_label(str(period[0]), 13, MUTED))
+			var period_headway := SpinBox.new(); period_headway.min_value = 1; period_headway.max_value = 60; period_headway.step = 1; period_headway.value = int(schedule.get(str(period[1]), route.get("headway", 3))); period_headway.suffix = " 分"
+			period_headway.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			period_headway.value_changed.connect(func(value: float): _change_schedule_headway(str(route.id), str(period[1]), int(value)))
+			schedule_row.add_child(period_headway)
+			right_content.add_child(schedule_row)
+	else:
+		var headway := SpinBox.new(); headway.min_value = 1; headway.max_value = 60; headway.step = 1; headway.value = int(route.get("headway", 3)); headway.suffix = " 分钟"
+		headway.value_changed.connect(func(value: float): _change_headway(str(route.id), int(value)))
+		right_content.add_child(headway)
 	right_content.add_child(_label("停站序列 · %d 站" % route.get("stationOrder", []).size(), 12, MUTED))
 	for i in range(route.get("stationOrder", []).size()):
 		var station := WorldData.find_station(world, str(route.stationOrder[i]))
@@ -1503,7 +2146,12 @@ func _demand_details(demand: Dictionary) -> void:
 		for i in range(mini(3, related.size())):
 			var flow: Dictionary = related[i]
 			var status := "已接入 %s" % WorldData.find_route(world, str(flow.get("routeId", ""))).get("name", "线路") if flow.get("valid", false) else "未满足：接驳、站点覆盖或线路未连通"
-			right_content.add_child(_label("→ %s · 约 %s 人次/日\n%s" % [flow.get("to", "目的地"), _number(int(round(float(flow.get("peoplePerDay", 0))))), status], 11, MUTED))
+			right_content.add_child(_label("→ %s · 约 %s 人次/日\n%s" % [flow.get("to", "目的地"), _number(int(round(float(flow.get("peoplePerDay", 0))))), status], 13, MUTED))
+			if bool(flow.get("valid", false)):
+				var preview := _button("查看预计旅程", TEAL, PANEL_LIGHT, 13)
+				preview.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+				preview.pressed.connect(_show_expected_journey.bind(flow.duplicate(true)))
+				right_content.add_child(preview)
 	var nearest := _nearest_station(demand.get("latlng", [0,0]))
 	if nearest.is_empty():
 		right_content.add_child(_label("当前没有可达车站。\n此处为估算直线距离；未取得连续步行网络数据。", 12, Color("#d5aa66")))
@@ -1530,17 +2178,19 @@ func _refresh_tools() -> void:
 	var guide_active := bool(onboarding.get("active", false)) and not _more_tools_expanded
 	var tutorial_step := int(onboarding.get("step", 0)) if guide_active else int(world.get("tutorialStep", 0))
 	var tools: Array = [["select", "选择"], ["station", "车站"], ["track", "轨道"], ["line", "运营线路"]]
+	var coached_tool := ""
 	if guide_active:
-		if tutorial_step in [1, 2]: tools = [["station", "放置车站"]]
-		elif tutorial_step == 3: tools = [["track", "连续铺轨"]]
-		elif tutorial_step == 4: tools = [["line", "创建运营线路"]]
-		else: tools = [["select", "选择"]]
+		match tutorial_step:
+			0: coached_tool = "select"
+			1, 2: coached_tool = "station"
+			3: coached_tool = "track"
+			4: coached_tool = "line"
 	for item in tools:
 		var active: bool = current_tool == item[0] or (str(item[0]) == "track" and current_tool in ["track", "track_curve"])
-		var coached := false
+		var coached := guide_active and str(item[0]) == coached_tool
 		var button := _button(item[1], TEAL if active or coached else TEXT, Color("#174037") if active else Color("#1c4039") if coached else PANEL_LIGHT, 14)
 		button.custom_minimum_size = Vector2(118.0 * minf(_ui_scale, 1.25), 46.0 * minf(_ui_scale, 1.25))
-		if coached: button.tooltip_text = "新手教学下一步"
+		if coached: button.tooltip_text = "当前教学建议使用此工具；其他工具仍可自由使用"
 		button.pressed.connect(func(): _set_tool(str(item[0])))
 		tool_panel.add_child(button)
 	if not guide_active and _more_tools_expanded:
@@ -1765,7 +2415,9 @@ func _on_map_clicked(latlng: Array, hit_type: String, hit_id: String, side: Stri
 		return
 	if hit_type == "station": _select_object("station", hit_id)
 	elif hit_type == "link": _select_object("link", hit_id)
-	elif hit_type == "demand": _select_object("demand", hit_id)
+	elif hit_type == "demand":
+		_select_object("demand", hit_id)
+		_record_onboarding_demand_viewed(hit_id)
 	else:
 		selected_type = ""; selected_id = ""
 		interaction_state.clear_selection()
@@ -1854,6 +2506,7 @@ func _handle_track_click(latlng: Array, hit_type: String, hit_id: String, side: 
 		map_view.track_preview_notice = ""
 		map_view.requested_redraw(); _refresh_tools()
 		_refresh_onboarding_card()
+		if _track_ref_is_snapped(ref): _play_ui_feedback("snap")
 		_show_toast("已选择铺轨起点；移动地图后点终点" if current_tool == "track" else "已选择曲线起点；再点一处作为弯曲控制位置")
 		return
 	if current_tool == "track_curve" and map_view.track_control_latlng.is_empty():
@@ -1867,6 +2520,7 @@ func _handle_track_click(latlng: Array, hit_type: String, hit_id: String, side: 
 		var snapped_target := not str(ref.get("nodeId", "")).is_empty() or not str(ref.get("splitEdgeId", "")).is_empty()
 		map_view.track_preview_notice = "目标已吸附到车站或既有轨道 · 确认后接入网络" if snapped_target else "自由端点 · 确认后加入轨网，需继续连接才形成服务"
 		map_view.requested_redraw(); _refresh_tools(); _refresh_onboarding_card()
+		if snapped_target: _play_ui_feedback("snap")
 		_show_toast("轨道段已预览；确认后才写入规划")
 		return
 	confirming_track_preview = false
@@ -1930,8 +2584,14 @@ func _handle_track_click(latlng: Array, hit_type: String, hit_id: String, side: 
 	var changed := history.execute("铺设地下轨道", func(state: Dictionary):
 		var a_id := _materialize_track_ref(state, start, ref_lat)
 		var b_id := _materialize_track_ref(state, finish, ref_lat)
-		var edge := {"id": edge_id, "aNodeId": a_id, "bNodeId": b_id, "geometry": candidate.geometry, "controlA": candidate.controlA, "controlB": candidate.controlB, "depthM": candidate.depthM, "routeIds": [], "speedLimitKmh": -1.0}
+		var phase_id := str(state.get("currentPlanningPhaseId", "phase_1"))
+		var edge := {"id": edge_id, "aNodeId": a_id, "bNodeId": b_id, "geometry": candidate.geometry, "controlA": candidate.controlA, "controlB": candidate.controlB, "depthM": candidate.depthM, "routeIds": [], "speedLimitKmh": -1.0, "planningPhaseId": phase_id}
 		state.trackEdges.append(edge)
+		for phase in state.get("planningPhases", []):
+			if str(phase.get("id", "")) != phase_id: continue
+			if not phase.has("edgeIds"): phase["edgeIds"] = []
+			phase.edgeIds.append(edge_id)
+			break
 		committed_target = {"nodeId": b_id, "latlng": end_ll.duplicate(), "stationId": str(finish.get("stationId", "")), "side": str(finish.get("side", "")), "depthM": end_depth}
 	)
 	if not changed: return
@@ -1958,6 +2618,9 @@ func _commit_track_preview() -> void:
 	var hit_type := "track_edge" if not split_id.is_empty() else "track_node" if not node_id.is_empty() else ""
 	_handle_track_click(finish.get("latlng", []), hit_type, split_id if not split_id.is_empty() else node_id, str(finish.get("side", "")), float(finish.get("splitT", -1.0)))
 	confirming_track_preview = false
+
+func _track_ref_is_snapped(ref: Dictionary) -> bool:
+	return not str(ref.get("nodeId", "")).is_empty() or not str(ref.get("splitEdgeId", "")).is_empty()
 
 func _materialize_track_ref(state: Dictionary, ref: Dictionary, ref_lat: float) -> String:
 	var node_id := str(ref.get("nodeId", ""))
@@ -2058,8 +2721,12 @@ func _split_track_edge(state: Dictionary, edge_id: String, split_t: float, ref_l
 			var route := WorldData.find_route(state, str(route_id))
 			if not route.is_empty(): route.networkBased = true
 	var base_id := "split_%d" % Time.get_ticks_usec()
-	var left := {"id": base_id + "_a", "aNodeId": ends[0], "bNodeId": split_node.id, "geometry": geometry, "routeIds": shared_routes.duplicate(), "speedLimitKmh": edge.get("speedLimitKmh", -1.0), "depthM": (depth_a + split_depth) * 0.5}
-	var right := {"id": base_id + "_b", "aNodeId": split_node.id, "bNodeId": ends[1], "geometry": geometry, "routeIds": shared_routes.duplicate(), "speedLimitKmh": edge.get("speedLimitKmh", -1.0), "depthM": (split_depth + depth_b) * 0.5}
+	var phase_id := str(edge.get("planningPhaseId", ""))
+	if phase_id.is_empty():
+		for phase in state.get("planningPhases", []):
+			if phase.get("edgeIds", []).has(edge_id): phase_id = str(phase.get("id", "")); break
+	var left := {"id": base_id + "_a", "aNodeId": ends[0], "bNodeId": split_node.id, "geometry": geometry, "routeIds": shared_routes.duplicate(), "speedLimitKmh": edge.get("speedLimitKmh", -1.0), "depthM": (depth_a + split_depth) * 0.5, "planningPhaseId":phase_id}
+	var right := {"id": base_id + "_b", "aNodeId": split_node.id, "bNodeId": ends[1], "geometry": geometry, "routeIds": shared_routes.duplicate(), "speedLimitKmh": edge.get("speedLimitKmh", -1.0), "depthM": (split_depth + depth_b) * 0.5, "planningPhaseId":phase_id}
 	if geometry == "bezier":
 		left["controlA"] = [(q0 - p0).x, (q0 - p0).y]
 		left["controlB"] = [(r0 - split_point).x, (r0 - split_point).y]
@@ -2067,6 +2734,15 @@ func _split_track_edge(state: Dictionary, edge_id: String, split_t: float, ref_l
 		right["controlB"] = [(q2 - p3).x, (q2 - p3).y]
 	state.trackEdges = state.get("trackEdges", []).filter(func(item: Dictionary): return str(item.get("id", "")) != edge_id)
 	state.trackEdges.append(left); state.trackEdges.append(right)
+	if not phase_id.is_empty():
+		for phase in state.get("planningPhases", []):
+			if str(phase.get("id", "")) != phase_id: continue
+			var phase_edge_ids: Array = phase.get("edgeIds", [])
+			phase_edge_ids.erase(edge_id)
+			if not phase_edge_ids.has(str(left.id)): phase_edge_ids.append(str(left.id))
+			if not phase_edge_ids.has(str(right.id)): phase_edge_ids.append(str(right.id))
+			phase["edgeIds"] = phase_edge_ids
+			break
 	if is_legacy_link: state.trackLinks = state.trackLinks.filter(func(item: Dictionary): return str(item.get("id", "")) != edge_id)
 	_replace_split_edge_in_route_paths(state, edge_id, left, right)
 	return str(split_node.get("id", ""))
@@ -2253,6 +2929,7 @@ func _on_draft_station_changed() -> void:
 
 func _cancel_tool_step() -> void:
 	if world.is_empty(): return
+	var had_step := not map_view.draft_station.is_empty() or not map_view.link_start.is_empty() or not map_view.track_start_ref.is_empty() or not map_view.track_end_ref.is_empty() or not map_view.track_control_latlng.is_empty() or not line_draft_stops.is_empty() or not repair_path_options.is_empty() or station_construction_draft.kind == "move_station"
 	if station_construction_draft.kind == "move_station":
 		_clear_station_move_preview()
 		map_view._drag_preview.clear()
@@ -2273,11 +2950,13 @@ func _cancel_tool_step() -> void:
 	map_view.tool = current_tool
 	map_view.cancel_pointer_interaction()
 	map_view.requested_redraw(); _refresh_tools()
+	if had_step: _play_ui_feedback("cancel")
 
 func _set_tool(new_tool: String) -> void:
 	if new_tool == "connect": new_tool = "track"
 	if new_tool == current_tool:
 		_cancel_tool_step(); return
+	var canceled_pending := not map_view.draft_station.is_empty() or not map_view.link_start.is_empty() or not map_view.track_start_ref.is_empty() or not map_view.track_end_ref.is_empty() or not map_view.track_control_latlng.is_empty() or not line_draft_stops.is_empty() or not repair_path_options.is_empty() or station_construction_draft.kind == "move_station"
 	map_view.draft_station = {}; map_view.link_start = {}; map_view.track_start_ref = {}; map_view.track_end_ref = {}; map_view.track_control_latlng = []; map_view.track_preview_conflict = ""; map_view.track_preview_notice = ""
 	map_view.cancel_pointer_interaction()
 	map_view.clear_curve_preview()
@@ -2303,6 +2982,7 @@ func _set_tool(new_tool: String) -> void:
 		"delete": _show_toast("点击车站拆除；线路和相邻区间一并调整")
 		_: _show_toast("选择模式：点击对象查看，拖动车站调整位置")
 	if bool(world.get("onboarding", {}).get("active", false)): _refresh_onboarding_card()
+	if canceled_pending: _play_ui_feedback("cancel")
 
 func _station_overlaps(candidate: Dictionary) -> bool:
 	return _station_overlaps_in(candidate, world.get("stations", []))
@@ -2787,10 +3467,33 @@ func _change_headway(route_id: String, value: int) -> void:
 	var route := WorldData.find_route(world, route_id)
 	if route.is_empty() or int(route.get("headway", 3)) == value: return
 	var change := func():
-		history.execute("调整发车间隔", func(state: Dictionary): WorldData.find_route(state, route_id).headway = value)
+		history.execute("调整发车间隔", func(state: Dictionary): ServiceScheduleScript.set_headway(WorldData.find_route(state, route_id), "uniform", value))
 		SimulationEngineScript.reschedule_route(world, route_id)
 		_after_planning_change("发车间隔已更新")
-	_confirm_service_impact([route_id], "调整「%s」的发车间隔" % route.get("name", "线路"), change)
+	change.call()
+
+func _change_schedule_mode(route_id: String, mode: String) -> void:
+	var route := WorldData.find_route(world, route_id)
+	if route.is_empty(): return
+	var profile: Dictionary = route.get("serviceSchedule", {})
+	if str(profile.get("mode", "uniform")) == mode: return
+	var change := func():
+		history.execute("切换班次模式", func(state: Dictionary): ServiceScheduleScript.set_mode(WorldData.find_route(state, route_id), mode))
+		SimulationEngineScript.reschedule_route(world, route_id)
+		_after_planning_change("班次模式已更新；下一班按新间隔安排")
+	change.call()
+
+func _change_schedule_headway(route_id: String, period: String, value: int) -> void:
+	var route := WorldData.find_route(world, route_id)
+	if route.is_empty(): return
+	var profile: Dictionary = route.get("serviceSchedule", {})
+	if int(profile.get(period, route.get("headway", 3))) == value: return
+	var period_name: String = {"peakAM": "早高峰", "peakPM": "晚高峰", "offPeak": "平峰"}.get(period, "时段")
+	var change := func():
+		history.execute("调整%s班距" % period_name, func(state: Dictionary): ServiceScheduleScript.set_headway(WorldData.find_route(state, route_id), period, value))
+		SimulationEngineScript.reschedule_route(world, route_id)
+		_after_planning_change("%s班距已更新；既有列车保持原时刻" % period_name)
+	change.call()
 
 func _rotate_station(station_id: String) -> void:
 	var station := WorldData.find_station(world, station_id)
@@ -2943,6 +3646,7 @@ func _on_curve_control_previewed(link_id: String, control_name: String, offset_m
 func _select_object(kind: String, object_id: String) -> void:
 	selected_type = kind; selected_id = object_id
 	if kind == "route": active_route_id = object_id
+	if kind == "demand" and map_view.analysis_mode == "accessibility": _update_accessibility_for_demand(object_id)
 	_right_requested = true
 	if _layout_narrow: _left_requested = false
 	interaction_state.select_object(kind, object_id)
@@ -2950,6 +3654,35 @@ func _select_object(kind: String, object_id: String) -> void:
 	map_view.active_route_id = active_route_id
 	map_view.selected_type = kind; map_view.selected_id = object_id; map_view.requested_redraw()
 	_refresh_ui()
+
+func _set_map_analysis_mode(mode: String) -> void:
+	if not is_instance_valid(map_view): return
+	map_view.analysis_mode = mode if mode in ["planning", "demand", "accessibility", "operations"] else "planning"
+	map_view.show_network = true
+	map_view.show_demand = mode in ["demand", "accessibility"]
+	accessibility_minutes_by_demand.clear()
+	map_view.reachability_minutes_by_demand = accessibility_minutes_by_demand
+	if mode == "accessibility" and selected_type == "demand": _update_accessibility_for_demand(selected_id)
+	map_view.requested_redraw()
+	if mode == "accessibility": _show_toast("点选一个需求地点；按完整旅程时间分为15、30、45分钟，接驳仍是直线估算")
+	elif mode == "operations": _show_toast("红色区间表示最近模拟时段出现高占用；没有红线时当前没有记录到瓶颈")
+
+func _update_accessibility_for_demand(origin_id: String) -> void:
+	if not is_instance_valid(map_view): return
+	var origin := _find_demand(origin_id)
+	if origin.is_empty(): return
+	var city := WorldData.city(active_city_id)
+	var ref_lat := float(city.get("center", [31.23, 121.47])[0])
+	var network := JourneyModelScript.build_network(world, ref_lat)
+	var reachability: Dictionary = {}
+	for destination in city.get("demand", []):
+		var destination_id := str(destination.get("id", ""))
+		if destination_id == origin_id: continue
+		var journey := JourneyModelScript.find_journey(origin, destination, world, network, ref_lat)
+		reachability[destination_id] = float(journey.get("totalMinutes", INF)) if bool(journey.get("valid", false)) else INF
+	accessibility_minutes_by_demand = reachability
+	map_view.reachability_minutes_by_demand = reachability
+	map_view.requested_redraw()
 
 func _find_link(link_id: String) -> Dictionary:
 	for link in TrackNetwork.all_physical_edges(world):
@@ -2998,8 +3731,11 @@ func _do_undo() -> void:
 	world.simulation.paused = true
 	var previous_type := selected_type
 	var previous_id := selected_id
+	var schedules_before := _capture_route_schedules(world)
 	var label := history.undo()
 	if label.is_empty(): _show_toast("没有可撤销的规划操作"); return
+	_reschedule_changed_routes(schedules_before)
+	_play_ui_feedback("cancel")
 	if _selection_still_exists(previous_type, previous_id):
 		selected_type = previous_type; selected_id = previous_id
 	else:
@@ -3020,15 +3756,39 @@ func _selection_still_exists(kind: String, object_id: String) -> bool:
 		"demand": return not _find_demand(object_id).is_empty()
 	return false
 
+func _capture_route_schedules(state: Dictionary) -> Dictionary:
+	var result: Dictionary = {}
+	for route in state.get("routes", []):
+		result[str(route.get("id", ""))] = JSON.stringify([route.get("headway", 3), route.get("serviceSchedule", {})])
+	return result
+
+func _reschedule_changed_routes(previous: Dictionary) -> void:
+	for route in world.get("routes", []):
+		var route_id := str(route.get("id", ""))
+		var before := str(previous.get(route_id, ""))
+		var after := JSON.stringify([route.get("headway", 3), route.get("serviceSchedule", {})])
+		if not before.is_empty() and before != after:
+			SimulationEngineScript.reschedule_route(world, route_id)
+
 func _do_redo() -> void:
 	if world.is_empty(): return
 	world.simulation.paused = true
+	var schedules_before := _capture_route_schedules(world)
 	var label := history.redo()
 	if label.is_empty(): _show_toast("没有可重做的操作"); return
+	_reschedule_changed_routes(schedules_before)
+	_play_ui_feedback("confirm")
 	selected_type = ""; selected_id = ""; map_view.set_world(world); _update_tutorial(); _autosave(); _refresh_ui(); _show_toast("已重做：%s" % label)
 
 func _toggle_pause() -> void:
 	world.simulation.paused = not bool(world.simulation.get("paused", true))
+	if not bool(world.simulation.get("paused", true)):
+		var onboarding: Dictionary = world.get("onboarding", {})
+		if bool(onboarding.get("active", false)) and int(onboarding.get("step", 0)) == 6 and not bool(onboarding.get("observationStarted", false)):
+			onboarding["observationStarted"] = true
+			onboarding["observationStartMinute"] = int(world.simulation.get("elapsedMinutes", 420))
+			world["onboarding"] = onboarding
+			_refresh_onboarding_card()
 	if world.simulation.paused: _autosave()
 	_update_topbar()
 
@@ -3044,18 +3804,40 @@ func _simulate_one_minute() -> void:
 	if hour >= 7 and hour < 10: peak = 2.1
 	elif hour >= 16 and hour < 19: peak = 1.8
 	elif hour >= 11 and hour < 14: peak = 1.1
+	var next_elapsed_minute := int(world.simulation.get("elapsedMinutes", world.simulation.get("minute", 420))) + 1
+	var event_messages := CityProgressionScript.advance_events(world, next_elapsed_minute)
+	var event_signature := CityProgressionScript.event_signature(world)
+	world.simulation["currentEventSignature"] = event_signature
 	var minute_flows: Array[Dictionary] = []
 	for flow in _flow_cache:
 		var minute_flow := flow.duplicate(false)
-		minute_flow["peakMultiplier"] = _flow_peak_multiplier(flow, hour, peak)
+		minute_flow["peakMultiplier"] = _flow_peak_multiplier(flow, hour, peak) * CityProgressionScript.multiplier_for_flow(world, flow)
+		minute_flow["eventSignature"] = event_signature
 		minute_flows.append(minute_flow)
 	var onboarding: Dictionary = world.get("onboarding", {})
 	var observe_target := bool(onboarding.get("active", false)) and bool(onboarding.get("observationStarted", false))
 	var target_flow_id := "%s>%s" % [str(onboarding.get("originId", "")), str(onboarding.get("destinationId", ""))]
 	var target_flow := _onboarding_flow() if observe_target else {}
 	var sim_result := SimulationEngineScript.step_one_minute(world, minute_flows, 1.0)
+	for event_message in event_messages:
+		var prefix := "城市变化预告" if str(event_message.get("kind", "")) == "announcement" else "城市事件" if str(event_message.get("kind", "")) == "started" else "活动结束"
+		_show_toast("%s：%s。客流变化为游戏设定。" % [prefix, str(event_message.get("message", event_message.get("title", "")))])
+	if not event_messages.is_empty() and left_tab == "tasks" and not bool(world.get("onboarding", {}).get("active", false)):
+		_refresh_left_panel()
+	var stage_update := CityProgressionScript.update_stage(world, _flow_cache, int(world.simulation.get("elapsedMinutes", world.simulation.minute)))
+	if bool(stage_update.get("changed", false)):
+		var result: Dictionary = stage_update.get("result", {})
+		_play_ui_feedback("confirm")
+		var completed_count := int(result.get("completed", 0))
+		var outcome := "实际到达 %s 人次" % _number(completed_count) if result.has("completed") else str(result.get("note", "已记录当前状态"))
+		_show_toast("章节完成：%s · %s" % [str(result.get("title", "城市目标")), outcome])
+		_refresh_left_panel()
+		_autosave(false)
+	var previous_completed_goals: int = world.get("goalBoard", {}).get("completed", []).size()
 	var goals_changed := NeighborhoodGoalsScript.update(world, _flow_cache, int(world.simulation.get("elapsedMinutes", world.simulation.minute)))
 	if goals_changed: _refresh_left_panel()
+	if int(world.get("goalBoard", {}).get("completed", []).size()) > previous_completed_goals:
+		_play_ui_feedback("confirm")
 	if observe_target and bool(target_flow.get("valid", false)):
 		onboarding.observedTargetArrivals = int(onboarding.get("observedTargetArrivals", 0)) + int(sim_result.get("arrivalsByFlow", {}).get(target_flow_id, 0))
 		onboarding.observedTargetServed = int(onboarding.get("observedTargetServed", 0)) + int(sim_result.get("completedByFlow", {}).get(target_flow_id, 0))
@@ -3286,37 +4068,38 @@ func _refresh_onboarding_card() -> void:
 	var condition := ""
 	match step:
 		0:
-			description = "A 是出发点，B 是目的地。"
-			condition = "橙色虚线只表示出行方向。"
+			description = "先在地图上分别点 A 起点和 B 目的地，看看人们要去哪里。"
+			condition = "点击地点后，地图详情会显示类别和需求方向；两处都看过才进入建设。"
 		1:
-			description = "在 A 附近放置一座车站，可以调整位置和朝向。"
-			condition = "站体中心需在 A 起点 800 米内，确认后才算完成。"
+			description = "使用下方「车站」工具，在 A 附近放置站体预览；调整后用工具栏的确认按钮提交。"
+			condition = "站体中心需在 A 起点 800 米游戏估算范围内。"
 		2:
-			description = "在 B 附近放置第二座车站，再调整朝向以便接轨。"
-			condition = "需要一座不同的车站覆盖 B 终点。"
+			description = "继续使用下方「车站」工具，在 B 附近放置另一座车站并确认。"
+			condition = "必须由另一座站覆盖 B；朝向可以之后再调整。"
 		3:
-			description = "从一座车站的端点开始，铺轨并接到另一座车站。"
-			condition = "地图上必须存在能从 A 站到 B 站的连续物理轨道。"
+			description = "选择下方「轨道」工具，从一站的 A／B 端开始，连接到另一站端点。"
+			condition = "确认轨道段后，A、B 两站之间必须有连续物理轨道。"
 		4:
-			description = "按顺序点击任务两站，预览并确认运营线路。"
-			condition = "任务线路必须明确包含 A 站与 B 站，且两站之间有连续轨道。"
+			description = "选择下方「运营线路」工具，按停站顺序点两座车站，再确认走向。"
+			condition = "线路路径必须经过刚才连接的两个任务站。"
 		5:
-			description = "检查停站顺序和车型，然后开通线路。"
-			condition = "开通的必须是刚才建立并服务任务两站的线路。"
+			description = "在线路详情检查停站与走向，再由你点击「检查并开通此线路」。"
+			condition = "只有刚才建立、实际服务 A／B 的线路才会推进教学。"
 		6:
 			var flow := _onboarding_flow()
 			var arrived := int(onboarding.get("observedTargetArrivals", 0))
 			var served := int(onboarding.get("observedTargetServed", 0))
-			description = "播放模拟，观察这组出行是否真正到达。" if not bool(onboarding.get("observationStarted", false)) else "目标需求进入 %d 人，已到达 %d 人。" % [arrived, served]
-			condition = "结果来自聚合模拟，不是逐人动画。"
+			description = "点击顶部播放按钮，让这组需求进入模拟。" if not bool(onboarding.get("observationStarted", false)) else "目标需求进入 %d 人，已到达 %d 人。" % [arrived, served]
+			condition = "只有实际到达才计入完成；暂停和速度控制仍由顶部运行栏操作。"
 			if bool(flow.get("valid", false)):
 				condition += " 当前估算：约 %s 人次/日，出行 %.1f 分钟。" % [_number(int(round(float(flow.get("peoplePerDay", 0.0))))), float(flow.get("tripMinutes", 0.0))]
 		7:
 			var complete_flow := _onboarding_flow()
 			var observed_arrivals := int(onboarding.get("observedTargetArrivals", 0))
 			var observed_completed := int(onboarding.get("observedTargetServed", 0))
+			var next_stage := CityProgressionScript.current_stage(world)
 			description = "本次观察：进入需求 %d 人，实际完成出行 %d 人。" % [observed_arrivals, observed_completed]
-			condition = "游戏模型估算：约 %s 人次/日，出行 %.1f 分钟。可继续扩建当前街区。" % [_number(int(round(float(complete_flow.get("peoplePerDay", 0.0))))), float(complete_flow.get("tripMinutes", 0.0))]
+			condition = "下一项城市议程：%s" % str(next_stage.get("title", "自由扩建")) if not next_stage.is_empty() else "教学结束；城市议程已在任务页开放。"
 	var body := _label(description, 15, TEXT)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	box.add_child(body)
@@ -3328,17 +4111,9 @@ func _refresh_onboarding_card() -> void:
 		var error_label := _label("需要处理：" + error_text, 13, Color("#ffad91"), true)
 		error_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		box.add_child(error_label)
-	var has_station_draft := current_tool == "station" and not map_view.draft_station.is_empty()
-	var has_track_preview := current_tool in ["track", "track_curve"] and not map_view.track_end_ref.is_empty()
-	var has_line_draft := current_tool == "line" and line_draft_stops.size() >= 2
-	var primary_label := "开始规划" if step == 0 else ("确认第一站" if has_station_draft else "定位 A 起点" if current_tool == "station" else "进入建站工具") if step == 1 else ("确认第二站" if has_station_draft else "定位 B 终点" if current_tool == "station" else "进入建站工具") if step == 2 else "启用铺轨工具" if step == 3 and current_tool not in ["track", "track_curve"] else "确认轨道段" if step == 3 and has_track_preview else "选择终点端" if step == 3 and not map_view.track_start_ref.is_empty() else "点击起点端" if step == 3 else "开始安排运营线路" if step == 4 and current_tool != "line" else "确认线路走向" if step == 4 and has_line_draft else "按顺序选择停站" if step == 4 else "检查并开通任务线路" if step == 5 else "播放并观察" if step == 6 and not bool(onboarding.get("observationStarted", false)) else "继续扩建这个街区" if step == 7 else "正在运行 · 等待这组需求的模拟结果"
-	var primary := _button(primary_label, Color("#eafff8"), Color("#17644f"), 16)
+	var primary := _button("进入城市议程" if step >= 7 else "定位当前教学对象", Color("#eafff8"), Color("#17644f"), 16)
 	primary.custom_minimum_size.y = 44.0 * _ui_scale
-	primary.disabled = step in [1, 2] and has_station_draft and map_view.draft_conflict or step == 3 and has_track_preview and not map_view.track_preview_conflict.is_empty() or step == 6 and bool(onboarding.get("observationStarted", false))
-	if step in [1, 2] and has_station_draft: primary.pressed.connect(_confirm_station)
-	elif step == 3 and has_track_preview: primary.pressed.connect(_commit_track_preview)
-	elif step == 4 and has_line_draft: primary.pressed.connect(_confirm_operating_line)
-	else: primary.pressed.connect(_onboarding_primary_action)
+	primary.pressed.connect(func(): _end_onboarding(false) if step >= 7 else _focus_onboarding_stage())
 	box.add_child(primary)
 	var more := MenuButton.new()
 	more.text = "为什么这样做？ ▾" if not _onboarding_reason_expanded else "更多选项 ▾"
@@ -3372,48 +4147,53 @@ func _refresh_onboarding_card() -> void:
 		box.add_child(reason)
 
 func _onboarding_primary_action() -> void:
+	_focus_onboarding_stage()
+
+func _record_onboarding_demand_viewed(demand_id: String) -> void:
+	var onboarding: Dictionary = world.get("onboarding", {})
+	if not bool(onboarding.get("active", false)) or int(onboarding.get("step", -1)) != 0: return
+	if demand_id not in [str(onboarding.get("originId", "")), str(onboarding.get("destinationId", ""))]: return
+	var visited: Array = onboarding.get("visitedDemandIds", [])
+	if not visited.has(demand_id): visited.append(demand_id)
+	onboarding["visitedDemandIds"] = visited
+	world["onboarding"] = onboarding
+	var origin_seen := visited.has(str(onboarding.get("originId", "")))
+	var destination_seen := visited.has(str(onboarding.get("destinationId", "")))
+	if origin_seen and destination_seen:
+		_set_onboarding_step(1)
+		_show_toast("已看过起点和目的地；下一步请选择底栏「车站」工具")
+	else:
+		_refresh_onboarding_card()
+
+func _focus_onboarding_stage() -> void:
 	var onboarding: Dictionary = world.get("onboarding", {})
 	var step := int(onboarding.get("step", 0))
 	match step:
 		0:
-			_set_onboarding_step(1)
 			_sync_onboarding_map(true)
-		1, 2:
-			var demand := _find_demand(str(onboarding.get("originId" if step == 1 else "destinationId", "")))
-			if current_tool != "station": _set_tool("station")
+		1:
+			var demand := _find_demand(str(onboarding.get("originId", "")))
 			if not demand.is_empty(): map_view.center_on(demand.latlng, 15)
-			_show_toast("在绿色建议区域附近点击地图放置预览，再确认站点")
-		3:
-			if current_tool not in ["track", "track_curve"]: _set_tool("track")
-			else: _show_toast("从任务起点站端铺到终点站端；每段确认后按 Esc 结束")
-		4:
-			if current_tool != "line": _set_tool("line")
-			else: _show_toast("依次点选任务两站和需要停靠的中间站，再确认线路走向")
+		2:
+			var demand := _find_demand(str(onboarding.get("destinationId", "")))
+			if not demand.is_empty(): map_view.center_on(demand.latlng, 15)
+		3, 4:
+			_sync_onboarding_map(true)
 		5:
 			var route := _onboarding_route_for_pair(false)
-			if route.is_empty():
-				onboarding.lastError = "任务两站之间还没有连续轨道。"
-				_refresh_onboarding_card()
-				return
-			active_route_id = str(route.get("id", ""))
-			selected_type = "route"; selected_id = active_route_id
-			_open_route()
+			if not route.is_empty():
+				active_route_id = str(route.get("id", ""))
+				_select_object("route", active_route_id)
+				_show_toast("已打开任务线路详情；请由右侧按钮检查并开通")
 		6:
-			if bool(onboarding.get("observationStarted", false)):
-				_show_toast("继续运行；模拟累计到这组需求实际到达并获得服务后会显示结果")
-				return
-			onboarding.observationStarted = true
-			onboarding.observationStartMinute = int(world.get("simulation", {}).get("minute", 420))
-			onboarding.observedTargetArrivals = 0
-			onboarding.observedTargetServed = 0
-			onboarding.targetServiceRemainder = 0.0
-			world.simulation.paused = false
-			_update_topbar()
-			_autosave()
-			_refresh_onboarding_card()
-			_show_toast("模拟已开始；会等这组出行产生可观察的服务结果")
+			_focus_flow(_onboarding_flow())
 		7:
-			_end_onboarding(false)
+			left_tab = "tasks"
+			_refresh_left_panel()
+			var stage := CityProgressionScript.current_stage(world)
+			if str(stage.get("kind", "")) == "flow":
+				_focus_flow(_campaign_stage_flow(world.get("cityProgression", {}), stage))
+	_refresh_onboarding_card()
 
 func _set_onboarding_step(step: int) -> void:
 	var onboarding: Dictionary = world.get("onboarding", {})
@@ -3517,6 +4297,7 @@ func _end_onboarding(skipped: bool) -> void:
 	onboarding.skipped = skipped
 	onboarding.viewingCity = false
 	world["onboarding"] = onboarding
+	CityProgressionScript.start(world, int(world.get("simulation", {}).get("elapsedMinutes", 420)))
 	map_view.filter_demand_to_task = false
 	map_view.task_coverage_visible = false
 	map_view.task_recommended_latlng = []
@@ -3760,7 +4541,16 @@ func _confirm_operating_line() -> void:
 	var reverse_edge_paths_by_segment: Array = _reverse_edge_paths(edge_paths_by_segment)
 	history.execute("创建运营线路%s" % route_name, func(state: Dictionary):
 		var route := WorldData.add_route(state, route_name, colors[line_index % colors.size()])
+		var generated_id := str(route.get("id", ""))
 		route["id"] = route_id
+		route["planningPhaseId"] = str(state.get("currentPlanningPhaseId", "phase_1"))
+		for phase in state.get("planningPhases", []):
+			if str(phase.get("id", "")) != str(route.planningPhaseId): continue
+			var phase_route_ids: Array = phase.get("routeIds", [])
+			phase_route_ids.erase(generated_id)
+			if not phase_route_ids.has(route_id): phase_route_ids.append(route_id)
+			phase["routeIds"] = phase_route_ids
+			break
 		route.networkBased = true
 		route.stationOrder = unique_stops.duplicate()
 		route.directions = [
@@ -3971,6 +4761,7 @@ func _on_camera_changed(center: Array, zoom: int) -> void:
 
 func _after_planning_change(message: String) -> void:
 	if not world.is_empty():
+		_play_ui_feedback("confirm")
 		world.simulation.paused = true
 		map_view.set_world(world)
 		_autosave()
@@ -3992,7 +4783,8 @@ func _update_topbar() -> void:
 		time_label.text = "D%d · %02d:%02d" % [elapsed / 1440 + 1, minute_of_day / 60, minute_of_day % 60]
 	if is_instance_valid(pause_button):
 		pause_button.text = "▶" if bool(sim.get("paused", true)) else "Ⅱ"
-		var coach_play := not bool(world.get("tutorialDone", false)) and int(world.get("tutorialStep", 0)) == 3
+		var onboarding: Dictionary = world.get("onboarding", {})
+		var coach_play := (bool(onboarding.get("active", false)) and int(onboarding.get("step", 0)) == 6) or (not bool(world.get("tutorialDone", false)) and int(world.get("tutorialStep", 0)) == 3)
 		pause_button.tooltip_text = "教学下一步：播放并观察乘客" if coach_play else "暂停／继续 · 空格"
 		pause_button.add_theme_stylebox_override("normal", _style(Color("#236548"), Color("#8cf0c6"), 8, 2) if coach_play else _style(Color("#142e2c"), BORDER, 8, 1))
 	if is_instance_valid(speed_picker): speed_picker.select([1,3,10].find(int(sim.get("speed", 1))))
@@ -4158,10 +4950,17 @@ func _leave_to_menu() -> void:
 	)
 
 func _show_issue(text: String, title: String = "规划检查") -> void:
+	_play_ui_feedback("error")
 	var dialog := AcceptDialog.new(); dialog.title = title; dialog.dialog_text = text; add_child(dialog); dialog.confirmed.connect(func(): dialog.queue_free()); dialog.canceled.connect(func(): dialog.queue_free()); dialog.popup_centered()
 
 func _show_toast(text: String) -> void:
 	if is_instance_valid(toast_label): toast_label.text = text
+
+func _play_ui_feedback(kind: String) -> void:
+	if not feedback_enabled or feedback_volume <= 0.0 or not is_instance_valid(ui_audio_player): return
+	ui_audio_player.stop()
+	ui_audio_player.stream = AudioFeedbackScript.make_tone(kind, feedback_volume)
+	ui_audio_player.play()
 
 func _type_name(kind: String) -> String:
 	return {"housing":"居住", "employment":"就业", "education":"教育", "health":"医疗", "hub":"枢纽", "commerce":"商业", "culture":"文化休闲", "service":"生活服务"}.get(kind, "需求")

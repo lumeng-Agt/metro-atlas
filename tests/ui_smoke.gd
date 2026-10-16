@@ -76,6 +76,22 @@ func _run() -> void:
 	state.tutorialDone = true
 	main._load_world(state)
 	await process_frame
+	main.left_tab = "tasks"
+	main.world["challengeMode"] = "neighborhood"
+	main._refresh_left_panel()
+	await process_frame
+	_assert(_find_button(main.left_content, "继续自由扩建") != null, "街区挑战提供退出目标层并继续自由扩建的入口")
+	main.world["challengeMode"] = "free"
+	main.left_tab = "routes"
+	main._refresh_left_panel()
+	var complexity_summary: Dictionary = main._network_complexity_summary()
+	_assert(is_zero_approx(float(complexity_summary.get("lengthKm", -1.0))) and int(complexity_summary.get("curves", -1)) == 0 and int(complexity_summary.get("transfers", -1)) == 0, "空白方案复杂度指标可计算且不会生成虚假里程或换乘")
+	main._complexity_expanded = true
+	main._refresh_right_panel()
+	await process_frame
+	_assert(_contains_label_text(main.right_content, "不合成为工程评分"), "复杂度摘要明确说明是游戏比较信息而非工程评分")
+	main._complexity_expanded = false
+	main._refresh_right_panel()
 	var original_onboarding: Dictionary = main.world.get("onboarding", {}).duplicate(true)
 	var original_tool := str(main.current_tool)
 	var guide := OnboardingScript.create_state("shanghai", "blank", false)
@@ -87,15 +103,15 @@ func _run() -> void:
 	main.map_view.draft_station.clear()
 	main._refresh_onboarding_card()
 	await process_frame
-	var guide_action := _find_button(main.onboarding_panel, "定位 A 起点")
-	_assert(guide_action != null and not guide_action.disabled, "建站工具已启用時，教学主按钮明确定位 A 起点而非重复启用工具")
+	var guide_action := _find_button(main.onboarding_panel, "定位当前教学对象")
+	_assert(guide_action != null and not guide_action.disabled, "教学主按钮只定位教学对象，底栏车站工具仍需玩家操作")
 	guide.step = 3
 	main.current_tool = "track"
 	main.map_view.tool = "track"
 	main._refresh_onboarding_card()
 	await process_frame
-	guide_action = _find_button(main.onboarding_panel, "点击起点端")
-	_assert(guide_action != null and not guide_action.disabled, "铺轨步骤允许教学按钮显示操作提示，地图端点仍是实际建设入口")
+	guide_action = _find_button(main.onboarding_panel, "定位当前教学对象")
+	_assert(guide_action != null and not guide_action.disabled, "铺轨步骤主按钮仍只定位；端点选择由地图和底栏工具完成")
 	main.world["onboarding"] = original_onboarding
 	main.current_tool = original_tool
 	main.map_view.tool = original_tool
@@ -481,3 +497,9 @@ func _find_button(root_node: Node, label: String) -> Button:
 		var found := _find_button(child, label)
 		if found != null: return found
 	return null
+
+func _contains_label_text(root_node: Node, needle: String) -> bool:
+	if root_node is Label and str((root_node as Label).text).contains(needle): return true
+	for child in root_node.get_children():
+		if _contains_label_text(child, needle): return true
+	return false

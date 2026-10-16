@@ -61,5 +61,6 @@ static func create_state(city_id: String, mode: String, completed_once: bool) ->
 		"observationStartMinute": -1,
 		"observedTargetArrivals": 0,
 		"observedTargetServed": 0,
+		"visitedDemandIds": [],
 		"lastError": ""
 	}

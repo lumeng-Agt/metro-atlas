@@ -35,6 +35,14 @@ def current_version() -> str:
     return match.group(1)
 
 
+def current_save_version() -> str:
+    source = (ROOT / "scripts" / "world_data.gd").read_text(encoding="utf-8")
+    match = re.search(r"SAVE_VERSION\s*:?=\s*(\d+)", source)
+    if not match:
+        raise RuntimeError("Cannot read SAVE_VERSION from scripts/world_data.gd")
+    return match.group(1)
+
+
 def git_state() -> tuple[str, str, str]:
     try:
         commit = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True).strip()
@@ -91,7 +99,7 @@ def main() -> None:
         copy_verified(source_exe, staged_exe)
 
         readme_text = (RELEASE / "README.txt").read_text(encoding="utf-8")
-        readme_text = re.sub(r"(?m)^造一座地铁 · Windows 免安装版 [^\r\n]+$", f"造一座地铁 · Windows 免安装版 {args.version}", readme_text)
+        readme_text = re.sub(r"(?m)^造一座地铁 · Windows 免安装版 [^\r\n]+$", f"造一座地铁 · Windows 免安装版 {args.version} · 存档格式 {current_save_version()}", readme_text)
         readme_text = re.sub(r"(?m)^更新内容：[^\r\n]+$", f"更新内容：压缩包内 update-notes-{args.version}.txt", readme_text)
         readme_text = re.sub(r"(?m)^测试记录：[^\r\n]+$", "测试记录：压缩包内 test-record.txt", readme_text)
         staged_readme.write_text(readme_text, encoding="utf-8")

@@ -1,6 +1,8 @@
 class_name SaveManager
 extends RefCounted
 
+const CityProgressionScript = preload("res://scripts/city_progression.gd")
+
 static func root_path() -> String:
 	var user_args := OS.get_cmdline_user_args()
 	for index in range(user_args.size()):
@@ -319,13 +321,41 @@ static func _validate_source_shape(data: Dictionary) -> String:
 	if data.has("simulation") and not data.simulation is Dictionary:
 		return "存档结构损坏：模拟状态无效。"
 	var simulation: Dictionary = data.get("simulation", {})
-	for key in ["trainTrips", "passengerBatches", "interruptedEvents"]:
+	for key in ["trainTrips", "passengerBatches", "interruptedEvents", "statisticsBuckets", "journeyRecords"]:
 		if simulation.has(key) and not simulation[key] is Array: return "存档结构损坏：模拟字段 %s 必须是列表。" % key
 	for key in ["nextDepartureSeconds", "flowRemainders", "capacityLoads", "flowSamples"]:
 		if simulation.has(key) and not simulation[key] is Dictionary: return "存档结构损坏：模拟字段 %s 必须是对象。" % key
 	for key in ["trainTrips", "passengerBatches"]:
 		for item in simulation.get(key, []):
 			if not item is Dictionary: return "存档结构损坏：模拟字段 %s 含有无效记录。" % key
+	for bucket in simulation.get("statisticsBuckets", []):
+		if not bucket is Dictionary:
+			return "存档结构损坏：15分钟统计桶格式无效。"
+		var bucket_start: Variant = bucket.get("startMinute", -1)
+		if not (bucket_start is int or bucket_start is float) or not is_finite(float(bucket_start)) or not is_equal_approx(float(bucket_start), roundf(float(bucket_start))):
+			return "存档结构损坏：15分钟统计桶格式无效。"
+		for key in ["attemptedByFlow", "completedByFlow", "tripMinutesByFlow"]:
+			if bucket.has(key) and not bucket[key] is Dictionary: return "存档结构损坏：统计桶字段 %s 必须是对象。" % key
+	for record in simulation.get("journeyRecords", []):
+		if not record is Dictionary or str(record.get("id", "")).is_empty() or str(record.get("flowId", "")).is_empty():
+			return "存档结构损坏：实际旅程记录缺少编号或需求引用。"
+		for key in ["steps", "events"]:
+			if record.has(key) and not record[key] is Array: return "存档结构损坏：实际旅程字段 %s 必须是列表。" % key
+		for event in record.get("events", []):
+			if not event is Dictionary: return "存档结构损坏：实际旅程事件格式无效。"
+			var event_seconds: Variant = event.get("timeSeconds", -1)
+			if not (event_seconds is int or event_seconds is float) or not is_finite(float(event_seconds)) or float(event_seconds) < 0.0: return "存档结构损坏：实际旅程事件格式无效。"
+	if data.has("challengeMode") and str(data.challengeMode) not in ["free", "neighborhood"]:
+		return "存档结构损坏：挑战模式无法识别。"
+	if data.has("challengeState") and not data.challengeState is Dictionary:
+		return "存档结构损坏：挑战进度格式无效。"
+	if data.has("cityProgression") and not data.cityProgression is Dictionary:
+		return "存档结构损坏：城市章节与事件进度格式无效。"
+	if data.has("planningPhases") and not data.planningPhases is Array:
+		return "存档结构损坏：分期建设计划格式无效。"
+	for phase in data.get("planningPhases", []):
+		if not phase is Dictionary or str(phase.get("id", "")).is_empty() or not phase.get("routeIds", []) is Array:
+			return "存档结构损坏：分期建设计划包含无效记录。"
 	for key in ["stations", "routes", "trackLinks", "trackNodes", "trackEdges"]:
 		for item in data.get(key, []):
 			if not item is Dictionary:
@@ -349,6 +379,15 @@ static func _validate_source_shape(data: Dictionary) -> String:
 	for route in data.get("routes", []):
 		if route.has("stationOrder") and not route["stationOrder"] is Array: return "存档线路的停站顺序无效。"
 		if route.has("directions") and not route["directions"] is Array: return "存档线路的方向信息无效。"
+		if route.has("serviceSchedule") and not route.serviceSchedule is Dictionary: return "存档线路的分时班次配置无效。"
+		if route.get("serviceSchedule", {}) is Dictionary:
+			var schedule: Dictionary = route.get("serviceSchedule", {})
+			if str(schedule.get("mode", "uniform")) not in ["uniform", "time_of_day"]: return "存档线路的班次模式无法识别。"
+			for period in ["peakAM", "peakPM", "offPeak"]:
+				if not schedule.has(period): continue
+				var headway_value: Variant = schedule[period]
+				if not (headway_value is int or headway_value is float) or not is_finite(float(headway_value)) or not is_equal_approx(float(headway_value), roundf(float(headway_value))) or int(headway_value) < 1 or int(headway_value) > 60:
+					return "存档线路的分时班距必须在 1 至 60 分钟之间。"
 		for direction in route.get("directions", []):
 			if not direction is Dictionary: return "存档线路包含无效的运行方向。"
 			if direction.has("stationIds") and not direction["stationIds"] is Array: return "存档线路的方向停站表无效。"
@@ -374,7 +413,21 @@ static func migrate(data: Dictionary) -> Dictionary:
 	migrated["trackNodes"] = migrated.get("trackNodes", [])
 	migrated["trackEdges"] = migrated.get("trackEdges", [])
 	migrated["goalBoard"] = migrated.get("goalBoard", {"active": [], "completed": []})
+	migrated["challengeMode"] = str(migrated.get("challengeMode", "free"))
+	if migrated["challengeMode"] not in ["free", "neighborhood"]: migrated["challengeMode"] = "free"
+	migrated["challengeState"] = migrated.get("challengeState", {"step": 0, "startedAt": -1, "completedAt": -1})
 	var simulation: Dictionary = migrated.get("simulation", {})
+	simulation["statisticsBuckets"] = simulation.get("statisticsBuckets", [])
+	simulation["journeyRecords"] = simulation.get("journeyRecords", [])
+	while simulation.statisticsBuckets.size() > 672: simulation.statisticsBuckets.pop_front()
+	while simulation.journeyRecords.size() > 1000: simulation.journeyRecords.pop_front()
+	for route in migrated.get("routes", []):
+		var inherited_headway := clampi(int(route.get("headway", 3)), 1, 60)
+		var profile: Dictionary = route.get("serviceSchedule", {})
+		if profile.is_empty(): profile = {"mode": "uniform", "peakAM": inherited_headway, "peakPM": inherited_headway, "offPeak": inherited_headway}
+		for period in ["peakAM", "peakPM", "offPeak"]: profile[period] = clampi(int(profile.get(period, inherited_headway)), 1, 60)
+		if str(profile.get("mode", "uniform")) not in ["uniform", "time_of_day"]: profile["mode"] = "uniform"
+		route["serviceSchedule"] = profile
 	var old_minute := int(simulation.get("minute", 420))
 	simulation["elapsedMinutes"] = int(simulation.get("elapsedMinutes", old_minute))
 	simulation["minute"] = posmod(int(simulation.elapsedMinutes), 1440)
@@ -413,6 +466,47 @@ static func migrate(data: Dictionary) -> Dictionary:
 	simulation["paused"] = true
 	simulation["speed"] = int(simulation.get("speed", 1))
 	migrated["simulation"] = simulation
+	var city_id := str(migrated.get("cityId", "shanghai"))
+	var phases: Array = migrated.get("planningPhases", [])
+	if phases.is_empty():
+		phases = [{"id":"phase_1", "name":"一期建设", "createdAt":int(simulation.get("elapsedMinutes", 420)), "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}]
+	var phase_ids: Dictionary = {}
+	for phase in phases:
+		phase["routeIds"] = []
+		phase["stationIds"] = []
+		phase["edgeIds"] = []
+		phase["flowIds"] = phase.get("flowIds", []) if phase.get("flowIds", []) is Array else []
+		phase_ids[str(phase.get("id", ""))] = phase
+	for station in migrated.get("stations", []):
+		var station_phase_id := str(station.get("planningPhaseId", phases[0].get("id", "phase_1")))
+		if not phase_ids.has(station_phase_id): station_phase_id = str(phases[0].get("id", "phase_1"))
+		station["planningPhaseId"] = station_phase_id
+		var station_phase: Dictionary = phase_ids[station_phase_id]
+		if not station_phase.stationIds.has(str(station.get("id", ""))): station_phase.stationIds.append(str(station.get("id", "")))
+	for edge_key in ["trackLinks", "trackEdges"]:
+		for edge in migrated.get(edge_key, []):
+			var edge_phase_id := str(edge.get("planningPhaseId", phases[0].get("id", "phase_1")))
+			if not phase_ids.has(edge_phase_id): edge_phase_id = str(phases[0].get("id", "phase_1"))
+			edge["planningPhaseId"] = edge_phase_id
+			var edge_phase: Dictionary = phase_ids[edge_phase_id]
+			if not edge_phase.edgeIds.has(str(edge.get("id", ""))): edge_phase.edgeIds.append(str(edge.get("id", "")))
+	for route in migrated.get("routes", []):
+		var phase_id := str(route.get("planningPhaseId", phases[0].get("id", "phase_1")))
+		if not phase_ids.has(phase_id):
+			phase_id = str(phases[0].get("id", "phase_1"))
+			route["planningPhaseId"] = phase_id
+		var phase: Dictionary = phase_ids[phase_id]
+		if not phase.routeIds.has(str(route.get("id", ""))): phase.routeIds.append(str(route.get("id", "")))
+	migrated["planningPhases"] = phases
+	if not phase_ids.has(str(migrated.get("currentPlanningPhaseId", ""))):
+		migrated["currentPlanningPhaseId"] = str(phases.back().get("id", "phase_1"))
+	if source_version < 15:
+		migrated["cityProgression"] = CityProgressionScript.create_state(city_id)
+		var old_onboarding: Dictionary = migrated.get("onboarding", {})
+		if not bool(old_onboarding.get("active", false)):
+			CityProgressionScript.start(migrated, int(simulation.get("elapsedMinutes", 420)))
+	else:
+		migrated["cityProgression"] = migrated.get("cityProgression", CityProgressionScript.create_state(city_id))
 	TrackNetwork.ensure_station_nodes(migrated)
 	WorldData.load_assets()
 	var ref_lat := float(WorldData.city(str(migrated.get("cityId", "shanghai"))).get("center", [31.23, 121.47])[0])
@@ -427,7 +521,7 @@ static func migrate(data: Dictionary) -> Dictionary:
 		for route in migrated.get("routes", []):
 			if bool(route.get("open", false)) and not route.has("serviceStartMinute"): route["serviceStartMinute"] = int(simulation.get("elapsedMinutes", 420))
 	if source_version < WorldData.SAVE_VERSION:
-		migrated["migrationNotice"] = "存档已升级为 13：保留规划、时钟和完成量；旧在途乘客从最近记录车站重新寻路，旧班次按现有路径重建。原始存档已单独备份。"
+		migrated["migrationNotice"] = "存档已升级为 15：保留规划、时钟、乘客和完成量，并开始城市章节与确定日程事件。章节地点和变化客流均为游戏设定；原始存档已单独备份。"
 	if route_path_needs_review:
 		if not migrated.has("migrationNotice"): migrated["migrationNotice"] = "线路走向资料需要整理。"
 		migrated["migrationNotice"] += " 部分旧线路无法解析连续轨道，已标记为待整理，不会自动改走其他区间。"
@@ -644,6 +738,8 @@ static func _migrate_web_world(source: Dictionary) -> Dictionary:
 		if WorldData.vehicle(vehicle_id).is_empty(): vehicle_id = "B-6"
 		route["vehicleId"] = vehicle_id
 		route["headway"] = int(route.get("headway", route.get("headwayMinutes", 3)))
+		var inherited_headway := clampi(int(route["headway"]), 1, 60)
+		route["serviceSchedule"] = {"mode": "uniform", "peakAM": inherited_headway, "peakPM": inherited_headway, "offPeak": inherited_headway}
 		if not route.has("open"):
 			route["open"] = str(route.get("status", "")) == "operating"
 		route["schematic"] = true
@@ -703,9 +799,24 @@ static func _migrate_web_world(source: Dictionary) -> Dictionary:
 	var old_sim: Dictionary = source.get("simulation", {})
 	var stats: Dictionary = source.get("simStats", {})
 	var minute := int(old_sim.get("minute", source.get("timeMinutes", 420)))
-	var simulation := {"minute": posmod(minute, 1440), "elapsedMinutes": minute, "elapsedSeconds": minute * 60, "nextDepartureSeconds": {}, "trainTripsInitialized": false, "speed": 1, "paused": true, "seed": int(source.get("seed", source.get("randomSeed", 45281))), "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "peakCrowding": 0.0, "passengerBatches": [], "flowRemainders": {}, "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "crowdingSamples": [], "flowSamples": {}}
+	var simulation := {"minute": posmod(minute, 1440), "elapsedMinutes": minute, "elapsedSeconds": minute * 60, "nextDepartureSeconds": {}, "trainTripsInitialized": false, "speed": 1, "paused": true, "seed": int(source.get("seed", source.get("randomSeed", 45281))), "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "peakCrowding": 0.0, "passengerBatches": [], "flowRemainders": {}, "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "crowdingSamples": [], "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": []}
 	var tutorial: Dictionary = source.get("tutorial", {})
-	var migrated := {"schemaVersion": WorldData.SAVE_VERSION, "cityId": city_id, "cityName": str(source.get("cityName", city.get("name", city_id))), "mode": mode, "dataVersion": str(source.get("mobilityVersion", source.get("dataVersion", "web-v7"))), "stations": stations, "routes": routes, "trackLinks": links, "trackNodes": [], "trackEdges": [], "depots": source.get("depots", []), "goalBoard": {"active": [], "completed": []}, "simulation": simulation, "legacyMetrics": {"completedEstimate": int(stats.get("served", 0)), "attemptedEstimate": int(stats.get("requested", stats.get("served", 0))), "note": "网页版本旧服务量为模型估算；新版完成量从真实到达重新统计。"}, "fleetMode": "automatic", "tutorialStep": mini(4, int(tutorial.get("step", 0))), "tutorialDone": bool(tutorial.get("completed", tutorial.get("skipped", false))), "randomSeed": int(source.get("seed", source.get("randomSeed", 45281))), "revision": int(source.get("networkRevision", 1)), "view": source.get("view", {"center": city.get("center", [31.2304, 121.4737]), "zoom": 12}), "history": {"undo": [], "redo": []}, "source": {"attribution": "© OpenStreetMap contributors", "license": "ODbL 1.0", "snapshot": str(city.get("sources", {}).get("snapshot", "2026-10-05"))}, "migrationNotice": "已导入网页存档。车站站体按列车长度转换；原区间线位作为站序示意，复核后可逐段重建。旧版客流保留为历史估算，新版从真实到达重新统计。网页原始 JSON 未修改，可留作恢复备份。"}
+	var migrated := {"schemaVersion": WorldData.SAVE_VERSION, "cityId": city_id, "cityName": str(source.get("cityName", city.get("name", city_id))), "mode": mode, "dataVersion": str(source.get("mobilityVersion", source.get("dataVersion", "web-v7"))), "stations": stations, "routes": routes, "trackLinks": links, "trackNodes": [], "trackEdges": [], "depots": source.get("depots", []), "goalBoard": {"active": [], "completed": []}, "challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1}, "simulation": simulation, "legacyMetrics": {"completedEstimate": int(stats.get("served", 0)), "attemptedEstimate": int(stats.get("requested", stats.get("served", 0))), "note": "网页版本旧服务量为模型估算；新版完成量从真实到达重新统计。"}, "fleetMode": "automatic", "tutorialStep": mini(4, int(tutorial.get("step", 0))), "tutorialDone": bool(tutorial.get("completed", tutorial.get("skipped", false))), "randomSeed": int(source.get("seed", source.get("randomSeed", 45281))), "revision": int(source.get("networkRevision", 1)), "view": source.get("view", {"center": city.get("center", [0, 0]), "zoom": 12}), "history": {"undo": [], "redo": []}, "source": {"attribution": "© OpenStreetMap contributors", "license": "ODbL 1.0", "snapshot": str(city.get("sources", {}).get("snapshot", "2026-10-05"))}, "migrationNotice": "已导入网页存档并升级为版本15。车站站体按列车长度转换；原区间线位作为站序示意，复核后可逐段重建。旧版客流保留为历史估算，新版统计和实际旅程记录从导入后重新累积。网页原始 JSON 未修改，可留作恢复备份。"}
+	migrated["planningPhases"] = [{"id":"phase_1", "name":"一期建设", "createdAt":minute, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}]
+	migrated["currentPlanningPhaseId"] = "phase_1"
+	for station in stations:
+		station["planningPhaseId"] = "phase_1"
+		migrated.planningPhases[0].stationIds.append(str(station.get("id", "")))
+	for edge in links:
+		edge["planningPhaseId"] = "phase_1"
+		migrated.planningPhases[0].edgeIds.append(str(edge.get("id", "")))
+	for route in routes:
+		route["planningPhaseId"] = "phase_1"
+		migrated["planningPhases"][0]["routeIds"].append(str(route.get("id", "")))
+	migrated["cityProgression"] = CityProgressionScript.create_state(city_id)
+	if bool(migrated.get("tutorialDone", false)) or mode == "expand":
+		CityProgressionScript.start(migrated, minute)
+	migrated["migrationNotice"] = "已导入网页存档并升级为版本15。旧线路的站间线位仍是示意；新城市章节和确定日程事件从导入后开始。章节地点与客流变化为游戏设定，网页原始 JSON 未修改，可留作恢复备份。"
 	TrackNetwork.ensure_station_nodes(migrated)
 	var ref_lat := float(city.get("center", [31.23, 121.47])[0])
 	_pin_route_paths(migrated, ref_lat)

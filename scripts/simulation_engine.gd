@@ -4,6 +4,7 @@ extends RefCounted
 const MAX_WAIT_MINUTES := 30
 const JourneyModelScript = preload("res://scripts/journey_model.gd")
 const RoutePathScript = preload("res://scripts/route_path.gd")
+const ServiceScheduleScript = preload("res://scripts/service_schedule.gd")
 static var _route_cache_key := ""
 static var _route_cache: Dictionary = {}
 
@@ -112,7 +113,7 @@ static func step_one_minute(state: Dictionary, flows: Array[Dictionary], peak_mu
 	var start_seconds := int(sim.get("elapsedSeconds", int(sim.get("elapsedMinutes", sim.get("minute", 420))) * 60))
 	var end_seconds := start_seconds + 60
 	var paths := _get_route_paths(state)
-	var event_totals := {"completed": 0, "abandoned": 0, "boarded": 0, "departed": 0, "tripMinutesAdded": 0.0, "completedByFlow": {}, "tripMinutesByFlow": {}, "peakCrowding": 0.0, "peakCrowdedRoute": "", "crowdedLinks": {}}
+	var event_totals := {"completed": 0, "abandoned": 0, "boarded": 0, "departed": 0, "tripMinutesAdded": 0.0, "completedByFlow": {}, "tripMinutesByFlow": {}, "peakCrowding": 0.0, "peakCrowdedRoute": "", "crowdedLinks": {}, "journeyRecords": []}
 	var flow_remainders: Dictionary = sim.get("flowRemainders", {})
 	var arrivals_by_flow: Dictionary = {}
 	var attempted_by_flow: Dictionary = {}
@@ -141,7 +142,7 @@ static func step_one_minute(state: Dictionary, flows: Array[Dictionary], peak_mu
 		if steps.is_empty():
 			unreachable += count
 			continue
-		var batch := {"id": "%s@%d" % [flow_id, end_seconds], "flowId": flow_id, "count": count, "bornAtSeconds": end_seconds, "bornAt": floori(float(end_seconds) / 60.0), "stepIndex": 0, "status": "", "nextEventSeconds": end_seconds, "waitStartedSeconds": -1.0, "steps": steps.duplicate(true), "journeyFingerprint": _journey_fingerprint(steps), "originLatLng": flow.get("originLatLng", []), "destinationLatLng": flow.get("destinationLatLng", []), "lastValidStationId": str(journey.get("originStationId", "")), "plannedRevision": int(state.get("revision", 0)), "everBoarded": false, "interruptedRecorded": false}
+		var batch := {"id": "%s@%d" % [flow_id, end_seconds], "flowId": flow_id, "count": count, "bornAtSeconds": end_seconds, "bornAt": floori(float(end_seconds) / 60.0), "stepIndex": 0, "status": "", "nextEventSeconds": end_seconds, "waitStartedSeconds": -1.0, "steps": steps.duplicate(true), "journeyFingerprint": _journey_fingerprint(steps), "originLatLng": flow.get("originLatLng", []), "destinationLatLng": flow.get("destinationLatLng", []), "lastValidStationId": str(journey.get("originStationId", "")), "plannedRevision": int(state.get("revision", 0)), "everBoarded": false, "interruptedRecorded": false, "events": [{"type": "departure", "timeSeconds": end_seconds}]}
 		_activate_current_step(batch, batch.steps, end_seconds)
 		if str(batch.get("status", "")) == "completed":
 			_add_completion(event_totals, batch, end_seconds)
@@ -170,6 +171,11 @@ static func step_one_minute(state: Dictionary, flows: Array[Dictionary], peak_mu
 	sim["attemptedByFlow"] = _accumulate_counts(sim.get("attemptedByFlow", {}), attempted_by_flow)
 	sim["completedByFlow"] = _accumulate_counts(sim.get("completedByFlow", {}), event_totals.completedByFlow)
 	sim["tripMinutesByFlow"] = _accumulate_floats(sim.get("tripMinutesByFlow", {}), event_totals.tripMinutesByFlow)
+	var journey_records: Array = sim.get("journeyRecords", [])
+	for record in event_totals.journeyRecords:
+		journey_records.append(record)
+	while journey_records.size() > 1000: journey_records.pop_front()
+	sim["journeyRecords"] = journey_records
 	var flow_samples: Dictionary = sim.get("flowSamples", {})
 	var sample_ids: Dictionary = {}
 	for flow_id in arrivals_by_flow: sample_ids[flow_id] = true
@@ -183,6 +189,22 @@ static func step_one_minute(state: Dictionary, flows: Array[Dictionary], peak_mu
 		var samples: Array = flow_samples[flow_id]
 		while not samples.is_empty() and int(samples[0].get("minute", sim.elapsedMinutes)) <= int(sim.elapsedMinutes) - 60: samples.pop_front()
 	sim["flowSamples"] = flow_samples
+	var statistics_buckets: Array = sim.get("statisticsBuckets", [])
+	var bucket_start := floori(float(sim.elapsedMinutes) / 15.0) * 15
+	var bucket: Dictionary = {}
+	if not statistics_buckets.is_empty() and int(statistics_buckets.back().get("startMinute", -1)) == bucket_start:
+		bucket = statistics_buckets.back()
+	else:
+		bucket = {"startMinute": bucket_start, "attemptedByFlow": {}, "completedByFlow": {}, "tripMinutesByFlow": {}, "eventSignature": str(sim.get("currentEventSignature", "")), "mixedEventState": false}
+		statistics_buckets.append(bucket)
+	var bucket_signature := str(bucket.get("eventSignature", ""))
+	var current_signature := str(sim.get("currentEventSignature", ""))
+	if bucket_signature != current_signature: bucket["mixedEventState"] = true
+	for flow_id in arrivals_by_flow: bucket.attemptedByFlow[str(flow_id)] = int(bucket.attemptedByFlow.get(str(flow_id), 0)) + int(arrivals_by_flow[flow_id])
+	for flow_id in event_totals.completedByFlow: bucket.completedByFlow[str(flow_id)] = int(bucket.completedByFlow.get(str(flow_id), 0)) + int(event_totals.completedByFlow[flow_id])
+	for flow_id in event_totals.tripMinutesByFlow: bucket.tripMinutesByFlow[str(flow_id)] = float(bucket.tripMinutesByFlow.get(str(flow_id), 0.0)) + float(event_totals.tripMinutesByFlow[flow_id])
+	while not statistics_buckets.is_empty() and int(statistics_buckets.front().get("startMinute", bucket_start)) < int(sim.elapsedMinutes) - 10080: statistics_buckets.pop_front()
+	sim["statisticsBuckets"] = statistics_buckets
 	var waiting_by_route: Dictionary = {}
 	for batch in survivors:
 		if str(batch.get("status", "")) != "waiting": continue
@@ -207,7 +229,7 @@ static func step_one_minute(state: Dictionary, flows: Array[Dictionary], peak_mu
 	sim["peakCrowding"] = rolling_peak
 	sim["peakCrowdedRoute"] = rolling_peak_route
 	state["simulation"] = sim
-	return {"arrivalsByFlow": arrivals_by_flow, "completedByFlow": event_totals.completedByFlow, "tripMinutesByFlow": event_totals.tripMinutesByFlow, "attempted": attempted, "unreachable": unreachable, "boarded": int(event_totals.boarded), "departed": int(event_totals.departed), "completed": int(event_totals.completed), "abandoned": int(event_totals.abandoned), "tripMinutesAdded": float(event_totals.tripMinutesAdded), "peakCrowding": float(event_totals.peakCrowding), "waitingByRoute": waiting_by_route}
+	return {"arrivalsByFlow": arrivals_by_flow, "completedByFlow": event_totals.completedByFlow, "tripMinutesByFlow": event_totals.tripMinutesByFlow, "journeyRecords": event_totals.journeyRecords, "attempted": attempted, "unreachable": unreachable, "boarded": int(event_totals.boarded), "departed": int(event_totals.departed), "completed": int(event_totals.completed), "abandoned": int(event_totals.abandoned), "tripMinutesAdded": float(event_totals.tripMinutesAdded), "peakCrowding": float(event_totals.peakCrowding), "waitingByRoute": waiting_by_route}
 
 static func _ensure_dispatch_schedules(sim: Dictionary, state: Dictionary, paths: Dictionary, now_seconds: int) -> void:
 	var schedules: Dictionary = sim.get("nextDepartureSeconds", {})
@@ -229,7 +251,7 @@ static func reschedule_route(state: Dictionary, route_id: String) -> void:
 	var route := WorldData.find_route(state, route_id)
 	if route.is_empty(): return
 	var path := RoutePathScript.for_route(route, state, float(WorldData.city(str(state.get("cityId", "shanghai"))).get("center", [31.23, 121.47])[0]))
-	var next_seconds := maxi(1, int(route.get("headway", 3))) * 60
+	var next_seconds := ServiceScheduleScript.headway_minutes(route, now_seconds) * 60
 	for direction in path.get("directions", []): schedules["%s|%s" % [route_id, str(direction.get("id", "forward"))]] = now_seconds + next_seconds
 	sim["nextDepartureSeconds"] = schedules
 	state["simulation"] = sim
@@ -243,12 +265,14 @@ static func _advance_interval(state: Dictionary, flows: Array[Dictionary], paths
 	var capacity_loads: Dictionary = sim.get("capacityLoads", {})
 	var schedules: Dictionary = sim.get("nextDepartureSeconds", {})
 	var specs: Dictionary = {}
+	var routes_by_id: Dictionary = {}
 	for route in state.get("routes", []):
 		if not bool(route.get("open", false)): continue
 		var route_id := str(route.get("id", ""))
+		routes_by_id[route_id] = route
 		for direction in paths.get(route_id, {}).get("directions", []):
 			var key := "%s|%s" % [route_id, str(direction.get("id", "forward"))]
-			specs[key] = {"routeId": route_id, "direction": direction, "capacity": int(WorldData.vehicle(str(route.get("vehicleId", "B-6"))).get("capacity", 1800)), "headwaySeconds": maxi(60, int(route.get("headway", 3)) * 60)}
+			specs[key] = {"routeId": route_id, "route": route, "direction": direction, "capacity": int(WorldData.vehicle(str(route.get("vehicleId", "B-6"))).get("capacity", 1800))}
 	var now := float(start_seconds)
 	var event_count := 0
 	while now <= float(end_seconds) + 0.0001 and event_count < 10000:
@@ -256,6 +280,14 @@ static func _advance_interval(state: Dictionary, flows: Array[Dictionary], paths
 		for key in specs:
 			var scheduled := float(schedules.get(str(key), INF))
 			if scheduled >= now - 0.0001: next_time = minf(next_time, scheduled)
+		var next_schedule_boundary := INF
+		for route_id in routes_by_id:
+			var route: Dictionary = routes_by_id[route_id]
+			if str(ServiceScheduleScript.ensure_profile(route).get("mode", "uniform")) != "time_of_day": continue
+			var boundary := float(ServiceScheduleScript.next_boundary_after(int(floor(now + 0.0001))))
+			if boundary <= float(end_seconds) + 0.0001:
+				next_schedule_boundary = minf(next_schedule_boundary, boundary)
+				next_time = minf(next_time, boundary)
 		var trip_event_records: Array[Dictionary] = []
 		for trip in trips:
 			if bool(trip.get("_simRemove", false)): continue
@@ -315,6 +347,7 @@ static func _advance_interval(state: Dictionary, flows: Array[Dictionary], paths
 				if not raw_rider is Dictionary: continue
 				var batch: Dictionary = raw_rider
 				if str(batch.get("status", "")) != "riding" or str(batch.get("trainTripId", "")) != str(trip.get("id", "")): continue
+				_append_batch_event(batch, "train_arrive", now, {"routeId": str(trip.get("routeId", "")), "directionId": str(trip.get("directionId", "")), "stationId": str(stop.get("stationId", "")), "tripId": str(trip.get("id", ""))})
 				_release_passed_capacity(sim, capacity_loads, batch, trip, arrived_index)
 				batch["lastValidStationId"] = str(stop.get("stationId", ""))
 				if int(batch.get("alightStopIndex", -1)) != arrived_index and not bool(batch.get("replanAfterArrival", false)):
@@ -352,6 +385,7 @@ static func _advance_interval(state: Dictionary, flows: Array[Dictionary], paths
 				batch["_simRemove"] = true
 				continue
 			if status in ["walking", "transferring"] and float(batch.get("nextEventSeconds", INF)) <= now + 0.0001:
+				_append_batch_event(batch, "step_complete", now, {"stepIndex": int(batch.get("stepIndex", 0)), "stepType": status})
 				batch["stepIndex"] = int(batch.get("stepIndex", 0)) + 1
 				_activate_current_step(batch, batch.get("steps", []), now)
 				if str(batch.get("status", "")) == "completed":
@@ -373,8 +407,19 @@ static func _advance_interval(state: Dictionary, flows: Array[Dictionary], paths
 			trip["currentStopIndex"] = 0
 			trip["nextEventSeconds"] = departure_seconds
 			trips.append(trip)
-			schedules[str(key)] = departure_seconds + float(spec.get("headwaySeconds", 180))
+			var service_route: Dictionary = spec.get("route", {})
+			schedules[str(key)] = departure_seconds + ServiceScheduleScript.headway_minutes(service_route, int(round(departure_seconds))) * 60
 			due_dwell_trips.append(trip)
+		# A departure scheduled exactly on the boundary remains valid. All other
+		# pending departures are re-anchored to the new interval without catch-up.
+		if is_equal_approx(now, next_schedule_boundary):
+			for key in specs:
+				var boundary_spec: Dictionary = specs[key]
+				var boundary_route: Dictionary = boundary_spec.get("route", {})
+				if str(ServiceScheduleScript.ensure_profile(boundary_route).get("mode", "uniform")) != "time_of_day": continue
+				if float(ServiceScheduleScript.next_boundary_after(int(floor(now - 0.0001)))) != now: continue
+				if float(schedules.get(str(key), INF)) > now + 0.0001:
+					schedules[str(key)] = int(now) + ServiceScheduleScript.headway_minutes(boundary_route, int(now)) * 60
 		# 3. Board in arrival order. Each batch only uses the remaining seats of this trip.
 		for trip in due_dwell_trips:
 			if str(trip.get("phase", "")) != "dwell" or float(trip.get("nextEventSeconds", now)) < now - 0.0001: continue
@@ -416,6 +461,7 @@ static func _advance_interval(state: Dictionary, flows: Array[Dictionary], paths
 				var count := int(batch.get("count", 0))
 				var board_count := mini(count, available)
 				var rider := batch.duplicate(true)
+				_append_batch_event(rider, "train_board", now, {"routeId": str(trip.get("routeId", "")), "directionId": str(trip.get("directionId", "")), "stationId": station_id, "tripId": str(trip.get("id", "")), "fromStopIndex": stop_index, "toStopIndex": int(rail_step.get("toStopIndex", stop_index + 1))})
 				rider["count"] = board_count
 				rider["status"] = "riding"
 				rider["stepIndex"] = step_index
@@ -607,6 +653,34 @@ static func _add_completion(totals: Dictionary, batch: Dictionary, now_seconds: 
 	var trip_minutes := duration_minutes * float(count)
 	totals["tripMinutesAdded"] = float(totals.get("tripMinutesAdded", 0.0)) + trip_minutes
 	totals["tripMinutesByFlow"][flow_id] = float(totals.tripMinutesByFlow.get(flow_id, 0.0)) + trip_minutes
+	var record_key := "%s|%d|%d" % [str(batch.get("id", flow_id)), int(round(now_seconds)), count]
+	if _is_sampled_journey_record(record_key):
+		var steps: Array = batch.get("steps", [])
+		var summary: Array[String] = []
+		for step in steps:
+			if not step is Dictionary: continue
+			var type := str(step.get("type", ""))
+			if type == "rail": summary.append("乘车 %s → %s" % [str(step.get("fromStationId", "")), str(step.get("toStationId", ""))])
+			elif type in ["walk", "access"]: summary.append("步行 %.0f 米" % float(step.get("distanceM", 0.0)))
+			elif type == "transfer": summary.append("换乘步行 %.0f 分钟" % float(step.get("minutes", 0.0)))
+		var records: Array = totals.get("journeyRecords", [])
+		records.append({"id": record_key, "flowId": flow_id, "count": count, "departureSeconds": int(batch.get("bornAtSeconds", now_seconds)), "arrivalSeconds": int(round(now_seconds)), "durationMinutes": duration_minutes, "steps": steps.duplicate(true), "summary": summary, "events": batch.get("events", []).duplicate(true) if batch.get("events", []) is Array else []})
+		totals["journeyRecords"] = records
+
+static func _append_batch_event(batch: Dictionary, event_type: String, at_seconds: float, details: Dictionary = {}) -> void:
+	var events: Array = batch.get("events", [])
+	if events.size() >= 96: return
+	var event := {"type": event_type, "timeSeconds": int(round(at_seconds))}
+	for key in details: event[key] = details[key]
+	events.append(event)
+	batch["events"] = events
+
+static func _is_sampled_journey_record(record_key: String) -> bool:
+	# Stable across platforms and Godot builds; retain roughly one batch in four.
+	var hash_value := 17
+	for index in range(record_key.length()):
+		hash_value = posmod(hash_value * 31 + record_key.unicode_at(index), 100)
+	return hash_value < 25
 
 static func _accumulate_counts(current: Variant, added: Dictionary) -> Dictionary:
 	var result: Dictionary = current.duplicate()

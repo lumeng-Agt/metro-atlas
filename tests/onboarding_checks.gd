@@ -65,17 +65,20 @@ func _run() -> void:
 	_check(main.map_view.current_zoom >= 14, "镜头聚焦教学街区")
 
 	main._onboarding_primary_action()
-	_check(int(main.world.onboarding.step) == 1, "查看需求后才进入第一站任务")
+	_check(int(main.world.onboarding.step) == 0, "教学主按钮只定位，不替玩家完成地图或底栏操作")
 	var origin: Dictionary = main._find_demand(str(main.world.onboarding.originId))
 	var destination: Dictionary = main._find_demand(str(main.world.onboarding.destinationId))
+	main._on_map_clicked(origin.latlng, "demand", str(origin.id), "")
+	main._on_map_clicked(destination.latlng, "demand", str(destination.id), "")
+	_check(int(main.world.onboarding.step) == 1, "玩家实际点选地图上的 A、B 需求后才进入建站")
 	var heading: float = main._onboarding_station_heading()
-	main.current_tool = "station"; main.map_view.tool = "station"
+	main._set_tool("station")
 	main.map_view.draft_station = {"id":"draft-a", "name":"A站", "latlng":origin.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[]}
 	main._confirm_station()
 	_check(int(main.world.onboarding.step) == 2 and not str(main.world.onboarding.originStationId).is_empty(), "只有确认且覆盖 A 的新站才完成第一站")
 	var source_id := str(main.world.onboarding.originStationId)
 	await create_timer(0.01).timeout
-	main.current_tool = "station"; main.map_view.tool = "station"
+	main._set_tool("station")
 	main.map_view.draft_station = {"id":"draft-b", "name":"B站", "latlng":destination.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[]}
 	main._confirm_station()
 	_check(int(main.world.onboarding.step) == 3 and str(main.world.onboarding.destinationStationId) != source_id, "第二座不同的确认车站覆盖 B 终点")
@@ -97,23 +100,35 @@ func _run() -> void:
 	main._on_map_clicked(WorldData.station_endpoint(WorldData.find_station(main.world, destination_id), "start"), "endpoint", destination_id, "start")
 	main._commit_track_preview()
 	_check(int(main.world.onboarding.step) == 4, "只有任务两站连续接轨才进入开通检查")
-	main._onboarding_primary_action()
+	main._set_tool("line")
 	main._on_map_clicked(origin.latlng, "station", source_id, "")
 	main._on_map_clicked(destination.latlng, "station", destination_id, "")
 	main._confirm_operating_line()
 	var route_id := str(main.active_route_id)
 	_check(int(main.world.onboarding.step) == 5 and not route_id.is_empty(), "物理轨网接好后才创建任务运营线路")
 	main._onboarding_primary_action()
+	main._select_object("route", route_id)
+	main._open_route()
 	_check(int(main.world.onboarding.step) == 6 and bool(WorldData.find_route(main.world, route_id).get("open", false)), "任务线路开通后进入观察")
 	var flow: Dictionary = main._onboarding_flow()
 	_check(bool(flow.get("valid", false)) and float(flow.get("tripMinutes", 0.0)) < 120.0, "教学展示有效且单位合理的模拟出行估算")
 	main._onboarding_primary_action()
+	main._toggle_pause()
+	_check(not bool(main.world.simulation.get("paused", true)), "教学要求通过顶部播放控件开始观察")
 	for minute in range(240):
 		if int(main.world.onboarding.step) >= 7: break
 		main._simulate_one_minute()
 	_check(int(main.world.onboarding.observedTargetArrivals) > 0, "教学等待目标需求真实进入模拟批次")
 	_check(int(main.world.onboarding.observedTargetServed) > 0, "教学等待目标需求真实获得线路服务")
 	_check(int(main.world.onboarding.step) == 7 and bool(main.world.simulation.paused), "观察到目标服务后完成引导并自动暂停")
+	await process_frame
+	var agenda_button: Button
+	if main.onboarding_panel.get_child_count() > 0:
+		for child in main.onboarding_panel.get_child(0).get_children():
+			if child is Button and child.text == "进入城市议程": agenda_button = child
+	_check(is_instance_valid(agenda_button), "完成教学后主按钮明确进入城市议程")
+	if is_instance_valid(agenda_button): agenda_button.pressed.emit()
+	_check(not bool(main.world.onboarding.active) and bool(main.world.get("cityProgression", {}).get("started", false)), "进入城市议程后解锁持续扩建目标")
 	Preferences.save_onboarding_completed(false)
 	main.world["onboarding"] = Onboarding.create_state("shanghai", "blank", false)
 	main.world.onboarding.active = true
