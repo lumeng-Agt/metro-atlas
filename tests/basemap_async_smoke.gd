@@ -22,7 +22,8 @@ func _run() -> void:
 	var primary_road := {"id":"city-primary-road", "kind":"road_primary", "points":[[31.23, 121.47], [31.231, 121.47]]}
 	_check(MapViewScript._prepare_base_features_for([primary_road], 12, 10.0, 31.23).is_empty(), "城市总览暂不绘制过密的城市主路")
 	_check(MapViewScript._prepare_base_features_for([primary_road], 13, 10.0, 31.23).size() == 1, "放大至城区尺度后显示城市主路")
-	for _frame in range(900):
+	var timeout:=Time.get_ticks_msec()+20000
+	while Time.get_ticks_msec()<timeout:
 		await process_frame
 		if not map._base_map_thread_busy and map._base_map_pending_request.is_empty(): break
 	var roads := 0

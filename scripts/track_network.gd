@@ -87,7 +87,7 @@ static func shortest_station_path(from_station_id: String, to_station_id: String
 		graph_edges.append(platform)
 	for edge in graph_edges:
 		# A saved operating route may lock this station pair to a chosen branch.
-		# Platform edges remain available so passengers can reach either station end.
+		# Platform edges join the two station ends for continuous historical paths.
 		if not allowed_edge_ids.is_empty() and not bool(edge.get("platform", false)) and not allowed_edge_ids.has(str(edge.get("id", ""))): continue
 		if banned_edge_ids.has(str(edge.get("id", ""))): continue
 		var ends := _edge_node_ids(edge, state)

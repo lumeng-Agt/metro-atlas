@@ -23,7 +23,7 @@ const BLUE_SOFT := Color("#E8EEF4")
 static func create_theme(base_font: Font, bold_font: Font, scale: float) -> Theme:
 	var result := Theme.new()
 	result.default_font = base_font
-	result.default_font_size = roundi(16.0 * scale)
+	result.default_font_size = roundi(18.0 * scale)
 	result.set_color("font_color", "Label", INK)
 	result.set_color("font_hover_color", "Label", INK)
 	result.set_color("font_color", "Button", INK)
@@ -104,7 +104,7 @@ static func create_theme(base_font: Font, bold_font: Font, scale: float) -> Them
 	result.set_stylebox("embedded_unfocused_border", "Window", _window_box())
 	result.set_stylebox("normal", "TextEdit", _box(SURFACE, BORDER_STRONG, 8))
 	result.set_stylebox("focus", "TextEdit", _box(SURFACE, ACCENT, 8, 2))
-	result.set_stylebox("normal", "PanelContainer", _box(SURFACE, BORDER, 12))
+	result.set_stylebox("panel", "PanelContainer", _box(SURFACE, BORDER, 12))
 	result.set_stylebox("panel", "PopupMenu", _box(SURFACE, BORDER, 10))
 	result.set_stylebox("separator", "PopupMenu", _box(BORDER, Color.TRANSPARENT, 0))
 	result.set_stylebox("background", "TooltipPanel", _box(SURFACE, BORDER, 8))

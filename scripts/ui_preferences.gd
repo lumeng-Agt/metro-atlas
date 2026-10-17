@@ -4,7 +4,9 @@ extends RefCounted
 const SCALE_OPTIONS := [1.0, 1.25, 1.5, 1.75]
 
 static func path() -> String:
-	var preferred := SaveManager.root_path().path_join("ui_preferences.cfg")
+	var data_root:=SaveManager.root_path()
+	if data_root.is_empty():return ""
+	var preferred := data_root.path_join("ui_preferences.cfg")
 	if not SaveManager.using_explicit_data_dir() and not FileAccess.file_exists(preferred):
 		var legacy := ConfigFile.new()
 		if legacy.load("user://ui_preferences.cfg") == OK:

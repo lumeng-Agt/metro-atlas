@@ -1,4 +1,4 @@
-name: Godot checks
+name: Godot story checks
 
 on:
   push:
@@ -17,23 +17,15 @@ jobs:
       - name: Import project and parse scripts
         shell: pwsh
         run: godot --headless --path . --editor --quit
-      - name: Run planning, simulation, migration, UI and offline-map checks
+      - name: Story, construction, saves and offline maps
         shell: pwsh
         run: |
-          $tests = @(
-            'headless_checks.gd',
-            'journey_simulation_checks.gd',
-            'onboarding_checks.gd',
-            'city_progression_checks.gd',
-            'migration_smoke.gd',
-            'save_smoke.gd',
-            'ui_smoke.gd',
-            'continue_save_regression.gd',
-            'basemap_async_smoke.gd',
-            'tile_cache_smoke.gd'
-          )
+          $tests = @('story_checks.gd', 'story_save_checks.gd', 'story_geometry_checks.gd', 'story_layout_checks.gd', 'basemap_async_smoke.gd', 'tile_cache_smoke.gd')
           foreach ($test in $tests) {
-            Write-Host "=== $test ==="
-            godot --headless --path . --script "res://tests/$test"
-            if ($LASTEXITCODE -ne 0) { throw "Godot regression failed: $test" }
+            $data = Join-Path $env:RUNNER_TEMP ("metro-atlas-" + [guid]::NewGuid().ToString("N"))
+            godot --headless --path . --script "res://tests/$test" -- "--data-dir=$data"
+            if ($LASTEXITCODE -ne 0) { throw "Regression failed: $test" }
           }
+      - name: Five independent process restarts
+        shell: pwsh
+        run: ./tests/story_restart_five.ps1 -Godot godot

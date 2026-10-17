@@ -1,7 +1,7 @@
 class_name RoutePath
 extends RefCounted
 
-## Canonical operational path for a route. Validation, passenger routing and train
+## Canonical operational path for a route. Validation, chapter checks and train
 ## rendering consume the same ordered segments from this module.
 
 static func for_route(route: Dictionary, state: Dictionary, ref_lat: float) -> Dictionary:

@@ -1,8 +1,7 @@
 class_name WorldData
 extends RefCounted
 
-const SAVE_VERSION := 17
-const CityProgressionScript = preload("res://scripts/city_progression.gd")
+const SAVE_VERSION := 18
 const CampaignSystemScript = preload("res://scripts/campaign_system.gd")
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
@@ -33,35 +32,19 @@ static func city(city_id: String) -> Dictionary:
 			return item
 	return {}
 
-static func new_world(city_id: String, mode: String) -> Dictionary:
+static func new_world(city_id: String, mode: String = "campaign") -> Dictionary:
 	var c := city(city_id)
 	var state := {
-		"schemaVersion": SAVE_VERSION,
-		"cityId": city_id,
-		"cityName": c.get("name", city_id),
-		"mode": mode,
-		"dataVersion": _dataset.get("generatedAt", "unknown"),
+		"schemaVersion": SAVE_VERSION, "gameId": "%s_%s_%s" % [city_id, str(int(Time.get_unix_time_from_system())), Crypto.new().generate_random_bytes(6).hex_encode()],
+		"cityId": city_id, "cityName": c.get("name", city_id), "mode": "campaign" if mode == "campaign" else "workshop",
+		"title": "%s · 地铁故事" % c.get("name", city_id), "dataVersion": _dataset.get("generatedAt", "unknown"),
 		"stations": [], "routes": [], "trackLinks": [], "trackNodes": [], "trackEdges": [], "depots": [],
-		"simulation": {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "trainTripsInitialized": false, "nextDepartureSeconds": {}, "peakCrowding": 0.0, "crowdingSamples": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": [], "routeUtilizationBuckets": []},
-		"goalBoard": {"active": [], "completed": []},
-		"cityProgression": CityProgressionScript.create_state(city_id),
-		"campaignState": CampaignSystemScript.create_state(city_id) if mode == "campaign" else {},
-		"planningPhases": [{"id":"phase_1", "name":"一期建设", "createdAt":420, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}],
-		"currentPlanningPhaseId": "phase_1",
-		"challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1},
-		"fleetMode": "automatic", "tutorialStep": 0, "tutorialDone": false,
-		"randomSeed": 45281, "revision": 1,
-		"view": {"center": c.get("center", [31.2304, 121.4737]), "zoom": int(c.get("zoom", 12))},
-		"history": {"undo": [], "redo": []},
-		"source": {"attribution": _dataset.get("osmAttribution", "© OpenStreetMap contributors"), "license": _dataset.get("license", "ODbL 1.0"), "snapshot": _dataset.get("generatedAt", "unknown")}
+		"storyState": {"chapterIndex":0, "stage":"intro", "completedChapterIds":[], "milestones":[], "tutorialEnabled":true, "learnedTools":false, "assistedChapters":[], "catalogVersion":CampaignSystemScript.content_version(), "phase":"history", "freeUnlocked":false},
+		"storyPlan": {"planIndex":0, "pathChoices":{}}, "milestoneBaseline": {},
+		"planningPhases":[{"id":"history_1", "name":"历史复现", "stationIds":[], "edgeIds":[], "routeIds":[]}], "currentPlanningPhaseId":"history_1",
+		"revision":1, "view":{"center":c.get("center", [31.23,121.47]), "zoom":int(c.get("zoom",12))},
+		"history":{"undo":[], "redo":[]}, "source":{"attribution":"© OpenStreetMap contributors", "snapshot":_dataset.get("generatedAt", "unknown")}
 	}
-	if mode == "expand":
-		_import_existing_network(state, c)
-	if mode == "campaign":
-		state["cityProgression"] = CityProgressionScript.create_state(city_id)
-		state["planningPhases"] = [{"id":"history_1", "name":"历史复现", "createdAt":420, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}]
-		state["currentPlanningPhaseId"] = "history_1"
-	TrackNetwork.ensure_station_nodes(state)
 	return state
 
 static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:
@@ -72,7 +55,7 @@ static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:
 		station_lookup[station.id] = station
 	var link_lookup: Dictionary = {}
 	for raw_route in c.get("lines", []):
-		var route := {"id": str(raw_route.get("id", "route_%d" % state.routes.size())), "name": str(raw_route.get("name", "线路")), "color": str(raw_route.get("color", "#e23f56")), "vehicleId": "B-6", "headway": 4, "open": true, "schematic": true, "stationOrder": [], "directions": raw_route.get("directions", []), "planningPhaseId":"phase_1"}
+		var route := {"id": str(raw_route.get("id", "route_%d" % state.routes.size())), "name": str(raw_route.get("name", "线路")), "color": str(raw_route.get("color", "#e23f56")), "vehicleId": "B-6", "open": true, "schematic": true, "stationOrder": [], "directions": raw_route.get("directions", []), "planningPhaseId":"phase_1"}
 		var directions: Array = raw_route.get("directions", [])
 		for direction in directions:
 			var ids: Array = direction.get("stationIds", [])
@@ -99,7 +82,7 @@ static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:
 	state["planningPhases"][0]["edgeIds"] = state.get("trackLinks", []).map(func(item: Dictionary): return str(item.get("id", "")))
 
 static func _add_route(state: Dictionary, route_name: String, color: String) -> Dictionary:
-	var route := {"id": "r_%d" % Time.get_ticks_msec(), "name": route_name, "color": color, "vehicleId": "B-6", "headway": 3, "open": false, "schematic": false, "stationOrder": [], "directions": [], "planningPhaseId": str(state.get("currentPlanningPhaseId", "phase_1"))}
+	var route := {"id": "r_%d" % Time.get_ticks_msec(), "name": route_name, "color": color, "vehicleId": "B-6", "open": false, "schematic": false, "stationOrder": [], "directions": [], "planningPhaseId": str(state.get("currentPlanningPhaseId", "phase_1"))}
 	state["routes"].append(route)
 	return route
 
@@ -198,7 +181,7 @@ static func create_station(state: Dictionary, latlng: Array, heading: float, rou
 	elif not route.is_empty(): vehicle_id = str(route.get("vehicleId", "B-6"))
 	var profile := vehicle(vehicle_id)
 	var phase_id := str(state.get("currentPlanningPhaseId", "phase_1"))
-	var station := {"id": "st_%d" % Time.get_ticks_msec(), "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": depth_m, "vehicleId": vehicle_id, "schematic": false, "existing": false, "planningPhaseId":phase_id, "routeIds": [route_id] if not route_id.is_empty() else []}
+	var station := {"id": "st_%d" % Time.get_ticks_usec(), "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": depth_m, "vehicleId": vehicle_id, "schematic": false, "existing": false, "planningPhaseId":phase_id, "routeIds": [route_id] if not route_id.is_empty() else []}
 	state["stations"].append(station)
 	for phase in state.get("planningPhases", []):
 		if str(phase.get("id", "")) != phase_id: continue

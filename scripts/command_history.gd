@@ -5,18 +5,18 @@ signal changed
 
 var world: Dictionary
 var max_steps := 200
-const PLANNING_KEYS := ["stations", "routes", "trackLinks", "trackNodes", "trackEdges", "depots", "fleetMode", "planningPhases", "currentPlanningPhaseId"]
+const PLANNING_KEYS := ["stations", "routes", "trackLinks", "trackNodes", "trackEdges", "depots", "fleetMode", "planningPhases", "currentPlanningPhaseId", "storyPlan"]
 
 func attach(state: Dictionary) -> void:
 	world = state
 	if not world.has("history"): world.history = {"undo": [], "redo": []}
 
-func execute(label: String, mutation: Callable) -> bool:
+func execute(label: String, mutation: Callable, affected_fields: Array = []) -> bool:
 	if world.is_empty(): return false
-	var before := _capture_planning()
+	var before := _capture_planning(affected_fields)
 	mutation.call(world)
 	if _planning_equal(before, world): return false
-	var after := _capture_planning()
+	var after := _capture_planning(affected_fields)
 	var step := {"label": label, "diff": _build_diff(before, after)}
 	var history: Dictionary = world.history
 	var undo: Array = history.get("undo", [])
@@ -77,14 +77,16 @@ func redo_label() -> String:
 	return str(items.back().get("label", "")) if not items.is_empty() else ""
 
 func _planning_equal(before: Dictionary, after: Dictionary) -> bool:
-	for key in PLANNING_KEYS:
+	for key in before:
 		if JSON.stringify(before.get(key)) != JSON.stringify(after.get(key)): return false
 	return true
 
-func _capture_planning() -> Dictionary:
+func _capture_planning(affected_fields: Array = []) -> Dictionary:
 	var snapshot := {}
-	for key in PLANNING_KEYS:
-		snapshot[key] = world.get(key, []).duplicate(true) if world.get(key) is Array else world.get(key)
+	for key in (PLANNING_KEYS if affected_fields.is_empty() else affected_fields):
+		if not PLANNING_KEYS.has(key): continue
+		var value: Variant = world.get(key, [])
+		snapshot[key] = value.duplicate(true) if value is Array or value is Dictionary else value
 	return snapshot
 
 func _build_diff(before: Dictionary, after: Dictionary) -> Dictionary:
@@ -113,6 +115,7 @@ func _build_diff(before: Dictionary, after: Dictionary) -> Dictionary:
 func _apply_diff(diff: Dictionary, use_after: bool) -> void:
 	var fields: Dictionary = diff.get("fields", {})
 	for key in fields:
+		if not PLANNING_KEYS.has(key): continue
 		var change: Dictionary = fields[key]
 		if str(change.get("type", "")) != "identified_array":
 			var value: Variant = change.get("after") if use_after else change.get("before")
@@ -153,4 +156,4 @@ func _array_ids(items: Array) -> Array[String]:
 
 func _restore_planning(snapshot: Dictionary) -> void:
 	for key in PLANNING_KEYS:
-		if snapshot.has(key): world[key] = snapshot[key].duplicate(true) if snapshot[key] is Array else snapshot[key]
+		if snapshot.has(key): world[key] = snapshot[key].duplicate(true) if snapshot[key] is Array or snapshot[key] is Dictionary else snapshot[key]

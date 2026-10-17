@@ -28,10 +28,10 @@ def sha256(path: Path) -> str:
 
 
 def current_version() -> str:
-    source = (ROOT / "scripts" / "main.gd").read_text(encoding="utf-8")
+    source = (ROOT / "scripts" / "story_app.gd").read_text(encoding="utf-8")
     match = re.search(r'BUILD_VERSION\s*:?=\s*"([0-9]+\.[0-9]+\.[0-9]+)', source)
     if not match:
-        raise RuntimeError("Cannot read BUILD_VERSION from scripts/main.gd")
+        raise RuntimeError("Cannot read BUILD_VERSION from scripts/story_app.gd")
     return match.group(1)
 
 
@@ -128,6 +128,7 @@ def main() -> None:
             (staged_build_info, "build-info.txt"),
             (update_notes, f"update-notes-{args.version}.txt"),
             (ROOT / "docs" / "test-record.md", "test-record.txt"),
+            (ROOT / "docs" / "performance-0.18.0.json", "docs/performance-0.18.0.json"),
             (ROOT / "data" / "basemap" / "manifest.json", "basemap-manifest.json"),
             (ROOT / "data" / "basemap" / "README.txt", "basemap-README.txt"),
         ]
@@ -136,28 +137,9 @@ def main() -> None:
                 raise FileNotFoundError(f"Missing release content: {source}")
 
         previews = [
-            "docs/0.16-ui-preview-1600x980.png",
-            "docs/campaign-0.17.0-new-city-1366x768.png",
-            "docs/campaign-0.17.0-new-city-1600x980.png",
-            "docs/route-repair-0.13.5.jpg",
-            "docs/menu-preview-1366x768.png",
-            "docs/menu-preview-1600x980.png",
-            "docs/ui-preview-1366x768.png",
-            "docs/ui-preview-1600x980.png",
-            "docs/ui-preview-1920x1080.png",
-            "docs/tutorial-preview-1366x768.png",
-            "docs/tutorial-preview-1600x980.png",
-            "docs/redesign-menu-preview-1366x768.png",
-            "docs/redesign-menu-preview-1600x980.png",
-            "docs/redesign-ui-preview-1366x768.png",
-            "docs/redesign-ui-preview-1600x980.png",
-            "docs/redesign-ui-preview-1920x1080.png",
-            "docs/redesign-tutorial-preview-1600x980.png",
-            "docs/redesign-new-city-1600x980.png",
-            "docs/redesign-stats-preview-1600x980.png",
-            "docs/redesign-save-center-preview-1600x980.png",
-            "docs/redesign-save-center-automatic-1600x980.png",
-            "docs/redesign-save-center-automatic-1366x768-175.png",
+            "docs/story-0.18-menu-1600x980.png",
+            "docs/story-0.18-plan-revision-1600x980.png",
+            "docs/story-0.18-save-1366x768-175.png",
         ]
         with ZipFile(staged_zip, "w", ZIP_DEFLATED, compresslevel=7) as archive:
             for source, archive_name in distribution_files:
