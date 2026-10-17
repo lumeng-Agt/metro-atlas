@@ -1,6 +1,6 @@
 extends Control
 
-const BUILD_VERSION := "0.20.0 · 2026.10.18"
+const BUILD_VERSION := "0.20.1 · 2026.10.18"
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
 const Story = preload("res://scripts/story_session.gd")
@@ -429,6 +429,7 @@ func _right() -> void:
 		right.add_child(label("复现这一段",24,true));right.add_child(label("%s → %s" % [_ref_name(map_view.track_start_ref),_ref_name(map_view.track_end_ref)],18))
 		right.add_child(label("长度 %.0f 米\n%s" % [float(pending_track.get("lengthM",0)),str(pending_track.get("issue",""))],16))
 		right.add_child(label(str(pending_track.get("referenceLabel","手工示意连接")),15))
+		if not str(pending_track.get("advisory","")).is_empty():right.add_child(label(str(pending_track.advisory),15))
 		confirm_button=button("确认轨道段",_commit_track);actions.add_child(confirm_button)
 	elif tool=="station":
 		right.add_child(label("放置车站",24,true));right.add_child(label("点击地图中的历史目标站区，调整朝向后确认。尚未放置预览，不会修改正式路网。",18))
@@ -609,7 +610,7 @@ func _track_preview(finish:Dictionary) -> void:
 	if str(world.mode)=="campaign" and not advanced_edit and not reference.is_empty():
 		pending_track=ReferenceAlignment.preview(reference,start,finish,world,float(WorldData.city(str(world.cityId)).center[0]))
 	else:
-		pending_track=rules.track_preview(start,finish,map_view.track_control_latlng)
+		pending_track=rules.track_preview(start,finish,map_view.track_control_latlng,str(world.mode)=="campaign" and not advanced_edit)
 		pending_track["referenceLabel"]=ReferenceAlignment.label_for({})
 	map_view.draft_track_points=pending_track.get("points",[]);map_view.track_preview_conflict=str(pending_track.get("issue",""));map_view.requested_redraw()
 	if not map_view.track_end_ref.is_empty():_trigger_beat("preview_track",_track_historical_ids(map_view.track_start_ref,finish))
@@ -894,7 +895,7 @@ func _assist_candidate() -> Dictionary:
 			var start:={"nodeId":TrackNetwork.station_node_id(a,str(ends[0])),"stationId":a.id,"side":str(ends[0]),"latlng":WorldData.station_endpoint(a,str(ends[0])),"depthM":a.get("depthM",-15)}
 			var finish:={"nodeId":TrackNetwork.station_node_id(b,str(ends[1])),"stationId":b.id,"side":str(ends[1]),"latlng":WorldData.station_endpoint(b,str(ends[1])),"depthM":b.get("depthM",-15)}
 			var alignment:=ReferenceAlignment.between(str(a.get("historicalId","")),str(b.get("historicalId","")))
-			var preview:=ReferenceAlignment.preview(alignment,start,finish,candidate,float(WorldData.city(str(world.cityId)).center[0])) if not alignment.is_empty() else helper.track_preview(start,finish)
+			var preview:=ReferenceAlignment.preview(alignment,start,finish,candidate,float(WorldData.city(str(world.cityId)).center[0])) if not alignment.is_empty() else helper.track_preview(start,finish,[],true)
 			if not str(preview.get("issue","")).is_empty():return {"issue":"%s—%s：%s；请手工处理。" % [str(a.name),str(b.name),str(preview.issue)]}
 			var edge:Dictionary=preview.edge;edge.id="assist_edge_%d_%d" % [index,Time.get_ticks_usec()];candidate.trackEdges.append(edge);prior_arrival=str(finish.nodeId)
 	return {"state":candidate,"issue":""}

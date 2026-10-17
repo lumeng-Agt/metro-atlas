@@ -149,6 +149,7 @@ def main() -> None:
             (ROOT / "data" / "reference_alignments.json", "data/reference_alignments.json"),
         ])
         previews = [
+            "docs/ui-0.20.1-schematic.png",
             "docs/ui-0.20-menu.png",
             "docs/ui-0.20-cities.png",
             "docs/ui-0.20-workbench.png",

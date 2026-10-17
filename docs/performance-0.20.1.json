@@ -1,0 +1,12 @@
+{
+  "version": "0.20.1",
+  "date": "2026-10-18",
+  "status": "not_run",
+  "reason": "Focused historical schematic validation hotfix; no new performance claims.",
+  "previousReport": "performance-0.20.0.json",
+  "previousKnownFailures": [
+    "block-scale ordinary 60 FPS target",
+    "save main-thread duration over 100 ms"
+  ],
+  "fullAcceptance": false
+}

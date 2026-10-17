@@ -5,7 +5,7 @@ var world: Dictionary = {}
 var active_city_id := "shanghai"
 var map_view: MapView
 
-func track_preview(start: Dictionary, finish: Dictionary, control: Array = []) -> Dictionary:
+func track_preview(start: Dictionary, finish: Dictionary, control: Array = [], historical_context: bool = false) -> Dictionary:
 	var lat := float(WorldData.city(active_city_id).get("center",[31.23])[0])
 	var p0 := Geo.local_m(start.latlng,lat); var p3 := Geo.local_m(finish.latlng,lat)
 	if p0.distance_to(p3)<0.1:return {"issue":"起点与终点重合。"}
@@ -26,7 +26,9 @@ func track_preview(start: Dictionary, finish: Dictionary, control: Array = []) -
 	var points:=TrackNetwork.edge_points(edge,test,lat,32)
 	var distance:=TrackNetwork.edge_length_m(edge,test,lat)
 	var issue:=""
-	if absf(float(start.get("depthM",-15))-float(finish.get("depthM",-15)))/maxf(0.1,distance)>0.035:issue="坡度超过35‰游戏预设；请调整深度或延长区间。"
+	var schematic:=historical_context and _historical_schematic_pair(start,finish)
+	if schematic:edge["verticalProfile"]="unverified_historical"
+	if not schematic and absf(float(start.get("depthM",-15))-float(finish.get("depthM",-15)))/maxf(0.1,distance)>0.035:issue="坡度超过35‰游戏预设；请调整深度或延长区间。"
 	for i in range(points.size()-1):
 		for j in range(i+2,points.size()-1):
 			var intersection:=_segment_intersection_parameters(Geo.local_m(points[i],lat),Geo.local_m(points[i+1],lat),Geo.local_m(points[j],lat),Geo.local_m(points[j+1],lat))
@@ -34,8 +36,28 @@ func track_preview(start: Dictionary, finish: Dictionary, control: Array = []) -
 	var ignored:Array[String]=[]
 	for endpoint in [start,finish]:
 		if not str(endpoint.get("splitEdgeId","")).is_empty():ignored.append(str(endpoint.splitEdgeId))
-	if issue.is_empty():issue=_track_crossing_conflict(points,edge,float(start.get("depthM",-15)),float(finish.get("depthM",-15)),lat,ignored,test)
-	return {"edge":edge,"points":points,"lengthM":distance,"issue":issue,"revision":int(world.get("revision",0))}
+	if issue.is_empty() and not schematic:issue=_track_crossing_conflict(points,edge,float(start.get("depthM",-15)),float(finish.get("depthM",-15)),lat,ignored,test)
+	return {"edge":edge,"points":points,"lengthM":distance,"issue":issue,"revision":int(world.get("revision",0)),"advisory":"历史纵断面未核验；埋深仅作示意，图形交叉不会自动接轨。" if schematic else ""}
+
+
+func _historical_schematic_pair(start: Dictionary, finish: Dictionary) -> bool:
+	# Only explicitly requested historical station pairs may waive invented
+	# engineering constraints. Free nodes and workshop editing stay strict.
+	if str(world.get("mode",""))!="campaign":return false
+	var a:=WorldData.find_station(world,str(start.get("stationId","")))
+	var b:=WorldData.find_station(world,str(finish.get("stationId","")))
+	if a.is_empty() or b.is_empty():return false
+	var aid:=str(a.get("historicalId",""));var bid:=str(b.get("historicalId",""))
+	if aid.is_empty() or bid.is_empty() or aid==bid:return false
+	if not ReferenceAlignment.between(aid,bid).is_empty():return false
+	var groups:=StorySession.groups(world,true).duplicate()
+	for connection in StorySession.chapter(world).get("requiredConnections",[]):
+		groups.append({"stationIds":[connection.fromId,connection.toId]})
+	for group in groups:
+		var ids:Array=group.get("stationIds",[])
+		for index in range(ids.size()-1):
+			if (str(ids[index])==aid and str(ids[index+1])==bid) or (str(ids[index])==bid and str(ids[index+1])==aid):return true
+	return false
 
 func materialize(state: Dictionary, ref: Dictionary) -> String:
 	if not str(ref.get("nodeId","")).is_empty():return str(ref.nodeId)
@@ -167,6 +189,8 @@ func _split_track_edge(state: Dictionary, edge_id: String, split_t: float, ref_l
 		left["controlB"] = [(r0 - split_point).x, (r0 - split_point).y]
 		right["controlA"] = [(r1 - split_point).x, (r1 - split_point).y]
 		right["controlB"] = [(q2 - p3).x, (q2 - p3).y]
+	if edge.has("verticalProfile"):
+		left["verticalProfile"]=edge.verticalProfile;right["verticalProfile"]=edge.verticalProfile
 	state.trackEdges = state.get("trackEdges", []).filter(func(item: Dictionary): return str(item.get("id", "")) != edge_id)
 	state.trackEdges.append(left); state.trackEdges.append(right)
 	if not phase_id.is_empty():
@@ -501,7 +525,8 @@ func _physical_edge_geometry_issue(edge: Dictionary, check_state: Dictionary) ->
 	var depth_a := float(node_a.get("depthM", edge.get("depthM", -15.0)))
 	var depth_b := float(node_b.get("depthM", edge.get("depthM", -15.0)))
 	var grade := absf(depth_b - depth_a) / length
-	if grade > 0.035: return "相邻区间纵坡 %.1f‰ 超过 35‰ 游戏预设" % (grade * 1000.0)
+	var schematic:=str(check_state.get("mode",""))=="campaign" and str(edge.get("verticalProfile",""))=="unverified_historical"
+	if not schematic and grade > 0.035: return "相邻区间纵坡 %.1f‰ 超过 35‰ 游戏预设" % (grade * 1000.0)
 	var local_points: Array[Vector2] = []
 	for point in points: local_points.append(Geo.local_m(point, ref_lat))
 	if str(edge.get("geometry", "straight")) == "bezier":
@@ -533,6 +558,7 @@ func _physical_edge_geometry_issue(edge: Dictionary, check_state: Dictionary) ->
 			if first == 0 and second == local_points.size() - 2: continue
 			var params := _segment_intersection_parameters(local_points[first], local_points[first + 1], local_points[second], local_points[second + 1])
 			if params.x >= 0.0: return "轨道曲线自身交叉"
+	if schematic:return ""
 	var crossing := _track_crossing_conflict(points, edge, depth_a, depth_b, ref_lat, [str(edge.get("id", ""))], check_state)
 	return crossing
 

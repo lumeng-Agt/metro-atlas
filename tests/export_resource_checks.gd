@@ -6,7 +6,7 @@ func _initialize() -> void:call_deferred("_run")
 func _run() -> void:
 	if not FileAccess.file_exists("res://project.binary") or not SaveManager.using_explicit_data_dir():push_error("Exported --main-pack and isolated --data-dir required");quit(2);return
 	WorldData.load_assets()
-	if WorldData.SAVE_VERSION!=20 or str(ProjectSettings.get_setting("application/config/version",""))!="0.20.0":push_error("Wrong exported version");quit(1);return
+	if WorldData.SAVE_VERSION!=20 or str(ProjectSettings.get_setting("application/config/version",""))!="0.20.1":push_error("Wrong exported version");quit(1);return
 	ReferenceAlignment.load_data()
 	if ReferenceAlignment._data.get("alignments",[]).size()!=81:push_error("Missing exported reference corridors");quit(1);return
 	if WorldData.cities().size()!=5 or not CampaignSystem.validate_catalog(WorldData.cities()).is_empty():push_error("Missing exported city/story data");quit(1);return

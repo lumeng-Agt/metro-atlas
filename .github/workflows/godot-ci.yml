@@ -20,7 +20,7 @@ jobs:
       - name: Story, construction, saves and offline maps
         shell: pwsh
         run: |
-          $tests = @('story_checks.gd', 'story_019_checks.gd', 'story_020_checks.gd', 'story_save_checks.gd', 'story_geometry_checks.gd', 'story_layout_checks.gd', 'basemap_async_smoke.gd', 'tile_cache_smoke.gd')
+          $tests = @('story_checks.gd', 'story_019_checks.gd', 'story_020_checks.gd', 'story_0201_checks.gd', 'story_save_checks.gd', 'story_geometry_checks.gd', 'story_layout_checks.gd', 'basemap_async_smoke.gd', 'tile_cache_smoke.gd')
           foreach ($test in $tests) {
             $data = Join-Path $env:RUNNER_TEMP ("metro-atlas-" + [guid]::NewGuid().ToString("N"))
             godot --headless --path . --script "res://tests/$test" -- "--data-dir=$data"
