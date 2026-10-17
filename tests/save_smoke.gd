@@ -75,8 +75,9 @@ func _run() -> void:
 	var manual_overwritten := SaveManager.overwrite_manual_snapshot(str(manual_result.get("path", "")), manual_world, "站点方案草稿")
 	_assert(bool(manual_overwritten.get("ok", false)) and int(SaveManager.load_manual_snapshot(str(manual_result.get("path", ""))).world.simulation.minute) == 499, "确认覆盖接口替换存档内容且保留可载入性")
 	_assert(not SaveManager.load_manual_snapshot(save_path).get("ok", false), "手动存档读取拒绝存档目录之外的路径")
-	var manual_delete := SaveManager.delete_manual_snapshot(str(manual_result.get("path", "")))
+	var manual_delete := SaveManager.delete_manual_snapshot(str(manual_result.get("path", "")).get_file())
 	_assert(bool(manual_delete.get("ok", false)) and not FileAccess.file_exists(str(manual_result.get("path", ""))), "可以删除单份手动存档")
+	_assert(not bool(SaveManager.delete_manual_snapshot(save_path).get("ok", true)), "命名存档删除接口拒绝任意路径，只接受存档编号")
 	var manual_bad_path := manual_directory.path_join("corrupt-manual-smoke.json")
 	var manual_bad_file := FileAccess.open(manual_bad_path, FileAccess.WRITE)
 	if manual_bad_file != null:

@@ -101,13 +101,13 @@ func _run() -> void:
 	for child in main.get_children():
 		if child is AcceptDialog and child.title == "存档中心": save_center = child
 	var save_tabs: TabContainer = save_center.find_child("SaveCenterTabs", true, false) as TabContainer if save_center != null else null
-	_assert(save_tabs != null and save_tabs.get_child_count() == 2 and _find_button(save_center, "新建命名存档") != null, "统一存档中心提供自动与命名存档分页及新建入口")
+	_assert(save_tabs != null and save_tabs.get_child_count() == 2 and _find_button(save_center, "当前进度另存为…") != null and _find_button(save_center, "删除自动进度") != null, "统一存档中心提供自动进度删除及当前进度另存入口")
 	if save_center != null: save_center.queue_free()
 	await process_frame
 	main._prompt_manual_save()
 	var manual_save_dialog: ConfirmationDialog
 	for child in main.get_children():
-		if child is ConfirmationDialog and child.title == "新建手动存档": manual_save_dialog = child
+		if child is ConfirmationDialog and child.title == "当前进度另存为": manual_save_dialog = child
 	var manual_name_edit: LineEdit = _find_line_edit(manual_save_dialog) if manual_save_dialog != null else null
 	_assert(manual_name_edit != null, "手动存档窗口提供可编辑名称")
 	var ui_manual_path := ""
@@ -137,7 +137,7 @@ func _run() -> void:
 	if manual_load_confirmation != null:
 		manual_load_confirmation.canceled.emit()
 		manual_load_confirmation.queue_free()
-	if not ui_manual_path.is_empty(): SaveManager.delete_manual_snapshot(ui_manual_path)
+	if not ui_manual_path.is_empty(): SaveManager.delete_manual_snapshot(ui_manual_path.get_file())
 	main.left_tab = "tasks"
 	main.world["challengeMode"] = "neighborhood"
 	main._refresh_left_panel()

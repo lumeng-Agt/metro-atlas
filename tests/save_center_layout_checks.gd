@@ -39,7 +39,7 @@ func _run() -> void:
 				_check(dialog != null, context + " 窗口存在")
 				if dialog == null: continue
 				_check(Rect2(Vector2.ZERO, Vector2(window_size)).encloses(Rect2(Vector2(dialog.position), Vector2(dialog.size))), context + " 窗口完整位于视口内，实际 %s %s" % [dialog.position, dialog.size])
-				for action_name in ["立即保存", "新建命名存档", "导出 JSON"]:
+				for action_name in ["立即保存", "当前进度另存为…", "导出 JSON"]:
 					var action := _find_button(dialog, action_name)
 					_check(action != null and action.disabled, context + " 未进入城市时禁用 " + action_name)
 				var actions := dialog.find_child("SaveCenterActions", true, false) as Control
@@ -60,13 +60,17 @@ func _run() -> void:
 						page.scroll_vertical = 0
 						await process_frame
 					for row in rows.get_children():
-						if not row is HBoxContainer: continue
+						if not row is BoxContainer or row.get_child_count() < 2: continue
 						var label: Label = row.get_child(0)
-						var button: Button = row.get_child(1)
+						var action_area := row.get_child(1) as Control
+						var button: Button = _find_button(row, "载入") if tab == "manual" else _find_button(row, "删除自动进度")
+						if button == null: button = _find_button(row, "删除此历史")
+						if button == null: continue
 						_check(row.size.x >= page.size.x - 32.0 * scale, context + " 存档行填满列表宽度")
 						_check(label.size.x >= 120.0 * scale, context + " 说明获得可读宽度，实际 " + str(label.size))
-						_check(button.size.y <= 64.0 * scale, context + " 载入按钮不会被说明拉成长条，实际 " + str(button.size))
-						_check(label.get_global_rect().end.x <= button.get_global_rect().position.x + 1.0, context + " 说明与载入按钮不重叠")
+						_check(button.size.y <= 64.0 * scale, context + " 操作按钮不会被说明拉成长条，实际 " + str(button.size))
+						_check(label.get_global_rect().end.y <= action_area.get_global_rect().position.y + 1.0, context + " 存档说明位于操作区上方")
+						_check(action_area.get_global_rect().end.x <= row.get_global_rect().end.x + 1.0, context + " 操作区不会超出存档行")
 				if OS.get_environment("METRO_SAVE_LAYOUT_CAPTURE") == "1" and ((window_size == Vector2i(1600, 980) and scale == 1.0) or (window_size == Vector2i(1366, 768) and scale == 1.75)):
 					await create_timer(0.22).timeout
 					await RenderingServer.frame_post_draw
@@ -98,12 +102,12 @@ func _run() -> void:
 	var naming_source: AcceptDialog
 	for child in main.get_children():
 		if child is AcceptDialog and child.title == "存档中心": naming_source = child
-	var name_button := _find_button(naming_source, "新建命名存档") if naming_source != null else null
+	var name_button := _find_button(naming_source, "当前进度另存为…") if naming_source != null else null
 	if name_button != null: name_button.pressed.emit()
 	_check(naming_source != null and not naming_source.visible, "打开命名窗口前解除存档中心的模态占用")
 	var naming_dialog: ConfirmationDialog
 	for child in main.get_children():
-		if child is ConfirmationDialog and child.title == "新建手动存档": naming_dialog = child
+		if child is ConfirmationDialog and child.title == "当前进度另存为": naming_dialog = child
 	_check(naming_dialog != null and naming_dialog.visible, "进入城市后可从存档中心打开命名窗口")
 	if naming_dialog != null:
 		naming_dialog.hide()
@@ -111,7 +115,7 @@ func _run() -> void:
 	await process_frame
 	main.queue_free()
 	await process_frame
-	if bool(manual.get("ok", false)): SaveManager.delete_manual_snapshot(str(manual.get("path", "")))
+	if bool(manual.get("ok", false)): SaveManager.delete_manual_snapshot(str(manual.get("path", "")).get_file())
 	if failures.is_empty():
 		print("PASS: %d save-center layout checks" % checks)
 		quit(0)

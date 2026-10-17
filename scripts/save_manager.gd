@@ -154,13 +154,16 @@ static func list_auto_history(city_id: String, mode: String) -> Array[Dictionary
 	while not filename.is_empty():
 		if not dir.current_is_dir() and filename.to_lower().ends_with(".json"):
 			var path := auto_history_dir(city_id, mode).path_join(filename)
+			var parsed: Variant = null
 			var file := FileAccess.open(path, FileAccess.READ)
 			if file != null:
-				var parsed: Variant = _parse_json_text(file.get_as_text())
+				parsed = _parse_json_text(file.get_as_text())
 				file.close()
 				if parsed is Dictionary:
 					var prepared := prepare_loaded_world(parsed)
-					entries.append({"path": path, "valid": bool(prepared.get("ok", false)), "error": str(prepared.get("error", "")), "savedAt": Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(path), true), "modified": FileAccess.get_modified_time(path), "elapsedMinutes": int(parsed.get("simulation", {}).get("elapsedMinutes", 0)), "stationCount": parsed.get("stations", []).size(), "routeCount": parsed.get("routes", []).size()})
+					entries.append({"id": filename, "path": path, "valid": bool(prepared.get("ok", false)), "error": str(prepared.get("error", "")), "savedAt": Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(path), true), "modified": FileAccess.get_modified_time(path), "elapsedMinutes": int(parsed.get("simulation", {}).get("elapsedMinutes", 0)), "stationCount": parsed.get("stations", []).size(), "routeCount": parsed.get("routes", []).size()})
+				else:
+					entries.append({"id": filename, "path": path, "valid": false, "error": "自动存档历史内容损坏，但可以删除这份文件。", "savedAt": Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(path), true), "modified": FileAccess.get_modified_time(path), "elapsedMinutes": 0, "stationCount": 0, "routeCount": 0})
 		filename = dir.get_next()
 	dir.list_dir_end()
 	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
@@ -196,6 +199,122 @@ static func auto_history_bytes(city_id: String = "", mode: String = "") -> int:
 	for path in paths:
 		if FileAccess.file_exists(path): total += FileAccess.get_file_as_bytes(path).size()
 	return total
+
+static func delete_auto_history(city_id: String, mode: String, history_id: String) -> Dictionary:
+	if not _valid_save_slot(city_id, mode): return {"ok": false, "error": "城市或开局标识无效。"}
+	if history_id.is_empty() or history_id.get_file() != history_id or not history_id.to_lower().ends_with(".json"):
+		return {"ok": false, "error": "自动存档历史标识无效。"}
+	var expected_dir := ProjectSettings.globalize_path(auto_history_dir(city_id, mode)).simplify_path().replace("\\", "/").to_lower()
+	var path := auto_history_dir(city_id, mode).path_join(history_id)
+	var absolute_path := ProjectSettings.globalize_path(path).simplify_path()
+	if absolute_path.get_base_dir().replace("\\", "/").to_lower() != expected_dir:
+		return {"ok": false, "error": "自动存档历史位置无效。"}
+	if not FileAccess.file_exists(absolute_path): return {"ok": false, "error": "这份自动存档历史已经不存在。"}
+	var remove_error := DirAccess.remove_absolute(absolute_path)
+	if remove_error != OK: return {"ok": false, "error": "无法删除这份自动存档历史。"}
+	return {"ok": true}
+
+static func delete_auto_slot(city_id: String, mode: String, current_city_id: String = "", current_mode: String = "") -> Dictionary:
+	if not _valid_save_slot(city_id, mode): return {"ok": false, "error": "城市或开局标识无效。"}
+	if not current_city_id.is_empty() and city_id == current_city_id and mode == current_mode:
+		return {"ok": false, "status": "active_slot", "error": "这座城市正在使用中；请先返回主菜单，再删除自动进度。"}
+	var paths: Array[String] = []
+	var slot_path := save_path(city_id, mode)
+	for suffix in ["", ".bak", ".tmp"]:
+		var candidate: String = slot_path + str(suffix)
+		if FileAccess.file_exists(candidate): paths.append(candidate)
+	var save_dir_absolute := ProjectSettings.globalize_path(save_dir())
+	var save_dir_handle := DirAccess.open(save_dir_absolute)
+	var corrupt_prefix := "%s_%s.json.corrupt_" % [city_id, mode]
+	if save_dir_handle != null:
+		save_dir_handle.list_dir_begin()
+		var save_filename := save_dir_handle.get_next()
+		while not save_filename.is_empty():
+			if not save_dir_handle.current_is_dir() and save_filename.begins_with(corrupt_prefix):
+				var corrupt_path := save_dir().path_join(save_filename)
+				if _is_within_root(corrupt_path) and FileAccess.file_exists(corrupt_path): paths.append(corrupt_path)
+			save_filename = save_dir_handle.get_next()
+		save_dir_handle.list_dir_end()
+	var history_dir_path := auto_history_dir(city_id, mode)
+	var absolute_history_dir := ProjectSettings.globalize_path(history_dir_path)
+	var history_dir := DirAccess.open(absolute_history_dir)
+	if history_dir != null:
+		history_dir.list_dir_begin()
+		var filename := history_dir.get_next()
+		while not filename.is_empty():
+			if not history_dir.current_is_dir():
+				var history_path := history_dir_path.path_join(filename)
+				if _is_within_root(history_path) and FileAccess.file_exists(history_path): paths.append(history_path)
+			filename = history_dir.get_next()
+		history_dir.list_dir_end()
+	for index_path in [last_game_path(), last_game_path() + ".bak", last_game_path() + ".tmp"]:
+		if _index_matches_slot(index_path, city_id, mode) and FileAccess.file_exists(index_path): paths.append(index_path)
+	if paths.is_empty(): return {"ok": false, "status": "not_found", "error": "没有找到这个城市开局的自动进度或历史记录。"}
+	return _delete_files_transaction(paths, "自动存档")
+
+static func _valid_save_slot(city_id: String, mode: String) -> bool:
+	if mode not in ["blank", "expand"]: return false
+	for city in WorldData.cities():
+		if str(city.get("id", "")) == city_id: return true
+	return false
+
+static func _index_matches_slot(path: String, city_id: String, mode: String) -> bool:
+	if not FileAccess.file_exists(path): return false
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null: return false
+	var parsed: Variant = _parse_json_text(file.get_as_text())
+	file.close()
+	return parsed is Dictionary and str(parsed.get("cityId", "")) == city_id and str(parsed.get("mode", "")) == mode
+
+static func _is_within_root(path: String) -> bool:
+	var root := ProjectSettings.globalize_path(root_path()).simplify_path().replace("\\", "/").to_lower().trim_suffix("/")
+	var absolute := ProjectSettings.globalize_path(path).simplify_path().replace("\\", "/").to_lower()
+	return absolute.begins_with(root + "/")
+
+static func _delete_files_transaction(paths: Array[String], label: String) -> Dictionary:
+	var transaction_path := root_path().path_join("delete_pending_%d" % Time.get_ticks_usec())
+	var transaction_absolute := ProjectSettings.globalize_path(transaction_path)
+	var mkdir_error := DirAccess.make_dir_recursive_absolute(transaction_absolute)
+	if mkdir_error != OK and not DirAccess.dir_exists_absolute(transaction_absolute):
+		return {"ok": false, "error": "无法安全准备删除操作；存档仍保留。"}
+	var staged: Array[Dictionary] = []
+	for index in range(paths.size()):
+		var source_path := paths[index]
+		if not _is_within_root(source_path):
+			_rollback_staged_files(staged)
+			DirAccess.remove_absolute(transaction_absolute)
+			return {"ok": false, "error": "删除目标超出本地存档目录；文件未删除。"}
+		var absolute_source := ProjectSettings.globalize_path(source_path).simplify_path()
+		if not FileAccess.file_exists(absolute_source): continue
+		var staged_path := transaction_path.path_join("%03d_%s" % [index, absolute_source.get_file()])
+		var move_error := DirAccess.rename_absolute(absolute_source, ProjectSettings.globalize_path(staged_path))
+		if move_error != OK:
+			_rollback_staged_files(staged)
+			DirAccess.remove_absolute(transaction_absolute)
+			return {"ok": false, "error": "无法暂存「%s」；已保留原存档。" % absolute_source.get_file()}
+		staged.append({"original": absolute_source, "staged": ProjectSettings.globalize_path(staged_path)})
+	var deleted_count := 0
+	var deleted_names: Array[String] = []
+	var failed_names: Array[String] = []
+	for item in staged:
+		var remove_error := DirAccess.remove_absolute(str(item.get("staged", "")))
+		if remove_error == OK:
+			deleted_count += 1
+			deleted_names.append(str(item.get("original", "")).get_file())
+		else:
+			failed_names.append(str(item.get("original", "")).get_file())
+			var restore_error := DirAccess.rename_absolute(str(item.get("staged", "")), str(item.get("original", "")))
+			if restore_error != OK: failed_names.append("恢复失败：" + str(item.get("original", "")).get_file())
+	if failed_names.is_empty():
+		DirAccess.remove_absolute(transaction_absolute)
+		return {"ok": true, "deletedCount": deleted_count}
+	return {"ok": false, "partial": deleted_count > 0, "deletedCount": deleted_count, "deleted": deleted_names, "failed": failed_names, "error": "%s删除未完成；已删除：%s；未完成：%s。" % [label, "、".join(deleted_names) if not deleted_names.is_empty() else "无", "、".join(failed_names)]}
+
+static func _rollback_staged_files(staged: Array[Dictionary]) -> void:
+	for index in range(staged.size() - 1, -1, -1):
+		var item: Dictionary = staged[index]
+		var staged_path := str(item.get("staged", ""))
+		if FileAccess.file_exists(staged_path): DirAccess.rename_absolute(staged_path, str(item.get("original", "")))
 
 static func _parse_json_text(source_text: String) -> Variant:
 	var parser := JSON.new()
@@ -918,6 +1037,39 @@ static func save_exists(city_id: String, mode: String) -> bool:
 	var path := save_path(city_id, mode)
 	return FileAccess.file_exists(path) or FileAccess.file_exists(path + ".bak")
 
+static func auto_slot_has_data(city_id: String, mode: String) -> bool:
+	if not _valid_save_slot(city_id, mode): return false
+	if save_exists(city_id, mode) or _index_matches_slot(last_game_path(), city_id, mode) or _index_matches_slot(last_game_path() + ".bak", city_id, mode): return true
+	var history_dir := DirAccess.open(ProjectSettings.globalize_path(auto_history_dir(city_id, mode)))
+	if history_dir == null: return false
+	history_dir.list_dir_begin()
+	var filename := history_dir.get_next()
+	while not filename.is_empty():
+		if not history_dir.current_is_dir():
+			history_dir.list_dir_end()
+			return true
+		filename = history_dir.get_next()
+	history_dir.list_dir_end()
+	return false
+
+static func auto_save_summary(city_id: String, mode: String) -> Dictionary:
+	if not _valid_save_slot(city_id, mode): return {}
+	var candidate_paths: Array[String] = [save_path(city_id, mode), save_path(city_id, mode) + ".bak"]
+	for index_path in [last_game_path(), last_game_path() + ".bak"]:
+		if _index_matches_slot(index_path, city_id, mode): candidate_paths.append(index_path)
+	for path in candidate_paths:
+		if not FileAccess.file_exists(path): continue
+		var file := FileAccess.open(path, FileAccess.READ)
+		if file == null: continue
+		var parsed: Variant = _parse_json_text(file.get_as_text())
+		file.close()
+		if not parsed is Dictionary: continue
+		if _validate_world(parsed) != "": continue
+		var simulation: Variant = parsed.get("simulation", {})
+		if not simulation is Dictionary: continue
+		return {"savedAt": Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(path), true), "elapsedMinutes": int(simulation.get("elapsedMinutes", simulation.get("minute", 420))), "stationCount": parsed.get("stations", []).size() if parsed.get("stations", []) is Array else 0, "routeCount": parsed.get("routes", []).size() if parsed.get("routes", []) is Array else 0}
+	return {}
+
 static func manual_saves_dir() -> String:
 	return root_path().path_join("manual_saves")
 
@@ -1040,6 +1192,7 @@ static func list_manual_snapshots() -> Array[Dictionary]:
 					valid = bool(checked.get("ok", false))
 					error_text = "" if valid else str(checked.get("error", error_text))
 				entries.append({
+					"id": filename,
 					"path": path,
 					"name": str(metadata.get("name", filename.get_basename())),
 					"savedAt": str(metadata.get("savedAt", "")),
@@ -1088,10 +1241,12 @@ static func load_manual_snapshot(path: String) -> Dictionary:
 		prepared["manualSavePath"] = normalized_path
 	return prepared
 
-static func delete_manual_snapshot(path: String) -> Dictionary:
+static func delete_manual_snapshot(snapshot_id: String) -> Dictionary:
 	var expected_dir := ProjectSettings.globalize_path(manual_saves_dir()).simplify_path()
-	var normalized_path := ProjectSettings.globalize_path(path).simplify_path()
-	if normalized_path.get_base_dir() != expected_dir:
+	if snapshot_id.is_empty() or snapshot_id.get_file() != snapshot_id or not snapshot_id.to_lower().ends_with(".json"):
+		return {"ok": false, "error": "手动存档位置无效。"}
+	var normalized_path := ProjectSettings.globalize_path(manual_saves_dir().path_join(snapshot_id)).simplify_path()
+	if normalized_path.get_base_dir().replace("\\", "/").to_lower() != expected_dir.replace("\\", "/").to_lower():
 		return {"ok": false, "error": "手动存档位置无效。"}
 	if not FileAccess.file_exists(normalized_path): return {"ok": false, "error": "手动存档已经不存在。"}
 	var remove_error := DirAccess.remove_absolute(normalized_path)

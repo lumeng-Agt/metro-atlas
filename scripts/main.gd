@@ -14,7 +14,7 @@ const CityProgressionScript = preload("res://scripts/city_progression.gd")
 const AudioFeedbackScript = preload("res://scripts/audio_feedback.gd")
 const TutorialSpotlightScript = preload("res://scripts/tutorial_spotlight.gd")
 const UiThemeScript = preload("res://scripts/ui_theme.gd")
-const BUILD_VERSION := "0.16.0 · 2026.10.17"
+const BUILD_VERSION := "0.16.1 · 2026.10.17"
 const APP_BG := UiThemeScript.CANVAS
 const PANEL := UiThemeScript.SURFACE
 const PANEL_LIGHT := UiThemeScript.SURFACE_ALT
@@ -70,6 +70,7 @@ var feedback_enabled := true
 var feedback_volume := 0.35
 var menu_layer: Control
 var menu_city_picker: OptionButton
+var menu_onboarding_toggle: CheckButton
 var menu_continue_button: Button
 var draft_route_id := ""
 var line_draft_stops: Array[String] = []
@@ -428,6 +429,7 @@ func _show_new_city_menu() -> void:
 
 func _render_planning_menu(new_city: bool) -> void:
 	map_view.visible = false
+	menu_onboarding_toggle = null
 	if is_instance_valid(menu_layer): menu_layer.queue_free()
 	menu_layer = Control.new()
 	menu_layer.name = "MainMenu"
@@ -513,9 +515,17 @@ func _render_planning_menu(new_city: bool) -> void:
 			if str(WorldData.cities()[index].get("id", "")) == active_city_id: menu_city_picker.select(index); break
 		menu_city_picker.item_selected.connect(func(index: int): active_city_id = str(WorldData.cities()[index].get("id", "shanghai")))
 		actions.add_child(menu_city_picker)
+		if new_city:
+			menu_onboarding_toggle = CheckButton.new()
+			menu_onboarding_toggle.name = "NewGameOnboardingToggle"
+			menu_onboarding_toggle.text = "开启逐步新手教程（仅从零规划）"
+			menu_onboarding_toggle.button_pressed = true
+			menu_onboarding_toggle.custom_minimum_size.y = 44.0 * _ui_scale
+			_set_control_base_font(menu_onboarding_toggle, 15)
+			actions.add_child(menu_onboarding_toggle)
 		var blank := _button("从零规划", TEAL, PANEL_LIGHT, 19)
 		blank.custom_minimum_size.y = 48
-		blank.pressed.connect(func(): _start_new_game(active_city_id, "blank"))
+		blank.pressed.connect(func(): _start_new_game(active_city_id, "blank", "free", is_instance_valid(menu_onboarding_toggle) and menu_onboarding_toggle.button_pressed))
 		actions.add_child(blank)
 		var challenge := _button("街区挑战", Color("#a77921"), PANEL_LIGHT, 17)
 		challenge.custom_minimum_size.y = 44
@@ -524,7 +534,7 @@ func _render_planning_menu(new_city: bool) -> void:
 		actions.add_child(challenge)
 		var expand := _button("扩建现实路网", Color("#365F8C"), PANEL_LIGHT, 17)
 		expand.custom_minimum_size.y = 44
-		expand.pressed.connect(func(): _start_new_game(active_city_id, "expand"))
+		expand.pressed.connect(func(): _start_new_game(active_city_id, "expand", "free", false))
 		actions.add_child(expand)
 		var back := _button("返回主菜单", TEXT, PANEL_LIGHT, 15)
 		back.pressed.connect(_show_main_menu)
@@ -687,7 +697,7 @@ func _show_settings() -> void:
 	menu_layer.add_child(dialog)
 	dialog.popup_centered(Vector2i(mini(roundi(520.0 * _ui_scale), int(viewport_size.x - 32.0)), mini(roundi(360.0 * _ui_scale), int(viewport_size.y - 32.0))))
 
-func _start_new_game(city_id: String, mode: String, challenge_mode: String = "free") -> void:
+func _start_new_game(city_id: String, mode: String, challenge_mode: String = "free", onboarding_enabled: bool = true) -> void:
 	if SaveManager.save_exists(city_id, mode):
 		var confirm := _new_confirmation_dialog()
 		confirm.title = "替换本地进度？"
@@ -695,12 +705,12 @@ func _start_new_game(city_id: String, mode: String, challenge_mode: String = "fr
 		add_child(confirm)
 		confirm.confirmed.connect(func():
 			confirm.queue_free()
-			_load_world(_prepared_new_world(city_id, mode, challenge_mode))
+			_load_world(_prepared_new_world(city_id, mode, challenge_mode, onboarding_enabled))
 		)
 		confirm.canceled.connect(func(): confirm.queue_free())
 		confirm.popup_centered()
 		return
-	_load_world(_prepared_new_world(city_id, mode, challenge_mode))
+	_load_world(_prepared_new_world(city_id, mode, challenge_mode, onboarding_enabled))
 
 func _start_neighborhood_challenge(city_id: String) -> void:
 	# Challenge mode is a goal layer on the same blank-city save, never a duplicate world.
@@ -714,7 +724,7 @@ func _start_neighborhood_challenge(city_id: String) -> void:
 		else:
 			_enter_neighborhood_challenge(loaded)
 		return
-	_start_new_game(city_id, "blank", "neighborhood")
+	_start_new_game(city_id, "blank", "neighborhood", false)
 
 func _enter_neighborhood_challenge(loaded: Dictionary) -> void:
 	var challenge_world: Dictionary = loaded.get("world", {})
@@ -725,12 +735,12 @@ func _enter_neighborhood_challenge(loaded: Dictionary) -> void:
 	challenge_world["challengeState"] = challenge_state
 	_load_world(challenge_world)
 
-func _prepared_new_world(city_id: String, mode: String, challenge_mode: String = "free") -> Dictionary:
+func _prepared_new_world(city_id: String, mode: String, challenge_mode: String = "free", onboarding_enabled: bool = true) -> Dictionary:
 	var state := WorldData.new_world(city_id, mode)
 	state["challengeMode"] = challenge_mode
 	if challenge_mode == "neighborhood":
 		state["challengeState"] = {"step": 0, "startedAt": int(state.get("simulation", {}).get("elapsedMinutes", 420)), "completedAt": -1}
-	state["onboarding"] = OnboardingScript.create_state(city_id, mode, UiPreferencesScript.load_onboarding_completed())
+	state["onboarding"] = OnboardingScript.create_state(city_id, mode, onboarding_enabled)
 	# The previous tutorial is retained only for old saves; new games use the location-based guide.
 	state["tutorialDone"] = true
 	state["tutorialStep"] = 0
@@ -798,9 +808,10 @@ func _load_world(state: Dictionary) -> void:
 	if not world.has("onboarding"):
 		# Older saves may predate the click-by-click tutorial. Honor the player's
 		# completion preference instead of silently marking that tutorial done.
-		var tutorial_seen := UiPreferencesScript.load_onboarding_completed()
-		world["onboarding"] = OnboardingScript.create_state(str(world.get("cityId", "shanghai")), str(world.get("mode", "blank")), tutorial_seen)
-		if not tutorial_seen and str(world.get("mode", "blank")) == "blank":
+		# Legacy saves have no click-by-click state; derive a one-time migration from their own flag.
+		var legacy_tutorial_enabled := not bool(world.get("tutorialDone", true))
+		world["onboarding"] = OnboardingScript.create_state(str(world.get("cityId", "shanghai")), str(world.get("mode", "blank")), legacy_tutorial_enabled)
+		if not legacy_tutorial_enabled and str(world.get("mode", "blank")) == "blank":
 			world["tutorialDone"] = true # Disable only the retired tutorial flow.
 	# A prior build could persist an empty, inactive tutorial state while marking
 	# the retired tutorial as done. Recover that exact unfinished state on load.
@@ -812,7 +823,7 @@ func _load_world(state: Dictionary) -> void:
 		and not bool(onboarding_state.get("active", false)) \
 		and not bool(onboarding_state.get("completed", false)) \
 		and not bool(onboarding_state.get("skipped", false)) \
-		and not UiPreferencesScript.load_onboarding_completed():
+		and bool(onboarding_state.get("enabled", true)):
 		onboarding_state["active"] = true
 		onboarding_state["viewingCity"] = false
 		world["onboarding"] = onboarding_state
@@ -4424,6 +4435,11 @@ func _update_tutorial_spotlight() -> void:
 		if not is_instance_valid(target) or not target.is_visible_in_tree() or target.size.x <= 0.0 or target.size.y <= 0.0:
 			tutorial_spotlight.clear_focus()
 			return
+		# Confirmation controls live in the construction details scroll area. Keep
+		# the actual button on screen when a tutorial step points to it; otherwise
+		# its off-screen rectangle can line up with the pinned delete action below.
+		if focus_changed and key in ["confirm_station", "confirm_track", "confirm_line"]:
+			call_deferred("_scroll_tutorial_confirmation_into_view", focus_signature)
 		var target_transform := target.get_global_transform_with_canvas()
 		var overlay_inverse := tutorial_spotlight.get_global_transform_with_canvas().affine_inverse()
 		var p0 := overlay_inverse * target_transform * Vector2.ZERO
@@ -4472,6 +4488,14 @@ func _update_tutorial_spotlight() -> void:
 		rect = Rect2(point - Vector2.ONE * radius, Vector2.ONE * radius * 2.0)
 	_tutorial_focus_signature = focus_signature
 	tutorial_spotlight.set_focus(rect, prompt, shape, _bold_font, roundi(18.0 * _ui_scale))
+
+func _scroll_tutorial_confirmation_into_view(expected_signature: String) -> void:
+	await get_tree().process_frame
+	if _tutorial_focus_signature != expected_signature or not is_instance_valid(_right_panel): return
+	var details_scroll := _right_panel.find_child("DetailsScroll", true, false) as ScrollContainer
+	if not is_instance_valid(details_scroll): return
+	var vertical_bar := details_scroll.get_v_scroll_bar()
+	if is_instance_valid(vertical_bar): details_scroll.scroll_vertical = roundi(vertical_bar.max_value)
 
 func _rect_from_corners(first: Vector2, second: Vector2) -> Rect2:
 	return Rect2(
@@ -4645,7 +4669,7 @@ func _restart_onboarding() -> void:
 	if str(world.get("mode", "blank")) != "blank":
 		_locate_existing_network()
 		return
-	var state := OnboardingScript.create_state(active_city_id, str(world.get("mode", "blank")), false)
+	var state := OnboardingScript.create_state(active_city_id, str(world.get("mode", "blank")), true)
 	state.active = true
 	world["onboarding"] = state
 	world.simulation.paused = true
@@ -5316,32 +5340,60 @@ func _show_save_center(initial_tab: String = "automatic") -> void:
 		for mode in ["blank", "expand"]:
 			var city_id := str(city.get("id", ""))
 			var has_save := SaveManager.save_exists(city_id, mode)
-			var row := HBoxContainer.new()
+			var has_auto_data := SaveManager.auto_slot_has_data(city_id, mode)
+			var row := VBoxContainer.new()
 			row.name = "SaveRow_%s_%s" % [city_id, mode]
 			row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			var save_description := _label("%s　%s" % [_mode_name(mode), "已保存" if has_save else "尚无存档"], 15, MUTED)
+			var slot_summary: Dictionary = SaveManager.auto_save_summary(city_id, mode) if has_auto_data else {}
+			var slot_state := "已保存" if has_save else ("仅有历史或继续记录" if has_auto_data else "尚无存档")
+			var slot_text := "%s　%s" % [_mode_name(mode), slot_state]
+			if not slot_summary.is_empty():
+				var old_minute := int(slot_summary.get("elapsedMinutes", 0))
+				slot_text += "\n%s · 第%d天 %02d:%02d · %d站 / %d线" % [str(slot_summary.get("savedAt", "" )).replace("T", " "), old_minute / 1440 + 1, posmod(old_minute, 1440) / 60, posmod(old_minute, 60), int(slot_summary.get("stationCount", 0)), int(slot_summary.get("routeCount", 0))]
+			var save_description := _label(slot_text, 14, MUTED)
 			save_description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			row.add_child(save_description)
+			var row_actions := HFlowContainer.new()
+			row_actions.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			row_actions.add_theme_constant_override("h_separation", 8)
 			var load_button := _button("载入", TEXT, PANEL_LIGHT, 14)
 			load_button.custom_minimum_size = Vector2(88.0, 44.0) * minf(_ui_scale, 1.25)
 			load_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 			load_button.disabled = not has_save
 			load_button.pressed.connect(_load_automatic_snapshot.bind(city_id, mode, dialog))
-			row.add_child(load_button)
+			row_actions.add_child(load_button)
+			var delete_slot := _button("删除自动进度", Color("#A33D32"), PANEL_LIGHT, 13)
+			delete_slot.name = "DeleteAutoSlot_%s_%s" % [city_id, mode]
+			delete_slot.custom_minimum_size = Vector2(142.0, 44.0) * minf(_ui_scale, 1.25)
+			var is_active_slot: bool = not world.is_empty() and str(world.get("cityId", "")) == city_id and str(world.get("mode", "")) == mode
+			delete_slot.disabled = not has_auto_data or is_active_slot
+			delete_slot.tooltip_text = "请先返回主菜单，再删除当前正在使用的自动进度。" if is_active_slot else "删除主进度、恢复备份与自动历史"
+			delete_slot.pressed.connect(_confirm_auto_slot_delete.bind(city_id, mode, dialog))
+			row_actions.add_child(delete_slot)
+			row.add_child(row_actions)
 			automatic_rows.add_child(row)
 			for history_entry in SaveManager.list_auto_history(city_id, mode):
-				var history_row := HBoxContainer.new()
+				var history_row := VBoxContainer.new()
+				history_row.name = "AutoHistory_%s_%s_%s" % [city_id, mode, str(history_entry.get("id", ""))]
 				history_row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				var old_minute := int(history_entry.get("elapsedMinutes", 0))
 				var history_label := _label("历史 · %s · 第%d天 %02d:%02d · %d站 / %d线" % [str(history_entry.get("savedAt", "" )).replace("T", " "), old_minute / 1440 + 1, posmod(old_minute, 1440) / 60, posmod(old_minute, 60), int(history_entry.get("stationCount", 0)), int(history_entry.get("routeCount", 0))], 13, MUTED)
 				history_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				history_row.add_child(history_label)
+				var history_actions := HFlowContainer.new()
+				history_actions.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				history_actions.add_theme_constant_override("h_separation", 8)
 				var history_load := _button("载入历史", TEXT, PANEL_LIGHT, 13)
 				history_load.custom_minimum_size = Vector2(104.0, 40.0) * minf(_ui_scale, 1.25)
 				history_load.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 				history_load.disabled = not bool(history_entry.get("valid", false))
 				history_load.pressed.connect(_load_auto_history_snapshot.bind(history_entry.duplicate(true), city_id, mode, dialog))
-				history_row.add_child(history_load)
+				history_actions.add_child(history_load)
+				var delete_history := _button("删除此历史", Color("#A33D32"), PANEL_LIGHT, 13)
+				delete_history.custom_minimum_size = Vector2(112.0, 40.0) * minf(_ui_scale, 1.25)
+				delete_history.pressed.connect(_confirm_auto_history_delete.bind(history_entry.duplicate(true), city_id, mode, dialog))
+				history_actions.add_child(delete_history)
+				history_row.add_child(history_actions)
 				automatic_rows.add_child(history_row)
 	automatic_page.add_child(automatic_rows)
 	tabs.add_child(automatic_page)
@@ -5366,7 +5418,7 @@ func _show_save_center(initial_tab: String = "automatic") -> void:
 	if entries.is_empty():
 		manual_rows.add_child(_label("还没有命名存档。创建后，它会独立保留，不被自动保存覆盖。", 15, MUTED))
 	for entry in entries:
-		var row := HBoxContainer.new()
+		var row := VBoxContainer.new()
 		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var entry_text := "%s\n%s · %s · %s" % [str(entry.get("name", "未命名")), str(entry.get("cityName", "城市")), _mode_name(str(entry.get("mode", "blank"))), str(entry.get("savedAt", "" )).replace("T", " ")]
 		var entry_label := _label(entry_text, 14, TEXT, true)
@@ -5375,19 +5427,23 @@ func _show_save_center(initial_tab: String = "automatic") -> void:
 		entry_label.tooltip_text = str(entry.get("error", "")) if not bool(entry.get("valid", false)) else ""
 		row.add_child(entry_label)
 		row.set_meta("search_text", (entry_text + " " + str(entry.get("name", "")) + " " + str(entry.get("cityId", ""))).to_lower())
+		var manual_actions := HFlowContainer.new()
+		manual_actions.name = "ManualSaveActions"
+		manual_actions.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		manual_actions.add_theme_constant_override("h_separation", 8)
 		var load_manual := _button("载入", TEXT, PANEL_LIGHT, 14)
 		load_manual.custom_minimum_size = Vector2(76.0, 44.0) * minf(_ui_scale, 1.25)
 		load_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		load_manual.disabled = not bool(entry.get("valid", false))
 		load_manual.tooltip_text = str(entry.get("error", "这份存档无法载入")) if load_manual.disabled else "载入此命名存档"
 		load_manual.pressed.connect(_load_manual_snapshot.bind(entry.duplicate(true), dialog))
-		row.add_child(load_manual)
+		manual_actions.add_child(load_manual)
 		var rename_manual := _button("改名", TEXT, PANEL_LIGHT, 13)
 		rename_manual.custom_minimum_size = Vector2(68.0, 44.0) * minf(_ui_scale, 1.25)
 		rename_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		rename_manual.disabled = not bool(entry.get("valid", false))
 		rename_manual.pressed.connect(_prompt_manual_rename.bind(entry.duplicate(true), dialog))
-		row.add_child(rename_manual)
+		manual_actions.add_child(rename_manual)
 		var overwrite_manual := _button("覆盖", TEXT, PANEL_LIGHT, 13)
 		overwrite_manual.custom_minimum_size = Vector2(68.0, 44.0) * minf(_ui_scale, 1.25)
 		overwrite_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -5395,17 +5451,19 @@ func _show_save_center(initial_tab: String = "automatic") -> void:
 		overwrite_manual.disabled = not bool(entry.get("valid", false)) or not same_world
 		overwrite_manual.tooltip_text = "用当前城市进度覆盖此存档" if not overwrite_manual.disabled else "载入相同城市与开局后才能覆盖"
 		overwrite_manual.pressed.connect(_confirm_manual_overwrite.bind(entry.duplicate(true), dialog))
-		row.add_child(overwrite_manual)
+		manual_actions.add_child(overwrite_manual)
 		var delete_manual := _button("删除", Color("#A33D32"), PANEL_LIGHT, 13)
 		delete_manual.custom_minimum_size = Vector2(68.0, 44.0) * minf(_ui_scale, 1.25)
 		delete_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		delete_manual.name = "DeleteManual_%s" % str(entry.get("id", ""))
 		delete_manual.pressed.connect(_confirm_manual_delete.bind(entry.duplicate(true), dialog))
-		row.add_child(delete_manual)
+		manual_actions.add_child(delete_manual)
+		row.add_child(manual_actions)
 		manual_rows.add_child(row)
 	manual_search.text_changed.connect(func(query: String):
 		var normalized := query.strip_edges().to_lower()
 		for child in manual_rows.get_children():
-			if child is HBoxContainer and child.has_meta("search_text"):
+			if child is VBoxContainer and child.has_meta("search_text"):
 				child.visible = normalized.is_empty() or str(child.get_meta("search_text", "")).contains(normalized)
 	)
 	manual_page.add_child(manual_rows)
@@ -5421,7 +5479,7 @@ func _show_save_center(initial_tab: String = "automatic") -> void:
 	if save_now.disabled: save_now.tooltip_text = "进入城市后才能保存当前进度"
 	save_now.pressed.connect(func(): _close_save_center(dialog); if _autosave(): _show_toast("本地存档已写入"))
 	actions.add_child(save_now)
-	var save_manual := _button("新建命名存档", TEXT, PANEL_LIGHT, 14)
+	var save_manual := _button("当前进度另存为…", TEXT, PANEL_LIGHT, 14)
 	save_manual.disabled = world.is_empty()
 	if save_manual.disabled: save_manual.tooltip_text = "进入城市后才能创建命名存档"
 	save_manual.pressed.connect(func(): _close_save_center(dialog); _prompt_manual_save())
@@ -5534,6 +5592,58 @@ func _prompt_manual_rename(entry: Dictionary, save_dialog: AcceptDialog) -> void
 	edit.grab_focus()
 	edit.select_all()
 
+func _confirm_auto_slot_delete(city_id: String, mode: String, save_dialog: AcceptDialog) -> void:
+	_close_save_center(save_dialog)
+	await get_tree().process_frame
+	var summary: Dictionary = SaveManager.auto_save_summary(city_id, mode)
+	var elapsed := int(summary.get("elapsedMinutes", 0))
+	var dialog := _new_confirmation_dialog()
+	dialog.title = "删除自动进度？"
+	dialog.dialog_text = "%s · %s\n%s%s\n\n将永久删除这个开局的自动进度、恢复备份和自动历史。独立命名存档与导出的 JSON 会保留。此操作不可撤销。" % [_city_name(city_id), _mode_name(mode), str(summary.get("savedAt", "没有可用主进度时间" )).replace("T", " "), " · 第%d天 %02d:%02d · %d站 / %d线" % [elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60), int(summary.get("stationCount", 0)), int(summary.get("routeCount", 0))] if not summary.is_empty() else ""]
+	dialog.get_ok_button().text = "删除此自动进度"
+	dialog.get_cancel_button().text = "保留"
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		var current_city := str(world.get("cityId", "")) if not world.is_empty() else ""
+		var current_mode := str(world.get("mode", "")) if not world.is_empty() else ""
+		var result := SaveManager.delete_auto_slot(city_id, mode, current_city, current_mode)
+		dialog.hide()
+		dialog.queue_free()
+		if bool(result.get("ok", false)):
+			_update_continue_button()
+			_show_toast("自动进度及其历史已删除")
+			call_deferred("_reopen_save_center", "automatic")
+		else:
+			_show_issue(str(result.get("error", "自动进度删除失败")), "删除失败")
+			call_deferred("_reopen_save_center", "automatic")
+	)
+	dialog.canceled.connect(func(): dialog.hide(); dialog.queue_free(); call_deferred("_reopen_save_center", "automatic"))
+	dialog.popup_centered(Vector2i(620, 330))
+
+func _confirm_auto_history_delete(entry: Dictionary, city_id: String, mode: String, save_dialog: AcceptDialog) -> void:
+	_close_save_center(save_dialog)
+	await get_tree().process_frame
+	var elapsed := int(entry.get("elapsedMinutes", 0))
+	var dialog := _new_confirmation_dialog()
+	dialog.title = "删除自动历史？"
+	dialog.dialog_text = "%s · %s\n%s · 第%d天 %02d:%02d · %d站 / %d线\n\n只删除这份历史记录，当前自动进度和其他历史不受影响。此操作不可撤销。" % [_city_name(city_id), _mode_name(mode), str(entry.get("savedAt", "" )).replace("T", " "), elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60), int(entry.get("stationCount", 0)), int(entry.get("routeCount", 0))]
+	dialog.get_ok_button().text = "删除此历史"
+	dialog.get_cancel_button().text = "保留"
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		var result := SaveManager.delete_auto_history(city_id, mode, str(entry.get("id", "")))
+		dialog.hide()
+		dialog.queue_free()
+		if bool(result.get("ok", false)):
+			_show_toast("自动历史已删除")
+			call_deferred("_reopen_save_center", "automatic")
+		else:
+			_show_issue(str(result.get("error", "自动历史删除失败")), "删除失败")
+			call_deferred("_reopen_save_center", "automatic")
+	)
+	dialog.canceled.connect(func(): dialog.hide(); dialog.queue_free(); call_deferred("_reopen_save_center", "automatic"))
+	dialog.popup_centered(Vector2i(600, 300))
+
 func _confirm_manual_delete(entry: Dictionary, save_dialog: AcceptDialog) -> void:
 	_close_save_center(save_dialog)
 	await get_tree().process_frame
@@ -5544,7 +5654,7 @@ func _confirm_manual_delete(entry: Dictionary, save_dialog: AcceptDialog) -> voi
 	dialog.get_cancel_button().text = "保留"
 	add_child(dialog)
 	dialog.confirmed.connect(func():
-		var result := SaveManager.delete_manual_snapshot(str(entry.get("path", "")))
+		var result := SaveManager.delete_manual_snapshot(str(entry.get("id", "")))
 		dialog.hide()
 		dialog.queue_free()
 		if bool(result.get("ok", false)):
@@ -5593,8 +5703,8 @@ func _load_manual_snapshot(entry: Dictionary, dialog: AcceptDialog) -> void:
 func _prompt_manual_save() -> void:
 	if world.is_empty(): return
 	var dialog := _new_confirmation_dialog()
-	dialog.title = "新建手动存档"
-	dialog.dialog_text = "输入一个名称。手动存档会保留为独立进度，不会被后续自动存档覆盖。"
+	dialog.title = "当前进度另存为"
+	dialog.dialog_text = "保存当前城市进度的独立副本，不会开始新游戏，也不会被后续自动存档覆盖。"
 	dialog.get_ok_button().text = "保存进度"
 	dialog.get_cancel_button().text = "取消"
 	var name_edit := LineEdit.new()
@@ -5685,6 +5795,9 @@ func _type_color(kind: String) -> Color:
 
 func _mode_name(mode: String) -> String:
 	return "从零规划" if mode == "blank" else "扩建既有路网"
+
+func _city_name(city_id: String) -> String:
+	return str(WorldData.city(city_id).get("name", city_id))
 
 func _number(value: int) -> String:
 	if value >= 10000: return "%.1f万" % (float(value) / 10000.0)

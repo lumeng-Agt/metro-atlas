@@ -1433,12 +1433,18 @@ func _pick(point: Vector2) -> Dictionary:
 					nearest_link = {"type": edge_type, "id": str(link.get("id", "")), "side": "", "t": snapped_t, "latlng": _screen_to_geo(closest)}
 				previous = current
 		if not nearest_link.is_empty(): return nearest_link
-	if show_demand and tool in ["select", "delete", "station"]:
+	# The onboarding A/B markers remain visible even while the ordinary demand
+	# layer is hidden. Keep those two rendered markers clickable so the visual
+	# tutorial target and the map hit test always describe the same objects.
+	var has_visible_task_markers := not task_origin_id.is_empty() or not task_destination_id.is_empty()
+	if (show_demand or has_visible_task_markers) and tool in ["select", "delete", "station"]:
 		var nearest_demand: Dictionary = {}
 		var demand_distance := 15.0
 		for demand in city_data.get("demand", []):
 			var demand_id := str(demand.get("id", ""))
 			if filter_demand_to_task and not focus_demand_ids.has(demand_id): continue
+			var is_visible_task_marker := demand_id == task_origin_id and not task_origin.is_empty() or demand_id == task_destination_id and not task_destination.is_empty()
+			if not show_demand and not is_visible_task_marker: continue
 			var distance := point.distance_to(_to_screen(demand.get("latlng", [0, 0])))
 			if distance <= demand_distance:
 				demand_distance = distance

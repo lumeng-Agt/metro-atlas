@@ -42,7 +42,7 @@ const MISSIONS := {
 static func mission(city_id: String) -> Dictionary:
 	return MISSIONS.get(city_id, MISSIONS["shanghai"]).duplicate(true)
 
-static func create_state(city_id: String, mode: String, completed_once: bool) -> Dictionary:
+static func create_state(city_id: String, mode: String, tutorial_enabled: bool = true) -> Dictionary:
 	var selected := mission(city_id)
 	var is_blank := mode == "blank"
 	return {
@@ -50,7 +50,8 @@ static func create_state(city_id: String, mode: String, completed_once: bool) ->
 		"missionId": str(selected.get("id", "")),
 		"originId": str(selected.get("originId", "")),
 		"destinationId": str(selected.get("destinationId", "")),
-		"active": is_blank and not completed_once,
+		"active": is_blank and tutorial_enabled,
+		"enabled": is_blank and tutorial_enabled,
 		"step": 0,
 		"completed": false,
 		"skipped": false,

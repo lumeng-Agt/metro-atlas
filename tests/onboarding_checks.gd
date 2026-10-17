@@ -43,6 +43,12 @@ func _run() -> void:
 	var main: Variant = main_scene.instantiate()
 	root.add_child(main)
 	await process_frame
+	main._show_new_city_menu()
+	await process_frame
+	var new_game_tutorial_toggle := main.menu_layer.find_child("NewGameOnboardingToggle", true, false) as CheckButton
+	_check(new_game_tutorial_toggle != null and new_game_tutorial_toggle.button_pressed, "新建城市页面默认勾选逐步新手教程")
+	main._show_main_menu()
+	await process_frame
 	Preferences.save_onboarding_completed(false)
 	var stale_blank := WorldData.new_world("shanghai", "blank")
 	stale_blank["onboarding"] = Onboarding.create_state("shanghai", "blank", true)
@@ -53,7 +59,7 @@ func _run() -> void:
 	var no_tutorial_field := WorldData.new_world("shanghai", "blank")
 	no_tutorial_field.erase("onboarding")
 	main._load_world(no_tutorial_field)
-	_check(bool(main.world.onboarding.active), "没有教学字段的旧空白存档按本机完成状态补入教学")
+	_check(bool(main.world.onboarding.active), "没有教学字段的旧空白存档按存档自身标记补入教学")
 	var completed_blank := WorldData.new_world("shanghai", "blank")
 	completed_blank["onboarding"] = Onboarding.create_state("shanghai", "blank", false)
 	completed_blank.onboarding.active = false
@@ -91,6 +97,9 @@ func _run() -> void:
 	var destination: Dictionary = main._find_demand(str(main.world.onboarding.destinationId))
 	var demand_focus: Dictionary = main._onboarding_focus_spec()
 	_check(str(demand_focus.get("kind", "")) == "map" and str(demand_focus.get("message", "")).contains("A"), "引导先圈出地图上的 A 地点，并要求玩家点击实际需求点")
+	var origin_hit: Dictionary = main.map_view._pick(main.map_view._to_screen(origin.get("latlng", [])))
+	var destination_hit: Dictionary = main.map_view._pick(main.map_view._to_screen(destination.get("latlng", [])))
+	_check(not main.map_view.show_demand and str(origin_hit.get("id", "")) == str(origin.get("id", "")) and str(destination_hit.get("id", "")) == str(destination.get("id", "")), "普通需求图层隐藏时仍可点击当前教学显示的 A、B 地点")
 	_check(main.tutorial_spotlight.mouse_filter == Control.MOUSE_FILTER_IGNORE and main.tutorial_spotlight.active, "聚焦层突出目标且不拦截目标按钮或地图点击")
 	main.map_view.center_on([float(origin.latlng[0]) + 0.5, float(origin.latlng[1])], main.map_view.current_zoom)
 	main._update_tutorial_spotlight()
@@ -111,6 +120,12 @@ func _run() -> void:
 	main.map_view.draft_station = {"id":"draft-a", "name":"A站", "latlng":origin.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[]}
 	main._refresh_tools()
 	_check(str(main._onboarding_focus_spec().get("key", "")) == "confirm_station" and is_instance_valid(main.tutorial_targets.get("confirm_station")), "放置预览后聚焦工具栏上的真实确认车站按钮")
+	await process_frame
+	var confirm_station_target: Control = main.tutorial_targets.get("confirm_station") as Control
+	var details_scroll := main._right_panel.find_child("DetailsScroll", true, false) as ScrollContainer
+	var target_rect := confirm_station_target.get_global_rect() if is_instance_valid(confirm_station_target) else Rect2()
+	var scroll_rect := details_scroll.get_global_rect() if is_instance_valid(details_scroll) else Rect2()
+	_check(is_instance_valid(confirm_station_target) and scroll_rect.intersection(target_rect).size.y >= confirm_station_target.size.y * 0.9, "教程自动滚动建设详情以露出确认按钮，不落到固定的拆除按钮")
 	main._cancel_tool_step()
 	_check(main.map_view.draft_station.is_empty() and str(main._onboarding_focus_spec().get("kind", "")) == "map", "取消预览后焦点退回地图选址，不误认为已建站")
 	main.map_view.draft_station = {"id":"draft-a", "name":"A站", "latlng":origin.latlng.duplicate(), "heading":heading, "lengthM":118.788, "widthM":20.0, "vehicleId":"B-6", "routeIds":[]}
@@ -189,8 +204,15 @@ func _run() -> void:
 	main.world["onboarding"] = Onboarding.create_state("shanghai", "blank", false)
 	main.world.onboarding.active = true
 	main._end_onboarding(true)
-	_check(bool(main.world.onboarding.skipped) and Preferences.load_onboarding_completed(), "主动跳过会记为已看过，其他新城市不再重复弹出")
-	_check(not Onboarding.create_state("beijing", "blank", Preferences.load_onboarding_completed()).active, "已跳过后其他城市仍可直接规划")
+	_check(bool(main.world.onboarding.skipped) and Preferences.load_onboarding_completed(), "主动跳过会保留在当前存档并更新全局已看过标记")
+	_check(Onboarding.create_state("beijing", "blank", true).active, "即使以前跳过，新建空白城市勾选教学仍会启动引导")
+	_check(not Onboarding.create_state("beijing", "blank", false).active, "新建空白城市取消教学后进入自由规划")
+	Preferences.save_onboarding_completed(true)
+	_check(bool(main._prepared_new_world("beijing", "blank", "free", true).onboarding.active), "全局曾完成标记不会关闭新世界中明确开启的教学")
+	_check(not bool(main._prepared_new_world("beijing", "blank", "free", false).onboarding.active), "新世界接口可明确创建无教学的自由规划存档")
+	var old_unsaved_world := WorldData.new_world("beijing", "blank")
+	main._load_world(old_unsaved_world)
+	_check(bool(main.world.onboarding.active), "全局教程标记不会覆盖旧存档中的未完成状态")
 	var early_world := WorldData.new_world("shanghai", "blank")
 	early_world["tutorialDone"] = true
 	early_world["onboarding"] = Onboarding.create_state("shanghai", "blank", false)
