@@ -1,4 +1,4 @@
-造一座地铁 · Windows 免安装版 0.20.0 · 存档格式 20
+造一座地铁 · Windows 免安装版 0.20.1 · 存档格式 20
 
 双击“造一座地铁.exe”运行，无需浏览器、Node.js、Godot安装或联网地图服务。
 
@@ -12,7 +12,7 @@
 
 地图为OpenStreetMap / Geofabrik现代地理参考，不表示当年街道或工程轨道测绘；数据日期、范围和校验值见basemap-manifest.json。© OpenStreetMap contributors，派生数据使用ODbL 1.0。
 
-更新内容：压缩包内 update-notes-0.20.0.txt
+更新内容：压缩包内 update-notes-0.20.1.txt
 测试记录：压缩包内 test-record.txt
 当前截图：docs/ui-0.20-workbench.png、docs/ui-0.20-menu.png、docs/ui-0.20-station.png
 许可：LICENSES.txt、THIRD_PARTY_NOTICES.txt、OFL.txt
