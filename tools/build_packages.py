@@ -55,7 +55,10 @@ def git_state() -> tuple[str, str, str]:
 def source_manifest_hash() -> str:
     digest = hashlib.sha256()
     excluded_dirs = {".git", ".godot", ".tools", "Godot", "release", "test-artifacts", "__pycache__"}
-    for path in sorted(ROOT.rglob("*")):
+    # Hash the committed source set, rather than ignored editor sidecars or
+    # machine-local files that another checkout cannot reproduce.
+    tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode("utf-8")
+    for path in sorted(ROOT / name for name in tracked.split("\0") if name):
         relative_parts = path.relative_to(ROOT).parts
         if not path.is_file() or any(part in excluded_dirs or part.startswith("test-") for part in relative_parts):
             continue
