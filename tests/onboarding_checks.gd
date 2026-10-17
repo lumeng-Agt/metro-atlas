@@ -88,7 +88,7 @@ func _run() -> void:
 	_check(main.map_view.base_map_available and not main.map_view.base_map_features.is_empty(), "新手开局加载本地矢量底图")
 	var has_unwanted_basemap_symbols := false
 	for feature in main.map_view.base_map_features:
-		if str(feature.get("kind", "")) not in ["road_major", "road_primary", "road_secondary", "road_local", "water_line", "water_area", "park", "building"]:
+		if str(feature.get("kind", "")) not in ["road_major", "road_primary", "road_secondary", "road_local", "water_line", "water_area", "park", "building", "building_major"]:
 			has_unwanted_basemap_symbols = true
 	_check(not has_unwanted_basemap_symbols, "地图底图只含道路、水系、绿地和建筑轮廓")
 	_check(main.map_view.current_zoom >= 14, "镜头聚焦教学街区")

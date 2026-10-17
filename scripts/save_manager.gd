@@ -194,7 +194,7 @@ static func auto_history_bytes(city_id: String = "", mode: String = "") -> int:
 		for entry in list_auto_history(city_id, mode): paths.append(str(entry.get("path", "")))
 	else:
 		for city in WorldData.cities():
-			for save_mode in ["blank", "expand"]:
+			for save_mode in ["blank", "expand", "campaign"]:
 				for entry in list_auto_history(str(city.get("id", "")), save_mode): paths.append(str(entry.get("path", "")))
 	for path in paths:
 		if FileAccess.file_exists(path): total += FileAccess.get_file_as_bytes(path).size()
@@ -253,7 +253,7 @@ static func delete_auto_slot(city_id: String, mode: String, current_city_id: Str
 	return _delete_files_transaction(paths, "自动存档")
 
 static func _valid_save_slot(city_id: String, mode: String) -> bool:
-	if mode not in ["blank", "expand"]: return false
+	if mode not in ["blank", "expand", "campaign"]: return false
 	for city in WorldData.cities():
 		if str(city.get("id", "")) == city_id: return true
 	return false
@@ -708,6 +708,11 @@ static func migrate(data: Dictionary) -> Dictionary:
 			CityProgressionScript.start(migrated, int(simulation.get("elapsedMinutes", 420)))
 	else:
 		migrated["cityProgression"] = migrated.get("cityProgression", CityProgressionScript.create_state(city_id))
+	if str(migrated.get("mode", "")) == "campaign":
+		var CampaignSystemScript = preload("res://scripts/campaign_system.gd")
+		migrated["campaignState"] = migrated.get("campaignState", CampaignSystemScript.create_state(city_id))
+	else:
+		migrated["campaignState"] = migrated.get("campaignState", {})
 	TrackNetwork.ensure_station_nodes(migrated)
 	WorldData.load_assets()
 	var ref_lat := float(WorldData.city(str(migrated.get("cityId", "shanghai"))).get("center", [31.23, 121.47])[0])
@@ -722,7 +727,7 @@ static func migrate(data: Dictionary) -> Dictionary:
 		for route in migrated.get("routes", []):
 			if bool(route.get("open", false)) and not route.has("serviceStartMinute"): route["serviceStartMinute"] = int(simulation.get("elapsedMinutes", 420))
 	if source_version < WorldData.SAVE_VERSION:
-		migrated["migrationNotice"] = "存档已升级为 15：保留规划、时钟、乘客和完成量，并开始城市章节与确定日程事件。章节地点和变化客流均为游戏设定；原始存档已单独备份。"
+		migrated["migrationNotice"] = "存档已升级为 17：旧版自由规划和既有路网进度保持原样；新历史复现使用独立进度，不覆盖旧存档。原始存档已单独备份。"
 	if route_path_needs_review:
 		if not migrated.has("migrationNotice"): migrated["migrationNotice"] = "线路走向资料需要整理。"
 		migrated["migrationNotice"] += " 部分旧线路无法解析连续轨道，已标记为待整理，不会自动改走其他区间。"
@@ -1002,7 +1007,7 @@ static func _migrate_web_world(source: Dictionary) -> Dictionary:
 	var minute := int(old_sim.get("minute", source.get("timeMinutes", 420)))
 	var simulation := {"minute": posmod(minute, 1440), "elapsedMinutes": minute, "elapsedSeconds": minute * 60, "nextDepartureSeconds": {}, "trainTripsInitialized": false, "speed": 1, "paused": true, "seed": int(source.get("seed", source.get("randomSeed", 45281))), "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "peakCrowding": 0.0, "passengerBatches": [], "flowRemainders": {}, "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "crowdingSamples": [], "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": [], "routeUtilizationBuckets": []}
 	var tutorial: Dictionary = source.get("tutorial", {})
-	var migrated := {"schemaVersion": WorldData.SAVE_VERSION, "cityId": city_id, "cityName": str(source.get("cityName", city.get("name", city_id))), "mode": mode, "dataVersion": str(source.get("mobilityVersion", source.get("dataVersion", "web-v7"))), "stations": stations, "routes": routes, "trackLinks": links, "trackNodes": [], "trackEdges": [], "depots": source.get("depots", []), "goalBoard": {"active": [], "completed": []}, "challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1}, "simulation": simulation, "legacyMetrics": {"completedEstimate": int(stats.get("served", 0)), "attemptedEstimate": int(stats.get("requested", stats.get("served", 0))), "note": "网页版本旧服务量为模型估算；新版完成量从真实到达重新统计。"}, "fleetMode": "automatic", "tutorialStep": mini(4, int(tutorial.get("step", 0))), "tutorialDone": bool(tutorial.get("completed", tutorial.get("skipped", false))), "randomSeed": int(source.get("seed", source.get("randomSeed", 45281))), "revision": int(source.get("networkRevision", 1)), "view": source.get("view", {"center": city.get("center", [0, 0]), "zoom": 12}), "history": {"undo": [], "redo": []}, "source": {"attribution": "© OpenStreetMap contributors", "license": "ODbL 1.0", "snapshot": str(city.get("sources", {}).get("snapshot", "2026-10-05"))}, "migrationNotice": "已导入网页存档并升级为版本16。车站站体按列车长度转换；原区间线位作为站序示意，复核后可逐段重建。旧版客流保留为历史估算，新版统计和实际旅程记录从导入后重新累积。网页原始 JSON 未修改，可留作恢复备份。"}
+	var migrated := {"schemaVersion": WorldData.SAVE_VERSION, "cityId": city_id, "cityName": str(source.get("cityName", city.get("name", city_id))), "mode": mode, "dataVersion": str(source.get("mobilityVersion", source.get("dataVersion", "web-v7"))), "stations": stations, "routes": routes, "trackLinks": links, "trackNodes": [], "trackEdges": [], "depots": source.get("depots", []), "goalBoard": {"active": [], "completed": []}, "challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1}, "simulation": simulation, "legacyMetrics": {"completedEstimate": int(stats.get("served", 0)), "attemptedEstimate": int(stats.get("requested", stats.get("served", 0))), "note": "网页版本旧服务量为模型估算；新版完成量从真实到达重新统计。"}, "fleetMode": "automatic", "tutorialStep": mini(4, int(tutorial.get("step", 0))), "tutorialDone": bool(tutorial.get("completed", tutorial.get("skipped", false))), "randomSeed": int(source.get("seed", source.get("randomSeed", 45281))), "revision": int(source.get("networkRevision", 1)), "view": source.get("view", {"center": city.get("center", [0, 0]), "zoom": 12}), "history": {"undo": [], "redo": []}, "source": {"attribution": "© OpenStreetMap contributors", "license": "ODbL 1.0", "snapshot": str(city.get("sources", {}).get("snapshot", "2026-10-05"))}, "migrationNotice": "已导入网页存档并升级为版本17。车站站体按列车长度转换；原区间线位作为站序示意，复核后可逐段重建。旧版客流保留为历史估算，新版统计和实际旅程记录从导入后重新累积。网页原始 JSON 未修改，可留作恢复备份。"}
 	migrated["planningPhases"] = [{"id":"phase_1", "name":"一期建设", "createdAt":minute, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}]
 	migrated["currentPlanningPhaseId"] = "phase_1"
 	for station in stations:
@@ -1301,7 +1306,7 @@ static func _validate_world(data: Dictionary) -> String:
 	if version != WorldData.SAVE_VERSION: return "存档版本未迁移至当前版本，无法安全保存。"
 	var city_id := str(data.get("cityId", ""))
 	if city_id.is_empty() or WorldData.city(city_id).is_empty(): return "存档未包含受支持的城市资料。"
-	if str(data.get("mode", "")) not in ["blank", "expand"]: return "存档开局模式无效。"
+	if str(data.get("mode", "")) not in ["blank", "expand", "campaign"]: return "存档开局模式无效。"
 	for key in ["stations", "routes", "trackLinks", "trackNodes", "trackEdges"]:
 		if not data.get(key, []) is Array: return "存档结构损坏：%s 必须是列表。" % key
 	if not data.get("simulation", {}) is Dictionary: return "存档结构损坏：模拟状态无效。"

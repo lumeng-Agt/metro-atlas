@@ -86,13 +86,21 @@ class ExtractHandler(osmium.SimpleHandler):
         landuse = tags.get("landuse")
         natural = tags.get("natural")
         is_building = "building" in tags and tags.get("building") != "no"
+        important_building = (
+            tags.get("building") in {"hospital", "school", "university", "college", "train_station", "transportation", "civic", "public", "stadium", "museum"}
+            or tags.get("amenity") in {"university", "college", "school", "hospital", "clinic", "library", "townhall", "courthouse"}
+            or tags.get("railway") == "station"
+            or tags.get("public_transport") == "station"
+            or tags.get("aeroway") == "terminal"
+            or tags.get("tourism") in {"attraction", "museum"}
+        )
         road_kind = None
         if highway in ROAD_CLASSES:
             road_kind = "road_major" if highway in {"motorway", "trunk"} else "road_primary" if highway == "primary" else "road_secondary" if highway in {"secondary", "tertiary", "unclassified"} else "road_local"
         water_kind = "water_line" if waterway in {"river", "canal", "stream"} else None
         park_kind = "park" if leisure == "park" or landuse in GREEN_TAGS else None
         water_area = (natural == "water" or tags.get("water") is not None or landuse == "reservoir") and way.is_closed()
-        if not any((road_kind, water_kind, park_kind, water_area, is_building and way.is_closed())):
+        if not any((road_kind, water_kind, park_kind, water_area, (is_building or important_building) and way.is_closed())):
             return
         points: list[list[float]] = []
         try:
@@ -119,9 +127,11 @@ class ExtractHandler(osmium.SimpleHandler):
             kind = "water_area"
         elif park_kind:
             kind = "park"
+        elif important_building:
+            kind = "building_major"
         else:
             kind = "building"
-        tolerance = {"road_major": 5.0, "road_primary": 4.0, "road_secondary": 3.0, "road_local": 2.0, "water_line": 3.0, "water_area": 5.0, "park": 5.0, "building": 2.0}[kind]
+        tolerance = {"road_major": 5.0, "road_primary": 4.0, "road_secondary": 3.0, "road_local": 2.0, "water_line": 3.0, "water_area": 5.0, "park": 5.0, "building": 2.0, "building_major": 1.5}[kind]
         points = simplify(points, tolerance)
         if len(points) < 2:
             return

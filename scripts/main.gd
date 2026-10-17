@@ -11,10 +11,11 @@ const SimulationEngineScript = preload("res://scripts/simulation_engine.gd")
 const ServiceScheduleScript = preload("res://scripts/service_schedule.gd")
 const NeighborhoodGoalsScript = preload("res://scripts/neighborhood_goals.gd")
 const CityProgressionScript = preload("res://scripts/city_progression.gd")
+const CampaignSystemScript = preload("res://scripts/campaign_system.gd")
 const AudioFeedbackScript = preload("res://scripts/audio_feedback.gd")
 const TutorialSpotlightScript = preload("res://scripts/tutorial_spotlight.gd")
 const UiThemeScript = preload("res://scripts/ui_theme.gd")
-const BUILD_VERSION := "0.16.1 · 2026.10.17"
+const BUILD_VERSION := "0.17.0 · 2026.10.17"
 const APP_BG := UiThemeScript.CANVAS
 const PANEL := UiThemeScript.SURFACE
 const PANEL_LIGHT := UiThemeScript.SURFACE_ALT
@@ -484,7 +485,7 @@ func _render_planning_menu(new_city: bool) -> void:
 	var title := _menu_label("造一座地铁", 48, TEXT, true)
 	title.custom_minimum_size.y = 70
 	intro.add_child(title)
-	intro.add_child(_menu_label("从真实街区出发，连接人们每天要去的地方。", 18, MUTED))
+	intro.add_child(_menu_label("亲手复现中国城市地铁建设史，再开启自己的线网规划。", 18, MUTED))
 	var illustration_panel := PanelContainer.new()
 	illustration_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	illustration_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -505,7 +506,7 @@ func _render_planning_menu(new_city: bool) -> void:
 	body.add_child(actions)
 	if new_city:
 		actions.add_child(_menu_label("选择一座城市", 24, TEXT, true))
-		actions.add_child(_menu_label("规划新线路，或在真实路网基础上继续扩建。", 15, MUTED))
+		actions.add_child(_menu_label("从真实城市的历史建设开始，按公开资料复现线路变更与开通。", 15, MUTED))
 		menu_city_picker = OptionButton.new()
 		menu_city_picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		menu_city_picker.custom_minimum_size.y = 44
@@ -518,24 +519,19 @@ func _render_planning_menu(new_city: bool) -> void:
 		if new_city:
 			menu_onboarding_toggle = CheckButton.new()
 			menu_onboarding_toggle.name = "NewGameOnboardingToggle"
-			menu_onboarding_toggle.text = "开启逐步新手教程（仅从零规划）"
+			menu_onboarding_toggle.text = "开启逐步操作教程（推荐）"
 			menu_onboarding_toggle.button_pressed = true
 			menu_onboarding_toggle.custom_minimum_size.y = 44.0 * _ui_scale
 			_set_control_base_font(menu_onboarding_toggle, 15)
 			actions.add_child(menu_onboarding_toggle)
-		var blank := _button("从零规划", TEAL, PANEL_LIGHT, 19)
-		blank.custom_minimum_size.y = 48
-		blank.pressed.connect(func(): _start_new_game(active_city_id, "blank", "free", is_instance_valid(menu_onboarding_toggle) and menu_onboarding_toggle.button_pressed))
-		actions.add_child(blank)
-		var challenge := _button("街区挑战", Color("#a77921"), PANEL_LIGHT, 17)
-		challenge.custom_minimum_size.y = 44
-		challenge.tooltip_text = "在同一份城市规划中逐步完成需求覆盖、扩建和换乘目标。"
-		challenge.pressed.connect(func(): _start_neighborhood_challenge(active_city_id))
-		actions.add_child(challenge)
-		var expand := _button("扩建现实路网", Color("#365F8C"), PANEL_LIGHT, 17)
-		expand.custom_minimum_size.y = 44
-		expand.pressed.connect(func(): _start_new_game(active_city_id, "expand", "free", false))
-		actions.add_child(expand)
+		var campaign_button := _button("开始历史复现样板", TEAL, Color("#15362f"), 19)
+		campaign_button.custom_minimum_size.y = 52
+		campaign_button.tooltip_text = "当前包含各城首批可玩样板；完整历史、远期蓝图及自由扩建解锁仍在整理。"
+		campaign_button.pressed.connect(func(): _start_new_game(active_city_id, "campaign", "free", is_instance_valid(menu_onboarding_toggle) and menu_onboarding_toggle.button_pressed))
+		actions.add_child(campaign_button)
+		var sample_scope := _menu_label("当前是五城首批历史样板，不是完整历史游戏。未整理的年份、远期蓝图和自由扩建会明确标出；旧版存档仍可继续。", 14, Color("#9a6a28"))
+		sample_scope.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		actions.add_child(sample_scope)
 		var back := _button("返回主菜单", TEXT, PANEL_LIGHT, 15)
 		back.pressed.connect(_show_main_menu)
 		actions.add_child(back)
@@ -741,6 +737,8 @@ func _prepared_new_world(city_id: String, mode: String, challenge_mode: String =
 	if challenge_mode == "neighborhood":
 		state["challengeState"] = {"step": 0, "startedAt": int(state.get("simulation", {}).get("elapsedMinutes", 420)), "completedAt": -1}
 	state["onboarding"] = OnboardingScript.create_state(city_id, mode, onboarding_enabled)
+	if mode == "campaign":
+		state["campaignState"] = CampaignSystemScript.create_state(city_id)
 	# The previous tutorial is retained only for old saves; new games use the location-based guide.
 	state["tutorialDone"] = true
 	state["tutorialStep"] = 0
@@ -818,7 +816,7 @@ func _load_world(state: Dictionary) -> void:
 	# Completed or explicitly skipped tutorials remain closed, and expand starts
 	# keep their lighter local-browsing guidance.
 	var onboarding_state: Dictionary = world.get("onboarding", {})
-	if str(world.get("mode", "blank")) == "blank" \
+	if str(world.get("mode", "blank")) in ["blank", "campaign"] \
 		and onboarding_state.has("missionId") \
 		and not bool(onboarding_state.get("active", false)) \
 		and not bool(onboarding_state.get("completed", false)) \
@@ -845,7 +843,7 @@ func _load_world(state: Dictionary) -> void:
 			if not phase.get(key, []) is Array: phase[key] = []
 	if not world.has("currentPlanningPhaseId"): world["currentPlanningPhaseId"] = str(world.planningPhases.back().get("id", "phase_1"))
 	world.simulation.paused = true
-	if not bool(world.get("onboarding", {}).get("active", false)):
+	if not bool(world.get("onboarding", {}).get("active", false)) and str(world.get("mode", "blank")) != "campaign":
 		CityProgressionScript.start(world, int(world.simulation.get("elapsedMinutes", 420)))
 	active_route_id = str(world.get("selectedRoute", world.get("activeRouteId", world.get("routes", [{}])[0].get("id", "")))) if not world.get("routes", []).is_empty() else ""
 	if WorldData.find_route(world, active_route_id).is_empty() and not world.get("routes", []).is_empty(): active_route_id = str(world.routes[0].get("id", ""))
@@ -860,6 +858,7 @@ func _load_world(state: Dictionary) -> void:
 	if history.changed.is_connected(_on_history_changed): history.changed.disconnect(_on_history_changed)
 	history.changed.connect(_on_history_changed)
 	map_view.set_context(WorldData.city(active_city_id), world)
+	map_view.set_blueprint(CampaignSystemScript.blueprint_for(world, WorldData.city(active_city_id)))
 	map_view.show_road_names = UiPreferencesScript.load_road_names()
 	map_view.analysis_mode = "planning"
 	map_view.show_demand = false
@@ -1100,6 +1099,7 @@ func _refresh_ui() -> void:
 	map_view.selected_type = selected_type
 	map_view.selected_id = selected_id
 	map_view.set_world(world)
+	map_view.set_blueprint(CampaignSystemScript.blueprint_for(world, WorldData.city(active_city_id)))
 	_update_tutorial_spotlight()
 
 func _refresh_left_panel() -> void:
@@ -1179,6 +1179,9 @@ func _refresh_tasks_tab() -> void:
 	left_content.add_child(_label("任务与扩建", 20, TEXT, true))
 	var onboarding_state: Dictionary = world.get("onboarding", {})
 	var progression_state: Dictionary = world.get("cityProgression", {})
+	if str(world.get("mode", "blank")) == "campaign" and not bool(onboarding_state.get("active", false)):
+		_refresh_historical_campaign_tab()
+		return
 	if bool(progression_state.get("started", false)) and (not bool(onboarding_state.get("active", false)) or bool(onboarding_state.get("completed", false))) and str(world.get("challengeMode", "free")) != "neighborhood":
 		_refresh_city_campaign_tab()
 		return
@@ -1300,6 +1303,236 @@ func _refresh_tasks_tab() -> void:
 		var notice := _label(str(world.get("migrationNotice", "")), 13, Color("#e1b975"))
 		notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		left_content.add_child(notice)
+
+func _refresh_historical_campaign_tab() -> void:
+	var campaign: Dictionary = world.get("campaignState", {})
+	var config := CampaignSystemScript.city_config(active_city_id)
+	var chapters: Array = config.get("chapters", [])
+	var chapter := CampaignSystemScript.current_chapter(world)
+	var completed: Array = campaign.get("completedChapterIds", [])
+	left_content.add_child(_label("城市历史 · %s" % str(config.get("name", _city_name(active_city_id))), 19, TEXT, true))
+	left_content.add_child(_label("资料截止：2026-10-01　·　已完成 %d / %d 个可玩章节" % [completed.size(), chapters.size()], 14, MUTED))
+	left_content.add_child(_label("资料范围：首批可玩章节样板，不代表本城全史已复原。", 14, Color("#d5ad68")))
+	var coverage_note := _label(str(config.get("coverageNote", "完整历史清单仍待整理。")), 13, MUTED)
+	coverage_note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	left_content.add_child(coverage_note)
+	var disclaimer := _label("底图是现代地理参考；蓝图中的站区和虚线仅按公开资料近似，不代表历史测绘或工程线位。", 14, Color("#e4bd76"))
+	disclaimer.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	left_content.add_child(disclaimer)
+	if not chapter.is_empty():
+		var chapter_box := VBoxContainer.new()
+		chapter_box.add_theme_constant_override("separation", 8)
+		chapter_box.add_theme_constant_override("margin_left", 11)
+		chapter_box.add_theme_constant_override("margin_right", 11)
+		chapter_box.add_theme_constant_override("margin_top", 10)
+		chapter_box.add_theme_constant_override("margin_bottom", 10)
+		var card := PanelContainer.new()
+		card.add_theme_stylebox_override("panel", _style(Color("#1a3533"), Color("#398773"), 9, 1))
+		card.add_child(chapter_box)
+		left_content.add_child(card)
+		chapter_box.add_child(_label("%s　·　%s" % [str(chapter.get("date", "")), str(chapter.get("title", "历史章节"))], 17, TEAL, true))
+		var event_text := _label(str(chapter.get("eventText", "按蓝图复现本章规划。")), 15, TEXT)
+		event_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		chapter_box.add_child(event_text)
+		var precision := "站区参考 · 容差约 %d 米" % int(chapter.get("lineGroups", [{}])[0].get("toleranceM", 150)) if str(chapter.get("precision", "")) == "station_areas" else "走廊级参考 · 不做精确线位判分"
+		chapter_box.add_child(_label(precision, 14, MUTED))
+		var evaluation := CampaignSystemScript.evaluate_chapter(world, WorldData.city(active_city_id), chapter)
+		if bool(evaluation.get("complete", false)):
+			chapter_box.add_child(_label("本章条件已满足。确认后推进历史节点；现有建设会保留。", 15, Color("#8fd4ae"), true))
+			var complete_button := _button("完成本章并推进历史", Color("#91d7b0"), Color("#15362f"), 15)
+			complete_button.custom_minimum_size.y = 48.0 * minf(_ui_scale, 1.25)
+			complete_button.pressed.connect(func(): _complete_campaign_chapter(str(chapter.get("id", ""))))
+			chapter_box.add_child(complete_button)
+		else:
+			chapter_box.add_child(_label("当前还缺：", 15, TEXT, true))
+			for issue in evaluation.get("issues", []).slice(0, 8):
+				var issue_label := _label("• %s" % str(issue), 14, MUTED)
+				issue_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				chapter_box.add_child(issue_label)
+		var source_button := _button("查看本章公开来源 ↗", Color("#9ad8f3"), PANEL_LIGHT, 14)
+		source_button.pressed.connect(func(): OS.shell_open(str(chapter.get("source", ""))))
+		chapter_box.add_child(source_button)
+		_add_campaign_event_timeline(config)
+		return
+	var phase := str(campaign.get("phase", "history"))
+	if phase == "history_gap":
+		left_content.add_child(_label("本城历史资料缺口", 19, TEXT, true))
+		var gap := _label("已完成当前版本整理出的可玩样板章节，但这不代表复现了本城全部地铁历史。缺少公开原方案、逐年线位或站序的部分不会被猜测补齐。", 15, Color("#e4bd76"))
+		gap.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		left_content.add_child(gap)
+		var coverage := _label(str(config.get("coverageNote", "完整历史事件清单仍待整理。")), 14, MUTED)
+		coverage.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		left_content.add_child(coverage)
+		_add_campaign_event_timeline(config)
+		left_content.add_child(_label("远期规划来源预览", 16, TEXT, true))
+		left_content.add_child(_label("官方资料已登记，但尚未整理成可玩的蓝图章节；查看文件不等于完成复现。", 14, MUTED))
+		for plan in CampaignSystemScript.future_plans(world):
+			var plan_link := _button("%s · 打开官方资料 ↗" % str(plan.get("title", "远期规划")), Color("#9ad8f3"), PANEL_LIGHT, 14)
+			plan_link.pressed.connect(func(): OS.shell_open(str(plan.get("source", ""))))
+			left_content.add_child(plan_link)
+		var locked_history := _label("完整历史目录整理完成后，才能进入远期建设章节；自由扩建不会提前解锁。", 14, MUTED)
+		locked_history.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		left_content.add_child(locked_history)
+	elif phase == "future":
+		left_content.add_child(_label("远期规划复现", 19, TEXT, true))
+		left_content.add_child(_label("历史主线已完成。只对有核验站点／走廊蓝图的规划开放建设与判定；政策方向和未定线位只作为资料，不会伪装成可完成任务。", 15, Color("#e4bd76")))
+		var future_ready_count := 0
+		for plan in CampaignSystemScript.future_plans(world):
+			var plan_card := PanelContainer.new()
+			plan_card.add_theme_stylebox_override("panel", _style(PANEL_LIGHT, BORDER, 8, 1))
+			left_content.add_child(plan_card)
+			var plan_box := VBoxContainer.new()
+			plan_box.add_theme_constant_override("separation", 6)
+			plan_box.add_theme_constant_override("margin_left", 9); plan_box.add_theme_constant_override("margin_right", 9)
+			plan_box.add_theme_constant_override("margin_top", 8); plan_box.add_theme_constant_override("margin_bottom", 8)
+			plan_card.add_child(plan_box)
+			plan_box.add_child(_label("%s · %s" % [str(plan.get("date", "资料日期待核")), str(plan.get("title", "远期规划"))], 15, TEXT, true))
+			var plan_description := _label(str(plan.get("description", "")), 14, MUTED)
+			plan_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			plan_box.add_child(plan_description)
+			var plan_id := str(plan.get("id", ""))
+			var ready := CampaignSystemScript.future_data_ready(plan, WorldData.city(active_city_id))
+			var reviewed: Array = campaign.get("reviewedFutureIds", [])
+			if ready: future_ready_count += 1
+			plan_box.add_child(_label("资料性质：%s · %s" % [_campaign_future_status_text(str(plan.get("status", ""))), "必做资料" if bool(plan.get("required", true)) else "参考资料"], 13, MUTED))
+			if reviewed.has(plan_id):
+				plan_box.add_child(_label("已完成复现并记录。", 14, Color("#8fd4ae"), true))
+			elif ready:
+				plan_box.add_child(_label("蓝图已核验 · %s" % str(plan.get("exactAlignment", "")), 13, Color("#8fd4ae")))
+				var evaluation := CampaignSystemScript.evaluate_future_plan(world, WorldData.city(active_city_id), plan)
+				var show_button := _button("在地图显示这份蓝图", Color("#9ad8f3"), PANEL, 14)
+				show_button.pressed.connect(func(): _select_future_campaign_plan(plan_id))
+				plan_box.add_child(show_button)
+				if bool(evaluation.get("complete", false)):
+					var complete_future := _button("确认完成这份远期规划", Color("#91d7b0"), Color("#15362f"), 14)
+					complete_future.pressed.connect(func(): _complete_future_campaign_plan(plan_id))
+					plan_box.add_child(complete_future)
+				else:
+					for issue in evaluation.get("issues", []).slice(0, 5):
+						var issue_label := _label("• %s" % str(issue), 13, MUTED)
+						issue_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+						plan_box.add_child(issue_label)
+			else:
+				plan_box.add_child(_label("资料状态：尚无可验收的站点／走廊蓝图；本条不能计入复现进度。", 13, Color("#d5ad68")))
+			var plan_source := _button("查看来源资料 ↗", Color("#9ad8f3"), PANEL, 14)
+			plan_source.pressed.connect(func(): OS.shell_open(str(plan.get("source", ""))))
+			plan_box.add_child(plan_source)
+		var locked_text := "自由扩建已满足解锁条件。" if CampaignSystemScript.future_complete(world) else "自由扩建会在必做历史与远期蓝图全部可验收并完成后解锁；目前可验收远期蓝图 %d 份。" % future_ready_count
+		var locked := _label(locked_text, 14, MUTED)
+		locked.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		left_content.add_child(locked)
+	elif phase == "free" and bool(campaign.get("freeUnlocked", false)):
+		left_content.add_child(_label("自由扩建已解锁", 20, TEAL, true))
+		left_content.add_child(_label("历史与远期里程碑已保存在本城进度。现在可以在同一张地图上继续扩建、调整停站和改善真实模拟客流；已有线路不会被重置。", 15, TEXT))
+		left_content.add_child(_label("资料截止：2026-10-01 · 本地规划版本：%s" % str(campaign.get("catalogVersion", 1)), 14, MUTED))
+		_add_campaign_event_timeline(config)
+	else:
+		left_content.add_child(_label("历史章节资料尚未配置完整。请查看版本说明中的城市资料缺口。", 15, Color("#e4bd76")))
+
+func _add_campaign_event_timeline(config: Dictionary) -> void:
+	left_content.add_child(_label("历史节点与来源", 16, TEXT, true))
+	for event in config.get("historicalEvents", []):
+		var event_box := VBoxContainer.new()
+		event_box.add_theme_constant_override("separation", 3)
+		var event_label := _label("%s  %s" % [str(event.get("date", "")), str(event.get("title", ""))], 14, MUTED, true)
+		event_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		event_box.add_child(event_label)
+		var status_text := _campaign_event_status_text(str(event.get("status", "")))
+		var source_publication_date: Variant = event.get("sourcePublicationDate", null)
+		var source_date := str(source_publication_date) if source_publication_date != null else "来源公开日期未核实"
+		var evidence := _label("%s · 核验于%s · %s" % [status_text, str(event.get("sourceCheckedAt", "未记录")), source_date], 12, Color("#9da8a5"))
+		evidence.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		event_box.add_child(evidence)
+		var description := str(event.get("description", ""))
+		if not description.is_empty():
+			var event_description := _label(description, 13, MUTED)
+			event_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			event_box.add_child(event_description)
+		if not str(event.get("source", "")).is_empty():
+			var source_link := _button("来源：%s ↗" % str(event.get("sourceTitle", "官方资料")), Color("#9ad8f3"), PANEL_LIGHT, 13)
+			source_link.custom_minimum_size.y = 38.0 * minf(_ui_scale, 1.25)
+			source_link.pressed.connect(func(): OS.shell_open(str(event.get("source", ""))))
+			event_box.add_child(source_link)
+		left_content.add_child(event_box)
+
+func _campaign_event_status_text(status: String) -> String:
+	match status:
+		"planning_or_construction": return "规划／建设"
+		"built_not_publicly_operated": return "建成，尚非公众运营"
+		"trial_operation": return "试运营"
+		"opened_or_operated": return "开通运营"
+		"opened_or_completed": return "开通／完成"
+		"historical_context": return "历史背景"
+		_: return "实施状态待核"
+
+func _campaign_future_status_text(status: String) -> String:
+	match status:
+		"approved_construction_plan": return "已批建设规划"
+		"approved_network_plan": return "已批线网规划"
+		"preliminary_public_consultation": return "初步方案／公开征求意见"
+		"policy_direction_without_alignment": return "政策方向，未公开线位"
+		"official_plan": return "官方规划文件"
+		"official_projects_with_gaps": return "已公布项目，资料有缺口"
+		"approved_construction_plan_historical": return "已到期历史建设规划"
+		_: return "状态待核"
+
+func _complete_campaign_chapter(chapter_id: String) -> void:
+	if world.is_empty() or str(world.get("mode", "")) != "campaign": return
+	var state: Dictionary = world.get("campaignState", {})
+	var chapter := CampaignSystemScript.current_chapter(world)
+	if chapter.is_empty() or str(chapter.get("id", "")) != chapter_id: return
+	var evaluation := CampaignSystemScript.evaluate_chapter(world, WorldData.city(active_city_id), chapter)
+	if not bool(evaluation.get("complete", false)):
+		_refresh_ui()
+		_show_issue("规划状态刚刚发生变化，请完成检查列表中的项目后再试。", "本章尚未完成")
+		return
+	var completed: Array = state.get("completedChapterIds", []).duplicate()
+	if not completed.has(chapter_id): completed.append(chapter_id)
+	state["completedChapterIds"] = completed
+	state["chapterIndex"] = int(state.get("chapterIndex", 0)) + 1
+	state["lastEvaluatedRevision"] = int(world.get("revision", 0))
+	var city_config := CampaignSystemScript.city_config(active_city_id)
+	var chapter_count: int = city_config.get("chapters", []).size()
+	if int(state["chapterIndex"]) >= chapter_count:
+		state["phase"] = "future" if str(city_config.get("historyStatus", "partial")) == "complete" else "history_gap"
+	world["campaignState"] = state
+	world["revision"] = int(world.get("revision", 0)) + 1
+	_autosave()
+	map_view.set_blueprint(CampaignSystemScript.blueprint_for(world, WorldData.city(active_city_id)))
+	_refresh_ui()
+	_show_toast("历史节点已记录：%s" % str(chapter.get("date", "")))
+
+func _select_future_campaign_plan(plan_id: String) -> void:
+	if world.is_empty() or str(world.get("mode", "")) != "campaign": return
+	var plan := CampaignSystemScript.future_plan_by_id(world, plan_id)
+	if plan.is_empty() or not CampaignSystemScript.future_data_ready(plan, WorldData.city(active_city_id)): return
+	var state: Dictionary = world.get("campaignState", {})
+	state["activeFuturePlanId"] = plan_id
+	world["campaignState"] = state
+	map_view.set_blueprint(CampaignSystemScript.blueprint_for(world, WorldData.city(active_city_id)))
+	_refresh_left_panel()
+
+func _complete_future_campaign_plan(plan_id: String) -> void:
+	if world.is_empty() or str(world.get("mode", "")) != "campaign": return
+	var plan := CampaignSystemScript.future_plan_by_id(world, plan_id)
+	if plan.is_empty(): return
+	var evaluation := CampaignSystemScript.evaluate_future_plan(world, WorldData.city(active_city_id), plan)
+	if not bool(evaluation.get("complete", false)):
+		_refresh_ui()
+		_show_issue("规划状态刚刚发生变化，请按检查列表修正后再确认。", "远期规划尚未完成")
+		return
+	if not CampaignSystemScript.mark_future_plan_complete(world, plan_id):
+		_show_issue("当前规划资料或阶段不再符合完成条件。", "无法记录远期里程碑")
+		_refresh_ui()
+		return
+	world["revision"] = int(world.get("revision", 0)) + 1
+	_autosave()
+	map_view.set_blueprint(CampaignSystemScript.blueprint_for(world, WorldData.city(active_city_id)))
+	_refresh_ui()
+	if bool(world.get("campaignState", {}).get("freeUnlocked", false)):
+		_show_toast("本城远期复现完成；自由扩建已解锁")
+	else:
+		_show_toast("远期规划复现已记录")
 
 func _refresh_city_campaign_tab() -> void:
 	var progression: Dictionary = world.get("cityProgression", {})
@@ -2504,6 +2737,7 @@ func _tool_instruction() -> String:
 	match current_tool:
 		"station":
 			if map_view.draft_conflict: return "位置冲突：站体与现有车站重叠，请移动或旋转。"
+			if not map_view.draft_station.is_empty() and not str(map_view.draft_station.get("blueprintTargetId", "")).is_empty(): return "已吸附蓝图站区：%s；仍可调整位置和朝向，再确认。" % str(map_view.draft_station.get("blueprintTargetName", "目标站区"))
 			return "建站：点空地放置预览，可拖动、按 R 转向，再确认。" if map_view.draft_station.is_empty() else "站址预览有效：确认后加入规划。"
 		"track": return "直线铺轨：点起点，再点终点预览，确认后写入轨网。"
 		"track_curve": return "曲线铺轨：点起点、控制点和终点预览，再确认写入。"
@@ -2560,12 +2794,15 @@ func _on_map_clicked(latlng: Array, hit_type: String, hit_id: String, side: Stri
 			_on_draft_station_changed()
 			_refresh_tools()
 			return
+		var blueprint_target := map_view.snap_blueprint_station(latlng)
+		if not blueprint_target.is_empty(): latlng = blueprint_target.get("latlng", latlng).duplicate()
 		var route := WorldData.find_route(world, active_route_id)
 		var vehicle_id := str(route.get("vehicleId", station_vehicle_id)) if not route.is_empty() else station_vehicle_id
 		var profile := WorldData.vehicle(vehicle_id)
 		var guide_heading := _onboarding_station_heading()
-		var heading := guide_heading if guide_heading >= 0.0 else 90.0
-		map_view.draft_station = {"id": "draft", "name": _next_station_name(), "latlng": latlng, "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": map_view.current_depth_m, "vehicleId": str(profile.get("id", "B-6")), "routeIds": []}
+		var blueprint_heading := map_view.blueprint_heading_for(str(blueprint_target.get("id", ""))) if not blueprint_target.is_empty() else -1.0
+		var heading := guide_heading if guide_heading >= 0.0 else blueprint_heading if blueprint_heading >= 0.0 else 90.0
+		map_view.draft_station = {"id": "draft", "name": _next_station_name(), "latlng": latlng, "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": map_view.current_depth_m, "vehicleId": str(profile.get("id", "B-6")), "routeIds": [], "blueprintTargetId": str(blueprint_target.get("id", "")), "blueprintTargetName": str(blueprint_target.get("name", ""))}
 		_on_draft_station_changed()
 		map_view.requested_redraw(); _refresh_tools(); _show_toast("站体预览已放置；按 R 调方向，再确认")
 		return
@@ -5794,7 +6031,11 @@ func _type_color(kind: String) -> Color:
 	return {"housing":Color("#e57272"),"employment":Color("#55a4ed"),"education":Color("#b585e8"),"health":Color("#ed8b9b"),"hub":Color("#3dbba7"),"commerce":Color("#edaf57"),"culture":Color("#4abc91"),"service":Color("#edaf57")}.get(kind, MUTED)
 
 func _mode_name(mode: String) -> String:
-	return "从零规划" if mode == "blank" else "扩建既有路网"
+	match mode:
+		"campaign": return "城市历史复现"
+		"blank": return "旧版自由规划"
+		"expand": return "旧版扩建既有路网"
+	return "未知开局"
 
 func _city_name(city_id: String) -> String:
 	return str(WorldData.city(city_id).get("name", city_id))

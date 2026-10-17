@@ -46,6 +46,7 @@ var task_origin_id := ""
 var task_destination_id := ""
 var task_recommended_latlng: Array = []
 var task_coverage_visible := false
+var campaign_blueprint: Dictionary = {}
 var focus_demand_ids: Array[String] = []
 var filter_demand_to_task := false
 var show_road_names := true
@@ -138,6 +139,37 @@ func set_world(state: Dictionary) -> void:
 	world = state
 	_rebuild_route_path_cache()
 	requested_redraw()
+
+func set_blueprint(value: Dictionary) -> void:
+	campaign_blueprint = value.duplicate(true)
+	requested_redraw()
+
+func snap_blueprint_station(latlng: Array, radius_px: float = 20.0) -> Dictionary:
+	if not bool(campaign_blueprint.get("visible", false)) or latlng.size() < 2: return {}
+	var click := _to_screen(latlng)
+	var closest: Dictionary = {}
+	var closest_distance := radius_px
+	for target in campaign_blueprint.get("stations", []):
+		if bool(target.get("built", false)): continue
+		var screen_distance := click.distance_to(_to_screen(target.get("latlng", [])))
+		if screen_distance <= closest_distance:
+			closest_distance = screen_distance
+			closest = target
+	return closest
+
+func blueprint_heading_for(target_id: String) -> float:
+	for corridor in campaign_blueprint.get("corridors", []):
+		var points: Array = corridor.get("targets", [])
+		for index in range(points.size()):
+			if str(points[index].get("id", "")) != target_id: continue
+			var neighbor_index := index + 1 if index + 1 < points.size() else index - 1
+			if neighbor_index < 0 or neighbor_index >= points.size(): return -1.0
+			var origin: Vector2 = Geo.local_m(points[index].get("latlng", [0.0, 0.0]), geometry_ref_lat)
+			var neighbor: Vector2 = Geo.local_m(points[neighbor_index].get("latlng", [0.0, 0.0]), geometry_ref_lat)
+			var direction := neighbor - origin
+			if direction.length_squared() < 1.0: return -1.0
+			return fposmod(90.0 - rad_to_deg(direction.angle()), 180.0)
+	return -1.0
 
 func _rebuild_route_path_cache() -> void:
 	route_path_cache.clear()
@@ -336,6 +368,7 @@ static func _prepare_basemap_draw_batches_for(features: Array, zoom_level: int, 
 		"parkPoints": PackedVector2Array(), "parkIndices": PackedInt32Array(), "parkColors": PackedColorArray(), "parkOutline": PackedVector2Array(),
 		"majorLines": PackedVector2Array(), "primaryLines": PackedVector2Array(), "secondaryLines": PackedVector2Array(), "localLines": PackedVector2Array(), "waterLines": PackedVector2Array(),
 		"buildingPoints": PackedVector2Array(), "buildingIndices": PackedInt32Array(), "buildingColors": PackedColorArray(), "buildingOutline": PackedVector2Array(),
+		"majorBuildingPoints": PackedVector2Array(), "majorBuildingIndices": PackedInt32Array(), "majorBuildingColors": PackedColorArray(), "majorBuildingOutline": PackedVector2Array(),
 		"roadLabels": []
 	}
 	for feature in features:
@@ -370,25 +403,32 @@ static func _prepare_basemap_draw_batches_for(features: Array, zoom_level: int, 
 			batches[line_key] = line_batch
 			if zoom_level >= 15 and kind != "water_line" and not str(feature.get("name", "")).is_empty() and points.size() >= 2:
 				batches.roadLabels.append({"position": points[points.size() / 2], "name": str(feature.name), "kind": kind, "priority": _road_label_priority(kind), "bounds": feature.get("bounds", Rect2())})
-		elif kind == "building" and zoom_level >= 17 and points.size() >= 3:
+		elif kind in ["building", "building_major"] and points.size() >= 3 and (zoom_level >= 17 if kind == "building" else zoom_level >= 14):
 			var triangles: PackedInt32Array = feature.get("fillIndices", PackedInt32Array())
+			var point_key := "buildingPoints" if kind == "building" else "majorBuildingPoints"
+			var index_key := "buildingIndices" if kind == "building" else "majorBuildingIndices"
+			var color_key := "buildingColors" if kind == "building" else "majorBuildingColors"
+			var outline_key := "buildingOutline" if kind == "building" else "majorBuildingOutline"
+			var fill_color := Color("#EFEDE7") if kind == "building" else Color("#e8e2d4")
 			if not triangles.is_empty():
-				var building_points: PackedVector2Array = batches.buildingPoints
-				var building_indices: PackedInt32Array = batches.buildingIndices
-				var building_colors: PackedColorArray = batches.buildingColors
+				var building_points: PackedVector2Array = batches[point_key]
+				var building_indices: PackedInt32Array = batches[index_key]
+				var building_colors: PackedColorArray = batches[color_key]
 				var base := building_points.size()
 				building_points.append_array(points)
 				for index in triangles: building_indices.append(base + index)
-				for _index in points.size(): building_colors.append(Color("#EFEDE7"))
-				batches.buildingPoints = building_points
-				batches.buildingIndices = building_indices
-				batches.buildingColors = building_colors
+				for _index in points.size(): building_colors.append(fill_color)
+				batches[point_key] = building_points
+				batches[index_key] = building_indices
+				batches[color_key] = building_colors
 			var bounds: Rect2 = feature.get("bounds", Rect2())
 			var projected_area: float = bounds.size.x * bounds.size.y / maxf(meters_per_pixel * meters_per_pixel, 0.001)
-			if projected_area >= 400.0:
-				var building_outline: PackedVector2Array = batches.buildingOutline
+			if projected_area >= (400.0 if kind == "building" else 80.0):
+				var building_outline: PackedVector2Array = batches[outline_key]
 				building_outline.append_array(pairs)
-				batches.buildingOutline = building_outline
+				batches[outline_key] = building_outline
+			if kind == "building_major" and zoom_level >= 15 and not str(feature.get("name", "")).is_empty() and points.size() >= 2:
+				batches.roadLabels.append({"position": points[points.size() / 2], "name": str(feature.get("name", "")), "kind": kind, "priority": _road_label_priority(kind), "bounds": bounds})
 	return batches
 
 func _start_base_map_worker(request: Dictionary) -> void:
@@ -492,6 +532,7 @@ static func _prepare_base_features_for(raw_features: Array, zoom_level: int, met
 		if not raw is Dictionary: continue
 		var kind := str(raw.get("kind", ""))
 		if kind == "building" and zoom_level < 17: continue
+		if kind == "building_major" and zoom_level < 14: continue
 		if kind == "road_local" and zoom_level < 16: continue
 		if kind == "road_secondary" and zoom_level < 15: continue
 		if kind == "road_primary" and zoom_level < 13: continue
@@ -513,19 +554,19 @@ static func _prepare_base_features_for(raw_features: Array, zoom_level: int, met
 		# caused visible holes in otherwise continuous streets.
 		var screen_path_length := path_length / maxf(meters_per_pixel, 0.01)
 		if kind == "water_line" and screen_path_length < 2.0: continue
-		if kind in ["water_area", "park", "building"]:
+		if kind in ["water_area", "park", "building", "building_major"]:
 			var projected_area := (maximum.x - minimum.x) * (maximum.y - minimum.y) / maxf(meters_per_pixel * meters_per_pixel, 0.001)
-			var area_threshold := 1800.0 if zoom_level < 14 and kind in ["water_area", "park"] else 160.0 if kind == "building" else 32.0
+			var area_threshold := 1800.0 if zoom_level < 14 and kind in ["water_area", "park"] else 160.0 if kind == "building" else 48.0 if kind == "building_major" else 32.0
 			if projected_area < area_threshold: continue
 		if zoom_level < 15: points = _simplify_local_points(points, maxf(4.0, 1.5 * meters_per_pixel))
 		var packed_points := PackedVector2Array(points)
 		var fill_indices := PackedInt32Array()
-		if kind in ["water_area", "park", "building"] and packed_points.size() >= 3:
+		if kind in ["water_area", "park", "building", "building_major"] and packed_points.size() >= 3:
 			fill_indices = Geometry2D.triangulate_polygon(packed_points)
 		for point in points:
 			minimum.x = minf(minimum.x, point.x); minimum.y = minf(minimum.y, point.y)
 			maximum.x = maxf(maximum.x, point.x); maximum.y = maxf(maximum.y, point.y)
-		var pairs := _polyline_pairs(packed_points, kind in ["water_area", "park", "building"])
+		var pairs := _polyline_pairs(packed_points, kind in ["water_area", "park", "building", "building_major"])
 		result.append({"id": str(raw.get("id", "")), "kind": kind, "name": str(raw.get("name", "")), "points": packed_points, "pairs": pairs, "bounds": Rect2(minimum, maximum - minimum), "fillValid": not fill_indices.is_empty(), "fillIndices": fill_indices})
 	return result
 
@@ -547,13 +588,42 @@ func _draw() -> void:
 	_label_rects.clear()
 	draw_rect(Rect2(Vector2.ZERO, size), Color("#F5F3ED"))
 	_draw_local_basemap()
+	_draw_campaign_corridors()
 	_draw_built_links()
 	_draw_station_preview_links()
 	_draw_demand()
+	_draw_campaign_targets()
 	_draw_stations()
 	_draw_task_pair()
 	_draw_draft()
 	_draw_view_hints()
+
+func _draw_campaign_corridors() -> void:
+	if not bool(campaign_blueprint.get("visible", false)): return
+	for corridor in campaign_blueprint.get("corridors", []):
+		var points: Array = corridor.get("points", [])
+		if points.size() < 2: continue
+		for index in range(1, points.size()):
+			var a := _to_screen(points[index - 1])
+			var b := _to_screen(points[index])
+			draw_line(a, b, Color(0.22, 0.39, 0.66, 0.13), 13.0, true)
+			draw_dashed_line(a, b, Color("#496a9a"), 2.4, 8.0, true)
+
+func _draw_campaign_targets() -> void:
+	if not bool(campaign_blueprint.get("visible", false)): return
+	for target in campaign_blueprint.get("stations", []):
+		var latlng: Array = target.get("latlng", [])
+		if latlng.size() < 2: continue
+		var point := _to_screen(latlng)
+		if not Rect2(Vector2(-60, -60), size + Vector2(120, 120)).has_point(point): continue
+		var radius := maxf(13.0, float(target.get("toleranceM", 150.0)) / maxf(0.1, Geo.meters_per_pixel(float(latlng[0]), current_zoom)))
+		var color := Color("#278568") if bool(target.get("built", false)) else Color("#b18032")
+		draw_circle(point, radius, Color(color.r, color.g, color.b, 0.055))
+		draw_arc(point, radius, 0.0, TAU, 48, Color(color.r, color.g, color.b, 0.62), 1.6, true)
+		draw_circle(point, 4.5, Color("#fffdf7"))
+		draw_circle(point, 3.0, color)
+		if current_zoom >= 14:
+			_draw_label(point + Vector2(9, 9), "目标站区 · %s" % str(target.get("name", "")), color.darkened(0.15), get_theme_default_font(), 11, true)
 
 func _draw_local_basemap() -> void:
 	if not base_map_available:
@@ -624,6 +694,10 @@ func _draw_local_basemap() -> void:
 			"water_line": water_lines.append_array(pairs)
 		if show_road_names and current_zoom >= 15 and kind != "water_line" and not str(feature.name).is_empty():
 			road_labels.append({"position": points[points.size() / 2], "name": str(feature.name), "kind": kind, "priority": _road_label_priority(kind)})
+	for feature in base_map_features:
+		if current_zoom < 15 or str(feature.get("kind", "")) != "building_major" or not visible.intersects(feature.bounds): continue
+		var named_points: PackedVector2Array = feature.get("points", PackedVector2Array())
+		if named_points.size() >= 2 and not str(feature.get("name", "")).is_empty(): road_labels.append({"position": named_points[named_points.size() / 2], "name": str(feature.get("name", "")), "kind": "building_major", "priority": _road_label_priority("building_major")})
 	if not water_lines.is_empty(): draw_multiline(water_lines, Color("#C3D7D4"), 3.5 * _camera_mpp, false)
 	if not major_outline.is_empty(): draw_multiline(major_outline, Color("#E0DED7"), 5.3 * _camera_mpp, false)
 	if not secondary_outline.is_empty(): draw_multiline(secondary_outline, Color("#E9E7E0"), 3.8 * _camera_mpp, false)
@@ -647,6 +721,22 @@ func _draw_local_basemap() -> void:
 				if projected_area >= 400.0: building_outline.append_array(feature.pairs)
 		if not building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), building_indices, building_points, building_colors)
 		if not building_outline.is_empty(): draw_multiline(building_outline, Color("#E5E2DA"), 0.7 * _camera_mpp, false)
+	if current_zoom >= 14:
+		var major_points := PackedVector2Array(); var major_indices := PackedInt32Array(); var major_colors := PackedColorArray(); var major_building_outline := PackedVector2Array()
+		for feature in base_map_features:
+			if str(feature.get("kind", "")) != "building_major" or not visible.intersects(feature.get("bounds", Rect2())): continue
+			var points: PackedVector2Array = feature.get("points", PackedVector2Array())
+			if points.size() < 3: continue
+			var base := major_points.size()
+			var triangles: PackedInt32Array = feature.get("fillIndices", PackedInt32Array())
+			if not triangles.is_empty():
+				major_points.append_array(points)
+				for index in triangles: major_indices.append(base + index)
+				for _index in points.size(): major_colors.append(Color("#e8e2d4"))
+			var feature_bounds: Rect2 = feature.get("bounds", Rect2())
+			if feature_bounds.size.x * feature_bounds.size.y / maxf(_camera_mpp * _camera_mpp, 0.001) >= 80.0: major_building_outline.append_array(feature.get("pairs", PackedVector2Array()))
+		if not major_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), major_indices, major_points, major_colors)
+		if not major_building_outline.is_empty(): draw_multiline(major_building_outline, Color("#d3c6a7"), 1.0 * _camera_mpp, false)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	_draw_road_labels(road_labels)
 	if not inside_package:
@@ -686,8 +776,12 @@ func _draw_cached_local_basemap(visible: Rect2, inside_package: bool) -> void:
 	var building_outline: PackedVector2Array = batches.get("buildingOutline", PackedVector2Array())
 	if not building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), building_indices, batches.buildingPoints, batches.buildingColors)
 	if not building_outline.is_empty(): draw_multiline(building_outline, Color("#E5E2DA"), 0.7 * _camera_mpp, false)
+	var major_building_indices: PackedInt32Array = batches.get("majorBuildingIndices", PackedInt32Array())
+	var major_building_outline: PackedVector2Array = batches.get("majorBuildingOutline", PackedVector2Array())
+	if not major_building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), major_building_indices, batches.majorBuildingPoints, batches.majorBuildingColors)
+	if not major_building_outline.is_empty(): draw_multiline(major_building_outline, Color("#d3c6a7"), 1.0 * _camera_mpp, false)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-	if show_road_names and current_zoom >= 15:
+	if current_zoom >= 15:
 		var visible_road_labels: Array[Dictionary] = []
 		for road_label in batches.get("roadLabels", []):
 			if visible.intersects(road_label.get("bounds", Rect2())):
@@ -1476,15 +1570,17 @@ func _bezier(p0: Vector2, p1: Vector2, p2: Vector2, p3: Vector2, t: float) -> Ve
 	return p0 * u * u * u + p1 * 3.0 * u * u * t + p2 * 3.0 * u * t * t + p3 * t * t * t
 
 func _draw_road_labels(labels: Array[Dictionary], positions_are_screen: bool = false) -> void:
-	if not show_road_names or current_zoom < 15: return
+	if current_zoom < 15: return
 	var candidates: Array[Dictionary] = []
 	for road_label in labels:
+		if not show_road_names and str(road_label.get("kind", "")) != "building_major": continue
 		var candidate: Dictionary = road_label.duplicate()
 		candidate["screenPosition"] = road_label.get("screenPosition", road_label.get("position", Vector2.ZERO)) if positions_are_screen else _local_to_screen_cached(road_label.get("position", Vector2.ZERO))
 		candidates.append(candidate)
 	for road_label in deduplicate_road_labels(candidates, 220.0 * ui_scale, 72):
 		var position: Vector2 = road_label.get("screenPosition", Vector2.ZERO)
-		_draw_label(position + Vector2(3, -2), str(road_label.get("name", "")), Color("#687983"), get_theme_default_font(), 12)
+		var is_building := str(road_label.get("kind", "")) == "building_major"
+		_draw_label(position + Vector2(3, -2), str(road_label.get("name", "")), Color("#685d48") if is_building else Color("#687983"), get_theme_default_font(), 12 if is_building else 12, false, is_building)
 
 static func deduplicate_road_labels(labels: Array[Dictionary], minimum_spacing_px: float = 220.0, maximum_labels: int = 72) -> Array[Dictionary]:
 	var ordered := labels.duplicate()
@@ -1512,6 +1608,7 @@ static func deduplicate_road_labels(labels: Array[Dictionary], minimum_spacing_p
 
 static func _road_label_priority(kind: String) -> int:
 	match kind:
+		"building_major": return 5
 		"road_major": return 4
 		"road_primary": return 3
 		"road_secondary": return 2

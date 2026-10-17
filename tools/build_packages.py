@@ -121,6 +121,7 @@ def main() -> None:
             (ROOT / "DESIGN.md", "DESIGN.md"),
             (ROOT / "PRODUCT.md", "PRODUCT.md"),
             (ROOT / "docs" / "interface-references.md", "docs/interface-references.md"),
+            (ROOT / "docs" / "campaign-content-audit.md", "docs/campaign-content-audit.md"),
             (RELEASE / "LICENSES.txt", "LICENSES.txt"),
             (ROOT / "THIRD_PARTY_NOTICES.txt", "THIRD_PARTY_NOTICES.txt"),
             (RELEASE / "OFL.txt", "OFL.txt"),
@@ -136,6 +137,8 @@ def main() -> None:
 
         previews = [
             "docs/0.16-ui-preview-1600x980.png",
+            "docs/campaign-0.17.0-new-city-1366x768.png",
+            "docs/campaign-0.17.0-new-city-1600x980.png",
             "docs/route-repair-0.13.5.jpg",
             "docs/menu-preview-1366x768.png",
             "docs/menu-preview-1600x980.png",

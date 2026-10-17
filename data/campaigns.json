@@ -1,0 +1,1207 @@
+{
+  "schemaVersion": 1,
+  "cutoffDate": "2026-10-01",
+  "catalogStatus": "first_playable_sample",
+  "catalogStatusNote": "五城内容是可运行的首批历史样板，不是全史复原。各城的历史目录和远期蓝图均有明确缺口；未知线位不以推测补齐。",
+  "coordinatePolicy": "历史站位以当前公开车站地理位置作站区参考；章节容差按站点设置。示意走廊连接站区中心，不代表工程线位、隧道中心线或历史测绘成果。",
+  "cities": {
+    "shanghai": {
+      "name": "上海",
+      "historicalEvents": [
+        {
+          "date": "1990-01-19",
+          "title": "1号线开工建设",
+          "description": "上海地铁1号线正式开工。",
+          "source": "https://www.shlgbj.gov.cn/view/6181",
+          "sourceTitle": "上海地铁1号线建设回忆",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "planning_or_construction",
+          "scope": "上海地铁1号线正式开工。",
+          "id": "shanghai-event-1990-01-19-01",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1993-05-28",
+          "title": "徐家汇—锦江乐园段观光试运营",
+          "description": "南段约6公里、5座车站先行开放观光试运营。",
+          "source": "https://www.shlgbj.gov.cn/view/6181",
+          "sourceTitle": "上海地铁1号线建设回忆",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "南段约6公里、5座车站先行开放观光试运营。",
+          "id": "shanghai-event-1993-05-28-02",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1995-04-10",
+          "title": "上海火车站—锦江乐园段试运营",
+          "description": "1号线主线投入试运营。",
+          "source": "https://www.shlgbj.gov.cn/view/6181",
+          "sourceTitle": "上海地铁1号线建设回忆",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "1号线主线投入试运营。",
+          "id": "shanghai-event-1995-04-10-03",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1996-12-28",
+          "title": "南延伸段试运营",
+          "description": "线路延伸至莘庄；1997年贯通运营。",
+          "source": "https://www.shlgbj.gov.cn/view/6181",
+          "sourceTitle": "上海地铁1号线建设回忆",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "线路延伸至莘庄；1997年贯通运营。",
+          "id": "shanghai-event-1996-12-28-04",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "id": "shanghai-event-2004-12-28-line1-north-extension",
+          "date": "2004-12-28",
+          "title": "1号线北延伸段开通试运营",
+          "description": "线路从上海火车站向北延至共富新村，新增9站，包含地下与高架区段；同期明确分段行车间隔安排，反映延伸开通后的运营组织。",
+          "source": "https://www.shanghai.gov.cn/nw9822/20200906/0001-9822_97192.html",
+          "sourceTitle": "上海市政府：轨道交通1号线北延伸段将于12月28日投入试运营",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "官方公告列出区段、站序、里程及分段运营安排；地图坐标用于站区参考。",
+          "sourcePublicationDate": "2004-12-09",
+          "publicationDateNote": "来源公开日期为2004-12-09；事件日期按来源正文记录。"
+        }
+      ],
+      "chapters": [
+        {
+          "id": "sh-line1-1993",
+          "phase": "history",
+          "date": "1993-05-28",
+          "title": "1号线南段先行试运营",
+          "lineGroups": [
+            {
+              "name": "1号线南段",
+              "stationIds": [
+                "shanghai-s145",
+                "shanghai-s73",
+                "shanghai-s123",
+                "shanghai-s422",
+                "shanghai-s125"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "徐家汇至锦江乐园的南段先行观光试运营。先把这段线路和站序复现出来。",
+          "precision": "station_areas",
+          "source": "https://www.shlgbj.gov.cn/view/6181",
+          "sourceTitle": "上海地铁1号线建设回忆",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        },
+        {
+          "id": "sh-line1-1995",
+          "phase": "history",
+          "date": "1995-04-10",
+          "title": "1号线主线试运营",
+          "lineGroups": [
+            {
+              "name": "1号线主线",
+              "stationIds": [
+                "shanghai-s115",
+                "shanghai-s116",
+                "shanghai-s117",
+                "shanghai-s303",
+                "shanghai-s118",
+                "shanghai-s119",
+                "shanghai-s352",
+                "shanghai-s121",
+                "shanghai-s145",
+                "shanghai-s73",
+                "shanghai-s123",
+                "shanghai-s422",
+                "shanghai-s125"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "主线从上海火车站延伸至已开通的南段。此处需要在原线路基础上补齐站点和接续。",
+          "precision": "station_areas",
+          "source": "https://www.shlgbj.gov.cn/view/6181",
+          "sourceTitle": "上海地铁1号线建设回忆",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        },
+        {
+          "id": "sh-line1-1997",
+          "phase": "history",
+          "date": "1997-07-01",
+          "title": "1号线贯通至莘庄",
+          "lineGroups": [
+            {
+              "name": "1号线贯通段",
+              "stationIds": [
+                "shanghai-s115",
+                "shanghai-s116",
+                "shanghai-s117",
+                "shanghai-s303",
+                "shanghai-s118",
+                "shanghai-s119",
+                "shanghai-s352",
+                "shanghai-s121",
+                "shanghai-s145",
+                "shanghai-s73",
+                "shanghai-s123",
+                "shanghai-s422",
+                "shanghai-s125",
+                "shanghai-s126",
+                "shanghai-s127",
+                "shanghai-s128"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "南延伸段完成贯通运营。玩家需要把站序和线路延伸接续到莘庄。",
+          "precision": "station_areas",
+          "source": "https://www.shlgbj.gov.cn/view/6181",
+          "sourceTitle": "上海地铁1号线建设回忆",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        }
+      ],
+      "futurePlans": [
+        {
+          "id": "sh-2026-2030",
+          "title": "上海近期轨道建设方向",
+          "date": "2026-09-21",
+          "status": "official_plan",
+          "sourceType": "municipal_government_plan_interpretation",
+          "description": "近期规划提出推进23号线一期、20号线建设及南北通道等工作。公开解读包含建设方向，但本地资料包尚无可校验的统一站点级蓝图。",
+          "exactAlignment": "not_available",
+          "source": "https://ghzyj.sh.gov.cn/zcjd/20260921/d53a79dab17a4a9ab45093acb6fa207d.html",
+          "sourceTitle": "上海市国土空间近期实施规划（2026—2030年）交通解读",
+          "dataStatus": "not_digitized",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2026-09-21",
+          "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。"
+        },
+        {
+          "id": "sh-2025-2035",
+          "title": "上海市轨道交通线网规划（2025—2035年）",
+          "date": "2025-06-24",
+          "status": "principle_approved",
+          "sourceType": "municipal_planning_authority_release",
+          "description": "市政府常务会议原则同意规划，并要求进一步细化规划。公开公告没有发布可用于逐站验收的完整地理蓝图。",
+          "exactAlignment": "not_available",
+          "source": "https://ghzyj.sh.gov.cn/gzdt/20250624/63c86544c17c47acbe3695776fe88628.html",
+          "sourceTitle": "上海市规划资源局发布信息",
+          "dataStatus": "not_digitized",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2025-06-24",
+          "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。"
+        }
+      ],
+      "coverageNote": "当前样板仅覆盖1号线早期建设、南段试运营和莘庄延伸；1997年至2026年的其他线路、延伸与运营调整仍待逐项整理。",
+      "historyStatus": "partial",
+      "futureStatus": "not_digitized"
+    },
+    "beijing": {
+      "name": "北京",
+      "historicalEvents": [
+        {
+          "id": "beijing-event-1965-01-one-ring-two-lines",
+          "date": "1965-01",
+          "title": "提出“一环两线三期”建设方案",
+          "description": "档案回顾记载，1965年1月《关于北京修建地下铁道问题的报告》提出“一环两线三期”方案，并说明当时以军事需要为主、兼顾城市交通的规划背景。",
+          "source": "https://www.beijing.gov.cn/renwen/sy/whkb/202212/t20221227_2884899.html",
+          "sourceTitle": "北京市政府：珍贵档案记录北京城蝶变身影",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "historical_plan",
+          "scope": "保留早期方案及其时代目标；当前公开资料不足以将“一环两线三期”可靠还原为可操作的地理蓝图。",
+          "sourcePublicationDate": "2022-12-27",
+          "publicationDateNote": "来源公开日期为2022-12-27；事件日期按来源正文记录。"
+        },
+        {
+          "date": "1965-07-01",
+          "title": "一期工程开工",
+          "description": "一期工程开工建设；早期规划以战备为主并兼顾城市交通。",
+          "source": "https://wwj.beijing.gov.cn/bjww/362760/362767/bwgxh/xhdt/10824966/10828590/",
+          "sourceTitle": "北京地铁展览厅资料",
+          "id": "beijing-event-1965-07-01-01",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "scope": "一期工程开工建设；早期规划以战备为主并兼顾城市交通。",
+          "status": "planning_or_construction",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1969-10-01",
+          "title": "一期工程建成",
+          "description": "资料记载建成部分包括苹果园至复兴门的西段，以及长椿街至北京站的南段；这不等于当年已向公众运营。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+          "sourceTitle": "首都之窗：地铁线路织传奇",
+          "id": "beijing-event-1969-10-01-02",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "scope": "资料记载建成部分包括苹果园至复兴门的西段，以及长椿街至北京站的南段；这不等于当年已向公众运营。",
+          "status": "built_not_publicly_operated",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1971-01-15",
+          "title": "北京站至立新站开始试运营",
+          "description": "内部售票的试运营区段约10.7公里、10座车站；立新站后改称公主坟站。",
+          "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm",
+          "sourceTitle": "北京市发展和改革委员会转载历史回顾",
+          "id": "beijing-event-1971-01-15-03",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "scope": "内部售票的试运营区段约10.7公里、10座车站；立新站后改称公主坟站。",
+          "status": "trial_operation",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1973-04-23",
+          "title": "试运营区段延长至苹果园",
+          "description": "试运营区段延伸至苹果园，形成苹果园至北京站方向的连续线路。",
+          "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm",
+          "sourceTitle": "北京市发展和改革委员会转载历史回顾",
+          "id": "beijing-event-1973-04-23-04",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "scope": "试运营区段延伸至苹果园，形成苹果园至北京站方向的连续线路。",
+          "status": "trial_operation",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1981-09-15",
+          "title": "一期工程正式向社会运营",
+          "description": "一期工程完成验收并正式向社会开放运营。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+          "sourceTitle": "首都之窗：地铁线路织传奇",
+          "id": "beijing-event-1981-09-15-05",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "scope": "一期工程完成验收并正式向社会开放运营。",
+          "status": "opened_or_operated",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1984-09-20",
+          "title": "二期工程投入运营",
+          "description": "复兴门至建国门区段投入运营；现有站点与线路身份经历后续拆分重组。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+          "sourceTitle": "首都之窗：地铁线路织传奇",
+          "id": "beijing-event-1984-09-20-06",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "scope": "复兴门至建国门区段投入运营；现有站点与线路身份经历后续拆分重组。",
+          "status": "opened_or_operated",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1987-12-28",
+          "title": "复兴门折返线完成，环线运营",
+          "description": "二期工程形成环线运营，后续才逐步演变为现行线路编号。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+          "sourceTitle": "首都之窗：地铁线路织传奇",
+          "id": "beijing-event-1987-12-28-07",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "scope": "二期工程形成环线运营，后续才逐步演变为现行线路编号。",
+          "status": "opened_or_operated",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        }
+      ],
+      "chapters": [
+        {
+          "id": "bj-phase1-built-1969",
+          "phase": "history",
+          "date": "1969-10-01",
+          "title": "一期工程建成：两段先行工程",
+          "lineGroups": [
+            {
+              "name": "西段：苹果园—复兴门",
+              "stationIds": [
+                "beijing-s66",
+                "beijing-s65",
+                "beijing-s64",
+                "beijing-s63",
+                "beijing-s62",
+                "beijing-s61",
+                "beijing-s60",
+                "beijing-s59",
+                "beijing-s58",
+                "beijing-s57",
+                "beijing-s56"
+              ],
+              "toleranceM": 260
+            },
+            {
+              "name": "南段：长椿街—北京站",
+              "stationIds": [
+                "beijing-s82",
+                "beijing-s81",
+                "beijing-s80",
+                "beijing-s79",
+                "beijing-s78",
+                "beijing-s77"
+              ],
+              "toleranceM": 260
+            }
+          ],
+          "requireOpen": false,
+          "distinctRoutes": true,
+          "eventText": "复现资料记载的两段建成区间。章节仅校验站区顺序与物理轨道连续性；不要求两段在当时尚未贯通处相连，也不要求开通。",
+          "precision": "corridor",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+          "sourceTitle": "首都之窗：地铁线路织传奇",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "built_or_planned_not_opened",
+          "alignmentNote": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        },
+        {
+          "id": "bj-phase1-trial-1971",
+          "phase": "history",
+          "date": "1971-01-15",
+          "title": "北京站—立新站试运营",
+          "lineGroups": [
+            {
+              "name": "一期试运营段",
+              "stationIds": [
+                "beijing-s77",
+                "beijing-s78",
+                "beijing-s79",
+                "beijing-s80",
+                "beijing-s81",
+                "beijing-s82",
+                "beijing-s56",
+                "beijing-s57",
+                "beijing-s58",
+                "beijing-s60"
+              ],
+              "stationNames": {
+                "beijing-s60": "立新站"
+              },
+              "toleranceM": 260
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "以历史站名立新站（今公主坟）作为西端，复现开始试运营的10站区段。当前地图仍使用现代地理位置与现行站名作锚点。",
+          "precision": "corridor",
+          "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm",
+          "sourceTitle": "北京市发展和改革委员会转载历史回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "operated",
+          "alignmentNote": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        },
+        {
+          "id": "bj-phase1-apple-1973",
+          "phase": "history",
+          "date": "1973-04-23",
+          "title": "一期试运营延长至苹果园",
+          "lineGroups": [
+            {
+              "name": "一期试运营线",
+              "stationIds": [
+                "beijing-s77",
+                "beijing-s78",
+                "beijing-s79",
+                "beijing-s80",
+                "beijing-s81",
+                "beijing-s82",
+                "beijing-s56",
+                "beijing-s57",
+                "beijing-s58",
+                "beijing-s60",
+                "beijing-s59",
+                "beijing-s61",
+                "beijing-s62",
+                "beijing-s63",
+                "beijing-s64",
+                "beijing-s65",
+                "beijing-s66"
+              ],
+              "stationNames": {
+                "beijing-s60": "立新站"
+              },
+              "toleranceM": 260
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "在原试运营区段西侧继续延伸，复现至苹果园的全段站序。线路示意不是历史工程实测线位。",
+          "precision": "corridor",
+          "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm",
+          "sourceTitle": "北京市发展和改革委员会转载历史回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "operated",
+          "alignmentNote": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        },
+        {
+          "id": "bj-phase1-public-1981",
+          "phase": "history",
+          "date": "1981-09-15",
+          "title": "一期工程正式向社会运营",
+          "lineGroups": [
+            {
+              "name": "一期对社会运营线路",
+              "stationIds": [
+                "beijing-s77",
+                "beijing-s78",
+                "beijing-s79",
+                "beijing-s80",
+                "beijing-s81",
+                "beijing-s82",
+                "beijing-s56",
+                "beijing-s57",
+                "beijing-s58",
+                "beijing-s60",
+                "beijing-s59",
+                "beijing-s61",
+                "beijing-s62",
+                "beijing-s63",
+                "beijing-s64",
+                "beijing-s65",
+                "beijing-s66"
+              ],
+              "stationNames": {
+                "beijing-s60": "立新站"
+              },
+              "toleranceM": 260
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "线路与站序沿用已建一期，重点是复现由内部试运营转为正式对社会开放的节点。游戏只记录建设章节，不模拟当年的真实客流。",
+          "precision": "corridor",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+          "sourceTitle": "首都之窗：地铁线路织传奇",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "operated",
+          "alignmentNote": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        }
+      ],
+      "futurePlans": [
+        {
+          "id": "bj-2020-2035",
+          "title": "北京市轨道交通线网规划（2020—2035年）",
+          "date": "2022-08-17",
+          "status": "official_plan",
+          "sourceType": "municipal_natural_resources_plan_publication",
+          "description": "规划提出四网融合、提高轨道站点覆盖率与出行效率。公开资料包含规划图件，但本地数据包尚未完成逐线数字化和审核。",
+          "exactAlignment": "not_available",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/zxgh/202208/t20220817_2794309.html",
+          "sourceTitle": "北京市轨道交通线网规划（2020—2035年）",
+          "dataStatus": "not_digitized",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2022-08-17",
+          "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。"
+        }
+      ],
+      "coverageNote": "当前样板覆盖北京一期部分建成段、1971年试运营、1973年延至苹果园及1981年对社会开放；尚未覆盖二期环线完整历史、后续几十年各线规划变更与开通。",
+      "historyStatus": "partial",
+      "futureStatus": "not_digitized"
+    },
+    "guangzhou": {
+      "name": "广州",
+      "historicalEvents": [
+        {
+          "date": "1962-01-01",
+          "title": "早期地铁地质勘探",
+          "description": "公开回顾记载，广州在1962年提出第一份地铁地质勘探报告。",
+          "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+          "sourceTitle": "广州地铁一号线建设回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "planning_or_construction",
+          "scope": "公开回顾记载，广州在1962年提出第一份地铁地质勘探报告。",
+          "id": "guangzhou-event-1962-01-01-01",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "id": "guangzhou-event-1978-first-network-plan",
+          "date": "1978",
+          "title": "完成首个地铁路网规划方案",
+          "description": "广州首个地铁路网规划方案完成，早期线网构想进入正式规划阶段。现有来源没有足够的可验证数字化几何，游戏不将其伪装成可铺设蓝图。",
+          "source": "https://jyj.gz.gov.cn/attachment/6/6824/6824303/7360517.pdf",
+          "sourceTitle": "广州市教育局资料：圆梦三十年——广州地铁开工了（回顾资料）",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "historical_plan",
+          "scope": "记录规划事件与资料边界；旧方案图面尚未数字化核验。",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源是官方回顾／档案资料，首次公开日期未核实；不以网页更新日期替代。"
+        },
+        {
+          "id": "guangzhou-event-1979-preparatory-office",
+          "date": "1979",
+          "title": "成立地下铁路筹建处",
+          "description": "广州市地下铁路筹建处正式成立。此节点记录建设组织建立，不代表线路已获批或已开工。",
+          "source": "https://jyj.gz.gov.cn/attachment/6/6824/6824303/7360517.pdf",
+          "sourceTitle": "广州市教育局资料：圆梦三十年——广州地铁开工了（回顾资料）",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "historical_context",
+          "scope": "记录筹建机构成立；来源回顾称1993年1号线开工前经历多轮筹备。",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源是官方回顾／档案资料，首次公开日期未核实；不以网页更新日期替代。"
+        },
+        {
+          "date": "1993-12-28",
+          "title": "1号线正式开工",
+          "description": "广州地铁一号线工程正式破土动工。",
+          "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+          "sourceTitle": "广州地铁一号线建设回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "planning_or_construction",
+          "scope": "广州地铁一号线工程正式破土动工。",
+          "id": "guangzhou-event-1993-12-28-02",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1997-06-28",
+          "title": "西塱—黄沙段观光试运营",
+          "description": "1号线一期先行段开始观光试运营。",
+          "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+          "sourceTitle": "广州地铁一号线建设回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "1号线一期先行段开始观光试运营。",
+          "id": "guangzhou-event-1997-06-28-03",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "1999-06-28",
+          "title": "西塱—广州东站全线运营",
+          "description": "1号线全线进入正式运营阶段。",
+          "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+          "sourceTitle": "广州地铁一号线建设回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "1号线全线进入正式运营阶段。",
+          "id": "guangzhou-event-1999-06-28-04",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        }
+      ],
+      "chapters": [
+        {
+          "id": "gz-line1-1997",
+          "phase": "history",
+          "date": "1997-06-28",
+          "title": "1号线西塱—黄沙先行段",
+          "lineGroups": [
+            {
+              "name": "1号线先行段",
+              "stationIds": [
+                "guangzhou-s298",
+                "guangzhou-s168",
+                "guangzhou-s169",
+                "guangzhou-s170",
+                "guangzhou-s116"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "先行段采用观光试运营。按站序连接西塱、坑口、花地湾、芳村和黄沙。",
+          "precision": "station_areas",
+          "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+          "sourceTitle": "广州地铁一号线建设回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        },
+        {
+          "id": "gz-line1-1999",
+          "phase": "history",
+          "date": "1999-06-28",
+          "title": "1号线贯通至广州东站",
+          "lineGroups": [
+            {
+              "name": "1号线全线",
+              "stationIds": [
+                "guangzhou-s298",
+                "guangzhou-s168",
+                "guangzhou-s169",
+                "guangzhou-s170",
+                "guangzhou-s116",
+                "guangzhou-s171",
+                "guangzhou-s156",
+                "guangzhou-s172",
+                "guangzhou-s133",
+                "guangzhou-s173",
+                "guangzhou-s174",
+                "guangzhou-s109",
+                "guangzhou-s175",
+                "guangzhou-s6",
+                "guangzhou-s176",
+                "guangzhou-s342"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "线路贯通至广州东站。保留原先行段和站序，仅补齐后续区间。",
+          "precision": "station_areas",
+          "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+          "sourceTitle": "广州地铁一号线建设回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        }
+      ],
+      "futurePlans": [
+        {
+          "id": "gz-2023-2035",
+          "title": "广州市综合交通体系规划（2023—2035年）",
+          "date": "2025-08-27",
+          "status": "official_plan",
+          "sourceType": "municipal_planning_authority_response",
+          "description": "官方公布城市轨道快线A、快线B和普线三层次网络规模。总体线网图中的线路和车站位置为示意，具体线位需后续比选。",
+          "exactAlignment": "corridor_only",
+          "source": "https://ghzyj.gz.gov.cn/sjb/fw/cjwt/content/post_10419780.html",
+          "sourceTitle": "广州市规划和自然资源局规划答复",
+          "dataStatus": "not_digitized",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2025-08-27",
+          "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。"
+        }
+      ],
+      "coverageNote": "当前样板覆盖1号线先行段与贯通开通；1999年至2026年的后续线路、分期和网络重组尚未逐项纳入。",
+      "historyStatus": "partial",
+      "futureStatus": "not_digitized"
+    },
+    "shenzhen": {
+      "name": "深圳",
+      "historicalEvents": [
+        {
+          "id": "shenzhen-event-1992-07-planning",
+          "date": "1992-07",
+          "title": "深圳开始筹备地铁建设",
+          "description": "深圳于1992年7月开始筹备地铁建设。这是筹建起点，不等同于获批线路蓝图。",
+          "source": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
+          "sourceTitle": "深圳市政府：十年磨一剑——从无到有的深圳地铁（深圳市档案馆、i深圳资料）",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "historical_context",
+          "scope": "记载地铁建设筹备开始；未提供可直接复现的站点几何。",
+          "sourcePublicationDate": "2022-12-18",
+          "publicationDateNote": "来源公开日期为2022-12-18；事件日期按来源正文记录。"
+        },
+        {
+          "id": "shenzhen-event-1998-05-phase1-proposal",
+          "date": "1998-05",
+          "title": "一期工程项目建议书获批",
+          "description": "一期项目建议书获批并开展前期工作。初始方案包括1号线罗湖—香蜜湖和4号线皇岗—水晶岛，合计14.825双线公里、14座车站；该方案后来发生调整。",
+          "source": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
+          "sourceTitle": "深圳市政府：十年磨一剑——从无到有的深圳地铁（深圳市档案馆、i深圳资料）",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "planning_or_construction",
+          "scope": "记录获批的初始一期方案及其状态；不据文字描述补造精确工程中心线。",
+          "sourcePublicationDate": "2022-12-18",
+          "publicationDateNote": "来源公开日期为2022-12-18；事件日期按来源正文记录。"
+        },
+        {
+          "id": "shenzhen-event-2000-05-line1-revision",
+          "date": "2000-05",
+          "title": "1号线一期向西调整至会展中心",
+          "description": "市政府同意将1号线向西延至会展中心规划站，新增车公庙、竹子林、会展中心三站；会展中心站后更名为侨城东站。",
+          "source": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
+          "sourceTitle": "深圳市政府：十年磨一剑——从无到有的深圳地铁（深圳市档案馆、i深圳资料）",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "revised_plan",
+          "scope": "这是相对1998年初始方案的走向与站点调整，站区名称沿革按来源保留。",
+          "sourcePublicationDate": "2022-12-18",
+          "publicationDateNote": "来源公开日期为2022-12-18；事件日期按来源正文记录。"
+        },
+        {
+          "id": "shenzhen-event-2002-05-line1-revision",
+          "date": "2002-05",
+          "title": "1号线一期再延至世界之窗",
+          "description": "国家计委同意1号线一期从侨城东向西延至世界之窗，新增两站。",
+          "source": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
+          "sourceTitle": "深圳市政府：十年磨一剑——从无到有的深圳地铁（深圳市档案馆、i深圳资料）",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "revised_plan",
+          "scope": "记载审批范围和新增站数；本资料没有提供可核验的工程中心线。",
+          "sourcePublicationDate": "2022-12-18",
+          "publicationDateNote": "来源公开日期为2022-12-18；事件日期按来源正文记录。"
+        },
+        {
+          "date": "2004-12-28",
+          "title": "一期十字线网开通",
+          "description": "1号线罗湖—世界之窗、4号线福田口岸—少年宫开通试运营。",
+          "source": "https://www.szmc.net/szmc_m/home/xinweenzhongxin/gonggaoxinwen/202412/104600.html",
+          "sourceTitle": "深铁集团开通20周年资料",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "1号线罗湖—世界之窗、4号线福田口岸—少年宫开通试运营。",
+          "id": "shenzhen-event-2004-12-28-01",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "2009-09-28",
+          "title": "二期首通段开通",
+          "description": "1号线白石洲、高新园、深大等站开通。",
+          "source": "https://www.szmc.net/szmc_m/jituangaikuang/jituanjianjie/zhuyaofenzigongsijianjie/szdtyyjtyxgs/",
+          "sourceTitle": "深圳地铁运营公司发展资料",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "1号线白石洲、高新园、深大等站开通。",
+          "id": "shenzhen-event-2009-09-28-02",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "2011-06-15",
+          "title": "多条线路进入网络化运营",
+          "description": "二期线路与既有线延伸逐步成网。站点与工程分段仍需逐项补证后纳入可玩章节。",
+          "source": "https://www.szmc.net/szmc_m/home/xinweenzhongxin/gonggaoxinwen/202412/104600.html",
+          "sourceTitle": "深铁集团开通20周年资料",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "二期线路与既有线延伸逐步成网。站点与工程分段仍需逐项补证后纳入可玩章节。",
+          "id": "shenzhen-event-2011-06-15-03",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        }
+      ],
+      "chapters": [
+        {
+          "id": "sz-initial-cross-2004",
+          "phase": "history",
+          "date": "2004-12-28",
+          "title": "一期十字线网",
+          "lineGroups": [
+            {
+              "name": "1号线一期",
+              "stationIds": [
+                "shenzhen-s1",
+                "shenzhen-s2",
+                "shenzhen-s3",
+                "shenzhen-s4",
+                "shenzhen-s270",
+                "shenzhen-s6",
+                "shenzhen-s7",
+                "shenzhen-s8",
+                "shenzhen-s34",
+                "shenzhen-s10",
+                "shenzhen-s212",
+                "shenzhen-s12",
+                "shenzhen-s13",
+                "shenzhen-s14",
+                "shenzhen-s15"
+              ],
+              "toleranceM": 180
+            },
+            {
+              "name": "4号线一期",
+              "stationIds": [
+                "shenzhen-s68",
+                "shenzhen-s271",
+                "shenzhen-s8",
+                "shenzhen-s70",
+                "shenzhen-s36"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "distinctRoutes": true,
+          "eventText": "一期同时开通1号线罗湖—世界之窗与4号线福田口岸—少年宫，二者在会展中心形成换乘。",
+          "precision": "station_areas",
+          "source": "https://www.szmc.net/szmc_m/home/xinweenzhongxin/gonggaoxinwen/202412/104600.html",
+          "sourceTitle": "深铁集团开通20周年资料",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        }
+      ],
+      "futurePlans": [
+        {
+          "id": "sz-2016-2035",
+          "title": "深圳市轨道交通线网规划（2016—2035年）",
+          "date": "2018-05-01",
+          "status": "approved_network_plan",
+          "sourceType": "municipal_planning_authority_response",
+          "description": "市政府审定并备案的线网规划。部分线路进一步进入详细规划，只有已发布的具体走廊可按走廊级复现；其余线路仍需逐条数字化。",
+          "exactAlignment": "mixed",
+          "source": "https://www.sz.gov.cn/hdjlpt/detail?pid=2060448",
+          "sourceTitle": "深圳市规划和自然资源局对线网规划的答复",
+          "dataStatus": "not_digitized",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2018-05-01",
+          "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。"
+        },
+        {
+          "id": "sz-2024-2035",
+          "title": "深圳市综合立体交通网规划方案（2024—2035年）",
+          "date": "2024-10-21",
+          "status": "official_plan",
+          "sourceType": "municipal_government_plan_publication",
+          "description": "提出2035年城市轨道运营里程目标及重点区域网络优化。属于综合交通目标，不能直接作为逐站线路蓝图。",
+          "exactAlignment": "policy_level",
+          "source": "https://www.sz.gov.cn/gkmlpt/content/11/11659/post_11659163.html",
+          "sourceTitle": "深圳市综合立体交通网规划方案",
+          "dataStatus": "not_digitized",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2024-10-21",
+          "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。"
+        }
+      ],
+      "coverageNote": "当前样板覆盖2004年1、4号线十字网络；2009—2026年后续线路和延伸仅有少量事件索引，尚未形成完整可玩年表。",
+      "historyStatus": "partial",
+      "futureStatus": "not_digitized"
+    },
+    "chengdu": {
+      "name": "成都",
+      "historicalEvents": [
+        {
+          "date": "2004-01-01",
+          "title": "成都地铁建设运营主体成立",
+          "description": "成都轨道集团前身于2004年成立。此项是建设主体背景，不代表地铁线路已经开工或开通。",
+          "source": "https://www.chengdurail.com/gywm.htm",
+          "sourceTitle": "成都轨道集团发展历程",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "operator_retrospective",
+          "status": "historical_context",
+          "scope": "成都轨道集团前身于2004年成立。此项是建设主体背景，不代表地铁线路已经开工或开通。",
+          "id": "chengdu-event-2004-01-01-01",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面的首次公开日期未能从当前页面核实，故保留为未知，不用网页更新日期替代。"
+        },
+        {
+          "date": "2005-08-09",
+          "title": "首轮建设规划获批",
+          "description": "官方城市媒体回顾记载，成都地铁1、2号线建设规划于2005年获批；这是建设规划节点，不能等同于最终建成线位。",
+          "source": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+          "sourceTitle": "红星新闻网：成都地铁1号线历史回顾",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "official_media_retrospective",
+          "status": "planning_or_construction",
+          "scope": "首轮1、2号线建设规划获批；目前未整理出当年全套站位和线路版本几何。",
+          "id": "chengdu-event-2005-08-09-plan",
+          "sourcePublicationDate": "2024-10-28",
+          "publicationDateNote": "来源公开日期按页面或文件日期记录；项目发生日期与资料发布日期分别保存。"
+        },
+        {
+          "date": "2005-12-28",
+          "title": "1号线一期开工建设",
+          "description": "1号线一期工程开工。工程开工不代表线路已经形成运营服务。",
+          "source": "https://static.sse.com.cn/disclosure/bond/announcement/company/c/new/2025-03-13/242561_20250313_6SD5.pdf",
+          "sourceTitle": "成都轨道集团2025年债券募集说明书：线路开工与开通数据",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_primary",
+          "status": "planning_or_construction",
+          "scope": "1号线一期建设起点，线路资料尚未数字化为当年工程中心线。",
+          "id": "chengdu-event-2005-12-28-line1-start",
+          "sourcePublicationDate": "2025-03-13",
+          "publicationDateNote": "来源公开日期按页面或文件日期记录；项目发生日期与资料发布日期分别保存。"
+        },
+        {
+          "date": "2012-08",
+          "title": "1号线南延线可研获批",
+          "description": "国家发展改革委批准世纪城至广都北的南延工程及海洋公园站可行性研究报告，明确了延伸方向和部分站点；批准线位不等于竣工线位。",
+          "source": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+          "sourceTitle": "国家发展改革委：成都市1号线南延线工程可行性研究报告批复",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_primary",
+          "status": "planning_or_construction",
+          "scope": "世纪城—科技园—锦江—华阳北—华阳—广都北；待把批复方案与竣工线路分别数字化。",
+          "id": "chengdu-event-2012-08-line1-south-approval",
+          "sourcePublicationDate": "2012-09-05",
+          "publicationDateNote": "来源公开日期按页面或文件日期记录；项目发生日期与资料发布日期分别保存。"
+        },
+        {
+          "date": "2015-07-25",
+          "title": "1号线南延线开通试运营",
+          "description": "运营方年表记录1号线二期南延线于2015年7月25日开通试运营；这是运营节点，不与先前获批或施工日期混为一谈。",
+          "source": "https://www.chengdurail.com/gywm.htm",
+          "sourceTitle": "成都轨道集团发展历程",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "运营方年表记录1号线二期南延线于2015年7月25日开通试运营；这是运营节点，不与先前获批或施工日期混为一谈。",
+          "id": "chengdu-event-2015-07-25-02",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "运营方年表未标明该年表首次发布日期，保留为未知。"
+        },
+        {
+          "date": "2016-08-01",
+          "title": "1号线三期方案调整进入补充环评公示",
+          "description": "补充环评材料记录了因军事管理区、学校用地和天府新区规划调整产生的变化：北段缩短至韦家碾，南段最大横向调整约170米，并增加福州路站、将约2.5公里高架段改为地下。地图版本差异尚未数字化，不能据此声称游戏已重现原线位。",
+          "source": "https://sthjt.sc.gov.cn/sthjt/c103940/2016/8/1/cc976bd4d4ac4cc0bfa54265799f6e3c.shtml",
+          "sourceTitle": "四川省生态环境厅：成都地铁1号线三期补充环境影响报告公示",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "provincial_environmental_review",
+          "status": "planning_or_construction",
+          "scope": "已核实文字变更及影响范围；原方案与调整方案的可用工程几何仍缺失。",
+          "id": "chengdu-event-2016-08-line1-phase3-revision",
+          "sourcePublicationDate": "2016-08-01",
+          "publicationDateNote": "来源公开日期按页面或文件日期记录；项目发生日期与资料发布日期分别保存。"
+        },
+        {
+          "date": "2016-11-23",
+          "title": "城市轨道交通线网规划修编获批",
+          "description": "四川省政府网站转述成都市规划局消息：远景线网修编获市政府批复，规划包含多种轨道制式。此为线网级长期规划背景，不等于建设计划，也不表示所有线路已获准建设。",
+          "source": "https://www.sc.gov.cn/10462/10464/10465/10595/2016/11/24/10405173.shtml",
+          "sourceTitle": "四川省人民政府网站：成都轨道交通远景线网规划",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "provincial_government_republication",
+          "status": "planning_or_construction",
+          "scope": "线网层级、混合制式的远景规划；不作为逐站必做地铁章节。",
+          "id": "chengdu-event-2016-11-network-plan",
+          "sourcePublicationDate": "2016-11-24",
+          "publicationDateNote": "来源公开日期按页面或文件日期记录；项目发生日期与资料发布日期分别保存。"
+        },
+        {
+          "date": "2018-03-18",
+          "title": "1号线三期投入运营",
+          "description": "运营方发展历程记录1号线三期于2018年3月18日开通试运营。",
+          "source": "https://www.chengdurail.com/gywm.htm",
+          "sourceTitle": "成都轨道集团发展历程",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "运营方发展历程记录1号线三期于2018年3月18日开通试运营。",
+          "id": "chengdu-event-2018-03-18-03",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "运营方年表未标明该年表首次发布日期，保留为未知。"
+        },
+        {
+          "date": "2019-06-17",
+          "title": "第四期建设规划获批",
+          "description": "国家发展改革委批复2019—2024年第四期建设规划，列出8个项目。规划期已过；各项目实际建设与开通需按后续公告逐项记录。",
+          "source": "https://gbdy.ndrc.gov.cn/gbdyzcjd/201908/t20190821_945015.html",
+          "sourceTitle": "国家发展改革委：成都市城市轨道交通第四期建设规划批复",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_primary",
+          "status": "planning_or_construction",
+          "scope": "批准项目清单及规划期；不把未核实项目几何视为竣工线路。",
+          "id": "chengdu-event-2019-06-fourth-plan",
+          "sourcePublicationDate": "2019-08-21",
+          "publicationDateNote": "来源公开日期按页面或文件日期记录；项目发生日期与资料发布日期分别保存。"
+        },
+        {
+          "date": "2023-11-28",
+          "title": "19号线二期开通初期运营",
+          "description": "19号线二期于2023年11月28日开通初期运营，串联温江、双流与天府新区，并与既有线路共线运营。",
+          "source": "https://www.chengdurail.com/info/1151/51732.htm",
+          "sourceTitle": "成都轨道集团19号线二期开通公告",
+          "sourceCheckedAt": "2026-10-17",
+          "sourceType": "government_or_operator_retrospective",
+          "status": "opened_or_completed",
+          "scope": "19号线二期于2023年11月28日开通初期运营，串联温江、双流与天府新区，并与既有线路共线运营。",
+          "id": "chengdu-event-2023-11-28-04",
+          "sourcePublicationDate": "2023-11-24",
+          "publicationDateNote": "运营公告页面日期为2023-11-24，预告线路将于11月28日开通。"
+        }
+      ],
+      "chapters": [
+        {
+          "id": "cd-line1-2010",
+          "phase": "history",
+          "date": "2010-09-27",
+          "title": "1号线一期：升仙湖—世纪城",
+          "lineGroups": [
+            {
+              "name": "1号线一期",
+              "stationIds": [
+                "chengdu-s23",
+                "chengdu-s22",
+                "chengdu-s21",
+                "chengdu-s20",
+                "chengdu-s19",
+                "chengdu-s18",
+                "chengdu-s17",
+                "chengdu-s321",
+                "chengdu-s15",
+                "chengdu-s274",
+                "chengdu-s13",
+                "chengdu-s303",
+                "chengdu-s11",
+                "chengdu-s10",
+                "chengdu-s304",
+                "chengdu-s7"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "复现南北向主轴的一期站序。历史日期及站序有二手资料佐证，官方可访问资料未找到首开公告原文；本节点待补官方档案。",
+          "precision": "station_areas",
+          "source": "https://www.chengdurail.com/gywm.htm",
+          "sourceTitle": "成都轨道集团发展历程（集团站点）",
+          "sourceStatus": "official_timeline_incomplete",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        },
+        {
+          "id": "cd-line1-2015",
+          "phase": "history",
+          "date": "2015-07-25",
+          "title": "1号线南延至广都",
+          "lineGroups": [
+            {
+              "name": "1号线南延",
+              "stationIds": [
+                "chengdu-s23",
+                "chengdu-s22",
+                "chengdu-s21",
+                "chengdu-s20",
+                "chengdu-s19",
+                "chengdu-s18",
+                "chengdu-s17",
+                "chengdu-s321",
+                "chengdu-s15",
+                "chengdu-s274",
+                "chengdu-s13",
+                "chengdu-s303",
+                "chengdu-s11",
+                "chengdu-s10",
+                "chengdu-s304",
+                "chengdu-s7",
+                "chengdu-s6",
+                "chengdu-s5",
+                "chengdu-s4",
+                "chengdu-s3",
+                "chengdu-s2"
+              ],
+              "toleranceM": 180
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "线路南延到广都，继续利用既有一期并增加南段站点。",
+          "precision": "station_areas",
+          "source": "https://www.chengdurail.com/gywm.htm",
+          "sourceTitle": "成都轨道集团发展历程",
+          "sourceCheckedAt": "2026-10-17",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面首次公开日期未核实。"
+        }
+      ],
+      "futurePlans": [
+        {
+          "id": "cd-fifth-phase-preliminary-2024-2029",
+          "title": "第五期建设规划（2024—2029年）初步方案",
+          "date": "2022-11-21",
+          "status": "preliminary_public_consultation",
+          "description": "公开的初步方案列出10个项目，但公示明确最终方案以后续国家主管部门批复为准。此条只作为公开征求意见阶段的方案历史；截至资料截止日的最终批复内容、有效项目清单和线位版本尚未在本地资料包完成核验。不得把初步示意图当作最终建设蓝图。",
+          "exactAlignment": "not_available",
+          "source": "https://www.chinametro.net/index.php?aid=56170&id=539&m=mobilenewscon",
+          "sourceTitle": "成都市住建局第五期建设规划首次公示（公开转载页，原始公示页面待归档）",
+          "dataStatus": "not_digitized",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2022-11-21",
+          "sourceType": "official_notice_republished",
+          "publicationDateNote": "转载内容注明来源为成都市住房和城乡建设局；游戏资料包尚未保存原始公示页及附件。"
+        },
+        {
+          "id": "cd-fifteenth-five-year-policy-2026",
+          "title": "“十五五”交通发展方向：推进城市轨道交通第五期建设",
+          "date": "2026-02-28",
+          "status": "policy_direction_without_alignment",
+          "description": "市委关于“十五五”规划的建议提出加快城市轨道交通第五期建设，但该文件没有公开可用于逐站复现的线路、站序或中心线。它是总体政策方向，不可单独作为可建设蓝图。",
+          "exactAlignment": "not_available",
+          "source": "https://news.chengdu.cn/2026/0228/69a305a0bda5fc6bcf829c11.shtml",
+          "sourceTitle": "红星新闻网：成都市“十五五”规划建议",
+          "dataStatus": "policy_direction_only",
+          "sourceCheckedAt": "2026-10-17",
+          "required": true,
+          "sourcePublicationDate": "2026-02-28",
+          "sourceType": "official_media_policy_publication",
+          "publicationDateNote": "公开发布日期为2026-02-28；文件未给出线路级几何。"
+        }
+      ],
+      "coverageNote": "首批可玩内容仅覆盖1号线首期开通与南延运营。已登记建设规划获批、南延可研、1号线三期文字变更、第四期规划、19号线二期开通等节点；绝大多数线路的原方案、调整版本、站序和准确线位尚未数字化。成都第五期最终有效线路与几何仍待官方资料及本地蓝图核验。",
+      "historyStatus": "partial",
+      "futureStatus": "not_digitized"
+    }
+  },
+  "verifiedAt": "2026-10-17"
+}

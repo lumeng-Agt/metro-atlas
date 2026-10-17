@@ -1,8 +1,9 @@
 class_name WorldData
 extends RefCounted
 
-const SAVE_VERSION := 16
+const SAVE_VERSION := 17
 const CityProgressionScript = preload("res://scripts/city_progression.gd")
+const CampaignSystemScript = preload("res://scripts/campaign_system.gd")
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
 
@@ -10,9 +11,12 @@ static var _dataset: Dictionary = {}
 static var _vehicle_profiles: Array = []
 
 static func load_assets() -> void:
+	CampaignSystemScript.load_catalog()
 	var city_file := FileAccess.open(CITIES_PATH, FileAccess.READ)
 	if city_file:
 		_dataset = JSON.parse_string(city_file.get_as_text())
+		for issue in CampaignSystemScript.validate_catalog(_dataset.get("cities", [])):
+			push_error("Campaign catalog validation: %s" % str(issue))
 	var vehicle_file := FileAccess.open(VEHICLES_PATH, FileAccess.READ)
 	if vehicle_file:
 		_vehicle_profiles = JSON.parse_string(vehicle_file.get_as_text())
@@ -41,6 +45,7 @@ static func new_world(city_id: String, mode: String) -> Dictionary:
 		"simulation": {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "trainTripsInitialized": false, "nextDepartureSeconds": {}, "peakCrowding": 0.0, "crowdingSamples": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": [], "routeUtilizationBuckets": []},
 		"goalBoard": {"active": [], "completed": []},
 		"cityProgression": CityProgressionScript.create_state(city_id),
+		"campaignState": CampaignSystemScript.create_state(city_id) if mode == "campaign" else {},
 		"planningPhases": [{"id":"phase_1", "name":"一期建设", "createdAt":420, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}],
 		"currentPlanningPhaseId": "phase_1",
 		"challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1},
@@ -52,6 +57,10 @@ static func new_world(city_id: String, mode: String) -> Dictionary:
 	}
 	if mode == "expand":
 		_import_existing_network(state, c)
+	if mode == "campaign":
+		state["cityProgression"] = CityProgressionScript.create_state(city_id)
+		state["planningPhases"] = [{"id":"history_1", "name":"历史复现", "createdAt":420, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}]
+		state["currentPlanningPhaseId"] = "history_1"
 	TrackNetwork.ensure_station_nodes(state)
 	return state
 
