@@ -78,19 +78,19 @@ func _run() -> void:
 		root.size=Vector2i(1600,980);app.ui_scale=1.0;app.theme=Ui.create_theme(app.face,app.strong_face,1.0);app._rescale()
 		await process_frame
 		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("res://docs/story-0.19-menu-1600x980.png")
+		root.get_texture().get_image().save_png("res://docs/story-0.20-menu-1600x980.png")
 		app._new_game("shenzhen",false);app._begin_chapter()
 		var timeout:=Time.get_ticks_msec()+20000
 		while app.map_view.base_map_features.is_empty() and Time.get_ticks_msec()<timeout:await process_frame
 		_check(not app.map_view.base_map_features.is_empty(),"截图前明确等待本地底图就绪")
 		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("res://docs/story-0.19-plan-revision-1600x980.png")
+		root.get_texture().get_image().save_png("res://docs/story-0.20-plan-revision-1600x980.png")
 		root.size=Vector2i(1366,768);app.ui_scale=1.75;app.theme=Ui.create_theme(app.face,app.strong_face,1.75);app._rescale()
 		await process_frame
 		app._saves()
 		for frame in range(5):await process_frame
 		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("res://docs/story-0.19-save-1366x768-175.png")
+		root.get_texture().get_image().save_png("res://docs/story-0.20-save-1366x768-175.png")
 	app.queue_free();await process_frame
 	if failures.is_empty():print("PASS: %d story layout checks" % checks);quit(0)
 	else:

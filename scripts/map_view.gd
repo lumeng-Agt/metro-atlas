@@ -151,6 +151,8 @@ func snap_blueprint_station(latlng: Array, radius_px: float = 20.0) -> Dictionar
 	return closest
 
 func blueprint_heading_for(target_id: String) -> float:
+	for target in campaign_blueprint.get("stations",[]):
+		if str(target.get("id",""))==target_id and float(target.get("referenceHeading",-1))>=0:return float(target.referenceHeading)
 	for corridor in campaign_blueprint.get("corridors", []):
 		var points: Array = corridor.get("targets", [])
 		for index in range(points.size()):
@@ -609,8 +611,9 @@ func _draw_campaign_corridors() -> void:
 		for index in range(1, points.size()):
 			var a := _to_screen(points[index - 1])
 			var b := _to_screen(points[index])
-			draw_line(a, b, Color(0.22, 0.39, 0.66, 0.13), 13.0, true)
-			draw_dashed_line(a, b, Style.BLUEPRINT, 2.4, 8.0, true)
+			var schematic:=str(corridor.get("precision","schematic"))=="schematic"
+			if not schematic:draw_line(a,b,Color(0.22,0.39,0.66,0.10),11.0,true)
+			draw_dashed_line(a,b,Color("#8a929c") if schematic else Style.BLUEPRINT,1.6 if schematic else 2.4,12.0 if schematic else 8.0,true)
 
 func _draw_campaign_targets() -> void:
 	if not bool(campaign_blueprint.get("visible", false)): return
@@ -664,7 +667,7 @@ func _draw_cached_local_basemap(visible: Rect2, inside_package: bool) -> void:
 	var primary_lines: PackedVector2Array = batches.get("primaryLines", PackedVector2Array())
 	var secondary_lines: PackedVector2Array = batches.get("secondaryLines", PackedVector2Array())
 	var local_lines: PackedVector2Array = batches.get("localLines", PackedVector2Array())
-	if not water_lines.is_empty(): draw_multiline(water_lines, Style.WATER_EDGE, (2.5 if current_zoom < 14 else 3.5) * _camera_mpp, false)
+	if not water_lines.is_empty(): draw_multiline(water_lines, Style.WATER_EDGE, (0.8 if current_zoom < 14 else 1.6) * _camera_mpp, false)
 	for road in [["road_local",local_lines],["road_secondary",secondary_lines],["road_primary",primary_lines],["road_major",major_lines]]:
 		var kind: String = road[0]
 		var lines: PackedVector2Array = road[1]

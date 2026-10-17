@@ -65,6 +65,10 @@ static func validate(data: Dictionary) -> String:
 		if not _coordinate_valid(node.get("latlng")):return "轨道节点坐标无效。"
 		if not str(node.get("stationId","")).is_empty() and not indexes.stations.has(str(node.stationId)):return "站端节点引用了不存在的车站。"
 	for edge in data.get("trackEdges",[]):
+		if str(edge.get("geometry",""))=="reference_polyline":
+			if not edge.get("referencePoints",[]) is Array or edge.get("referencePoints",[]).size()<2:return "参考轨道缺少连续坐标。"
+			for point in edge.referencePoints:
+				if not _coordinate_valid(point):return "参考轨道坐标无效。"
 		if not indexes.trackNodes.has(str(edge.get("aNodeId",""))) or not indexes.trackNodes.has(str(edge.get("bNodeId",""))):return "轨道引用了不存在的节点。"
 		for key in ["controlA","controlB"]:
 			if edge.has(key) and not _vector_valid(edge[key]):return "曲线控制点无效。"
@@ -190,6 +194,10 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 	var result:=data.duplicate(true)
 	var old_version:=int(data.get("schemaVersion",0))
 	result["schemaVersion"]=WorldData.SAVE_VERSION
+	if old_version==19:
+		result["referenceDataVersion"]=ReferenceAlignment.version()
+		result["migrationNotice"]="已独立备份格式19原档。既有站轨、里程碑与历史保持原位；新参考走廊不会自动替换已建轨道。"
+		return result
 	if old_version==18:
 		var state: Dictionary=result.get("storyState",{})
 		if not StoryTutorial.is_first(result) or str(state.get("stage",""))=="outcome":
@@ -238,7 +246,7 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 
 static func _index_usable(data:Dictionary) -> bool:
 	if data.has("stations"):return validate(data).is_empty()
-	return int(data.get("schemaVersion",0)) in [18,19] and valid_id(str(data.get("gameId","")))
+	return int(data.get("schemaVersion",0)) in [18,19,20] and valid_id(str(data.get("gameId","")))
 
 static func load_last_game(confirm_recovery:bool=false) -> Dictionary:
 	var index_path:=root_path().path_join("last_game.json")

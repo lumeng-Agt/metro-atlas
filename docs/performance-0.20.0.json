@@ -1,0 +1,156 @@
+{
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+  "date": "2026-10-17T22:28:15",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "history": 200,
+  "kind": "native-renderer-smoke",
+  "mapSourceSha256": "885f33919147f101ef6e1908530dccdb22960b9114fb94b1e99d95b336966001",
+  "measuredThresholdsPassed": false,
+  "notFullAcceptance": true,
+  "repeats": 3,
+  "resolution": [
+    1600,
+    980
+  ],
+  "routes": 18,
+  "saveMs": 615.89,
+  "saveOk": true,
+  "scenarios": [
+    {
+      "averageFps": 39.4201591161567,
+      "engineStaticMiB": 125.193860054016,
+      "frames": 1183,
+      "maxFrameMs": 43.542,
+      "p95Ms": 30.349,
+      "prepareMs": 2432.43,
+      "pressureGoalMet": true,
+      "run": 0,
+      "scenario": "overview"
+    },
+    {
+      "averageFps": 38.8483276661198,
+      "engineStaticMiB": 125.195824623108,
+      "frames": 1166,
+      "maxFrameMs": 38.185,
+      "p95Ms": 29.717,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 1,
+      "scenario": "overview"
+    },
+    {
+      "averageFps": 39.6469317456081,
+      "engineStaticMiB": 125.196759223938,
+      "frames": 1190,
+      "maxFrameMs": 33.628,
+      "p95Ms": 27.941,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 2,
+      "scenario": "overview"
+    },
+    {
+      "averageFps": 48.6691518692402,
+      "engineStaticMiB": 144.098881721497,
+      "frames": 1461,
+      "maxFrameMs": 44.862,
+      "p95Ms": 25.277,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 0,
+      "scenario": "blocks"
+    },
+    {
+      "averageFps": 50.8745220393627,
+      "engineStaticMiB": 144.099740028381,
+      "frames": 1527,
+      "maxFrameMs": 37.203,
+      "p95Ms": 23.691,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 1,
+      "scenario": "blocks"
+    },
+    {
+      "averageFps": 51.850076370564,
+      "engineStaticMiB": 144.100674629211,
+      "frames": 1556,
+      "maxFrameMs": 34.003,
+      "p95Ms": 22.398,
+      "prepareMs": 0.0,
+      "pressureGoalMet": true,
+      "run": 2,
+      "scenario": "blocks"
+    },
+    {
+      "averageFps": 118.419604553845,
+      "engineStaticMiB": 160.497191429138,
+      "frames": 3553,
+      "maxFrameMs": 35.732,
+      "p95Ms": 8.396,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 0,
+      "scenario": "zoom"
+    },
+    {
+      "averageFps": 119.119610754174,
+      "engineStaticMiB": 160.498049736023,
+      "frames": 3574,
+      "maxFrameMs": 26.411,
+      "p95Ms": 8.43,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 1,
+      "scenario": "zoom"
+    },
+    {
+      "averageFps": 118.783829561336,
+      "engineStaticMiB": 160.873064994812,
+      "frames": 3564,
+      "maxFrameMs": 97.159,
+      "p95Ms": 8.41,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 2,
+      "scenario": "zoom"
+    },
+    {
+      "averageFps": 70.7803325049413,
+      "engineStaticMiB": 160.838612556458,
+      "frames": 2124,
+      "maxFrameMs": 26.9,
+      "p95Ms": 16.957,
+      "prepareMs": 0.001,
+      "pressureGoalMet": true,
+      "run": 0,
+      "scenario": "buildings"
+    },
+    {
+      "averageFps": 68.6662592468618,
+      "engineStaticMiB": 160.839425086975,
+      "frames": 2060,
+      "maxFrameMs": 25.956,
+      "p95Ms": 17.706,
+      "prepareMs": 0.0,
+      "pressureGoalMet": true,
+      "run": 1,
+      "scenario": "buildings"
+    },
+    {
+      "averageFps": 67.8601204270495,
+      "engineStaticMiB": 160.840359687805,
+      "frames": 2036,
+      "maxFrameMs": 37.047,
+      "p95Ms": 17.712,
+      "prepareMs": 0.003,
+      "pressureGoalMet": true,
+      "run": 2,
+      "scenario": "buildings"
+    }
+  ],
+  "secondsPerScenario": 30.0,
+  "stations": 488,
+  "version": "0.20.0",
+  "executionContext": "开发环境；期间有源码检查、导出及局部鼠标试玩负载。不是独占GPU基准，不将与旧版差异直接归因为优化。"
+}

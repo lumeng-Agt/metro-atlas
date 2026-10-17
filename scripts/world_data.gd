@@ -1,7 +1,7 @@
 class_name WorldData
 extends RefCounted
 
-const SAVE_VERSION := 19
+const SAVE_VERSION := 20
 const CampaignSystemScript = preload("res://scripts/campaign_system.gd")
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
@@ -38,6 +38,7 @@ static func new_world(city_id: String, mode: String = "campaign") -> Dictionary:
 		"schemaVersion": SAVE_VERSION, "gameId": "%s_%s_%s" % [city_id, str(int(Time.get_unix_time_from_system())), Crypto.new().generate_random_bytes(6).hex_encode()],
 		"cityId": city_id, "cityName": c.get("name", city_id), "mode": "campaign" if mode == "campaign" else "workshop",
 		"title": "%s · 地铁故事" % c.get("name", city_id), "dataVersion": _dataset.get("generatedAt", "unknown"),
+		"referenceDataVersion":ReferenceAlignment.version(),
 		"stations": [], "routes": [], "trackLinks": [], "trackNodes": [], "trackEdges": [], "depots": [],
 		"storyState": {"chapterIndex":0, "stage":"intro", "completedChapterIds":[], "milestones":[], "tutorialEnabled":true, "tutorialStatus":"active", "beatRead":{}, "learnedTools":false, "assistedChapters":[], "catalogVersion":CampaignSystemScript.content_version(), "phase":"history", "freeUnlocked":false},
 		"storyPlan": {"planIndex":0, "pathChoices":{}}, "milestoneBaseline": {},

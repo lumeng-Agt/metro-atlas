@@ -124,6 +124,7 @@ func _split_track_edge(state: Dictionary, edge_id: String, split_t: float, ref_l
 			is_legacy_link = true
 			break
 	if edge.is_empty(): return ""
+	if str(edge.get("geometry",""))=="reference_polyline":return _split_reference(state,edge,split_t,ref_lat)
 	var ends := TrackNetwork._edge_node_ids(edge, state)
 	if ends.size() != 2: return ""
 	var node_a := TrackNetwork.find_node(state, ends[0]); var node_b := TrackNetwork.find_node(state, ends[1])
@@ -211,6 +212,33 @@ func _replace_split_edge_in_route_paths(state: Dictionary, old_id: String, left:
 						rewritten.append({"id": str(right.id), "forward": false}); rewritten.append({"id": str(left.id), "forward": false})
 				paths[segment_index] = rewritten
 			direction["edgePathsBySegment"] = paths
+
+func _split_reference(state:Dictionary,edge:Dictionary,fraction:float,lat:float) -> String:
+	fraction=clampf(fraction,0.02,0.98)
+	var points:=TrackNetwork.edge_points(edge,state,lat)
+	var wanted:=TrackNetwork.edge_length_m(edge,state,lat)*clampf(fraction,0.02,0.98)
+	var walked:=0.0;var index:=0;var point:Array=[]
+	for i in range(points.size()-1):
+		var a:=Geo.local_m(points[i],lat);var b:=Geo.local_m(points[i+1],lat);var distance:=a.distance_to(b)
+		if walked+distance>=wanted:
+			index=i;point=Geo.from_local(a.lerp(b,(wanted-walked)/maxf(distance,0.001)),lat);break
+		walked+=distance
+	if point.is_empty():return ""
+	var a:=TrackNetwork.find_node(state,str(edge.aNodeId));var b:=TrackNetwork.find_node(state,str(edge.bNodeId))
+	var node:=TrackNetwork.create_node(state,point,lerpf(float(a.depthM),float(b.depthM),fraction))
+	var left:=edge.duplicate(true);var right:=edge.duplicate(true)
+	left.id="split_%d_a" % Time.get_ticks_usec();right.id="split_%d_b" % Time.get_ticks_usec()
+	left.bNodeId=node.id;right.aNodeId=node.id
+	left.referencePoints=points.slice(0,index+1);left.referencePoints.append(point)
+	right.referencePoints=[point];right.referencePoints.append_array(points.slice(index+1))
+	state.trackEdges=state.trackEdges.filter(func(item:Dictionary):return str(item.id)!=str(edge.id))
+	state.trackEdges.append(left);state.trackEdges.append(right)
+	for phase in state.get("planningPhases",[]):
+		var ids:Array=phase.get("edgeIds",[])
+		if ids.has(str(edge.id)):
+			var at:=ids.find(str(edge.id));ids.remove_at(at);ids.insert(at,str(right.id));ids.insert(at,str(left.id))
+	_replace_split_edge_in_route_paths(state,str(edge.id),left,right)
+	return str(node.id)
 
 func _track_crossing_conflict(points_geo: Array, candidate: Dictionary, start_depth: float, end_depth: float, ref_lat: float, ignored_edges: Array[String] = [], check_state: Dictionary = {}) -> String:
 	var state: Dictionary = check_state if not check_state.is_empty() else world
@@ -412,6 +440,28 @@ func _align_station_edge_handles(state: Dictionary, station_id: String) -> void:
 								endpoint_data.append({"which": endpoint_key, "side": side_name, "stationId": endpoint_station_id})
 			if endpoint_data.is_empty() or bool(source_edge.get("schematic", false)): continue
 			var edge: Dictionary = source_edge.duplicate(true)
+			if str(edge.get("geometry",""))=="reference_polyline":
+				var na:=TrackNetwork.find_node(state,str(edge.aNodeId));var nb:=TrackNetwork.find_node(state,str(edge.bNodeId))
+				var sa:=WorldData.find_station(state,str(na.get("stationId","")));var sb:=WorldData.find_station(state,str(nb.get("stationId","")))
+				if not sa.is_empty() and not sb.is_empty():
+					var alignment:=ReferenceAlignment.between(str(sa.get("historicalId","")),str(sb.get("historicalId","")))
+					var preview:=ReferenceAlignment.preview(alignment,{"stationId":sa.id,"nodeId":na.id,"side":na.side,"latlng":na.latlng},{"stationId":sb.id,"nodeId":nb.id,"side":nb.side,"latlng":nb.latlng},state,ref_lat)
+					if str(preview.get("issue",""))=="":edge.referencePoints=preview.points
+					else:edge["adaptationIssue"]=preview.issue
+				else:
+					var points:Array=edge.get("referencePoints",[]).duplicate(true)
+					for endpoint in endpoint_data:
+						if points.size()<3:continue
+						var at_a:=str(endpoint.which)=="a"
+						if not at_a:points.reverse()
+						var anchor_index:=mini(12,points.size()-2);var anchor:=Geo.local_m(points[anchor_index],ref_lat)
+						var origin:=Geo.local_m(WorldData.station_endpoint(station,str(endpoint.side)),ref_lat)
+						var outgoing:=WorldData.station_outward(station,str(endpoint.side));var tangent:=(Geo.local_m(points[anchor_index+1],ref_lat)-anchor).normalized()
+						var connector:Array=[];ReferenceAlignment._append_curve(connector,origin,origin+outgoing*minf(55,origin.distance_to(anchor)*0.35),anchor-tangent*20,anchor,ref_lat)
+						connector.append_array(points.slice(anchor_index+1));points=connector
+						if not at_a:points.reverse()
+					edge.referencePoints=points
+				collection[index]=edge;continue
 			var endpoints := TrackNetwork._edge_node_ids(edge, state)
 			var chord := Vector2.ZERO
 			if endpoints.size() == 2:
@@ -438,6 +488,7 @@ func _align_station_edge_handles(state: Dictionary, station_id: String) -> void:
 		state[collection_name] = collection
 
 func _physical_edge_geometry_issue(edge: Dictionary, check_state: Dictionary) -> String:
+	if not str(edge.get("adaptationIssue","")).is_empty():return str(edge.adaptationIssue)
 	var ends := TrackNetwork._edge_node_ids(edge, check_state)
 	if ends.size() != 2: return "相邻轨道接点缺失"
 	var node_a := TrackNetwork.find_node(check_state, ends[0])

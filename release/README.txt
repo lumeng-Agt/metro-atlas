@@ -1,8 +1,8 @@
-造一座地铁 · Windows 免安装版 0.19.0 · 存档格式 19
+造一座地铁 · Windows 免安装版 0.20.0 · 存档格式 20
 
 双击“造一座地铁.exe”运行，无需浏览器、Node.js、Godot安装或联网地图服务。
 
-本版以城市地铁故事为核心。选择城市，读本章背景，按真实底栏“站点、轨道”建设；在城市故事页检查并确认历史节点，观看开通展示。没有出行需求、乘客、拥挤、班次或经营统计。
+本版以城市地铁故事为核心。选择城市，读本章背景，按真实底栏“车站、铺轨”建设；在城市故事页检查并确认历史节点，观看开通展示。没有出行需求、乘客、拥挤、班次或经营统计。
 
 当前为五城首批故事，共上海4章、北京4章、广州2章、深圳1章、成都2章。深圳可对比1998、2000、2002年一期方案范围。五城全史及远期蓝图仍未完整核验；完成样板停在资料边界，不伪造自由解锁。完整缺口见 docs/campaign-content-audit.md。
 
@@ -12,10 +12,12 @@
 
 地图为OpenStreetMap / Geofabrik现代地理参考，不表示当年街道或工程轨道测绘；数据日期、范围和校验值见basemap-manifest.json。© OpenStreetMap contributors，派生数据使用ODbL 1.0。
 
-更新内容：压缩包内 update-notes-0.19.0.txt
+更新内容：压缩包内 update-notes-0.20.0.txt
 测试记录：压缩包内 test-record.txt
-当前截图：docs/story-0.19-menu-1600x980.png、docs/story-0.19-plan-revision-1600x980.png
+当前截图：docs/ui-0.20-workbench.png、docs/ui-0.20-menu.png、docs/ui-0.20-station.png
 许可：LICENSES.txt、THIRD_PARTY_NOTICES.txt、OFL.txt
 
-0.19新增：首次首章教学、独立重学练习、建设地点故事、方案年代与只读对照、较清楚的蓝灰地图。已读故事与首章状态随格式19保存；格式18载入前备份原件。
-迁移说明：docs/migration-19.md；故事来源：docs/story-sources-0.19.md。
+0.20新增：81组连续近似轨道走廊、修正部分换乘站参考、沿蓝图复现、紧凑深色工作台、历史更名与重组核对。3组缺口保留示意；高德逐段对照未完成，不能宣称相同。
+格式19读取前按原始内容备份；既有站轨不自动移动。迁移说明：docs/migration-20.md；区间精度与缺口：docs/reference-audit-0.20.md；故事来源：docs/story-sources-0.19.md。
+
+已知验收限制：普通街区未稳定达到60FPS，最大路网保存调用约616ms；完整尺寸鼠标、真人新手、一小时运行及干净Windows尚未完成。详见test-record.txt。

@@ -32,7 +32,7 @@ func _run() -> void:
 	var old:=a.duplicate(true);old.schemaVersion=17;old.mode="blank";old.erase("storyState");old.erase("gameId");old["simulation"]={"completed":123,"elapsedSeconds":27001,"passengerBatches":[{"count":5}]}
 	var raw:=JSON.stringify(old);var old_path:=SaveManager.root_path().path_join("legacy.json");SaveManager._write_atomic(old_path,raw)
 	var migrated:=SaveManager.load_file(old_path)
-	_check(bool(migrated.ok) and int(migrated.world.schemaVersion)==19,"旧存档转换19")
+	_check(bool(migrated.ok) and int(migrated.world.schemaVersion)==WorldData.SAVE_VERSION,"旧存档转换19")
 	_check(str(migrated.world.mode)=="workshop" and not migrated.world.has("simulation"),"旧档转为路网作品而非旧模拟模式")
 	_check(int(migrated.world.legacyArchive.completed)==123,"旧客流只归档")
 	_check(FileAccess.get_file_as_string(old_path)==raw,"迁移不改写原件")

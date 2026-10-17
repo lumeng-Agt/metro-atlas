@@ -1,0 +1,15 @@
+{
+  "averageFps": 106.105123517827,
+  "blueprintStations": 4,
+  "date": "2026-10-17T22:40:04",
+  "fixture": "验收组合场景：最大既有路网＋1996蓝图＋地点故事；非正式通关存档",
+  "kind": "native-story-overlay-30s",
+  "maxFrameMs": 22.597,
+  "p95Ms": 11.39,
+  "pressureGoalMet": true,
+  "seconds": 30.007976,
+  "storyMarkers": 1,
+  "storyPanel": true,
+  "version": "0.20.0",
+  "executionContext": "单次30秒组合检查；初段同时执行原生布局检查。不是完整长期验收。"
+}

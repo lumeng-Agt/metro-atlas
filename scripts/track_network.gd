@@ -40,6 +40,12 @@ static func edge_points(edge: Dictionary, state: Dictionary, ref_lat: float, seg
 	var node_a := find_node(state, str(edge.get("aNodeId", "")))
 	var node_b := find_node(state, str(edge.get("bNodeId", "")))
 	if node_a.is_empty() or node_b.is_empty(): return []
+	if str(edge.get("geometry",""))=="reference_polyline":
+		var copied:Array[Array]=[]
+		for point in edge.get("referencePoints",[]):copied.append(point.duplicate())
+		if copied.size()>=2:
+			copied[0]=node_a.latlng.duplicate();copied[-1]=node_b.latlng.duplicate()
+		return copied
 	var p0 := Geo.local_m(node_a.get("latlng", [0, 0]), ref_lat)
 	var p3 := Geo.local_m(node_b.get("latlng", [0, 0]), ref_lat)
 	var result: Array[Array] = []

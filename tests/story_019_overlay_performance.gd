@@ -21,7 +21,7 @@ func _run() -> void:
 		await process_frame
 		var now:=Time.get_ticks_usec();samples.append((now-prior)/1000.0);prior=now
 	var duration:=(Time.get_ticks_usec()-start)/1000000.0;samples.sort()
-	var result:={"version":"0.19.0","kind":"native-story-overlay-30s","fixture":"验收组合场景：最大既有路网＋1996蓝图＋地点故事；非正式通关存档","date":Time.get_datetime_string_from_system(),"seconds":duration,"averageFps":samples.size()/duration,"p95Ms":samples[ceili(samples.size()*0.95)-1],"maxFrameMs":samples[-1],"blueprintStations":app.map_view.campaign_blueprint.stations.size(),"storyMarkers":app.map_view.story_markers.size(),"storyPanel":is_instance_valid(app.beat_panel)}
+	var result:={"version":"0.20.0","kind":"native-story-overlay-30s","fixture":"验收组合场景：最大既有路网＋1996蓝图＋地点故事；非正式通关存档","date":Time.get_datetime_string_from_system(),"seconds":duration,"averageFps":samples.size()/duration,"p95Ms":samples[ceili(samples.size()*0.95)-1],"maxFrameMs":samples[-1],"blueprintStations":app.map_view.campaign_blueprint.stations.size(),"storyMarkers":app.map_view.story_markers.size(),"storyPanel":is_instance_valid(app.beat_panel)}
 	result["pressureGoalMet"]=float(result.averageFps)>=30 and float(result.p95Ms)<=33.3
 	SaveManager._write_atomic(SaveManager.root_path().path_join("overlay-performance.json"),JSON.stringify(result,"  "));print(JSON.stringify(result))
 	app.queue_free();await process_frame;quit(0 if bool(result.pressureGoalMet) else 1)

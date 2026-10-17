@@ -11,7 +11,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	WorldData.load_assets()
-	_check(WorldData.SAVE_VERSION==19,"故事存档格式19")
+	_check(WorldData.SAVE_VERSION==20,"故事存档格式20")
 	_check(Catalog.validate_catalog(WorldData.cities()).is_empty(),"五城资料引用校验")
 	var sh_events:Array=Catalog.city_config("shanghai").historicalEvents
 	_check(sh_events.filter(func(e:Dictionary):return str(e.date)=="1996-12-28").size()==1 and sh_events.filter(func(e:Dictionary):return str(e.date)=="1997-07-01").size()==1,"上海时间轴区分1996分段与1997贯通，不重复记载同一节点")
@@ -83,12 +83,12 @@ func _run() -> void:
 	api._process(12.0)
 	_check(JSON.stringify(api.world.storyState)==state_before and not api.world.has("simulation"),"展示时钟不产生乘客或推进历史")
 	api._begin_chapter();await process_frame
-	_check(api.station_button.text=="站点" and api.track_button.text=="轨道","引导使用真实底栏工具")
+	_check(api.station_button.text=="车站" and api.track_button.text=="铺轨","引导使用真实底栏工具")
 	var tutorial_targets:Array=Story.targets(api.world)
 	for target in tutorial_targets.slice(0,2):
 		api._tool("station");api._click(target.latlng,"blueprint",str(target.id),"");api._commit_station()
 	api._focus_tutorial()
-	_check(str(api.spotlight.message).contains("轨道"),"前两站完成后先指向轨道，不指向隐藏的第三站")
+	_check(str(api.spotlight.message).contains("铺轨"),"前两站完成后先指向轨道，不指向隐藏的第三站")
 	api._tool("track")
 	var first:=Story.bound_station(api.world,str(tutorial_targets[0].id));var second:=Story.bound_station(api.world,str(tutorial_targets[1].id));var ends:Array=api._facing(first,second)
 	api._click(WorldData.station_endpoint(first,str(ends[0])),"endpoint",str(first.id),str(ends[0]))

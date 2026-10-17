@@ -68,7 +68,7 @@ func _run() -> void:
 	var original:=JSON.stringify(v18);var path:=SaveManager.root_path().path_join("v18.json")
 	SaveManager._write_atomic(path,original)
 	var migrated:=SaveManager.load_file(path)
-	check(bool(migrated.ok) and int(migrated.world.schemaVersion)==19,"格式18统一入口迁移19")
+	check(bool(migrated.ok) and int(migrated.world.schemaVersion)==WorldData.SAVE_VERSION,"格式18统一入口迁移19")
 	check(str(migrated.world.gameId)==str(v18.gameId),"迁移不另建游戏编号")
 	check(JSON.stringify(migrated.world.history)==JSON.stringify(v18.history),"迁移保留历史")
 	check(FileAccess.get_file_as_string(path)==original,"原始文件不被迁移覆盖")

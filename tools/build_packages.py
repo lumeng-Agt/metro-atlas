@@ -142,18 +142,22 @@ def main() -> None:
                 raise FileNotFoundError(f"Missing release content: {source}")
 
         distribution_files.extend([
-            (ROOT / "docs" / "performance-story-0.19.0.json", "docs/performance-story-0.19.0.json"),
+            (ROOT / "docs" / "performance-story-0.20.0.json", "docs/performance-story-0.20.0.json"),
             (ROOT / "docs" / "story-sources-0.19.md", "docs/story-sources-0.19.md"),
-            (ROOT / "docs" / "migration-19.md", "docs/migration-19.md"),
+            (ROOT / "docs" / "migration-20.md", "docs/migration-20.md"),
+            (ROOT / "docs" / "reference-audit-0.20.md", "docs/reference-audit-0.20.md"),
+            (ROOT / "data" / "reference_alignments.json", "data/reference_alignments.json"),
         ])
         previews = [
-            "docs/story-0.19-menu-1600x980.png",
-            "docs/map-0.19-city-1600x980.png",
-            "docs/map-0.19-blocks-1600x980.png",
-            "docs/map-0.19-station-1600x980.png",
-            "docs/story-0.19-location-1600x980.png",
-            "docs/story-0.19-plan-revision-1600x980.png",
-            "docs/story-0.19-save-1366x768-175.png",
+            "docs/ui-0.20-menu.png",
+            "docs/ui-0.20-cities.png",
+            "docs/ui-0.20-workbench.png",
+            "docs/ui-0.20-structure.png",
+            "docs/ui-0.20-station.png",
+            "docs/ui-0.20-story.png",
+            "docs/ui-0.20-revision.png",
+            "docs/ui-0.20-saves.png",
+            "docs/story-0.20-save-1366x768-175.png",
         ]
         with ZipFile(staged_zip, "w", ZIP_DEFLATED, compresslevel=7) as archive:
             for source, archive_name in distribution_files:

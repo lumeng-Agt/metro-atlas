@@ -40,10 +40,14 @@ static func targets(world: Dictionary, final_plan: bool = false) -> Array[Dictio
 			if seen.has(id) or not refs.has(id): continue
 			seen[id] = true
 			var item: Dictionary = refs[id].duplicate(true)
+			var coordinate_reference:=ReferenceAlignment.station_reference(id)
+			if not coordinate_reference.is_empty() and plan_is_final(world):
+				item["rawLatlng"]=item.latlng;item["latlng"]=coordinate_reference.latlng;item["coordinateSource"]=coordinate_reference
 			item["name"] = str(group.get("stationNames", {}).get(id, item.get("name", "车站")))
 			item["historicalNameRequired"]=group.get("stationNames",{}).has(id)
 			item["toleranceM"] = float(group.get("toleranceM", 100.0))
 			item["built"] = not bound_station(world, id).is_empty()
+			item["referenceHeading"]=ReferenceAlignment.heading(id,groups(world,final_plan),float(WorldData.city(str(world.cityId)).center[0]))
 			result.append(item)
 	return result
 
@@ -74,7 +78,10 @@ static func blueprint(world: Dictionary, show_previous: bool = false) -> Diction
 			if map.has(str(id)):
 				points.append(map[str(id)].latlng)
 				corridor_targets.append(map[str(id)])
-		corridors.append({"points":points, "targets":corridor_targets, "precision":chapter(world).get("precision", "station_areas")})
+		for i in range(corridor_targets.size()-1):
+			var a:Dictionary=corridor_targets[i];var b:Dictionary=corridor_targets[i+1]
+			var reference:=ReferenceAlignment.between(str(a.id),str(b.id)) if plan_is_final(world) else {}
+			corridors.append({"points":reference.get("points",[a.latlng,b.latlng]),"targets":[a,b],"precision":reference.get("precision","schematic"),"referenceId":reference.get("id",""),"referenceLabel":ReferenceAlignment.label_for(reference)})
 	for connection in chapter(world).get("requiredConnections",[]):
 		var a:Dictionary=map.get(str(connection.fromId),{});var b:Dictionary=map.get(str(connection.toId),{})
 		if not a.is_empty() and not b.is_empty():corridors.append({"points":[a.latlng,b.latlng],"targets":[a,b],"precision":"schematic"})
@@ -154,6 +161,9 @@ static func evaluate(world: Dictionary) -> Dictionary:
 			if not path.edges.is_empty(): prior_end=str(path.edges[-1].get("toNodeId",""))
 			# Exact centerlines are evaluated only when sourced geometry is available.
 			var corridor: Array = group.get("alignment",[])
+			var pair_reference:=ReferenceAlignment.between(str(group.stationIds[i]),str(group.stationIds[i+1]))
+			if str(pair_reference.get("precision",""))=="verified_alignment" and ReferenceAlignment.corridor_issue(path.points,pair_reference.points,reference_lat,float(group.get("alignmentToleranceM",80))):
+				issues.append({"text":"该区间偏离对应站间的核验走廊，或跳过必经走向。","kind":"station","objectId":str(ids[i])});group_valid=false
 			if corridor.size() >= 2 and str(ch.get("precision","")) == "verified_alignment":
 				for point in path.points:
 					var nearest := INF; var local := Geo.local_m(point,reference_lat)
