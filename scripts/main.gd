@@ -12,14 +12,16 @@ const ServiceScheduleScript = preload("res://scripts/service_schedule.gd")
 const NeighborhoodGoalsScript = preload("res://scripts/neighborhood_goals.gd")
 const CityProgressionScript = preload("res://scripts/city_progression.gd")
 const AudioFeedbackScript = preload("res://scripts/audio_feedback.gd")
-const BUILD_VERSION := "0.14.0 · 2026.10.16"
-const APP_BG := Color("#101b25")
-const PANEL := Color("#162532")
-const PANEL_LIGHT := Color("#1c3040")
-const BORDER := Color("#2b4352")
-const TEXT := Color("#e7edf0")
-const MUTED := Color("#9db0bb")
-const TEAL := Color("#4ad1ae")
+const TutorialSpotlightScript = preload("res://scripts/tutorial_spotlight.gd")
+const UiThemeScript = preload("res://scripts/ui_theme.gd")
+const BUILD_VERSION := "0.16.0 · 2026.10.17"
+const APP_BG := UiThemeScript.CANVAS
+const PANEL := UiThemeScript.SURFACE
+const PANEL_LIGHT := UiThemeScript.SURFACE_ALT
+const BORDER := UiThemeScript.BORDER
+const TEXT := UiThemeScript.INK
+const MUTED := UiThemeScript.MUTED
+const TEAL := UiThemeScript.ACCENT
 
 var map_view: MapView
 var world: Dictionary = {}
@@ -35,6 +37,9 @@ var sim_accumulator := 0.0
 var save_dirty := false
 var save_failed := false
 var save_failure_reason := ""
+var timed_autosave_enabled := true
+var timed_autosave_interval_minutes := 5
+var autosave_elapsed_seconds := 0.0
 var pending_transition_dialog: ConfirmationDialog
 var tutorial_completed := false
 var active_saves_page := 0
@@ -55,6 +60,7 @@ var tool_instruction_label: Label
 var toast_label: Label
 var time_label: Label
 var stats_label: Label
+var tool_context_panel: VBoxContainer
 var demand_toggle: CheckButton
 var hall_toggle: CheckButton
 var analysis_picker: OptionButton
@@ -78,12 +84,14 @@ var repair_to_station_id := ""
 var repair_path_options: Array[Dictionary] = []
 var repair_path_choice := 0
 var repair_plan_revision := -1
+var route_extension_context: Dictionary = {}
 var endpoint_choice_candidates: Array[Dictionary] = []
 var station_vehicle_id := "B-6"
 var confirming_track_preview := false
 var _flow_cache_revision := -1
 var _flow_cache: Array[Dictionary] = []
 var _ui_scale := 1.0
+var ui_motion_enabled := true
 var _theme: Theme
 var _base_font: Font
 var _bold_font: Font
@@ -107,11 +115,18 @@ var _left_requested := true
 var _right_requested := true
 var _layout_narrow := false
 var onboarding_panel: PanelContainer
+var tutorial_spotlight: Control
+var tutorial_targets: Dictionary = {}
+var _tutorial_focus_signature := ""
+var _tutorial_map_size := Vector2.ZERO
 var _more_tools_expanded := false
 var _complexity_expanded := false
 var _onboarding_reason_expanded := false
 var _station_preview_last_usec := 0
 var _curve_preview_last_usec := 0
+var _stats_live_labels: Dictionary = {}
+var _stats_wait_buttons: Dictionary = {}
+var _stats_utilization_labels: Dictionary = {}
 
 func _ready() -> void:
 	WorldData.load_assets()
@@ -124,6 +139,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if world.is_empty(): return
+	_update_tutorial_spotlight()
+	if timed_autosave_enabled and save_dirty:
+		autosave_elapsed_seconds += delta
+		if autosave_elapsed_seconds >= float(timed_autosave_interval_minutes * 60):
+			autosave_elapsed_seconds = 0.0
+			if not _autosave(false, true):
+				autosave_elapsed_seconds = maxf(0.0, float(timed_autosave_interval_minutes * 60) - 30.0)
+	else:
+		autosave_elapsed_seconds = 0.0
 	var sim: Dictionary = world.get("simulation", {})
 	var simulation_advanced := false
 	if not bool(sim.get("paused", true)):
@@ -134,7 +158,6 @@ func _process(delta: float) -> void:
 			simulation_advanced = true
 			map_view.requested_train_redraw()
 			if int(sim.get("elapsedMinutes", sim.get("minute", 420))) % 15 == 0:
-				_autosave()
 				map_view.requested_redraw()
 			if bool(world.simulation.get("paused", true)):
 				sim_accumulator = 0.0
@@ -142,7 +165,7 @@ func _process(delta: float) -> void:
 	map_view.simulation_fraction = sim_accumulator if not bool(world.simulation.get("paused", true)) else 0.0
 	if simulation_advanced:
 		_update_sim_labels()
-		if left_tab == "stats": _refresh_left_panel()
+		if left_tab == "stats": _update_stats_live_labels()
 	if not bool(world.simulation.get("paused", true)): map_view.requested_train_redraw()
 
 func _notification(what: int) -> void:
@@ -187,14 +210,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _build_application() -> void:
 	_ui_scale = UiPreferencesScript.load_scale()
+	ui_motion_enabled = UiPreferencesScript.load_ui_motion_enabled()
 	feedback_enabled = UiPreferencesScript.load_feedback_enabled()
 	feedback_volume = UiPreferencesScript.load_feedback_volume()
+	timed_autosave_enabled = UiPreferencesScript.load_timed_autosave_enabled()
+	timed_autosave_interval_minutes = UiPreferencesScript.load_timed_autosave_interval()
 	_base_font = load("res://fonts/NotoSansSC.ttf")
 	_base_font = _font_weight(_base_font, 500)
 	_bold_font = _font_weight(load("res://fonts/NotoSansSC.ttf"), 700)
-	_theme = Theme.new()
-	_theme.default_font = _base_font
-	_theme.default_font_size = roundi(18.0 * _ui_scale)
+	_theme = UiThemeScript.create_theme(_base_font, _bold_font, _ui_scale)
 	theme = _theme
 	var background := ColorRect.new()
 	background.name = "Background"
@@ -234,7 +258,7 @@ func _font_weight(base: Font, weight: int) -> FontVariation:
 
 func _apply_ui_scale(value: float, reopen_settings: bool = false) -> void:
 	_ui_scale = value if UiPreferencesScript.SCALE_OPTIONS.has(value) else 1.0
-	if is_instance_valid(_theme): _theme.default_font_size = roundi(18.0 * _ui_scale)
+	if is_instance_valid(_theme): _theme.default_font_size = roundi(16.0 * _ui_scale)
 	if is_instance_valid(map_view): map_view.ui_scale = _ui_scale
 	_apply_ui_font_scale_to_node(self)
 	if is_instance_valid(menu_layer):
@@ -252,11 +276,17 @@ func _apply_ui_font_scale_to_node(node: Node) -> void:
 	for child in node.get_children():
 		_apply_ui_font_scale_to_node(child)
 
+func _fade_in(control: Control) -> void:
+	if not ui_motion_enabled or not is_instance_valid(control): return
+	control.modulate.a = 0.0
+	var tween := create_tween()
+	tween.tween_property(control, "modulate:a", 1.0, 0.18).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
 func _update_responsive_layout() -> void:
 	if not is_instance_valid(map_view) or not is_instance_valid(_left_panel) or not is_instance_valid(_right_panel): return
 	var logical_width := get_viewport_rect().size.x / maxf(1.0, _ui_scale)
-	var should_collapse := logical_width < 1440.0 or _ui_scale >= 1.5
-	var use_two_top_rows := logical_width < 1760.0 or _ui_scale >= 1.25
+	var should_collapse := logical_width < 1100.0
+	var use_two_top_rows := logical_width < 1440.0
 	if is_instance_valid(_top_content) and is_instance_valid(_top_primary_row) and is_instance_valid(_top_actions):
 		if use_two_top_rows and _top_actions.get_parent() == _top_primary_row:
 			_top_primary_row.remove_child(_top_actions)
@@ -266,50 +296,61 @@ func _update_responsive_layout() -> void:
 			_top_primary_row.add_child(_top_actions)
 	if should_collapse != _layout_narrow:
 		_layout_narrow = should_collapse
-		_left_requested = not _layout_narrow
-		_right_requested = not _layout_narrow
+		_left_requested = not _layout_narrow and not bool(world.get("onboarding", {}).get("active", false))
+		_right_requested = false
+	if logical_width < 1440.0 and logical_width >= 1100.0:
+		_left_requested = not bool(world.get("onboarding", {}).get("active", false))
 	_left_panel.visible = _left_requested
 	_right_panel.visible = _right_requested
 	var layout_scale := minf(_ui_scale, 1.25)
-	var top_height := roundi((104.0 if use_two_top_rows else 76.0) * layout_scale)
+	var top_height := roundi((112.0 if use_two_top_rows else 68.0) * layout_scale)
 	var footer_height := _calculate_footer_height(top_height, layout_scale)
 	if is_instance_valid(_top_panel): _top_panel.offset_bottom = top_height
 	_left_panel.offset_top = top_height
-	_left_panel.offset_bottom = -footer_height
-	_left_panel.offset_right = 330.0 * _ui_scale
+	_left_panel.offset_bottom = -footer_height - 12.0 * layout_scale
+	var rail_width := 288.0 * _ui_scale
+	var detail_width := minf(336.0 * _ui_scale, get_viewport_rect().size.x - 40.0)
+	_left_panel.offset_left = 0.0 if not _layout_narrow else 0.0
+	_left_panel.offset_right = minf(rail_width, get_viewport_rect().size.x - 32.0)
 	_right_panel.offset_top = top_height
-	_right_panel.offset_bottom = -footer_height
-	_right_panel.offset_left = -350.0 * _ui_scale
-	map_view.offset_left = 330.0 * _ui_scale if _left_panel.visible and not _layout_narrow else 0.0
+	_right_panel.offset_bottom = -footer_height - 12.0 * layout_scale
+	_right_panel.offset_left = -detail_width
+	_right_panel.offset_right = 0.0
+	if _layout_narrow:
+		_left_panel.offset_bottom = -roundi(footer_height + 12.0 * layout_scale)
+		_right_panel.offset_bottom = -roundi(footer_height + 12.0 * layout_scale)
+	map_view.offset_left = rail_width if _left_panel.visible and not _layout_narrow else 0.0
 	map_view.offset_top = top_height
-	map_view.offset_right = -350.0 * _ui_scale if _right_panel.visible and not _layout_narrow else 0.0
+	map_view.offset_right = -detail_width if _right_panel.visible and logical_width >= 1440.0 else 0.0
 	map_view.offset_bottom = -footer_height
 	if is_instance_valid(_footer_panel):
-		var footer_width := minf(1120.0 * layout_scale, get_viewport_rect().size.x - 24.0)
+		var footer_width := minf(840.0 * layout_scale, get_viewport_rect().size.x - 24.0)
 		_footer_panel.offset_left = -footer_width * 0.5
 		_footer_panel.offset_right = footer_width * 0.5
 		_footer_panel.offset_top = -footer_height - 10.0
 		_footer_panel.offset_bottom = -10.0
-	if is_instance_valid(left_content): left_content.custom_minimum_size.x = 300.0 * _ui_scale
-	if is_instance_valid(right_content): right_content.custom_minimum_size.x = 330.0 * _ui_scale
+	if is_instance_valid(left_content): left_content.custom_minimum_size.x = maxf(0.0, _left_panel.size.x - 24.0 * layout_scale)
+	if is_instance_valid(right_content): right_content.custom_minimum_size.x = maxf(0.0, detail_width - 24.0 * layout_scale)
 	if is_instance_valid(_left_panel_button): _left_panel_button.text = "线路 ▾" if _left_panel.visible else "线路 ▸"
 	if is_instance_valid(_right_panel_button): _right_panel_button.text = "详情 ▾" if _right_panel.visible else "详情 ▸"
 	if is_instance_valid(_mode_badge): _mode_badge.visible = not _layout_narrow
 	if is_instance_valid(_layer_panel):
-		var layer_width := minf(430.0 * _ui_scale, maxf(220.0, get_viewport_rect().size.x - 24.0))
-		var right_drawer_cover := 350.0 * _ui_scale if _layout_narrow and _right_panel.visible else 0.0
-		_layer_panel.offset_left = -layer_width - right_drawer_cover
+		var layer_width := minf(342.0 * layout_scale, maxf(220.0, get_viewport_rect().size.x - 24.0))
+		var right_drawer_cover := detail_width if _layout_narrow and _right_panel.visible else 0.0
+		_layer_panel.offset_left = -layer_width - right_drawer_cover - 12.0
 		_layer_panel.offset_right = -12.0 - right_drawer_cover
 		_layer_panel.custom_minimum_size.x = layer_width
 	if is_instance_valid(_attribution_panel):
 		var map_origin_x := map_view.position.x
-		var left_drawer_cover := 330.0 * _ui_scale if _layout_narrow and _left_panel.visible else 0.0
-		var attribution_width := minf(250.0 * minf(_ui_scale, 1.25), maxf(120.0, map_view.size.x - left_drawer_cover - 24.0))
+		var left_drawer_cover := minf(rail_width, get_viewport_rect().size.x - 32.0) if _layout_narrow and _left_panel.visible else 0.0
+		var attribution_width := minf(228.0 * layout_scale, maxf(120.0, map_view.size.x - left_drawer_cover - 24.0))
 		_attribution_panel.offset_left = map_origin_x + left_drawer_cover + 12.0
 		_attribution_panel.offset_right = map_origin_x + left_drawer_cover + 12.0 + attribution_width
-		_attribution_panel.offset_top = -footer_height - roundi(48.0 * minf(_ui_scale, 1.25))
-		_attribution_panel.offset_bottom = -footer_height - roundi(14.0 * minf(_ui_scale, 1.25))
+		_attribution_panel.offset_top = -footer_height - roundi(76.0 * layout_scale)
+		_attribution_panel.offset_bottom = -footer_height - roundi(42.0 * layout_scale)
 	if is_instance_valid(attribution_label): attribution_label.add_theme_font_size_override("font_size", roundi(12.0 * _ui_scale))
+	if is_instance_valid(onboarding_panel):
+		onboarding_panel.custom_minimum_size.x = minf(370.0 * layout_scale, get_viewport_rect().size.x - 32.0)
 
 func _short_basemap_date(raw_date: String) -> String:
 	var iso := RegEx.new()
@@ -324,13 +365,23 @@ func _short_basemap_date(raw_date: String) -> String:
 	return "%s-%s-%s" % [match_result.get_string(3), str(months.get(match_result.get_string(2), "01")), match_result.get_string(1)]
 
 func _show_map_attribution_details() -> void:
-	var dialog := AcceptDialog.new()
+	var dialog := _new_accept_dialog()
 	dialog.title = "地图数据来源"
 	dialog.dialog_text = "地图数据 © OpenStreetMap contributors\n许可：Open Database License（ODbL）\n本地快照：%s\n地图几何仅用于显示；不代表已取得步行道路、过街或建筑施工校核数据。" % map_view.base_map_snapshot
 	add_child(dialog)
 	dialog.confirmed.connect(func(): dialog.queue_free())
 	dialog.canceled.connect(func(): dialog.queue_free())
 	dialog.popup_centered(Vector2i(560, 260))
+
+func _new_accept_dialog() -> AcceptDialog:
+	var dialog := AcceptDialog.new()
+	dialog.theme = theme
+	return dialog
+
+func _new_confirmation_dialog() -> ConfirmationDialog:
+	var dialog := ConfirmationDialog.new()
+	dialog.theme = theme
+	return dialog
 
 func _calculate_footer_height(top_height: int, layout_scale: float) -> int:
 	var viewport_height := int(get_viewport_rect().size.y)
@@ -364,7 +415,7 @@ func _calculate_footer_height(top_height: int, layout_scale: float) -> int:
 			else:
 				action_width += child_width + 7.0
 	var control_height := 48.0 * layout_scale
-	var instruction_height := 34.0 * layout_scale
+	var instruction_height := 34.0 * layout_scale if is_instance_valid(tool_instruction_label) and tool_instruction_label.visible else 0.0
 	var stats_height := 26.0 * layout_scale
 	var desired := 18.0 * layout_scale + panel_rows * (control_height + 5.0) + action_rows * (control_height + 5.0) + instruction_height + stats_height
 	return clampi(roundi(desired), mini(112, maximum), maximum)
@@ -381,10 +432,11 @@ func _render_planning_menu(new_city: bool) -> void:
 	menu_layer = Control.new()
 	menu_layer.name = "MainMenu"
 	menu_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	menu_layer.theme = theme
 	add_child(menu_layer)
 	var backdrop := ColorRect.new()
 	backdrop.name = "Background"
-	backdrop.color = Color("#dce5e5")
+	backdrop.color = APP_BG
 	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	menu_layer.add_child(backdrop)
@@ -393,18 +445,19 @@ func _render_planning_menu(new_city: bool) -> void:
 	card.anchor_left = 0.5; card.anchor_right = 0.5
 	card.anchor_top = 0.5; card.anchor_bottom = 0.5
 	var viewport_size := get_viewport_rect().size
-	var card_width := minf(1080.0, viewport_size.x - 40.0)
-	var card_height := minf(760.0, viewport_size.y - 36.0)
+	var card_width := minf(1120.0, viewport_size.x - 32.0)
+	var card_height := minf(744.0, viewport_size.y - 32.0)
 	card.offset_left = -card_width * 0.5; card.offset_right = card_width * 0.5
 	card.offset_top = -card_height * 0.5; card.offset_bottom = card_height * 0.5
-	var panel_style := _style(Color("#162632"), Color("#f5fbfb"), 22, 1)
-	panel_style.shadow_color = Color(0.02, 0.09, 0.13, 0.26)
-	panel_style.shadow_size = 24
-	panel_style.shadow_offset = Vector2(0, 10)
-	panel_style.content_margin_left = 24; panel_style.content_margin_right = 24
-	panel_style.content_margin_top = 22; panel_style.content_margin_bottom = 20
+	var panel_style := _style(PANEL, BORDER, 18, 1)
+	panel_style.shadow_color = Color(0.20, 0.24, 0.18, 0.11)
+	panel_style.shadow_size = 16
+	panel_style.shadow_offset = Vector2(0, 6)
+	panel_style.content_margin_left = 28; panel_style.content_margin_right = 28
+	panel_style.content_margin_top = 24; panel_style.content_margin_bottom = 24
 	card.add_theme_stylebox_override("panel", panel_style)
 	menu_layer.add_child(card)
+	_fade_in(card)
 	var body_scroll := ScrollContainer.new()
 	body_scroll.name = "MenuBodyScroll"
 	body_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -422,75 +475,79 @@ func _render_planning_menu(new_city: bool) -> void:
 	intro.name = "MenuIntroduction"
 	intro.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	intro.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	intro.add_theme_constant_override("separation", 14)
-	intro.custom_minimum_size.x = 360.0 if wide else 0.0
+	intro.add_theme_constant_override("separation", 12)
+	intro.custom_minimum_size.x = 390.0 if wide else 0.0
 	body.add_child(intro)
 	intro.add_child(_menu_label("METRO ATLAS  /  DESKTOP %s" % BUILD_VERSION, 14, TEAL, true))
 	var title := _menu_label("造一座地铁", 48, TEXT, true)
 	title.custom_minimum_size.y = 70
 	intro.add_child(title)
-	intro.add_child(_menu_label("从真实街区出发，连接人们每天要去的地方。", 18, Color("#b9c8d0")))
+	intro.add_child(_menu_label("从真实街区出发，连接人们每天要去的地方。", 18, MUTED))
 	var illustration_panel := PanelContainer.new()
 	illustration_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	illustration_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	illustration_panel.custom_minimum_size.y = 250 if wide else 170
-	illustration_panel.add_theme_stylebox_override("panel", _style(Color("#e5ecea"), Color("#45606b"), 14, 1))
+	illustration_panel.custom_minimum_size.y = 260 if wide else 180
+	illustration_panel.add_theme_stylebox_override("panel", _style(Color("#F0F1EB"), BORDER, 12, 1))
 	intro.add_child(illustration_panel)
 	var illustration := MenuArtScript.new()
 	illustration.name = "MetroNetworkIllustration"
 	illustration.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	illustration_panel.add_child(illustration)
-	intro.add_child(_menu_label("需求 → 车站 → 轨道 → 运营", 16, Color("#e0ebed"), true))
+	intro.add_child(_menu_label("找出行需求　→　选站　→　铺轨　→　开通运营", 16, MUTED, true))
 	var actions := VBoxContainer.new()
 	actions.name = "MenuActions"
 	actions.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	actions.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	actions.add_theme_constant_override("separation", 10)
-	actions.custom_minimum_size.x = 300.0 if wide else 0.0
+	actions.custom_minimum_size.x = 330.0 if wide else 0.0
 	body.add_child(actions)
 	if new_city:
-		actions.add_child(_menu_label("开始一座新城市", 24, TEXT, true))
-		actions.add_child(_menu_label("先选城市，再决定从空白地图起步或扩建既有路网。", 15, MUTED))
+		actions.add_child(_menu_label("选择一座城市", 24, TEXT, true))
+		actions.add_child(_menu_label("规划新线路，或在真实路网基础上继续扩建。", 15, MUTED))
 		menu_city_picker = OptionButton.new()
 		menu_city_picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		menu_city_picker.custom_minimum_size.y = 48
+		menu_city_picker.custom_minimum_size.y = 44
 		_set_control_base_font(menu_city_picker, 16)
 		for city in WorldData.cities(): menu_city_picker.add_item(str(city.get("name", "城市")))
 		for index in range(WorldData.cities().size()):
 			if str(WorldData.cities()[index].get("id", "")) == active_city_id: menu_city_picker.select(index); break
 		menu_city_picker.item_selected.connect(func(index: int): active_city_id = str(WorldData.cities()[index].get("id", "shanghai")))
 		actions.add_child(menu_city_picker)
-		var blank := _button("从零规划", Color("#103b35"), Color("#74e0bd"), 19)
-		blank.custom_minimum_size.y = 56
+		var blank := _button("从零规划", TEAL, PANEL_LIGHT, 19)
+		blank.custom_minimum_size.y = 48
 		blank.pressed.connect(func(): _start_new_game(active_city_id, "blank"))
 		actions.add_child(blank)
-		var challenge := _button("街区挑战", Color("#e9bd69"), Color("#3a3020"), 18)
-		challenge.custom_minimum_size.y = 52
+		var challenge := _button("街区挑战", Color("#a77921"), PANEL_LIGHT, 17)
+		challenge.custom_minimum_size.y = 44
 		challenge.tooltip_text = "在同一份城市规划中逐步完成需求覆盖、扩建和换乘目标。"
 		challenge.pressed.connect(func(): _start_neighborhood_challenge(active_city_id))
 		actions.add_child(challenge)
-		var expand := _button("扩建现实路网", Color("#123650"), Color("#a9d8fa"), 18)
-		expand.custom_minimum_size.y = 54
+		var expand := _button("扩建现实路网", Color("#365F8C"), PANEL_LIGHT, 17)
+		expand.custom_minimum_size.y = 44
 		expand.pressed.connect(func(): _start_new_game(active_city_id, "expand"))
 		actions.add_child(expand)
-		var back := _button("返回主菜单", TEXT, PANEL_LIGHT, 16)
+		var back := _button("返回主菜单", TEXT, PANEL_LIGHT, 15)
 		back.pressed.connect(_show_main_menu)
 		actions.add_child(back)
 	else:
-		actions.add_child(_menu_label("规划工作台", 20, TEAL, true))
-		menu_continue_button = _button("继续上次游戏   →", Color("#103b35"), Color("#74e0bd"), 19)
-		menu_continue_button.custom_minimum_size.y = 58
+		actions.add_child(_menu_label("继续你的城市", 22, TEXT, true))
+		menu_continue_button = _button("继续上次游戏   →", TEAL, PANEL_LIGHT, 18)
+		menu_continue_button.custom_minimum_size.y = 52
 		menu_continue_button.disabled = true
 		menu_continue_button.pressed.connect(_continue_last_game)
 		actions.add_child(menu_continue_button)
-		var new_button := _button("新建城市规划", Color("#e5edf0"), Color("#274657"), 18)
-		new_button.custom_minimum_size.y = 54
+		var new_button := _button("新建城市规划", TEXT, PANEL_LIGHT, 17)
+		new_button.custom_minimum_size.y = 48
 		new_button.pressed.connect(_show_new_city_menu)
 		actions.add_child(new_button)
-		var saves_button := _button("本地存档", TEXT, PANEL_LIGHT, 16)
-		saves_button.custom_minimum_size.y = 48
+		var saves_button := _button("存档中心", TEXT, PANEL_LIGHT, 16)
+		saves_button.custom_minimum_size.y = 44
 		saves_button.pressed.connect(_show_load_menu)
 		actions.add_child(saves_button)
+		var manual_saves_button := _button("命名存档", TEXT, PANEL_LIGHT, 15)
+		manual_saves_button.custom_minimum_size.y = 44
+		manual_saves_button.pressed.connect(_show_manual_load_menu)
+		actions.add_child(manual_saves_button)
 		var secondary := HBoxContainer.new()
 		secondary.add_theme_constant_override("separation", 8)
 		var settings := _button("设置", MUTED, PANEL_LIGHT, 16)
@@ -502,166 +559,15 @@ func _render_planning_menu(new_city: bool) -> void:
 		quit.pressed.connect(func(): get_tree().quit())
 		secondary.add_child(quit)
 		actions.add_child(secondary)
-		actions.add_child(_menu_label("五座城市 · 本地存档 · 随时撤销", 14, MUTED))
+		actions.add_child(_menu_label("五座城市　·　本地存档　·　随时撤销", 14, MUTED))
 	_update_continue_button()
 
 func _show_main_menu_legacy() -> void:
-	map_view.visible = false
-	if is_instance_valid(menu_layer): menu_layer.queue_free()
-	menu_layer = Control.new()
-	menu_layer.name = "MainMenu"
-	menu_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	add_child(menu_layer)
-	var shade := ColorRect.new()
-	shade.color = Color("#09131b")
-	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	menu_layer.add_child(shade)
-	var panel := PanelContainer.new()
-	panel.name = "MenuCard"
-	var card_style := _style(Color("#14232e"), Color("#315261"), 22, 1)
-	card_style.content_margin_left = 30.0 * _ui_scale
-	card_style.content_margin_right = 30.0 * _ui_scale
-	card_style.content_margin_top = 28.0 * _ui_scale
-	card_style.content_margin_bottom = 28.0 * _ui_scale
-	card_style.shadow_color = Color(0, 0, 0, 0.42)
-	card_style.shadow_size = roundi(28.0 * _ui_scale)
-	card_style.shadow_offset = Vector2(0, 12.0 * _ui_scale)
-	panel.add_theme_stylebox_override("panel", card_style)
-	panel.anchor_left = 0.5; panel.anchor_right = 0.5
-	panel.anchor_top = 0.5; panel.anchor_bottom = 0.5
-	var viewport_size := get_viewport_rect().size
-	var compact_layout := viewport_size.y < 820.0 * _ui_scale
-	var menu_width := minf(1260.0 * _ui_scale, viewport_size.x - 40.0)
-	var menu_height := minf(820.0 * _ui_scale, viewport_size.y - 40.0)
-	panel.offset_left = -menu_width * 0.5; panel.offset_right = menu_width * 0.5
-	panel.offset_top = -menu_height * 0.5; panel.offset_bottom = menu_height * 0.5
-	menu_layer.add_child(panel)
-	var body_scroll := ScrollContainer.new()
-	body_scroll.name = "MenuBodyScroll"
-	body_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	body_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	panel.add_child(body_scroll)
-	var wide_layout := viewport_size.x / maxf(1.0, _ui_scale) >= 1440.0
-	var body: BoxContainer = HBoxContainer.new() if wide_layout else VBoxContainer.new()
-	body.name = "MenuContent"
-	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", roundi(36.0 * _ui_scale) if wide_layout else roundi(16.0 * _ui_scale))
-	body_scroll.add_child(body)
-	var left_column := VBoxContainer.new()
-	left_column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	left_column.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	left_column.add_theme_constant_override("separation", roundi((8.0 if compact_layout else 12.0) * _ui_scale))
-	if wide_layout: left_column.custom_minimum_size.x = 500.0 * _ui_scale
-	body.add_child(left_column)
-	var eyebrow := _menu_label("METRO ATLAS     •     DESKTOP %s" % BUILD_VERSION, 14, TEAL, true)
-	left_column.add_child(eyebrow)
-	var title := _menu_label("造一座地铁", 48 if compact_layout else 52, TEXT, true)
-	title.custom_minimum_size.y = (64.0 if compact_layout else 72.0) * _ui_scale
-	left_column.add_child(title)
-	var subtitle := _menu_label("在真实地图上规划线路，让每一站都服务有需求的人。" if compact_layout else "在真实城市地图上规划线路。\n让每一站，都有它要服务的人。", 18 if compact_layout else 19, MUTED)
-	left_column.add_child(subtitle)
-	var divider := HSeparator.new(); divider.add_theme_color_override("separator", BORDER); left_column.add_child(divider)
-	var city_row := HBoxContainer.new()
-	city_row.add_theme_constant_override("separation", 10)
-	city_row.add_child(_menu_label("选择规划城市", 16, TEXT, true))
-	left_column.add_child(city_row)
-	menu_city_picker = OptionButton.new()
-	menu_city_picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	menu_city_picker.custom_minimum_size.y = 50.0 * _ui_scale
-	_set_control_base_font(menu_city_picker, 16)
-	for item in WorldData.cities(): menu_city_picker.add_item(str(item.get("name", "城市")))
-	menu_city_picker.item_selected.connect(func(index: int): active_city_id = str(WorldData.cities()[index].get("id", "shanghai")))
-	for index in range(WorldData.cities().size()):
-		if str(WorldData.cities()[index].get("id", "")) == active_city_id:
-			menu_city_picker.select(index)
-			break
-	left_column.add_child(menu_city_picker)
-	var blank := _button("从零规划新城市     →", TEAL, Color("#123b35"), 21)
-	blank.custom_minimum_size.y = (58.0 if compact_layout else 62.0) * _ui_scale
-	blank.pressed.connect(func(): _start_new_game(active_city_id, "blank"))
-	left_column.add_child(blank)
-	if not compact_layout: left_column.add_child(_menu_label("从空白地图起步，自由规划第一条线路。", 15, MUTED))
-	var expand := _button("扩建现实路网     →", Color("#91cbf2"), Color("#173044"), 20)
-	expand.custom_minimum_size.y = (54.0 if compact_layout else 58.0) * _ui_scale
-	expand.pressed.connect(func(): _start_new_game(active_city_id, "expand"))
-	left_column.add_child(expand)
-	if not compact_layout: left_column.add_child(_menu_label("从已运营路网继续，寻找新的服务缺口。", 15, MUTED))
-	menu_continue_button = _button("继续上次游戏", TEXT, Color("#233744"), 18)
-	menu_continue_button.custom_minimum_size.y = 54.0 * _ui_scale
-	menu_continue_button.disabled = true
-	menu_continue_button.pressed.connect(_continue_last_game)
-	left_column.add_child(menu_continue_button)
-	var row := HBoxContainer.new()
-	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_theme_constant_override("separation", 8)
-	var import_button := _button("导入存档", MUTED, PANEL_LIGHT, 16)
-	import_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	import_button.pressed.connect(func(): SaveManager.import_world(func(loaded: Dictionary): _load_world(loaded), func(error: String): _show_issue(error)))
-	row.add_child(import_button)
-	var settings_button := _button("设置", MUTED, PANEL_LIGHT, 16)
-	settings_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	settings_button.pressed.connect(_show_settings)
-	row.add_child(settings_button)
-	var quit_button := _button("退出", MUTED, PANEL_LIGHT, 16)
-	quit_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	quit_button.pressed.connect(func(): get_tree().quit())
-	row.add_child(quit_button)
-	left_column.add_child(row)
-	var saves_button := _button("选择其他本地存档…", Color("#b4c5ce"), PANEL_LIGHT, 16)
-	saves_button.custom_minimum_size.y = (44.0 if compact_layout else 48.0) * _ui_scale
-	saves_button.pressed.connect(_show_load_menu)
-	left_column.add_child(saves_button)
-	left_column.add_child(_menu_label("底图 © OpenStreetMap · 需求与客流为游戏模拟。" if compact_layout else "OpenStreetMap © 贡献者 · 路网快照 2026-10-05\n需求与客流为游戏模拟数据。", 13, MUTED))
-	if wide_layout:
-		var showcase := PanelContainer.new()
-		showcase.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		showcase.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		showcase.custom_minimum_size = Vector2(520.0 * _ui_scale, 0)
-		showcase.add_theme_stylebox_override("panel", _style(Color("#0e1b25"), Color("#294553"), 18, 1))
-		body.add_child(showcase)
-		var showcase_body := VBoxContainer.new()
-		showcase_body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		showcase_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		showcase_body.add_theme_constant_override("separation", 14)
-		showcase_body.add_theme_constant_override("margin_left", 20)
-		showcase_body.add_theme_constant_override("margin_right", 20)
-		showcase_body.add_theme_constant_override("margin_top", 20)
-		showcase_body.add_theme_constant_override("margin_bottom", 20)
-		showcase.add_child(showcase_body)
-		var showcase_header := HBoxContainer.new()
-		showcase_header.add_child(_menu_label("规划工作台", 19, TEXT, true))
-		var header_spacer := Control.new(); header_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL; showcase_header.add_child(header_spacer)
-		showcase_header.add_child(_menu_label("城市 · 需求 · 线路", 14, MUTED))
-		showcase_body.add_child(showcase_header)
-		var art := MenuArtScript.new()
-		art.name = "MetroNetworkIllustration"
-		art.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		art.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		art.custom_minimum_size.y = 390.0 * _ui_scale
-		showcase_body.add_child(art)
-		showcase_body.add_child(_menu_label("从需求出发，连接城市里真正要去的地方。", 17, TEXT, true))
-		var stats := HBoxContainer.new()
-		stats.add_theme_constant_override("separation", 10)
-		for pair in [["05", "座真实城市"], ["自由", "绘制轨道"], ["本地", "自动存档"]]:
-			var stat := PanelContainer.new()
-			stat.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			stat.add_theme_stylebox_override("panel", _style(Color("#172b37"), Color("#2a4351"), 10, 1))
-			stats.add_child(stat)
-			var stat_body := VBoxContainer.new()
-			stat_body.add_theme_constant_override("separation", 2)
-			stat.add_child(stat_body)
-			stat_body.add_child(_label(str(pair[0]), 20, TEAL, true))
-			stat_body.add_child(_label(str(pair[1]), 13, MUTED))
-			if pair[0] == "自由": stat_body.get_child(0).add_theme_color_override("font_color", Color("#59a8ee"))
-			if pair[0] == "本地": stat_body.get_child(0).add_theme_color_override("font_color", Color("#f0b657"))
-		showcase_body.add_child(stats)
-	_update_continue_button()
+	_render_planning_menu(false)
 
 func _show_settings() -> void:
 	if not is_instance_valid(menu_layer): return
-	var dialog := AcceptDialog.new()
+	var dialog := _new_accept_dialog()
 	dialog.title = "显示与游戏设置"
 	dialog.dialog_text = ""
 	var content_scroll := ScrollContainer.new()
@@ -695,6 +601,15 @@ func _show_settings() -> void:
 	scale_picker.custom_minimum_size.y = roundi(44.0 * _ui_scale)
 	scale_picker.add_theme_font_size_override("font_size", roundi(16.0 * _ui_scale))
 	content.add_child(scale_picker)
+	var motion_toggle := CheckButton.new()
+	motion_toggle.text = "启用轻量界面淡入动效"
+	motion_toggle.button_pressed = ui_motion_enabled
+	motion_toggle.custom_minimum_size.y = 44.0 * _ui_scale
+	motion_toggle.toggled.connect(func(enabled: bool):
+		ui_motion_enabled = enabled
+		if UiPreferencesScript.save_ui_motion_enabled(enabled) != OK: _show_toast("动效设置保存失败")
+	)
+	content.add_child(motion_toggle)
 	scale_picker.item_selected.connect(func(index: int):
 		var value: float = [1.0, 1.25, 1.5, 1.75][index]
 		var save_error: Error = UiPreferencesScript.save_scale(value)
@@ -732,17 +647,49 @@ func _show_settings() -> void:
 	preview_sound.pressed.connect(func(): _play_ui_feedback("confirm"))
 	volume_row.add_child(preview_sound)
 	content.add_child(volume_row)
+	content.add_child(HSeparator.new())
+	content.add_child(_label("自动存档", 18, TEXT, true))
+	var autosave_toggle := CheckButton.new()
+	autosave_toggle.text = "启用定时自动存档"
+	autosave_toggle.button_pressed = timed_autosave_enabled
+	autosave_toggle.custom_minimum_size.y = 44.0 * _ui_scale
+	autosave_toggle.toggled.connect(func(enabled: bool):
+		timed_autosave_enabled = enabled
+		autosave_elapsed_seconds = 0.0
+		if UiPreferencesScript.save_timed_autosave_enabled(enabled) != OK: _show_toast("自动存档设置保存失败")
+		_update_topbar()
+	)
+	content.add_child(autosave_toggle)
+	var autosave_row := HBoxContainer.new()
+	autosave_row.add_child(_label("定时保存间隔（现实时间）", 15, MUTED))
+	var autosave_interval_picker := OptionButton.new()
+	for minutes in [2, 5, 10, 15]: autosave_interval_picker.add_item("%d 分钟" % minutes)
+	autosave_interval_picker.select([2, 5, 10, 15].find(timed_autosave_interval_minutes))
+	autosave_interval_picker.custom_minimum_size = Vector2(140.0 * _ui_scale, 44.0 * _ui_scale)
+	autosave_interval_picker.disabled = not timed_autosave_enabled
+	autosave_interval_picker.item_selected.connect(func(index: int):
+		timed_autosave_interval_minutes = [2, 5, 10, 15][index]
+		autosave_elapsed_seconds = 0.0
+		if UiPreferencesScript.save_timed_autosave_interval(timed_autosave_interval_minutes) != OK: _show_toast("自动存档间隔保存失败")
+	)
+	autosave_toggle.toggled.connect(func(enabled: bool): autosave_interval_picker.disabled = not enabled)
+	autosave_row.add_child(autosave_interval_picker)
+	content.add_child(autosave_row)
+	var autosave_info := _label("有未保存变化时按此间隔自动保存。建设确认、暂停和退出仍会即时保存；手动存档会另存独立命名进度。", 14, MUTED)
+	autosave_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	content.add_child(autosave_info)
 	var settings_info := _label("地图：随游戏附带五城 OSM 矢量底图，断网也能规划。\n模拟速度使用固定游戏时间步长。", 14, MUTED)
 	settings_info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.add_child(settings_info)
 	content_scroll.add_child(content)
+	_fade_in(content_scroll)
 	dialog.add_child(content_scroll)
 	menu_layer.add_child(dialog)
 	dialog.popup_centered(Vector2i(mini(roundi(520.0 * _ui_scale), int(viewport_size.x - 32.0)), mini(roundi(360.0 * _ui_scale), int(viewport_size.y - 32.0))))
 
 func _start_new_game(city_id: String, mode: String, challenge_mode: String = "free") -> void:
 	if SaveManager.save_exists(city_id, mode):
-		var confirm := ConfirmationDialog.new()
+		var confirm := _new_confirmation_dialog()
 		confirm.title = "替换本地进度？"
 		confirm.dialog_text = "这个城市与开局已有存档。继续会先将旧文件保存在 .bak。"
 		add_child(confirm)
@@ -823,7 +770,7 @@ func _finish_continue_load(loaded: Dictionary, indexed: Dictionary) -> void:
 		_show_toast(str(loaded.get("error", indexed.get("notice", "已从最近备份恢复；原文件仍保留。"))))
 
 func _confirm_recovery_before_load(result: Dictionary, continue_action: Callable) -> void:
-	var dialog := ConfirmationDialog.new()
+	var dialog := _new_confirmation_dialog()
 	dialog.title = "确认从备份恢复"
 	dialog.dialog_text = "发现可用恢复备份：\n%s\n\n原因：%s\n\n确认后会先保存一份独立恢复副本，再载入这份备份。取消不会更改当前进度或存档文件。" % [SaveManager.recovery_source_label(result), str(result.get("recoveryCause", "当前存档无法读取"))]
 	dialog.get_ok_button().text = "保留副本并恢复"
@@ -849,9 +796,26 @@ func _load_world(state: Dictionary) -> void:
 	SimulationEngineScript.invalidate_route_cache()
 	world = state
 	if not world.has("onboarding"):
-		# Existing version-8 saves should not unexpectedly start a new lesson.
-		world["onboarding"] = OnboardingScript.create_state(str(world.get("cityId", "shanghai")), str(world.get("mode", "blank")), true)
-		world["tutorialDone"] = true
+		# Older saves may predate the click-by-click tutorial. Honor the player's
+		# completion preference instead of silently marking that tutorial done.
+		var tutorial_seen := UiPreferencesScript.load_onboarding_completed()
+		world["onboarding"] = OnboardingScript.create_state(str(world.get("cityId", "shanghai")), str(world.get("mode", "blank")), tutorial_seen)
+		if not tutorial_seen and str(world.get("mode", "blank")) == "blank":
+			world["tutorialDone"] = true # Disable only the retired tutorial flow.
+	# A prior build could persist an empty, inactive tutorial state while marking
+	# the retired tutorial as done. Recover that exact unfinished state on load.
+	# Completed or explicitly skipped tutorials remain closed, and expand starts
+	# keep their lighter local-browsing guidance.
+	var onboarding_state: Dictionary = world.get("onboarding", {})
+	if str(world.get("mode", "blank")) == "blank" \
+		and onboarding_state.has("missionId") \
+		and not bool(onboarding_state.get("active", false)) \
+		and not bool(onboarding_state.get("completed", false)) \
+		and not bool(onboarding_state.get("skipped", false)) \
+		and not UiPreferencesScript.load_onboarding_completed():
+		onboarding_state["active"] = true
+		onboarding_state["viewingCity"] = false
+		world["onboarding"] = onboarding_state
 	_flow_cache_revision = -1
 	active_city_id = str(world.get("cityId", "shanghai"))
 	if not world.has("simulation"): world.simulation = {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "nextDepartureSeconds": {}, "trainTripsInitialized": false, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "flowSamples": {}}
@@ -903,6 +867,13 @@ func _load_world(state: Dictionary) -> void:
 	_show_toast(migration_notice if not migration_notice.is_empty() else "已载入 %s · %s；游戏已暂停" % [world.get("cityName", "城市"), _mode_name(str(world.get("mode", "blank")))])
 
 func _build_game_ui() -> void:
+	tutorial_targets.clear()
+	tutorial_spotlight = null
+	_tutorial_focus_signature = ""
+	_tutorial_map_size = Vector2.ZERO
+	_layout_narrow = get_viewport_rect().size.x / maxf(1.0, _ui_scale) < 1100.0
+	_left_requested = not _layout_narrow and not bool(world.get("onboarding", {}).get("active", false))
+	_right_requested = false
 	for overlay in [_layer_panel, onboarding_panel]:
 		if is_instance_valid(overlay) and overlay.get_parent() == map_view:
 			map_view.remove_child(overlay)
@@ -914,7 +885,7 @@ func _build_game_ui() -> void:
 	var top := PanelContainer.new()
 	top.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 	top.offset_bottom = 68
-	top.add_theme_stylebox_override("panel", _style(Color("#101b26"), BORDER, 0, 0))
+	top.add_theme_stylebox_override("panel", _style(PANEL, BORDER, 0, 1))
 	add_child(top)
 	_top_panel = top
 	_top_content = VBoxContainer.new()
@@ -929,7 +900,7 @@ func _build_game_ui() -> void:
 	_top_actions.add_theme_constant_override("separation", 10)
 	_top_actions.add_theme_constant_override("margin_left", 14); _top_actions.add_theme_constant_override("margin_right", 14)
 	_top_content.add_child(_top_actions)
-	var logo := _label("M  造一座地铁", 18, TEAL, true); logo.custom_minimum_size.x = 188.0 * _ui_scale; top_row.add_child(logo)
+	var logo := _label("造一座地铁", 18, TEAL, true); logo.custom_minimum_size.x = 148.0 * _ui_scale; top_row.add_child(logo)
 	_left_panel_button = _button("线路 ▾", MUTED, PANEL_LIGHT, 14)
 	_left_panel_button.pressed.connect(func():
 		_left_requested = not _left_requested
@@ -937,7 +908,7 @@ func _build_game_ui() -> void:
 		_update_responsive_layout()
 	)
 	top_row.add_child(_left_panel_button)
-	city_picker = OptionButton.new(); city_picker.custom_minimum_size = Vector2(120, 38)
+	city_picker = OptionButton.new(); city_picker.custom_minimum_size = Vector2(120, 40)
 	_set_control_base_font(city_picker, 15)
 	for item in WorldData.cities(): city_picker.add_item(str(item.name))
 	for i in range(WorldData.cities().size()):
@@ -953,15 +924,16 @@ func _build_game_ui() -> void:
 	top_row.add_child(_right_panel_button)
 	_mode_badge = _label(_mode_name(str(world.get("mode", "blank"))), 12, MUTED); _mode_badge.custom_minimum_size.x = 82; top_row.add_child(_mode_badge)
 	_top_spacer = Control.new(); _top_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL; top_row.add_child(_top_spacer)
-	time_label = _label("D1 · 07:00", 14, TEXT, true); time_label.custom_minimum_size.x = 92; _top_actions.add_child(time_label)
-	pause_button = _button("▶", TEAL, Color("#142e2c"), 18); pause_button.custom_minimum_size = Vector2(42, 40); pause_button.pressed.connect(_toggle_pause); _top_actions.add_child(pause_button)
+	time_label = _label("D1 · 07:00", 16, TEXT, true); time_label.custom_minimum_size.x = 92; _top_actions.add_child(time_label)
+	pause_button = _button("▶", TEAL, Color("#142e2c"), 18); pause_button.name = "TutorialTop_play"; pause_button.custom_minimum_size = Vector2(44, 42); pause_button.pressed.connect(_toggle_pause); _top_actions.add_child(pause_button)
+	_register_tutorial_target("play", pause_button)
 	speed_picker = OptionButton.new(); speed_picker.custom_minimum_size = Vector2(82, 38)
 	for speed in [1,3,10]: speed_picker.add_item("%d×" % speed)
 	speed_picker.item_selected.connect(func(index: int): world.simulation.speed = [1,3,10][index]; _autosave())
 	_top_actions.add_child(speed_picker)
 	undo_button = _button("↶", TEXT, PANEL_LIGHT, 20); undo_button.tooltip_text = "撤销 Ctrl+Z"; undo_button.pressed.connect(_do_undo); _top_actions.add_child(undo_button)
 	redo_button = _button("↷", TEXT, PANEL_LIGHT, 20); redo_button.tooltip_text = "重做 Ctrl+Y"; redo_button.pressed.connect(_do_redo); _top_actions.add_child(redo_button)
-	var saves := _button("存档 ▾", MUTED, PANEL_LIGHT, 13); saves.pressed.connect(_show_save_menu); _top_actions.add_child(saves)
+	var saves := _button("存档中心", MUTED, PANEL_LIGHT, 13); saves.pressed.connect(_show_save_center); _top_actions.add_child(saves)
 	save_badge = _button("已保存", TEAL, Color("#142e2c"), 13)
 	save_badge.custom_minimum_size = Vector2(96, 38)
 	save_badge.pressed.connect(_retry_or_save)
@@ -970,18 +942,20 @@ func _build_game_ui() -> void:
 
 	var left := PanelContainer.new()
 	left.anchor_left = 0; left.anchor_right = 0; left.anchor_top = 0; left.anchor_bottom = 1
-	left.offset_top = 68; left.offset_bottom = -35; left.offset_left = 0; left.offset_right = 280
+	left.offset_top = 68; left.offset_bottom = -35; left.offset_left = 0; left.offset_right = 288
 	left.add_theme_stylebox_override("panel", _style(PANEL, BORDER, 0, 0)); add_child(left)
 	_left_panel = left
 	var left_body := VBoxContainer.new(); left_body.add_theme_constant_override("separation", 4); left_body.add_theme_constant_override("margin_left", 8); left_body.add_theme_constant_override("margin_right", 8); left_body.add_theme_constant_override("margin_top", 8); left_body.add_theme_constant_override("margin_bottom", 8); left.add_child(left_body)
 	var left_tabs := HBoxContainer.new(); left_tabs.add_theme_constant_override("separation", 5); left_body.add_child(left_tabs)
 	for tab_data in [["routes", "线路"], ["tasks", "任务"], ["stats", "统计"]]:
 		var tab_button := _button(str(tab_data[1]), TEXT, PANEL_LIGHT, 14)
+		tab_button.name = "TutorialTab_%s" % str(tab_data[0])
 		tab_button.custom_minimum_size.y = 40.0 * _ui_scale
 		tab_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		tab_button.pressed.connect(_on_left_tab_pressed.bind(str(tab_data[0])))
 		left_tabs.add_child(tab_button)
 		left_tab_buttons[str(tab_data[0])] = tab_button
+		if str(tab_data[0]) == "tasks": _register_tutorial_target("tab_tasks", tab_button)
 	var left_scroll := ScrollContainer.new(); left_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED; left_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL; left_body.add_child(left_scroll)
 	left_content = VBoxContainer.new(); left_content.custom_minimum_size.x = 250; left_content.add_theme_constant_override("separation", 8); left_content.add_theme_constant_override("margin_left", 6); left_content.add_theme_constant_override("margin_right", 6); left_content.add_theme_constant_override("margin_top", 10); left_content.add_theme_constant_override("margin_bottom", 12); left_scroll.add_child(left_content)
 
@@ -1002,8 +976,20 @@ func _build_game_ui() -> void:
 	_right_pinned_header.add_theme_constant_override("margin_top", 14)
 	_right_pinned_header.add_theme_constant_override("margin_bottom", 8)
 	right_body.add_child(_right_pinned_header)
-	var right_scroll := ScrollContainer.new(); right_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL; right_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED; right_body.add_child(right_scroll)
-	right_content = VBoxContainer.new(); right_content.custom_minimum_size.x = 280; right_content.add_theme_constant_override("separation", 9); right_content.add_theme_constant_override("margin_left", 14); right_content.add_theme_constant_override("margin_right", 14); right_content.add_theme_constant_override("margin_top", 14); right_content.add_theme_constant_override("margin_bottom", 14); right_scroll.add_child(right_content)
+	var right_scroll := ScrollContainer.new(); right_scroll.name = "DetailsScroll"; right_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL; right_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED; right_body.add_child(right_scroll)
+	var detail_stack := VBoxContainer.new()
+	detail_stack.add_theme_constant_override("separation", 6)
+	detail_stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	right_scroll.add_child(detail_stack)
+	right_content = VBoxContainer.new(); right_content.custom_minimum_size.x = 312; right_content.add_theme_constant_override("separation", 9); right_content.add_theme_constant_override("margin_left", 14); right_content.add_theme_constant_override("margin_right", 14); right_content.add_theme_constant_override("margin_top", 14); right_content.add_theme_constant_override("margin_bottom", 8); detail_stack.add_child(right_content)
+	tool_context_panel = VBoxContainer.new()
+	tool_context_panel.name = "ConstructionDetails"
+	tool_context_panel.add_theme_constant_override("separation", 8)
+	tool_context_panel.add_theme_constant_override("margin_left", 14)
+	tool_context_panel.add_theme_constant_override("margin_right", 14)
+	tool_context_panel.add_theme_constant_override("margin_top", 4)
+	tool_context_panel.add_theme_constant_override("margin_bottom", 14)
+	detail_stack.add_child(tool_context_panel)
 	_right_pinned_footer = VBoxContainer.new()
 	_right_pinned_footer.add_theme_constant_override("margin_left", 14)
 	_right_pinned_footer.add_theme_constant_override("margin_right", 14)
@@ -1014,21 +1000,22 @@ func _build_game_ui() -> void:
 	var footer := PanelContainer.new()
 	footer.anchor_left = 0.5; footer.anchor_right = 0.5; footer.anchor_top = 1; footer.anchor_bottom = 1
 	footer.offset_left = -560; footer.offset_right = 560; footer.offset_top = -158; footer.offset_bottom = -12
-	var footer_style := _style(Color("#172833"), Color("#46616d"), 16, 1)
-	footer_style.shadow_color = Color(0.02, 0.08, 0.12, 0.24); footer_style.shadow_size = 12; footer_style.shadow_offset = Vector2(0, 4)
+	var footer_style := _style(PANEL, BORDER, 14, 1)
+	footer_style.shadow_color = Color(0.24, 0.25, 0.19, 0.09); footer_style.shadow_size = 10; footer_style.shadow_offset = Vector2(0, 3)
 	footer.add_theme_stylebox_override("panel", footer_style); add_child(footer)
 	_footer_panel = footer
-	var footer_body := VBoxContainer.new(); footer_body.add_theme_constant_override("separation", 4); footer_body.add_theme_constant_override("margin_left", 10); footer_body.add_theme_constant_override("margin_right", 10); footer_body.add_theme_constant_override("margin_top", 6); footer_body.add_theme_constant_override("margin_bottom", 5); footer.add_child(footer_body)
+	var footer_body := VBoxContainer.new(); footer_body.add_theme_constant_override("separation", 3); footer_body.add_theme_constant_override("margin_left", 10); footer_body.add_theme_constant_override("margin_right", 10); footer_body.add_theme_constant_override("margin_top", 6); footer_body.add_theme_constant_override("margin_bottom", 5); footer.add_child(footer_body)
 	tool_panel = HFlowContainer.new(); tool_panel.add_theme_constant_override("h_separation", 7); tool_panel.add_theme_constant_override("v_separation", 5); footer_body.add_child(tool_panel)
-	tool_action_panel = HFlowContainer.new(); tool_action_panel.add_theme_constant_override("h_separation", 7); tool_action_panel.add_theme_constant_override("v_separation", 5); footer_body.add_child(tool_action_panel)
+	tool_action_panel = HFlowContainer.new(); tool_action_panel.visible = false; tool_action_panel.add_theme_constant_override("h_separation", 7); tool_action_panel.add_theme_constant_override("v_separation", 5); footer_body.add_child(tool_action_panel)
 	tool_instruction_label = _label("", 14, TEAL)
 	tool_instruction_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	tool_instruction_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	tool_instruction_label.custom_minimum_size.y = 20.0 * minf(_ui_scale, 1.25)
+	tool_instruction_label.custom_minimum_size.y = 18.0 * minf(_ui_scale, 1.25)
 	footer_body.add_child(tool_instruction_label)
 	var footer_row := HFlowContainer.new(); footer_row.add_theme_constant_override("h_separation", 12); footer_row.add_theme_constant_override("v_separation", 4); footer_body.add_child(footer_row)
-	stats_label = _label("等候 0  ·  在途 0  ·  已完成 0", 15, MUTED); stats_label.custom_minimum_size.x = 430.0 * _ui_scale; footer_row.add_child(stats_label)
-	toast_label = _label("", 14, TEXT); toast_label.custom_minimum_size.x = 300.0 * _ui_scale; footer_row.add_child(toast_label)
+	stats_label = _label("等候 0  ·  在途 0  ·  已完成 0", 15, MUTED); stats_label.name = "TutorialStats"; stats_label.custom_minimum_size.x = minf(430.0 * _ui_scale, 460.0); footer_row.add_child(stats_label)
+	_register_tutorial_target("stats", stats_label)
+	toast_label = _label("", 14, TEXT); toast_label.custom_minimum_size.x = minf(300.0 * _ui_scale, 300.0); footer_row.add_child(toast_label)
 	_layer_panel = PanelContainer.new()
 	_layer_panel.name = "MapLayerControls"
 	_layer_panel.anchor_left = 1.0; _layer_panel.anchor_right = 1.0
@@ -1081,7 +1068,13 @@ func _build_game_ui() -> void:
 	_attribution_panel.add_child(attribution_label)
 	add_child(_attribution_panel)
 	_update_responsive_layout()
+	_fade_in(self)
 	_refresh_ui()
+	tutorial_spotlight = TutorialSpotlightScript.new()
+	tutorial_spotlight.name = "TutorialSpotlight"
+	tutorial_spotlight.theme = theme
+	add_child(tutorial_spotlight)
+	_update_tutorial_spotlight()
 
 func _refresh_ui() -> void:
 	if world.is_empty() or not is_instance_valid(left_content): return
@@ -1096,15 +1089,19 @@ func _refresh_ui() -> void:
 	map_view.selected_type = selected_type
 	map_view.selected_id = selected_id
 	map_view.set_world(world)
+	_update_tutorial_spotlight()
 
 func _refresh_left_panel() -> void:
 	if not is_instance_valid(left_content): return
+	_stats_live_labels.clear()
+	_stats_wait_buttons.clear()
+	_stats_utilization_labels.clear()
 	for child in left_content.get_children(): child.queue_free()
 	if _flow_cache_revision != int(world.get("revision", 0)): _rebuild_flow_cache()
 	for tab_id in left_tab_buttons:
 		var button: Button = left_tab_buttons[tab_id]
 		var active := str(tab_id) == left_tab
-		button.add_theme_stylebox_override("normal", _style(Color("#174037") if active else PANEL_LIGHT, Color("#3b967f") if active else BORDER, 8, 1))
+		button.add_theme_stylebox_override("normal", _style(UiThemeScript.ACCENT_SOFT if active else PANEL_LIGHT, TEAL if active else BORDER, 8, 1))
 		button.add_theme_color_override("font_color", TEAL if active else TEXT)
 	match left_tab:
 		"tasks": _refresh_tasks_tab()
@@ -1114,6 +1111,7 @@ func _refresh_left_panel() -> void:
 func _on_left_tab_pressed(tab_id: String) -> void:
 	left_tab = tab_id
 	_refresh_left_panel()
+	_update_tutorial_spotlight()
 
 func _refresh_routes_tab() -> void:
 	left_content.add_child(_label("线路与车站", 20, TEXT, true))
@@ -1166,10 +1164,11 @@ func _refresh_routes_tab() -> void:
 	left_content.add_child(_label("OSM 快照 %s · 客流为游戏设定。" % source.left(10), 12, MUTED))
 
 func _refresh_tasks_tab() -> void:
+	tutorial_targets.erase("campaign_next")
 	left_content.add_child(_label("任务与扩建", 20, TEXT, true))
 	var onboarding_state: Dictionary = world.get("onboarding", {})
 	var progression_state: Dictionary = world.get("cityProgression", {})
-	if bool(progression_state.get("started", false)) and not bool(onboarding_state.get("active", false)) and str(world.get("challengeMode", "free")) != "neighborhood":
+	if bool(progression_state.get("started", false)) and (not bool(onboarding_state.get("active", false)) or bool(onboarding_state.get("completed", false))) and str(world.get("challengeMode", "free")) != "neighborhood":
 		_refresh_city_campaign_tab()
 		return
 	if str(world.get("challengeMode", "free")) == "neighborhood":
@@ -1298,6 +1297,7 @@ func _refresh_city_campaign_tab() -> void:
 	var phases: Array = world.get("planningPhases", [])
 	var current_phase_id := str(world.get("currentPlanningPhaseId", "phase_1"))
 	var current_phase: Dictionary = {}
+	var has_campaign_action := false
 	for phase in phases:
 		if str(phase.get("id", "")) == current_phase_id: current_phase = phase; break
 	left_content.add_child(_label("城市议程 · 第 %d 天 %02d:%02d" % [elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60)], 14, MUTED))
@@ -1321,9 +1321,12 @@ func _refresh_city_campaign_tab() -> void:
 			var actions := HFlowContainer.new()
 			actions.add_theme_constant_override("h_separation", 6)
 			var focus := _button("定位这条出行", Color("#9ad8f3"), PANEL_LIGHT, 14)
+			focus.name = "TutorialCampaign_next"
 			focus.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
-			focus.pressed.connect(func(): _focus_flow(flow))
+			focus.pressed.connect(func(): _onboarding_campaign_action(flow))
 			actions.add_child(focus)
+			_register_tutorial_target("campaign_next", focus)
+			has_campaign_action = true
 			var expected := _button("查看预计旅程", TEXT, PANEL_LIGHT, 14)
 			expected.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
 			expected.disabled = not bool(flow.get("valid", false))
@@ -1347,8 +1350,17 @@ func _refresh_city_campaign_tab() -> void:
 			left_content.add_child(_label("可自主选择的下一片区", 17, TEXT, true))
 			left_content.add_child(_label("%s → %s · 游戏估算 %s 人次/日" % [current.get("from", "居住区"), current.get("to", "目的地"), _number(int(round(float(current.get("peoplePerDay", 0.0)))))], 15, MUTED))
 			var locate_next := _button("查看附近需求", Color("#9ad8f3"), PANEL_LIGHT, 14)
-			locate_next.pressed.connect(func(): _focus_flow(current))
+			locate_next.name = "TutorialCampaign_next"
+			locate_next.pressed.connect(func(): _onboarding_campaign_action(current))
 			left_content.add_child(locate_next)
+			_register_tutorial_target("campaign_next", locate_next)
+			has_campaign_action = true
+	if not has_campaign_action and bool(world.get("onboarding", {}).get("active", false)) and int(world.get("onboarding", {}).get("step", -1)) >= 7:
+		var continue_goal := _button("查看本阶段目标", Color("#9ad8f3"), PANEL_LIGHT, 14)
+		continue_goal.name = "TutorialCampaign_next"
+		continue_goal.pressed.connect(func(): _onboarding_campaign_action({}))
+		left_content.add_child(continue_goal)
+		_register_tutorial_target("campaign_next", continue_goal)
 	var upcoming := CityProgressionScript.next_event(world, elapsed)
 	if not upcoming.is_empty():
 		var announce_in := maxi(0, int(upcoming.get("announceMinute", elapsed)) - elapsed)
@@ -1488,7 +1500,7 @@ func _create_planning_phase(raw_name: String) -> void:
 	_refresh_left_panel(); _autosave(); _show_toast("已新建建设阶段：%s" % phase_name)
 
 func _prompt_new_planning_phase() -> void:
-	var dialog := ConfirmationDialog.new()
+	var dialog := _new_confirmation_dialog()
 	dialog.title = "新建建设阶段"
 	dialog.get_ok_button().text = "创建并切换"
 	dialog.get_cancel_button().text = "取消"
@@ -1519,7 +1531,7 @@ func _prompt_phase_flow_goals(phase_id: String) -> void:
 		if not flow.is_empty(): candidates.append(flow)
 	candidates.sort_custom(func(a: Dictionary, b: Dictionary): return float(a.get("peoplePerDay", 0.0)) > float(b.get("peoplePerDay", 0.0)))
 	var chosen: Array = phase.get("flowIds", []).duplicate()
-	var dialog := ConfirmationDialog.new()
+	var dialog := _new_confirmation_dialog()
 	dialog.title = "选择本阶段要服务的出行"
 	dialog.get_ok_button().text = "保存目标"
 	dialog.get_cancel_button().text = "取消"
@@ -1629,7 +1641,9 @@ func _refresh_stats_tab() -> void:
 	left_content.add_child(_label("运营统计", 20, TEXT, true))
 	var sim: Dictionary = world.get("simulation", {})
 	var elapsed := int(sim.get("elapsedMinutes", sim.get("minute", 420)))
-	left_content.add_child(_label("第 %d 天 · %02d:%02d" % [elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60)], 15, MUTED))
+	var time_label := _label("第 %d 天 · %02d:%02d" % [elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60)], 15, MUTED)
+	_stats_live_labels["time"] = time_label
+	left_content.add_child(time_label)
 	var metrics := [
 		["累计发起", int(sim.get("attempted", 0)), "按游戏需求产生的出行批次人数。"],
 		["已到达", int(sim.get("completed", 0)), "只有抵达目的地才计入。"],
@@ -1646,6 +1660,7 @@ func _refresh_stats_tab() -> void:
 		metric_name.custom_minimum_size.x = 118.0 * _ui_scale
 		metric_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var metric_value := _label(_number(int(metric[1])), 17, TEAL, true)
+		_stats_live_labels[str(metric[0])] = metric_value
 		metric_value.custom_minimum_size.x = 62.0 * _ui_scale
 		metric_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		row.add_child(metric_name)
@@ -1659,12 +1674,19 @@ func _refresh_stats_tab() -> void:
 	var completed := int(sim.get("completed", 0))
 	if completed > 0:
 		var average := float(sim.get("tripMinutesTotal", 0.0)) / float(completed)
-		left_content.add_child(_label("平均完整出行 · %.1f 分钟" % average, 17, TEXT, true))
+		var average_label := _label("平均完整出行 · %.1f 分钟" % average, 17, TEXT, true)
+		_stats_live_labels["average"] = average_label
+		left_content.add_child(average_label)
 	else:
-		left_content.add_child(_label("尚无完成行程，暂不显示平均耗时或效率评分。", 14, MUTED))
-	left_content.add_child(_label("高峰区间占用 · %.0f%%" % (float(sim.get("peakCrowding", 0.0)) * 100.0), 15, TEXT))
+		var average_label := _label("尚无完成行程，暂不显示平均耗时或效率评分。", 14, MUTED)
+		_stats_live_labels["average"] = average_label
+		left_content.add_child(average_label)
+	var crowding_label := _label("高峰区间占用 · %.0f%%" % (float(sim.get("peakCrowding", 0.0)) * 100.0), 15, TEXT)
+	_stats_live_labels["crowding"] = crowding_label
+	left_content.add_child(crowding_label)
 	var waiting_by_route: Dictionary = sim.get("waitingByRoute", {})
 	left_content.add_child(_label("线路候车", 17, TEXT, true))
+	left_content.add_child(_label("方向运力利用 · 近1个游戏小时", 14, MUTED))
 	for route in world.get("routes", []):
 		var route_id := str(route.get("id", ""))
 		var current_headway := ServiceScheduleScript.headway_minutes(route, int(sim.get("elapsedSeconds", int(elapsed) * 60)))
@@ -1672,7 +1694,12 @@ func _refresh_stats_tab() -> void:
 		line_row.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		line_row.custom_minimum_size.y = 42.0 * _ui_scale
 		line_row.pressed.connect(func(): _focus_route(route_id))
+		_stats_wait_buttons[route_id] = line_row
 		left_content.add_child(line_row)
+		var utilization_label := _label(_route_utilization_text(route_id), 14, MUTED)
+		utilization_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_stats_utilization_labels[route_id] = utilization_label
+		left_content.add_child(utilization_label)
 	left_content.add_child(HSeparator.new())
 	left_content.add_child(_label("15分钟统计 · 最近7个游戏日", 17, TEXT, true))
 	var buckets: Array = sim.get("statisticsBuckets", [])
@@ -1705,6 +1732,50 @@ func _refresh_stats_tab() -> void:
 func _format_game_clock(absolute_seconds: int) -> String:
 	var absolute_minutes := floori(float(absolute_seconds) / 60.0)
 	return "第%d天 %02d:%02d" % [absolute_minutes / 1440 + 1, posmod(absolute_minutes, 1440) / 60, posmod(absolute_minutes, 60)]
+
+func _route_utilization_text(route_id: String) -> String:
+	var buckets: Array = world.get("simulation", {}).get("routeUtilizationBuckets", [])
+	var now_minute := int(world.get("simulation", {}).get("elapsedMinutes", 420))
+	var count := 0
+	var load_sum := 0.0
+	var empty_sum := 0.0
+	var peak := 0.0
+	for bucket in buckets:
+		if now_minute - int(bucket.get("startMinute", now_minute)) > 60: continue
+		for sample in bucket.get("byRoute", {}).values():
+			if str(sample.get("routeId", "")) != route_id: continue
+			var samples := int(sample.get("samples", 0))
+			count += samples
+			load_sum += float(sample.get("loadRatioSum", 0.0))
+			empty_sum += float(sample.get("emptyEdgeRatioSum", 0.0))
+			peak = maxf(peak, float(sample.get("peakLoadRatio", 0.0)))
+	if count <= 0: return "运力利用：近1小时暂无足够的实际班次样本。"
+	return "近1小时方向样本 %d 班次 · 平均载客率 %.0f%% · 空载区间比例 %.0f%% · 峰值 %.0f%%（游戏估算）" % [count, 100.0 * load_sum / float(count), 100.0 * empty_sum / float(count), 100.0 * peak]
+
+func _update_stats_live_labels() -> void:
+	if world.is_empty(): return
+	var sim: Dictionary = world.get("simulation", {})
+	var elapsed := int(sim.get("elapsedMinutes", sim.get("minute", 420)))
+	var values := {"累计发起": int(sim.get("attempted", 0)), "已到达": int(sim.get("completed", 0)), "等候": int(sim.get("waiting", 0)), "在途": int(sim.get("inTransit", 0)), "已放弃": int(sim.get("abandoned", 0)), "中断记录": int(sim.get("interrupted", 0)), "无法接入": int(sim.get("unreachable", 0))}
+	if _stats_live_labels.get("time") is Label: _stats_live_labels.time.text = "第 %d 天 · %02d:%02d" % [elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60)]
+	for metric_name in values:
+		var label: Variant = _stats_live_labels.get(str(metric_name))
+		if label is Label: label.text = _number(int(values[metric_name]))
+	var average_label: Variant = _stats_live_labels.get("average")
+	if average_label is Label:
+		var completed := int(sim.get("completed", 0))
+		average_label.text = "平均完整出行 · %.1f 分钟" % (float(sim.get("tripMinutesTotal", 0.0)) / float(completed)) if completed > 0 else "尚无完成行程，暂不显示平均耗时或效率评分。"
+	var crowding: Variant = _stats_live_labels.get("crowding")
+	if crowding is Label: crowding.text = "高峰区间占用 · %.0f%%" % (float(sim.get("peakCrowding", 0.0)) * 100.0)
+	var waiting_by_route: Dictionary = sim.get("waitingByRoute", {})
+	for route in world.get("routes", []):
+		var route_id := str(route.get("id", ""))
+		var wait_button: Variant = _stats_wait_buttons.get(route_id)
+		if wait_button is Button:
+			var headway := ServiceScheduleScript.headway_minutes(route, int(sim.get("elapsedSeconds", elapsed * 60)))
+			wait_button.text = "%s   等待 %s 人 · 当前班距 %d 分钟" % [str(route.get("name", "线路")), _number(int(waiting_by_route.get(route_id, 0))), headway]
+		var utilization: Variant = _stats_utilization_labels.get(route_id)
+		if utilization is Label: utilization.text = _route_utilization_text(route_id)
 
 func _show_journey_record(record: Dictionary) -> void:
 	var flow_parts := str(record.get("flowId", "")).split(">")
@@ -1739,7 +1810,7 @@ func _show_journey_record(record: Dictionary) -> void:
 				"train_arrive": event_text = "列车到站 · %s" % str(station.get("name", "车站"))
 				"step_complete": event_text = "步行／换乘完成"
 			lines.append("· %s · %s" % [_format_game_clock(int(event.get("timeSeconds", 0))), event_text])
-	var dialog := ConfirmationDialog.new()
+	var dialog := _new_confirmation_dialog()
 	dialog.title = "实际旅程记录 · %s → %s" % [str(origin.get("name", "起点")), str(destination.get("name", "目的地"))]
 	dialog.dialog_text = "\n".join(lines)
 	dialog.add_button("定位起点", false, "origin")
@@ -1792,7 +1863,7 @@ func _show_expected_journey(flow: Dictionary) -> void:
 				var from_station := WorldData.find_station(world, str(step.get("fromStationId", "")))
 				var to_station := WorldData.find_station(world, str(step.get("toStationId", "")))
 				lines.append("· 乘坐%s：%s → %s，约 %.1f 分钟" % [str(route.get("name", "地铁线路")), str(from_station.get("name", "车站")), str(to_station.get("name", "车站")), float(step.get("minutes", 0.0))])
-	var dialog := AcceptDialog.new()
+	var dialog := _new_accept_dialog()
 	dialog.title = "预计旅程 · %s → %s" % [str(flow.get("from", "起点")), str(flow.get("to", "目的地"))]
 	dialog.dialog_text = "\n".join(lines)
 	add_child(dialog)
@@ -1811,6 +1882,7 @@ func _tutorial_detail(step: int) -> String:
 	return "基础教学可以跳过，也可以从菜单重开。"
 
 func _refresh_right_panel() -> void:
+	tutorial_targets.erase("route_open")
 	for c in right_content.get_children(): c.queue_free()
 	if is_instance_valid(_right_pinned_header):
 		for c in _right_pinned_header.get_children(): c.queue_free()
@@ -1886,6 +1958,10 @@ func _station_details(station: Dictionary) -> void:
 	var fixed_header: Control = _right_pinned_header if is_instance_valid(_right_pinned_header) else right_content
 	var fixed_footer: Control = _right_pinned_footer if is_instance_valid(_right_pinned_footer) else right_content
 	fixed_header.add_child(_label("车站详情", 20, TEXT, true))
+	var service_status := _station_service_status(station)
+	var service_label := _label("● %s" % str(service_status.get("text", "未接轨")), 15, Color(str(service_status.get("color", "#70848d"))), true)
+	service_label.name = "StationServiceStatus"
+	fixed_header.add_child(service_label)
 	var name_row := HBoxContainer.new()
 	name_row.add_theme_constant_override("separation", 6)
 	fixed_header.add_child(_label("站名", 14, MUTED))
@@ -2028,6 +2104,16 @@ func _flows_near_station(station: Dictionary) -> Array[Dictionary]:
 
 func _route_details(route: Dictionary) -> void:
 	right_content.add_child(_label("线路详情", 17, TEXT, true))
+	var extension_row := HFlowContainer.new()
+	extension_row.add_theme_constant_override("h_separation", 6)
+	var extend_start := _button("从起点继续扩建", TEAL, PANEL_LIGHT, 14)
+	extend_start.pressed.connect(_begin_route_extension.bind(str(route.get("id", "")), true))
+	extension_row.add_child(extend_start)
+	var extend_end := _button("从终点继续扩建", TEAL, PANEL_LIGHT, 14)
+	extend_end.pressed.connect(_begin_route_extension.bind(str(route.get("id", "")), false))
+	extension_row.add_child(extend_end)
+	right_content.add_child(extension_row)
+	right_content.add_child(_label("扩建会保留线路身份；确认后线路暂停，检查并开通后才恢复运营。", 13, MUTED))
 	right_content.add_child(_label("线路名称", 11, MUTED))
 	var name_edit := LineEdit.new(); name_edit.text = str(route.get("name", "")); name_edit.text_submitted.connect(func(value: String): _rename_route(str(route.id), value)); name_edit.focus_exited.connect(func(): _rename_route(str(route.id), name_edit.text)); right_content.add_child(name_edit)
 	right_content.add_child(_label("车辆与发车间隔", 14, MUTED))
@@ -2086,10 +2172,83 @@ func _route_details(route: Dictionary) -> void:
 	var path_summary: String = "有效路径：%d 个方向 · %.1f 分钟/方向" % [directions.size(), float(directions[0].get("travelMinutes", 0.0))] if bool(route_path.get("valid", false)) and not directions.is_empty() else "运营路径待整理：%s" % (str(route_errors[0]) if not route_errors.is_empty() else "没有可用停站路径")
 	right_content.add_child(_label("状态：%s\n配车：自动保障\n线路长度约 %.1f 千米\n最大单向运能：约 %d 人/小时\n%s\n区间几何：%s" % ["已开通" if route.get("open", false) else "草案", _route_length_km(route), int(WorldData.vehicle(str(route.get("vehicleId", "B-6"))).get("capacity", 1800)) * 60 / maxi(1, int(route.get("headway", 3))), path_summary, "既有线路站间示意" if route.get("schematic", false) else "由站端连接生成"], 13, MUTED))
 	var check := _button("检查并开通此线路", TEAL, Color("#15372f"), 14)
+	check.name = "TutorialRoute_open"
 	if not bool(world.get("tutorialDone", false)) and int(world.get("tutorialStep", 0)) == 2:
 		check.add_theme_stylebox_override("normal", _style(Color("#246a52"), Color("#78edc4"), 8, 2))
-	check.pressed.connect(_open_route); right_content.add_child(check)
+	check.pressed.connect(_open_route); right_content.add_child(check); _register_tutorial_target("route_open", check)
 	var del := _button("删除线路", Color("#ef8b8b"), Color("#41272d"), 12); del.pressed.connect(func(): _delete_route(str(route.id))); right_content.add_child(del)
+
+func _station_service_status(station: Dictionary) -> Dictionary:
+	var station_id := str(station.get("id", ""))
+	var connected := false
+	var start_node := TrackNetwork.station_node_id(station, "start")
+	var end_node := TrackNetwork.station_node_id(station, "end")
+	for edge in TrackNetwork.all_physical_edges(world):
+		var node_ids := TrackNetwork._edge_node_ids(edge, world)
+		if node_ids.has(start_node) or node_ids.has(end_node):
+			connected = true
+			break
+	var open_routes := 0
+	var repair_needed := false
+	var ref_lat := float(WorldData.city(active_city_id).get("center", [31.23, 121.47])[0])
+	for route in world.get("routes", []):
+		if not bool(route.get("open", false)) or not route.get("stationOrder", []).has(station_id): continue
+		var route_check := RoutePathScript.for_route(route, world, ref_lat)
+		if bool(route_check.get("valid", false)):
+			open_routes += 1
+		else:
+			repair_needed = true
+	if open_routes > 0: return {"text": "运营中 · %d 条线路" % open_routes, "color": "#1c8a67"}
+	if repair_needed: return {"text": "待修复 · 运营路径无效", "color": "#b34a4a"}
+	if connected: return {"text": "已接轨 · 未运营", "color": "#bd842e"}
+	return {"text": "未接轨", "color": "#72838d"}
+
+func _begin_route_extension(route_id: String, from_start: bool) -> void:
+	var route := WorldData.find_route(world, route_id)
+	if route.is_empty(): return
+	var directions: Array = route.get("directions", [])
+	if directions.is_empty():
+		_show_issue("这条线路没有可用的有向路径，先在详情中修复区间后再扩建。")
+		return
+	var direction: Dictionary = directions[0]
+	var stops: Array[String] = []
+	for raw_id in direction.get("stationIds", []): stops.append(str(raw_id))
+	var paths: Array = direction.get("edgePathsBySegment", []).duplicate(true)
+	if stops.size() < 2 or paths.size() < stops.size() - 1:
+		_show_issue("线路中仍有待接通区间；先修复路径，再开始扩建。")
+		return
+	while paths.size() > stops.size() - 1: paths.pop_back()
+	if from_start:
+		stops.reverse()
+		paths = _reverse_edge_paths(paths)
+	_set_tool("line")
+	route_extension_context = {"routeId": route_id, "routeName": str(route.get("name", "线路")), "baseStopCount": stops.size(), "baseSegmentPaths": paths.duplicate(true), "revision": int(world.get("revision", 0)), "fromStart": from_start}
+	line_draft_stops = stops.duplicate()
+	line_draft_path_options.clear()
+	line_draft_path_choices.clear()
+	var ref_lat := float(WorldData.city(active_city_id).get("center", [31.23, 121.47])[0])
+	for index in range(paths.size()):
+		var fixed_path: Array = paths[index]
+		var checked := TrackNetwork.ordered_station_path(stops[index], stops[index + 1], fixed_path, world, ref_lat)
+		if not bool(checked.get("valid", false)):
+			route_extension_context.clear()
+			line_draft_stops.clear()
+			_set_tool("select")
+			_show_issue("原线路的已确认走向无法完整读取：%s" % str(checked.get("error", "路径无效")))
+			return
+		line_draft_path_options.append([checked])
+		line_draft_path_choices.append(0)
+	line_draft_segment_index = maxi(0, line_draft_path_options.size() - 1)
+	selected_type = "route"
+	selected_id = route_id
+	active_route_id = route_id
+	interaction_state.select_object("route", route_id)
+	_update_line_draft_preview()
+	_refresh_ui()
+	var terminal_id := str(stops.back())
+	var terminal: Dictionary = WorldData.find_station(world, terminal_id)
+	if not terminal.is_empty(): map_view.center_on(terminal.get("latlng", [0, 0]), maxi(map_view.current_zoom, 14))
+	_show_toast("已保留「%s」原有走向；从「%s」端继续添加停站。新段确认后线路暂停，不会自动开通。" % [str(route.get("name", "线路")), str(terminal.get("name", "终点站"))])
 
 func _link_details(link: Dictionary) -> void:
 	right_content.add_child(_label("轨道区间", 20, TEXT, true))
@@ -2163,6 +2322,8 @@ func _demand_details(demand: Dictionary) -> void:
 
 func _refresh_tools() -> void:
 	if not is_instance_valid(tool_panel) or not is_instance_valid(tool_action_panel): return
+	for key in ["tool_station", "tool_track", "tool_line", "confirm_station", "confirm_track", "confirm_line"]:
+		tutorial_targets.erase(str(key))
 	for c in tool_panel.get_children():
 		tool_panel.remove_child(c)
 		c.queue_free()
@@ -2170,41 +2331,45 @@ func _refresh_tools() -> void:
 		tool_action_panel.remove_child(c)
 		c.queue_free()
 	tool_action_panel.visible = false
+	if is_instance_valid(tool_context_panel):
+		for c in tool_context_panel.get_children():
+			tool_context_panel.remove_child(c)
+			c.queue_free()
 	var footer_instruction := _tool_instruction()
 	if is_instance_valid(tool_instruction_label):
 		tool_instruction_label.text = footer_instruction
+		tool_instruction_label.visible = current_tool != "select"
 		tool_instruction_label.add_theme_color_override("font_color", TEAL if current_tool == "station" else MUTED)
 	var onboarding: Dictionary = world.get("onboarding", {})
 	var guide_active := bool(onboarding.get("active", false)) and not _more_tools_expanded
-	var tutorial_step := int(onboarding.get("step", 0)) if guide_active else int(world.get("tutorialStep", 0))
 	var tools: Array = [["select", "选择"], ["station", "车站"], ["track", "轨道"], ["line", "运营线路"]]
-	var coached_tool := ""
-	if guide_active:
-		match tutorial_step:
-			0: coached_tool = "select"
-			1, 2: coached_tool = "station"
-			3: coached_tool = "track"
-			4: coached_tool = "line"
+	var focus_spec := _onboarding_focus_spec() if guide_active else {}
+	var coached_tool := str(focus_spec.get("tool", ""))
 	for item in tools:
 		var active: bool = current_tool == item[0] or (str(item[0]) == "track" and current_tool in ["track", "track_curve"])
 		var coached := guide_active and str(item[0]) == coached_tool
 		var button := _button(item[1], TEAL if active or coached else TEXT, Color("#174037") if active else Color("#1c4039") if coached else PANEL_LIGHT, 14)
+		button.name = "TutorialTool_%s" % str(item[0])
 		button.custom_minimum_size = Vector2(118.0 * minf(_ui_scale, 1.25), 46.0 * minf(_ui_scale, 1.25))
+		button.set_meta("metro_core_tool", true)
 		if coached: button.tooltip_text = "当前教学建议使用此工具；其他工具仍可自由使用"
 		button.pressed.connect(func(): _set_tool(str(item[0])))
 		tool_panel.add_child(button)
+		if str(item[0]) in ["station", "track", "line"]: _register_tutorial_target("tool_%s" % str(item[0]), button)
 	if not guide_active and _more_tools_expanded:
 		for item in [["track_curve", "曲线轨道"], ["curve", "调曲线"], ["delete", "拆除"]]:
 			var button := _button(str(item[1]), TEAL if current_tool == item[0] else TEXT, PANEL_LIGHT, 14)
 			button.custom_minimum_size = Vector2(108.0 * minf(_ui_scale, 1.25), 44.0 * minf(_ui_scale, 1.25))
+			button.set_meta("metro_core_tool", true)
 			button.pressed.connect(func(): _set_tool(str(item[0])))
 			tool_panel.add_child(button)
 	var more := _button("收起更多 ▾" if _more_tools_expanded else "更多工具 ▸", MUTED, PANEL_LIGHT, 13)
 	more.custom_minimum_size.y = 44.0 * minf(_ui_scale, 1.25)
+	more.set_meta("metro_core_tool", true)
 	more.pressed.connect(func(): _more_tools_expanded = not _more_tools_expanded; _refresh_tools())
 	tool_panel.add_child(more)
 	if current_tool == "station" and not map_view.draft_station.is_empty():
-		var confirm := _button("确认任务车站" if bool(onboarding.get("active", false)) else "确认站点", TEAL, Color("#164034"), 14); confirm.disabled = map_view.draft_conflict; confirm.pressed.connect(_confirm_station); _add_tool_action(confirm)
+		var confirm := _button("确认任务车站" if bool(onboarding.get("active", false)) else "确认站点", TEAL, Color("#164034"), 14); confirm.name = "TutorialAction_confirm_station"; confirm.disabled = map_view.draft_conflict; confirm.pressed.connect(_confirm_station); _add_tool_action(confirm); _register_tutorial_target("confirm_station", confirm)
 		var cancel := _button("取消本步", MUTED, PANEL_LIGHT, 14); cancel.pressed.connect(_cancel_tool_step); _add_tool_action(cancel)
 		var finish_station := _button("退出建站", MUTED, PANEL_LIGHT, 14); finish_station.pressed.connect(_finish_tool); _add_tool_action(finish_station)
 		if is_instance_valid(tool_instruction_label):
@@ -2229,7 +2394,7 @@ func _refresh_tools() -> void:
 		var all_depths := CheckButton.new(); all_depths.text = "显示全部深度"; all_depths.button_pressed = map_view.show_all_depths; all_depths.toggled.connect(func(value: bool): map_view.show_all_depths = value; map_view.requested_redraw()); tool_panel.add_child(all_depths)
 		var continuous := CheckButton.new(); continuous.text = "连续铺设"; continuous.button_pressed = map_view.continuous_track; continuous.toggled.connect(func(value: bool): map_view.continuous_track = value); tool_panel.add_child(continuous)
 		if not map_view.track_end_ref.is_empty():
-			var confirm_track := _button("确认轨道段", Color("#eafff8"), Color("#17644f"), 14); confirm_track.disabled = not map_view.track_preview_conflict.is_empty(); confirm_track.pressed.connect(_commit_track_preview); _add_tool_action(confirm_track)
+			var confirm_track := _button("确认轨道段", Color("#eafff8"), Color("#17644f"), 14); confirm_track.name = "TutorialAction_confirm_track"; confirm_track.disabled = not map_view.track_preview_conflict.is_empty(); confirm_track.pressed.connect(_commit_track_preview); _add_tool_action(confirm_track); _register_tutorial_target("confirm_track", confirm_track)
 			var cancel_segment := _button("取消本段", MUTED, PANEL_LIGHT, 13); cancel_segment.pressed.connect(func(): map_view.track_end_ref = {}; map_view.track_preview_conflict = ""; map_view.track_preview_notice = ""; map_view.requested_redraw(); _refresh_tools()); _add_tool_action(cancel_segment)
 		var end := _button("结束铺轨", Color("#ffe8d0"), Color("#563725"), 14); end.pressed.connect(_finish_tool); _add_tool_action(end)
 		for candidate in endpoint_choice_candidates:
@@ -2244,7 +2409,9 @@ func _refresh_tools() -> void:
 		elif not map_view.track_preview_notice.is_empty(): tool_instruction_label.text = map_view.track_preview_notice
 		_refresh_onboarding_card()
 	elif current_tool == "line":
-		var line_hint := _button("停站 %d 座" % line_draft_stops.size(), TEAL, PANEL_LIGHT, 13); line_hint.disabled = true; tool_panel.add_child(line_hint)
+		var extension_active := not route_extension_context.is_empty()
+		var line_hint_text := "延伸「%s」· 停站 %d 座" % [str(route_extension_context.get("routeName", "线路")), line_draft_stops.size()] if extension_active else "停站 %d 座" % line_draft_stops.size()
+		var line_hint := _button(line_hint_text, TEAL, PANEL_LIGHT, 13); line_hint.disabled = true; tool_panel.add_child(line_hint)
 		_ensure_line_draft_path_options()
 		if not line_draft_path_options.is_empty():
 			var segment_index := clampi(line_draft_segment_index, 0, line_draft_path_options.size() - 1)
@@ -2269,9 +2436,11 @@ func _refresh_tools() -> void:
 					_update_line_draft_preview(); _refresh_tools()
 				)
 				tool_panel.add_child(choose_path)
-		if line_draft_stops.size() >= 2:
-			var confirm_line := _button("确认线路走向", Color("#eafff8"), Color("#17644f"), 14); confirm_line.pressed.connect(_confirm_operating_line); _add_tool_action(confirm_line)
-		var undo_stop := _button("撤回上一站", MUTED, PANEL_LIGHT, 13); undo_stop.disabled = line_draft_stops.is_empty(); undo_stop.pressed.connect(func(): if not line_draft_stops.is_empty(): line_draft_stops.pop_back(); _update_line_draft_preview(); _refresh_tools()); _add_tool_action(undo_stop)
+		var can_confirm_line := line_draft_stops.size() > int(route_extension_context.get("baseStopCount", 0)) if extension_active else line_draft_stops.size() >= 2
+		if can_confirm_line:
+			var confirm_line := _button("确认扩建并暂停线路" if extension_active else "确认线路走向", Color("#eafff8"), Color("#17644f"), 14); confirm_line.name = "TutorialAction_confirm_line"; confirm_line.pressed.connect(_confirm_operating_line); _add_tool_action(confirm_line); _register_tutorial_target("confirm_line", confirm_line)
+		var minimum_stops := int(route_extension_context.get("baseStopCount", 0)) if extension_active else 0
+		var undo_stop := _button("撤回上一站", MUTED, PANEL_LIGHT, 13); undo_stop.disabled = line_draft_stops.size() <= minimum_stops; undo_stop.pressed.connect(func(): if line_draft_stops.size() > minimum_stops: line_draft_stops.pop_back(); _update_line_draft_preview(); _refresh_tools()); _add_tool_action(undo_stop)
 		var end_line := _button("结束线路设置", MUTED, PANEL_LIGHT, 14); end_line.pressed.connect(_finish_tool); _add_tool_action(end_line)
 	elif current_tool == "repair_route_segment":
 		var from_station := WorldData.find_station(world, repair_from_station_id)
@@ -2290,15 +2459,36 @@ func _refresh_tools() -> void:
 		var cancel_repair := _button("取消修复", MUTED, PANEL_LIGHT, 14); cancel_repair.pressed.connect(_finish_tool); _add_tool_action(cancel_repair)
 	else:
 		var finish := _button("结束操作 / Esc", MUTED, PANEL_LIGHT, 14); finish.pressed.connect(_finish_tool); _add_tool_action(finish)
+	for control in tool_panel.get_children().duplicate():
+		if bool(control.get_meta("metro_core_tool", false)): continue
+		tool_panel.remove_child(control)
+		tool_context_panel.add_child(control)
+	for control in tool_action_panel.get_children().duplicate():
+		tool_action_panel.remove_child(control)
+		tool_context_panel.add_child(control)
+	if current_tool != "select":
+		tool_context_panel.add_child(HSeparator.new())
+		tool_context_panel.add_child(_label("当前操作", 20, TEXT, true))
+		var context_instruction := _label(_tool_instruction(), 14, MUTED)
+		context_instruction.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		tool_context_panel.add_child(context_instruction)
+		tool_context_panel.move_child(context_instruction, 1)
+		_right_requested = true
 	interaction_state.set_tool(current_tool)
 	interaction_state.phase = "choose_snap" if not endpoint_choice_candidates.is_empty() else "preview" if current_tool == "station" and not map_view.draft_station.is_empty() or current_tool in ["track", "track_curve"] and not map_view.track_end_ref.is_empty() else "active" if current_tool != "select" else "idle"
 	interaction_state.select_object(selected_type, selected_id)
+	if is_instance_valid(_right_panel_button): _right_panel_button.text = "建设 ▾" if current_tool != "select" else "详情 ▾"
 	call_deferred("_update_responsive_layout")
+	_update_tutorial_spotlight()
 
 func _add_tool_action(button: Button) -> void:
 	button.custom_minimum_size.y = maxf(button.custom_minimum_size.y, 44.0 * minf(_ui_scale, 1.25))
 	tool_action_panel.visible = true
 	tool_action_panel.add_child(button)
+
+func _register_tutorial_target(key: String, control: Control) -> void:
+	if is_instance_valid(control): tutorial_targets[key] = control
+
 func _tool_instruction() -> String:
 	match current_tool:
 		"station":
@@ -2306,7 +2496,9 @@ func _tool_instruction() -> String:
 			return "建站：点空地放置预览，可拖动、按 R 转向，再确认。" if map_view.draft_station.is_empty() else "站址预览有效：确认后加入规划。"
 		"track": return "直线铺轨：点起点，再点终点预览，确认后写入轨网。"
 		"track_curve": return "曲线铺轨：点起点、控制点和终点预览，再确认写入。"
-		"line": return "创建运营线路：按停靠顺序点击已接轨车站；可再次点击首站闭合环线。"
+		"line":
+			if not route_extension_context.is_empty(): return "延伸「%s」：原有停站与走向已锁定；点击下一座接轨车站，确认后线路暂停，检查并开通恢复。" % str(route_extension_context.get("routeName", "线路"))
+			return "创建运营线路：按停靠顺序点击已接轨车站；可再次点击首站闭合环线。"
 		"repair_route_segment": return "修复运营线路：选择两站之间的实际轨道走向，确认后线路保持暂停。"
 		"curve": return "调曲线：点蓝色控制点拖动，里程和运行时间同步变化。"
 		"delete": return "拆除：点站体或轨道区间；确认后可撤销。"
@@ -2322,6 +2514,7 @@ func _finish_tool() -> void:
 	map_view.track_start_ref = {}; map_view.track_end_ref = {}; map_view.track_control_latlng = []; map_view.track_preview_conflict = ""; map_view.track_preview_notice = ""
 	line_draft_stops.clear()
 	line_draft_path_options.clear(); line_draft_path_choices.clear(); line_draft_segment_index = -1
+	route_extension_context.clear()
 	_clear_route_repair_draft()
 	endpoint_choice_candidates.clear()
 	interaction_state.snap_candidates.clear()
@@ -2423,6 +2616,8 @@ func _on_map_clicked(latlng: Array, hit_type: String, hit_id: String, side: Stri
 		interaction_state.clear_selection()
 		if _layout_narrow:
 			_left_requested = false
+			_right_requested = false
+		elif get_viewport_rect().size.x / maxf(1.0, _ui_scale) < 1440.0:
 			_right_requested = false
 		_update_responsive_layout()
 		_refresh_ui()
@@ -2941,7 +3136,15 @@ func _cancel_tool_step() -> void:
 	elif not map_view.track_end_ref.is_empty(): map_view.track_end_ref = {}; map_view.track_preview_conflict = ""; map_view.track_preview_notice = ""
 	elif not map_view.track_control_latlng.is_empty(): map_view.track_control_latlng = []
 	elif not map_view.track_start_ref.is_empty(): map_view.track_start_ref = {}
-	elif current_tool == "line" and not line_draft_stops.is_empty(): line_draft_stops.pop_back(); _update_line_draft_preview()
+	elif current_tool == "line" and not line_draft_stops.is_empty():
+		var base_stop_count := int(route_extension_context.get("baseStopCount", 0))
+		if not route_extension_context.is_empty() and line_draft_stops.size() <= base_stop_count:
+			route_extension_context.clear()
+			current_tool = "select"
+			line_draft_stops.clear(); line_draft_path_options.clear(); line_draft_path_choices.clear()
+		else:
+			line_draft_stops.pop_back()
+			_update_line_draft_preview()
 	elif current_tool == "repair_route_segment":
 		_clear_route_repair_draft()
 		current_tool = "select"
@@ -2963,10 +3166,14 @@ func _set_tool(new_tool: String) -> void:
 	line_draft_stops.clear()
 	line_draft_path_options.clear(); line_draft_path_choices.clear()
 	line_draft_segment_index = -1
+	route_extension_context.clear()
 	_clear_route_repair_draft()
 	endpoint_choice_candidates.clear(); map_view.endpoint_choice_candidates.clear()
 	map_view.line_draft_points.clear()
 	current_tool = new_tool
+	if current_tool != "select":
+		_right_requested = true
+		if _layout_narrow: _left_requested = false
 	map_view.tool = current_tool
 	interaction_state.set_tool(current_tool)
 	interaction_state.select_object(selected_type, selected_id)
@@ -3440,7 +3647,7 @@ func _confirm_service_impact(route_ids: Array, action_name: String, apply_action
 	for count in train_counts.values(): active_train_count += int(count)
 	var detail := "\n".join(names)
 	var text := "%s 会影响正在运营的线路：\n%s\n\n当前有 %d 趟列车在运行。继续后会暂停模拟，重算受影响乘客路径；已完成出行与游戏时间会保留。此操作可以撤销。" % [action_name, detail, active_train_count]
-	var dialog := ConfirmationDialog.new()
+	var dialog := _new_confirmation_dialog()
 	dialog.title = "确认影响运营"
 	dialog.dialog_text = text
 	add_child(dialog)
@@ -4049,76 +4256,33 @@ func _focus_map_points_around_guide(points: Array) -> void:
 
 func _refresh_onboarding_card() -> void:
 	if not is_instance_valid(onboarding_panel): return
+	tutorial_targets.erase("onboarding_more")
 	for child in onboarding_panel.get_children(): child.queue_free()
 	var onboarding: Dictionary = world.get("onboarding", {}) if not world.is_empty() else {}
 	var active := bool(onboarding.get("active", false))
 	onboarding_panel.visible = active
 	if not active: return
 	var box := VBoxContainer.new()
-	box.add_theme_constant_override("separation", 8)
-	box.add_theme_constant_override("margin_left", 14); box.add_theme_constant_override("margin_right", 14)
-	box.add_theme_constant_override("margin_top", 12); box.add_theme_constant_override("margin_bottom", 12)
+	box.add_theme_constant_override("separation", 5)
+	box.add_theme_constant_override("margin_left", 11); box.add_theme_constant_override("margin_right", 11)
+	box.add_theme_constant_override("margin_top", 8); box.add_theme_constant_override("margin_bottom", 8)
 	onboarding_panel.add_child(box)
 	var step := int(onboarding.get("step", 0))
 	var mission := OnboardingScript.mission(active_city_id)
-	var headings := ["先看懂这组出行", "第一站：覆盖 A 起点", "第二站：覆盖 B 终点", "铺设两站之间的轨道", "安排这段轨道的运营线路", "检查并开通任务线路", "运行一小段时间", "这一组街区需求已接入"]
-	box.add_child(_label("街区规划引导   %s" % ("已完成" if step >= 7 else "第 %d / 7 步" % (step + 1)), 13, TEAL, true))
-	box.add_child(_label(headings[clampi(step, 0, headings.size() - 1)], 19, TEXT, true))
-	var description := ""
-	var condition := ""
-	match step:
-		0:
-			description = "先在地图上分别点 A 起点和 B 目的地，看看人们要去哪里。"
-			condition = "点击地点后，地图详情会显示类别和需求方向；两处都看过才进入建设。"
-		1:
-			description = "使用下方「车站」工具，在 A 附近放置站体预览；调整后用工具栏的确认按钮提交。"
-			condition = "站体中心需在 A 起点 800 米游戏估算范围内。"
-		2:
-			description = "继续使用下方「车站」工具，在 B 附近放置另一座车站并确认。"
-			condition = "必须由另一座站覆盖 B；朝向可以之后再调整。"
-		3:
-			description = "选择下方「轨道」工具，从一站的 A／B 端开始，连接到另一站端点。"
-			condition = "确认轨道段后，A、B 两站之间必须有连续物理轨道。"
-		4:
-			description = "选择下方「运营线路」工具，按停站顺序点两座车站，再确认走向。"
-			condition = "线路路径必须经过刚才连接的两个任务站。"
-		5:
-			description = "在线路详情检查停站与走向，再由你点击「检查并开通此线路」。"
-			condition = "只有刚才建立、实际服务 A／B 的线路才会推进教学。"
-		6:
-			var flow := _onboarding_flow()
-			var arrived := int(onboarding.get("observedTargetArrivals", 0))
-			var served := int(onboarding.get("observedTargetServed", 0))
-			description = "点击顶部播放按钮，让这组需求进入模拟。" if not bool(onboarding.get("observationStarted", false)) else "目标需求进入 %d 人，已到达 %d 人。" % [arrived, served]
-			condition = "只有实际到达才计入完成；暂停和速度控制仍由顶部运行栏操作。"
-			if bool(flow.get("valid", false)):
-				condition += " 当前估算：约 %s 人次/日，出行 %.1f 分钟。" % [_number(int(round(float(flow.get("peoplePerDay", 0.0))))), float(flow.get("tripMinutes", 0.0))]
-		7:
-			var complete_flow := _onboarding_flow()
-			var observed_arrivals := int(onboarding.get("observedTargetArrivals", 0))
-			var observed_completed := int(onboarding.get("observedTargetServed", 0))
-			var next_stage := CityProgressionScript.current_stage(world)
-			description = "本次观察：进入需求 %d 人，实际完成出行 %d 人。" % [observed_arrivals, observed_completed]
-			condition = "下一项城市议程：%s" % str(next_stage.get("title", "自由扩建")) if not next_stage.is_empty() else "教学结束；城市议程已在任务页开放。"
-	var body := _label(description, 15, TEXT)
-	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	box.add_child(body)
-	var detail := _label(condition, 13, Color("#b9c8ce"))
-	detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	box.add_child(detail)
+	var headings := ["查看出行需求", "建设起点车站", "建设终点车站", "连接两座车站", "安排运营线路", "开通线路", "观察乘客", "查看下一项目标"]
+	box.add_child(_label("街区规划引导 · %s" % ("基础线路已接通" if step >= 7 else "第 %d 步" % (step + 1)), 13, TEAL, true))
+	box.add_child(_label(headings[clampi(step, 0, headings.size() - 1)], 17, TEXT, true))
+	if step == 0:
+		box.add_child(_label("%s → %s" % [str(_find_demand(str(onboarding.get("originId", ""))).get("name", "起点")), str(_find_demand(str(onboarding.get("destinationId", ""))).get("name", "目的地"))], 14, MUTED))
 	var error_text := str(onboarding.get("lastError", ""))
 	if not error_text.is_empty():
-		var error_label := _label("需要处理：" + error_text, 13, Color("#ffad91"), true)
+		var error_label := _label("需要处理：" + error_text, 14, Color("#ffad91"), true)
 		error_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		box.add_child(error_label)
-	var primary := _button("进入城市议程" if step >= 7 else "定位当前教学对象", Color("#eafff8"), Color("#17644f"), 16)
-	primary.custom_minimum_size.y = 44.0 * _ui_scale
-	primary.pressed.connect(func(): _end_onboarding(false) if step >= 7 else _focus_onboarding_stage())
-	box.add_child(primary)
 	var more := MenuButton.new()
-	more.text = "为什么这样做？ ▾" if not _onboarding_reason_expanded else "更多选项 ▾"
-	more.custom_minimum_size.y = roundi(40.0 * _ui_scale)
-	more.add_theme_font_size_override("font_size", roundi(16.0 * _ui_scale))
+	more.text = "原因与选项 ▾"
+	more.custom_minimum_size.y = roundi(36.0 * minf(_ui_scale, 1.25))
+	more.add_theme_font_size_override("font_size", roundi(14.0 * _ui_scale))
 	more.add_theme_color_override("font_color", MUTED)
 	more.add_theme_stylebox_override("normal", _style(PANEL_LIGHT, BORDER, 8, 1))
 	more.add_theme_stylebox_override("hover", _style(PANEL_LIGHT.lightened(0.1), BORDER, 8, 1))
@@ -4128,7 +4292,6 @@ func _refresh_onboarding_card() -> void:
 	menu.add_item("跳过引导", 1)
 	menu.add_item("查看全城", 2)
 	menu.add_item("返回任务位置", 3)
-	menu.set_item_disabled(menu.get_item_index(3), not bool(onboarding.get("viewingCity", false)))
 	menu.id_pressed.connect(func(action: int):
 		if action == 0:
 			_onboarding_reason_expanded = not _onboarding_reason_expanded
@@ -4141,19 +4304,198 @@ func _refresh_onboarding_card() -> void:
 			_return_to_onboarding_mission()
 	)
 	box.add_child(more)
+	_register_tutorial_target("onboarding_more", more)
 	if _onboarding_reason_expanded:
-		var reason := _label(str(mission.get("reason", "")) + " 出行虚线表示需求方向，不是建议照着修建的轨道。", 13, MUTED)
+		var reason := _label(str(mission.get("reason", "")) + " 出行虚线表示需求方向，不是建议照着修建的轨道。", 14, MUTED)
 		reason.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		box.add_child(reason)
+	_update_tutorial_spotlight()
 
-func _onboarding_primary_action() -> void:
-	_focus_onboarding_stage()
+func _onboarding_focus_spec() -> Dictionary:
+	var onboarding: Dictionary = world.get("onboarding", {})
+	if not bool(onboarding.get("active", false)): return {}
+	var step := int(onboarding.get("step", 0))
+	var origin_id := str(onboarding.get("originId", ""))
+	var destination_id := str(onboarding.get("destinationId", ""))
+	var origin := _find_demand(origin_id)
+	var destination := _find_demand(destination_id)
+	var visited: Array = onboarding.get("visitedDemandIds", [])
+	match step:
+		0:
+			var next_id := origin_id if not visited.has(origin_id) else destination_id
+			var point := origin if next_id == origin_id else destination
+			if point.is_empty(): return {}
+			return {"kind":"map", "latlng":point.get("latlng", []), "radius":23.0, "shape":"circle", "message":"点击 %s 地点查看需求" % ("A" if next_id == origin_id else "B")}
+		1, 2:
+			if current_tool != "station": return _focus_control("tool_station", "点击下方「车站」", "station")
+			if map_view.draft_station.is_empty():
+				var target_point: Dictionary = origin if step == 1 else destination
+				if target_point.is_empty(): return {}
+				return {"kind":"map", "latlng":target_point.get("latlng", []), "radius":68.0, "shape":"circle", "message":"在 %s 附近点击，放置车站预览" % ("A" if step == 1 else "B")}
+			return _focus_control("confirm_station", "点击这里确认%s车站" % ("第一座" if step == 1 else "第二座"))
+		3:
+			if current_tool not in ["track", "track_curve"]: return _focus_control("tool_track", "点击下方「轨道」", "track")
+			if not map_view.track_end_ref.is_empty(): return _focus_control("confirm_track", "点击这里确认轨道")
+			var origin_station := WorldData.find_station(world, str(onboarding.get("originStationId", "")))
+			var destination_station := WorldData.find_station(world, str(onboarding.get("destinationStationId", "")))
+			if map_view.track_start_ref.is_empty():
+				if origin_station.is_empty(): return {}
+				return _focus_station_endpoint(origin_station, "end", "点击第一站的 B 端作为起点")
+			if current_tool == "track_curve" and map_view.track_control_latlng.is_empty():
+				if origin_station.is_empty() or destination_station.is_empty(): return {}
+				return {"kind":"map", "latlng":_midpoint_latlng(origin_station.get("latlng", []), destination_station.get("latlng", [])), "radius":20.0, "shape":"circle", "message":"点击线路中部，确定曲线方向"}
+			var start_station_id := str(map_view.track_start_ref.get("stationId", ""))
+			var target_station: Dictionary = origin_station if start_station_id == str(destination_station.get("id", "")) else destination_station
+			if target_station.is_empty(): return {}
+			var start_latlng: Array = map_view.track_start_ref.get("latlng", [])
+			var side := _closest_station_side(target_station, start_latlng)
+			return _focus_station_endpoint(target_station, side, "点击另一座车站的 %s 端" % ("A" if side == "start" else "B"))
+		4:
+			if current_tool != "line": return _focus_control("tool_line", "点击下方「运营线路」", "line")
+			var origin_station_id := str(onboarding.get("originStationId", ""))
+			var destination_station_id := str(onboarding.get("destinationStationId", ""))
+			if not line_draft_stops.has(origin_station_id):
+				var station_a := WorldData.find_station(world, origin_station_id)
+				return _focus_station(station_a, "点击第一座车站") if not station_a.is_empty() else {}
+			if not line_draft_stops.has(destination_station_id):
+				var station_b := WorldData.find_station(world, destination_station_id)
+				return _focus_station(station_b, "点击第二座车站") if not station_b.is_empty() else {}
+			return _focus_control("confirm_line", "点击这里确认运营线路")
+		5:
+			return _focus_control("route_open", "点击「检查并开通此线路」")
+		6:
+			if not bool(onboarding.get("observationStarted", false)) or bool(world.get("simulation", {}).get("paused", true)):
+				return _focus_control("play", "点击顶部播放，开始观察乘客")
+			return _focus_control("stats", "等待乘客实际到达；进度显示在这里")
+		7:
+			if left_tab != "tasks": return _focus_control("tab_tasks", "点击左侧「任务」，查看下一项扩建目标")
+			return _focus_control("campaign_next", "点击这里查看下一项扩建目标")
+	return {}
+
+func _focus_control(key: String, prompt: String, tool: String = "") -> Dictionary:
+	return {"kind":"control", "key":key, "tool":tool, "message":prompt}
+
+func _focus_station(station: Dictionary, prompt: String) -> Dictionary:
+	if station.is_empty(): return {}
+	return {"kind":"map", "latlng":station.get("latlng", []), "radius":24.0, "shape":"circle", "message":prompt}
+
+func _focus_station_endpoint(station: Dictionary, side: String, prompt: String) -> Dictionary:
+	return {"kind":"map", "latlng":WorldData.station_endpoint(station, side), "radius":17.0, "shape":"circle", "message":prompt}
+
+func _closest_station_side(station: Dictionary, from_latlng: Array) -> String:
+	if from_latlng.size() < 2: return "start"
+	var a := WorldData.station_endpoint(station, "start")
+	var b := WorldData.station_endpoint(station, "end")
+	return "start" if _distance_m(a, from_latlng) <= _distance_m(b, from_latlng) else "end"
+
+func _midpoint_latlng(a: Array, b: Array) -> Array:
+	if a.size() < 2 or b.size() < 2: return []
+	return [(float(a[0]) + float(b[0])) * 0.5, (float(a[1]) + float(b[1])) * 0.5]
+
+func _update_tutorial_spotlight() -> void:
+	if not is_instance_valid(tutorial_spotlight): return
+	var spec := _onboarding_focus_spec()
+	if spec.is_empty():
+		_tutorial_focus_signature = ""
+		tutorial_spotlight.clear_focus()
+		return
+	var prompt := str(spec.get("message", ""))
+	var focus_signature := "%d|%s|%s|%s" % [int(world.get("onboarding", {}).get("step", -1)), str(spec.get("kind", "")), str(spec.get("key", "")), prompt]
+	if str(spec.get("kind", "")) == "map":
+		var signature_latlng: Array = spec.get("latlng", [])
+		if signature_latlng.size() >= 2:
+			focus_signature += "|%.7f|%.7f" % [float(signature_latlng[0]), float(signature_latlng[1])]
+	var focus_changed := focus_signature != _tutorial_focus_signature
+	var rect := Rect2()
+	var shape := str(spec.get("shape", "rect"))
+	if str(spec.get("kind", "")) == "control":
+		var key := str(spec.get("key", ""))
+		if key == "route_open" and (not _right_requested or not _right_panel.visible):
+			_right_requested = true
+			if _layout_narrow: _left_requested = false
+			_update_responsive_layout()
+			_refresh_right_panel()
+		elif key in ["tab_tasks", "campaign_next"] and (not _left_requested or not _left_panel.visible):
+			_left_requested = true
+			if _layout_narrow: _right_requested = false
+			_update_responsive_layout()
+			if key == "campaign_next": _refresh_left_panel()
+		var target: Control = tutorial_targets.get(key) as Control
+		if not is_instance_valid(target) or not target.is_visible_in_tree() or target.size.x <= 0.0 or target.size.y <= 0.0:
+			tutorial_spotlight.clear_focus()
+			return
+		var target_transform := target.get_global_transform_with_canvas()
+		var overlay_inverse := tutorial_spotlight.get_global_transform_with_canvas().affine_inverse()
+		var p0 := overlay_inverse * target_transform * Vector2.ZERO
+		var p1 := overlay_inverse * target_transform * target.size
+		rect = _rect_from_corners(p0, p1)
+	else:
+		var latlng: Array = spec.get("latlng", [])
+		if latlng.size() < 2: tutorial_spotlight.clear_focus(); return
+		var local_point := map_view._to_screen(latlng)
+		# During a fresh scene build the anchored map can briefly be smaller than
+		# the spotlight's inset. Wait for layout instead of constructing a negative
+		# Rect2, then _process will resolve the real target on the next frame.
+		if map_view.size.x <= 40.0 or map_view.size.y <= 40.0:
+			_tutorial_map_size = map_view.size
+			tutorial_spotlight.clear_focus()
+			return
+		var map_rect := Rect2(Vector2.ZERO, map_view.size)
+		var resized_map := map_view.size != _tutorial_map_size
+		if not map_rect.grow(-20.0).has_point(local_point) and (focus_changed or resized_map):
+			map_view.center_on(latlng, maxi(map_view.current_zoom, 14))
+			local_point = map_view._to_screen(latlng)
+		_tutorial_map_size = map_view.size
+		# Let the player explore freely. If they pan the active lesson target off
+		# screen, keep the compact lesson text but stop dimming the whole world;
+		# recenter only when the lesson target or available map viewport changes.
+		if not map_rect.has_point(local_point):
+			var more_target: Control = tutorial_targets.get("onboarding_more") as Control
+			if not is_instance_valid(more_target) or not more_target.is_visible_in_tree():
+				_tutorial_focus_signature = focus_signature
+				tutorial_spotlight.clear_focus()
+				return
+			var more_transform := more_target.get_global_transform_with_canvas()
+			var more_inverse := tutorial_spotlight.get_global_transform_with_canvas().affine_inverse()
+			var more_start := more_inverse * more_transform * Vector2.ZERO
+			var more_end := more_inverse * more_transform * more_target.size
+			rect = _rect_from_corners(more_start, more_end)
+			prompt = "目标在视野外；点“原因与选项”返回任务位置"
+			shape = "rect"
+			_tutorial_focus_signature = focus_signature
+			tutorial_spotlight.set_focus(rect, prompt, shape, _bold_font, roundi(18.0 * _ui_scale))
+			return
+		var overlay_inverse := tutorial_spotlight.get_global_transform_with_canvas().affine_inverse()
+		var global_point := map_view.get_global_transform_with_canvas() * local_point
+		var point := overlay_inverse * global_point
+		var radius := float(spec.get("radius", 22.0))
+		rect = Rect2(point - Vector2.ONE * radius, Vector2.ONE * radius * 2.0)
+	_tutorial_focus_signature = focus_signature
+	tutorial_spotlight.set_focus(rect, prompt, shape, _bold_font, roundi(18.0 * _ui_scale))
+
+func _rect_from_corners(first: Vector2, second: Vector2) -> Rect2:
+	return Rect2(
+		Vector2(minf(first.x, second.x), minf(first.y, second.y)),
+		Vector2(absf(second.x - first.x), absf(second.y - first.y))
+	)
+
+func _onboarding_campaign_action(flow: Dictionary) -> void:
+	var onboarding: Dictionary = world.get("onboarding", {})
+	if bool(onboarding.get("active", false)) and int(onboarding.get("step", -1)) >= 7:
+		_end_onboarding(false)
+	if not flow.is_empty(): _focus_flow(flow)
 
 func _record_onboarding_demand_viewed(demand_id: String) -> void:
 	var onboarding: Dictionary = world.get("onboarding", {})
 	if not bool(onboarding.get("active", false)) or int(onboarding.get("step", -1)) != 0: return
 	if demand_id not in [str(onboarding.get("originId", "")), str(onboarding.get("destinationId", ""))]: return
 	var visited: Array = onboarding.get("visitedDemandIds", [])
+	var expected_id := str(onboarding.get("originId", "")) if not visited.has(str(onboarding.get("originId", ""))) else str(onboarding.get("destinationId", ""))
+	if demand_id != expected_id:
+		onboarding["lastError"] = "先点击 A 起点，再查看 B 目的地。"
+		world["onboarding"] = onboarding
+		_refresh_onboarding_card()
+		return
 	if not visited.has(demand_id): visited.append(demand_id)
 	onboarding["visitedDemandIds"] = visited
 	world["onboarding"] = onboarding
@@ -4161,39 +4503,11 @@ func _record_onboarding_demand_viewed(demand_id: String) -> void:
 	var destination_seen := visited.has(str(onboarding.get("destinationId", "")))
 	if origin_seen and destination_seen:
 		_set_onboarding_step(1)
+		_update_onboarding()
 		_show_toast("已看过起点和目的地；下一步请选择底栏「车站」工具")
 	else:
+		onboarding["lastError"] = ""
 		_refresh_onboarding_card()
-
-func _focus_onboarding_stage() -> void:
-	var onboarding: Dictionary = world.get("onboarding", {})
-	var step := int(onboarding.get("step", 0))
-	match step:
-		0:
-			_sync_onboarding_map(true)
-		1:
-			var demand := _find_demand(str(onboarding.get("originId", "")))
-			if not demand.is_empty(): map_view.center_on(demand.latlng, 15)
-		2:
-			var demand := _find_demand(str(onboarding.get("destinationId", "")))
-			if not demand.is_empty(): map_view.center_on(demand.latlng, 15)
-		3, 4:
-			_sync_onboarding_map(true)
-		5:
-			var route := _onboarding_route_for_pair(false)
-			if not route.is_empty():
-				active_route_id = str(route.get("id", ""))
-				_select_object("route", active_route_id)
-				_show_toast("已打开任务线路详情；请由右侧按钮检查并开通")
-		6:
-			_focus_flow(_onboarding_flow())
-		7:
-			left_tab = "tasks"
-			_refresh_left_panel()
-			var stage := CityProgressionScript.current_stage(world)
-			if str(stage.get("kind", "")) == "flow":
-				_focus_flow(_campaign_stage_flow(world.get("cityProgression", {}), stage))
-	_refresh_onboarding_card()
 
 func _set_onboarding_step(step: int) -> void:
 	var onboarding: Dictionary = world.get("onboarding", {})
@@ -4206,6 +4520,7 @@ func _set_onboarding_step(step: int) -> void:
 	_sync_onboarding_map(step == 3)
 	_refresh_onboarding_card()
 	_refresh_tools()
+	_update_tutorial_spotlight()
 	_autosave()
 
 func _onboarding_note_station(station: Dictionary) -> void:
@@ -4237,6 +4552,19 @@ func _onboarding_note_station(station: Dictionary) -> void:
 		onboarding.destinationStationId = str(station.get("id", ""))
 		_set_onboarding_step(3)
 		_show_toast("A、B 各有一座车站；下一步把两站端点接起来")
+
+func _find_onboarding_station_covering(demand: Dictionary, excluded_station_id: String = "") -> Dictionary:
+	if demand.is_empty(): return {}
+	var best: Dictionary = {}
+	var best_distance := INF
+	for station in world.get("stations", []):
+		var station_id := str(station.get("id", ""))
+		if station_id == excluded_station_id: continue
+		var distance := _distance_m(station.get("latlng", []), demand.get("latlng", []))
+		if distance <= 800.0 and distance < best_distance:
+			best = station
+			best_distance = distance
+	return best
 
 func _onboarding_station_ids_valid() -> bool:
 	var onboarding: Dictionary = world.get("onboarding", {})
@@ -4504,6 +4832,13 @@ func _clear_route_repair_draft() -> void:
 func _confirm_operating_line() -> void:
 	if line_draft_stops.size() < 2: return
 	_ensure_line_draft_path_options()
+	var extension_active := not route_extension_context.is_empty()
+	if extension_active and line_draft_stops.size() <= int(route_extension_context.get("baseStopCount", 0)):
+		_show_toast("先从原线路端点增加一座新停靠车站。")
+		return
+	if extension_active and int(world.get("revision", 0)) != int(route_extension_context.get("revision", -1)):
+		_show_issue("规划在扩建预览期间发生变化；请结束本步后重新从线路详情开始扩建。")
+		return
 	var stops := line_draft_stops.duplicate()
 	var is_loop: bool = stops.size() >= 4 and str(stops.front()) == str(stops.back())
 	if is_loop and stops.size() < 4:
@@ -4513,10 +4848,16 @@ func _confirm_operating_line() -> void:
 	var used_edges: Dictionary = {}
 	var edge_paths_by_segment: Array = []
 	for index in range(stops.size() - 1):
-		var options: Array = line_draft_path_options[index] if index < line_draft_path_options.size() else []
-		var choice_index := clampi(line_draft_path_choices[index], 0, maxi(0, options.size() - 1)) if index < line_draft_path_choices.size() else 0
-		var selected_edge_ids: Array = options[choice_index].get("linkIds", []) if not options.is_empty() else []
-		var segment := TrackNetwork.shortest_station_path(str(stops[index]), str(stops[index + 1]), world, ref_lat, selected_edge_ids)
+		var segment: Dictionary = {}
+		var base_count := int(route_extension_context.get("baseStopCount", 0))
+		var fixed_paths: Array = route_extension_context.get("baseSegmentPaths", [])
+		if extension_active and index < base_count - 1 and index < fixed_paths.size():
+			segment = TrackNetwork.ordered_station_path(str(stops[index]), str(stops[index + 1]), fixed_paths[index], world, ref_lat)
+		else:
+			var options: Array = line_draft_path_options[index] if index < line_draft_path_options.size() else []
+			var choice_index := clampi(line_draft_path_choices[index], 0, maxi(0, options.size() - 1)) if index < line_draft_path_choices.size() else 0
+			var selected_edge_ids: Array = options[choice_index].get("linkIds", []) if not options.is_empty() else []
+			segment = TrackNetwork.shortest_station_path(str(stops[index]), str(stops[index + 1]), world, ref_lat, selected_edge_ids)
 		if not bool(segment.get("valid", false)):
 			_show_toast(str(segment.get("error", "停站之间没有连续轨道")))
 			return
@@ -4530,30 +4871,42 @@ func _confirm_operating_line() -> void:
 		edge_paths_by_segment.append(segment_path)
 	var colors := ["#e25263", "#478fdf", "#34a67f", "#db9638", "#9b69ce", "#36aeb4"]
 	var line_index: int = world.get("routes", []).size()
-	var route_name := "%d号线" % (line_index + 1)
+	var extension_route := WorldData.find_route(world, str(route_extension_context.get("routeId", ""))) if extension_active else {}
+	if extension_active and extension_route.is_empty():
+		_show_issue("要扩建的线路已不存在；请重新选择线路。")
+		return
+	var route_name := str(extension_route.get("name", "线路")) if extension_active else "%d号线" % (line_index + 1)
 	# Allocate this outside the mutation callback. GDScript lambda captures are
 	# not a reliable way to return a newly assigned ID to the surrounding scope.
-	var route_id := "r_%d" % Time.get_ticks_msec()
+	var route_id := str(route_extension_context.get("routeId", "")) if extension_active else "r_%d" % Time.get_ticks_msec()
 	var unique_stops: Array[String] = []
 	for station_id in stops:
 		if not unique_stops.has(str(station_id)): unique_stops.append(str(station_id))
 	var reverse_stops: Array[String] = stops.duplicate(); reverse_stops.reverse()
 	var reverse_edge_paths_by_segment: Array = _reverse_edge_paths(edge_paths_by_segment)
-	history.execute("创建运营线路%s" % route_name, func(state: Dictionary):
-		var route := WorldData.add_route(state, route_name, colors[line_index % colors.size()])
-		var generated_id := str(route.get("id", ""))
-		route["id"] = route_id
-		route["planningPhaseId"] = str(state.get("currentPlanningPhaseId", "phase_1"))
-		for phase in state.get("planningPhases", []):
-			if str(phase.get("id", "")) != str(route.planningPhaseId): continue
-			var phase_route_ids: Array = phase.get("routeIds", [])
-			phase_route_ids.erase(generated_id)
-			if not phase_route_ids.has(route_id): phase_route_ids.append(route_id)
-			phase["routeIds"] = phase_route_ids
-			break
-		route.networkBased = true
-		route.stationOrder = unique_stops.duplicate()
-		route.directions = [
+	var apply_route := func(state: Dictionary):
+		var target_route := WorldData.find_route(state, route_id) if extension_active else {}
+		if extension_active and target_route.is_empty(): return
+		if not extension_active:
+			target_route = WorldData.add_route(state, route_name, colors[line_index % colors.size()])
+			var generated_id := str(target_route.get("id", ""))
+			target_route["id"] = route_id
+			target_route["planningPhaseId"] = str(state.get("currentPlanningPhaseId", "phase_1"))
+			for phase in state.get("planningPhases", []):
+				if str(phase.get("id", "")) != str(target_route.planningPhaseId): continue
+				var phase_route_ids: Array = phase.get("routeIds", [])
+				phase_route_ids.erase(generated_id)
+				if not phase_route_ids.has(route_id): phase_route_ids.append(route_id)
+				phase["routeIds"] = phase_route_ids
+				break
+		else:
+			target_route["open"] = false
+			target_route["serviceStartMinute"] = int(state.get("simulation", {}).get("elapsedMinutes", 420))
+			target_route["extensionNote"] = "线路已扩建，检查并重新开通后恢复运营。"
+			target_route["revision"] = int(state.get("revision", 0)) + 1
+		target_route["networkBased"] = true
+		target_route["stationOrder"] = unique_stops.duplicate()
+		target_route["directions"] = [
 			{"id": "forward", "stationIds": stops.duplicate(), "edgePathsBySegment": edge_paths_by_segment.duplicate(true)},
 			{"id": "reverse", "stationIds": reverse_stops, "edgePathsBySegment": reverse_edge_paths_by_segment}
 		]
@@ -4564,12 +4917,18 @@ func _confirm_operating_line() -> void:
 		for station_id in unique_stops:
 			var station := WorldData.find_station(state, str(station_id))
 			if not station.is_empty() and not station.get("routeIds", []).has(route_id): station.routeIds.append(route_id)
-	)
-	if route_id.is_empty(): return
-	active_route_id = route_id; selected_type = "route"; selected_id = route_id
-	line_draft_stops.clear(); line_draft_path_options.clear(); line_draft_path_choices.clear(); current_tool = "select"; map_view.tool = "select"
-	map_view.line_draft_points.clear()
-	map_view.set_world(world); _after_planning_change("运营线路已建立；检查车型与路径后即可开通")
+	var commit_route := func():
+		var action_name := "延伸运营线路%s" % route_name if extension_active else "创建运营线路%s" % route_name
+		if not history.execute(action_name, apply_route): return
+		active_route_id = route_id; selected_type = "route"; selected_id = route_id
+		line_draft_stops.clear(); line_draft_path_options.clear(); line_draft_path_choices.clear(); route_extension_context.clear(); current_tool = "select"; map_view.tool = "select"
+		map_view.line_draft_points.clear()
+		map_view.set_world(world)
+		_after_planning_change("线路扩建已保存并暂停；检查路径后手动开通" if extension_active else "运营线路已建立；检查车型与路径后即可开通")
+	if extension_active:
+		_confirm_service_impact([route_id], "延伸运营线路%s" % route_name, commit_route)
+	else:
+		commit_route.call()
 
 func _reverse_edge_paths(paths: Array) -> Array:
 	var result: Array = paths.duplicate(true)
@@ -4588,10 +4947,16 @@ func _update_line_draft_preview() -> void:
 	_ensure_line_draft_path_options()
 	var ref_lat := float(WorldData.city(active_city_id).get("center", [31.23,121.47])[0])
 	for index in range(line_draft_stops.size() - 1):
-		var options: Array = line_draft_path_options[index]
-		var choice_index := clampi(line_draft_path_choices[index], 0, maxi(0, options.size() - 1))
-		var selected_ids: Array = options[choice_index].get("linkIds", []) if not options.is_empty() else []
-		var segment := TrackNetwork.shortest_station_path(line_draft_stops[index], line_draft_stops[index + 1], world, ref_lat, selected_ids)
+		var segment: Dictionary = {}
+		var base_count := int(route_extension_context.get("baseStopCount", 0))
+		var fixed_paths: Array = route_extension_context.get("baseSegmentPaths", [])
+		if not route_extension_context.is_empty() and index < base_count - 1 and index < fixed_paths.size():
+			segment = TrackNetwork.ordered_station_path(line_draft_stops[index], line_draft_stops[index + 1], fixed_paths[index], world, ref_lat)
+		else:
+			var options: Array = line_draft_path_options[index]
+			var choice_index := clampi(line_draft_path_choices[index], 0, maxi(0, options.size() - 1))
+			var selected_ids: Array = options[choice_index].get("linkIds", []) if not options.is_empty() else []
+			segment = TrackNetwork.shortest_station_path(line_draft_stops[index], line_draft_stops[index + 1], world, ref_lat, selected_ids)
 		if not bool(segment.get("valid", false)): continue
 		for point in segment.get("points", []):
 			if map_view.line_draft_points.is_empty() or _distance_m(map_view.line_draft_points.back(), point) > 0.5: map_view.line_draft_points.append(point.duplicate())
@@ -4656,6 +5021,18 @@ func _update_onboarding() -> void:
 	var destination := _find_demand(str(onboarding.get("destinationId", "")))
 	var origin_station := WorldData.find_station(world, str(onboarding.get("originStationId", "")))
 	var destination_station := WorldData.find_station(world, str(onboarding.get("destinationStationId", "")))
+	# Reconcile committed work before asking for another click. This covers a
+	# station, connection, or route built ahead of the tutorial, and after reload.
+	if step == 1 and origin_station.is_empty() and not origin.is_empty():
+		origin_station = _find_onboarding_station_covering(origin)
+		if not origin_station.is_empty():
+			onboarding.originStationId = str(origin_station.get("id", ""))
+			step = 2
+	if step == 2 and not origin_station.is_empty() and destination_station.is_empty() and not destination.is_empty():
+		destination_station = _find_onboarding_station_covering(destination, str(origin_station.get("id", "")))
+		if not destination_station.is_empty():
+			onboarding.destinationStationId = str(destination_station.get("id", ""))
+			step = 3
 	if step >= 2 and (origin.is_empty() or origin_station.is_empty() or _distance_m(origin_station.get("latlng", []), origin.get("latlng", [])) > 800.0):
 		onboarding.originStationId = ""
 		onboarding.destinationStationId = ""
@@ -4708,6 +5085,7 @@ func _update_onboarding() -> void:
 				step = 7
 				onboarding.completed = true
 				world.simulation.paused = true
+				CityProgressionScript.start(world, int(world.get("simulation", {}).get("elapsedMinutes", 420)))
 				if UiPreferencesScript.save_onboarding_completed(true) != OK:
 					_show_toast("引导已完成，但全局完成标记未能保存")
 	if step != old_step:
@@ -4715,6 +5093,14 @@ func _update_onboarding() -> void:
 		if step in [2, 3, 4, 5, 6, 7] and old_step < step: onboarding.lastError = ""
 	world["onboarding"] = onboarding
 	if step != old_step or str(onboarding.get("lastError", "")) != old_error:
+		if step == 5 and old_step < 5:
+			var route_to_open := _onboarding_route_for_pair(false)
+			if not route_to_open.is_empty(): _select_object("route", str(route_to_open.get("id", "")))
+		if step == 7 and old_step < 7:
+			_left_requested = true
+			_right_requested = false
+			_update_responsive_layout()
+			_refresh_left_panel()
 		_sync_onboarding_map(step == 3 and step > old_step)
 		_refresh_onboarding_card()
 		_refresh_tools()
@@ -4792,7 +5178,7 @@ func _update_topbar() -> void:
 	if is_instance_valid(redo_button): redo_button.disabled = history.redo_label().is_empty()
 	if is_instance_valid(save_badge):
 		save_badge.text = "保存失败 · 重试" if save_failed else "未保存" if save_dirty else "已保存"
-		save_badge.tooltip_text = save_failure_reason if save_failed else "点击立即保存"
+		save_badge.tooltip_text = save_failure_reason if save_failed else "点击立即保存\n定时自动存档：%s（现实时间）" % ("每 %d 分钟" % timed_autosave_interval_minutes if timed_autosave_enabled else "已关闭")
 		save_badge.add_theme_color_override("font_color", Color("#ff9e92") if save_failed else Color("#f0bd69") if save_dirty else TEAL)
 
 func _update_sim_labels() -> void:
@@ -4809,17 +5195,19 @@ func _update_sim_labels() -> void:
 		var crowd := 100.0 * float(sim.get("peakCrowding", 0.0))
 		stats_label.tooltip_text = "游戏估算 · 到达率 %.0f%% · 平均出行 %.1f 分钟 · 区间占用 %.0f%%\n需求 %s · 已乘车 %s · 放弃 %s · 中断 %s" % [rate, average, crowd, _number(attempted), _number(int(sim.get("departed", 0))), _number(int(sim.get("abandoned", 0))), _number(int(sim.get("interrupted", 0)))]
 
-func _autosave(show_error: bool = true) -> bool:
+func _autosave(show_error: bool = true, preserve_history: bool = false) -> bool:
 	if world.is_empty(): return false
 	save_dirty = true; _update_topbar()
-	var result := SaveManager.save_world(world)
+	var result := SaveManager.save_world(world, preserve_history)
 	if result.ok:
 		var index_result := SaveManager.save_last_game(world)
 		if index_result.ok:
 			save_dirty = false
 			save_failed = false
 			save_failure_reason = ""
+			autosave_elapsed_seconds = 0.0
 			_update_topbar()
+			if result.has("warning") and show_error: _show_toast(str(result.warning))
 			return true
 		save_dirty = true
 		save_failed = true
@@ -4847,7 +5235,7 @@ func _request_world_transition(action: Callable) -> void:
 
 func _show_save_failure_choice(action: Callable) -> void:
 	if is_instance_valid(pending_transition_dialog): pending_transition_dialog.queue_free()
-	var dialog := ConfirmationDialog.new()
+	var dialog := _new_confirmation_dialog()
 	dialog.title = "保存未完成"
 	dialog.dialog_text = "%s\n\n重试保存，另存一份 JSON，或明确放弃未保存修改。取消会留在当前暂停的游戏中。" % save_failure_reason
 	dialog.get_ok_button().text = "重试保存"
@@ -4888,59 +5276,386 @@ func _retry_or_save() -> void:
 	if _autosave(): _show_toast("本地存档已成功保存")
 
 func _show_save_menu() -> void:
-	var popup := PopupMenu.new()
-	popup.add_item("立即保存", 1)
-	popup.add_item("另存为 JSON…", 2)
-	popup.add_item("导入 JSON…", 3)
-	popup.add_item("打开存档目录", 4)
-	popup.id_pressed.connect(func(id: int):
-		match id:
-			1:
-				if _autosave(): _show_toast("本地存档已写入")
-			2: SaveManager.export_world(world, func(result: Dictionary): _show_toast("JSON 已导出" if bool(result.get("ok", false)) else str(result.get("error", "导出失败"))))
-			3: SaveManager.import_world(func(loaded: Dictionary):
-				if not _autosave():
-					_show_issue("无法先保存当前进度，导入已取消。")
-					return
-				_load_world(loaded)
-				if _autosave(): _show_toast("存档已导入并保存")
-				else: _show_issue("存档已载入到当前会话，但未能同步写入本机。原存档备份仍保留。")
-			, func(error: String): _show_issue(error))
-			4: OS.shell_open(SaveManager.saves_root_path())
-	)
-	add_child(popup); popup.popup(Rect2i(get_viewport().get_mouse_position(), Vector2i(190, 150)))
+	_show_save_center()
 
-func _show_load_menu() -> void:
-	var popup := PopupMenu.new()
-	var choices: Dictionary = {}
-	var item_id := 1
+func _show_save_center(initial_tab: String = "automatic") -> void:
+	var dialog := _new_accept_dialog()
+	dialog.title = "存档中心"
+	dialog.dialog_text = ""
+	dialog.get_ok_button().text = "完成"
+	var viewport_size := get_viewport_rect().size
+	var scroll := ScrollContainer.new()
+	scroll.name = "SaveCenterScroll"
+	scroll.custom_minimum_size = Vector2(minf(740.0 * _ui_scale, viewport_size.x - 56.0), minf(500.0 * _ui_scale, viewport_size.y - 160.0))
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var content := VBoxContainer.new()
+	content.custom_minimum_size.x = maxf(0.0, scroll.custom_minimum_size.x - 24.0)
+	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	content.add_theme_constant_override("separation", 12)
+	content.add_child(_label("各城市自动保存的进度与独立命名存档", 15, MUTED))
+	var tabs := TabContainer.new()
+	tabs.name = "SaveCenterTabs"
+	tabs.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tabs.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	tabs.custom_minimum_size.y = minf(380.0 * _ui_scale, maxf(220.0, viewport_size.y - 320.0))
+	var automatic_page := ScrollContainer.new()
+	automatic_page.name = "AutomaticSaves"
+	automatic_page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	automatic_page.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	automatic_page.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_configure_save_list_scrollbar(automatic_page)
+	var automatic_rows := VBoxContainer.new()
+	automatic_rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	automatic_rows.add_theme_constant_override("separation", 6)
 	for city in WorldData.cities():
+		var city_title := _label(str(city.get("name", "城市")), 18, TEXT, true)
+		city_title.custom_minimum_size.y = 30
+		automatic_rows.add_child(city_title)
 		for mode in ["blank", "expand"]:
 			var city_id := str(city.get("id", ""))
-			var exists := SaveManager.save_exists(city_id, mode)
-			popup.add_item("%s · %s%s" % [city.get("name", "城市"), _mode_name(mode), "" if exists else "（无存档）"], item_id)
-			popup.set_item_disabled(popup.item_count - 1, not exists)
-			choices[item_id] = [city_id, mode]
-			item_id += 1
-	popup.id_pressed.connect(func(id: int):
-		var choice: Array = choices.get(id, [])
-		if choice.is_empty(): return
+			var has_save := SaveManager.save_exists(city_id, mode)
+			var row := HBoxContainer.new()
+			row.name = "SaveRow_%s_%s" % [city_id, mode]
+			row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			var save_description := _label("%s　%s" % [_mode_name(mode), "已保存" if has_save else "尚无存档"], 15, MUTED)
+			save_description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			row.add_child(save_description)
+			var load_button := _button("载入", TEXT, PANEL_LIGHT, 14)
+			load_button.custom_minimum_size = Vector2(88.0, 44.0) * minf(_ui_scale, 1.25)
+			load_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			load_button.disabled = not has_save
+			load_button.pressed.connect(_load_automatic_snapshot.bind(city_id, mode, dialog))
+			row.add_child(load_button)
+			automatic_rows.add_child(row)
+			for history_entry in SaveManager.list_auto_history(city_id, mode):
+				var history_row := HBoxContainer.new()
+				history_row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				var old_minute := int(history_entry.get("elapsedMinutes", 0))
+				var history_label := _label("历史 · %s · 第%d天 %02d:%02d · %d站 / %d线" % [str(history_entry.get("savedAt", "" )).replace("T", " "), old_minute / 1440 + 1, posmod(old_minute, 1440) / 60, posmod(old_minute, 60), int(history_entry.get("stationCount", 0)), int(history_entry.get("routeCount", 0))], 13, MUTED)
+				history_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				history_row.add_child(history_label)
+				var history_load := _button("载入历史", TEXT, PANEL_LIGHT, 13)
+				history_load.custom_minimum_size = Vector2(104.0, 40.0) * minf(_ui_scale, 1.25)
+				history_load.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+				history_load.disabled = not bool(history_entry.get("valid", false))
+				history_load.pressed.connect(_load_auto_history_snapshot.bind(history_entry.duplicate(true), city_id, mode, dialog))
+				history_row.add_child(history_load)
+				automatic_rows.add_child(history_row)
+	automatic_page.add_child(automatic_rows)
+	tabs.add_child(automatic_page)
+	tabs.set_tab_title(0, "自动存档")
+	var manual_page := ScrollContainer.new()
+	manual_page.name = "ManualSaves"
+	manual_page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	manual_page.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	manual_page.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_configure_save_list_scrollbar(manual_page)
+	var manual_rows := VBoxContainer.new()
+	manual_rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	manual_rows.add_theme_constant_override("separation", 8)
+	manual_rows.add_child(_label("命名存档占用 %.1f MB · 自动历史占用 %.1f MB（每个城市开局最多保留3份）" % [float(SaveManager.manual_storage_bytes()) / 1048576.0, float(SaveManager.auto_history_bytes()) / 1048576.0], 14, MUTED))
+	var manual_search := LineEdit.new()
+	manual_search.name = "ManualSaveSearch"
+	manual_search.placeholder_text = "搜索名称、城市或开局方式"
+	manual_search.custom_minimum_size.y = 44.0 * _ui_scale
+	_set_control_base_font(manual_search, 15)
+	manual_rows.add_child(manual_search)
+	var entries: Array = SaveManager.list_manual_snapshots()
+	if entries.is_empty():
+		manual_rows.add_child(_label("还没有命名存档。创建后，它会独立保留，不被自动保存覆盖。", 15, MUTED))
+	for entry in entries:
+		var row := HBoxContainer.new()
+		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var entry_text := "%s\n%s · %s · %s" % [str(entry.get("name", "未命名")), str(entry.get("cityName", "城市")), _mode_name(str(entry.get("mode", "blank"))), str(entry.get("savedAt", "" )).replace("T", " ")]
+		var entry_label := _label(entry_text, 14, TEXT, true)
+		entry_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		entry_label.custom_minimum_size.y = 52
+		entry_label.tooltip_text = str(entry.get("error", "")) if not bool(entry.get("valid", false)) else ""
+		row.add_child(entry_label)
+		row.set_meta("search_text", (entry_text + " " + str(entry.get("name", "")) + " " + str(entry.get("cityId", ""))).to_lower())
+		var load_manual := _button("载入", TEXT, PANEL_LIGHT, 14)
+		load_manual.custom_minimum_size = Vector2(76.0, 44.0) * minf(_ui_scale, 1.25)
+		load_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		load_manual.disabled = not bool(entry.get("valid", false))
+		load_manual.tooltip_text = str(entry.get("error", "这份存档无法载入")) if load_manual.disabled else "载入此命名存档"
+		load_manual.pressed.connect(_load_manual_snapshot.bind(entry.duplicate(true), dialog))
+		row.add_child(load_manual)
+		var rename_manual := _button("改名", TEXT, PANEL_LIGHT, 13)
+		rename_manual.custom_minimum_size = Vector2(68.0, 44.0) * minf(_ui_scale, 1.25)
+		rename_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		rename_manual.disabled = not bool(entry.get("valid", false))
+		rename_manual.pressed.connect(_prompt_manual_rename.bind(entry.duplicate(true), dialog))
+		row.add_child(rename_manual)
+		var overwrite_manual := _button("覆盖", TEXT, PANEL_LIGHT, 13)
+		overwrite_manual.custom_minimum_size = Vector2(68.0, 44.0) * minf(_ui_scale, 1.25)
+		overwrite_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var same_world := not world.is_empty() and str(world.get("cityId", "")) == str(entry.get("cityId", "")) and str(world.get("mode", "")) == str(entry.get("mode", ""))
+		overwrite_manual.disabled = not bool(entry.get("valid", false)) or not same_world
+		overwrite_manual.tooltip_text = "用当前城市进度覆盖此存档" if not overwrite_manual.disabled else "载入相同城市与开局后才能覆盖"
+		overwrite_manual.pressed.connect(_confirm_manual_overwrite.bind(entry.duplicate(true), dialog))
+		row.add_child(overwrite_manual)
+		var delete_manual := _button("删除", Color("#A33D32"), PANEL_LIGHT, 13)
+		delete_manual.custom_minimum_size = Vector2(68.0, 44.0) * minf(_ui_scale, 1.25)
+		delete_manual.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		delete_manual.pressed.connect(_confirm_manual_delete.bind(entry.duplicate(true), dialog))
+		row.add_child(delete_manual)
+		manual_rows.add_child(row)
+	manual_search.text_changed.connect(func(query: String):
+		var normalized := query.strip_edges().to_lower()
+		for child in manual_rows.get_children():
+			if child is HBoxContainer and child.has_meta("search_text"):
+				child.visible = normalized.is_empty() or str(child.get_meta("search_text", "")).contains(normalized)
+	)
+	manual_page.add_child(manual_rows)
+	tabs.add_child(manual_page)
+	tabs.set_tab_title(1, "命名存档")
+	tabs.current_tab = 1 if initial_tab == "manual" else 0
+	content.add_child(tabs)
+	var actions := HFlowContainer.new()
+	actions.name = "SaveCenterActions"
+	actions.add_theme_constant_override("h_separation", 8)
+	var save_now := _button("立即保存", TEAL, PANEL_LIGHT, 14)
+	save_now.disabled = world.is_empty()
+	if save_now.disabled: save_now.tooltip_text = "进入城市后才能保存当前进度"
+	save_now.pressed.connect(func(): _close_save_center(dialog); if _autosave(): _show_toast("本地存档已写入"))
+	actions.add_child(save_now)
+	var save_manual := _button("新建命名存档", TEXT, PANEL_LIGHT, 14)
+	save_manual.disabled = world.is_empty()
+	if save_manual.disabled: save_manual.tooltip_text = "进入城市后才能创建命名存档"
+	save_manual.pressed.connect(func(): _close_save_center(dialog); _prompt_manual_save())
+	actions.add_child(save_manual)
+	var export_json := _button("导出 JSON", TEXT, PANEL_LIGHT, 14)
+	export_json.disabled = world.is_empty()
+	if export_json.disabled: export_json.tooltip_text = "进入城市后才能导出当前进度"
+	export_json.pressed.connect(func(): _close_save_center(dialog); SaveManager.export_world(world, func(result: Dictionary): _show_toast("JSON 已导出" if bool(result.get("ok", false)) else str(result.get("error", "导出失败")))) )
+	actions.add_child(export_json)
+	var import_json := _button("导入 JSON", TEXT, PANEL_LIGHT, 14)
+	import_json.pressed.connect(func():
+		_close_save_center(dialog)
+		SaveManager.import_world(func(loaded: Dictionary):
+			if not world.is_empty() and not _autosave(): _show_issue("无法先保存当前进度，导入已取消。"); return
+			_load_world(loaded)
+			if _autosave(): _show_toast("存档已导入并保存")
+			else: _show_issue("存档已载入到当前会话，但未能同步写入本机。原存档备份仍保留。")
+		, func(error: String): _show_issue(error))
+	)
+	actions.add_child(import_json)
+	var open_folder := _button("打开存档目录", TEXT, PANEL_LIGHT, 14)
+	open_folder.pressed.connect(func(): _close_save_center(dialog); _open_manual_saves_folder())
+	actions.add_child(open_folder)
+	content.add_child(actions)
+	scroll.add_child(content)
+	_fade_in(scroll)
+	dialog.add_child(scroll)
+	add_child(dialog)
+	dialog.confirmed.connect(func(): dialog.queue_free())
+	dialog.canceled.connect(func(): dialog.queue_free())
+	# Leave room for the embedded title bar as well as the client content.
+	dialog.popup_centered(Vector2i(mini(roundi(790.0 * _ui_scale), int(viewport_size.x) - 32), mini(roundi(600.0 * _ui_scale), int(viewport_size.y) - 64)))
+
+func _configure_save_list_scrollbar(list: ScrollContainer) -> void:
+	var track := _theme.get_stylebox("scroll", "VScrollBar").duplicate() as StyleBoxFlat
+	# ScrollContainer reserves the style's minimum width, not a custom control width.
+	track.content_margin_left = 6.0 * minf(_ui_scale, 1.25)
+	track.content_margin_right = 6.0 * minf(_ui_scale, 1.25)
+	list.get_v_scroll_bar().add_theme_stylebox_override("scroll", track)
+
+func _close_save_center(dialog: AcceptDialog) -> void:
+	if not is_instance_valid(dialog): return
+	# Release the exclusive modal before opening an import/export or naming dialog.
+	dialog.hide()
+	dialog.queue_free()
+
+func _load_automatic_snapshot(city_id: String, mode: String, dialog: AcceptDialog) -> void:
+	_close_save_center(dialog)
+	_request_world_transition(func():
+		var result := SaveManager.load_world(city_id, mode, true)
+		if not bool(result.get("ok", false)):
+			_select_current_city_in_picker()
+			_show_issue(str(result.get("error", "载入存档失败；当前规划仍保留")), "无法载入存档")
+		elif bool(result.get("pendingRecoveryConfirmation", false)):
+			_confirm_recovery_before_load(result, func(confirmed: Dictionary): _load_world(confirmed.world))
+		else:
+			_load_world(result.world)
+			if bool(result.get("recovered", false)): _show_toast(str(result.get("error", "已从备份恢复")))
+	)
+
+func _load_auto_history_snapshot(entry: Dictionary, city_id: String, mode: String, dialog: AcceptDialog) -> void:
+	_close_save_center(dialog)
+	var loaded := SaveManager.load_auto_history(str(entry.get("path", "")), city_id, mode)
+	if not bool(loaded.get("ok", false)):
+		_show_issue(str(loaded.get("error", "自动存档历史无法读取")), "无法载入历史进度")
+		return
+	var state: Dictionary = loaded.get("world", {})
+	var confirm := _new_confirmation_dialog()
+	confirm.title = "载入自动存档历史？"
+	var elapsed := int(state.get("simulation", {}).get("elapsedMinutes", 0))
+	confirm.dialog_text = "这会回到第%d天 %02d:%02d的自动存档。当前进度会先保存；历史记录保留。" % [elapsed / 1440 + 1, posmod(elapsed, 1440) / 60, posmod(elapsed, 60)]
+	confirm.get_ok_button().text = "保存当前进度并载入"
+	confirm.get_cancel_button().text = "取消"
+	add_child(confirm)
+	confirm.confirmed.connect(func():
+		confirm.queue_free()
 		_request_world_transition(func():
-			var result := SaveManager.load_world(str(choice[0]), str(choice[1]), true)
-			if result.ok:
-				if bool(result.get("pendingRecoveryConfirmation", false)):
-					_confirm_recovery_before_load(result, func(confirmed: Dictionary): _load_world(confirmed.world))
-				else:
-					_load_world(result.world)
-					if bool(result.get("recovered", false)): _show_toast(str(result.get("error", "已从备份恢复")))
-			else:
-				_select_current_city_in_picker()
-				_show_issue(str(result.get("error", "载入存档失败；当前规划仍保留")), "无法载入存档")
+			_load_world(state)
+			_show_toast("已载入自动存档历史，并暂停游戏")
 		)
 	)
-	if is_instance_valid(menu_layer): menu_layer.add_child(popup)
-	else: add_child(popup)
-	popup.popup_centered(Vector2i(350, 330))
+	confirm.canceled.connect(func(): confirm.queue_free())
+	confirm.popup_centered(Vector2i(560, 240))
+
+func _prompt_manual_rename(entry: Dictionary, save_dialog: AcceptDialog) -> void:
+	_close_save_center(save_dialog)
+	await get_tree().process_frame
+	var dialog := _new_confirmation_dialog()
+	dialog.title = "重命名存档"
+	dialog.dialog_text = "修改这份独立存档的显示名称。保存时间与进度不会改变。"
+	dialog.get_ok_button().text = "保存名称"
+	dialog.get_cancel_button().text = "取消"
+	var edit := LineEdit.new()
+	edit.text = str(entry.get("name", ""))
+	edit.max_length = 48
+	edit.custom_minimum_size.y = 44.0 * _ui_scale
+	dialog.add_child(edit)
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		var result := SaveManager.rename_manual_snapshot(str(entry.get("path", "")), edit.text)
+		dialog.hide()
+		dialog.queue_free()
+		if bool(result.get("ok", false)):
+			_show_toast("存档已改名")
+			call_deferred("_reopen_save_center", "manual")
+		else: _show_issue(str(result.get("error", "重命名失败")), "存档未修改")
+	)
+	dialog.canceled.connect(func(): dialog.hide(); dialog.queue_free(); call_deferred("_reopen_save_center", "manual"))
+	dialog.popup_centered(Vector2i(560, 240))
+	edit.grab_focus()
+	edit.select_all()
+
+func _confirm_manual_delete(entry: Dictionary, save_dialog: AcceptDialog) -> void:
+	_close_save_center(save_dialog)
+	await get_tree().process_frame
+	var dialog := _new_confirmation_dialog()
+	dialog.title = "删除命名存档？"
+	dialog.dialog_text = "将永久删除「%s」\n%s · %s\n\n其他自动存档和命名存档不受影响。" % [str(entry.get("name", "未命名")), str(entry.get("cityName", "城市")), str(entry.get("savedAt", ""))]
+	dialog.get_ok_button().text = "删除此存档"
+	dialog.get_cancel_button().text = "保留"
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		var result := SaveManager.delete_manual_snapshot(str(entry.get("path", "")))
+		dialog.hide()
+		dialog.queue_free()
+		if bool(result.get("ok", false)):
+			_show_toast("命名存档已删除")
+			call_deferred("_reopen_save_center", "manual")
+		else: _show_issue(str(result.get("error", "无法删除存档")), "删除失败")
+	)
+	dialog.canceled.connect(func(): dialog.hide(); dialog.queue_free(); call_deferred("_reopen_save_center", "manual"))
+	dialog.popup_centered(Vector2i(560, 240))
+
+func _confirm_manual_overwrite(entry: Dictionary, save_dialog: AcceptDialog) -> void:
+	var snapshot := world.duplicate(true)
+	_close_save_center(save_dialog)
+	await get_tree().process_frame
+	var dialog := _new_confirmation_dialog()
+	dialog.title = "覆盖命名存档？"
+	dialog.dialog_text = "用当前进度覆盖「%s」\n%s · %s\n\n覆盖后无法从这份命名存档恢复原内容。" % [str(entry.get("name", "未命名")), str(entry.get("cityName", "城市")), str(entry.get("savedAt", ""))]
+	dialog.get_ok_button().text = "确认覆盖"
+	dialog.get_cancel_button().text = "取消"
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		var result := SaveManager.overwrite_manual_snapshot(str(entry.get("path", "")), snapshot, str(entry.get("name", "未命名")))
+		dialog.hide()
+		dialog.queue_free()
+		if bool(result.get("ok", false)):
+			_show_toast("命名存档已覆盖")
+			call_deferred("_reopen_save_center", "manual")
+		else: _show_issue(str(result.get("error", "覆盖失败；原存档仍保留")), "覆盖失败")
+	)
+	dialog.canceled.connect(func(): dialog.hide(); dialog.queue_free(); call_deferred("_reopen_save_center", "manual"))
+	dialog.popup_centered(Vector2i(560, 260))
+
+func _reopen_save_center(tab: String) -> void:
+	_show_save_center(tab)
+
+func _load_manual_snapshot(entry: Dictionary, dialog: AcceptDialog) -> void:
+	if is_instance_valid(dialog):
+		_close_save_center(dialog)
+		await get_tree().process_frame
+	var loaded := SaveManager.load_manual_snapshot(str(entry.get("path", "")))
+	if not bool(loaded.get("ok", false)):
+		_show_issue(str(loaded.get("error", "无法读取手动存档；当前进度仍保留。")), "手动存档读取失败")
+		return
+	_confirm_manual_load(entry, loaded)
+
+func _prompt_manual_save() -> void:
+	if world.is_empty(): return
+	var dialog := _new_confirmation_dialog()
+	dialog.title = "新建手动存档"
+	dialog.dialog_text = "输入一个名称。手动存档会保留为独立进度，不会被后续自动存档覆盖。"
+	dialog.get_ok_button().text = "保存进度"
+	dialog.get_cancel_button().text = "取消"
+	var name_edit := LineEdit.new()
+	var elapsed := int(world.get("simulation", {}).get("elapsedMinutes", 420))
+	var day := elapsed / 1440 + 1
+	var minute_of_day := posmod(elapsed, 1440)
+	name_edit.text = "%s · 第%d天 %02d:%02d" % [str(world.get("cityName", "城市")), day, minute_of_day / 60, minute_of_day % 60]
+	name_edit.placeholder_text = "例如：第一条线路开通前"
+	name_edit.max_length = 48
+	_set_control_base_font(name_edit, 16)
+	dialog.add_child(name_edit)
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		var manual_result := SaveManager.save_manual_snapshot(world, name_edit.text)
+		dialog.queue_free()
+		if not bool(manual_result.get("ok", false)):
+			_show_issue(str(manual_result.get("error", "手动存档失败；当前进度仍保留。")), "手动存档失败")
+			return
+		var auto_ok := _autosave(false)
+		if auto_ok:
+			_show_toast("已保存手动存档「%s」" % str(manual_result.get("name", name_edit.text)))
+		else:
+			_show_issue("手动存档已安全保留，但当前自动存档未能更新。\n%s" % save_failure_reason, "自动存档未更新")
+	)
+	dialog.canceled.connect(func(): dialog.queue_free())
+	dialog.popup_centered(Vector2i(520, 190))
+	name_edit.grab_focus()
+	name_edit.select_all()
+
+func _show_manual_load_menu() -> void:
+	_show_save_center("manual")
+
+func _open_manual_saves_folder() -> void:
+	var folder := ProjectSettings.globalize_path(SaveManager.manual_saves_dir())
+	var directory_error := DirAccess.make_dir_recursive_absolute(folder)
+	if directory_error != OK and not DirAccess.dir_exists_absolute(folder):
+		_show_issue("无法打开手动存档目录。", "存档目录不可用")
+		return
+	var open_error := OS.shell_open(folder)
+	if open_error != OK: _show_issue("无法打开手动存档目录。", "存档目录不可用")
+
+func _confirm_manual_load(entry: Dictionary, loaded: Dictionary) -> void:
+	var state: Dictionary = loaded.get("world", {})
+	var dialog := _new_confirmation_dialog()
+	dialog.title = "载入手动存档？"
+	dialog.dialog_text = "将载入「%s」\n%s · %s · %s\n\n载入后游戏会暂停，并更新该城市的自动存档。当前进度会先自动保存；手动存档文件会保留。" % [str(entry.get("name", "未命名")), str(entry.get("cityName", "城市")), _mode_name(str(entry.get("mode", "blank"))), str(entry.get("savedAt", ""))]
+	dialog.get_ok_button().text = "保存当前进度并载入"
+	dialog.get_cancel_button().text = "取消"
+	add_child(dialog)
+	dialog.confirmed.connect(func():
+		dialog.queue_free()
+		_request_world_transition(func():
+			_load_world(state)
+			_show_toast("已载入手动存档「%s」" % str(entry.get("name", loaded.get("manualSaveName", "未命名"))))
+		)
+	)
+	dialog.canceled.connect(func(): dialog.queue_free())
+	dialog.popup_centered(Vector2i(560, 260))
+
+func _show_load_menu() -> void:
+	_show_save_center()
 
 func _leave_to_menu() -> void:
 	_request_world_transition(func():
@@ -4951,7 +5666,7 @@ func _leave_to_menu() -> void:
 
 func _show_issue(text: String, title: String = "规划检查") -> void:
 	_play_ui_feedback("error")
-	var dialog := AcceptDialog.new(); dialog.title = title; dialog.dialog_text = text; add_child(dialog); dialog.confirmed.connect(func(): dialog.queue_free()); dialog.canceled.connect(func(): dialog.queue_free()); dialog.popup_centered()
+	var dialog := _new_accept_dialog(); dialog.title = title; dialog.dialog_text = text; add_child(dialog); dialog.confirmed.connect(func(): dialog.queue_free()); dialog.canceled.connect(func(): dialog.queue_free()); dialog.popup_centered()
 
 func _show_toast(text: String) -> void:
 	if is_instance_valid(toast_label): toast_label.text = text
@@ -4977,8 +5692,8 @@ func _number(value: int) -> String:
 	return str(value)
 
 func _label(text: String, font_size: int = 13, color: Color = TEXT, bold: bool = false) -> Label:
-	var readable_size := maxi(15, font_size)
-	var item := Label.new(); item.text = text; item.set_meta("ui_base_font_size", readable_size); item.add_theme_font_size_override("font_size", roundi(float(readable_size) * _ui_scale)); item.add_theme_color_override("font_color", color)
+	var readable_size := maxi(14, font_size)
+	var item := Label.new(); item.text = text; item.set_meta("ui_base_font_size", readable_size); item.add_theme_font_size_override("font_size", roundi(float(readable_size) * _ui_scale)); item.add_theme_color_override("font_color", _readable_text_color(color))
 	if bold: item.add_theme_font_override("font", _bold_font)
 	if bold: item.add_theme_color_override("font_outline_color", Color(0,0,0,0))
 	item.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -4992,18 +5707,40 @@ func _menu_label(text: String, font_size: int, color: Color = TEXT, bold: bool =
 func _button(text: String, font_color: Color, background: Color, font_size: int = 13) -> Button:
 	var item := Button.new()
 	item.text = text
-	var readable_size := maxi(16, font_size)
+	var readable_size := maxi(14, font_size)
 	item.set_meta("ui_base_font_size", readable_size)
 	item.add_theme_font_size_override("font_size", roundi(float(readable_size) * _ui_scale))
-	item.add_theme_color_override("font_color", font_color)
-	item.add_theme_color_override("font_hover_color", Color.WHITE)
-	item.add_theme_stylebox_override("normal", _style(background, BORDER, 8, 1))
-	item.add_theme_stylebox_override("hover", _style(background.lightened(.1), Color("#42677c"), 8, 1))
-	item.add_theme_stylebox_override("pressed", _style(background.darkened(.1), Color("#42677c"), 8, 1))
-	item.add_theme_stylebox_override("disabled", _style(background.darkened(.2), BORDER, 8, 1))
-	item.add_theme_stylebox_override("focus", _style(background, TEAL, 8, 2))
-	item.custom_minimum_size.y = roundi(46.0 * minf(_ui_scale, 1.25))
-	if font_color == TEAL or text in ["检查并开通线路", "检查并开通此线路", "确认站点"]:
+	var warning_action := text.contains("挑战") or text.contains("拟换乘")
+	var danger_action := text.begins_with("拆除") or text.begins_with("删除") or text.contains("放弃未保存")
+	var primary_action := text.begins_with("确认") or text.contains("检查并开通") or text.contains("创建线路") or text == "从零规划" or text.contains("继续上次游戏")
+	var selected_action := font_color == TEAL or (font_color.h >= 0.49 and font_color.h <= 0.72 and font_color.s > 0.26)
+	var foreground := _readable_text_color(font_color)
+	var surface := PANEL_LIGHT
+	if primary_action:
+		surface = TEAL
+		foreground = Color.WHITE
+	elif danger_action:
+		surface = UiThemeScript.DANGER_SOFT
+		foreground = UiThemeScript.DANGER
+	elif warning_action:
+		surface = UiThemeScript.WARNING_SOFT
+		foreground = UiThemeScript.WARNING
+	elif selected_action:
+		surface = UiThemeScript.ACCENT_SOFT if font_color == TEAL else UiThemeScript.BLUE_SOFT
+		foreground = TEAL if font_color == TEAL else UiThemeScript.BLUE
+	item.add_theme_color_override("font_color", foreground)
+	item.add_theme_color_override("font_hover_color", foreground)
+	item.add_theme_color_override("font_pressed_color", foreground)
+	item.add_theme_color_override("font_disabled_color", Color("#92948D"))
+	var edge := UiThemeScript.BORDER_STRONG if primary_action or danger_action or warning_action or selected_action else BORDER
+	item.add_theme_stylebox_override("normal", _component_style(surface, edge, 7, 1))
+	var hover_surface := surface.darkened(0.07) if primary_action else surface.lightened(0.035)
+	item.add_theme_stylebox_override("hover", _component_style(hover_surface, edge.lightened(0.06), 7, 1))
+	item.add_theme_stylebox_override("pressed", _component_style(surface.darkened(0.09), edge.darkened(0.03), 7, 1))
+	item.add_theme_stylebox_override("disabled", _component_style(UiThemeScript.SURFACE_ALT, BORDER, 7, 1))
+	item.add_theme_stylebox_override("focus", _component_style(surface, TEAL, 7, 2))
+	item.custom_minimum_size.y = roundi(44.0 * minf(_ui_scale, 1.25))
+	if primary_action:
 		item.add_theme_font_override("font", _bold_font)
 	return item
 
@@ -5013,4 +5750,42 @@ func _set_control_base_font(control: Control, font_size: int) -> void:
 	control.add_theme_font_size_override("font_size", roundi(float(readable_size) * _ui_scale))
 
 func _style(background: Color, border: Color, radius: int, border_width: int) -> StyleBoxFlat:
-	var box := StyleBoxFlat.new(); box.bg_color = background; box.border_color = border; box.set_border_width_all(border_width); box.set_corner_radius_all(radius); box.content_margin_left = 10; box.content_margin_right = 10; box.content_margin_top = 4; box.content_margin_bottom = 4; return box
+	var fill := background
+	if background.r < 0.22 and background.g < 0.30 and background.b < 0.34:
+		fill = PANEL
+	elif background.h >= 0.02 and background.h <= 0.12 and background.s > 0.30:
+		fill = UiThemeScript.WARNING_SOFT
+	elif background.h >= 0.92 or background.h <= 0.025 and background.s > 0.3:
+		fill = UiThemeScript.DANGER_SOFT
+	elif background.h >= 0.45 and background.h <= 0.70 and background.s > 0.25:
+		fill = UiThemeScript.BLUE_SOFT
+	elif background.s > 0.32 and background.h > 0.25 and background.h < 0.46:
+		fill = UiThemeScript.ACCENT_SOFT
+	elif background.get_luminance() > 0.42 and background.get_luminance() < 0.85:
+		fill = UiThemeScript.SURFACE_ALT
+	var box := StyleBoxFlat.new(); box.bg_color = fill; box.border_color = border if border_width > 0 else Color.TRANSPARENT; box.set_border_width_all(border_width); box.set_corner_radius_all(radius); box.content_margin_left = 12; box.content_margin_right = 12; box.content_margin_top = 6; box.content_margin_bottom = 6; return box
+
+func _component_style(fill: Color, border: Color, radius: int, border_width: int) -> StyleBoxFlat:
+	var box := StyleBoxFlat.new()
+	box.bg_color = fill
+	box.border_color = border if border_width > 0 else Color.TRANSPARENT
+	box.set_border_width_all(border_width)
+	box.set_corner_radius_all(radius)
+	box.content_margin_left = 12
+	box.content_margin_right = 12
+	box.content_margin_top = 6
+	box.content_margin_bottom = 6
+	return box
+
+func _readable_text_color(color: Color) -> Color:
+	if color == TEAL or color == UiThemeScript.ACCENT: return UiThemeScript.ACCENT
+	if color == TEXT or color == Color.WHITE or color == Color.WHITE_SMOKE: return UiThemeScript.INK
+	if color == MUTED or color == Color("#b4c5ce") or color == Color("#b9c8d0") or color == Color("#e0ebed"): return UiThemeScript.MUTED
+	if color.s > 0.27:
+		var hue := color.h
+		if hue >= 0.94 or hue <= 0.03: return UiThemeScript.DANGER
+		if hue <= 0.12: return UiThemeScript.WARNING
+		if hue <= 0.43: return UiThemeScript.SUCCESS
+		if hue <= 0.70: return UiThemeScript.BLUE
+		return Color("#71528F")
+	return UiThemeScript.INK if color.get_luminance() > 0.64 else UiThemeScript.MUTED

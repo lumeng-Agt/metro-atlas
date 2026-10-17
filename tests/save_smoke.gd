@@ -20,6 +20,9 @@ func _run() -> void:
 	var migration_backup_dir := SaveManager.root_path().path_join("migration_backups")
 	var last_path := SaveManager.last_game_path()
 	var export_path := OS.get_user_data_dir().path_join("save-smoke-export.json")
+	var preference_path := UiPreferences.path()
+	var preference_original := FileAccess.get_file_as_bytes(preference_path) if FileAccess.file_exists(preference_path) else PackedByteArray()
+	var manual_directory := SaveManager.manual_saves_dir()
 	var protected_paths := [save_path, save_path + ".bak", save_path + ".tmp", recovery_failure_path, recovery_failure_path + ".bak", recovery_failure_path + ".tmp", migration_source_path, migration_source_path + ".bak", last_path, last_path + ".bak", last_path + ".tmp", export_path, export_path + ".bak", export_path + ".tmp"]
 	var originals: Dictionary = {}
 	for path in protected_paths: originals[path] = FileAccess.get_file_as_bytes(path) if FileAccess.file_exists(path) else PackedByteArray()
@@ -27,9 +30,24 @@ func _run() -> void:
 	_assert(bool(first.get("ok", false)), "可以创建本地存档")
 	_assert(FileAccess.file_exists(save_path), "存档写入预期目录")
 	world.simulation.minute = 481
+	world.simulation.elapsedMinutes = 481
+	world.simulation.elapsedSeconds = 481 * 60
 	var second := SaveManager.save_world(world)
 	_assert(bool(second.get("ok", false)), "可以更新本地存档")
 	_assert(FileAccess.file_exists(save_path + ".bak"), "覆盖前保留恢复备份")
+	for history_minute in range(482, 487):
+		world.simulation.minute = history_minute
+		world.simulation.elapsedMinutes = history_minute
+		world.simulation.elapsedSeconds = history_minute * 60
+		_assert(bool(SaveManager.save_world(world, true).get("ok", false)), "定时自动存档可保留上一份有效进度")
+	var auto_history := SaveManager.list_auto_history("shanghai", "blank")
+	_assert(auto_history.size() == 3, "每个城市与开局只保留最近3份自动历史")
+	var latest_history := SaveManager.load_auto_history(str(auto_history[0].get("path", "")), "shanghai", "blank")
+	_assert(bool(latest_history.get("ok", false)) and int(latest_history.world.simulation.elapsedMinutes) == 485, "最近自动历史能按校验入口载入并恢复真实时钟")
+	world.simulation.minute = 481
+	world.simulation.elapsedMinutes = 481
+	world.simulation.elapsedSeconds = 481 * 60
+	_assert(bool(SaveManager.save_world(world).get("ok", false)), "普通即时保存不轮换自动历史")
 	var index_result := SaveManager.save_last_game(world)
 	_assert(bool(index_result.get("ok", false)) and FileAccess.file_exists(last_path), "继续游戏索引写入成功")
 	var loaded := SaveManager.load_world("shanghai", "blank")
@@ -37,6 +55,52 @@ func _run() -> void:
 	_assert(int(loaded.get("world", {}).get("simulation", {}).get("minute", -1)) == 481, "重新读取最新模拟进度")
 	var last_loaded := SaveManager.load_last_game()
 	_assert(bool(last_loaded.get("ok", false)) and int(last_loaded.get("world", {}).get("simulation", {}).get("minute", -1)) == 481, "继续游戏索引经过相同结构校验后可读取")
+	var manual_world: Dictionary = world.duplicate(true)
+	manual_world.simulation.paused = false
+	var manual_result := SaveManager.save_manual_snapshot(manual_world, "第一条线开通前")
+	_assert(bool(manual_result.get("ok", false)) and FileAccess.file_exists(str(manual_result.get("path", ""))), "手动存档生成独立命名进度文件")
+	var manual_entries := SaveManager.list_manual_snapshots()
+	var listed_manual: Dictionary = {}
+	for entry in manual_entries:
+		if str(entry.get("path", "")) == str(manual_result.get("path", "")): listed_manual = entry
+	_assert(not listed_manual.is_empty() and bool(listed_manual.get("valid", false)) and str(listed_manual.get("name", "")) == "第一条线开通前", "手动存档列表显示可用名称与状态")
+	var manual_loaded := SaveManager.load_manual_snapshot(str(manual_result.get("path", "")))
+	_assert(bool(manual_loaded.get("ok", false)) and str(manual_loaded.get("manualSaveName", "")) == "第一条线开通前", "手动存档通过完整校验后可以载入")
+	_assert(bool(manual_loaded.get("world", {}).get("simulation", {}).get("paused", false)), "载入手动存档后默认暂停")
+	_assert(not manual_loaded.get("world", {}).has("_manualSave"), "存档界面元数据不会进入游戏世界")
+	var manual_renamed := SaveManager.rename_manual_snapshot(str(manual_result.get("path", "")), "站点方案草稿")
+	_assert(bool(manual_renamed.get("ok", false)) and str(SaveManager.load_manual_snapshot(str(manual_result.get("path", ""))).get("manualSaveName", "")) == "站点方案草稿", "重命名只更新显示名称，进度仍可载入")
+	manual_world.simulation.minute = 499
+	manual_world.simulation.elapsedMinutes = 499
+	var manual_overwritten := SaveManager.overwrite_manual_snapshot(str(manual_result.get("path", "")), manual_world, "站点方案草稿")
+	_assert(bool(manual_overwritten.get("ok", false)) and int(SaveManager.load_manual_snapshot(str(manual_result.get("path", ""))).world.simulation.minute) == 499, "确认覆盖接口替换存档内容且保留可载入性")
+	_assert(not SaveManager.load_manual_snapshot(save_path).get("ok", false), "手动存档读取拒绝存档目录之外的路径")
+	var manual_delete := SaveManager.delete_manual_snapshot(str(manual_result.get("path", "")))
+	_assert(bool(manual_delete.get("ok", false)) and not FileAccess.file_exists(str(manual_result.get("path", ""))), "可以删除单份手动存档")
+	var manual_bad_path := manual_directory.path_join("corrupt-manual-smoke.json")
+	var manual_bad_file := FileAccess.open(manual_bad_path, FileAccess.WRITE)
+	if manual_bad_file != null:
+		manual_bad_file.store_string("not json")
+		manual_bad_file.close()
+	var manual_bad_listed := false
+	for entry in SaveManager.list_manual_snapshots():
+		if str(entry.get("path", "")) == manual_bad_path:
+			manual_bad_listed = true
+			_assert(not bool(entry.get("valid", true)), "损坏的手动存档显示为不可载入")
+	_assert(manual_bad_listed, "手动存档列表保留损坏文件并明确标记")
+	if FileAccess.file_exists(manual_bad_path): DirAccess.remove_absolute(ProjectSettings.globalize_path(manual_bad_path))
+	var old_autosave_enabled := UiPreferences.load_timed_autosave_enabled()
+	var old_autosave_interval := UiPreferences.load_timed_autosave_interval()
+	_assert(UiPreferences.save_timed_autosave_enabled(not old_autosave_enabled) == OK and UiPreferences.load_timed_autosave_enabled() == not old_autosave_enabled, "定时自动存档开关可本地保存与恢复")
+	_assert(UiPreferences.save_timed_autosave_interval(10) == OK and UiPreferences.load_timed_autosave_interval() == 10, "自动存档间隔可本地保存与恢复")
+	_assert(UiPreferences.save_timed_autosave_interval(3) != OK, "无效自动存档间隔被拒绝")
+	if preference_original.is_empty():
+		if FileAccess.file_exists(preference_path): DirAccess.remove_absolute(ProjectSettings.globalize_path(preference_path))
+	else:
+		var restore_preferences := FileAccess.open(preference_path, FileAccess.WRITE)
+		if restore_preferences:
+			restore_preferences.store_buffer(preference_original)
+			restore_preferences.close()
 	world.simulation.minute = 482
 	var index_update := SaveManager.save_last_game(world)
 	_assert(bool(index_update.get("ok", false)) and FileAccess.file_exists(last_path + ".bak"), "更新继续游戏索引前保留有效备份")
@@ -153,7 +217,7 @@ func _run() -> void:
 			if restore:
 				restore.store_buffer(originals[path])
 				restore.close()
-	print("PASS: local saves, last-game index, export, reload, and backups")
+	print("PASS: local autosaves, named manual saves, last-game index, export, reload, and backups")
 	quit()
 
 func _assert(condition: bool, message: String) -> void:

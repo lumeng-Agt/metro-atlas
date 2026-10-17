@@ -28,6 +28,19 @@ static func save_scale(value: float) -> Error:
 	config.set_value("display", "ui_scale", value)
 	return config.save(target)
 
+static func load_ui_motion_enabled() -> bool:
+	var config := ConfigFile.new()
+	if config.load(path()) != OK: return true
+	return bool(config.get_value("display", "ui_motion_enabled", true))
+
+static func save_ui_motion_enabled(value: bool) -> Error:
+	var config := ConfigFile.new()
+	var target := path()
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
+	config.load(target)
+	config.set_value("display", "ui_motion_enabled", value)
+	return config.save(target)
+
 static func load_road_names() -> bool:
 	var config := ConfigFile.new()
 	if config.load(path()) != OK: return true
@@ -79,4 +92,32 @@ static func save_onboarding_completed(value: bool) -> Error:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
 	config.load(target)
 	config.set_value("onboarding", "completed_once", value)
+	return config.save(target)
+
+static func load_timed_autosave_enabled() -> bool:
+	var config := ConfigFile.new()
+	if config.load(path()) != OK: return true
+	return bool(config.get_value("saving", "timed_autosave_enabled", true))
+
+static func save_timed_autosave_enabled(value: bool) -> Error:
+	var config := ConfigFile.new()
+	var target := path()
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
+	config.load(target)
+	config.set_value("saving", "timed_autosave_enabled", value)
+	return config.save(target)
+
+static func load_timed_autosave_interval() -> int:
+	var config := ConfigFile.new()
+	if config.load(path()) != OK: return 5
+	var value := int(config.get_value("saving", "timed_autosave_interval_minutes", 5))
+	return value if [2, 5, 10, 15].has(value) else 5
+
+static func save_timed_autosave_interval(value: int) -> Error:
+	if not [2, 5, 10, 15].has(value): return ERR_INVALID_PARAMETER
+	var config := ConfigFile.new()
+	var target := path()
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
+	config.load(target)
+	config.set_value("saving", "timed_autosave_interval_minutes", value)
 	return config.save(target)

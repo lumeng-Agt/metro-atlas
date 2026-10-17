@@ -1,7 +1,7 @@
 class_name WorldData
 extends RefCounted
 
-const SAVE_VERSION := 15
+const SAVE_VERSION := 16
 const CityProgressionScript = preload("res://scripts/city_progression.gd")
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
@@ -38,7 +38,7 @@ static func new_world(city_id: String, mode: String) -> Dictionary:
 		"mode": mode,
 		"dataVersion": _dataset.get("generatedAt", "unknown"),
 		"stations": [], "routes": [], "trackLinks": [], "trackNodes": [], "trackEdges": [], "depots": [],
-		"simulation": {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "trainTripsInitialized": false, "nextDepartureSeconds": {}, "peakCrowding": 0.0, "crowdingSamples": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": []},
+		"simulation": {"minute": 420, "elapsedMinutes": 420, "elapsedSeconds": 25200, "speed": 1, "paused": true, "seed": 45281, "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "flowRemainders": {}, "passengerBatches": [], "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "trainTripsInitialized": false, "nextDepartureSeconds": {}, "peakCrowding": 0.0, "crowdingSamples": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": [], "routeUtilizationBuckets": []},
 		"goalBoard": {"active": [], "completed": []},
 		"cityProgression": CityProgressionScript.create_state(city_id),
 		"planningPhases": [{"id":"phase_1", "name":"一期建设", "createdAt":420, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}],

@@ -14,6 +14,14 @@ func _initialize() -> void:
 
 func _run() -> void:
 	WorldData.load_assets()
+	var utilization_probe := {"elapsedMinutes":15, "trainTrips":[{"id":"trip-u", "routeId":"route-u", "directionId":"out", "capacity":100, "directionSnapshot":{"segments":[{"linkIds":["edge-a", "edge-b"], "linkDirections":[{"id":"edge-a", "forward":true}, {"id":"edge-b", "forward":false}]}]}, "loadByEdge":{"trip-u|edge-a|fwd":50, "trip-u|edge-b|rev":0}}], "routeUtilizationBuckets":[]}
+	Simulation._record_route_utilization_sample(utilization_probe)
+	var utilization_sample: Dictionary = utilization_probe.routeUtilizationBuckets[0].byRoute["route-u|out"]
+	_check(is_equal_approx(float(utilization_sample.get("loadRatioSum", 0.0)), 0.25), "线路方向利用率按班次实际区间载客与容量计算")
+	_check(is_equal_approx(float(utilization_sample.get("emptyEdgeRatioSum", 0.0)), 0.5) and int(utilization_sample.get("samples", 0)) == 1, "空载区间比例按实际班次区间记录")
+	var utilization_no_sample := {"elapsedMinutes":16, "trainTrips":[], "routeUtilizationBuckets":[]}
+	Simulation._record_route_utilization_sample(utilization_no_sample)
+	_check(utilization_no_sample.routeUtilizationBuckets.is_empty(), "运力利用率每15个游戏分钟采样且无班次不伪造样本")
 	var schedule_probe := {"headway": 9, "serviceSchedule": {"mode": "time_of_day", "peakAM": 4, "peakPM": 5, "offPeak": 12}}
 	_check(ServiceSchedule.headway_minutes(schedule_probe, 6 * 3600 + 59 * 60) == 12 and ServiceSchedule.headway_minutes(schedule_probe, 7 * 3600) == 4, "分时班距在早高峰边界切换")
 	_check(ServiceSchedule.headway_minutes(schedule_probe, 10 * 3600) == 12 and ServiceSchedule.headway_minutes(schedule_probe, 16 * 3600) == 5 and ServiceSchedule.headway_minutes(schedule_probe, 19 * 3600) == 12, "分时班距在早晚高峰结束与晚高峰开始时正确切换")
@@ -338,6 +346,10 @@ func _run() -> void:
 	var migrated_v13_route := WorldData.find_route(migrated_v13, str(v13_route.get("id", "")))
 	_check(int(migrated_v13.schemaVersion) == WorldData.SAVE_VERSION and migrated_v13_route.get("serviceSchedule", {}).get("mode", "") == "uniform" and int(migrated_v13_route.serviceSchedule.get("offPeak", 0)) == 7, "13版固定班距迁移为保留原值的全天统一配置")
 	_check(migrated_v13.simulation.get("statisticsBuckets", []) is Array and migrated_v13.simulation.get("journeyRecords", []) is Array and migrated_v13.get("challengeMode", "") == "free", "13版迁移初始化挑战与统计记录容器")
+	_check(migrated_v13.simulation.get("routeUtilizationBuckets", []) is Array and migrated_v13.simulation.routeUtilizationBuckets.is_empty(), "13版升级至16版时初始化有界线路运力记录，不伪造旧样本")
+	var web_v15 := {"cityId":"shanghai", "mode":"blank", "stations":[], "routes":[], "stationPlans":{}, "simulation":{"minute":420}}
+	var migrated_web_v15 := SaveManager.migrate(web_v15)
+	_check(int(migrated_web_v15.get("schemaVersion", 0)) == WorldData.SAVE_VERSION and migrated_web_v15.simulation.get("routeUtilizationBuckets", []) is Array, "网页旧存档直接迁移到16版时包含运力统计容器")
 
 	var old_v8 := {"schemaVersion": 8, "cityId": "migration-test", "mode": "blank", "stations": [], "routes": [], "trackLinks": [], "simulation": {"minute": 615, "completed": 47, "attempted": 80, "served": 53, "paused": false}, "history": {"undo": [{"label":"old patch"}], "redo": []}}
 	var migrated := SaveManager.migrate(old_v8)

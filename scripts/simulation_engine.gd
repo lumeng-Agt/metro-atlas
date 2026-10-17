@@ -205,6 +205,7 @@ static func step_one_minute(state: Dictionary, flows: Array[Dictionary], peak_mu
 	for flow_id in event_totals.tripMinutesByFlow: bucket.tripMinutesByFlow[str(flow_id)] = float(bucket.tripMinutesByFlow.get(str(flow_id), 0.0)) + float(event_totals.tripMinutesByFlow[flow_id])
 	while not statistics_buckets.is_empty() and int(statistics_buckets.front().get("startMinute", bucket_start)) < int(sim.elapsedMinutes) - 10080: statistics_buckets.pop_front()
 	sim["statisticsBuckets"] = statistics_buckets
+	_record_route_utilization_sample(sim)
 	var waiting_by_route: Dictionary = {}
 	for batch in survivors:
 		if str(batch.get("status", "")) != "waiting": continue
@@ -230,6 +231,47 @@ static func step_one_minute(state: Dictionary, flows: Array[Dictionary], peak_mu
 	sim["peakCrowdedRoute"] = rolling_peak_route
 	state["simulation"] = sim
 	return {"arrivalsByFlow": arrivals_by_flow, "completedByFlow": event_totals.completedByFlow, "tripMinutesByFlow": event_totals.tripMinutesByFlow, "journeyRecords": event_totals.journeyRecords, "attempted": attempted, "unreachable": unreachable, "boarded": int(event_totals.boarded), "departed": int(event_totals.departed), "completed": int(event_totals.completed), "abandoned": int(event_totals.abandoned), "tripMinutesAdded": float(event_totals.tripMinutesAdded), "peakCrowding": float(event_totals.peakCrowding), "waitingByRoute": waiting_by_route}
+
+static func _record_route_utilization_sample(sim: Dictionary) -> void:
+	var minute := int(sim.get("elapsedMinutes", 0))
+	if posmod(minute, 15) != 0: return
+	var by_route: Dictionary = {}
+	for raw_trip in sim.get("trainTrips", []):
+		if not raw_trip is Dictionary: continue
+		var trip: Dictionary = raw_trip
+		var route_id := str(trip.get("routeId", ""))
+		var direction_id := str(trip.get("directionId", ""))
+		if route_id.is_empty(): continue
+		var segments: Array = trip.get("directionSnapshot", {}).get("segments", [])
+		var loads: Dictionary = trip.get("loadByEdge", {})
+		var capacity := maxi(1, int(trip.get("capacity", 1800)))
+		var edge_count := 0
+		var occupied_edges := 0
+		var load_ratio_sum := 0.0
+		for segment in segments:
+			var directions: Dictionary = {}
+			for edge_direction in segment.get("linkDirections", []):
+				if edge_direction is Dictionary: directions[str(edge_direction.get("id", ""))] = "fwd" if bool(edge_direction.get("forward", true)) else "rev"
+			for raw_edge_id in segment.get("linkIds", []):
+				var edge_id := str(raw_edge_id)
+				var key := "%s|%s|%s" % [str(trip.get("id", "")), edge_id, str(directions.get(edge_id, "na"))]
+				var load := int(loads.get(key, 0))
+				edge_count += 1
+				load_ratio_sum += float(load) / float(capacity)
+				if load > 0: occupied_edges += 1
+		if edge_count <= 0: continue
+		var route_key := "%s|%s" % [route_id, direction_id]
+		var sample: Dictionary = by_route.get(route_key, {"routeId": route_id, "directionId": direction_id, "samples": 0, "loadRatioSum": 0.0, "emptyEdgeRatioSum": 0.0, "peakLoadRatio": 0.0})
+		var load_ratio := load_ratio_sum / float(edge_count)
+		sample["samples"] = int(sample.get("samples", 0)) + 1
+		sample["loadRatioSum"] = float(sample.get("loadRatioSum", 0.0)) + load_ratio
+		sample["emptyEdgeRatioSum"] = float(sample.get("emptyEdgeRatioSum", 0.0)) + 1.0 - float(occupied_edges) / float(edge_count)
+		sample["peakLoadRatio"] = maxf(float(sample.get("peakLoadRatio", 0.0)), load_ratio)
+		by_route[route_key] = sample
+	var buckets: Array = sim.get("routeUtilizationBuckets", [])
+	buckets.append({"startMinute": minute, "byRoute": by_route})
+	while buckets.size() > 672: buckets.pop_front()
+	sim["routeUtilizationBuckets"] = buckets
 
 static func _ensure_dispatch_schedules(sim: Dictionary, state: Dictionary, paths: Dictionary, now_seconds: int) -> void:
 	var schedules: Dictionary = sim.get("nextDepartureSeconds", {})

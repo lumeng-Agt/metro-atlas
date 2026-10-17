@@ -355,7 +355,7 @@ static func _prepare_basemap_draw_batches_for(features: Array, zoom_level: int, 
 				var base := polygon_points.size()
 				polygon_points.append_array(points)
 				for index in triangles: polygon_indices.append(base + index)
-				var fill := Color("#dcebf0") if kind == "water_area" else Color("#e4ecdf")
+				var fill := Color("#DCE8E5") if kind == "water_area" else Color("#E8ECE3")
 				for _index in points.size(): polygon_colors.append(fill)
 				batches[point_key] = polygon_points
 				batches[index_key] = polygon_indices
@@ -379,7 +379,7 @@ static func _prepare_basemap_draw_batches_for(features: Array, zoom_level: int, 
 				var base := building_points.size()
 				building_points.append_array(points)
 				for index in triangles: building_indices.append(base + index)
-				for _index in points.size(): building_colors.append(Color("#e9e8e4"))
+				for _index in points.size(): building_colors.append(Color("#EFEDE7"))
 				batches.buildingPoints = building_points
 				batches.buildingIndices = building_indices
 				batches.buildingColors = building_colors
@@ -545,7 +545,7 @@ static func _simplify_local_points(points: Array[Vector2], tolerance_m: float) -
 func _draw() -> void:
 	_refresh_camera_cache()
 	_label_rects.clear()
-	draw_rect(Rect2(Vector2.ZERO, size), Color("#e8e5dd"))
+	draw_rect(Rect2(Vector2.ZERO, size), Color("#F5F3ED"))
 	_draw_local_basemap()
 	_draw_built_links()
 	_draw_station_preview_links()
@@ -557,7 +557,7 @@ func _draw() -> void:
 
 func _draw_local_basemap() -> void:
 	if not base_map_available:
-		draw_rect(Rect2(Vector2.ZERO, size), Color("#eef0ee"))
+		draw_rect(Rect2(Vector2.ZERO, size), Color("#F5F4EE"))
 		_draw_fallback_grid()
 		return
 	var view_half := size * 0.5 * _camera_mpp
@@ -581,7 +581,7 @@ func _draw_local_basemap() -> void:
 		if kind not in ["water_area", "park"] or not visible.intersects(feature.bounds): continue
 		var points: PackedVector2Array = feature.points
 		if points.size() < 3: continue
-		var fill := Color("#dcebf0") if kind == "water_area" else Color("#e4ecdf")
+		var fill := Color("#DCE8E5") if kind == "water_area" else Color("#E8ECE3")
 		var base := water_points.size() if kind == "water_area" else park_points.size()
 		var triangles: PackedInt32Array = feature.get("fillIndices", PackedInt32Array())
 		if not triangles.is_empty():
@@ -598,8 +598,8 @@ func _draw_local_basemap() -> void:
 		else: park_outline.append_array(outline)
 	if not water_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), water_indices, water_points, water_colors)
 	if not park_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), park_indices, park_points, park_colors)
-	if not water_outline.is_empty(): draw_multiline(water_outline, Color("#d0e2e8"), _camera_mpp, false)
-	if not park_outline.is_empty(): draw_multiline(park_outline, Color("#d7e2d1"), _camera_mpp, false)
+	if not water_outline.is_empty(): draw_multiline(water_outline, Color("#C3D7D4"), _camera_mpp, false)
+	if not park_outline.is_empty(): draw_multiline(park_outline, Color("#DDE4D9"), _camera_mpp, false)
 	var major_outline := PackedVector2Array(); var major_lines := PackedVector2Array()
 	var secondary_outline := PackedVector2Array(); var secondary_lines := PackedVector2Array()
 	var local_lines := PackedVector2Array(); var water_lines := PackedVector2Array()
@@ -624,12 +624,12 @@ func _draw_local_basemap() -> void:
 			"water_line": water_lines.append_array(pairs)
 		if show_road_names and current_zoom >= 15 and kind != "water_line" and not str(feature.name).is_empty():
 			road_labels.append({"position": points[points.size() / 2], "name": str(feature.name), "kind": kind, "priority": _road_label_priority(kind)})
-	if not water_lines.is_empty(): draw_multiline(water_lines, Color("#b5cbd1"), 3.5 * _camera_mpp, false)
-	if not major_outline.is_empty(): draw_multiline(major_outline, Color("#d5d9d5"), 5.3 * _camera_mpp, false)
-	if not secondary_outline.is_empty(): draw_multiline(secondary_outline, Color("#d5d9d5"), 3.8 * _camera_mpp, false)
-	if not major_lines.is_empty(): draw_multiline(major_lines, Color("#fdfdfb"), 3.8 * _camera_mpp, false)
-	if not secondary_lines.is_empty(): draw_multiline(secondary_lines, Color("#ffffff"), 2.3 * _camera_mpp, false)
-	if not local_lines.is_empty(): draw_multiline(local_lines, Color("#ffffff"), 1.15 * _camera_mpp, false)
+	if not water_lines.is_empty(): draw_multiline(water_lines, Color("#C3D7D4"), 3.5 * _camera_mpp, false)
+	if not major_outline.is_empty(): draw_multiline(major_outline, Color("#E0DED7"), 5.3 * _camera_mpp, false)
+	if not secondary_outline.is_empty(): draw_multiline(secondary_outline, Color("#E9E7E0"), 3.8 * _camera_mpp, false)
+	if not major_lines.is_empty(): draw_multiline(major_lines, Color("#F7F6F1"), 3.8 * _camera_mpp, false)
+	if not secondary_lines.is_empty(): draw_multiline(secondary_lines, Color("#FBFAF6"), 2.3 * _camera_mpp, false)
+	if not local_lines.is_empty(): draw_multiline(local_lines, Color("#F8F7F2"), 1.15 * _camera_mpp, false)
 	if current_zoom >= 17:
 		var building_points := PackedVector2Array(); var building_indices := PackedInt32Array(); var building_colors := PackedColorArray(); var building_outline := PackedVector2Array()
 		for feature in base_map_features:
@@ -643,10 +643,10 @@ func _draw_local_basemap() -> void:
 				if not triangles.is_empty():
 					building_points.append_array(points)
 					for index in triangles: building_indices.append(base + index)
-					for _index in points.size(): building_colors.append(Color("#e9e8e4"))
+					for _index in points.size(): building_colors.append(Color("#EFEDE7"))
 				if projected_area >= 400.0: building_outline.append_array(feature.pairs)
 		if not building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), building_indices, building_points, building_colors)
-		if not building_outline.is_empty(): draw_multiline(building_outline, Color("#d8d7d2"), 0.7 * _camera_mpp, false)
+		if not building_outline.is_empty(): draw_multiline(building_outline, Color("#E5E2DA"), 0.7 * _camera_mpp, false)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	_draw_road_labels(road_labels)
 	if not inside_package:
@@ -663,29 +663,29 @@ func _draw_cached_local_basemap(visible: Rect2, inside_package: bool) -> void:
 	if not park_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), park_indices, batches.parkPoints, batches.parkColors)
 	var water_outline: PackedVector2Array = batches.get("waterOutline", PackedVector2Array())
 	var park_outline: PackedVector2Array = batches.get("parkOutline", PackedVector2Array())
-	if not water_outline.is_empty(): draw_multiline(water_outline, Color("#d0e2e8"), _camera_mpp, false)
-	if not park_outline.is_empty(): draw_multiline(park_outline, Color("#d7e2d1"), _camera_mpp, false)
+	if not water_outline.is_empty(): draw_multiline(water_outline, Color("#C3D7D4"), _camera_mpp, false)
+	if not park_outline.is_empty(): draw_multiline(park_outline, Color("#DDE4D9"), _camera_mpp, false)
 	var water_lines: PackedVector2Array = batches.get("waterLines", PackedVector2Array())
 	var major_lines: PackedVector2Array = batches.get("majorLines", PackedVector2Array())
 	var primary_lines: PackedVector2Array = batches.get("primaryLines", PackedVector2Array())
 	var secondary_lines: PackedVector2Array = batches.get("secondaryLines", PackedVector2Array())
 	var local_lines: PackedVector2Array = batches.get("localLines", PackedVector2Array())
-	if not water_lines.is_empty(): draw_multiline(water_lines, Color("#b5cbd1"), (2.5 if current_zoom < 14 else 3.5) * _camera_mpp, false)
+	if not water_lines.is_empty(): draw_multiline(water_lines, Color("#C3D7D4"), (2.5 if current_zoom < 14 else 3.5) * _camera_mpp, false)
 	if not major_lines.is_empty():
 		if current_zoom < 13:
-			draw_multiline(major_lines, Color("#fdfdfb"), 2.0 * _camera_mpp, false)
+			draw_multiline(major_lines, Color("#F7F6F1"), 2.0 * _camera_mpp, false)
 		else:
-			draw_multiline(major_lines, Color("#d5d9d5"), 5.3 * _camera_mpp, false)
-			draw_multiline(major_lines, Color("#fdfdfb"), 3.8 * _camera_mpp, false)
-	if not primary_lines.is_empty(): draw_multiline(primary_lines, Color("#ffffff"), 1.8 * _camera_mpp, false)
+			draw_multiline(major_lines, Color("#E0DED7"), 5.3 * _camera_mpp, false)
+			draw_multiline(major_lines, Color("#F7F6F1"), 3.8 * _camera_mpp, false)
+	if not primary_lines.is_empty(): draw_multiline(primary_lines, Color("#FBFAF6"), 1.8 * _camera_mpp, false)
 	if not secondary_lines.is_empty():
-		draw_multiline(secondary_lines, Color("#d5d9d5"), 3.8 * _camera_mpp, false)
-		draw_multiline(secondary_lines, Color("#ffffff"), 2.3 * _camera_mpp, false)
-	if not local_lines.is_empty(): draw_multiline(local_lines, Color("#ffffff"), 1.15 * _camera_mpp, false)
+		draw_multiline(secondary_lines, Color("#E9E7E0"), 3.8 * _camera_mpp, false)
+		draw_multiline(secondary_lines, Color("#FBFAF6"), 2.3 * _camera_mpp, false)
+	if not local_lines.is_empty(): draw_multiline(local_lines, Color("#F8F7F2"), 1.15 * _camera_mpp, false)
 	var building_indices: PackedInt32Array = batches.get("buildingIndices", PackedInt32Array())
 	var building_outline: PackedVector2Array = batches.get("buildingOutline", PackedVector2Array())
 	if not building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), building_indices, batches.buildingPoints, batches.buildingColors)
-	if not building_outline.is_empty(): draw_multiline(building_outline, Color("#d8d7d2"), 0.7 * _camera_mpp, false)
+	if not building_outline.is_empty(): draw_multiline(building_outline, Color("#E5E2DA"), 0.7 * _camera_mpp, false)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	if show_road_names and current_zoom >= 15:
 		var visible_road_labels: Array[Dictionary] = []
@@ -790,7 +790,9 @@ func _draw_built_links() -> void:
 					draw_circle(cb, 10.0, Color("#ffffff")); draw_circle(cb, 7.0, Color("#297ab7"))
 	for edge in world.get("trackEdges", []):
 		var geometry: Dictionary = link_geometry_cache.get(str(edge.get("id", "")), {})
-		var local_points: Array[Vector2] = geometry.get("points", [])
+		var local_points: Array[Vector2] = []
+		for raw_point in geometry.get("points", []):
+			if raw_point is Vector2: local_points.append(raw_point)
 		if local_points.size() < 2 or not visible_local.intersects(geometry.get("bounds", Rect2())): continue
 		var points := PackedVector2Array()
 		for local_point in local_points: points.append(_local_to_screen(local_point))
@@ -1172,17 +1174,20 @@ func _draw_view_hints() -> void:
 		var warning := "站体与现有车站冲突 · 移动或旋转后再确认"
 		var font := get_theme_default_font()
 		var pos := Vector2(16, 66)
-		draw_rect(Rect2(pos - Vector2(8, 24), Vector2(font.get_string_size(warning, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x + 18, 38)), Color("#55252a"))
-		draw_string(bold_font if is_instance_valid(bold_font) else font, pos, warning, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.WHITE)
+		var warning_rect := Rect2(pos - Vector2(8, 24), Vector2(font.get_string_size(warning, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x + 18, 38))
+		draw_rect(warning_rect, Color("#F5EEDC"))
+		draw_rect(warning_rect, Color("#D9C79D"), false, 1.0, true)
+		draw_string(bold_font if is_instance_valid(bold_font) else font, pos, warning, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("#865C12"))
 	if not station_preview_issue.is_empty() and not _drag_preview.is_empty():
 		_draw_map_hint("移动预览无效：%s" % station_preview_issue)
 
 func _draw_map_hint(status: String) -> void:
 	var font := get_theme_default_font()
 	var pos := Vector2(16, 34)
-	var rect := Rect2(pos - Vector2(8, 23), Vector2(font.get_string_size(status, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 18, 32))
-	draw_rect(rect, Color("#182936"))
-	draw_string(font, pos, status, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("#e7edf0"))
+	var rect := Rect2(pos - Vector2(8, 23), Vector2(font.get_string_size(status, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x + 24, 36))
+	draw_rect(rect, Color("#FFFEFA"))
+	draw_rect(rect, Color("#DEDED7"), false, 1.0, true)
+	draw_string(font, pos, status, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("#63706A"))
 
 func _line_draft_stops() -> Array[String]:
 	var controller := get_parent()

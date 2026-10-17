@@ -37,13 +37,17 @@ func _capture() -> void:
 		await create_timer(0.5).timeout
 		if not main.map_view.base_map_features.is_empty(): break
 	for frame in range(5): await process_frame
+	await create_timer(0.22).timeout
 	var texture := root.get_texture()
 	if texture == null:
 		push_error("需要带窗口的桌面渲染来截取新手界面。")
 		quit(1)
 		return
 	var image := texture.get_image()
-	var screenshot_path := "res://docs/tutorial-preview-%dx%d.png" % [target_size.x, target_size.y]
+	var screenshot_name := "tutorial-preview-%dx%d.png" % [target_size.x, target_size.y]
+	var preview_prefix := OS.get_environment("METRO_PREVIEW_PREFIX").strip_edges()
+	if not preview_prefix.is_empty(): screenshot_name = "%s-%s" % [preview_prefix, screenshot_name]
+	var screenshot_path := "res://docs/" + screenshot_name
 	var error := image.save_png(screenshot_path)
 	if error != OK:
 		push_error("无法保存引导截图：%s" % error)

@@ -33,6 +33,9 @@ static func last_game_path() -> String:
 static func save_path(city_id: String, mode: String) -> String:
 	return save_dir().path_join("%s_%s.json" % [city_id, mode])
 
+static func auto_history_dir(city_id: String, mode: String) -> String:
+	return root_path().path_join("auto_history").path_join("%s_%s" % [city_id, mode])
+
 static func _read_valid_current_save(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path): return {"valid": false}
 	var file := FileAccess.open(path, FileAccess.READ)
@@ -84,7 +87,7 @@ static func _restore_main_from_backup_if_missing(main_path: String, backup_path:
 	if not bool(copied.get("ok", false)): return
 	DirAccess.rename_absolute(ProjectSettings.globalize_path(restore_temp), ProjectSettings.globalize_path(main_path))
 
-static func save_world(world: Dictionary) -> Dictionary:
+static func save_world(world: Dictionary, preserve_history: bool = false) -> Dictionary:
 	var validation_error := _validate_world(world)
 	if not validation_error.is_empty(): return {"ok": false, "error": validation_error}
 	var path := save_path(str(world.get("cityId", "unknown")), str(world.get("mode", "blank")))
@@ -115,7 +118,84 @@ static func save_world(world: Dictionary) -> Dictionary:
 	if replace_err != OK:
 		_restore_main_from_backup_if_missing(path, backup_path)
 		return {"ok": false, "error": "无法替换旧存档"}
-	return {"ok": true, "path": path}
+	var result := {"ok": true, "path": path}
+	if preserve_history and FileAccess.file_exists(backup_path):
+		var archived := _archive_auto_snapshot(backup_path, str(world.get("cityId", "unknown")), str(world.get("mode", "blank")))
+		if not bool(archived.get("ok", false)): result["warning"] = str(archived.get("error", "自动存档历史未更新"))
+	return result
+
+static func _archive_auto_snapshot(source_path: String, city_id: String, mode: String) -> Dictionary:
+	var checked := _read_valid_current_save(source_path)
+	if not bool(checked.get("valid", false)): return {"ok": false, "error": "上一份自动存档无效，未加入历史"}
+	var history_path := auto_history_dir(city_id, mode)
+	var absolute_dir := ProjectSettings.globalize_path(history_path)
+	var make_error := DirAccess.make_dir_recursive_absolute(absolute_dir)
+	if make_error != OK and not DirAccess.dir_exists_absolute(absolute_dir): return {"ok": false, "error": "无法创建自动存档历史目录"}
+	var stamp := Time.get_datetime_string_from_system(false, true).replace(":", "-").replace("/", "-").replace("T", "_")
+	var target := history_path.path_join("%s_%s_%s_%d.json" % [city_id, mode, stamp, Time.get_ticks_usec()])
+	var copied := _copy_file(source_path, target)
+	if not bool(copied.get("ok", false)): return copied
+	_prune_auto_history(city_id, mode)
+	return {"ok": true, "path": target}
+
+static func _prune_auto_history(city_id: String, mode: String) -> void:
+	var entries := list_auto_history(city_id, mode)
+	for index in range(3, entries.size()):
+		var path := str(entries[index].get("path", ""))
+		if not path.is_empty(): DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
+
+static func list_auto_history(city_id: String, mode: String) -> Array[Dictionary]:
+	var entries: Array[Dictionary] = []
+	var expected_dir := ProjectSettings.globalize_path(auto_history_dir(city_id, mode)).simplify_path()
+	var dir := DirAccess.open(expected_dir)
+	if dir == null: return entries
+	dir.list_dir_begin()
+	var filename := dir.get_next()
+	while not filename.is_empty():
+		if not dir.current_is_dir() and filename.to_lower().ends_with(".json"):
+			var path := auto_history_dir(city_id, mode).path_join(filename)
+			var file := FileAccess.open(path, FileAccess.READ)
+			if file != null:
+				var parsed: Variant = _parse_json_text(file.get_as_text())
+				file.close()
+				if parsed is Dictionary:
+					var prepared := prepare_loaded_world(parsed)
+					entries.append({"path": path, "valid": bool(prepared.get("ok", false)), "error": str(prepared.get("error", "")), "savedAt": Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(path), true), "modified": FileAccess.get_modified_time(path), "elapsedMinutes": int(parsed.get("simulation", {}).get("elapsedMinutes", 0)), "stationCount": parsed.get("stations", []).size(), "routeCount": parsed.get("routes", []).size()})
+		filename = dir.get_next()
+	dir.list_dir_end()
+	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		var a_modified := int(a.get("modified", 0))
+		var b_modified := int(b.get("modified", 0))
+		if a_modified != b_modified: return a_modified > b_modified
+		return str(a.get("path", "")) > str(b.get("path", ""))
+	)
+	return entries
+
+static func load_auto_history(path: String, city_id: String, mode: String) -> Dictionary:
+	var expected_dir := ProjectSettings.globalize_path(auto_history_dir(city_id, mode)).simplify_path()
+	var normalized_path := ProjectSettings.globalize_path(path).simplify_path()
+	if normalized_path.get_base_dir() != expected_dir: return {"ok": false, "status": "invalid_path", "error": "自动存档历史位置无效。"}
+	var file := FileAccess.open(normalized_path, FileAccess.READ)
+	if file == null: return {"ok": false, "status": "read_error", "error": "无法读取自动存档历史。"}
+	var parsed: Variant = _parse_json_text(file.get_as_text())
+	file.close()
+	if not parsed is Dictionary: return {"ok": false, "status": "corrupt", "error": "自动存档历史损坏。"}
+	var prepared := prepare_loaded_world(parsed)
+	if bool(prepared.get("ok", false)): prepared["historyPath"] = normalized_path
+	return prepared
+
+static func auto_history_bytes(city_id: String = "", mode: String = "") -> int:
+	var total := 0
+	var paths: Array[String] = []
+	if not city_id.is_empty():
+		for entry in list_auto_history(city_id, mode): paths.append(str(entry.get("path", "")))
+	else:
+		for city in WorldData.cities():
+			for save_mode in ["blank", "expand"]:
+				for entry in list_auto_history(str(city.get("id", "")), save_mode): paths.append(str(entry.get("path", "")))
+	for path in paths:
+		if FileAccess.file_exists(path): total += FileAccess.get_file_as_bytes(path).size()
+	return total
 
 static func _parse_json_text(source_text: String) -> Variant:
 	var parser := JSON.new()
@@ -419,8 +499,10 @@ static func migrate(data: Dictionary) -> Dictionary:
 	var simulation: Dictionary = migrated.get("simulation", {})
 	simulation["statisticsBuckets"] = simulation.get("statisticsBuckets", [])
 	simulation["journeyRecords"] = simulation.get("journeyRecords", [])
+	simulation["routeUtilizationBuckets"] = simulation.get("routeUtilizationBuckets", [])
 	while simulation.statisticsBuckets.size() > 672: simulation.statisticsBuckets.pop_front()
 	while simulation.journeyRecords.size() > 1000: simulation.journeyRecords.pop_front()
+	while simulation.routeUtilizationBuckets.size() > 672: simulation.routeUtilizationBuckets.pop_front()
 	for route in migrated.get("routes", []):
 		var inherited_headway := clampi(int(route.get("headway", 3)), 1, 60)
 		var profile: Dictionary = route.get("serviceSchedule", {})
@@ -799,9 +881,9 @@ static func _migrate_web_world(source: Dictionary) -> Dictionary:
 	var old_sim: Dictionary = source.get("simulation", {})
 	var stats: Dictionary = source.get("simStats", {})
 	var minute := int(old_sim.get("minute", source.get("timeMinutes", 420)))
-	var simulation := {"minute": posmod(minute, 1440), "elapsedMinutes": minute, "elapsedSeconds": minute * 60, "nextDepartureSeconds": {}, "trainTripsInitialized": false, "speed": 1, "paused": true, "seed": int(source.get("seed", source.get("randomSeed", 45281))), "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "peakCrowding": 0.0, "passengerBatches": [], "flowRemainders": {}, "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "crowdingSamples": [], "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": []}
+	var simulation := {"minute": posmod(minute, 1440), "elapsedMinutes": minute, "elapsedSeconds": minute * 60, "nextDepartureSeconds": {}, "trainTripsInitialized": false, "speed": 1, "paused": true, "seed": int(source.get("seed", source.get("randomSeed", 45281))), "completed": 0, "attempted": 0, "served": 0, "boarded": 0, "departed": 0, "waiting": 0, "inTransit": 0, "abandoned": 0, "unreachable": 0, "interrupted": 0, "tripMinutesTotal": 0.0, "peakCrowding": 0.0, "passengerBatches": [], "flowRemainders": {}, "capacityLoads": {}, "capacitySlot": -1, "trainTrips": [], "completedByFlow": {}, "attemptedByFlow": {}, "tripMinutesByFlow": {}, "waitingByRoute": {}, "crowdingSamples": [], "flowSamples": {}, "statisticsBuckets": [], "journeyRecords": [], "routeUtilizationBuckets": []}
 	var tutorial: Dictionary = source.get("tutorial", {})
-	var migrated := {"schemaVersion": WorldData.SAVE_VERSION, "cityId": city_id, "cityName": str(source.get("cityName", city.get("name", city_id))), "mode": mode, "dataVersion": str(source.get("mobilityVersion", source.get("dataVersion", "web-v7"))), "stations": stations, "routes": routes, "trackLinks": links, "trackNodes": [], "trackEdges": [], "depots": source.get("depots", []), "goalBoard": {"active": [], "completed": []}, "challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1}, "simulation": simulation, "legacyMetrics": {"completedEstimate": int(stats.get("served", 0)), "attemptedEstimate": int(stats.get("requested", stats.get("served", 0))), "note": "网页版本旧服务量为模型估算；新版完成量从真实到达重新统计。"}, "fleetMode": "automatic", "tutorialStep": mini(4, int(tutorial.get("step", 0))), "tutorialDone": bool(tutorial.get("completed", tutorial.get("skipped", false))), "randomSeed": int(source.get("seed", source.get("randomSeed", 45281))), "revision": int(source.get("networkRevision", 1)), "view": source.get("view", {"center": city.get("center", [0, 0]), "zoom": 12}), "history": {"undo": [], "redo": []}, "source": {"attribution": "© OpenStreetMap contributors", "license": "ODbL 1.0", "snapshot": str(city.get("sources", {}).get("snapshot", "2026-10-05"))}, "migrationNotice": "已导入网页存档并升级为版本15。车站站体按列车长度转换；原区间线位作为站序示意，复核后可逐段重建。旧版客流保留为历史估算，新版统计和实际旅程记录从导入后重新累积。网页原始 JSON 未修改，可留作恢复备份。"}
+	var migrated := {"schemaVersion": WorldData.SAVE_VERSION, "cityId": city_id, "cityName": str(source.get("cityName", city.get("name", city_id))), "mode": mode, "dataVersion": str(source.get("mobilityVersion", source.get("dataVersion", "web-v7"))), "stations": stations, "routes": routes, "trackLinks": links, "trackNodes": [], "trackEdges": [], "depots": source.get("depots", []), "goalBoard": {"active": [], "completed": []}, "challengeMode": "free", "challengeState": {"step": 0, "startedAt": -1, "completedAt": -1}, "simulation": simulation, "legacyMetrics": {"completedEstimate": int(stats.get("served", 0)), "attemptedEstimate": int(stats.get("requested", stats.get("served", 0))), "note": "网页版本旧服务量为模型估算；新版完成量从真实到达重新统计。"}, "fleetMode": "automatic", "tutorialStep": mini(4, int(tutorial.get("step", 0))), "tutorialDone": bool(tutorial.get("completed", tutorial.get("skipped", false))), "randomSeed": int(source.get("seed", source.get("randomSeed", 45281))), "revision": int(source.get("networkRevision", 1)), "view": source.get("view", {"center": city.get("center", [0, 0]), "zoom": 12}), "history": {"undo": [], "redo": []}, "source": {"attribution": "© OpenStreetMap contributors", "license": "ODbL 1.0", "snapshot": str(city.get("sources", {}).get("snapshot", "2026-10-05"))}, "migrationNotice": "已导入网页存档并升级为版本16。车站站体按列车长度转换；原区间线位作为站序示意，复核后可逐段重建。旧版客流保留为历史估算，新版统计和实际旅程记录从导入后重新累积。网页原始 JSON 未修改，可留作恢复备份。"}
 	migrated["planningPhases"] = [{"id":"phase_1", "name":"一期建设", "createdAt":minute, "routeIds":[], "stationIds":[], "edgeIds":[], "flowIds":[]}]
 	migrated["currentPlanningPhaseId"] = "phase_1"
 	for station in stations:
@@ -836,11 +918,192 @@ static func save_exists(city_id: String, mode: String) -> bool:
 	var path := save_path(city_id, mode)
 	return FileAccess.file_exists(path) or FileAccess.file_exists(path + ".bak")
 
+static func manual_saves_dir() -> String:
+	return root_path().path_join("manual_saves")
+
+static func save_manual_snapshot(world: Dictionary, requested_name: String) -> Dictionary:
+	var validation_error := _validate_world(world)
+	if not validation_error.is_empty(): return {"ok": false, "error": validation_error}
+	var label := _sanitize_manual_name(requested_name)
+	if label.is_empty(): return {"ok": false, "error": "请先输入手动存档名称。"}
+	var directory := ProjectSettings.globalize_path(manual_saves_dir())
+	var directory_error := DirAccess.make_dir_recursive_absolute(directory)
+	if directory_error != OK and not DirAccess.dir_exists_absolute(directory):
+		return {"ok": false, "error": "无法创建手动存档目录。"}
+	var stamp := Time.get_datetime_string_from_system(false, true).replace(":", "-").replace("/", "-").replace("T", "_")
+	var city_id := str(world.get("cityId", "city"))
+	var mode := str(world.get("mode", "blank"))
+	var filename := "%s_%s_%s_%d_%s.json" % [city_id, mode, stamp, Time.get_ticks_usec(), label]
+	var path := manual_saves_dir().path_join(filename)
+	var snapshot := world.duplicate(true)
+	snapshot["_manualSave"] = {"name": label, "savedAt": Time.get_datetime_string_from_system(false, true)}
+	var result := _write_export(path, snapshot)
+	if bool(result.get("ok", false)):
+		result["name"] = label
+		result["cityName"] = str(world.get("cityName", city_id))
+		result["mode"] = mode
+	return result
+
+static func _sanitize_manual_name(requested_name: String) -> String:
+	var label := requested_name.strip_edges().left(48)
+	for forbidden in ["/", "\\", ":", "*", "?", "\"", "<", ">", "|"]:
+		label = label.replace(str(forbidden), "_")
+	return label.replace("..", "_").strip_edges()
+
+static func _replace_manual_snapshot_atomic(path: String, snapshot: Dictionary) -> Dictionary:
+	var temp_path := path + ".tmp"
+	var backup_path := path + ".replace-%d.bak" % Time.get_ticks_usec()
+	var file := FileAccess.open(temp_path, FileAccess.WRITE)
+	if file == null: return {"ok": false, "error": "无法写入手动存档临时文件。"}
+	file.store_string(JSON.stringify(snapshot, "\t"))
+	file.flush()
+	var write_error := file.get_error()
+	file.close()
+	if write_error != OK: return {"ok": false, "error": "手动存档未能完整写入。"}
+	var hold_error := DirAccess.rename_absolute(ProjectSettings.globalize_path(path), ProjectSettings.globalize_path(backup_path))
+	if hold_error != OK: return {"ok": false, "error": "无法安全暂存原手动存档。"}
+	var replace_error := DirAccess.rename_absolute(ProjectSettings.globalize_path(temp_path), ProjectSettings.globalize_path(path))
+	if replace_error != OK:
+		DirAccess.rename_absolute(ProjectSettings.globalize_path(backup_path), ProjectSettings.globalize_path(path))
+		return {"ok": false, "error": "手动存档替换失败，原文件已恢复。"}
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(backup_path))
+	return {"ok": true, "path": path}
+
+static func rename_manual_snapshot(path: String, requested_name: String) -> Dictionary:
+	var expected_dir := ProjectSettings.globalize_path(manual_saves_dir()).simplify_path()
+	var normalized_path := ProjectSettings.globalize_path(path).simplify_path()
+	if normalized_path.get_base_dir() != expected_dir: return {"ok": false, "error": "手动存档位置无效。"}
+	var label := _sanitize_manual_name(requested_name)
+	if label.is_empty(): return {"ok": false, "error": "请先输入手动存档名称。"}
+	var file := FileAccess.open(normalized_path, FileAccess.READ)
+	if file == null: return {"ok": false, "error": "无法读取这份手动存档。"}
+	var parsed: Variant = _parse_json_text(file.get_as_text())
+	file.close()
+	if not parsed is Dictionary or not parsed.get("_manualSave", {}) is Dictionary: return {"ok": false, "error": "手动存档内容损坏，未修改原文件。"}
+	var snapshot: Dictionary = parsed
+	var metadata: Dictionary = snapshot.get("_manualSave", {})
+	var checked := snapshot.duplicate(true)
+	checked.erase("_manualSave")
+	var valid := prepare_loaded_world(checked)
+	if not bool(valid.get("ok", false)): return {"ok": false, "error": str(valid.get("error", "手动存档校验失败"))}
+	metadata["name"] = label
+	metadata["renamedAt"] = Time.get_datetime_string_from_system(false, true)
+	snapshot["_manualSave"] = metadata
+	var replaced := _replace_manual_snapshot_atomic(normalized_path, snapshot)
+	if bool(replaced.get("ok", false)): replaced["name"] = label
+	return replaced
+
+static func overwrite_manual_snapshot(path: String, world: Dictionary, requested_name: String) -> Dictionary:
+	var expected_dir := ProjectSettings.globalize_path(manual_saves_dir()).simplify_path()
+	var normalized_path := ProjectSettings.globalize_path(path).simplify_path()
+	if normalized_path.get_base_dir() != expected_dir: return {"ok": false, "error": "手动存档位置无效。"}
+	var validation_error := _validate_world(world)
+	if not validation_error.is_empty(): return {"ok": false, "error": validation_error}
+	var label := _sanitize_manual_name(requested_name)
+	if label.is_empty(): return {"ok": false, "error": "请先输入手动存档名称。"}
+	var file := FileAccess.open(normalized_path, FileAccess.READ)
+	if file == null: return {"ok": false, "error": "无法读取原手动存档。"}
+	var old: Variant = _parse_json_text(file.get_as_text())
+	file.close()
+	if not old is Dictionary or str(old.get("cityId", "")) != str(world.get("cityId", "")) or str(old.get("mode", "")) != str(world.get("mode", "")):
+		return {"ok": false, "error": "只能覆盖相同城市与开局的命名存档。"}
+	var snapshot := world.duplicate(true)
+	snapshot["_manualSave"] = {"name": label, "savedAt": Time.get_datetime_string_from_system(false, true)}
+	var replaced := _replace_manual_snapshot_atomic(normalized_path, snapshot)
+	if bool(replaced.get("ok", false)): replaced["name"] = label
+	return replaced
+
+static func list_manual_snapshots() -> Array[Dictionary]:
+	var entries: Array[Dictionary] = []
+	var directory := ProjectSettings.globalize_path(manual_saves_dir())
+	var dir := DirAccess.open(directory)
+	if dir == null: return entries
+	dir.list_dir_begin()
+	var filename := dir.get_next()
+	while not filename.is_empty():
+		if not dir.current_is_dir() and filename.to_lower().ends_with(".json"):
+			var path := manual_saves_dir().path_join(filename)
+			var file := FileAccess.open(path, FileAccess.READ)
+			if file != null:
+				var parsed: Variant = _parse_json_text(file.get_as_text())
+				file.close()
+				var metadata_value: Variant = parsed.get("_manualSave", {}) if parsed is Dictionary else {}
+				var metadata: Dictionary = metadata_value if metadata_value is Dictionary else {}
+				var city_id := str(parsed.get("cityId", "")) if parsed is Dictionary else ""
+				var city := WorldData.city(city_id)
+				var valid := false
+				var error_text := "手动存档内容损坏。"
+				if parsed is Dictionary and metadata_value is Dictionary and not city_id.is_empty():
+					var candidate: Dictionary = parsed.duplicate(true)
+					candidate.erase("_manualSave")
+					var checked := prepare_loaded_world(candidate)
+					valid = bool(checked.get("ok", false))
+					error_text = "" if valid else str(checked.get("error", error_text))
+				entries.append({
+					"path": path,
+					"name": str(metadata.get("name", filename.get_basename())),
+					"savedAt": str(metadata.get("savedAt", "")),
+					"cityId": city_id,
+					"cityName": str(parsed.get("cityName", city.get("name", city_id))) if parsed is Dictionary else "未知城市",
+					"mode": str(parsed.get("mode", "blank")) if parsed is Dictionary else "blank",
+					"elapsedMinutes": int(parsed.get("simulation", {}).get("elapsedMinutes", 0)) if parsed is Dictionary else 0,
+					"stationCount": parsed.get("stations", []).size() if parsed is Dictionary else 0,
+					"routeCount": parsed.get("routes", []).size() if parsed is Dictionary else 0,
+					"sizeBytes": FileAccess.get_file_as_bytes(path).size(),
+					"valid": valid,
+					"error": error_text
+				})
+		filename = dir.get_next()
+	dir.list_dir_end()
+	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return str(a.get("savedAt", "")) > str(b.get("savedAt", "")))
+	return entries
+
+static func manual_storage_bytes() -> int:
+	var total := 0
+	for entry in list_manual_snapshots(): total += int(entry.get("sizeBytes", 0))
+	return total
+
+static func load_manual_snapshot(path: String) -> Dictionary:
+	var expected_dir := ProjectSettings.globalize_path(manual_saves_dir()).simplify_path()
+	var normalized_path := ProjectSettings.globalize_path(path).simplify_path()
+	if normalized_path.get_base_dir() != expected_dir:
+		return {"ok": false, "status": "invalid_path", "error": "手动存档位置无效。"}
+	var file := FileAccess.open(normalized_path, FileAccess.READ)
+	if file == null: return {"ok": false, "status": "read_error", "error": "无法读取这份手动存档。"}
+	var parsed: Variant = _parse_json_text(file.get_as_text())
+	file.close()
+	if not parsed is Dictionary: return {"ok": false, "status": "corrupt", "error": "手动存档内容损坏；文件未修改。"}
+	var metadata_value: Variant = parsed.get("_manualSave", {})
+	if not metadata_value is Dictionary:
+		return {"ok": false, "status": "corrupt", "error": "手动存档名称信息损坏；文件未修改。"}
+	var metadata: Dictionary = metadata_value
+	parsed.erase("_manualSave")
+	var prepared := prepare_loaded_world(parsed)
+	if bool(prepared.get("ok", false)):
+		var restored_world: Dictionary = prepared.get("world", {})
+		if restored_world.get("simulation", {}) is Dictionary:
+			restored_world.simulation.paused = true
+			prepared["world"] = restored_world
+		prepared["manualSaveName"] = str(metadata.get("name", normalized_path.get_file().get_basename()))
+		prepared["manualSavePath"] = normalized_path
+	return prepared
+
+static func delete_manual_snapshot(path: String) -> Dictionary:
+	var expected_dir := ProjectSettings.globalize_path(manual_saves_dir()).simplify_path()
+	var normalized_path := ProjectSettings.globalize_path(path).simplify_path()
+	if normalized_path.get_base_dir() != expected_dir:
+		return {"ok": false, "error": "手动存档位置无效。"}
+	if not FileAccess.file_exists(normalized_path): return {"ok": false, "error": "手动存档已经不存在。"}
+	var remove_error := DirAccess.remove_absolute(normalized_path)
+	if remove_error != OK: return {"ok": false, "error": "无法删除这份手动存档。"}
+	return {"ok": true}
+
 static func saves_root_path() -> String:
 	return ProjectSettings.globalize_path(save_dir())
 
 static func export_world(world: Dictionary, on_result: Callable = Callable()) -> void:
 	var dialog := FileDialog.new()
+	_apply_app_theme(dialog)
 	dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	dialog.access = FileDialog.ACCESS_FILESYSTEM
 	dialog.add_filter("*.json ; Metro Atlas 保存文件")
@@ -932,6 +1195,7 @@ static func _validate_world(data: Dictionary) -> String:
 
 static func import_world(on_loaded: Callable, on_error: Callable = Callable()) -> void:
 	var dialog := FileDialog.new()
+	_apply_app_theme(dialog)
 	dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	dialog.access = FileDialog.ACCESS_FILESYSTEM
 	dialog.add_filter("*.json ; Metro Atlas 保存文件")
@@ -958,3 +1222,11 @@ static func import_world(on_loaded: Callable, on_error: Callable = Callable()) -
 	)
 	Engine.get_main_loop().root.add_child(dialog)
 	dialog.popup_centered_ratio(0.65)
+
+static func _apply_app_theme(dialog: Window) -> void:
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return
+	var app := tree.root.get_node_or_null("Main") as Control
+	if app != null:
+		dialog.theme = app.theme

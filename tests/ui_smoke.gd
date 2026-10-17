@@ -37,6 +37,7 @@ func _run() -> void:
 	_assert(road_labels.size() == 3, "相距较远的同名道路仍能保留名称，标签数量受控")
 	var menu_card: Control = main.menu_layer.get_node("MenuCard")
 	var menu_content: Control = menu_card.get_node("MenuBodyScroll/MenuContent")
+	_assert(_find_button(main.menu_layer, "存档中心") != null and _find_button(main.menu_layer, "命名存档") != null, "主菜单提供统一存档中心与命名存档入口")
 	var menu_center: Vector2 = menu_card.global_position + menu_card.size * 0.5
 	_assert(absf(menu_center.x - main.get_viewport_rect().size.x * 0.5) < 2.0 and absf(menu_center.y - main.get_viewport_rect().size.y * 0.5) < 2.0, "主菜单卡片在不同窗口尺寸下保持视口居中")
 	_assert(menu_content.size.x >= menu_card.size.x * 0.82, "主菜单内容横向铺满卡片，不再挤在左侧")
@@ -53,7 +54,11 @@ func _run() -> void:
 		var settings_scroll: ScrollContainer = settings_dialog.get_child(0) as ScrollContainer
 		_assert(settings_scroll != null and settings_scroll.custom_minimum_size.x >= 600.0, "高缩放设置窗口保留足够文字排版宽度")
 		if settings_scroll != null and settings_scroll.get_child_count() > 0:
-			_assert(settings_scroll.get_child(0).size.x >= settings_scroll.size.x - 2.0, "设置说明随窗口宽度展开，避免窄列逐字换行")
+			var settings_content: Control = settings_scroll.get_child(0)
+			_assert(settings_content.size.x >= settings_scroll.size.x - 2.0, "设置说明随窗口宽度展开，避免窄列逐字换行")
+			_assert(_find_button(settings_content, "启用定时自动存档") != null, "设置页提供定时自动存档开关")
+			_assert(_find_button(settings_content, "启用轻量界面淡入动效") != null, "设置页提供界面动效开关")
+			_assert(_contains_label_text(settings_content, "现实时间") and _contains_label_text(settings_content, "手动存档会另存"), "自动存档设置明确说明计时方式与手动副本")
 		settings_dialog.queue_free()
 	await process_frame
 	main._apply_ui_scale(1.75, true)
@@ -76,6 +81,63 @@ func _run() -> void:
 	state.tutorialDone = true
 	main._load_world(state)
 	await process_frame
+	var timer_interval_before: int = int(main.timed_autosave_interval_minutes)
+	var timer_enabled_before: bool = bool(main.timed_autosave_enabled)
+	var timer_elapsed_before := int(main.world.simulation.get("elapsedMinutes", 420))
+	main.timed_autosave_enabled = true
+	main.timed_autosave_interval_minutes = 2
+	main.autosave_elapsed_seconds = 0.0
+	main.save_dirty = true
+	main._process(119.0)
+	_assert(main.save_dirty and is_equal_approx(main.autosave_elapsed_seconds, 119.0), "定时自动存档在间隔到达前不会提前写入")
+	main._process(2.0)
+	var timed_saved := SaveManager.load_world("shanghai", "blank")
+	_assert(not main.save_dirty and bool(timed_saved.get("ok", false)), "达到现实时间间隔后自动保存并清除未保存状态")
+	_assert(int(main.world.simulation.get("elapsedMinutes", 420)) == timer_elapsed_before, "暂停期间定时保存不会推进游戏时间")
+	main.timed_autosave_enabled = timer_enabled_before
+	main.timed_autosave_interval_minutes = timer_interval_before
+	main._show_save_menu()
+	var save_center: AcceptDialog
+	for child in main.get_children():
+		if child is AcceptDialog and child.title == "存档中心": save_center = child
+	var save_tabs: TabContainer = save_center.find_child("SaveCenterTabs", true, false) as TabContainer if save_center != null else null
+	_assert(save_tabs != null and save_tabs.get_child_count() == 2 and _find_button(save_center, "新建命名存档") != null, "统一存档中心提供自动与命名存档分页及新建入口")
+	if save_center != null: save_center.queue_free()
+	await process_frame
+	main._prompt_manual_save()
+	var manual_save_dialog: ConfirmationDialog
+	for child in main.get_children():
+		if child is ConfirmationDialog and child.title == "新建手动存档": manual_save_dialog = child
+	var manual_name_edit: LineEdit = _find_line_edit(manual_save_dialog) if manual_save_dialog != null else null
+	_assert(manual_name_edit != null, "手动存档窗口提供可编辑名称")
+	var ui_manual_path := ""
+	if manual_save_dialog != null and manual_name_edit != null:
+		manual_name_edit.text = "UI流程检查存档"
+		manual_save_dialog.confirmed.emit()
+		await process_frame
+		for entry in SaveManager.list_manual_snapshots():
+			if str(entry.get("name", "")) == "UI流程检查存档": ui_manual_path = str(entry.get("path", ""))
+	_assert(not ui_manual_path.is_empty() and FileAccess.file_exists(ui_manual_path), "确认后创建独立命名的手动存档")
+	main._show_manual_load_menu()
+	await process_frame
+	var manual_save_center: AcceptDialog
+	for child in main.get_children():
+		if child is AcceptDialog and child.title == "存档中心": manual_save_center = child
+	var manual_tabs: TabContainer = manual_save_center.find_child("SaveCenterTabs", true, false) as TabContainer if manual_save_center != null else null
+	var manual_page: Control = manual_save_center.find_child("ManualSaves", true, false) as Control if manual_save_center != null else null
+	_assert(manual_tabs != null and manual_tabs.current_tab == 1 and manual_page != null and manual_page.size.y > 0.0 and _contains_label_text(manual_page, "UI流程检查存档"), "存档中心命名页可见并列出已保存的进度")
+	var load_manual_button := _find_button(manual_page, "载入")
+	if load_manual_button != null:
+		load_manual_button.pressed.emit()
+		await process_frame
+	var manual_load_confirmation: ConfirmationDialog
+	for child in main.get_children():
+		if child is ConfirmationDialog and child.title == "载入手动存档？": manual_load_confirmation = child
+	_assert(manual_load_confirmation != null and str(manual_load_confirmation.dialog_text).contains("UI流程检查存档"), "选择手动存档后显示载入确认及目标名称")
+	if manual_load_confirmation != null:
+		manual_load_confirmation.canceled.emit()
+		manual_load_confirmation.queue_free()
+	if not ui_manual_path.is_empty(): SaveManager.delete_manual_snapshot(ui_manual_path)
 	main.left_tab = "tasks"
 	main.world["challengeMode"] = "neighborhood"
 	main._refresh_left_panel()
@@ -103,18 +165,27 @@ func _run() -> void:
 	main.map_view.draft_station.clear()
 	main._refresh_onboarding_card()
 	await process_frame
-	var guide_action := _find_button(main.onboarding_panel, "定位当前教学对象")
-	_assert(guide_action != null and not guide_action.disabled, "教学主按钮只定位教学对象，底栏车站工具仍需玩家操作")
+	var guide_focus: Dictionary = main._onboarding_focus_spec()
+	_assert(str(guide_focus.get("kind", "")) == "map" and str(guide_focus.get("message", "")).contains("附近"), "教程直接聚焦推荐站址区域，而不是用教学卡按钮代替操作")
+	_assert(main.tutorial_spotlight.active and main.tutorial_spotlight.mouse_filter == Control.MOUSE_FILTER_IGNORE, "教程聚焦层压暗其他界面且保持鼠标点击穿透")
+	_assert(_find_button(main.onboarding_panel, "定位当前教学对象") == null, "教学卡不再显示大号定位按钮")
+	main.map_view.draft_station = {"id":"tutorial-draft", "name":"教学预览站", "latlng":[31.2304, 121.4768], "heading":90.0, "lengthM":118.8, "widthM":20.0, "vehicleId":"B-6", "routeIds":[]}
+	main._refresh_tools()
+	guide_focus = main._onboarding_focus_spec()
+	_assert(str(guide_focus.get("key", "")) == "confirm_station" and is_instance_valid(main.tutorial_targets.get("confirm_station")), "站体预览后焦点跟随到底栏真实确认按钮")
 	guide.step = 3
-	main.current_tool = "track"
-	main.map_view.tool = "track"
+	main.current_tool = "select"
+	main.map_view.tool = "select"
+	main.map_view.draft_station.clear()
 	main._refresh_onboarding_card()
+	main._refresh_tools()
 	await process_frame
-	guide_action = _find_button(main.onboarding_panel, "定位当前教学对象")
-	_assert(guide_action != null and not guide_action.disabled, "铺轨步骤主按钮仍只定位；端点选择由地图和底栏工具完成")
+	guide_focus = main._onboarding_focus_spec()
+	_assert(str(guide_focus.get("key", "")) == "tool_track", "铺轨教学聚焦真实底栏轨道工具")
 	main.world["onboarding"] = original_onboarding
 	main.current_tool = original_tool
 	main.map_view.tool = original_tool
+	main.map_view.draft_station.clear()
 	main._refresh_onboarding_card()
 	main._refresh_tools()
 	await process_frame
@@ -124,24 +195,58 @@ func _run() -> void:
 	main.add_child(scaled_label)
 	for scale in [1.0, 1.25, 1.5, 1.75]:
 		main._apply_ui_scale(scale)
-		_assert(main.map_view.ui_scale == scale and main._theme.default_font_size == roundi(18.0 * scale), "界面缩放 %d%% 会同步调整正文与控件" % roundi(scale * 100.0))
-		_assert(scaled_label.get_theme_font_size("font_size") == roundi(15.0 * scale), "界面缩放 %d%% 会同步调整辅助文字" % roundi(scale * 100.0))
+		_assert(main.map_view.ui_scale == scale and main._theme.default_font_size == roundi(16.0 * scale), "界面缩放 %d%% 会同步调整正文与控件" % roundi(scale * 100.0))
+		_assert(scaled_label.get_theme_font_size("font_size") == roundi(14.0 * scale), "界面缩放 %d%% 会同步调整辅助文字" % roundi(scale * 100.0))
 		_assert(main.map_view.current_zoom == initial_zoom, "界面缩放与地图镜头级别相互独立")
 		var logical_width: float = main.get_viewport_rect().size.x / scale
-		_assert(main._layout_narrow == (logical_width < 1440.0 or scale >= 1.5), "窄窗口或放大界面后侧栏按空间自动收起")
-		var wants_two_rows: bool = logical_width < 1760.0 or scale >= 1.25
+		_assert(main._layout_narrow == (logical_width < 1100.0), "逻辑宽度不足 1100 时侧栏自动收起")
+		var wants_two_rows: bool = logical_width < 1440.0
 		_assert((main._top_actions.get_parent() == main._top_content) == wants_two_rows, "顶部运行栏按宽度自动换行为一行或两行")
 		if scale == 1.75:
 			var saved_onboarding: Dictionary = main.world.get("onboarding", {}).duplicate(true)
 			var layout_onboarding := OnboardingScript.create_state("shanghai", "blank", false)
 			layout_onboarding.active = true
+			layout_onboarding.step = 1
 			main.world["onboarding"] = layout_onboarding
+			main.current_tool = "select"
+			main.map_view.tool = "select"
 			main._refresh_onboarding_card()
 			await process_frame
 			_assert(not main._mode_badge.visible, "窄屏高缩放时隐藏重复模式标签，避免顶部栏换行溢出")
 			_assert(main.onboarding_panel.size.y <= main.map_view.size.y - 8.0, "175%缩放时教学卡完整留在地图区域，不被底栏遮挡")
+			var focus_spec: Dictionary = main._onboarding_focus_spec()
+			_assert(str(focus_spec.get("key", "")) == "tool_station" and main.tutorial_spotlight.active, "175%缩放时教程仍聚焦真实车站工具")
+			var focus_button: Control = main.tutorial_targets.get("tool_station")
+			_assert(is_instance_valid(focus_button) and Rect2(Vector2.ZERO, main.get_viewport_rect().size).intersects(focus_button.get_global_rect()), "缩放后教学焦点重新定位到可见工具")
 			main.world["onboarding"] = saved_onboarding
+			main.current_tool = original_tool
+			main.map_view.tool = original_tool
 			main._refresh_onboarding_card()
+	var layout_original_onboarding: Dictionary = main.world.get("onboarding", {}).duplicate(true)
+	var layout_guide := OnboardingScript.create_state("shanghai", "blank", false)
+	layout_guide.active = true
+	layout_guide.step = 1
+	main.world["onboarding"] = layout_guide
+	main.current_tool = "select"
+	main.map_view.tool = "select"
+	main._refresh_onboarding_card()
+	main._refresh_tools()
+	for window_size in [Vector2i(1366, 768), Vector2i(1600, 980), Vector2i(1920, 1080)]:
+		root.size = window_size
+		for scale in [1.0, 1.25, 1.5, 1.75]:
+			main._apply_ui_scale(scale)
+			await process_frame
+			await process_frame
+			main._update_tutorial_spotlight()
+			var focus_button: Control = main.tutorial_targets.get("tool_station")
+			var viewport_rect := Rect2(Vector2.ZERO, main.get_viewport_rect().size)
+			_assert(main.tutorial_spotlight.active and is_instance_valid(focus_button) and viewport_rect.intersects(focus_button.get_global_rect()), "教程在 %d×%d、%d%% 下仍聚焦可见的真实车站工具" % [window_size.x, window_size.y, roundi(scale * 100.0)])
+			_assert(viewport_rect.intersects(main.tutorial_spotlight.target_rect), "教程提示目标在 %d×%d、%d%% 下保持在窗口内" % [window_size.x, window_size.y, roundi(scale * 100.0)])
+	main.world["onboarding"] = layout_original_onboarding
+	main.current_tool = original_tool
+	main.map_view.tool = original_tool
+	main._refresh_onboarding_card()
+	main._refresh_tools()
 	root.size = Vector2i(1366, 768)
 	main._apply_ui_scale(1.75)
 	await process_frame
@@ -180,9 +285,9 @@ func _run() -> void:
 	root.size = Vector2i(1366, 768)
 	main._update_responsive_layout()
 	main._select_object("station", first_id)
-	_assert(main._right_requested and not main._left_requested, "窄窗口选择车站时详情抽屉会互斥打开")
+	_assert(main._right_requested and main._left_requested and not main._layout_narrow, "1366逻辑宽度下详情抽屉覆盖地图，线路侧栏保持停靠")
 	main._on_map_clicked([], "", "", "")
-	_assert(not main._right_requested and not main._left_requested, "窄窗口点击地图空白可以收起抽屉")
+	_assert(not main._right_requested and main._left_requested, "1366逻辑宽度下点击地图空白会收起详情抽屉")
 	root.size = Vector2i(1600, 980)
 	main._update_responsive_layout()
 	_assert(main.world.routes.is_empty(), "空白开局可以先建站，不会强制创建运营线路")
@@ -308,12 +413,39 @@ func _run() -> void:
 	_assert(main.world.routes.size() == 1, "物理轨网完成后才创建运营线路")
 	var route: Dictionary = WorldData.find_route(main.world, main.active_route_id)
 	_assert(bool(route.get("networkBased", false)) and route.get("stationOrder", []).size() == 2, "运营线路引用连续轨网和停站顺序")
+	var status_unoperated: Dictionary = main._station_service_status(first_station)
+	_assert(str(status_unoperated.get("text", "")).begins_with("已接轨"), "车站详情明确区分已接轨与尚未运营")
 	var route_path: Dictionary = RoutePathScript.for_route(route, main.world, ref_lat)
 	_assert(bool(route_path.get("valid", false)), "线路路径与物理轨网共享同一几何结果")
 	var curved_segment: Dictionary = route_path.directions[0].segments[0]
 	_assert(float(curved_segment.get("minimumCurveRadiusM", INF)) < INF and float(curved_segment.get("curveSpeedLimitKmh", -1.0)) > 0.0, "曲线半径参与计算并生成标注为游戏估算的限速")
 	var locked_path: Array = route.get("directions", [])[0].get("edgePathsBySegment", [])[0]
 	_assert(locked_path.size() == 1 and str(locked_path[0].get("id", "")) == edge_id, "运营线路保存创建时确认的有序轨道走向")
+	var extension_center := Geo.from_local(Geo.local_m(second_ll, ref_lat) + Vector2(720.0, 0.0), ref_lat)
+	var extension_station := WorldData.create_station(main.world, extension_center, 90.0, "", "B-6", -15.0)
+	TrackNetwork.ensure_station_nodes(main.world)
+	var extension_edge_id := "extension-test-edge"
+	main.world.trackEdges.append({"id":extension_edge_id, "aNodeId":TrackNetwork.station_node_id(second_station, "end"), "bNodeId":TrackNetwork.station_node_id(extension_station, "start"), "geometry":"straight", "depthM":-15.0, "routeIds":[]})
+	main._begin_route_extension(str(route.get("id", "")), false)
+	main.line_draft_stops.append(str(extension_station.get("id", "")))
+	main._ensure_line_draft_path_options()
+	main._update_line_draft_preview()
+	main._confirm_operating_line()
+	var extended_route: Dictionary = WorldData.find_route(main.world, str(route.get("id", "")))
+	_assert(str(extended_route.get("id", "")) == str(route.get("id", "")) and extended_route.get("stationOrder", []).size() == 3, "从终点扩建会保留原线路身份并增加停站")
+	_assert(not bool(extended_route.get("open", true)) and bool(RoutePathScript.for_route(extended_route, main.world, ref_lat).get("valid", false)), "线路扩建保存完整新走向并要求玩家检查后重新开通")
+	main._do_undo()
+	var undone_extension: Dictionary = WorldData.find_route(main.world, str(route.get("id", "")))
+	_assert(undone_extension.get("stationOrder", []).size() == 2, "线路延伸作为一个完整撤销步骤")
+	main._do_redo()
+	var redone_extension: Dictionary = WorldData.find_route(main.world, str(route.get("id", "")))
+	_assert(redone_extension.get("stationOrder", []).size() == 3, "线路延伸支持重做")
+	main._do_undo()
+	main.world.trackEdges = main.world.trackEdges.filter(func(edge: Dictionary): return str(edge.get("id", "")) != extension_edge_id)
+	main.world.stations = main.world.stations.filter(func(station: Dictionary): return str(station.get("id", "")) != str(extension_station.get("id", "")))
+	main.world.trackNodes = main.world.trackNodes.filter(func(node: Dictionary): return str(node.get("stationId", "")) != str(extension_station.get("id", "")))
+	route = WorldData.find_route(main.world, str(route.get("id", "")))
+	main._refresh_left_panel()
 	var shortcut := {"id": "audit_shortcut", "aNodeId": WorldData.find_station(main.world, first_id).get("endpointNodes", {}).get("B", ""), "bNodeId": WorldData.find_station(main.world, second_id).get("endpointNodes", {}).get("A", ""), "geometry": "straight", "depthM": -15.0, "routeIds": []}
 	main.world.trackEdges.append(shortcut)
 	var route_path_after_shortcut: Dictionary = RoutePathScript.for_route(route, main.world, ref_lat)
@@ -495,6 +627,13 @@ func _find_button(root_node: Node, label: String) -> Button:
 		return root_node as Button
 	for child in root_node.get_children():
 		var found := _find_button(child, label)
+		if found != null: return found
+	return null
+
+func _find_line_edit(root_node: Node) -> LineEdit:
+	if root_node is LineEdit: return root_node as LineEdit
+	for child in root_node.get_children():
+		var found := _find_line_edit(child)
 		if found != null: return found
 	return null
 

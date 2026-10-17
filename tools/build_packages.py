@@ -117,6 +117,10 @@ def main() -> None:
         distribution_files = [
             (staged_exe, "造一座地铁.exe"),
             (staged_readme, "README.txt"),
+            (ROOT / ".interface-design" / "system.md", ".interface-design/system.md"),
+            (ROOT / "DESIGN.md", "DESIGN.md"),
+            (ROOT / "PRODUCT.md", "PRODUCT.md"),
+            (ROOT / "docs" / "interface-references.md", "docs/interface-references.md"),
             (RELEASE / "LICENSES.txt", "LICENSES.txt"),
             (ROOT / "THIRD_PARTY_NOTICES.txt", "THIRD_PARTY_NOTICES.txt"),
             (RELEASE / "OFL.txt", "OFL.txt"),
@@ -131,6 +135,7 @@ def main() -> None:
                 raise FileNotFoundError(f"Missing release content: {source}")
 
         previews = [
+            "docs/0.16-ui-preview-1600x980.png",
             "docs/route-repair-0.13.5.jpg",
             "docs/menu-preview-1366x768.png",
             "docs/menu-preview-1600x980.png",
@@ -139,6 +144,17 @@ def main() -> None:
             "docs/ui-preview-1920x1080.png",
             "docs/tutorial-preview-1366x768.png",
             "docs/tutorial-preview-1600x980.png",
+            "docs/redesign-menu-preview-1366x768.png",
+            "docs/redesign-menu-preview-1600x980.png",
+            "docs/redesign-ui-preview-1366x768.png",
+            "docs/redesign-ui-preview-1600x980.png",
+            "docs/redesign-ui-preview-1920x1080.png",
+            "docs/redesign-tutorial-preview-1600x980.png",
+            "docs/redesign-new-city-1600x980.png",
+            "docs/redesign-stats-preview-1600x980.png",
+            "docs/redesign-save-center-preview-1600x980.png",
+            "docs/redesign-save-center-automatic-1600x980.png",
+            "docs/redesign-save-center-automatic-1366x768-175.png",
         ]
         with ZipFile(staged_zip, "w", ZIP_DEFLATED, compresslevel=7) as archive:
             for source, archive_name in distribution_files:
