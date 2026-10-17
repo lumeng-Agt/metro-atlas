@@ -79,7 +79,7 @@ static func blueprint(world: Dictionary, show_previous: bool = false) -> Diction
 		var a:Dictionary=map.get(str(connection.fromId),{});var b:Dictionary=map.get(str(connection.toId),{})
 		if not a.is_empty() and not b.is_empty():corridors.append({"points":[a.latlng,b.latlng],"targets":[a,b],"precision":"schematic"})
 	var state: Dictionary = world.get("storyState", {})
-	if bool(state.get("tutorialEnabled", true)) and not bool(state.get("learnedTools", false)) and plan_is_final(world):
+	if StoryTutorial.active(world) and not bool(state.get("learnedTools", false)) and plan_is_final(world):
 		stations = stations.slice(0, 2)
 		var visible_ids:Array=stations.map(func(target:Dictionary):return str(target.id))
 		for corridor in corridors:
@@ -161,7 +161,7 @@ static func evaluate(world: Dictionary) -> Dictionary:
 					if nearest > float(group.get("alignmentToleranceM",80)):
 						issues.append({"text":"区间明显偏离已核验参考走廊。","kind":"station","objectId":str(ids[i])});group_valid=false;break
 			paths.append(ordered)
-		var route := {"id":"historical_%s" % str(group.get("historicalLineId", group.get("name","line"))),"name":str(group.get("name","线路")),"color":str(group.get("color","#36769c")),"stationOrder":ids,"networkBased":true,"vehicleId":str(group.get("vehicleId","B-6")),"open":bool(ch.get("requireOpen",true)),"directions":[{"id":"forward","stationIds":ids,"edgePathsBySegment":paths}],"historicalLineId":str(group.get("historicalLineId",group.get("name","line"))),"chapterId":str(ch.get("id",""))}
+		var route := {"id":"historical_%s" % str(group.get("historicalLineId", group.get("name","line"))),"name":str(group.get("name","线路")),"color":str(group.get("color","#36769c")),"stationOrder":ids,"networkBased":true,"vehicleId":str(group.get("vehicleId",profile(world).get("vehicleId","historical-schematic"))),"open":bool(ch.get("requireOpen",true)),"directions":[{"id":"forward","stationIds":ids,"edgePathsBySegment":paths}],"historicalLineId":str(group.get("historicalLineId",group.get("name","line"))),"chapterId":str(ch.get("id",""))}
 		if group_valid and paths.size()==maxi(0,ids.size()-1):
 			var canonical := Paths.for_route(route,world,reference_lat)
 			if not bool(canonical.get("valid",false)):
@@ -180,6 +180,7 @@ static func commit_chapter(world: Dictionary, expected_revision: int) -> Diction
 	var state: Dictionary = world.storyState
 	var ch := chapter(world)
 	if state.completedChapterIds.has(str(ch.id)): return {"ok":false,"error":"该历史节点已经确认。"}
+	StoryTutorial.finish(world)
 	for id in ch.get("retireRouteIds",[]):
 		var old:=WorldData.find_route(world,str(id))
 		if not old.is_empty():old["open"]=false;old["retired"]=true;old["retiredAt"]=str(ch.date)
@@ -220,6 +221,7 @@ static func next_chapter(world: Dictionary) -> void:
 	var index:=int(st.get("chapterIndex",0))
 	for i in range(chapters.size()):
 		if str(chapters[i].get("id",""))==str(current.get("id","")):index=i;break
+	st["tutorialEnabled"]=false;st["learnedTools"]=true
 	st["chapterIndex"]=index+1;st["chapterId"]=""
 	st["stage"]="intro";world["storyPlan"]={"planIndex":0,"pathChoices":{}}
 	if chapter(world).is_empty():
@@ -247,6 +249,48 @@ static func replay_copy(world: Dictionary, milestone_index: int) -> Dictionary:
 	copy.storyState["milestones"]=milestones.slice(0,milestone_index).duplicate(true)
 	copy.storyState["completedChapterIds"]=copy.storyState.milestones.map(func(entry:Dictionary):return str(entry.get("chapterId","")))
 	copy.storyState["learnedTools"]=true;copy.storyState["stage"]="intro"
+	copy.storyState["tutorialEnabled"]=false;copy.storyState["tutorialStatus"]="skipped"
 	copy["storyPlan"]={"planIndex":0,"pathChoices":{}};copy["milestoneBaseline"]=h._capture_planning()
 	copy["replayOf"]=str(world.get("gameId",""));copy["history"]={"undo":[],"redo":[]}
 	return copy
+
+static func node_date(world:Dictionary) -> String:
+	var ch:=chapter(world)
+	if str(world.get("storyState",{}).get("stage","intro"))=="outcome":return str(ch.get("date","资料边界"))
+	var versions:Array=ch.get("story",{}).get("planVersions",[])
+	if versions.is_empty():return str(ch.get("date","资料边界"))
+	return str(versions[clampi(int(world.get("storyPlan",{}).get("planIndex",0)),0,versions.size()-1)].get("date",ch.get("date","")))
+
+static func plan_status(world:Dictionary) -> String:
+	if chapter(world).is_empty():return "后续资料待核验"
+	if str(world.get("storyState",{}).get("stage","intro"))=="outcome":return "历史节点已确认"
+	return "本期建成目标" if plan_is_final(world) else "未实施的历史方案"
+
+static func current_action(world:Dictionary) -> String:
+	if not plan_is_final(world):return "对比新旧方案，再采用下一版调整。"
+	if bool(chapter(world).get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):return "在「线路整理」确认贯通站序。"
+	for target in targets(world,true):
+		if not bool(target.built):return "建设本期目标站，并连接相邻站端。"
+	return "核对区间连接，检查并确认历史节点。"
+
+static func profile(world:Dictionary,historical_id:String="") -> Dictionary:
+	var ch:=chapter(world)
+	var result:Dictionary=ch.get("constructionProfile",{"id":"unverified","lengthM":118.788,"widthM":20.0,"depthM":-15.0,"vehicleId":"B-6","form":"待核验","note":"矩形、车型与埋深为游戏示意；原始工程参数待核验。"}).duplicate(true)
+	var overrides:Dictionary=ch.get("stationProfiles",{}).get(historical_id,{}).duplicate(true)
+	for key in ["parameterStatus","parameterSources"]:
+		if overrides.has(key):
+			var merged:Dictionary=result.get(key,{}).duplicate(true);merged.merge(overrides[key],true);result[key]=merged;overrides.erase(key)
+	result.merge(overrides,true)
+	return result
+
+static func plan_change(world:Dictionary,old_index:int,new_index:int) -> String:
+	var versions:Array=chapter(world).get("story",{}).get("planVersions",[])
+	if old_index<0 or new_index>=versions.size():return "方案不存在。"
+	var old_ids:Array=[];var new_ids:Array=[]
+	for group in versions[old_index].get("lineGroups",[]):old_ids.append_array(group.get("stationIds",[]))
+	for group in versions[new_index].get("lineGroups",[]):new_ids.append_array(group.get("stationIds",[]))
+	var names:Dictionary={}
+	for station in WorldData.city(str(world.cityId)).get("stations",[]):names[str(station.id)]=str(station.name)
+	var added:Array=new_ids.filter(func(id):return not old_ids.has(id)).map(func(id):return str(names.get(id,id)))
+	var removed:Array=old_ids.filter(func(id):return not new_ids.has(id)).map(func(id):return str(names.get(id,id)))
+	return str(versions[new_index].get("description",""))+"\n新增目标："+("、".join(added) if not added.is_empty() else "无")+"\n移出本期："+("、".join(removed) if not removed.is_empty() else "无")

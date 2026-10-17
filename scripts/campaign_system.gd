@@ -25,6 +25,11 @@ static func city_config(city_id: String) -> Dictionary:
 	if _catalog.is_empty(): load_catalog()
 	return _catalog.get("cities", {}).get(city_id, {}).duplicate(true)
 
+static func first_chapter_id(city_id:String) -> String:
+	if _catalog.is_empty():load_catalog()
+	var chapters:Array=_catalog.get("cities",{}).get(city_id,{}).get("chapters",[])
+	return str(chapters[0].id) if not chapters.is_empty() else ""
+
 static func future_data_ready(plan: Dictionary, city_data: Dictionary = {}) -> bool:
 	# Only plans with a locally audited blueprint may be marked reproduced.
 	# Official document links alone are not enough to claim a route was built.
@@ -89,6 +94,19 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 			for field in ["opening","purpose","outcome"]:
 				if str(story.get(field,"")).is_empty():errors.append("%s 缺少故事内容：%s" % [chapter_id,field])
 			if story.get("steps",[]).is_empty():errors.append("%s 缺少可操作故事步骤" % chapter_id)
+			var beat_ids:Dictionary={}
+			for beat in story.get("beats",[]):
+				var beat_id:=str(beat.get("id",""))
+				if beat_id.is_empty() or beat_ids.has(beat_id):errors.append("%s 地点故事编号无效或重复" % chapter_id)
+				beat_ids[beat_id]=true
+				for field in ["title","text","source","sourceTitle","verifiedAt","date"]:
+					if str(beat.get(field,"")).is_empty():errors.append("%s 地点故事缺少%s" % [chapter_id,field])
+					if beat.get("stationIds",[]).is_empty() or beat.get("triggers",[]).is_empty():errors.append("%s 地点故事缺少位置或触发条件" % chapter_id)
+				for id in beat.get("stationIds",[]):
+					if not station_ids.has(str(id)):errors.append("%s 地点故事引用未知站区" % chapter_id)
+			var profile:Dictionary=chapter.get("constructionProfile",{})
+			for field in ["lengthM","widthM","depthM","vehicleId"]:
+				if profile.has(field) and not profile.get("parameterStatus",{}).has(field):errors.append("%s 建设参数未说明公开数据或游戏估算" % chapter_id)
 			var plan_ids:Dictionary={};var previous_date:=""
 			for version in story.get("planVersions",[]):
 				var plan_id:=str(version.get("id",""));var date:=str(version.get("date",""))

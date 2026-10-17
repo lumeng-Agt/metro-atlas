@@ -93,7 +93,9 @@ def main() -> None:
     commit, tree_state, manifest = git_state()
     RELEASE.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".metro-atlas-stage-", dir=RELEASE) as temp_name:
-        stage = Path(temp_name)
+        stage = Path(temp_name).resolve()
+        if stage.parent != RELEASE.resolve():
+            raise RuntimeError("Package staging directory escaped release directory")
         staged_exe = stage / "造一座地铁.exe"
         staged_zip = stage / STABLE_ZIP.name
         staged_readme = stage / "README.txt"
@@ -131,7 +133,7 @@ def main() -> None:
             (staged_build_info, "build-info.txt"),
             (update_notes, f"update-notes-{args.version}.txt"),
             (ROOT / "docs" / "test-record.md", "test-record.txt"),
-            (ROOT / "docs" / "performance-0.18.0.json", "docs/performance-0.18.0.json"),
+            (ROOT / "docs" / f"performance-{args.version}.json", f"docs/performance-{args.version}.json"),
             (ROOT / "data" / "basemap" / "manifest.json", "basemap-manifest.json"),
             (ROOT / "data" / "basemap" / "README.txt", "basemap-README.txt"),
         ]
@@ -139,10 +141,19 @@ def main() -> None:
             if not source.is_file():
                 raise FileNotFoundError(f"Missing release content: {source}")
 
+        distribution_files.extend([
+            (ROOT / "docs" / "performance-story-0.19.0.json", "docs/performance-story-0.19.0.json"),
+            (ROOT / "docs" / "story-sources-0.19.md", "docs/story-sources-0.19.md"),
+            (ROOT / "docs" / "migration-19.md", "docs/migration-19.md"),
+        ])
         previews = [
-            "docs/story-0.18-menu-1600x980.png",
-            "docs/story-0.18-plan-revision-1600x980.png",
-            "docs/story-0.18-save-1366x768-175.png",
+            "docs/story-0.19-menu-1600x980.png",
+            "docs/map-0.19-city-1600x980.png",
+            "docs/map-0.19-blocks-1600x980.png",
+            "docs/map-0.19-station-1600x980.png",
+            "docs/story-0.19-location-1600x980.png",
+            "docs/story-0.19-plan-revision-1600x980.png",
+            "docs/story-0.19-save-1366x768-175.png",
         ]
         with ZipFile(staged_zip, "w", ZIP_DEFLATED, compresslevel=7) as archive:
             for source, archive_name in distribution_files:

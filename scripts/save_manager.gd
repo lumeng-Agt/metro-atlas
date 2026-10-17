@@ -91,10 +91,12 @@ static func validate(data: Dictionary) -> String:
 	if data.has("history"):
 		for key in ["undo","redo"]:
 			if not data.history.get(key,[]) is Array:return "撤销历史格式错误。"
-	if int(data.get("schemaVersion",0))==18:
+	if int(data.get("schemaVersion",0))>=18:
 		if not valid_id(str(data.get("gameId",""))):return "游戏编号无效。"
 		if data.has("simulation"):return "新故事存档不应包含运行中的旧客流模拟。"
 		if not data.get("storyState",{}) is Dictionary or not data.get("storyPlan",{}) is Dictionary:return "章节或规划容器无效。"
+		if not data.get("storyState",{}).get("beatRead",{}) is Dictionary:return "故事阅读记录格式错误。"
+		if str(data.get("storyState",{}).get("tutorialStatus","active")) not in ["active","completed","skipped"]:return "操作教程状态无效。"
 		for key in ["milestones","completedChapterIds"]:
 			if not data.get("storyState",{}).get(key,[]) is Array:return "历史里程碑格式错误。"
 	return ""
@@ -141,7 +143,7 @@ static func save_world(world: Dictionary, rotate: bool = false) -> Dictionary:
 	if bool(prior_index.get("ok",false)) and _index_usable(prior_index.data):
 		result=_write_atomic(index_path+".bak",str(prior_index.text))
 		if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续索引备份失败，请重试。"}
-	result=_write_atomic(index_path,JSON.stringify({"schemaVersion":18,"gameId":id}))
+	result=_write_atomic(index_path,JSON.stringify({"schemaVersion":WorldData.SAVE_VERSION,"gameId":id}))
 	if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续游戏索引失败，请重试。"}
 	_prune_auto(id)
 	world["savedAt"]=current.savedAt
@@ -160,7 +162,7 @@ static func _prune_auto(id: String) -> void:
 static func load_file(path: String, confirm_recovery: bool = false) -> Dictionary:
 	var raw:=_read(path)
 	var problem:=validate(raw.get("data",{})) if bool(raw.get("ok",false)) else str(raw.get("error",""))
-	if bool(raw.get("ok",false)) and int(raw.data.get("schemaVersion",0))>18:return {"ok":false,"error":problem,"status":"unsupported"}
+	if bool(raw.get("ok",false)) and int(raw.data.get("schemaVersion",0))>WorldData.SAVE_VERSION:return {"ok":false,"error":problem,"status":"unsupported"}
 	if not bool(raw.get("ok",false)) or not problem.is_empty():
 		var backup:=_read(path+".bak")
 		if not bool(backup.get("ok",false)) or not validate(backup.data).is_empty():return {"ok":false,"error":problem,"status":"corrupt"}
@@ -171,7 +173,7 @@ static func load_file(path: String, confirm_recovery: bool = false) -> Dictionar
 			var preserved:=_preserve_original(str(source.text),"recovery")
 			if not bool(preserved.ok):return preserved
 		raw=backup
-	if int(raw.data.get("schemaVersion",0))<18:
+	if int(raw.data.get("schemaVersion",0))<WorldData.SAVE_VERSION:
 		var preserved:=_preserve_original(str(raw.text),"v%d" % int(raw.data.get("schemaVersion",0)))
 		if not bool(preserved.ok):return preserved
 		var migrated:=migrate(raw.data,str(raw.text))
@@ -187,7 +189,18 @@ static func _preserve_original(text: String, prefix: String) -> Dictionary:
 static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 	var result:=data.duplicate(true)
 	var old_version:=int(data.get("schemaVersion",0))
-	result["schemaVersion"]=18
+	result["schemaVersion"]=WorldData.SAVE_VERSION
+	if old_version==18:
+		var state: Dictionary=result.get("storyState",{})
+		if not StoryTutorial.is_first(result) or str(state.get("stage",""))=="outcome":
+			var chapters:Array=CampaignSystem.city_config(str(result.get("cityId",""))).get("chapters",[])
+			var completed_teaching:bool=bool(state.get("tutorialEnabled",false)) and not chapters.is_empty() and state.get("completedChapterIds",[]).has(str(chapters[0].id))
+			state["tutorialEnabled"]=false;state["tutorialStatus"]="completed" if completed_teaching else "skipped";state["learnedTools"]=true
+		else:state["tutorialStatus"]="active" if bool(state.get("tutorialEnabled",false)) else "skipped"
+		state["beatRead"]={}
+		result["storyState"]=state
+		result["migrationNotice"]="已备份格式18原档。路网、里程碑和历史保持；操作引导仅在首章继续，地点故事可从地图和资料页阅读。"
+		return result
 	result["gameId"]="legacy_%s" % (original_text if not original_text.is_empty() else JSON.stringify(data)).sha256_text().substr(0,20)
 	result["mode"]="campaign" if str(data.get("mode",""))=="campaign" else "workshop"
 	result["title"]="%s · %s" % [str(data.get("cityName",data.get("cityId","城市"))),"历史进度" if result.mode=="campaign" else "旧路网作品"]
@@ -195,7 +208,7 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 	result["legacyArchive"]={"sourceVersion":old_version,"completed":sim.get("completed",0),"elapsedSeconds":sim.get("elapsedSeconds",int(sim.get("elapsedMinutes",0))*60),"oldHistorySteps":data.get("history",{}).get("undo",[]).size(),"note":"原始文件已独立归档。原客流仅作历史记录，不继续运行。"}
 	for key in ["simulation","goalBoard","cityProgression","challengeState","challengeMode","onboarding","tutorialStep","tutorialDone","fleetMode"]:result.erase(key)
 	var old:Dictionary=data.get("campaignState",{})
-	result["storyState"]={"chapterIndex":0,"chapterId":"","stage":"intro","completedChapterIds":[],"milestones":[],"tutorialEnabled":false,"learnedTools":true,"assistedChapters":[],"catalogVersion":CampaignSystem.content_version(),"phase":"history","freeUnlocked":false,"legacyMilestones":old.get("completedChapterIds",[])}
+	result["storyState"]={"chapterIndex":0,"chapterId":"","stage":"intro","completedChapterIds":[],"milestones":[],"tutorialEnabled":false,"tutorialStatus":"skipped","beatRead":{},"learnedTools":true,"assistedChapters":[],"catalogVersion":CampaignSystem.content_version(),"phase":"history","freeUnlocked":false,"legacyMilestones":old.get("completedChapterIds",[])}
 	result.erase("campaignState")
 	result["storyPlan"]={"planIndex":0,"pathChoices":{}}
 	result["history"]={"undo":[],"redo":[]}
@@ -225,12 +238,12 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 
 static func _index_usable(data:Dictionary) -> bool:
 	if data.has("stations"):return validate(data).is_empty()
-	return int(data.get("schemaVersion",0))==18 and valid_id(str(data.get("gameId","")))
+	return int(data.get("schemaVersion",0)) in [18,19] and valid_id(str(data.get("gameId","")))
 
 static func load_last_game(confirm_recovery:bool=false) -> Dictionary:
 	var index_path:=root_path().path_join("last_game.json")
 	var index:=_read(index_path)
-	if bool(index.get("ok",false)) and int(index.data.get("schemaVersion",0))>18:return {"ok":false,"status":"unsupported","error":"继续进度来自更新版本，无法载入。"}
+	if bool(index.get("ok",false)) and int(index.data.get("schemaVersion",0))>WorldData.SAVE_VERSION:return {"ok":false,"status":"unsupported","error":"继续进度来自更新版本，无法载入。"}
 	if not bool(index.get("ok",false)) or not _index_usable(index.data):
 		var backup:=_read(index_path+".bak")
 		if not bool(backup.get("ok",false)) or not _index_usable(backup.data):

@@ -54,7 +54,7 @@ func _draw() -> void:
 		draw_arc(target_rect.get_center(), radius + 4.0, 0.0, TAU, 48, Color("#24745E", 0.32), 1.0, true)
 	else:
 		var outline := StyleBoxFlat.new()
-		outline.bg_color = Color("#E6F1EB", 0.72)
+		outline.bg_color = Color("#E6F1EB", 0.06)
 		outline.border_color = Color("#24745E", 0.98)
 		outline.set_border_width_all(3)
 		outline.set_corner_radius_all(9)

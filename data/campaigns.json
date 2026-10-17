@@ -157,6 +157,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "sh-start",
+                "date": "1990—1993",
+                "title": "上海从这一段开始",
+                "text": "1990年1号线动工。1993年先开放徐家汇至锦江乐园的五站南段，随后才补齐通往上海火车站的主线。你现在复现的是首段，不是整条现代1号线。",
+                "stationIds": [
+                  "shanghai-s145"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.shlgbj.gov.cn/view/6181",
+                "sourceTitle": "上海市委老干部局：1号线延伸与5号线诞生的回忆",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "additionalSources": [
@@ -171,7 +192,39 @@
               "checkedAt": "2026-10-17",
               "type": "operator_announcement_reported"
             }
-          ]
+          ],
+          "constructionProfile": {
+            "id": "sh-line1-1993-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.shlgbj.gov.cn/view/6181"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1993-05-28",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。 上海南站按当时名称显示为新龙华；仍使用现代站区作近似定位，未复原2004年改建前的工程站址。锦江乐园／虹梅路历次更名的完整节点尚待核验。"
+            }
+          }
         },
         {
           "id": "sh-line1-1995",
@@ -245,6 +298,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "sh-main",
+                "date": "1995-04-10",
+                "title": "向铁路枢纽接续",
+                "text": "南段试运营后，主线于1995年4月连至上海火车站。本章把已有南段接入更长的城市线路，保留原来的站轨。",
+                "stationIds": [
+                  "shanghai-s115"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.shlgbj.gov.cn/view/6181",
+                "sourceTitle": "上海市委老干部局：1号线延伸与5号线诞生的回忆",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "additionalSources": [
@@ -259,7 +333,39 @@
               "checkedAt": "2026-10-17",
               "type": "operator_announcement_reported"
             }
-          ]
+          ],
+          "constructionProfile": {
+            "id": "sh-line1-1995-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.shlgbj.gov.cn/view/6181"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1995-04-10",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。 上海南站按当时名称显示为新龙华；仍使用现代站区作近似定位，未复原2004年改建前的工程站址。锦江乐园／虹梅路历次更名的完整节点尚待核验。"
+            }
+          }
         },
         {
           "id": "sh-line1-south-1996",
@@ -321,6 +427,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "sh-xinzhuang",
+                "date": "1994—1996",
+                "title": "为何继续向莘庄延伸",
+                "text": "公开回忆记载，闵行方面于1994年提出把1号线继续引向莘庄，并承担土地、动迁和路基等工作。这段延伸先在1996年底分段开通，次年才与主线贯通。",
+                "stationIds": [
+                  "shanghai-s128"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.shlgbj.gov.cn/view/6181",
+                "sourceTitle": "上海市委老干部局：1号线延伸与5号线诞生的回忆",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "additionalSources": [
@@ -335,7 +462,39 @@
               "checkedAt": "2026-10-17",
               "type": "operator_announcement_reported"
             }
-          ]
+          ],
+          "constructionProfile": {
+            "id": "sh-line1-south-1996-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.shlgbj.gov.cn/view/6181"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1996-12-28",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。 上海南站按当时名称显示为新龙华；仍使用现代站区作近似定位，未复原2004年改建前的工程站址。锦江乐园／虹梅路历次更名的完整节点尚待核验。"
+            }
+          }
         },
         {
           "id": "sh-line1-1997",
@@ -412,6 +571,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "sh-through",
+                "date": "1997-07-01",
+                "title": "轨道已在，线路关系改变",
+                "text": "1996年底南延伸段已开通；1997年7月才与主线贯通。本章主要整理贯通站序，原先建好的车站和轨道继续保留。",
+                "stationIds": [
+                  "shanghai-s128"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.shlgbj.gov.cn/view/6181",
+                "sourceTitle": "上海市委老干部局：1号线延伸与5号线诞生的回忆",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "additionalSources": [
@@ -430,7 +610,39 @@
           "requiresLineReorganization": true,
           "retireRouteIds": [
             "historical_shanghai-line1-south-extension"
-          ]
+          ],
+          "constructionProfile": {
+            "id": "sh-line1-1997-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.shlgbj.gov.cn/view/6181"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1997-07-01",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。 上海南站按当时名称显示为新龙华；仍使用现代站区作近似定位，未复原2004年改建前的工程站址。锦江乐园／虹梅路历次更名的完整节点尚待核验。"
+            }
+          }
         }
       ],
       "futurePlans": [
@@ -669,6 +881,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "bj-built",
+                "date": "1969-10-01",
+                "title": "建成与开放是不同节点",
+                "text": "北京地铁最初兼顾战备和城市交通。1969年一期工程建成，并不等于所有建成车站当时都向公众开放。本章记录建设范围，下一章再核对试运营范围。",
+                "stationIds": [
+                  "beijing-s66"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+                "sourceTitle": "北京市政府转载北京日报：地铁线路织传奇",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "requiredConnections": [
@@ -678,7 +911,39 @@
               "description": "连接一期西段与南段，复兴门向南折往北京站；中心线仍为游戏示意。",
               "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm"
             }
-          ]
+          ],
+          "constructionProfile": {
+            "id": "bj-phase1-built-1969-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1969-10-01",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html"
+            },
+            "alignment": {
+              "status": "corridor",
+              "note": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。"
+            }
+          }
         },
         {
           "id": "bj-phase1-trial-1971",
@@ -747,7 +1012,60 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "bj-lixin",
+                "date": "1971-01-15",
+                "title": "从北京站到立新",
+                "text": "早期报道记载，1971年试运营范围为北京站至立新站，共十站。立新是公主坟当时使用的名称，不能把后来延长的站点提前算入本期。",
+                "stationIds": [
+                  "beijing-s60"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm",
+                "sourceTitle": "北京发改委转载北京晚报：52号站的历史",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
+          },
+          "constructionProfile": {
+            "id": "bj-phase1-trial-1971-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1971-01-15",
+              "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm"
+            },
+            "alignment": {
+              "status": "corridor",
+              "note": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。 修正木樨地—军事博物馆—公主坟站序。复兴门不作本期停站；早期原始全站表尚待核验，本章为站区样板。"
+            }
           }
         },
         {
@@ -821,7 +1139,60 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "bj-apple",
+                "date": "1973-04-23",
+                "title": "试运营向西延长",
+                "text": "试运营区段在随后两年继续向西推进，1973年4月到达苹果园。建成范围、开放范围和站名沿革，需要分别核对。",
+                "stationIds": [
+                  "beijing-s66"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm",
+                "sourceTitle": "北京发改委转载北京晚报：52号站的历史",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
+          },
+          "constructionProfile": {
+            "id": "bj-phase1-apple-1973-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1973-04-23",
+              "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202112/t20211213_2559352.htm"
+            },
+            "alignment": {
+              "status": "corridor",
+              "note": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。 修正木樨地—军事博物馆—公主坟站序。复兴门不作本期停站；早期原始全站表尚待核验，本章为站区样板。"
+            }
           }
         },
         {
@@ -895,7 +1266,60 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "bj-public",
+                "date": "1981-09-15",
+                "title": "从内部试运营到正式开放",
+                "text": "1981年9月一期工程正式对社会运营。这次历史变化主要是开放状态，而不是重新修建一整条线路。保留既有站轨，确认本期节点。",
+                "stationIds": [
+                  "beijing-s77"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+                "sourceTitle": "北京市政府转载北京日报：地铁线路织传奇",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
+          },
+          "constructionProfile": {
+            "id": "bj-phase1-public-1981-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1981-09-15",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html"
+            },
+            "alignment": {
+              "status": "corridor",
+              "note": "仅能核验线路走廊或站序；现代坐标用于地理参照，区间示意不代表施工线位。 修正木樨地—军事博物馆—公主坟站序。复兴门不作本期停站；早期原始全站表尚待核验，本章为站区样板。"
+            }
           }
         }
       ],
@@ -1073,6 +1497,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "gz-first",
+                "date": "1993—1997",
+                "title": "羊城先开通首段",
+                "text": "广州1号线于1993年底动工，1997年6月先开放西朗至黄沙段。现在的任务只复现这一期，尚未轮到广州东站方向。",
+                "stationIds": [
+                  "guangzhou-s298"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+                "sourceTitle": "广州市委网信办转载金羊网：一号线服役25年",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "additionalSources": [
@@ -1082,13 +1527,45 @@
               "checkedAt": "2026-10-17",
               "type": "operator_announcement_reported"
             }
-          ]
+          ],
+          "constructionProfile": {
+            "id": "gz-line1-1997-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.gzwxb.gov.cn/context/contextId/205622"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1997-06-28",
+              "source": "https://www.gzwxb.gov.cn/context/contextId/205622"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.gzwxb.gov.cn/context/contextId/205622"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。"
+            }
+          }
         },
         {
           "id": "gz-line1-1999",
           "phase": "history",
           "date": "1999-06-28",
-          "title": "1号线贯通至广州东站",
+          "title": "1号线全线正式运营",
           "lineGroups": [
             {
               "name": "1号线全线",
@@ -1132,9 +1609,9 @@
           "sourcePublicationDate": null,
           "publicationDateNote": "来源页面首次公开日期未核实。",
           "story": {
-            "opening": "线路贯通至广州东站。保留原先行段和站序，仅补齐后续区间。",
+            "opening": "本章核对西朗至广州东站的全线范围，确认1999年6月全线正式运营的历史节点。已建首段继续保留，不重新摆站。",
             "purpose": "延续既有建设，补齐本期开通范围，避免把下一期直接当作已经建成。",
-            "outcome": "线路贯通至广州东站。保留原先行段和站序，仅补齐后续区间。 这一历史节点已保存。下一章会保留本期已确认建设。",
+            "outcome": "全线进入正式运营阶段。首段与全线正式运营分别记录；更早的全线试运营事件仍待补入完整年表。",
             "eventKind": "extension",
             "planVersions": [],
             "steps": [
@@ -1158,6 +1635,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "gz-east",
+                "date": "1999-06-28",
+                "title": "从首段走向全线正式运营",
+                "text": "1999年6月，1号线进入西朗至广州东站全线正式运营阶段。本章沿已有线路继续向东，不把分期开通的历史压成同一天。",
+                "stationIds": [
+                  "guangzhou-s342"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+                "sourceTitle": "广州市委网信办转载金羊网：一号线服役25年",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "additionalSources": [
@@ -1167,7 +1665,39 @@
               "checkedAt": "2026-10-17",
               "type": "operator_announcement_reported"
             }
-          ]
+          ],
+          "constructionProfile": {
+            "id": "gz-line1-1999-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.gzwxb.gov.cn/context/contextId/205622"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "1999-06-28",
+              "source": "https://www.gzwxb.gov.cn/context/contextId/205622"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.gzwxb.gov.cn/context/contextId/205622"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。"
+            }
+          }
         }
       ],
       "futurePlans": [
@@ -1353,7 +1883,7 @@
           "sourcePublicationDate": null,
           "publicationDateNote": "来源页面首次公开日期未核实。",
           "story": {
-            "opening": "深圳一期的1号线西端并非一开始就确定在世界之窗。获批初始范围和两次西延调整，最终形成2004年的一期十字网络。",
+            "opening": "一期范围经历多次向西扩展。先看1998年的建议范围，再比较2000年、2002年的调整，最后复现2004年实际开通的十字网络。",
             "purpose": "先对比1998、2000与2002年1号线范围变化，再建设2004年实际开通的两条线路。",
             "outcome": "一期同时开通1号线罗湖—世界之窗与4号线福田口岸—少年宫，二者在会展中心形成换乘。 这一历史节点已保存。下一章会保留本期已确认建设。",
             "eventKind": "plan_revision",
@@ -1362,7 +1892,7 @@
                 "id": "sz-line1-1998-05",
                 "date": "1998-05",
                 "title": "1998年：一期初始范围",
-                "description": "初始1号线从罗湖至香蜜湖。对比之后的西延：当时还没有把世界之窗作为一期终点。",
+                "description": "1998年建议范围中，1号线从罗湖经深南大道到香蜜湖。4号线早期方案端点缺少已核验的历史站位映射，本图只比较有依据的1号线范围。",
                 "source": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
                 "status": "superseded_draft",
                 "lineGroups": [
@@ -1425,7 +1955,7 @@
                 "id": "sz-line1-2002-05",
                 "date": "2002-05",
                 "title": "2002年：再延至世界之窗",
-                "description": "国家计委同意从侨城东再向西延伸两站。采用这版范围，并建设2004年一期实际开通的十字网络。",
+                "description": "2002年同意从侨城东继续西延至世界之窗，增加两站。本层仅展示这次1号线修订；4号线在2004年建成范围层单独核对。",
                 "source": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
                 "status": "adopted_for_opening",
                 "lineGroups": [
@@ -1452,20 +1982,6 @@
                     "precisionNote": "现代站区参考，容差按资料精度放宽；不是历史隧道中心线。",
                     "historicalLineId": "shenzhen-line1",
                     "color": "#2d9b65"
-                  },
-                  {
-                    "name": "4号线一期",
-                    "stationIds": [
-                      "shenzhen-s68",
-                      "shenzhen-s271",
-                      "shenzhen-s8",
-                      "shenzhen-s70",
-                      "shenzhen-s36"
-                    ],
-                    "toleranceM": 180,
-                    "precisionNote": "现代站区参考，容差按资料精度放宽；不是历史隧道中心线。",
-                    "historicalLineId": "shenzhen-line4",
-                    "color": "#c94a42"
                   }
                 ],
                 "sourceCheckedAt": "2026-10-17"
@@ -1540,6 +2056,27 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "sz-west",
+                "date": "1998—2002",
+                "title": "一期终点如何向西移动",
+                "text": "1998年一期建议方案的1号线终点在香蜜湖；2000年增设三站至当时规划的会展中心，2002年又延至世界之窗。旧会展中心规划站后来称侨城东，别与现在的会展中心站混淆。",
+                "stationIds": [
+                  "shenzhen-s212"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
+                "sourceTitle": "深圳政府在线：十年磨一剑",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
           },
           "additionalSources": [
@@ -1549,7 +2086,39 @@
               "checkedAt": "2026-10-17",
               "type": "government_gazetteer"
             }
-          ]
+          ],
+          "constructionProfile": {
+            "id": "sz-initial-cross-2004-schematic",
+            "lengthM": 120.0,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "historical-schematic",
+            "form": "原始建设形式待核验",
+            "note": "站名、站序与本期范围按章节来源；原站体尺寸、车型总长及埋深待核验。当前120×20米矩形、地下15米和展示车辆仅为游戏示意，未指定真实历史车型。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "game_estimate",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.szmc.net/szmc_m/home/xinweenzhongxin/gonggaoxinwen/202412/104600.html"
+          },
+          "historyFacts": {
+            "date": {
+              "value": "2004-12-28",
+              "source": "https://www.szmc.net/szmc_m/home/xinweenzhongxin/gonggaoxinwen/202412/104600.html"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.szmc.net/szmc_m/home/xinweenzhongxin/gonggaoxinwen/202412/104600.html"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。 本次开通仅含4号线福民—少年宫段，皇岗／福田口岸只在先前方案中展示，后续通车年份单独记录。"
+            }
+          }
         }
       ],
       "futurePlans": [
@@ -1807,8 +2376,76 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "cd-tianfu",
+                "date": "2004—2010",
+                "title": "广场改造中的先行工程",
+                "text": "成都天府广场站结合2004年广场改造先行实施；2005年底一期工程开工，2010年9月开通。建设一条线，往往有先行工点与全线工程不同的时间节点。",
+                "stationIds": [
+                  "chengdu-s18"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+                "sourceTitle": "成都传媒集团红星新闻网：成都轨道上的第一线",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
-          }
+          },
+          "constructionProfile": {
+            "id": "cd-line1-2010-schematic",
+            "lengthM": 118.788,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "B-6",
+            "form": "原始建设形式待核验",
+            "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "public_reference",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "parameterSources": {
+              "vehicleId": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+            }
+          },
+          "historyFacts": {
+            "date": {
+              "value": "2010-09-27",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。"
+            }
+          },
+          "additionalSources": [
+            {
+              "title": "成都传媒集团红星新闻网：成都轨道上的第一线",
+              "url": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+              "verifiedAt": "2026-10-17"
+            },
+            {
+              "url": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+              "title": "国家发改委：成都1号线南延线工程可研批复",
+              "verifiedAt": "2026-10-17"
+            }
+          ]
         },
         {
           "id": "cd-line1-2015",
@@ -1886,7 +2523,127 @@
                 "id": "outcome",
                 "action": "continue_story"
               }
+            ],
+            "beats": [
+              {
+                "id": "cd-south",
+                "date": "2015-07-25",
+                "title": "从世纪城继续向南",
+                "text": "成都1号线二期于2015年7月开通，范围从世纪城延至广都。保留一期，再接续本次延伸，是这章要复现的建设节奏。",
+                "stationIds": [
+                  "chengdu-s2"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+                "sourceTitle": "成都传媒集团红星新闻网：成都轨道上的第一线",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
             ]
+          },
+          "constructionProfile": {
+            "id": "cd-line1-2015-schematic",
+            "lengthM": 118.788,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "B-6",
+            "form": "原始建设形式待核验",
+            "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "public_reference",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "parameterSources": {
+              "vehicleId": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+            }
+          },
+          "historyFacts": {
+            "date": {
+              "value": "2015-07-25",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。"
+            }
+          },
+          "additionalSources": [
+            {
+              "title": "成都传媒集团红星新闻网：成都轨道上的第一线",
+              "url": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+              "verifiedAt": "2026-10-17"
+            },
+            {
+              "url": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+              "title": "国家发改委：成都1号线南延线工程可研批复",
+              "verifiedAt": "2026-10-17"
+            }
+          ],
+          "stationProfiles": {
+            "chengdu-s2": {
+              "form": "地下站（2012年批复方案）",
+              "parameterStatus": {
+                "form": "public_reference"
+              },
+              "parameterSources": {
+                "form": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+              },
+              "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。 本期新增站按批复地下站标注。"
+            },
+            "chengdu-s6": {
+              "form": "地下站（2012年批复方案）",
+              "parameterStatus": {
+                "form": "public_reference"
+              },
+              "parameterSources": {
+                "form": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+              },
+              "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。 本期新增站按批复地下站标注。"
+            },
+            "chengdu-s4": {
+              "form": "地下站（2012年批复方案）",
+              "parameterStatus": {
+                "form": "public_reference"
+              },
+              "parameterSources": {
+                "form": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+              },
+              "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。 本期新增站按批复地下站标注。"
+            },
+            "chengdu-s5": {
+              "form": "地下站（2012年批复方案）",
+              "parameterStatus": {
+                "form": "public_reference"
+              },
+              "parameterSources": {
+                "form": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+              },
+              "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。 本期新增站按批复地下站标注。"
+            },
+            "chengdu-s3": {
+              "form": "地下站（2012年批复方案）",
+              "parameterStatus": {
+                "form": "public_reference"
+              },
+              "parameterSources": {
+                "form": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+              },
+              "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。 本期新增站按批复地下站标注。"
+            }
           }
         }
       ],
@@ -1930,5 +2687,5 @@
     }
   },
   "verifiedAt": "2026-10-17",
-  "contentVersion": "0.18.0-2026-10-17"
+  "contentVersion": "story-0.19-2026-10-17"
 }

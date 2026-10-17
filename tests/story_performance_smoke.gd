@@ -1,13 +1,16 @@
 extends SceneTree
 const App=preload("res://scripts/main.gd")
-var report:Dictionary={"kind":"native-renderer-smoke","version":"0.18.0","notFullAcceptance":true,"scenarios":[]}
+var report:Dictionary={"kind":"native-renderer-smoke","version":"0.19.0","notFullAcceptance":true,"scenarios":[]}
 func _initialize() -> void:call_deferred("_run")
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir() or DisplayServer.get_name()=="headless":push_error("Native rendering and isolated --data-dir required");quit(2);return
 	var seconds:=30.0;var repeats:=3
+	var scenarios:Array=["overview","blocks","zoom","buildings"]
 	for arg in OS.get_cmdline_user_args():
 		if str(arg).begins_with("--seconds="):seconds=maxf(1,float(str(arg).trim_prefix("--seconds=")))
 		if str(arg).begins_with("--repeats="):repeats=maxi(1,int(str(arg).trim_prefix("--repeats=")))
+		if str(arg).begins_with("--scenarios="):scenarios=Array(str(arg).trim_prefix("--scenarios=").split(","))
+	if scenarios.is_empty() or scenarios.any(func(name):return not ["overview","blocks","zoom","buildings"].has(name)):push_error("Unknown performance scenario");quit(2);return
 	root.size=Vector2i(1600,980)
 	var app:=App.new();root.add_child(app);await process_frame
 	var world:=WorldData.new_world("shanghai","workshop");WorldData._import_existing_network(world,WorldData.city("shanghai"));TrackNetwork.ensure_station_nodes(world)
@@ -15,7 +18,8 @@ func _run() -> void:
 	for i in range(200):history.execute("压力历史%d" % i,func(state:Dictionary):state.stations[0]["name"]="压力车站%d" % i,["stations"])
 	app._enter(world);app.show_left=false;app.show_right=false;app._layout();app.auto_enabled=false
 	report.merge({"date":Time.get_datetime_string_from_system(),"cpu":OS.get_processor_name(),"gpu":RenderingServer.get_video_adapter_name(),"resolution":[1600,980],"stations":world.stations.size(),"routes":world.routes.size(),"history":world.history.undo.size(),"secondsPerScenario":seconds,"repeats":repeats})
-	for name in ["overview","blocks","zoom","buildings"]:
+	report["mapSourceSha256"]=FileAccess.get_sha256("res://scripts/map_view.gd")
+	for name in scenarios:
 		for run in range(repeats):
 			var zoom:=12 if name=="overview" else (15 if name=="blocks" else 17)
 			app.map_view.center_on([31.2304,121.4737],zoom)

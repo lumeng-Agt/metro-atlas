@@ -1,0 +1,14 @@
+{
+  "averageFps": 105.858550844435,
+  "blueprintStations": 4,
+  "date": "2026-10-17T20:02:15",
+  "fixture": "验收组合场景：最大既有路网＋1996蓝图＋地点故事；非正式通关存档",
+  "kind": "native-story-overlay-30s",
+  "maxFrameMs": 26.05,
+  "p95Ms": 11.602,
+  "pressureGoalMet": true,
+  "seconds": 30.0023,
+  "storyMarkers": 1,
+  "storyPanel": true,
+  "version": "0.19.0"
+}

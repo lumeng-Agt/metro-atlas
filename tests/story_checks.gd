@@ -11,7 +11,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	WorldData.load_assets()
-	_check(WorldData.SAVE_VERSION==18,"故事存档格式18")
+	_check(WorldData.SAVE_VERSION==19,"故事存档格式19")
 	_check(Catalog.validate_catalog(WorldData.cities()).is_empty(),"五城资料引用校验")
 	var sh_events:Array=Catalog.city_config("shanghai").historicalEvents
 	_check(sh_events.filter(func(e:Dictionary):return str(e.date)=="1996-12-28").size()==1 and sh_events.filter(func(e:Dictionary):return str(e.date)=="1997-07-01").size()==1,"上海时间轴区分1996分段与1997贯通，不重复记载同一节点")
@@ -111,7 +111,13 @@ func _run() -> void:
 		var chapter_count:int=Catalog.city_config(str(city.id)).get("chapters",[]).size()
 		for chapter_index in range(chapter_count):
 			api._begin_chapter()
-			while not Story.plan_is_final(api.world):api._revise()
+			for _revision_index in range(4):
+				if Story.plan_is_final(api.world):break
+				api._revise()
+				var dialogs:=api.find_children("*","ConfirmationDialog",true,false)
+				_check(not dialogs.is_empty(),"修订方案先明确确认差异")
+				if not dialogs.is_empty():dialogs[-1].confirmed.emit()
+				await process_frame
 			var preview:=api._assist_candidate()
 			_check(str(preview.get("issue","")).is_empty(),"%s/%d 跨章保留建设后仍可辅助连接：%s" % [str(city.id),chapter_index,str(preview.get("issue",""))])
 			if not preview.has("state"):break

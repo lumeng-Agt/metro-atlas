@@ -31,12 +31,22 @@ func _run() -> void:
 			_check(app.track_button.get_global_rect().end.x<=resolution.x,"轨道工具未被裁切")
 			app._tool("station")
 			var target:Dictionary=preload("res://scripts/story_session.gd").targets(app.world)[0]
+			app._focus_tutorial()
+			var focus_point:Vector2=app.map_view._to_screen(target.latlng)
+			_check(app.usable_map_rect().has_point(focus_point),"首章目标避开详情抽屉")
 			app._click(target.latlng,"blueprint",str(target.id),"")
 			await process_frame
 			app._layout()
 			_check(is_instance_valid(app.confirm_button),"确认区存在")
 			_check(app.confirm_button.get_global_rect().end.y<=resolution.y,"确认按钮始终可达")
 			_check(not app.left_panel.visible or not app.right_panel.visible or not app._narrow(),"窄窗口左右抽屉互斥")
+			app._show_beat(StoryBeats.entries(app.world)[0])
+			await process_frame
+			await process_frame
+			app._layout()
+			_check(app.map_area.get_global_rect().encloses(app.beat_panel.get_global_rect()),"地点故事浮层位于地图内")
+			_check(not app.beat_panel.get_global_rect().intersects(app.confirm_button.get_global_rect()),"地点故事不遮挡确认按钮")
+			app._close_beat()
 			app.world.storyState.chapterIndex=3;app.world.storyState["chapterId"]="sh-line1-1997";app.world.storyState.learnedTools=true
 			app._tool("line")
 			await process_frame
@@ -68,19 +78,19 @@ func _run() -> void:
 		root.size=Vector2i(1600,980);app.ui_scale=1.0;app.theme=Ui.create_theme(app.face,app.strong_face,1.0);app._rescale()
 		await process_frame
 		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("res://docs/story-0.18-menu-1600x980.png")
+		root.get_texture().get_image().save_png("res://docs/story-0.19-menu-1600x980.png")
 		app._new_game("shenzhen",false);app._begin_chapter()
 		var timeout:=Time.get_ticks_msec()+20000
 		while app.map_view.base_map_features.is_empty() and Time.get_ticks_msec()<timeout:await process_frame
 		_check(not app.map_view.base_map_features.is_empty(),"截图前明确等待本地底图就绪")
 		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("res://docs/story-0.18-plan-revision-1600x980.png")
+		root.get_texture().get_image().save_png("res://docs/story-0.19-plan-revision-1600x980.png")
 		root.size=Vector2i(1366,768);app.ui_scale=1.75;app.theme=Ui.create_theme(app.face,app.strong_face,1.75);app._rescale()
 		await process_frame
 		app._saves()
 		for frame in range(5):await process_frame
 		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("res://docs/story-0.18-save-1366x768-175.png")
+		root.get_texture().get_image().save_png("res://docs/story-0.19-save-1366x768-175.png")
 	app.queue_free();await process_frame
 	if failures.is_empty():print("PASS: %d story layout checks" % checks);quit(0)
 	else:

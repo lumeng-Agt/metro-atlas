@@ -26,13 +26,13 @@ func _run() -> void:
 	_check(bool(SaveManager.save_named(a,"独立作品").ok),"命名副本保留")
 	_check(bool(SaveManager.delete_game(str(b.gameId)).ok) and not FileAccess.file_exists(SaveManager.save_path(str(b.gameId))),"删除指定自动槽")
 	_check(FileAccess.file_exists(SaveManager.save_path(str(a.gameId))),"其他同城进度不受影响")
-	var newer:=a.duplicate(true);newer.schemaVersion=19
+	var newer:=a.duplicate(true);newer.schemaVersion=WorldData.SAVE_VERSION+1
 	var future_path:=SaveManager.root_path().path_join("unknown.json");SaveManager._write_atomic(future_path,JSON.stringify(newer))
 	_check(not bool(SaveManager.load_file(future_path).ok),"拒绝未知新版本")
 	var old:=a.duplicate(true);old.schemaVersion=17;old.mode="blank";old.erase("storyState");old.erase("gameId");old["simulation"]={"completed":123,"elapsedSeconds":27001,"passengerBatches":[{"count":5}]}
 	var raw:=JSON.stringify(old);var old_path:=SaveManager.root_path().path_join("legacy.json");SaveManager._write_atomic(old_path,raw)
 	var migrated:=SaveManager.load_file(old_path)
-	_check(bool(migrated.ok) and int(migrated.world.schemaVersion)==18,"旧存档转换18")
+	_check(bool(migrated.ok) and int(migrated.world.schemaVersion)==19,"旧存档转换19")
 	_check(str(migrated.world.mode)=="workshop" and not migrated.world.has("simulation"),"旧档转为路网作品而非旧模拟模式")
 	_check(int(migrated.world.legacyArchive.completed)==123,"旧客流只归档")
 	_check(FileAccess.get_file_as_string(old_path)==raw,"迁移不改写原件")
@@ -104,7 +104,7 @@ func _run() -> void:
 	_check(str(continue_pending.get("recoveryKind",""))=="continue_index","损坏引用索引需要单独确认恢复")
 	_check(FileAccess.get_file_as_string(index_path)=="corrupt continue index","未确认索引恢复不修改文件")
 	_check(bool(SaveManager.load_last_game(true).get("ok",false)),"确认后引用索引备份可恢复正确世界")
-	SaveManager._write_atomic(index_path,JSON.stringify({"schemaVersion":19,"gameId":a.gameId}))
+	SaveManager._write_atomic(index_path,JSON.stringify({"schemaVersion":WorldData.SAVE_VERSION+1,"gameId":a.gameId}))
 	_check(str(SaveManager.load_last_game().get("status",""))=="unsupported","未来版本继续索引不降级回旧备份")
 	SaveManager.save_world(a)
 	var index_before:=FileAccess.get_file_as_string(index_path)

@@ -1,6 +1,8 @@
 extends Control
 
-const BUILD_VERSION := "0.18.0 · 2026.10.17"
+const BUILD_VERSION := "0.19.0 · 2026.10.17"
+const Tutorial = preload("res://scripts/story_tutorial.gd")
+const Beats = preload("res://scripts/story_beats.gd")
 const Story = preload("res://scripts/story_session.gd")
 const MapScript = preload("res://scripts/map_view.gd")
 const Rules = preload("res://scripts/story_construction.gd")
@@ -58,6 +60,11 @@ var show_left := true
 var show_right := false
 var line_stops: Array[String] = []
 var preview_station: Dictionary = {}
+var beat_panel: PanelContainer
+var active_beat_id := ""
+var practice_return: Dictionary = {}
+var plan_view_index := -1
+var guide_map_step := ""
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=false
@@ -94,6 +101,7 @@ func _build() -> void:
 	top.add_child(button("城市故事",_open_page.bind("story")))
 	top.add_child(button("时间轴",_open_page.bind("timeline")))
 	top.add_child(button("资料",_open_page.bind("sources")))
+	top.add_child(button("重学操作",_restart_guide))
 	year=label("",18,true);year.custom_minimum_size.x=300*ui_scale;top.add_child(year)
 	undo_button=button("撤销",_undo.bind(false));top.add_child(undo_button)
 	redo_button=button("重做",_undo.bind(true));top.add_child(redo_button)
@@ -140,6 +148,10 @@ func _layout() -> void:
 	right_panel.size=Vector2(minf(w,map_area.size.x-24),h);right_panel.position=Vector2(map_area.size.x-right_panel.size.x-12,12)
 	left_panel.visible=show_left and not world.is_empty();right_panel.visible=show_right and not world.is_empty()
 	if _narrow() and show_left and show_right:left_panel.hide()
+	if is_instance_valid(beat_panel):
+		var available := usable_map_rect()
+		beat_panel.size=Vector2(minf(380,available.size.x-16),minf(230,available.size.y-16))
+		beat_panel.position=Vector2(available.position.x+8,available.end.y-beat_panel.size.y-8)
 	if is_instance_valid(save_panel):
 		save_panel.size=Vector2(minf(1050,size.x-32),minf(740,size.y-32));save_panel.position=(size-save_panel.size)*0.5
 	if is_instance_valid(menu):menu.size=Vector2(minf(1000,size.x-40),minf(740,size.y-40));menu.position=(size-menu.size)*0.5
@@ -185,18 +197,23 @@ func _show_menu() -> void:
 	var cities:=OptionButton.new();cities.custom_minimum_size.y=44*ui_scale
 	for city in WorldData.cities():cities.add_item(str(city.name));cities.set_item_metadata(cities.item_count-1,str(city.id))
 	body.add_child(cities)
-	var tutorial:=CheckButton.new();tutorial.text="开启首章逐步操作引导";tutorial.button_pressed=true;body.add_child(tutorial)
+	var tutorial:=CheckButton.new();tutorial.text="开启首章逐步操作引导";tutorial.button_pressed=not Prefs.load_onboarding_completed();tutorial.disabled=Prefs.load_onboarding_completed();body.add_child(tutorial)
+	if tutorial.disabled:body.add_child(label("基本操作已经学会，新城市直接进入故事。需要时可进入独立练习。",15))
 	body.add_child(button("开始城市故事",func():_new_game(str(cities.get_item_metadata(cities.selected)),tutorial.button_pressed)))
+	body.add_child(button("重新学习基本操作（独立练习）",_restart_guide))
 	body.add_child(button("存档与旧路网作品",_saves))
 	var extra:=HFlowContainer.new();body.add_child(extra);extra.add_child(button("导入JSON",_import));extra.add_child(button("设置",_settings));extra.add_child(button("退出",func():get_tree().quit()))
 	body.add_child(label("当前为五城首批故事章节。完整历史及远期蓝图尚有缺口，已完成范围和后续资料边界会明确展示。",15))
 	_layout()
 
 func _new_game(city_id:String,tutorial:bool=true) -> void:
-	var state:=WorldData.new_world(city_id,"campaign");state.storyState.tutorialEnabled=tutorial;_enter(state);_save()
+	var state:=WorldData.new_world(city_id,"campaign");Tutorial.configure(state,tutorial and not Prefs.load_onboarding_completed());_enter(state);_save()
 
 func _enter(state:Dictionary) -> void:
+	_close_beat()
+	guide_map_step=""
 	world=state
+	if str(world.get("storyState",{}).get("tutorialStatus",""))=="completed":Prefs.save_onboarding_completed(true)
 	if str(world.get("mode",""))=="campaign" and str(world.get("storyState",{}).get("chapterId","")).is_empty():world.storyState["chapterId"]=str(Story.chapter(world).get("id",""))
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free();menu=null
 	frame.show();history.attach(world);rules.world=world;rules.active_city_id=str(world.cityId)
@@ -242,9 +259,10 @@ func _refresh() -> void:
 	map_view.set_world(world);map_view.set_blueprint(Story.blueprint(world,true) if str(world.mode)=="campaign" else {})
 	map_view.selected_id=selected_id;map_view.selected_type=selected_kind
 	var ch:=Story.chapter(world)
+	map_view.story_markers=Beats.markers(world) if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)) else []
 	line_button.disabled=str(world.mode)=="campaign" and not bool(ch.get("requiresLineReorganization",false))
 	line_button.tooltip_text="普通章节由检查结果生成历史线路；重组章节再使用此工具。" if line_button.disabled else "核对本章线路重组，或在作品中整理线路。"
-	year.text="%s · %s" % [str(world.get("cityName","")),str(ch.get("date","资料边界")) if str(world.mode)=="campaign" else "路网作品"]
+	year.text="%s · %s" % [str(world.get("cityName","")),Story.node_date(world)+" · "+Story.plan_status(world) if str(world.mode)=="campaign" else "路网作品"]
 	undo_button.disabled=history.undo_label().is_empty();undo_button.tooltip_text=history.undo_label();redo_button.disabled=history.redo_label().is_empty();redo_button.tooltip_text=history.redo_label()
 	_left();_right();_instruction();_layout()
 
@@ -263,9 +281,17 @@ func _left() -> void:
 		left.add_child(label("资料与边界",24,true));left.add_child(label(str(Story.config(world).get("coverageNote","")),15))
 		var ch:=Story.chapter(world)
 		left.add_child(label(str(ch.get("sourceTitle","")),18,true));left.add_child(label(str(ch.get("alignmentNote","现代地图只作位置参考。")),15))
+		left.add_child(label("本章地点故事",20,true))
+		for beat in Beats.entries(world):left.add_child(button(("已读 · " if world.storyState.get("beatRead",{}).has(str(beat.id)) else "未读 · ")+str(beat.title),_show_beat.bind(beat)))
+		left.add_child(label(Story.profile(world).get("note",""),15))
 		if ch.has("source"):left.add_child(button("打开章节来源",func():OS.shell_open(str(ch.source))))
 		for entry in ch.get("additionalSources",[]):
 			var source_url:=str(entry.get("url",""));left.add_child(button(str(entry.get("title","补充来源")),func():OS.shell_open(source_url)))
+		var plans:Array=ch.get("story",{}).get("planVersions",[])
+		if not plans.is_empty():
+			left.add_child(label("历史方案对照（只读）",18,true))
+			for index in range(plans.size()):left.add_child(button(str(plans[index].get("title","方案")),_view_plan.bind(index)))
+			left.add_child(button("返回当前建设方案",func():plan_view_index=-1;map_view.set_blueprint(Story.blueprint(world,true));_instruction()))
 		for entry in Story.config(world).get("futurePlans",[]):
 			left.add_child(label(str(entry.get("title","")),18,true));left.add_child(label(str(entry.get("description","")),15))
 			var url:=str(entry.get("source",""));left.add_child(button("打开规划来源",func():OS.shell_open(url)))
@@ -282,11 +308,11 @@ func _left() -> void:
 	if chapter.is_empty():
 		left.add_child(label("当前资料已到边界",24,true));left.add_child(label(str(Story.config(world).get("coverageNote","后续故事待核验。")),16))
 		left.add_child(label("已确认的路网已保存。完整历史和远期蓝图核验完成后继续；本次不把样板当作全部历史。",16));return
-	left.add_child(label("%s\n%s" % [str(chapter.date),str(chapter.title)],24,true))
+	left.add_child(label("%s\n%s" % [Story.node_date(world),str(chapter.title)],24,true))
 	var story:Dictionary=chapter.get("story",{})
 	var stage:=str(world.storyState.get("stage","intro"))
 	if stage=="intro":
-		left.add_child(label(str(story.get("opening",chapter.get("eventText",""))),18));left.add_child(label(str(story.get("purpose","按目标站区和站序完成本章建设。")),16))
+		left.add_child(label("为什么建设",18,true));left.add_child(label(str(story.get("opening",chapter.get("eventText",""))),18));left.add_child(label(str(story.get("purpose","按目标站区和站序完成本章建设。")),16))
 		begin_button=button("展开本章蓝图",_begin_chapter);left.add_child(begin_button)
 	elif stage=="outcome":
 		left.add_child(label("历史节点已确认",20,true));left.add_child(label(str(story.get("outcome",chapter.get("eventText",""))),18))
@@ -294,6 +320,7 @@ func _left() -> void:
 		left.add_child(button("继续下一章",_next));left.add_child(button("暂停／继续开通展示",func():display_paused=not display_paused))
 	else:
 		var versions:Array=story.get("planVersions",[])
+		left.add_child(label("为什么建设："+str(story.get("purpose","复现本期历史建设。")),15))
 		if not versions.is_empty():
 			var index:=clampi(int(world.storyPlan.get("planIndex",0)),0,versions.size()-1)
 			left.add_child(label(str(versions[index].get("title","方案")),20,true));left.add_child(label(str(versions[index].get("description","")),16))
@@ -303,30 +330,55 @@ func _left() -> void:
 		var built:=0
 		for target in Story.targets(world,true):
 			if bool(target.built):built+=1
+		left.add_child(label("现在要做："+Story.current_action(world),18,true))
 		left.add_child(label("目标站区 %d / %d" % [built,Story.targets(world,true).size()],20,true))
+		var missing_names:Array=Story.targets(world,true).filter(func(target:Dictionary):return not bool(target.built)).map(func(target:Dictionary):return str(target.name))
+		left.add_child(label("还缺："+"、".join(missing_names.slice(0,3))+("等站区" if missing_names.size()>3 else "") if not missing_names.is_empty() else "站区齐备；还需核对连续轨道、本期站序和线路关系。",15))
 		if bool(chapter.get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):left.add_child(label("原有站轨保留：请点击下方「线路整理」，核对分段记录的贯通站序。",18))
 		check_button=button("检查本章复现",_check);left.add_child(check_button)
 		left.add_child(button("核对区间走向",_path_picker))
-		if bool(world.storyState.get("learnedTools",false)):left.add_child(button("预览辅助完成重复建设",_assist))
+		if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)):left.add_child(button("预览辅助完成重复建设",_assist))
 		left.add_child(button("返回本章位置",_locate_chapter))
-		if bool(world.storyState.get("tutorialEnabled",false)):
-			left.add_child(button("跳过操作引导",func():world.storyState.tutorialEnabled=false;_mark_dirty();spotlight.clear_focus();_left()))
-		else:left.add_child(button("重新开启操作引导",_restart_guide))
+		if Tutorial.active(world):
+			left.add_child(button("跳过操作引导",func():Tutorial.skip(world);_mark_dirty();spotlight.clear_focus();_refresh();_save()))
+		else:left.add_child(label("基本操作已学会，可从顶部「重学操作」进入练习副本。",15))
+	if world.has("practiceOf"):left.add_child(button("结束练习，返回原进度",_return_from_practice))
 	left.add_child(label("现代地理参考底图 · 虚线仅为站区间示意。",15))
 
 func _begin_chapter() -> void:
+	guide_map_step=""
 	world.storyState.stage="build";_mark_dirty();_refresh();_locate_chapter();_save()
 
 func _restart_guide() -> void:
-	world.storyState.tutorialEnabled=true;world.storyState.learnedTools=false
-	var targets:=Story.targets(world,true)
-	if targets.size()>=2:
-		var a:=Story.bound_station(world,str(targets[0].id));var b:=Story.bound_station(world,str(targets[1].id))
-		if not a.is_empty() and not b.is_empty():world.storyState.learnedTools=bool(TrackNetwork.shortest_station_path(str(a.id),str(b.id),world,float(WorldData.city(str(world.cityId)).center[0])).get("valid",false))
-	_mark_dirty();_refresh();_locate_chapter();_save()
+	_confirm("独立操作练习","当前进度会先保存。练习使用首章的新副本，结束后可回到原进度。",func():
+		_leave(func():
+			practice_return=world.duplicate(true)
+			var city_id:=str(world.get("cityId","shanghai"))
+			var practice:=WorldData.new_world(city_id,"campaign")
+			practice["title"]="操作练习 · "+str(practice.cityName)
+			practice["practiceOf"]=str(world.get("gameId",""))
+			Tutorial.configure(practice,true);_enter(practice);_save()))
+
+func _return_from_practice() -> void:
+	var original:=practice_return
+	practice_return={}
+	if original.is_empty():
+		var id:=str(world.get("practiceOf",""))
+		if not id.is_empty():_load_result(SaveManager.load_file(SaveManager.save_path(id)))
+		else:_leave(_show_menu)
+	else:_leave(func():_enter(original);_save())
 
 func _revise() -> void:
-	_execute("采用历史修订方案",func(state:Dictionary):state.storyPlan.planIndex=int(state.storyPlan.get("planIndex",0))+1)
+	var versions:Array=Story.chapter(world).get("story",{}).get("planVersions",[])
+	var index:=int(world.storyPlan.get("planIndex",0))
+	if index+1>=versions.size():return
+	var change:=Story.plan_change(world,index,index+1)
+	var revision:=int(world.revision)
+	var preview:=world.duplicate(false);preview["storyPlan"]=world.storyPlan.duplicate(true);preview.storyPlan.planIndex=index+1
+	map_view.set_blueprint(Story.blueprint(preview,true))
+	_confirm("方案变化 · "+str(versions[index+1].get("date","")),change+"\n旧方案保留在历史草案层，不生成开通线路。",func():
+		if revision!=int(world.revision):_refresh();_message("规划已变化","请重新对比方案。");return
+		_execute("采用历史修订方案",func(state:Dictionary):state.storyPlan.planIndex=index+1),func():map_view.set_blueprint(Story.blueprint(world,true)))
 
 func _right() -> void:
 	clear(right);clear(actions);confirm_button=null
@@ -336,6 +388,7 @@ func _right() -> void:
 		var st:Dictionary=map_view.draft_station
 		right.add_child(label("车站预览",24,true));right.add_child(label(str(st.name),20,true));right.add_child(label("拖动换位置；R旋转；确认后加入本章。",16))
 		_angle(st,true);right.add_child(label("站体 %.0f × %.0f 米 · 地下 %.0f 米\n尺寸为游戏简化表达。" % [float(st.get("lengthM",119)),float(st.get("widthM",20)),-float(st.get("depthM",-15))],16))
+		right.add_child(label(str(st.get("constructionNote","原始站体尺寸与埋深待核验，当前为游戏示意。")),15))
 		confirm_button=button("确认车站",_commit_station);actions.add_child(confirm_button)
 	elif not map_view.track_end_ref.is_empty():
 		right.add_child(label("轨道预览",24,true));right.add_child(label("%s → %s" % [_ref_name(map_view.track_start_ref),_ref_name(map_view.track_end_ref)],18))
@@ -376,6 +429,8 @@ func _right() -> void:
 		right.add_child(button("移动车站",func():tool="move_station";map_view.tool=tool;_instruction()))
 		_angle(st,false)
 		right.add_child(button("从A端铺轨",_from_station.bind(str(st.id),"start")));right.add_child(button("从B端铺轨",_from_station.bind(str(st.id),"end")))
+		right.add_child(label("建设形式："+str(st.get("constructionForm","待核验")),15))
+		right.add_child(label(str(st.get("constructionNote","车型、站体及埋深为游戏示意，历史参数待核验。")),15))
 		right.add_child(label("历史身份：%s" % str(st.get("historicalId","自定车站")),15))
 		actions.add_child(button("删除车站",_delete))
 	elif selected_kind=="link":
@@ -402,10 +457,10 @@ func _tool(value:String) -> void:
 	if value!="select" and str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():
 		problem="当前资料已到边界。后续历史与远期蓝图核验完成后继续，自由创作尚未解锁。";_instruction();return
 	if value!="select":selected_id="";selected_kind="";map_view.selected_id=""
+	if plan_view_index>=0:plan_view_index=-1;map_view.set_blueprint(Story.blueprint(world,true))
 	_cancel_drafts();tool=value;map_view.tool=value;line_stops.clear();evaluation={};problem="";show_right=value!="select"
 	if show_right and _narrow():show_left=false
 	_right();_instruction();_layout()
-	if value in ["station","track"] and bool(world.get("storyState",{}).get("tutorialEnabled",false)):_locate_chapter()
 
 func _cancel_drafts() -> void:
 	map_view.assisted_preview={}
@@ -440,6 +495,7 @@ func _cancel() -> void:
 
 func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 	if world.is_empty():return
+	if kind=="story_beat":_show_beat(Beats.find(world,id));return
 	if kind=="endpoint_choice":
 		var candidates:=map_view.endpoint_choice_candidates.duplicate(true);show_right=true;clear(right);clear(actions)
 		right.add_child(label("请选择接轨端点",20,true))
@@ -450,9 +506,12 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 	if tool=="station":
 		if str(world.mode)=="campaign" and not Story.plan_is_final(world):_open_page("story");return
 		var target:=Story.nearest_target(world,ll) if str(world.mode)=="campaign" else {}
+		var construction_profile:=Story.profile(world,str(target.get("id","")))
 		var candidate:={"id":"draft","name":str(target.get("name","新建车站%d" % (world.stations.size()+1))),"latlng":ll.duplicate(),"heading":90.0,"lengthM":118.788,"widthM":20.0,"depthM":map_view.current_depth_m,"historicalId":str(target.get("id","")),"vehicleId":"B-6","existing":false,"routeIds":[]}
 		if not target.is_empty():candidate.latlng=target.latlng.duplicate();candidate.heading=map_view.blueprint_heading_for(str(target.id))
-		map_view.draft_station=candidate;show_right=true;_station_changed();_right();_layout();return
+		_apply_profile(candidate,construction_profile)
+		if str(construction_profile.get("parameterStatus",{}).get("depthM","game_estimate"))=="game_estimate":candidate.depthM=map_view.current_depth_m
+		map_view.draft_station=candidate;show_right=true;_station_changed();_right();_layout();_trigger_beat("select",[str(target.get("id",""))]);return
 	if tool=="track":
 		var ref:=_ref(ll,kind,id,side,t)
 		if map_view.track_start_ref.is_empty():map_view.track_start_ref=ref;_instruction();return
@@ -461,7 +520,8 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 		if line_stops.is_empty() or line_stops[-1]!=id:line_stops.append(id)
 		_right();return
 	if kind in ["station","link"]:_select(kind,id)
-	elif kind=="blueprint":_message("历史目标站区","请使用下方「站点」工具，在目标区域亲手建设车站。")
+	elif kind=="blueprint":
+		_trigger_beat("select",[id]);problem="目标站区：请点击下方「站点」，再在此处放置预览。";_instruction()
 	else:show_left=false;show_right=false;selected_id="";selected_kind="";map_view.selected_id="";map_view.requested_redraw();_layout()
 
 func _ref(ll:Array,kind:String,id:String,side:String,t:float=-1) -> Dictionary:
@@ -489,6 +549,7 @@ func _from_station(id:String,side:String) -> void:
 func _track_preview(finish:Dictionary) -> void:
 	pending_track=rules.track_preview(map_view.track_start_ref,finish,map_view.track_control_latlng)
 	map_view.draft_track_points=pending_track.get("points",[]);map_view.track_preview_conflict=str(pending_track.get("issue",""));map_view.requested_redraw()
+	if not map_view.track_end_ref.is_empty():_trigger_beat("preview_track",_track_historical_ids(map_view.track_start_ref,finish))
 
 func _commit_track() -> void:
 	if map_view.track_start_ref.is_empty() or map_view.track_end_ref.is_empty():return
@@ -502,6 +563,7 @@ func _commit_track() -> void:
 		if first_targets.size()>=2:
 			var first:=Story.bound_station(world,str(first_targets[0].id));var second:=Story.bound_station(world,str(first_targets[1].id))
 			if not first.is_empty() and not second.is_empty() and bool(TrackNetwork.shortest_station_path(str(first.id),str(second.id),world,float(WorldData.city(str(world.cityId)).center[0])).get("valid",false)):world.storyState.learnedTools=true
+	_trigger_beat("build_track",_track_historical_ids(start,finish))
 	var next:={"nodeId":str(edge.bNodeId),"latlng":finish.latlng,"depthM":finish.get("depthM",-15)}
 	_tool("track" if continuous else "select")
 	if continuous:map_view.track_start_ref=next
@@ -517,6 +579,7 @@ func _commit_station() -> void:
 	if rules._station_overlaps_in(candidate,world.stations):problem="站体重叠，请移动或旋转后确认。";_right();return
 	if not str(candidate.get("historicalId","")).is_empty() and not Story.bound_station(world,str(candidate.historicalId)).is_empty():problem="该历史目标已有车站。";_right();return
 	_execute("建设%s" % str(candidate.name),func(state:Dictionary):candidate.id="station_%d" % Time.get_ticks_usec();state.stations.append(candidate);TrackNetwork.ensure_station_nodes(state))
+	_trigger_beat("build_station",[str(candidate.get("historicalId",""))])
 	_tool("select");selected_kind="station";selected_id=str(candidate.id);show_left=true;show_right=false;_refresh();_save()
 
 func _execute(title:String,mutation:Callable) -> void:
@@ -533,6 +596,7 @@ func _select(kind:String,id:String) -> void:
 	selected_kind=kind;selected_id=id;evaluation={};show_right=true
 	if _narrow():show_left=false
 	map_view.selected_id=id;map_view.selected_type=kind;map_view.requested_redraw();_right();_layout()
+	if kind=="station":_trigger_beat("select",[str(WorldData.find_station(world,id).get("historicalId",""))])
 
 func _drag_station(id:String,ll:Array) -> void:
 	if Time.get_ticks_usec()-last_preview_usec<33333:return
@@ -618,12 +682,17 @@ func _check() -> void:
 	_right();_layout()
 
 func _commit_chapter() -> void:
+	var teaching:=Tutorial.active(world)
 	var result:=Story.commit_chapter(world,int(evaluation.get("revision",-1)))
 	if not bool(result.get("ok",false)):problem=str(result.get("error","无法确认"));_check();return
+	if teaching:
+		world.storyState.tutorialEnabled=false;world.storyState.tutorialStatus="completed";world.storyState.learnedTools=true
+		if Prefs.save_onboarding_completed(true)!=OK:_message("教学设置未保存","本局教程已完成；跨城市的学习记录写入失败，可在设置中重试。")
+	_close_beat()
 	_cancel_drafts();evaluation={};tool="select";map_view.tool=tool;display_seconds=0;display_paused=false;show_left=true;show_right=false;_mark_dirty();_refresh();_locate_chapter();_save()
 
 func _next() -> void:
-	Story.next_chapter(world);_mark_dirty();_refresh();_locate_chapter();_save()
+	_close_beat();Story.next_chapter(world);_mark_dirty();_refresh();_locate_chapter();_save()
 
 func _locate_issue(issue:Dictionary) -> void:
 	var ll:Array=issue.get("latlng",[])
@@ -650,10 +719,10 @@ func _instruction() -> void:
 	else:hint.text="点击选择；拖动空白处平移，滚轮缩放。Esc取消，Ctrl+Z撤销。"
 
 func _focus_tutorial() -> void:
-	if str(world.get("mode",""))!="campaign" or not bool(world.get("storyState",{}).get("tutorialEnabled",false)) or str(world.storyState.get("stage",""))=="outcome":spotlight.clear_focus();return
+	if not Tutorial.active(world):spotlight.clear_focus();return
 	var target:Control=null;var rect:=Rect2();var text:=""
-	if str(world.storyState.get("stage","intro"))=="intro":target=begin_button;text="点击这里展开本章历史蓝图"
-	elif not Story.plan_is_final(world):target=revision_button;text="对比历史方案并采用下一版修订"
+	if str(world.storyState.get("stage","intro"))=="intro":target=begin_button;text="展开本章蓝图"
+	elif not Story.plan_is_final(world):target=revision_button;text="查看并采用下一版方案"
 	elif is_instance_valid(confirm_button) and (not map_view.draft_station.is_empty() or not map_view.track_end_ref.is_empty()):target=confirm_button;text="点击这里确认本次建设"
 	else:
 		var missing:Dictionary={}
@@ -662,7 +731,7 @@ func _focus_tutorial() -> void:
 		if not missing.is_empty():
 			if tool!="station":target=station_button;text="点击下方「站点」"
 			else:
-				var point:=map_view._to_screen(missing.latlng)+map_area.position;rect=Rect2(point-Vector2(24,24),Vector2(48,48));text="在这里放置「%s」预览" % str(missing.name)
+				rect=_tutorial_map_rect(missing.latlng,"station:"+str(missing.id),24);text="放置「%s」预览" % str(missing.name)
 		elif not bool(world.storyState.get("learnedTools",false)):
 			if tool!="track":target=track_button;text="点击下方「轨道」"
 			else:
@@ -670,14 +739,28 @@ func _focus_tutorial() -> void:
 				if targets.size()>=2:
 					var a:=Story.bound_station(world,str(targets[0].id));var b:=Story.bound_station(world,str(targets[1].id));var ends:=_facing(a,b)
 					var ll:=WorldData.station_endpoint(a,str(ends[0])) if map_view.track_start_ref.is_empty() else WorldData.station_endpoint(b,str(ends[1]))
-					var point:=map_view._to_screen(ll)+map_area.position;rect=Rect2(point-Vector2(18,18),Vector2(36,36));text="点击这里的车站接轨端"
+					rect=_tutorial_map_rect(ll,"track:"+("start" if map_view.track_start_ref.is_empty() else "end"),18);text="点击这里的车站接轨端"
 		elif bool(Story.chapter(world).get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):
 			target=confirm_button if tool=="line" else line_button;text="确认贯通站序" if tool=="line" else "点击下方「线路整理」核对贯通"
 		elif bool(evaluation.get("complete",false)):target=confirm_button;text="确认本章历史节点"
 		else:target=check_button;text="在故事页检查本章复现"
-	if is_instance_valid(target) and target.is_visible_in_tree():rect=target.get_global_rect()
+	if is_instance_valid(target) and target.is_visible_in_tree():
+		var ancestor:=target.get_parent()
+		while ancestor!=null:
+			if ancestor is ScrollContainer:
+				if not ancestor.get_global_rect().encloses(target.get_global_rect()):ancestor.ensure_control_visible(target)
+				break
+			ancestor=ancestor.get_parent()
+		rect=target.get_global_rect()
 	if rect.has_area():spotlight.set_focus(rect,text,"rect",face,roundi(18*ui_scale))
 	else:spotlight.clear_focus()
+
+func _tutorial_map_rect(latlng:Array,step_id:String,radius:float) -> Rect2:
+	# Reframe only on a real tutorial step transition, never on a normal refresh.
+	if guide_map_step!=step_id:
+		guide_map_step=step_id;_locate_chapter()
+	var point:=map_view._to_screen(latlng)+map_area.position
+	return Rect2(point-Vector2(radius,radius),Vector2(radius*2,radius*2))
 
 func _facing(a:Dictionary,b:Dictionary) -> Array:
 	var result:=["end","start"];var best:=INF
@@ -688,7 +771,7 @@ func _facing(a:Dictionary,b:Dictionary) -> Array:
 	return result
 
 func _assist() -> void:
-	if not bool(world.storyState.get("learnedTools",false)):_message("先完成基础操作","请先亲手确认两座目标站和一段轨道。");return
+	if Tutorial.active(world) and not bool(world.storyState.get("learnedTools",false)):_message("先完成基础操作","请先亲手确认两座目标站和一段轨道。");return
 	var result:=_assist_candidate()
 	if not str(result.get("issue","")).is_empty():_message("辅助建设不可应用",str(result.issue));return
 	var revision:=int(world.revision)
@@ -708,6 +791,7 @@ func _assist_candidate() -> Dictionary:
 			if bool(target.get("historicalNameRequired",false)):Story.bound_station(candidate,str(target.id)).name=target.name
 			continue
 		var station:={"id":"assist_%s" % str(target.id),"name":str(target.name),"historicalId":str(target.id),"latlng":target.latlng.duplicate(),"heading":map_view.blueprint_heading_for(str(target.id)),"lengthM":118.788,"widthM":20.0,"depthM":-15.0,"vehicleId":"B-6","existing":false,"routeIds":[]}
+		_apply_profile(station,Story.profile(candidate,str(target.id)))
 		if helper._station_overlaps_in(station,candidate.stations):return {"issue":"%s 与现有站体冲突，请手动调整。" % str(station.name)}
 		candidate.stations.append(station);TrackNetwork.ensure_station_nodes(candidate)
 	var construction_groups:Array=Story.groups(candidate,true)
@@ -900,9 +984,12 @@ func _rescale() -> void:
 
 func _layers() -> void:
 	var d:=_dialog("地图图层");var body:=VBoxContainer.new();d.add_child(body)
+	body.add_child(label("实线：已建线路；蓝色虚线：本期蓝图；淡紫虚线：未实施的历史草案。",15))
 	for entry in [["主要道路名称","show_road_names"],["车站站体","show_stations"],["轨道与线路","show_network"]]:
 		var key:=str(entry[1]);var toggle:=CheckButton.new();toggle.text=str(entry[0]);toggle.button_pressed=bool(map_view.get(key));body.add_child(toggle)
-		toggle.toggled.connect(func(value:bool):map_view.set(key,value);map_view.requested_redraw())
+		toggle.toggled.connect(func(value:bool):
+			map_view.set(key,value);map_view.requested_redraw()
+			if key=="show_road_names":Prefs.save_road_names(value))
 	d.popup_centered(Vector2i(560,300))
 
 func _unhandled_key_input(event:InputEvent) -> void:
@@ -921,3 +1008,55 @@ func _unhandled_key_input(event:InputEvent) -> void:
 		_right();map_view.requested_redraw()
 	elif event.keycode==KEY_SPACE:display_paused=not display_paused
 	get_viewport().set_input_as_handled()
+
+func usable_map_rect() -> Rect2:
+	var left_edge:float=left_panel.size.x+24 if left_panel.visible else 12.0
+	var right_edge:float=right_panel.size.x+24 if right_panel.visible else 12.0
+	return Rect2(Vector2(left_edge,12),Vector2(maxf(240,map_area.size.x-left_edge-right_edge),maxf(160,map_area.size.y-24)))
+
+func _close_beat() -> void:
+	if is_instance_valid(beat_panel):beat_panel.queue_free()
+	beat_panel=null;active_beat_id=""
+
+func _show_beat(beat:Dictionary) -> void:
+	if beat.is_empty():return
+	_close_beat();active_beat_id=str(beat.id)
+	Beats.mark_read(world,active_beat_id);_mark_dirty()
+	beat_panel=PanelContainer.new();map_area.add_child(beat_panel)
+	var box:=VBoxContainer.new();beat_panel.add_child(box)
+	var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;box.add_child(scroll)
+	var text_box:=VBoxContainer.new();text_box.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(text_box)
+	text_box.add_child(label(str(beat.get("date",""))+" · "+str(beat.title),18,true))
+	text_box.add_child(label(str(beat.text),15))
+	text_box.add_child(label("来源："+str(beat.get("sourceTitle","公开资料")),15))
+	var controls:=HFlowContainer.new();box.add_child(controls)
+	controls.add_child(button("收起故事",_close_beat))
+	controls.add_child(button("来源",func():OS.shell_open(str(beat.get("source","")))))
+	map_view.story_markers=Beats.markers(world);map_view.requested_redraw();_layout()
+
+func _trigger_beat(event:String,ids:Array) -> void:
+	if is_instance_valid(beat_panel):return
+	# Basic instruction retains the single visual focus; stories remain readable in sources.
+	if Tutorial.active(world):return
+	var beat:=Beats.eligible(world,event,ids)
+	if not beat.is_empty():_show_beat(beat)
+
+func _track_historical_ids(start:Dictionary,finish:Dictionary) -> Array:
+	var result:Array=[]
+	for ref in [start,finish]:
+		var station:=WorldData.find_station(world,str(ref.get("stationId","")))
+		if not station.is_empty():result.append(str(station.get("historicalId","")))
+	return result
+
+func _apply_profile(station:Dictionary,profile:Dictionary) -> void:
+	for pair in [["lengthM","lengthM"],["widthM","widthM"],["depthM","depthM"],["heading","heading"],["vehicleId","vehicleId"],["form","constructionForm"],["note","constructionNote"],["id","constructionProfileId"]]:
+		if profile.has(pair[0]):station[pair[1]]=profile[pair[0]]
+
+func _view_plan(index:int) -> void:
+	var versions:Array=Story.chapter(world).get("story",{}).get("planVersions",[])
+	if index<0 or index>=versions.size():return
+	_cancel_drafts();tool="select";map_view.tool=tool
+	var copy:=world.duplicate(false);copy["storyPlan"]=world.storyPlan.duplicate(true);copy.storyPlan.planIndex=index
+	copy["storyState"]=world.storyState.duplicate(true);copy.storyState.stage="build"
+	plan_view_index=index;map_view.set_blueprint(Story.blueprint(copy,true))
+	hint.text="正在只读对照历史方案；按建设工具返回当前方案。未实施草案不会生成列车。"

@@ -1,4 +1,4 @@
-造一座地铁 · Windows 免安装版 0.18.0 · 存档格式 18
+造一座地铁 · Windows 免安装版 0.19.0 · 存档格式 19
 
 双击“造一座地铁.exe”运行，无需浏览器、Node.js、Godot安装或联网地图服务。
 
@@ -12,7 +12,10 @@
 
 地图为OpenStreetMap / Geofabrik现代地理参考，不表示当年街道或工程轨道测绘；数据日期、范围和校验值见basemap-manifest.json。© OpenStreetMap contributors，派生数据使用ODbL 1.0。
 
-更新内容：压缩包内 update-notes-0.18.0.txt
+更新内容：压缩包内 update-notes-0.19.0.txt
 测试记录：压缩包内 test-record.txt
-当前截图：docs/story-0.18-menu-1600x980.png、docs/story-0.18-plan-revision-1600x980.png
+当前截图：docs/story-0.19-menu-1600x980.png、docs/story-0.19-plan-revision-1600x980.png
 许可：LICENSES.txt、THIRD_PARTY_NOTICES.txt、OFL.txt
+
+0.19新增：首次首章教学、独立重学练习、建设地点故事、方案年代与只读对照、较清楚的蓝灰地图。已读故事与首章状态随格式19保存；格式18载入前备份原件。
+迁移说明：docs/migration-19.md；故事来源：docs/story-sources-0.19.md。

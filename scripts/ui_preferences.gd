@@ -86,14 +86,14 @@ static func load_onboarding_completed() -> bool:
 	var config := ConfigFile.new()
 	if config.load(path()) != OK:
 		return false
-	return bool(config.get_value("onboarding", "completed_once", false))
+	return bool(config.get_value("story_tutorial", "completed_once", false))
 
 static func save_onboarding_completed(value: bool) -> Error:
 	var config := ConfigFile.new()
 	var target := path()
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
 	config.load(target)
-	config.set_value("onboarding", "completed_once", value)
+	config.set_value("story_tutorial", "completed_once", value)
 	return config.save(target)
 
 static func load_timed_autosave_enabled() -> bool:
