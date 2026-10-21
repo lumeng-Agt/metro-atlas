@@ -6048,6 +6048,365 @@
               "sourceNote": "批复明确与6号线通道换乘。"
             }
           ]
+        },
+        {
+          "id": "sh-line19-build",
+          "projectIds": [
+            "sh-line19"
+          ],
+          "title": "上海19号线建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_special_bond_project_statement",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+          "sourceTitle": "2026年上海市政府专项债券（一～十三期）信用评级报告：上海市轨道交通19号线项目说明",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按2026年上海市政府专项债券项目说明复现19号线：南起闵行区虹建路站，北至宝山区宝山站，全长约46.17公里，新建34座地下车站、18座换乘站。10座既有换乘站复用站区并建立显式换乘，其余站按在建站标注与在建线位定位。项目在截止日仍在建，完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2026-03-20",
+          "lineGroups": [
+            {
+              "taskId": "project:sh-line19-build",
+              "mapRouteId": "shanghai-future-line19",
+              "name": "19号线",
+              "historicalLineId": "shanghai-line19-19",
+              "color": "#8AAE6B",
+              "stationIds": [
+                "shanghai-f19-hongjianlu",
+                "shanghai-f19-liancaolu",
+                "shanghai-s418",
+                "shanghai-f19-huajinglu",
+                "shanghai-f19-sanlinnan",
+                "shanghai-s6",
+                "shanghai-s7",
+                "shanghai-f19-dezhoulu",
+                "shanghai-s345",
+                "shanghai-s172",
+                "shanghai-f19-shibo",
+                "shanghai-f19-huafenglu",
+                "shanghai-f19-nanmatoulu",
+                "shanghai-s67",
+                "shanghai-f19-weifanglu",
+                "shanghai-s151",
+                "shanghai-s301",
+                "shanghai-s244",
+                "shanghai-f19-zhoujiazhuilu",
+                "shanghai-s59",
+                "shanghai-f19-tianailu",
+                "shanghai-f19-sisu",
+                "shanghai-f19-liangchenglu",
+                "shanghai-f19-guanglingsilu",
+                "shanghai-f19-chezhannorth",
+                "shanghai-f19-hongwanlu",
+                "shanghai-f19-yierba",
+                "shanghai-f19-humalu",
+                "shanghai-f19-jiangyangnanlu",
+                "shanghai-f19-taihelu",
+                "shanghai-f19-langanglu",
+                "shanghai-f19-tieshanlu",
+                "shanghai-f19-tietonglu",
+                "shanghai-f19-baoshanstation"
+              ],
+              "stationNames": {
+                "shanghai-f19-hongjianlu": "虹建路",
+                "shanghai-f19-liancaolu": "联曹路",
+                "shanghai-s418": "华泾西",
+                "shanghai-f19-huajinglu": "华泾路",
+                "shanghai-f19-sanlinnan": "三林南",
+                "shanghai-s6": "凌兆新村",
+                "shanghai-s7": "东方体育中心",
+                "shanghai-f19-dezhoulu": "德州路",
+                "shanghai-s345": "后滩",
+                "shanghai-s172": "世博大道",
+                "shanghai-f19-shibo": "世博",
+                "shanghai-f19-huafenglu": "华丰路",
+                "shanghai-f19-nanmatoulu": "南码头路",
+                "shanghai-s67": "塘桥",
+                "shanghai-f19-weifanglu": "潍坊路",
+                "shanghai-s151": "商城路",
+                "shanghai-s301": "浦东南路",
+                "shanghai-s244": "提篮桥",
+                "shanghai-f19-zhoujiazhuilu": "周家嘴路",
+                "shanghai-s59": "海伦路",
+                "shanghai-f19-tianailu": "甜爱路",
+                "shanghai-f19-sisu": "上海外国语大学",
+                "shanghai-f19-liangchenglu": "凉城路",
+                "shanghai-f19-guanglingsilu": "广灵四路",
+                "shanghai-f19-chezhannorth": "车站北路",
+                "shanghai-f19-hongwanlu": "虹湾路",
+                "shanghai-f19-yierba": "一二八纪念路",
+                "shanghai-f19-humalu": "呼玛路",
+                "shanghai-f19-jiangyangnanlu": "江杨南路",
+                "shanghai-f19-taihelu": "泰和路",
+                "shanghai-f19-langanglu": "兰岗路",
+                "shanghai-f19-tieshanlu": "铁山路",
+                "shanghai-f19-tietonglu": "铁通路",
+                "shanghai-f19-baoshanstation": "宝山站"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "34座车站及站序取自《2026年上海市政府专项债券》19号线项目说明（虹建路—宝山站，全长约46.17公里，新建34座车站、18座换乘站）。10座既有换乘站复用站区；其余站点按 OSM 19号线在建站标注与在建线位定位，广灵四路、车站北路、虹湾路、一二八纪念路、铁山路、铁通路按站序在相邻已定位站之间投影。区间为走廊近似，不是隧道测绘线位。",
+              "stationOrderSource": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shanghai-s418": "shanghai-s418__line19-19",
+                "shanghai-s6": "shanghai-s6__line19-19",
+                "shanghai-s7": "shanghai-s7__line19-19",
+                "shanghai-s345": "shanghai-s345__line19-19",
+                "shanghai-s172": "shanghai-s172__line19-19",
+                "shanghai-s67": "shanghai-s67__line19-19",
+                "shanghai-s151": "shanghai-s151__line19-19",
+                "shanghai-s301": "shanghai-s301__line19-19",
+                "shanghai-s244": "shanghai-s244__line19-19",
+                "shanghai-s59": "shanghai-s59__line19-19"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sh19-huajingxi-15",
+              "name": "华泾西",
+              "complexId": "shanghai-s418",
+              "stationInstanceIds": [
+                "shanghai-s418",
+                "shanghai-s418__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line15-15",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "19号线工可口径“华泾西”对应15号线景洪路站；两线站体分别建造，换乘按同站区处理。"
+            },
+            {
+              "id": "future-transfer-sh19-lingzhao-8",
+              "name": "凌兆新村",
+              "complexId": "shanghai-s6",
+              "stationInstanceIds": [
+                "shanghai-s6",
+                "shanghai-s6__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列凌兆新村为换乘站（8号线）。"
+            },
+            {
+              "id": "future-transfer-sh19-sportcenter",
+              "name": "东方体育中心",
+              "complexId": "shanghai-s7",
+              "stationInstanceIds": [
+                "shanghai-s7__line6-6",
+                "shanghai-s7__line8-8",
+                "shanghai-s7__line11-11",
+                "shanghai-s7__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line8-8",
+                "shanghai-line11-11",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "东方体育中心为6/8/11号线既有换乘枢纽，19号线为其第四线；通道和层次仅作示意。"
+            },
+            {
+              "id": "future-transfer-sh19-houtan-7",
+              "name": "后滩",
+              "complexId": "shanghai-s345",
+              "stationInstanceIds": [
+                "shanghai-s345",
+                "shanghai-s345__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列后滩为换乘站（7号线）。"
+            },
+            {
+              "id": "future-transfer-sh19-shibodadao-13",
+              "name": "世博大道",
+              "complexId": "shanghai-s172",
+              "stationInstanceIds": [
+                "shanghai-s172",
+                "shanghai-s172__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line13-13",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列世博大道为换乘站（13号线）。"
+            },
+            {
+              "id": "future-transfer-sh19-tangqiao-4",
+              "name": "塘桥",
+              "complexId": "shanghai-s67",
+              "stationInstanceIds": [
+                "shanghai-s67",
+                "shanghai-s67__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列塘桥为换乘站（4号线）。"
+            },
+            {
+              "id": "future-transfer-sh19-shangcheng-9",
+              "name": "商城路",
+              "complexId": "shanghai-s151",
+              "stationInstanceIds": [
+                "shanghai-s151",
+                "shanghai-s151__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line9-9",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列商城路为换乘站（9号线）。"
+            },
+            {
+              "id": "future-transfer-sh19-pudongnan-2",
+              "name": "浦东南路",
+              "complexId": "shanghai-s301",
+              "stationInstanceIds": [
+                "shanghai-s301",
+                "shanghai-s301__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列浦东南路为换乘站（2号线）。"
+            },
+            {
+              "id": "future-transfer-sh19-tilanqiao-12",
+              "name": "提篮桥",
+              "complexId": "shanghai-s244",
+              "stationInstanceIds": [
+                "shanghai-s244",
+                "shanghai-s244__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列提篮桥为换乘站（12号线）。"
+            },
+            {
+              "id": "future-transfer-sh19-hailun",
+              "name": "海伦路",
+              "complexId": "shanghai-s59",
+              "stationInstanceIds": [
+                "shanghai-s59__line4-4",
+                "shanghai-s59__line10-10",
+                "shanghai-s59__line19-19"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line10-10",
+                "shanghai-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+              "sourceNote": "官方工可列海伦路为换乘站（4/10号线）；通道和层次仅作示意。"
+            }
+          ]
+        },
+        {
+          "id": "sh-line22-chongming-build",
+          "projectIds": [
+            "sh-line22-chongming"
+          ],
+          "title": "上海22号线（崇明线）建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "operator_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
+          "sourceTitle": "上海市轨道交通崇明线一期工程环境影响报告书（公示稿）及二期（长兴岛转换北井—裕安站）环评公示稿",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按崇明线一期、二期环境影响报告书复现：金吉路—申江路—高宝路—凌空北路—长兴岛—陈家镇—东滩—裕安，共8座车站，全长约42.9公里。申江路与12号线换乘；金吉路、长兴岛的换乘对象未建或不在本地路网，暂不建立换乘。项目在截止日仍在建，完成本篇只表示规划建设完成。",
+          "sourcePublicationDate": "2022-11-20",
+          "lineGroups": [
+            {
+              "taskId": "project:sh-line22-chongming-build",
+              "mapRouteId": "shanghai-future-line22-chongming",
+              "name": "22号线（崇明线）",
+              "historicalLineId": "shanghai-line22-22",
+              "color": "#C4A35A",
+              "stationIds": [
+                "shanghai-f22-jinjilu",
+                "shanghai-s253",
+                "shanghai-f22-gaobaolu",
+                "shanghai-f22-lingkongbeilu",
+                "shanghai-f22-changxingdao",
+                "shanghai-f22-chenjiazhen",
+                "shanghai-f22-dongtan",
+                "shanghai-f22-yuan"
+              ],
+              "stationNames": {
+                "shanghai-f22-jinjilu": "金吉路",
+                "shanghai-s253": "申江路",
+                "shanghai-f22-gaobaolu": "高宝路",
+                "shanghai-f22-lingkongbeilu": "凌空北路",
+                "shanghai-f22-changxingdao": "长兴岛",
+                "shanghai-f22-chenjiazhen": "陈家镇",
+                "shanghai-f22-dongtan": "东滩",
+                "shanghai-f22-yuan": "裕安"
+              },
+              "toleranceM": 800.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "站序与站数取自崇明线一期、二期环境影响报告书（一期金吉路—长兴岛5站22.3公里；二期长兴岛北井—裕安3站20.6公里），共8站。申江路复用12号线站区；其余按OSM在建站标注定位。一期最大站间距12.1公里为凌空北路—长兴岛跨江段。区间为走廊近似，不是越江隧道测绘线位。",
+              "stationOrderSource": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shanghai-s253": "shanghai-s253__line22-22"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sh22-shenjiang-12",
+              "name": "申江路",
+              "complexId": "shanghai-s253",
+              "stationInstanceIds": [
+                "shanghai-s253",
+                "shanghai-s253__line22-22"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
+              "sourceNote": "崇明线一期环评明确申江路站与12号线换乘。"
+            }
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -28265,6 +28624,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.5",
-  "contentRevisionNote": "增加上海21号线一期建设章。"
+  "contentRevision": "2026.10.21.7",
+  "contentRevisionNote": "增加上海22号线（崇明线）建设章。"
 }

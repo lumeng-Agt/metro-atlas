@@ -1,0 +1,144 @@
+{
+  "city": "shanghai",
+  "projectIds": [
+    "sh-line22-chongming"
+  ],
+  "stations": [
+    {
+      "name": "金吉路",
+      "id": "shanghai-f22-jinjilu",
+      "latlng": [
+        31.266662,
+        121.624713
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "崇明线一期设计起点，OSM 金吉路站标注；环评称可与9号线换乘，但本地9号线无同名站，暂不建立换乘。"
+    },
+    {
+      "name": "申江路",
+      "id": "shanghai-s253",
+      "existing": true
+    },
+    {
+      "name": "高宝路",
+      "id": "shanghai-f22-gaobaolu",
+      "latlng": [
+        31.294042,
+        121.62226
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 崇明线在建站标注（高宝路（在建））。"
+    },
+    {
+      "name": "凌空北路",
+      "id": "shanghai-f22-lingkongbeilu",
+      "latlng": [
+        31.295717,
+        121.668109
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 崇明线站标注。"
+    },
+    {
+      "name": "长兴岛",
+      "id": "shanghai-f22-changxingdao",
+      "latlng": [
+        31.393087,
+        121.717917
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 崇明线站标注；环评一期终点，换乘对象为远期长兴岛支线，未建不建立换乘。"
+    },
+    {
+      "name": "陈家镇",
+      "id": "shanghai-f22-chenjiazhen",
+      "latlng": [
+        31.492732,
+        121.7882
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 崇明线站标注；二期站址位于沪陕高速东侧、陈南公路北侧。"
+    },
+    {
+      "name": "东滩",
+      "id": "shanghai-f22-dongtan",
+      "latlng": [
+        31.502258,
+        121.85137
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 崇明线站标注；环评二期三站之一。"
+    },
+    {
+      "name": "裕安",
+      "id": "shanghai-f22-yuan",
+      "latlng": [
+        31.525252,
+        121.858099
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 崇明线站标注；二期终点。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "chongming",
+      "mapRouteId": "shanghai-future-line22-chongming",
+      "name": "22号线（崇明线）",
+      "historicalLineId": "shanghai-line22-22",
+      "color": "#C4A35A",
+      "stationIds": [
+        "shanghai-f22-jinjilu",
+        "shanghai-s253",
+        "shanghai-f22-gaobaolu",
+        "shanghai-f22-lingkongbeilu",
+        "shanghai-f22-changxingdao",
+        "shanghai-f22-chenjiazhen",
+        "shanghai-f22-dongtan",
+        "shanghai-f22-yuan"
+      ],
+      "toleranceM": 800,
+      "officialLengthM": 42900,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "站序与站数取自崇明线一期、二期环境影响报告书（一期金吉路—长兴岛5站22.3公里；二期长兴岛北井—裕安3站20.6公里），共8站。申江路复用12号线站区；其余按OSM在建站标注定位。一期最大站间距12.1公里为凌空北路—长兴岛跨江段。区间为走廊近似，不是越江隧道测绘线位。",
+      "stationOrderSource": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
+      "maxSpacingM": 13000
+    }
+  ],
+  "stationInstances": {
+    "shanghai-s253": "shanghai-s253__line22-22"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sh22-shenjiang-12",
+      "name": "申江路",
+      "complexId": "shanghai-s253",
+      "stationInstanceIds": [
+        "shanghai-s253",
+        "shanghai-s253__line22-22"
+      ],
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line22-22"
+      ],
+      "sourceNote": "崇明线一期环评明确申江路站与12号线换乘。"
+    }
+  ],
+  "plan": {
+    "id": "sh-line22-chongming-build",
+    "title": "上海22号线（崇明线）建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "operator_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
+    "sourceTitle": "上海市轨道交通崇明线一期工程环境影响报告书（公示稿）及二期（长兴岛转换北井—裕安站）环评公示稿",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2022-11-20",
+    "description": "按崇明线一期、二期环境影响报告书复现：金吉路—申江路—高宝路—凌空北路—长兴岛—陈家镇—东滩—裕安，共8座车站，全长约42.9公里。申江路与12号线换乘；金吉路、长兴岛的换乘对象未建或不在本地路网，暂不建立换乘。项目在截止日仍在建，完成本篇只表示规划建设完成。",
+    "contentRevision": "2026.10.21.7",
+    "contentRevisionNote": "增加上海22号线（崇明线）建设章。"
+  }
+}

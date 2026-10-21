@@ -123,12 +123,13 @@ def validate(spec: dict, city: dict, existing_lines: set[str]) -> list[str]:
             if distance_m(point, center) > MAX_CITY_DISTANCE_M:
                 errors.append(f"group {key}: {station_id} is more than {int(MAX_CITY_DISTANCE_M / 1000)} km from the city centre")
         loop = bool(group.get("loop"))
+        max_spacing = float(group.get("maxSpacingM", MAX_SPACING_M) or MAX_SPACING_M)
         total = 0.0
         for pair in range(len(points) - 1):
             spacing = distance_m(points[pair], points[pair + 1])
             total += spacing
-            if spacing < MIN_SPACING_M or spacing > MAX_SPACING_M:
-                errors.append(f"group {key}: spacing {int(spacing)} m between {ids[pair]} and {ids[pair + 1]} is outside {int(MIN_SPACING_M)}–{int(MAX_SPACING_M)} m")
+            if spacing < MIN_SPACING_M or spacing > max_spacing:
+                errors.append(f"group {key}: spacing {int(spacing)} m between {ids[pair]} and {ids[pair + 1]} is outside {int(MIN_SPACING_M)}–{int(max_spacing)} m")
         if loop and len(points) > 2:
             total += distance_m(points[-1], points[0])
         if not loop:

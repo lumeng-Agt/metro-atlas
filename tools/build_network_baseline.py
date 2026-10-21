@@ -189,7 +189,10 @@ def build(cities_doc: dict[str, Any], campaigns_doc: dict[str, Any]) -> dict[str
                         break
             removed: list[dict[str, str]] = []
             for item in exclusions.get(route_id, []):
-                match = next((str(station.get("id", "")) for station in city.get("stations", []) if str(station.get("name", "")) == item["name"]), "")
+                # Only a station that is actually on this route can be excluded
+                # for being unopened; a same-named station on a future project
+                # must not leak into the operating route inventory.
+                match = next((str(station.get("id", "")) for station in city.get("stations", []) if str(station.get("name", "")) == item["name"] and str(station.get("id", "")) in station_ids), "")
                 if match:
                     removed.append({"stationId": match, "name": item["name"], "reason": item["reason"], "source": item["source"]})
             excluded_ids = {entry["stationId"] for entry in removed}

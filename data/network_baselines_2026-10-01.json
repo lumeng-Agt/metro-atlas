@@ -33,7 +33,7 @@
           "source": "https://www.shanghai.gov.cn/nw4411/20260806/dede926ed5044859b3f542fe8e003b0a.html",
           "sourceTitle": "轨道交通19号线进度上新",
           "note": "2026年8月官方进度报道确认土建施工仍在推进；不计入2026-10-01已开通路网。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -131,7 +131,7 @@
           "source": "https://www.shanghai.gov.cn/nw15343/20250724/478b3e2e1ac44d248d1b31022f234b5b.html",
           "sourceTitle": "浦东多个重大工程项目火热推进",
           "note": "官方报道确认车站土建施工；市域线/城际属性与市区地铁分开统计。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         }
