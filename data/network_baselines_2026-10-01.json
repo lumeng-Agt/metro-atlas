@@ -12480,7 +12480,7 @@
           "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
           "sourceTitle": "2026年北京市轨道交通建设计划",
           "note": "列入2026年建设计划的线路段。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "建设计划项目"
         },
@@ -12516,7 +12516,7 @@
           "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
           "sourceTitle": "2026年北京市轨道交通建设计划",
           "note": "列入2026年建设计划；本地逐站参考几何尚未建立。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "建设计划项目"
         },
@@ -12528,7 +12528,7 @@
           "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
           "sourceTitle": "2026年北京市轨道交通建设计划",
           "note": "列入2026年建设计划，需与机场快线既有线身份区分。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "建设计划项目"
         },

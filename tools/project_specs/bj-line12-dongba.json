@@ -1,0 +1,61 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-line12"
+  ],
+  "stations": [
+    {
+      "name": "东坝北",
+      "id": "beijing-s396",
+      "existing": true
+    },
+    {
+      "name": "东坝北街",
+      "id": "beijing-f12-dongbabeijie",
+      "latlng": [
+        39.975,
+        116.558
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "按12号线东坝北—东坝北街延伸方向与东坝北街道路走廊定位；单站延伸，站位为走廊级参考。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "dongba",
+      "mapRouteId": "beijing-future-line12-dongba",
+      "name": "12号线东坝北—东坝北街段",
+      "historicalLineId": "beijing-line12-12",
+      "color": "#8C6B4F",
+      "stationIds": [
+        "beijing-s396",
+        "beijing-f12-dongbabeijie"
+      ],
+      "toleranceM": 600,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "12号线东坝北—东坝北街单站延伸，东坝北复用既有12号线站体，东坝北街为新建站；站位按延伸方向与道路走廊定位，属走廊级参考。",
+      "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html"
+    }
+  ],
+  "stationInstances": {
+    "beijing-s396": "beijing-s396__line12-12"
+  },
+  "transfers": [],
+  "plan": {
+    "id": "bj-line12-dongba-build",
+    "title": "北京12号线东坝北—东坝北街段建设篇",
+    "date": "2026-10-01",
+    "status": "approved_and_under_construction",
+    "sourceType": "municipal_construction_plan",
+    "projectType": "approved_and_under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+    "sourceTitle": "2026年北京市轨道交通建设计划",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2026-02-03",
+    "description": "按2026年北京市轨道交通建设计划复现12号线东坝北—东坝北街单站延伸段，东坝北复用既有站体。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.11",
+    "contentRevisionNote": "增加北京12号线东坝北街延伸建设章。"
+  }
+}

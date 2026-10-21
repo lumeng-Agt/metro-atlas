@@ -12685,6 +12685,208 @@
               "sourceNote": "北运河东站为6号线既有站，22号线在此换乘。"
             }
           ]
+        },
+        {
+          "id": "bj-new-airport-lize-build",
+          "projectIds": [
+            "bj-new-airport"
+          ],
+          "title": "北京新机场线北延（草桥—丽泽商务区）建设篇",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "municipal_construction_plan",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+          "sourceTitle": "2026年北京市轨道交通建设计划",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按2026年北京市轨道交通建设计划复现新机场线草桥—丽泽商务区延伸段：草桥复用既有站体，丽泽商务区新建本线站体并与14、16号线换乘。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2026-02-03",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-new-airport-lize-build",
+              "mapRouteId": "beijing-future-new-airport-lize",
+              "name": "新机场线（草桥—丽泽商务区）",
+              "historicalLineId": "beijing-route-21",
+              "color": "#B79A5B",
+              "stationIds": [
+                "beijing-s371",
+                "beijing-s287"
+              ],
+              "stationNames": {
+                "beijing-s371": "草桥",
+                "beijing-s287": "丽泽商务区"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "新机场线北延草桥—丽泽商务区单站延伸；草桥复用既有新机场线站体，丽泽商务区新建本线站体并与14、16号线换乘。区间为走廊近似。",
+              "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s371": "beijing-s371__line21",
+                "beijing-s287": "beijing-s287__line21"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-bj-lize-14",
+              "name": "丽泽商务区",
+              "complexId": "beijing-s287",
+              "stationInstanceIds": [
+                "beijing-s287__line14-14",
+                "beijing-s287__line21"
+              ],
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-route-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+              "sourceNote": "丽泽商务区为14号线既有站，新机场线北延在此设站换乘。"
+            },
+            {
+              "id": "future-transfer-bj-lize-16",
+              "name": "丽泽商务区",
+              "complexId": "beijing-s287",
+              "stationInstanceIds": [
+                "beijing-s287__line16-16",
+                "beijing-s287__line21"
+              ],
+              "lineIds": [
+                "beijing-line16-16",
+                "beijing-route-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+              "sourceNote": "丽泽商务区为16号线既有站，新机场线北延在此设站换乘。"
+            }
+          ]
+        },
+        {
+          "id": "bj-line12-dongba-build",
+          "projectIds": [
+            "bj-line12"
+          ],
+          "title": "北京12号线东坝北—东坝北街段建设篇",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "municipal_construction_plan",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+          "sourceTitle": "2026年北京市轨道交通建设计划",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按2026年北京市轨道交通建设计划复现12号线东坝北—东坝北街单站延伸段，东坝北复用既有站体。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2026-02-03",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line12-dongba-build",
+              "mapRouteId": "beijing-future-line12-dongba",
+              "name": "12号线东坝北—东坝北街段",
+              "historicalLineId": "beijing-line12-12",
+              "color": "#8C6B4F",
+              "stationIds": [
+                "beijing-s396",
+                "beijing-f12-dongbabeijie"
+              ],
+              "stationNames": {
+                "beijing-s396": "东坝北",
+                "beijing-f12-dongbabeijie": "东坝北街"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "12号线东坝北—东坝北街单站延伸，东坝北复用既有12号线站体，东坝北街为新建站；站位按延伸方向与道路走廊定位，属走廊级参考。",
+              "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s396": "beijing-s396__line12-12"
+              }
+            }
+          ],
+          "requiredTransfers": []
+        },
+        {
+          "id": "bj-line1-branch-build",
+          "projectIds": [
+            "bj-line1-branch"
+          ],
+          "title": "北京1号线支线建设篇",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "operator_environmental_impact_report",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceTitle": "北京地铁1号线支线计划年底开工 共设10座车站（京投公司环评二次公示报道）",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按京投公司1号线支线环评二次公示复现：八角游乐园—青龙湖东10座车站、约21公里，与1号线贯通运营，张郭庄与14号线换乘。站名为暂定名；完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2023-10-09",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line1-branch-build",
+              "mapRouteId": "beijing-future-line1-branch",
+              "name": "1号线支线",
+              "historicalLineId": "beijing-lineearly0",
+              "color": "#A6322E",
+              "stationIds": [
+                "beijing-s68",
+                "beijing-f1b-tiyuchangnanjie",
+                "beijing-f1b-yuanboyuanx",
+                "beijing-s294",
+                "beijing-f1b-xierqu",
+                "beijing-f1b-houlvcun",
+                "beijing-f1b-yungang",
+                "beijing-f1b-wangzuo",
+                "beijing-f1b-minzudaxue",
+                "beijing-f1b-qinglonghudong"
+              ],
+              "stationNames": {
+                "beijing-s68": "八角游乐园",
+                "beijing-f1b-tiyuchangnanjie": "体育场南街",
+                "beijing-f1b-yuanboyuanx": "园博园西门",
+                "beijing-s294": "张郭庄",
+                "beijing-f1b-xierqu": "西二区",
+                "beijing-f1b-houlvcun": "后吕村",
+                "beijing-f1b-yungang": "云岗",
+                "beijing-f1b-wangzuo": "王佐",
+                "beijing-f1b-minzudaxue": "民族大学",
+                "beijing-f1b-qinglonghudong": "青龙湖东"
+              },
+              "toleranceM": 700.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "10座车站及站序取自京投公司1号线支线环评二次公示（9座新建、1座改造，约21公里；站名为暂定名）。八角游乐园为1号线既有站并按贯通运营复用站体，张郭庄与14号线换乘；体育场南街、园博园西门、西二区、青龙湖东按站序在走廊上定位，云岗、王佐、民族大学按道路/校区位置定位，均属走廊级参考。",
+              "stationOrderSource": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s294": "beijing-s294__line1branch"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-bj1b-zhangguozhuang-14",
+              "name": "张郭庄",
+              "complexId": "beijing-s294",
+              "stationInstanceIds": [
+                "beijing-s294",
+                "beijing-s294__line1branch"
+              ],
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-lineearly0"
+              ],
+              "precision": "schematic",
+              "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+              "sourceNote": "1号线支线在张郭庄与14号线换乘；两线站体分别建造。"
+            }
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -28957,6 +29159,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.8",
-  "contentRevisionNote": "增加上海20号线一期建设章。"
+  "contentRevision": "2026.10.21.12",
+  "contentRevisionNote": "增加北京1号线支线建设章。"
 }

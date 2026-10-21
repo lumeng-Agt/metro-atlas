@@ -1,0 +1,86 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-new-airport"
+  ],
+  "stations": [
+    {
+      "name": "草桥",
+      "id": "beijing-s371",
+      "existing": true
+    },
+    {
+      "name": "丽泽商务区",
+      "id": "beijing-s287",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "lize",
+      "mapRouteId": "beijing-future-new-airport-lize",
+      "name": "新机场线（草桥—丽泽商务区）",
+      "historicalLineId": "beijing-route-21",
+      "color": "#B79A5B",
+      "stationIds": [
+        "beijing-s371",
+        "beijing-s287"
+      ],
+      "toleranceM": 600,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "新机场线北延草桥—丽泽商务区单站延伸；草桥复用既有新机场线站体，丽泽商务区新建本线站体并与14、16号线换乘。区间为走廊近似。",
+      "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html"
+    }
+  ],
+  "stationInstances": {
+    "beijing-s371": "beijing-s371__line21",
+    "beijing-s287": "beijing-s287__line21"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-bj-lize-14",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "stationInstanceIds": [
+        "beijing-s287__line14-14",
+        "beijing-s287__line21"
+      ],
+      "lineIds": [
+        "beijing-line14-14",
+        "beijing-route-21"
+      ],
+      "sourceNote": "丽泽商务区为14号线既有站，新机场线北延在此设站换乘。"
+    },
+    {
+      "id": "future-transfer-bj-lize-16",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "stationInstanceIds": [
+        "beijing-s287__line16-16",
+        "beijing-s287__line21"
+      ],
+      "lineIds": [
+        "beijing-line16-16",
+        "beijing-route-21"
+      ],
+      "sourceNote": "丽泽商务区为16号线既有站，新机场线北延在此设站换乘。"
+    }
+  ],
+  "plan": {
+    "id": "bj-new-airport-lize-build",
+    "title": "北京新机场线北延（草桥—丽泽商务区）建设篇",
+    "date": "2026-10-01",
+    "status": "approved_and_under_construction",
+    "sourceType": "municipal_construction_plan",
+    "projectType": "approved_and_under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+    "sourceTitle": "2026年北京市轨道交通建设计划",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2026-02-03",
+    "description": "按2026年北京市轨道交通建设计划复现新机场线草桥—丽泽商务区延伸段：草桥复用既有站体，丽泽商务区新建本线站体并与14、16号线换乘。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.10",
+    "contentRevisionNote": "增加北京新机场线丽泽段建设章。"
+  }
+}

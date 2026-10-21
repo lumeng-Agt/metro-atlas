@@ -15068,6 +15068,123 @@
           "coordinateNote": "OSM 平谷站（在建）标注；线路东端终点。",
           "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f12-dongbabeijie",
+          "name": "东坝北街",
+          "latlng": [
+            39.975,
+            116.558
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "按12号线东坝北—东坝北街延伸方向与东坝北街道路走廊定位；单站延伸，站位为走廊级参考。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-tiyuchangnanjie",
+          "name": "体育场南街",
+          "latlng": [
+            39.8897,
+            116.198
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "按官方站序在八角游乐园—张郭庄走廊上定位；体育场南街道路作参考，属走廊级参考。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-yuanboyuanx",
+          "name": "园博园西门",
+          "latlng": [
+            39.8732,
+            116.1895
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "按官方站序在八角游乐园—张郭庄走廊上定位；园博园西门站区作参考，属走廊级参考。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-xierqu",
+          "name": "西二区",
+          "latlng": [
+            39.8431,
+            116.173
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "按官方站序在张郭庄—后吕村之间定位，属走廊级参考。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-houlvcun",
+          "name": "后吕村",
+          "latlng": [
+            39.829356,
+            116.16495
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 后吕村站标注（太子峪路），与1号线支线站址一致。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-yungang",
+          "name": "云岗",
+          "latlng": [
+            39.808625,
+            116.153585
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "云岗路走廊公交站位置作站区参考，属走廊级参考。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-wangzuo",
+          "name": "王佐",
+          "latlng": [
+            39.806704,
+            116.135526
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "王佐路走廊公交站位置作站区参考，属走廊级参考。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-minzudaxue",
+          "name": "民族大学",
+          "latlng": [
+            39.808439,
+            116.104767
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "中央民族大学丰台校区位置作站区参考，属走廊级参考。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f1b-qinglonghudong",
+          "name": "青龙湖东",
+          "latlng": [
+            39.795,
+            116.075
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "青龙湖镇东侧走廊位置，按官方终点站序定位，属走廊级参考。",
+          "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [

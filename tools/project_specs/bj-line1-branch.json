@@ -1,0 +1,160 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-line1-branch"
+  ],
+  "stations": [
+    {
+      "name": "八角游乐园",
+      "id": "beijing-s68",
+      "existing": true
+    },
+    {
+      "name": "体育场南街",
+      "id": "beijing-f1b-tiyuchangnanjie",
+      "latlng": [
+        39.8897,
+        116.198
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "按官方站序在八角游乐园—张郭庄走廊上定位；体育场南街道路作参考，属走廊级参考。"
+    },
+    {
+      "name": "园博园西门",
+      "id": "beijing-f1b-yuanboyuanx",
+      "latlng": [
+        39.8732,
+        116.1895
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "按官方站序在八角游乐园—张郭庄走廊上定位；园博园西门站区作参考，属走廊级参考。"
+    },
+    {
+      "name": "张郭庄",
+      "id": "beijing-s294",
+      "existing": true
+    },
+    {
+      "name": "西二区",
+      "id": "beijing-f1b-xierqu",
+      "latlng": [
+        39.8431,
+        116.173
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "按官方站序在张郭庄—后吕村之间定位，属走廊级参考。"
+    },
+    {
+      "name": "后吕村",
+      "id": "beijing-f1b-houlvcun",
+      "latlng": [
+        39.829356,
+        116.16495
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 后吕村站标注（太子峪路），与1号线支线站址一致。"
+    },
+    {
+      "name": "云岗",
+      "id": "beijing-f1b-yungang",
+      "latlng": [
+        39.808625,
+        116.153585
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "云岗路走廊公交站位置作站区参考，属走廊级参考。"
+    },
+    {
+      "name": "王佐",
+      "id": "beijing-f1b-wangzuo",
+      "latlng": [
+        39.806704,
+        116.135526
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "王佐路走廊公交站位置作站区参考，属走廊级参考。"
+    },
+    {
+      "name": "民族大学",
+      "id": "beijing-f1b-minzudaxue",
+      "latlng": [
+        39.808439,
+        116.104767
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "中央民族大学丰台校区位置作站区参考，属走廊级参考。"
+    },
+    {
+      "name": "青龙湖东",
+      "id": "beijing-f1b-qinglonghudong",
+      "latlng": [
+        39.795,
+        116.075
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "青龙湖镇东侧走廊位置，按官方终点站序定位，属走廊级参考。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "branch",
+      "mapRouteId": "beijing-future-line1-branch",
+      "name": "1号线支线",
+      "historicalLineId": "beijing-lineearly0",
+      "color": "#A6322E",
+      "stationIds": [
+        "beijing-s68",
+        "beijing-f1b-tiyuchangnanjie",
+        "beijing-f1b-yuanboyuanx",
+        "beijing-s294",
+        "beijing-f1b-xierqu",
+        "beijing-f1b-houlvcun",
+        "beijing-f1b-yungang",
+        "beijing-f1b-wangzuo",
+        "beijing-f1b-minzudaxue",
+        "beijing-f1b-qinglonghudong"
+      ],
+      "toleranceM": 700,
+      "officialLengthM": 21000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "10座车站及站序取自京投公司1号线支线环评二次公示（9座新建、1座改造，约21公里；站名为暂定名）。八角游乐园为1号线既有站并按贯通运营复用站体，张郭庄与14号线换乘；体育场南街、园博园西门、西二区、青龙湖东按站序在走廊上定位，云岗、王佐、民族大学按道路/校区位置定位，均属走廊级参考。",
+      "stationOrderSource": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm"
+    }
+  ],
+  "stationInstances": {
+    "beijing-s294": "beijing-s294__line1branch"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-bj1b-zhangguozhuang-14",
+      "name": "张郭庄",
+      "complexId": "beijing-s294",
+      "stationInstanceIds": [
+        "beijing-s294",
+        "beijing-s294__line1branch"
+      ],
+      "lineIds": [
+        "beijing-line14-14",
+        "beijing-lineearly0"
+      ],
+      "sourceNote": "1号线支线在张郭庄与14号线换乘；两线站体分别建造。"
+    }
+  ],
+  "plan": {
+    "id": "bj-line1-branch-build",
+    "title": "北京1号线支线建设篇",
+    "date": "2026-10-01",
+    "status": "approved_and_under_construction",
+    "sourceType": "operator_environmental_impact_report",
+    "projectType": "approved_and_under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+    "sourceTitle": "北京地铁1号线支线计划年底开工 共设10座车站（京投公司环评二次公示报道）",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2023-10-09",
+    "description": "按京投公司1号线支线环评二次公示复现：八角游乐园—青龙湖东10座车站、约21公里，与1号线贯通运营，张郭庄与14号线换乘。站名为暂定名；完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.12",
+    "contentRevisionNote": "增加北京1号线支线建设章。"
+  }
+}
