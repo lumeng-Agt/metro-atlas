@@ -2,7 +2,9 @@ class_name CampaignSystem
 extends RefCounted
 
 const CATALOG_PATH := "res://data/campaigns.json"
+const NETWORK_BASELINE_PATH := "res://data/network_baselines_2026-10-01.json"
 static var _catalog: Dictionary = {}
+static var _network_baseline: Dictionary = {}
 static var _known_station_ids_by_city: Dictionary = {}
 
 static func load_catalog() -> void:
@@ -13,6 +15,13 @@ static func load_catalog() -> void:
 	var parsed: Variant = JSON.parse_string(file.get_as_text())
 	file.close()
 	_catalog = parsed if parsed is Dictionary else {}
+	var baseline_file := FileAccess.open(NETWORK_BASELINE_PATH, FileAccess.READ)
+	if baseline_file == null:
+		_network_baseline = {}
+	else:
+		var baseline_value: Variant = JSON.parse_string(baseline_file.get_as_text())
+		baseline_file.close()
+		_network_baseline = baseline_value if baseline_value is Dictionary else {}
 
 static func cutoff_date() -> String:
 	return str(_catalog.get("cutoffDate", "2026-10-01"))
@@ -25,10 +34,181 @@ static func city_config(city_id: String) -> Dictionary:
 	if _catalog.is_empty(): load_catalog()
 	return _catalog.get("cities", {}).get(city_id, {}).duplicate(true)
 
+## Several source map extracts represent the same interchange/renamed station
+## with different OSM IDs. These explicit content aliases preserve one stable
+## station-complex identity while keeping each line's physical station body.
+static func canonical_station_complex(city_id: String, station_id: String) -> String:
+	if _catalog.is_empty(): load_catalog()
+	var aliases: Dictionary = _catalog.get("cities", {}).get(city_id, {}).get("stationComplexAliases", {})
+	var current := station_id
+	var visited: Dictionary = {}
+	while aliases.has(current) and not visited.has(current):
+		visited[current] = true
+		current = str(aliases[current])
+	return current
+
+static func station_instance_alias(group: Dictionary, station_id: String) -> String:
+	if _catalog.is_empty(): load_catalog()
+	var line_id := str(group.get("historicalLineId", ""))
+	var station_city := station_id.get_slice("-", 0)
+	var aliases: Dictionary = _catalog.get("cities", {}).get(station_city, {}).get("stationInstanceAliases", {})
+	return str(aliases.get("%s|%s" % [line_id, station_id], ""))
+
+static func network_coverage(city_id: String) -> Dictionary:
+	if _catalog.is_empty() or _network_baseline.is_empty(): load_catalog()
+	var baseline: Dictionary = _network_baseline.get("cities", {}).get(city_id, {})
+	var city: Dictionary = WorldData.city(city_id)
+	var campaign: Dictionary = _catalog.get("cities", {}).get(city_id, {})
+	if baseline.is_empty() or city.is_empty(): return {}
+	var chapter_targets: Dictionary = {}
+	for chapter in campaign.get("chapters", []):
+		var groups: Array = chapter.get("lineGroups", []).duplicate()
+		for version in chapter.get("story", {}).get("planVersions", []): groups.append_array(version.get("lineGroups", []))
+		for group in groups:
+			for station_id in group.get("stationIds", []): chapter_targets[str(station_id)] = true
+	var map_station_ids: Dictionary = {}
+	var full_routes := 0
+	var partial_routes := 0
+	var uncovered_routes := 0
+	var uncovered_route_names: Array[String] = []
+	for route in baseline.get("routes", []):
+		var route_ids: Array = route.get("cutoffStationIds", [])
+		var matched := 0
+		for station_id in route_ids:
+			map_station_ids[str(station_id)] = true
+			if chapter_targets.has(str(station_id)): matched += 1
+		if not route_ids.is_empty() and matched == route_ids.size(): full_routes += 1
+		elif matched > 0: partial_routes += 1
+		else:
+			uncovered_routes += 1
+			uncovered_route_names.append(str(route.get("name", route.get("ref", route.get("mapRouteId", "线路")))))
+	var milestone_chapters: Array = baseline.get("milestoneChapters", [])
+	var pending_milestones: Array[Dictionary] = []
+	var playable_chapter_ids: Dictionary = {}
+	for chapter in campaign.get("chapters", []): playable_chapter_ids[str(chapter.get("id", ""))] = true
+	for event in baseline.get("documentedMilestones", []):
+		var chapter_id := str(event.get("chapterId", ""))
+		if not chapter_id.is_empty() and playable_chapter_ids.has(chapter_id): continue
+		pending_milestones.append({"id":str(event.get("id", "")), "date":str(event.get("date", "")), "title":str(event.get("title", "历史节点")), "source":str(event.get("source", "")), "routeIds":event.get("routeIds", [])})
+	var pending_intervals: Array[Dictionary] = []
+	for milestone_chapter in milestone_chapters:
+		if str(milestone_chapter.get("contentStatus", "")) != "content_missing": continue
+		pending_intervals.append(milestone_chapter.duplicate(true))
+	var project_ids_with_playable_tasks: Dictionary = {}
+	for plan_value in campaign.get("futurePlans", []):
+		if not plan_value is Dictionary: continue
+		var project_ids: Variant = plan_value.get("projectIds", [])
+		if not project_ids is Array or project_ids.is_empty(): continue
+		if not future_data_ready(plan_value, city): continue
+		for project_id in project_ids: project_ids_with_playable_tasks[str(project_id)] = true
+	var projects: Array = baseline.get("projectsAtCutoff", [])
+	var playable_project_count := 0
+	for project_value in projects:
+		if project_value is Dictionary and project_ids_with_playable_tasks.has(str(project_value.get("id", ""))): playable_project_count += 1
+	var targeted_count := 0
+	for station_id in map_station_ids:
+		if chapter_targets.has(str(station_id)): targeted_count += 1
+	return {
+		"cutoffDate": str(_network_baseline.get("cutoffDate", "2026-10-01")),
+		"officialRouteCount": baseline.get("officialRouteCount"),
+		"officialStationCount": baseline.get("officialStationCount"),
+		"countBasis": str(baseline.get("countBasis", "")),
+		"stationCountBasis": str(baseline.get("stationCountBasis", "")),
+		"mapRouteEntryCount": int(baseline.get("mapRouteEntryCount", 0)),
+		"mapRouteStopOccurrenceCount": int(baseline.get("mapRouteStopOccurrenceCount", 0)),
+		"mapUniqueStationCount": map_station_ids.size(),
+		"chapterCount": campaign.get("chapters", []).size(),
+		"fullyTargetedRouteEntryCount": full_routes,
+		"partiallyTargetedRouteEntryCount": partial_routes,
+		"uncoveredRouteEntryCount": uncovered_routes,
+		"uncoveredRouteNames": uncovered_route_names,
+		"targetedStationCount": targeted_count,
+		"documentedMilestones": int(baseline.get("documentedMilestoneCount", 0)),
+		"milestoneChapters": milestone_chapters.duplicate(true),
+		"milestoneChapterCount": milestone_chapters.size(),
+		"playableMilestoneCount": milestone_chapters.filter(func(item: Dictionary): return str(item.get("contentStatus", "")) in ["playable_sample", "playable_milestone", "network_reconciliation_complete"]).size(),
+		"missingMilestoneCount": milestone_chapters.filter(func(item: Dictionary): return str(item.get("contentStatus", "")) in ["content_missing", "network_reconciliation_missing"]).size(),
+		"pendingMilestones": pending_milestones,
+		"pendingMilestoneIntervals": pending_intervals,
+		"projectsAtCutoff": projects,
+		"projectInventoryCount": projects.size(),
+		"playableProjectCount": playable_project_count,
+		"pendingPlayableProjectCount": maxi(0, projects.size() - playable_project_count),
+		"sources": baseline.get("sources", []),
+	}
+
+static func milestone_interval(city_id: String, chapter_id: String) -> Dictionary:
+	if _catalog.is_empty() or _network_baseline.is_empty(): load_catalog()
+	var rows: Array = _network_baseline.get("cities", {}).get(city_id, {}).get("milestoneChapters", [])
+	for row in rows:
+		if str(row.get("playableChapterId", "")) == chapter_id or row.get("chapterIds", []).has(chapter_id):
+			return row.duplicate(true)
+	return {}
+
+static func chapter_task_records(city_id: String, chapter_id: String) -> Dictionary:
+	var result: Dictionary = {}
+	var chapter_row: Dictionary = {}
+	for candidate in city_config(city_id).get("chapters", []):
+		if str(candidate.get("id", "")) == chapter_id: chapter_row = candidate; break
+	if chapter_row.is_empty(): return result
+	for group in chapter_row.get("lineGroups", []):
+		var line_id := str(group.get("historicalLineId", group.get("id", "line")))
+		var task_id := str(group.get("taskId", "line:" + line_id))
+		result[task_id] = {"status":"confirmed", "type":"line_group", "historicalLineId":line_id}
+	for transition in chapter_row.get("serviceTransitions", []):
+		var transition_id := str(transition.get("id", transition.get("historicalLineId", "service")))
+		result["service:" + transition_id] = {"status":"confirmed", "type":"service_range", "historicalLineId":str(transition.get("historicalLineId", ""))}
+	for transfer in chapter_row.get("requiredTransfers", []):
+		var transfer_id := str(transfer.get("id", transfer.get("complexId", "transfer")))
+		result["transfer:" + transfer_id] = {"status":"confirmed", "type":"transfer", "complexId":str(transfer.get("complexId", ""))}
+	for connection in chapter_row.get("requiredConnections", []):
+		var from_id := str(connection.get("fromId", "")); var to_id := str(connection.get("toId", ""))
+		result["connection:%s:%s" % [from_id, to_id]] = {"status":"confirmed", "type":"track_connection", "fromId":from_id, "toId":to_id}
+	return result
+
+static func backfill_story_milestone_records(story_state: Dictionary, city_id: String) -> void:
+	var task_progress: Dictionary = story_state.get("chapterTaskProgress", {}) if story_state.get("chapterTaskProgress", {}) is Dictionary else {}
+	var confirmed: Array = story_state.get("confirmedHistoricalEventIds", []) if story_state.get("confirmedHistoricalEventIds", []) is Array else []
+	for chapter_id_value in story_state.get("completedChapterIds", []):
+		var chapter_id := str(chapter_id_value)
+		var interval: Dictionary = milestone_interval(city_id, chapter_id)
+		# Do not infer that an old completed sample covered every event in its
+		# newly expanded milestone interval. Only inherit event IDs that were
+		# explicitly bound to that exact old chapter before the catalog changed.
+		var event_ids: Array = []
+		for event in _network_baseline.get("cities", {}).get(city_id, {}).get("documentedMilestones", []):
+			if str(event.get("chapterId", "")) == chapter_id:
+				var event_id:=str(event.get("id", ""))
+				if not event_id.is_empty():event_ids.append(event_id)
+		if event_ids.is_empty(): event_ids = [chapter_id]
+		var normalized: Array = []
+		for event_id in confirmed:
+			if not normalized.has(str(event_id)): normalized.append(str(event_id))
+		for event_id in event_ids:
+			if not normalized.has(str(event_id)): normalized.append(str(event_id))
+		confirmed = normalized
+		if not task_progress.has(chapter_id):
+			# Old saves predate stable task records. Keep the chapter milestone,
+			# but do not mark every task added by a later catalog expansion as done.
+			task_progress[chapter_id] = {"status":"legacy_milestone_confirmed", "confirmedHistoricalEventIds":event_ids.duplicate(), "tasks":{}, "date":str(interval.get("periodEndInclusive", ""))}
+	story_state["chapterTaskProgress"] = task_progress
+	story_state["confirmedHistoricalEventIds"] = confirmed
+
 static func first_chapter_id(city_id:String) -> String:
 	if _catalog.is_empty():load_catalog()
 	var chapters:Array=_catalog.get("cities",{}).get(city_id,{}).get("chapters",[])
-	return str(chapters[0].id) if not chapters.is_empty() else ""
+	for chapter_index in range(chapters.size()):
+		var chapter_row:Dictionary=chapters[chapter_index]
+		if not bool(chapter_row.get("eventOnly",false)) and not chapter_row.get("lineGroups",[]).is_empty():return str(chapter_row.get("id",""))
+	return ""
+
+static func first_chapter_index(city_id:String) -> int:
+	if _catalog.is_empty():load_catalog()
+	var chapters:Array=_catalog.get("cities",{}).get(city_id,{}).get("chapters",[])
+	for chapter_index in range(chapters.size()):
+		var chapter_row:Dictionary=chapters[chapter_index]
+		if not bool(chapter_row.get("eventOnly",false)) and not chapter_row.get("lineGroups",[]).is_empty():return chapter_index
+	return 0 if not chapters.is_empty() else -1
 
 static func future_data_ready(plan: Dictionary, city_data: Dictionary = {}) -> bool:
 	# Only plans with a locally audited blueprint may be marked reproduced.
@@ -52,6 +232,15 @@ static func future_data_ready(plan: Dictionary, city_data: Dictionary = {}) -> b
 			if not known_stations.is_empty() and not known_stations.has(str(station_id)): return false
 	return true
 
+static func playable_future_plans(city_id: String) -> Array:
+	var city_data := WorldData.city(city_id)
+	var result: Array = []
+	for plan_value in city_config(city_id).get("futurePlans", []):
+		if not plan_value is Dictionary: continue
+		var plan: Dictionary = plan_value
+		if bool(plan.get("required", false)) and future_data_ready(plan, city_data): result.append(plan)
+	return result
+
 static func validate_catalog(city_data_list: Array) -> Array[String]:
 	if _catalog.is_empty(): load_catalog()
 	var errors: Array[String] = []
@@ -68,7 +257,7 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 			errors.append("历史资料包引用未知城市：%s" % str(city_id))
 			continue
 		var city_config_value: Dictionary = _catalog.cities[city_id]
-		if str(city_config_value.get("historyStatus", "")) not in ["partial", "complete"]: errors.append("%s 缺少历史资料覆盖状态" % str(city_id))
+		if str(city_config_value.get("historyStatus", "")) not in ["partial", "route_inventory_complete", "complete"]: errors.append("%s 缺少历史资料覆盖状态" % str(city_id))
 		if str(city_config_value.get("futureStatus", "")) not in ["not_digitized", "partial", "complete"]: errors.append("%s 缺少远期资料状态" % str(city_id))
 		if str(city_config_value.get("coverageNote", "")).is_empty(): errors.append("%s 缺少历史资料范围说明" % str(city_id))
 		var station_ids := {}
@@ -127,6 +316,29 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 					if not station_ids.has(str(station_id)): errors.append("%s 引用了未知目标站：%s" % [chapter_id, str(station_id)])
 					if group_targets.has(str(station_id)): errors.append("%s 在同一线路组重复引用目标站：%s" % [chapter_id, str(station_id)])
 					group_targets[str(station_id)] = true
+			var service_transition_ids:Dictionary={}
+			for transition in chapter.get("serviceTransitions", []):
+				var transition_id:=str(transition.get("id",""))
+				var line_id := str(transition.get("historicalLineId", ""))
+				var status := str(transition.get("status", ""))
+				var transition_ids: Array = transition.get("stationIds", [])
+				var matching_group: Dictionary = {}
+				for group in chapter.get("lineGroups", []):
+					if str(group.get("historicalLineId", "")) == line_id: matching_group = group; break
+				if line_id.is_empty() or matching_group.is_empty(): errors.append("%s 服务阶段引用了不存在的线路组" % chapter_id)
+				if status not in ["built", "trial", "open"]: errors.append("%s 服务阶段状态无效" % chapter_id)
+				if transition_ids.size() < 2 or str(transition.get("source", "")).is_empty(): errors.append("%s 服务阶段缺少范围或来源" % chapter_id)
+				for id in transition_ids:
+					if not station_ids.has(str(id)) or not matching_group.get("stationIds", []).has(str(id)): errors.append("%s 服务阶段范围与本期线路站序不一致：%s" % [chapter_id, str(id)])
+				var group_order: Array = matching_group.get("stationIds", [])
+				var start_index := group_order.find(str(transition_ids[0])) if not transition_ids.is_empty() else -1
+				if start_index < 0: errors.append("%s 服务阶段起点不在线路站序中" % chapter_id)
+				else:
+					for offset in range(transition_ids.size()):
+						if start_index + offset >= group_order.size() or str(group_order[start_index + offset]) != str(transition_ids[offset]):
+							errors.append("%s 服务阶段必须是线路站序中的连续区间" % chapter_id); break
+				if transition_id.is_empty() or service_transition_ids.has(transition_id):errors.append("%s 服务阶段缺少或重复稳定编号" % chapter_id)
+				service_transition_ids[transition_id]=true
 			for connection in chapter.get("requiredConnections",[]):
 				if not station_ids.has(str(connection.get("fromId",""))) or not station_ids.has(str(connection.get("toId",""))) or str(connection.get("source","")).is_empty():errors.append("%s 建设段连接缺少站点引用或来源" % chapter_id)
 		var last_event_date := ""
@@ -147,4 +359,79 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 			if str(future.get("status", "")).is_empty() or str(future.get("sourceType", "")).is_empty(): errors.append("%s 远期条目缺少实施状态或来源类型" % str(future.get("id", city_id)))
 			if not future.has("required"): errors.append("%s 未说明是否阻塞自由阶段" % str(future.get("id", city_id)))
 			if str(future.get("dataStatus", "")) == "blueprint_ready" and not future_data_ready(future, city_ids[str(city_id)]): errors.append("%s 声称蓝图已就绪但缺少有效目标几何或站点引用" % str(future.get("id", city_id)))
+	return errors
+
+static func validate_network_baseline(city_data_list: Array) -> Array[String]:
+	if _network_baseline.is_empty(): load_catalog()
+	var errors: Array[String] = []
+	if int(_network_baseline.get("schemaVersion", 0)) != 2: errors.append("截止日路网基准格式版本无效")
+	if str(_network_baseline.get("cutoffDate", "")) != cutoff_date(): errors.append("截止日路网基准与故事资料包日期不一致")
+	var city_lookup: Dictionary = {}
+	for city in city_data_list: city_lookup[str(city.get("id", ""))] = city
+	for city_id in _network_baseline.get("cities", {}):
+		if not city_lookup.has(str(city_id)):
+			errors.append("截止日路网基准引用未知城市：%s" % str(city_id)); continue
+		var city: Dictionary = city_lookup[str(city_id)]
+		var baseline: Dictionary = _network_baseline.cities[city_id]
+		var map_routes: Dictionary = {}
+		for route in city.get("lines", []): map_routes[str(route.get("id", ""))] = route
+		var baseline_routes: Dictionary = {}
+		for route in baseline.get("routes", []):
+			var route_id := str(route.get("mapRouteId", ""))
+			if route_id.is_empty() or baseline_routes.has(route_id): errors.append("%s 截止日线路编号为空或重复" % str(city_id))
+			baseline_routes[route_id] = true
+			if not map_routes.has(route_id): errors.append("%s 截止日基准引用缺失地图线路：%s" % [str(city_id), route_id]); continue
+			var known: Dictionary = {}
+			for station in city.get("stations", []): known[str(station.get("id", ""))] = true
+			for station_id in route.get("cutoffStationIds", []):
+				if not known.has(str(station_id)): errors.append("%s/%s 截止日线路引用未知地图站：%s" % [str(city_id), route_id, str(station_id)])
+		if baseline_routes.size() != map_routes.size(): errors.append("%s 截止日基准与离线线路关系条目数不一致" % str(city_id))
+		for milestone in baseline.get("documentedMilestones", []):
+			var date := str(milestone.get("date", ""))
+			if str(milestone.get("id", "")).is_empty() or date.is_empty() or date > cutoff_date(): errors.append("%s 截止日里程碑编号或日期无效" % str(city_id))
+			if str(milestone.get("source", "")).is_empty(): errors.append("%s 里程碑缺少来源：%s" % [str(city_id), str(milestone.get("id", ""))])
+			for route_id in milestone.get("routeIds", []):
+				if not map_routes.has(str(route_id)): errors.append("%s 里程碑引用未知地图线路：%s" % [str(city_id), str(route_id)])
+		var schedule: Variant = baseline.get("milestoneChapters", [])
+		if not schedule is Array or schedule.is_empty():
+			errors.append("%s 缺少里程碑章节区间" % str(city_id)); continue
+		var known_chapters: Dictionary = {}
+		for chapter in _catalog.get("cities", {}).get(str(city_id), {}).get("chapters", []): known_chapters[str(chapter.get("id", ""))] = true
+		var previous_end := ""
+		var scheduled_events: Dictionary = {}
+		var final_row: Dictionary = {}
+		for index in range(schedule.size()):
+			var interval: Variant = schedule[index]
+			if not interval is Dictionary: errors.append("%s 里程碑章节包含无效记录" % str(city_id)); continue
+			var start_date := str(interval.get("periodStartExclusive", ""))
+			var end_date := str(interval.get("periodEndInclusive", ""))
+			if start_date != previous_end or end_date.is_empty() or end_date > cutoff_date() or (not previous_end.is_empty() and end_date < previous_end): errors.append("%s 里程碑章节日期区间不连续或超出截止日" % str(city_id))
+			previous_end = end_date
+			var content_status := str(interval.get("contentStatus", ""))
+			if index == schedule.size() - 1:
+				final_row = interval
+				if content_status not in ["network_reconciliation_missing", "network_reconciliation_complete"] or end_date != cutoff_date(): errors.append("%s 缺少截止日现状核对节点" % str(city_id))
+			elif content_status not in ["playable_sample", "playable_milestone", "content_missing"]:
+				errors.append("%s 历史里程碑区间状态无效" % str(city_id))
+			var playable_id := str(interval.get("playableChapterId", ""))
+			if content_status in ["playable_sample", "playable_milestone"] and (playable_id.is_empty() or not known_chapters.has(playable_id)): errors.append("%s 可玩里程碑区间引用未知章节" % str(city_id))
+			if content_status == "content_missing" and not playable_id.is_empty(): errors.append("%s 待制作里程碑区间错误标成可玩" % str(city_id))
+			for event_id_value in interval.get("eventIds", []):
+				var event_id := str(event_id_value)
+				if event_id.is_empty() or scheduled_events.has(event_id): errors.append("%s 里程碑事件缺少编号或在区间中重复" % str(city_id))
+				scheduled_events[event_id] = true
+			for route_id in interval.get("targetMapRouteIds", interval.get("routeIds", [])):
+				if not map_routes.has(str(route_id)): errors.append("%s 里程碑区间引用未知地图线路：%s" % [str(city_id), str(route_id)])
+		var documented_events: Dictionary = {}
+		for event in baseline.get("documentedMilestones", []): documented_events[str(event.get("id", ""))] = true
+		if documented_events.keys().size() != scheduled_events.keys().size(): errors.append("%s 已登记历史事件与里程碑章节区间覆盖数量不一致" % str(city_id))
+		for event_id in documented_events:
+			if not scheduled_events.has(str(event_id)): errors.append("%s 历史事件未归入任何里程碑区间：%s" % [str(city_id), str(event_id)])
+		var target_route_ids: Dictionary = {}
+		for route in baseline.get("routes", []): target_route_ids[str(route.get("mapRouteId", ""))] = true
+		var final_target_ids: Dictionary = {}
+		for route_id in final_row.get("targetMapRouteIds", []): final_target_ids[str(route_id)] = true
+		if final_target_ids.keys().size() != target_route_ids.keys().size(): errors.append("%s 截止日核对节点未包含全部地图线路" % str(city_id))
+		for route_id in target_route_ids:
+			if not final_target_ids.has(str(route_id)): errors.append("%s 截止日核对节点遗漏地图线路：%s" % [str(city_id), str(route_id)])
 	return errors

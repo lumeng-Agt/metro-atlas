@@ -1,0 +1,7 @@
+{
+  "version": "0.23.2",
+  "date": "2026-10-20",
+  "scope": "No rendering, frame-time, memory, export mouse-input, or save-latency benchmark was run for 0.23.2.",
+  "status": "not_measured",
+  "note": "This patch changes legacy station-body identity repair and chapter validation messaging. No performance conclusion is inferred from logic regression tests."
+}

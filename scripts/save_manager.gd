@@ -48,7 +48,7 @@ static func validate(data: Dictionary) -> String:
 	if int(data.get("schemaVersion",0))>WorldData.SAVE_VERSION:return "存档来自更新版本，无法载入。"
 	if WorldData.city(str(data.get("cityId",""))).is_empty():return "存档引用了未知城市。"
 	var indexes:Dictionary={}
-	for key in ["stations","routes","trackLinks","trackNodes","trackEdges"]:
+	for key in ["stations","stationComplexes","transferConnections","serviceRanges","routes","trackLinks","trackNodes","trackEdges"]:
 		if not data.get(key,[]) is Array:return "%s必须是数组。" % key
 		var ids:Dictionary={}
 		for item in data.get(key,[]):
@@ -61,6 +61,44 @@ static func validate(data: Dictionary) -> String:
 		if not _coordinate_valid(station.get("latlng")):return "车站坐标无效。"
 		for key in ["heading","lengthM","widthM","depthM"]:
 			if station.has(key) and (not (station[key] is int or station[key] is float) or not is_finite(float(station[key]))):return "车站尺寸或方向无效。"
+		if not str(station.get("stationComplexId","")).is_empty() and not indexes.stationComplexes.has(str(station.stationComplexId)):return "车站引用了不存在的换乘站区。"
+	var instance_ids:Dictionary={}
+	for station in data.get("stations",[]):
+		var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
+		if instance_id.is_empty() or instance_ids.has(instance_id):return "物理站体编号为空或重复。"
+		instance_ids[instance_id]=true
+	for connection in data.get("transferConnections",[]):
+		if str(connection.get("complexId","")).is_empty() or not indexes.stationComplexes.has(str(connection.complexId)):return "换乘关系引用了不存在的站区。"
+		if not connection.get("stationInstanceIds",[]) is Array or connection.stationInstanceIds.size()<2:return "换乘关系至少需要两个独立站体。"
+		var linked_instances:Dictionary={}
+		for instance_id in connection.stationInstanceIds:
+			if not instance_ids.has(str(instance_id)):return "换乘关系引用了不存在的物理站体。"
+			if linked_instances.has(str(instance_id)):return "换乘关系重复引用了同一物理站体。"
+			linked_instances[str(instance_id)]=true
+			for station in data.get("stations",[]):
+				if str(station.get("stationInstanceId",station.get("id","")))==str(instance_id) and str(station.get("stationComplexId",station.get("historicalId","")))!=str(connection.complexId):return "换乘站体与其历史站区不一致。"
+		if str(connection.get("status","active"))=="active":
+			if not connection.get("lineIds",[]) is Array or connection.lineIds.size()!=connection.stationInstanceIds.size():return "已建立的换乘关系需要逐一对应物理站体和线路。"
+			var linked_lines:Dictionary={}
+			for index in range(connection.lineIds.size()):
+				var line_id:=str(connection.lineIds[index])
+				if line_id.is_empty() or linked_lines.has(line_id):return "换乘关系重复引用或漏填了线路。"
+				linked_lines[line_id]=true
+				var serving_instance:=str(connection.stationInstanceIds[index]);var serving_station_id:=""
+				for station in data.get("stations",[]):
+					if str(station.get("stationInstanceId",station.get("id","")))==serving_instance:serving_station_id=str(station.get("id",""));break
+				var matching_line_found:=false;var route_serves_station:=false
+				for route in data.get("routes",[]):
+					if str(route.get("id",""))!=line_id and str(route.get("historicalLineId",""))!=line_id:continue
+					matching_line_found=true
+					if route.get("stationOrder",[]).has(serving_station_id):route_serves_station=true;break
+					for direction in route.get("directions",[]):
+						if direction is Dictionary and direction.get("stationIds",[]).has(serving_station_id):
+							route_serves_station=true
+							break
+					if route_serves_station:break
+				if not matching_line_found:return "换乘关系引用了不存在的线路。"
+				if not route_serves_station:return "换乘线路没有停靠对应的物理站体。"
 	for node in data.get("trackNodes",[]):
 		if not _coordinate_valid(node.get("latlng")):return "轨道节点坐标无效。"
 		if not str(node.get("stationId","")).is_empty() and not indexes.stations.has(str(node.stationId)):return "站端节点引用了不存在的车站。"
@@ -77,6 +115,16 @@ static func validate(data: Dictionary) -> String:
 		if not indexes.stations.has(str(link.get("a",{}).get("stationId",""))) or not indexes.stations.has(str(link.get("b",{}).get("stationId",""))):return "旧轨道引用了不存在的车站。"
 	var edge_ids:Dictionary={}
 	for edge in data.get("trackEdges",[])+data.get("trackLinks",[]):edge_ids[str(edge.id)]=true
+	for service_range in data.get("serviceRanges",[]):
+		if str(service_range.get("status","")) not in ["built","trial","open"]:return "历史服务范围状态无效。"
+		if not service_range.get("stationIds",[]) is Array or service_range.stationIds.size()<2:return "历史服务范围至少需要两个站点。"
+		if not service_range.get("edgePathsBySegment",[]) is Array or service_range.edgePathsBySegment.size()!=service_range.stationIds.size()-1:return "历史服务范围的站间路径数量不匹配。"
+		for station_id in service_range.stationIds:
+			if not indexes.stations.has(str(station_id)):return "历史服务范围引用了不存在的物理站体。"
+		for segment in service_range.edgePathsBySegment:
+			if not segment is Array:return "历史服务范围区间格式错误。"
+			for ref in segment:
+				if not ref is Dictionary or not edge_ids.has(str(ref.get("id",""))):return "历史服务范围引用了不存在的实体轨道。"
 	for route in data.get("routes",[]):
 		if not route.get("stationOrder",[]) is Array or not route.get("directions",[]) is Array:return "线路站序或方向格式错误。"
 		for id in route.get("stationOrder",[]):
@@ -131,25 +179,43 @@ static func save_world(world: Dictionary, rotate: bool = false) -> Dictionary:
 	var old:=_read(path)
 	var current:=world.duplicate(true);current["savedAt"]=Time.get_datetime_string_from_system(false,true)
 	var text:=JSON.stringify(current)
+	var write_world:=true
 	if bool(old.get("ok",false)) and validate(old.data).is_empty():
-		var backup:=_write_atomic(path+".bak",str(old.text))
-		if not bool(backup.ok):return backup
 		var previous:Dictionary=old.data.duplicate(true);previous.erase("savedAt")
 		var next:Dictionary=current.duplicate(true);next.erase("savedAt")
 		# JSON reads numbers as floats; compare the same persisted representation.
-		if rotate and JSON.stringify(previous)!=JSON.stringify(JSON.parse_string(JSON.stringify(next))):
-			var archive:=game_dir(id).path_join("auto").path_join("%d_%d.json" % [int(Time.get_unix_time_from_system()),Time.get_ticks_usec()])
-			var result:=_write_atomic(archive,str(old.text))
-			if not bool(result.ok):return result
-	var result:=_write_atomic(path,text)
-	if not bool(result.ok):return result
+		# Timed and manual saves update one current slot. `rotate` is retained for
+		# callers from older builds, but no longer creates timestamped auto files.
+		if JSON.stringify(previous)==JSON.stringify(next):
+			write_world=false;current["savedAt"]=str(old.data.get("savedAt",current.savedAt))
+		else:
+			var backup:=_write_atomic(path+".bak",str(old.text))
+			if not bool(backup.ok):return backup
+	elif FileAccess.file_exists(path) and old.has("text"):
+		var preserved:=_preserve_original(str(old.text),"replaced_corrupt")
+		if not bool(preserved.get("ok",false)):return preserved
+	var result:Dictionary={"ok":true}
+	if write_world:
+		result=_write_atomic(path,text)
+		if not bool(result.ok):return result
 	var index_path:=root_path().path_join("last_game.json");var prior_index:=_read(index_path)
-	if bool(prior_index.get("ok",false)) and _index_usable(prior_index.data):
-		result=_write_atomic(index_path+".bak",str(prior_index.text))
-		if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续索引备份失败，请重试。"}
-	result=_write_atomic(index_path,JSON.stringify({"schemaVersion":WorldData.SAVE_VERSION,"gameId":id}))
-	if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续游戏索引失败，请重试。"}
-	_prune_auto(id)
+	var index_is_current:=bool(prior_index.get("ok",false)) and _index_usable(prior_index.data) and str(prior_index.data.get("gameId",""))==id
+	if not index_is_current:
+		if bool(prior_index.get("ok",false)) and _index_usable(prior_index.data):
+			result=_write_atomic(index_path+".bak",str(prior_index.text))
+			if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续索引备份失败，请重试。"}
+		elif FileAccess.file_exists(index_path) and prior_index.has("text"):
+			var preserved_index:=_preserve_original(str(prior_index.text),"replaced_continue_index")
+			if not bool(preserved_index.get("ok",false)):return preserved_index
+		result=_write_atomic(index_path,JSON.stringify({"schemaVersion":WorldData.SAVE_VERSION,"gameId":id}))
+		if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续游戏索引失败，请重试。"}
+	var backup_index:=_read(index_path+".bak")
+	if not bool(backup_index.get("ok",false)) or not _index_usable(backup_index.data):
+		if backup_index.has("text"):
+			var preserved_backup:=_preserve_original(str(backup_index.text),"replaced_continue_backup")
+			if not bool(preserved_backup.get("ok",false)):return preserved_backup
+		result=_write_atomic(index_path+".bak",JSON.stringify({"schemaVersion":WorldData.SAVE_VERSION,"gameId":id}))
+		if not bool(result.get("ok",false)):return {"ok":false,"error":"进度已写入，但继续索引恢复备份失败，请重试。"}
 	world["savedAt"]=current.savedAt
 	return {"ok":true,"path":path}
 
@@ -183,7 +249,16 @@ static func load_file(path: String, confirm_recovery: bool = false) -> Dictionar
 		var migrated:=migrate(raw.data,str(raw.text))
 		problem=validate(migrated)
 		return {"ok":problem.is_empty(),"error":problem,"world":migrated,"migrated":true}
-	return {"ok":true,"world":raw.data}
+	# Content catalogs evolve independently of the save schema. Old saves with
+	# a persisted gap phase must resume into the first new dated chapter even
+	# when their data format is already current.
+	var loaded_world:Dictionary=raw.data.duplicate(true)
+	var resumed_phase:=str(loaded_world.get("storyState",{}).get("phase",""))
+	if resumed_phase in ["history_gap","history_content_gap","future_gap"]:
+		var loaded_state:Dictionary=loaded_world.storyState
+		_resume_expanded_history(loaded_state,str(loaded_world.get("cityId","")),str(loaded_world.get("mode","")))
+		loaded_world["storyState"]=loaded_state
+	return {"ok":true,"world":loaded_world}
 
 static func _preserve_original(text: String, prefix: String) -> Dictionary:
 	var path:=root_path().path_join("originals").path_join("%s_%s.json" % [prefix,text.sha256_text()])
@@ -194,20 +269,37 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 	var result:=data.duplicate(true)
 	var old_version:=int(data.get("schemaVersion",0))
 	result["schemaVersion"]=WorldData.SAVE_VERSION
-	if old_version==19:
+	if not (result.get("serviceRanges",null) is Array):result["serviceRanges"]=[]
+	_upgrade_station_complexes(result)
+	if old_version>=19 and old_version<WorldData.SAVE_VERSION:
 		result["referenceDataVersion"]=ReferenceAlignment.version()
-		result["migrationNotice"]="已独立备份格式19原档。既有站轨、里程碑与历史保持原位；新参考走廊不会自动替换已建轨道。"
+		if not (result.get("storyState",null) is Dictionary):
+			result["storyState"]={"chapterIndex":0,"chapterId":"","stage":"intro","completedChapterIds":[],"milestones":[],"chapterTaskProgress":{},"confirmedHistoricalEventIds":[],"tutorialEnabled":false,"tutorialStatus":"skipped","beatRead":{},"learnedTools":true,"assistedChapters":[],"catalogVersion":CampaignSystem.content_version(),"phase":"history","freeUnlocked":false}
+		var story_state:Dictionary=result.storyState
+		if not (story_state.get("chapterTaskProgress",null) is Dictionary):story_state["chapterTaskProgress"]={}
+		if not (story_state.get("confirmedHistoricalEventIds",null) is Array):story_state["confirmedHistoricalEventIds"]=[]
+		CampaignSystem.backfill_story_milestone_records(story_state,str(result.get("cityId","")))
+		_resume_expanded_history(story_state,str(result.get("cityId","")),str(result.get("mode","")))
+		result["storyState"]=story_state
+		if not (result.get("storyPlan",null) is Dictionary):result["storyPlan"]={"planIndex":0,"pathChoices":{}}
+		if not (result.get("history",null) is Dictionary):result["history"]={"undo":[],"redo":[]}
+		result["migrationNotice"]="已独立备份格式%d原档。既有路网、故事步骤、里程碑、任务记录和撤销历史保持原位；新增换乘关系不会从同名或相邻站点推断。" % old_version
 		return result
 	if old_version==18:
 		var state: Dictionary=result.get("storyState",{})
 		if not StoryTutorial.is_first(result) or str(state.get("stage",""))=="outcome":
 			var chapters:Array=CampaignSystem.city_config(str(result.get("cityId",""))).get("chapters",[])
-			var completed_teaching:bool=bool(state.get("tutorialEnabled",false)) and not chapters.is_empty() and state.get("completedChapterIds",[]).has(str(chapters[0].id))
+			var first_build_id:=CampaignSystem.first_chapter_id(str(result.get("cityId","")))
+			var completed_teaching:bool=bool(state.get("tutorialEnabled",false)) and not first_build_id.is_empty() and state.get("completedChapterIds",[]).has(first_build_id)
 			state["tutorialEnabled"]=false;state["tutorialStatus"]="completed" if completed_teaching else "skipped";state["learnedTools"]=true
 		else:state["tutorialStatus"]="active" if bool(state.get("tutorialEnabled",false)) else "skipped"
 		state["beatRead"]={}
+		if not (state.get("chapterTaskProgress",null) is Dictionary):state["chapterTaskProgress"]={}
+		if not (state.get("confirmedHistoricalEventIds",null) is Array):state["confirmedHistoricalEventIds"]=[]
+		CampaignSystem.backfill_story_milestone_records(state,str(result.get("cityId","")))
+		_resume_expanded_history(state,str(result.get("cityId","")),str(result.get("mode","")))
 		result["storyState"]=state
-		result["migrationNotice"]="已备份格式18原档。路网、里程碑和历史保持；操作引导仅在首章继续，地点故事可从地图和资料页阅读。"
+		result["migrationNotice"]="已备份格式18原档。路网、已完成里程碑和历史保持；新增章内任务与稳定事件编号已初始化，操作引导仅在首章继续。"
 		return result
 	result["gameId"]="legacy_%s" % (original_text if not original_text.is_empty() else JSON.stringify(data)).sha256_text().substr(0,20)
 	result["mode"]="campaign" if str(data.get("mode",""))=="campaign" else "workshop"
@@ -216,7 +308,7 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 	result["legacyArchive"]={"sourceVersion":old_version,"completed":sim.get("completed",0),"elapsedSeconds":sim.get("elapsedSeconds",int(sim.get("elapsedMinutes",0))*60),"oldHistorySteps":data.get("history",{}).get("undo",[]).size(),"note":"原始文件已独立归档。原客流仅作历史记录，不继续运行。"}
 	for key in ["simulation","goalBoard","cityProgression","challengeState","challengeMode","onboarding","tutorialStep","tutorialDone","fleetMode"]:result.erase(key)
 	var old:Dictionary=data.get("campaignState",{})
-	result["storyState"]={"chapterIndex":0,"chapterId":"","stage":"intro","completedChapterIds":[],"milestones":[],"tutorialEnabled":false,"tutorialStatus":"skipped","beatRead":{},"learnedTools":true,"assistedChapters":[],"catalogVersion":CampaignSystem.content_version(),"phase":"history","freeUnlocked":false,"legacyMilestones":old.get("completedChapterIds",[])}
+	result["storyState"]={"chapterIndex":0,"chapterId":"","stage":"intro","completedChapterIds":[],"milestones":[],"chapterTaskProgress":{},"confirmedHistoricalEventIds":[],"tutorialEnabled":false,"tutorialStatus":"skipped","beatRead":{},"learnedTools":true,"assistedChapters":[],"catalogVersion":CampaignSystem.content_version(),"phase":"history","freeUnlocked":false,"legacyMilestones":old.get("completedChapterIds",[])}
 	result.erase("campaignState")
 	result["storyPlan"]={"planIndex":0,"pathChoices":{}}
 	result["history"]={"undo":[],"redo":[]}
@@ -244,9 +336,60 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 	result["migrationNotice"]="已转换为故事进度或旧路网作品。旧统计和旧历史保存在原始备份；旧章节与旧历史留在原始备份及恢复记录；新故事从首章核对已有建设，不清空路网。"
 	return result
 
+static func _resume_expanded_history(state:Dictionary,city_id:String,mode:String) -> void:
+	if mode!="campaign" or str(state.get("phase","history")) not in ["history","history_gap","history_content_gap","future_gap"]:return
+	var chapters:Array=CampaignSystem.city_config(city_id).get("chapters",[])
+	if chapters.is_empty():return
+	var current_id:=str(state.get("chapterId",""))
+	var current_index:=-1
+	for index in range(chapters.size()):
+		if str(chapters[index].get("id",""))==current_id:current_index=index;break
+	var gap:=str(state.get("phase","")) in ["history_gap","history_content_gap"] or current_index<0 or int(state.get("chapterIndex",0))>=chapters.size()
+	if not gap:
+		state["chapterIndex"]=current_index
+		return
+	var completed:Array=state.get("completedChapterIds",[]) if state.get("completedChapterIds",[]) is Array else []
+	for index in range(chapters.size()):
+		var chapter_id:=str(chapters[index].get("id",""))
+		if completed.has(chapter_id):continue
+		# Resume by stable chapter identity, never by date. Both construction
+		# chapters and source-backed milestone events are actionable. Skipping an
+		# event-only node here made old boundary saves appear permanently stuck.
+		state["phase"]="history";state["chapterIndex"]=index;state["chapterId"]=chapter_id
+		state["stage"]="intro";state["tutorialEnabled"]=false
+		return
+	var future_plans:Array=CampaignSystem.playable_future_plans(city_id)
+	for plan_index in range(future_plans.size()):
+		var plan:Dictionary=future_plans[plan_index]
+		if completed.has(str(plan.get("id",""))):continue
+		state["phase"]="future";state["chapterIndex"]=plan_index;state["chapterId"]=str(plan.get("id",""));state["stage"]="intro";state["tutorialEnabled"]=false
+		return
+	state["phase"]="history_content_gap" if str(CampaignSystem.city_config(city_id).get("historyStatus","partial"))=="route_inventory_complete" else "future_gap"
+	state["chapterIndex"]=chapters.size();state["chapterId"]="";state["stage"]="intro"
+
+static func _upgrade_station_complexes(result:Dictionary) -> void:
+	if not result.has("stationComplexes") or not result.get("stationComplexes",[]) is Array:result["stationComplexes"]=[]
+	if not result.has("transferConnections") or not result.get("transferConnections",[]) is Array:result["transferConnections"]=[]
+	var complexes:Dictionary={}
+	var used_instances:Dictionary={}
+	for complex in result.get("stationComplexes",[]):
+		if complex is Dictionary:complexes[str(complex.get("id",""))]=complex
+	for station in result.get("stations",[]):
+		if not station is Dictionary:continue
+		var historical_id:=str(station.get("historicalId",""))
+		var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
+		if instance_id.is_empty() or used_instances.has(instance_id):instance_id=str(station.get("id",""))
+		station["stationInstanceId"]=instance_id;used_instances[instance_id]=true
+		var complex_id:=str(station.get("stationComplexId",historical_id))
+		station["stationComplexId"]=complex_id
+		if not complex_id.is_empty() and not complexes.has(complex_id):
+			var complex:Dictionary={"id":complex_id,"name":str(station.get("name","历史站区")),"locationPrecision":"station_area_approximation","structureStatus":"legacy_unresolved"}
+			result.stationComplexes.append(complex);complexes[complex_id]=complex
+
 static func _index_usable(data:Dictionary) -> bool:
 	if data.has("stations"):return validate(data).is_empty()
-	return int(data.get("schemaVersion",0)) in [18,19,20] and valid_id(str(data.get("gameId","")))
+	var version:=int(data.get("schemaVersion",0))
+	return version>=18 and version<=WorldData.SAVE_VERSION and valid_id(str(data.get("gameId","")))
 
 static func load_last_game(confirm_recovery:bool=false) -> Dictionary:
 	var index_path:=root_path().path_join("last_game.json")
@@ -341,6 +484,19 @@ static func delete_auto_history(id:String,file:String) -> Dictionary:
 	if not valid_id(id) or file!=file.get_file() or not file.ends_with(".json"):return {"ok":false,"error":"无效自动历史编号。"}
 	var error:=DirAccess.remove_absolute(ProjectSettings.globalize_path(game_dir(id).path_join("auto").path_join(file)))
 	return {"ok":error==OK,"error":"无法删除该历史：%s" % error_string(error) if error!=OK else ""}
+
+static func delete_legacy_auto_history(path:String) -> Dictionary:
+	if root_path().is_empty() or not path.ends_with(".json"):return {"ok":false,"error":"无效的旧版自动历史文件。"}
+	var root:=ProjectSettings.globalize_path(root_path().path_join("auto_history")).simplify_path()
+	var target:=ProjectSettings.globalize_path(path).simplify_path()
+	var prefix:=root+"/"
+	if not target.begins_with(prefix):return {"ok":false,"error":"文件不在旧版自动历史目录中。"}
+	var relative:=target.trim_prefix(prefix).split("/",false)
+	if relative.size()!=2:return {"ok":false,"error":"无效的旧版自动历史路径。"}
+	for part in relative:
+		if part in [".",".."]:return {"ok":false,"error":"无效的旧版自动历史路径。"}
+	var error:=DirAccess.remove_absolute(target)
+	return {"ok":error==OK,"error":"无法删除该旧版自动历史：%s" % error_string(error) if error!=OK else ""}
 
 static func delete_game(id:String,active_id:String="") -> Dictionary:
 	if not valid_id(id):return {"ok":false,"error":"无效游戏编号。"}

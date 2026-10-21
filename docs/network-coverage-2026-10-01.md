@@ -1,0 +1,670 @@
+# 五城地铁线路历史覆盖核对（截止 2026-10-01）
+
+地图包快照日期：`2026-10-05T06:07:33.874Z`；来源标注：© OpenStreetMap contributors。官方开通状态截止 `2026-10-01`。站点覆盖采用截止日剔除表，地图快照的原始站点数另存于 JSON。
+
+> 官方来源用于确认公开线路口径和已登记的开通节点；逐线逐站的开通范围及官方站序尚未全部对照。本地线路对象与几何来自 OSM 快照，只提供地图参照，不能单独证明历史建设过程。线路数统计口径按各城来源说明分别展示，不能简单横向比较。
+
+| 城市 | 官方线路数／口径 | 地图线路条目 | 地图包独立站点 | 章节数 | 有建设目标章节 | 项目资料条目 | 可玩项目章 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 上海 | 18 | 18 | 487 | 22 | 21 | 9 | 2 |
+| 北京 | 30 | 24 | 402 | 25 | 22 | 9 | 0 |
+| 广州 | 口径不等同 | 20 | 373 | 25 | 21 | 3 | 2 |
+| 深圳 | 17 | 17 | 366 | 27 | 23 | 11 | 1 |
+| 成都 | 16 | 16 | 375 | 21 | 14 | 2 | 1 |
+
+## 截止日线路目录与内容缺口
+
+这里把官方线路口径、历史节点、本地地图目标和项目建设任务分开核对。‘站点覆盖’只表示章节提到对应地图站点编号，不等于按历史分期逐段建设成功。‘有建设目标章节’也不代表城市历史全量通过。项目只有同时关联项目编号和至少一个实际站序建设组，才计为可玩项目章。
+
+### 上海
+
+截至2026年4月公开运营表列出1—18号线；市域机场线、磁浮及浦江线另计。
+
+- [上海地铁全网首末班车时刻表（2026年4月）](https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html)：运营线路清单。
+- [轨交18号线二期今开通](https://www.shanghai.gov.cn/nw4411/20251227/b69b7008d2e647f7a3cab7e160ffe225.html)：18号线二期开通范围；江杨南路站暂未开放。
+
+截止日建设／规划项目：登记 9 项，可玩建设章 2 项，仍待制作 5 项，另有 2 项仅为政策／规划方向（可选，不阻塞解锁）。
+
+- [19号线](https://www.shanghai.gov.cn/nw4411/20260806/dede926ed5044859b3f542fe8e003b0a.html) · `在建` · 尚无可玩建设任务：2026年8月官方进度报道确认土建施工仍在推进；不计入2026-10-01已开通路网。
+- [20号线一期](https://www.shanghai.gov.cn/nw17239/20260819/5103cdd705c64ae78eb3bbfee10cb1e4.html) · `在建` · 尚无可玩建设任务：2026年8月官方报道确认一期施工及盾构始发。
+- [20号线东延伸](https://www.shanghai.gov.cn/nw12344/20260210/86c10a3ea525407e84d4d7354c8fcb4e.html) · `十五五建设方向` · 政策／规划方向，未发布逐站蓝图，不阻塞解锁：规划提出加快建设20号线等，未发布可供逐站复现的完整地理蓝图。
+- [21号线一期及东延伸](https://www.shanghai.gov.cn/nw48306/20250123/db8109b860ae4c5cbcc0ae9e22504f67.html) · `在建` · 尚无可玩建设任务：列入重大工程在建项目；按项目分期呈现，非市域铁路。
+- [23号线一期](https://www.shanghai.gov.cn/nw48306/20250123/db8109b860ae4c5cbcc0ae9e22504f67.html) · `在建` · 已有可玩建设任务：重大工程清单列为在建，规划范围为上海体育场站—闵行开发区站。
+- [15号线南延伸](https://www.shanghai.gov.cn/nw48306/20250123/db8109b860ae4c5cbcc0ae9e22504f67.html) · `在建` · 已有可玩建设任务：重大工程清单列为在建；终点范围依据公开项目名称，不将其作为已开通站点。
+- [13号线西延伸、东延伸](https://www.shanghai.gov.cn/nw4411/20250724/478b3e2e1ac44d248d1b31022f234b5b.html) · `在建` · 尚无可玩建设任务：官方建设进展将两段均列入实施项目；具体站位须按各段批复及工程资料分别建模。
+- [12号线西延伸](https://www.shanghai.gov.cn/nw12344/20260210/86c10a3ea525407e84d4d7354c8fcb4e.html) · `规划建设方向` · 政策／规划方向，未发布逐站蓝图，不阻塞解锁：列入规划推进方向；本地尚无经核对的可玩站点蓝图。
+- [22号线（崇明线）](https://www.shanghai.gov.cn/nw15343/20250724/478b3e2e1ac44d248d1b31022f234b5b.html) · `在建` · 尚无可玩建设任务：官方报道确认车站土建施工；市域线/城际属性与市区地铁分开统计。
+
+里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：
+
+| 建设时期 | 里程碑 | 状态 | 地图线路对象／样章目标 |
+|---|---|---|---|
+| 历史起点—1990-01-19 | 1号线开工建设 | 已有可玩章节 | — |
+| 1990-01-19—1993-05-28 | 1号线南段先行试运营 | 已有可玩章节 | 样章目标 1号线南段 |
+| 1993-05-28—1995-04-10 | 1号线主线试运营 | 已有可玩章节 | 样章目标 1号线主线 |
+| 1995-04-10—1996-12-28 | 南延伸先行分段试运营 | 已有可玩章节 | 样章目标 1号线南延伸（分段试运营） |
+| 1996-12-28—1997-07-01 | 1号线贯通至莘庄 | 已有可玩章节 | 样章目标 1号线贯通段 |
+| 1997-07-01—2000-12-26 | 3号线一期（明珠线）开通 | 已有可玩章节 | 地图关系 shanghai-r3；样章目标 3号线一期 · 上海南站—江湾镇 |
+| 2000-12-26—2004-12-28 | 1号线北延伸段开通试运营 | 已有可玩章节 | 样章目标 1号线北延伸段 |
+| 2004-12-28—2006-12-18 | 3号线北延伸开通 | 已有可玩章节 | 地图关系 shanghai-r3；样章目标 3号线北延伸 · 江湾镇—江杨北路 |
+| 2006-12-18—2007-12-29 | 1号线、4号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r1, shanghai-r4；样章目标 1号线 · 本期新增段1、1号线 · 本期新增段2、1号线 · 本期新增段3、1号线 · 本期新增段4、1号线 · 本期新增段5、4号线 |
+| 2007-12-29—2011-04-12 | 6号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r6；样章目标 6号线 |
+| 2011-04-12—2011-12-28 | 7号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r7；样章目标 7号线 |
+| 2011-12-28—2017-12-30 | 17号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r17；样章目标 17号线 |
+| 2017-12-30—2018-12-30 | 5号线、8号线、12号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r12, shanghai-r5, shanghai-r8；样章目标 5号线、8号线、12号线 |
+| 2018-12-30—2019-09-27 | 16号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r16；样章目标 16号线 |
+| 2019-09-27—2019-12-30 | 9号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r9；样章目标 9号线 |
+| 2019-12-30—2020-12-26 | 2号线、10号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r10, shanghai-r2；样章目标 2号线、10号线 |
+| 2020-12-26—2021-01-23 | 15号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r15；样章目标 15号线 |
+| 2021-01-23—2021-12-19 | 13号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r13；样章目标 13号线 |
+| 2021-12-19—2021-12-30 | 14号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r14；样章目标 14号线 |
+| 2021-12-30—2024-09-28 | 11号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r11；样章目标 11号线 |
+| 2024-09-28—2025-12-27 | 18号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r18；样章目标 18号线二期宝山段 |
+| 2025-12-27—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 shanghai-r1, shanghai-r10, shanghai-r11, shanghai-r12, shanghai-r13, shanghai-r14, shanghai-r15, shanghai-r16, shanghai-r17, shanghai-r18, shanghai-r2, shanghai-r3, shanghai-r4, shanghai-r5, shanghai-r6, shanghai-r7, shanghai-r8, shanghai-r9；样章目标 1号线、2号线、3号线、4号线、5号线、6号线、7号线、8号线、9号线、10号线、11号线、12号线、13号线、14号线、15号线、16号线、17号线、18号线 |
+
+历史事件索引 26 项；当前章节 22 个，其中含铺轨目标 21 个、纯历史节点 1 个、使用整条地图路线目标的章节 14 个。未进入任何章节的事件 0 项。
+
+### 北京
+
+北京市政府2025年12月报道口径：运营线路30条、车站539座；含线路／区段运营统计口径。
+官方统计为30，当前离线包为24个路线关系条目，差值需要逐项补映射；不能用线路重叠推断已覆盖。
+
+- [三条地铁新线开通首日](https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370895.html)：2025年12月开通的17号线中段、18号线、6号线南延，以及30条运营线路统计。
+- [2026年北京市轨道交通建设安排](https://www.beijing.gov.cn/ywdt/gzdt/202601/t20260122_4455138.html)：2026年平谷线（22号线）计划及已开通网络里程口径。
+
+截止日建设／规划项目：登记 9 项，可玩建设章 0 项，仍待制作 9 项，另有 0 项仅为政策／规划方向（可选，不阻塞解锁）。
+
+- [轨道交通22号线（平谷线）](https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202608/t20260825_4836149.html) · `在建` · 尚无可玩建设任务：2026年8月仍在空载试运行，按截止日不计入已开通路网；线路跨北京与河北三河。
+- [M101线一期](https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202606/t20260611_4696243.html) · `在建` · 尚无可玩建设任务：2026年一季度车站、区间和停车场均已开始施工。
+- [3号线一期（管庄路西口—曹各庄北）](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) · `建设计划项目` · 尚无可玩建设任务：列入2026年全面推进的9条（段）项目；站序和工程范围需以项目正式资料入库。
+- [12号线东坝北—东坝北街段](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) · `建设计划项目` · 尚无可玩建设任务：列入2026年建设计划的线路段。
+- [28号线](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) · `建设计划项目` · 尚无可玩建设任务：列入2026年建设计划；暂不将线路目录当作逐站可玩蓝图。
+- [13号线扩能提升工程](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) · `建设计划项目` · 尚无可玩建设任务：属于既有线扩能改造工程，不作为一条新运营线路重复计数。
+- [1号线支线](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) · `建设计划项目` · 尚无可玩建设任务：列入2026年建设计划；本地逐站参考几何尚未建立。
+- [新机场线（草桥—丽泽商务区）](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) · `建设计划项目` · 尚无可玩建设任务：列入2026年建设计划，需与机场快线既有线身份区分。
+- [亦庄线至5号线、10号线联络工程](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) · `建设计划项目` · 尚无可玩建设任务：为联络工程，不单独计作新线路；目前没有可供逐站复现的公开地图目标。
+
+里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：
+
+| 建设时期 | 里程碑 | 状态 | 地图线路对象／样章目标 |
+|---|---|---|---|
+| 历史起点—1965-01 | 提出“一环两线三期”建设方案 | 已有可玩章节 | — |
+| 1965-01—1965-07-01 | 一期工程开工 | 已有可玩章节 | — |
+| 1965-07-01—1969-10-01 | 一期工程建成：两段先行工程 | 已有可玩章节 | 样章目标 西段：苹果园—复兴门、南段：长椿街—北京站 |
+| 1969-10-01—1971-01-15 | 北京站—立新站试运营 | 已有可玩章节 | 样章目标 一期试运营段 |
+| 1971-01-15—1973-04-23 | 一期试运营延长至苹果园 | 已有可玩章节 | 样章目标 一期试运营线 |
+| 1973-04-23—1981-09-15 | 一期工程正式向社会运营 | 已有可玩章节 | 样章目标 一期对社会运营线路 |
+| 1981-09-15—1984-09-20 | 二期工程投入运营 | 已有可玩章节 | — |
+| 1984-09-20—1987-12-28 | 2号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r2；样章目标 2号线 · 本期新增段1、2号线 · 本期新增段2 |
+| 1987-12-28—2007-10-07 | 5号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r5；样章目标 5号线 |
+| 2007-10-07—2009-09-28 | 4号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r4；样章目标 4号线 |
+| 2009-09-28—2010-12-30 | 亦庄线建设阶段 | 已有可玩章节 | 地图关系 beijing-r24；样章目标 亦庄线 |
+| 2010-12-30—2012-12-30 | 9号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r9；样章目标 9号线 |
+| 2012-12-30—2013-05-05 | 10号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r10；样章目标 10号线 |
+| 2013-05-05—2017-12-30 | 房山线建设阶段 | 已有可玩章节 | 地图关系 beijing-r22；样章目标 房山线 |
+| 2017-12-30—2019-07-26 | 13号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r13；样章目标 13号线 |
+| 2019-07-26—2019-09-26 | 大兴机场线建设阶段 | 已有可玩章节 | 地图关系 beijing-r21；样章目标 大兴机场线 |
+| 2019-09-26—2019-12-28 | 7号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r7；样章目标 7号线 |
+| 2019-12-28—2021-08-26 | 1号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r1；样章目标 1号线 · 本期新增段1、1号线 · 本期新增段2 |
+| 2021-08-26—2021-12-31 | 8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段 | 已有可玩章节 | 地图关系 beijing-r11, beijing-r14, beijing-r19, beijing-r20, beijing-r23, beijing-r8；样章目标 8号线、11号线、14号线、19号线、昌平线、首都机场线 |
+| 2021-12-31—2022-12-31 | 15号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r15；样章目标 15号线 |
+| 2022-12-31—2023-12-30 | 16号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r16；样章目标 16号线 |
+| 2023-12-30—2024-12-15 | 3号线、12号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r12, beijing-r3；样章目标 3号线、12号线 |
+| 2024-12-15—2025-12-27 | 6号线、18号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r17, beijing-r18, beijing-r6；样章目标 6号线、18号线 |
+| 2025-12-27—2026-01-31 | 17号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r17；样章目标 17号线 |
+| 2026-01-31—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 beijing-r1, beijing-r10, beijing-r11, beijing-r12, beijing-r13, beijing-r14, beijing-r15, beijing-r16, beijing-r17, beijing-r18, beijing-r19, beijing-r2, beijing-r20, beijing-r21, beijing-r22, beijing-r23, beijing-r24, beijing-r3, beijing-r4, beijing-r5, beijing-r6, beijing-r7, beijing-r8, beijing-r9；样章目标 1号线、2号线、3号线、4号线、5号线、6号线、7号线、8号线、9号线、10号线、11号线、12号线、13号线、14号线、15号线、16号线、17号线、18号线、19号线、昌平线、大兴机场线、房山线、首都机场线、亦庄线 |
+
+历史事件索引 32 项；当前章节 25 个，其中含铺轨目标 22 个、纯历史节点 3 个、使用整条地图路线目标的章节 16 个。未进入任何章节的事件 0 项。
+
+### 广州
+
+官方2025年度服务质量评价的20条（段）口径排除广佛线和2025年新开通段，不能直接当作2026年10月全网总数。
+
+- [2025年度广州城市轨道交通服务质量评价结果公布](https://jtj.gz.gov.cn/xwdt/gzdt/content/post_10694346.html)：官方评价线路口径和排除项；另列截至2025年底运营里程。
+- [广州地铁十三号线二期和十四号线二期上新](https://jtj.gz.gov.cn/ggjt/zfxx/csggjt/gdjt/content/post_10464308.html)：2025年新线区段及仍在建设的延伸段。
+
+截止日建设／规划项目：登记 3 项，可玩建设章 2 项，仍待制作 1 项，另有 0 项仅为政策／规划方向（可选，不阻塞解锁）。
+
+- [12号线中段](https://jtj.gz.gov.cn/xwdt/gzdt/content/post_10694346.html) · `在建` · 已有可玩建设任务：2026年度工作明确持续推进中段建设；未列入已开通范围。
+- [13号线二期西段（朝阳—天河公园）](https://jtj.gz.gov.cn/hdjl/czc/content/post_10789115.html) · `在建` · 已有可玩建设任务：官方公布约25.3公里、19座车站；截至2026年7月仍在建设筹备。
+- [8号线北延段支线（江府—纪念堂）](https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf) · `批准建设项目` · 尚无可玩建设任务：公开环评明确站点与走廊，但本地尚未把官方站序、坐标和版本化蓝图完整整理为可玩任务。
+
+里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：
+
+| 建设时期 | 里程碑 | 状态 | 地图线路对象／样章目标 |
+|---|---|---|---|
+| 历史起点—1962-01-01 | 早期地铁地质勘探 | 已有可玩章节 | — |
+| 1962-01-01—1978 | 完成首个地铁路网规划方案 | 已有可玩章节 | — |
+| 1978—1979 | 成立地下铁路筹建处 | 已有可玩章节 | — |
+| 1979—1993-12-28 | 1号线正式开工 | 已有可玩章节 | — |
+| 1993-12-28—1997-06-28 | 1号线西塱—黄沙先行段 | 已有可玩章节 | 样章目标 1号线先行段 |
+| 1997-06-28—1999-06-28 | 1号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r1；样章目标 1号线 · 本期新增段1、1号线 · 本期新增段2 |
+| 1999-06-28—2005-12-26 | 3号线首通段与4号线大学城专线开通 | 已有可玩章节 | 样章目标 4号线大学城专线：万胜围—新造、3号线首通段：广州东站—客村 |
+| 2005-12-26—2006-12-30 | 3号线后通段与4号线新造—黄阁段开通 | 已有可玩章节 | 样章目标 3号线南段：客村—番禺广场、3号线支线：天河客运站—体育西路、4号线南延：新造—黄阁 |
+| 2006-12-30—2007-06-28 | 4号线延伸至金洲 | 已有可玩章节 | 样章目标 4号线南延：黄阁—金洲 |
+| 2007-06-28—2009-12-28 | 4号线北延至车陂南；5号线滘口—文冲首期 | 已有可玩章节 | 样章目标 5号线首期 · 滘口—文冲、4号线北延：万胜围—车陂南 |
+| 2009-12-28—2010-09-25 | 2号线拆解后重组；4号线北延至黄村 | 已有可玩章节 | 地图关系 guangzhou-r2；样章目标 2号线、4号线北延：车陂南—黄村 |
+| 2010-09-25—2016-12-28 | 6号线二期与7号线首期开通 | 已有可玩章节 | 地图关系 guangzhou-r6；样章目标 6号线、7号线首期：广州南站—大学城南 |
+| 2016-12-28—2017-12-28 | 4号线南延、9号线一期、13号线首期及14号线知识城支线开通 | 已有可玩章节 | 地图关系 guangzhou-r4, guangzhou-r9；样章目标 4号线南延：金洲—南沙客运港、4号线庆盛站增设、9号线、13号线首期 · 鱼珠—新沙、14号线知识城支线 · 新和—镇龙 |
+| 2017-12-28—2018-12-28 | 3号线北延、广佛线南延、14号线一期及21号线首通段开通 | 已有可玩章节 | 地图关系 guangzhou-r20, guangzhou-r3；样章目标 3号线、广佛线、14号线一期 · 嘉禾望岗—东风 · 本期新增段1、14号线一期 · 嘉禾望岗—东风 · 本期新增段2、21号线首通段 · 镇龙西—增城广场 |
+| 2018-12-28—2019-12-20 | 21号线贯通至天河公园 | 已有可玩章节 | 地图关系 guangzhou-r16；样章目标 21号线 |
+| 2019-12-20—2019-12-28 | 8号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r8；样章目标 8号线 |
+| 2019-12-28—2021-12-28 | 佛山2号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r18；样章目标 佛山2号线 |
+| 2021-12-28—2022-03-31 | 22号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r17；样章目标 22号线 |
+| 2022-03-31—2022-05-01 | 7号线西延顺德段开通 | 已有可玩章节 | 样章目标 7号线西延：广州南站—美的大道 |
+| 2022-05-01—2022-09-28 | 18号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r15；样章目标 18号线 |
+| 2022-09-28—2023-12-28 | 5号线东延与7号线二期开通 | 已有可玩章节 | 地图关系 guangzhou-r5, guangzhou-r7；样章目标 5号线、7号线 |
+| 2023-12-28—2024-08-23 | 佛山3号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r19；样章目标 佛山3号线 |
+| 2024-08-23—2025-06-29 | 10号线、12号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r10, guangzhou-r12；样章目标 10号线、12号线东段（大学城南—二沙岛）、12号线西段（浔峰岗—广州体育馆） |
+| 2025-06-29—2025-09-29 | 11号线开通及13、14号线延伸 | 已有可玩章节 | 地图关系 guangzhou-r11, guangzhou-r13, guangzhou-r14；样章目标 11号线、13号线、14号线二期 · 嘉禾望岗—乐嘉路 |
+| 2025-09-29—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 guangzhou-r1, guangzhou-r10, guangzhou-r11, guangzhou-r12, guangzhou-r13, guangzhou-r14, guangzhou-r15, guangzhou-r16, guangzhou-r17, guangzhou-r18, guangzhou-r19, guangzhou-r2, guangzhou-r20, guangzhou-r3, guangzhou-r4, guangzhou-r5, guangzhou-r6, guangzhou-r7, guangzhou-r8, guangzhou-r9；样章目标 1号线、2号线、3号线、4号线、5号线、6号线、7号线、8号线、9号线、10号线、11号线、12号线、12号线西段（浔峰岗—广州体育馆）、13号线、14号线、18号线、21号线、22号线、佛山2号线、佛山3号线、广佛线 |
+
+历史事件索引 30 项；当前章节 25 个，其中含铺轨目标 21 个、纯历史节点 4 个、使用整条地图路线目标的章节 14 个。未进入任何章节的事件 0 项。
+
+### 深圳
+
+深圳市交通运输局线路页单列1—14、16、20号线及6号线支线；13号线北延于2026-06-28开通，均计入截止日。线路编号与支线分别计数。
+
+- [深圳地铁线路信息（含沿途站点）](https://jtys.sz.gov.cn/ydmh/jtcx/dtcx_180970/dtxl/content/post_12601090.html)：1—14、16、20号线及6号线支线的线路／站序清单。
+- [地铁13号线二期北延段6月28日开通运营](https://jtys.sz.gov.cn/ydmh/jtzx/zyhy_1510/content/post_12867344.html)：13号线北延段实际开通日期、11座车站及与一期贯通。
+
+截止日建设／规划项目：登记 11 项，可玩建设章 1 项，仍待制作 9 项，另有 1 项仅为政策／规划方向（可选，不阻塞解锁）。
+
+- [15号线](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府报道列入五期持续推进项目；交通局2026年仍发布区间施工进度。
+- [17号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进，未计入截止日已开通线网。
+- [19号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认五期建设项目；公布的政策里程目标不替代工程站序图。
+- [20号线二期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
+- [22号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
+- [25号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进；以一期正式工程范围为准。
+- [27号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
+- [29号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
+- [32号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进；按城市轨道交通范围纳入。
+- [13号线二期南延段](https://www.sz.gov.cn/zfgb/2026/gb1420/content/post_12894205.html) · `十五五规划目标` · 尚无可玩建设任务：规划提出建成13号线二期南北延；北延已于2026-06-28开通，此处只登记其余规划范围，不把整段重复算作未建。
+- [城市轨道交通第五期建设规划（项目库）](https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_10089296.html) · `已批建设规划` · 政策／规划方向，未发布逐站蓝图，不阻塞解锁：规划包含13个项目；只有逐项目工程范围和 stationOrder 完成核对后才转为可玩建设任务。
+
+里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：
+
+| 建设时期 | 里程碑 | 状态 | 地图线路对象／样章目标 |
+|---|---|---|---|
+| 历史起点—1992-07 | 深圳开始筹备地铁建设 | 已有可玩章节 | — |
+| 1992-07—1998-05 | 一期工程项目建议书获批 | 已有可玩章节 | — |
+| 1998-05—2000-05 | 1号线一期向西调整至会展中心 | 已有可玩章节 | — |
+| 2000-05—2002-05 | 1号线一期再延至世界之窗 | 已有可玩章节 | — |
+| 2002-05—2004-12-28 | 一期十字线网 | 已有可玩章节 | 地图关系 shenzhen-r1, shenzhen-r4；样章目标 1号线一期、4号线一期 |
+| 2004-12-28—2009-09-28 | 1号线增加白石洲、高新园、深大三站、二期首通段开通 | 已有可玩章节 | 地图关系 shenzhen-r1；样章目标 1号线二期首通段 |
+| 2009-09-28—2010-12-28 | 2号线一期与3号线一期开通 | 已有可玩章节 | 地图关系 shenzhen-r2, shenzhen-r3；样章目标 2号线一期、3号线一期 |
+| 2010-12-28—2011-06-15 | 1号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r1；样章目标 1号线 · 本期新增段4 |
+| 2011-06-15—2011-06-16 | 4号线延至清湖 | 已有可玩章节 | 地图关系 shenzhen-r4；样章目标 4号线北延伸 |
+| 2011-06-16—2011-06-22 | 5号线一期前海湾—黄贝岭开通 | 已有可玩章节 | 地图关系 shenzhen-r5；样章目标 5号线一期 |
+| 2011-06-22—2011-06-28 | 2号线延至新秀、3号线延至益田 | 已有可玩章节 | 地图关系 shenzhen-r2, shenzhen-r3；样章目标 2号线二期、3号线二期 |
+| 2011-06-28—2016-06-28 | 11号线福田枢纽—碧头开通 | 已有可玩章节 | 地图关系 shenzhen-r12；样章目标 11号线一期 |
+| 2016-06-28—2016-10-28 | 7号线与9号线一期开通，线网进入新一轮成网阶段 | 已有可玩章节 | 地图关系 shenzhen-r10, shenzhen-r8；样章目标 9号线一期、7号线一期 |
+| 2016-10-28—2019-09-28 | 5号线二期赤湾—前海湾开通 | 已有可玩章节 | 地图关系 shenzhen-r5；样章目标 5号线西延段 |
+| 2019-09-28—2019-12-08 | 9号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r10；样章目标 9号线 |
+| 2019-12-08—2020-08-18 | 6号线、10号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r11, shenzhen-r6；样章目标 6号线、10号线 |
+| 2020-08-18—2020-10-28 | 2号线、4号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r2, shenzhen-r3, shenzhen-r4, shenzhen-r9；样章目标 2号线三期至莲塘、4号线北延至牛湖、8号线一期至盐田路、3号线南延至福保 |
+| 2020-10-28—2021-12-28 | 20号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r17；样章目标 20号线 |
+| 2021-12-28—2022-10-28 | 14号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r12, shenzhen-r15；样章目标 14号线、11号线东延至岗厦北 |
+| 2022-10-28—2022-11-28 | 6号线支线与12号线开通 | 已有可玩章节 | 地图关系 shenzhen-r13, shenzhen-r7；样章目标 6号线支线一期、12号线一期 |
+| 2022-11-28—2022-12-28 | 16号线开通 | 已有可玩章节 | 地图关系 shenzhen-r16；样章目标 16号线一期 |
+| 2022-12-28—2023-12-27 | 8号线二期延至小梅沙 | 已有可玩章节 | 地图关系 shenzhen-r9；样章目标 8号线二期至小梅沙 |
+| 2023-12-27—2024-12-28 | 3号线、7号线、12号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r12, shenzhen-r13, shenzhen-r14, shenzhen-r3, shenzhen-r8；样章目标 3号线四期东延至坪地六联、7号线二期至深大丽湖、12号线二期至松岗、11号线二期岗厦北至华强南段、13号线一期南段至高新中 |
+| 2024-12-28—2025-09-28 | 6号线支线、16号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r16, shenzhen-r7；样章目标 6号线支线、16号线 |
+| 2025-09-28—2025-12-28 | 5号线、8号线、11号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r12, shenzhen-r14, shenzhen-r5, shenzhen-r9；样章目标 5号线西延至大剧院、8号线三期至溪涌、11号线二期华强南至红岭南段、13号线一期北段贯通至上屋 |
+| 2025-12-28—2026-06-28 | 13号线建设阶段 | 已有可玩章节 | 地图关系 shenzhen-r14；样章目标 13号线二期北延至李松蓢 |
+| 2026-06-28—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 shenzhen-r1, shenzhen-r10, shenzhen-r11, shenzhen-r12, shenzhen-r13, shenzhen-r14, shenzhen-r15, shenzhen-r16, shenzhen-r17, shenzhen-r2, shenzhen-r3, shenzhen-r4, shenzhen-r5, shenzhen-r6, shenzhen-r7, shenzhen-r8, shenzhen-r9；样章目标 1号线、2号线、3号线、4号线、5号线、6号线、6号线支线、7号线、8号线、9号线、10号线、11号线、12号线、13号线、14号线、16号线、20号线 |
+
+历史事件索引 30 项；当前章节 27 个，其中含铺轨目标 23 个、纯历史节点 4 个、使用整条地图路线目标的章节 4 个。未进入任何章节的事件 0 项。
+
+### 成都
+
+运营集团2026年公开债券文件按地铁线路列出1—10、13、17—19、27、30号线；市域铁路、有轨电车另计。
+
+- [成都轨道交通集团2026年债券募集说明书](https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf)：2026年运营线路及项目类别。
+- [成都轨道交通13号线、30号线开通](https://www.crecg.com/web/xwzx61/gsyw87/2025121815543222258/index.html)：2025年12月两条线路开通节点。
+
+截止日建设／规划项目：登记 2 项，可玩建设章 1 项，仍待制作 0 项，另有 1 项仅为政策／规划方向（可选，不阻塞解锁）。
+
+- [18号线三期（火车北站—火车南站）](https://news.chengdu.cn/2026/0608/6a261116cfd50212c36c1923.shtml) · `在建` · 已有可玩建设任务：截至2026年6月官方报道仍在铺轨与机电施工；按截止日不计入已开通网络。成都—眉山、成德市域铁路按本游戏范围另列。
+- [第五期建设规划（2024—2029）初步方案](https://m.xjgjxk.com/shiping/show.php?itemid=1891) · `征求意见／未见国家批复` · 政策／规划方向，未发布逐站蓝图，不阻塞解锁：包含5号线三期、9号线二期、10号线四期、12号线一期、16号线一期、18号线四期、20号线一期、22号线一期、23号线一期和27号线二期；这是环评征求意见方案，不作为已批建设蓝图。
+
+里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：
+
+| 建设时期 | 里程碑 | 状态 | 地图线路对象／样章目标 |
+|---|---|---|---|
+| 历史起点—2004-01-01 | 成都地铁建设运营主体成立 | 已有可玩章节 | — |
+| 2004-01-01—2005-08-09 | 首轮建设规划获批 | 已有可玩章节 | — |
+| 2005-08-09—2005-12-28 | 1号线一期开工建设 | 已有可玩章节 | — |
+| 2005-12-28—2010-09-27 | 1号线一期：升仙湖—世纪城 | 已有可玩章节 | 样章目标 1号线一期 |
+| 2010-09-27—2012-08 | 1号线南延线可研获批 | 已有可玩章节 | — |
+| 2012-08—2014-10-26 | 2号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r2；样章目标 2号线 |
+| 2014-10-26—2015-07-25 | 1号线南延至广都 | 已有可玩章节 | 样章目标 1号线南延 |
+| 2015-07-25—2016-08-01 | 1号线三期方案调整进入补充环评公示 | 已有可玩章节 | — |
+| 2016-08-01—2016-11-23 | 城市轨道交通线网规划修编获批 | 已有可玩章节 | — |
+| 2016-11-23—2017-12-06 | 7号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r7；样章目标 7号线 |
+| 2017-12-06—2017-12-26 | 4号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r4；样章目标 4号线 |
+| 2017-12-26—2018-03-18 | 1号线三期投入运营 | 已有可玩章节 | 样章目标 1号线三期 |
+| 2018-03-18—2018-12-26 | 3号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r3；样章目标 3号线 |
+| 2018-12-26—2019-06-02 | 5号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r5；样章目标 5号线 |
+| 2019-06-02—2019-06-17 | 第四期建设规划获批 | 已有可玩章节 | — |
+| 2019-06-17—2019-12-27 | 10号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r10；样章目标 10号线 |
+| 2019-12-27—2020-09-27 | 1号线、18号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r1, chengdu-r13；样章目标 1号线 · 本期新增段1、1号线 · 本期新增段2、18号线 |
+| 2020-09-27—2020-12-18 | 6号线、8号线、9号线、17号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r12, chengdu-r6, chengdu-r8, chengdu-r9；样章目标 6号线、8号线、9号线、17号线 |
+| 2020-12-18—2023-11-28 | 19号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r14；样章目标 19号线 |
+| 2023-11-28—2025-12-16 | 13号线、27号线、30号线建设阶段 | 已有可玩章节 | 地图关系 chengdu-r11, chengdu-r15, chengdu-r16；样章目标 13号线、27号线、30号线 |
+| 2025-12-16—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 chengdu-r1, chengdu-r10, chengdu-r11, chengdu-r12, chengdu-r13, chengdu-r14, chengdu-r15, chengdu-r16, chengdu-r2, chengdu-r3, chengdu-r4, chengdu-r5, chengdu-r6, chengdu-r7, chengdu-r8, chengdu-r9；样章目标 1号线、2号线、3号线、4号线、5号线、6号线、7号线、8号线、9号线、10号线、13号线、17号线、18号线、19号线、27号线、30号线 |
+
+历史事件索引 27 项；当前章节 21 个，其中含铺轨目标 14 个、纯历史节点 7 个、使用整条地图路线目标的章节 11 个。未进入任何章节的事件 0 项。
+
+## 按城市与线路检查
+
+候选章节只按共享站点编号计算，可能只是换乘站重叠；必须人工核对线路身份、开通日期、站序和官方来源。
+
+### 上海
+
+所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。
+
+| 地图线路 | 站点数 | 被任一章节目标提及 | 未覆盖站点 | 可能相关章节（仅编号交集） |
+|---|---:|---:|---:|---|
+| 1号线 `shanghai-r1` | 28 | 28 | 无 | shanghai-network-reconciliation-2026-10-01 (28), sh-line1-1997 (12), shanghai-historical-milestone-2004-12-28 (10) |
+| 2号线 `shanghai-r2` | 31 | 31 | 无 | shanghai-network-milestone-2020-12-26 (31), shanghai-network-reconciliation-2026-10-01 (31), shanghai-network-milestone-2020-12-26 (3) |
+| 3号线 `shanghai-r3` | 30 | 30 | 无 | shanghai-network-reconciliation-2026-10-01 (30), shanghai-network-milestone-2000-12-26 (19), shanghai-network-milestone-2006-12-18 (11) |
+| 4号线 `shanghai-r4` | 26 | 26 | 无 | shanghai-network-milestone-2007-12-29 (26), shanghai-network-reconciliation-2026-10-01 (26), shanghai-network-milestone-2000-12-26 (10) |
+| 5号线 `shanghai-r5` | 19 | 19 | 无 | shanghai-network-milestone-2018-12-30 (19), shanghai-network-reconciliation-2026-10-01 (19), sh-line1-1997 (1) |
+| 6号线 `shanghai-r6` | 28 | 28 | 无 | shanghai-network-milestone-2011-04-12 (28), shanghai-network-reconciliation-2026-10-01 (28), shanghai-network-milestone-2007-12-29 (2) |
+| 7号线 `shanghai-r7` | 35 | 35 | 无 | shanghai-network-milestone-2011-12-28 (35), shanghai-network-reconciliation-2026-10-01 (35), shanghai-network-milestone-2020-12-26 (2) |
+| 8号线 `shanghai-r8` | 30 | 30 | 无 | shanghai-network-milestone-2018-12-30 (30), shanghai-network-reconciliation-2026-10-01 (30), shanghai-network-milestone-2020-12-26 (2) |
+| 9号线 `shanghai-r9` | 34 | 34 | 无 | shanghai-network-milestone-2019-12-30 (34), shanghai-network-reconciliation-2026-10-01 (34), shanghai-network-milestone-2018-12-30 (2) |
+| 10号线 `shanghai-r10` | 37 | 37 | 无 | shanghai-network-milestone-2020-12-26 (37), shanghai-network-reconciliation-2026-10-01 (37), shanghai-network-milestone-2020-12-26 (3) |
+| 11号线 `shanghai-r11` | 91 | 91 | 无 | shanghai-network-milestone-2024-09-28 (91), shanghai-network-reconciliation-2026-10-01 (91), sh-line1-1993 (1) |
+| 12号线 `shanghai-r12` | 33 | 33 | 无 | shanghai-network-milestone-2018-12-30 (33), shanghai-network-reconciliation-2026-10-01 (33), sh-line1-1997 (2) |
+| 13号线 `shanghai-r13` | 31 | 31 | 无 | shanghai-network-milestone-2021-12-19 (31), shanghai-network-reconciliation-2026-10-01 (31), shanghai-network-milestone-2011-12-28 (2) |
+| 14号线 `shanghai-r14` | 32 | 32 | 无 | shanghai-network-milestone-2021-12-30 (32), shanghai-network-reconciliation-2026-10-01 (32), sh-line1-1995 (1) |
+| 15号线 `shanghai-r15` | 32 | 32 | 无 | shanghai-network-milestone-2021-01-23 (32), shanghai-network-reconciliation-2026-10-01 (32), sh-line1-1993 (1) |
+| 16号线 `shanghai-r16` | 13 | 13 | 无 | shanghai-network-milestone-2019-09-27 (13), shanghai-network-reconciliation-2026-10-01 (13), shanghai-network-milestone-2011-12-28 (1) |
+| 17号线 `shanghai-r17` | 14 | 14 | 无 | shanghai-network-milestone-2017-12-30 (14), shanghai-network-reconciliation-2026-10-01 (14), shanghai-network-milestone-2020-12-26 (1) |
+| 18号线 `shanghai-r18` | 31 | 31 | 无 | shanghai-network-reconciliation-2026-10-01 (31), shanghai-network-milestone-2025-12-27 (6), shanghai-network-milestone-2006-12-18 (1) |
+
+本城可玩章节目标与资料状态：
+
+- `sh-line1-1993` 1993-05-28 · 1号线南段：5个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `sh-line1-1995` 1995-04-10 · 1号线主线：9个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `sh-line1-south-1996` 1996-12-28 · 1号线南延伸（分段试运营）：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `sh-line1-1997` 1997-07-01 · 1号线贯通段：16个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shanghai-network-milestone-2000-12-26` 2000-12-26 · 3号线一期 · 上海南站—江湾镇：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-historical-milestone-2004-12-28` 2004-12-28 · 1号线北延伸段：10个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shanghai-network-milestone-2006-12-18` 2006-12-18 · 3号线北延伸 · 江湾镇—江杨北路：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2007-12-29` 2007-12-29 · 1号线 · 本期新增段1：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2007-12-29` 2007-12-29 · 1号线 · 本期新增段2：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2007-12-29` 2007-12-29 · 1号线 · 本期新增段3：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2007-12-29` 2007-12-29 · 1号线 · 本期新增段4：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2007-12-29` 2007-12-29 · 1号线 · 本期新增段5：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2007-12-29` 2007-12-29 · 4号线：26个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2011-04-12` 2011-04-12 · 6号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2011-12-28` 2011-12-28 · 7号线：35个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2017-12-30` 2017-12-30 · 17号线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2018-12-30` 2018-12-30 · 5号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2018-12-30` 2018-12-30 · 8号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2018-12-30` 2018-12-30 · 12号线：33个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2019-09-27` 2019-09-27 · 16号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2019-12-30` 2019-12-30 · 9号线：34个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2020-12-26` 2020-12-26 · 2号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2020-12-26` 2020-12-26 · 10号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2021-01-23` 2021-01-23 · 15号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2021-12-19` 2021-12-19 · 13号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2021-12-30` 2021-12-30 · 14号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2024-09-28` 2024-09-28 · 11号线：91个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2025-12-27` 2025-12-27 · 18号线二期宝山段：6个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 1号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 2号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 3号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 4号线：26个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 5号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 6号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 7号线：35个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 8号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 9号线：34个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 10号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 11号线：91个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 12号线：33个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 13号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 14号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 15号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 16号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 17号线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 18号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+
+### 北京
+
+所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。
+
+| 地图线路 | 站点数 | 被任一章节目标提及 | 未覆盖站点 | 可能相关章节（仅编号交集） |
+|---|---:|---:|---:|---|
+| 1号线 `beijing-r1` | 37 | 37 | 无 | beijing-network-reconciliation-2026-10-01 (37), beijing-network-milestone-2021-08-26 (25), bj-phase1-built-1969 (11) |
+| 2号线 `beijing-r2` | 18 | 18 | 无 | beijing-network-reconciliation-2026-10-01 (18), beijing-network-milestone-1987-12-28 (10), bj-phase1-apple-1973 (6) |
+| 3号线 `beijing-r3` | 10 | 10 | 无 | beijing-network-milestone-2024-12-15 (10), beijing-network-reconciliation-2026-10-01 (10), beijing-network-milestone-1987-12-28 (1) |
+| 4号线 `beijing-r4` | 24 | 24 | 无 | beijing-network-milestone-2009-09-28 (24), beijing-network-reconciliation-2026-10-01 (24), beijing-network-milestone-2013-05-05 (2) |
+| 5号线 `beijing-r5` | 23 | 23 | 无 | beijing-network-milestone-2007-10-07 (23), beijing-network-reconciliation-2026-10-01 (23), beijing-network-milestone-2013-05-05 (2) |
+| 6号线 `beijing-r6` | 37 | 37 | 无 | beijing-network-milestone-2025-12-27 (37), beijing-network-reconciliation-2026-10-01 (37), beijing-network-milestone-2013-05-05 (2) |
+| 7号线 `beijing-r7` | 30 | 30 | 无 | beijing-network-milestone-2019-12-28 (30), beijing-network-reconciliation-2026-10-01 (30), beijing-network-milestone-2021-08-26 (2) |
+| 8号线 `beijing-r8` | 36 | 36 | 无 | beijing-network-milestone-2021-12-31 (36), beijing-network-reconciliation-2026-10-01 (36), beijing-network-milestone-2013-05-05 (2) |
+| 9号线 `beijing-r9` | 13 | 13 | 无 | beijing-network-milestone-2012-12-30 (13), beijing-network-reconciliation-2026-10-01 (13), beijing-network-milestone-2009-09-28 (1) |
+| 10号线 `beijing-r10` | 47 | 47 | 无 | beijing-network-milestone-2013-05-05 (47), beijing-network-reconciliation-2026-10-01 (47), beijing-network-milestone-2007-10-07 (2) |
+| 11号线 `beijing-r11` | 4 | 4 | 无 | beijing-network-milestone-2021-12-31 (4), beijing-network-reconciliation-2026-10-01 (4), beijing-network-milestone-2025-12-27 (1) |
+| 12号线 `beijing-r12` | 20 | 20 | 无 | beijing-network-milestone-2024-12-15 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2013-05-05 (2) |
+| 13号线 `beijing-r13` | 17 | 17 | 无 | beijing-network-milestone-2019-07-26 (17), beijing-network-reconciliation-2026-10-01 (17), beijing-network-milestone-2013-05-05 (2) |
+| 14号线 `beijing-r14` | 35 | 35 | 无 | beijing-network-milestone-2021-12-31 (35), beijing-network-reconciliation-2026-10-01 (35), beijing-network-milestone-2013-05-05 (2) |
+| 15号线 `beijing-r15` | 20 | 20 | 无 | beijing-network-milestone-2022-12-31 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2007-10-07 (1) |
+| 16号线 `beijing-r16` | 30 | 30 | 无 | beijing-network-milestone-2023-12-30 (30), beijing-network-reconciliation-2026-10-01 (30), beijing-network-milestone-2009-09-28 (1) |
+| 17号线 `beijing-r17` | 20 | 20 | 无 | beijing-network-milestone-2026-01-31 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2013-05-05 (2) |
+| 18号线 `beijing-r18` | 6 | 6 | 无 | beijing-network-milestone-2025-12-27 (6), beijing-network-reconciliation-2026-10-01 (6), beijing-network-milestone-2021-12-31 (1) |
+| 19号线 `beijing-r19` | 10 | 10 | 无 | beijing-network-milestone-2021-12-31 (10), beijing-network-reconciliation-2026-10-01 (10), beijing-network-milestone-1987-12-28 (1) |
+| 昌平线 `beijing-r20` | 19 | 19 | 无 | beijing-network-milestone-2021-12-31 (19), beijing-network-reconciliation-2026-10-01 (19), beijing-network-milestone-2019-07-26 (2) |
+| 大兴机场线 `beijing-r21` | 3 | 3 | 无 | beijing-network-milestone-2019-09-26 (3), beijing-network-reconciliation-2026-10-01 (3), beijing-network-milestone-2021-12-31 (1) |
+| 房山线 `beijing-r22` | 16 | 16 | 无 | beijing-network-milestone-2017-12-30 (16), beijing-network-reconciliation-2026-10-01 (16), beijing-network-milestone-2012-12-30 (1) |
+| 首都机场线 `beijing-r23` | 5 | 5 | 无 | beijing-network-milestone-2021-12-31 (5), beijing-network-reconciliation-2026-10-01 (5), beijing-network-milestone-1987-12-28 (1) |
+| 亦庄线 `beijing-r24` | 14 | 14 | 无 | beijing-network-milestone-2010-12-30 (14), beijing-network-reconciliation-2026-10-01 (14), beijing-network-milestone-2007-10-07 (1) |
+
+本城可玩章节目标与资料状态：
+
+- `bj-phase1-built-1969` 1969-10-01 · 西段：苹果园—复兴门：11个目标站，线位等级 `corridor`，有章节／线路来源链接
+- `bj-phase1-built-1969` 1969-10-01 · 南段：长椿街—北京站：6个目标站，线位等级 `corridor`，有章节／线路来源链接
+- `bj-phase1-trial-1971` 1971-01-15 · 一期试运营段：10个目标站，线位等级 `corridor`，有章节／线路来源链接
+- `bj-phase1-apple-1973` 1973-04-23 · 一期试运营线：16个目标站，线位等级 `corridor`，有章节／线路来源链接
+- `bj-phase1-public-1981` 1981-09-15 · 一期对社会运营线路：16个目标站，线位等级 `corridor`，有章节／线路来源链接
+- `beijing-network-milestone-1987-12-28` 1987-12-28 · 2号线 · 本期新增段1：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-1987-12-28` 1987-12-28 · 2号线 · 本期新增段2：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2007-10-07` 2007-10-07 · 5号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2009-09-28` 2009-09-28 · 4号线：24个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2010-12-30` 2010-12-30 · 亦庄线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2012-12-30` 2012-12-30 · 9号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2013-05-05` 2013-05-05 · 10号线：47个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2017-12-30` 2017-12-30 · 房山线：16个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2019-07-26` 2019-07-26 · 13号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2019-09-26` 2019-09-26 · 大兴机场线：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2019-12-28` 2019-12-28 · 7号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-08-26` 2021-08-26 · 1号线 · 本期新增段1：25个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-08-26` 2021-08-26 · 1号线 · 本期新增段2：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 8号线：36个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 11号线：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 14号线：35个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 19号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 昌平线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 首都机场线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2022-12-31` 2022-12-31 · 15号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2023-12-30` 2023-12-30 · 16号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2024-12-15` 2024-12-15 · 3号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2024-12-15` 2024-12-15 · 12号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2025-12-27` 2025-12-27 · 6号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2025-12-27` 2025-12-27 · 18号线：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2026-01-31` 2026-01-31 · 17号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 1号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 2号线：18个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 3号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 4号线：24个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 5号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 6号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 7号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 8号线：36个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 9号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 10号线：47个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 11号线：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 12号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 13号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 14号线：35个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 15号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 16号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 17号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 18号线：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 19号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 昌平线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 大兴机场线：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 房山线：16个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 首都机场线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 亦庄线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+
+### 广州
+
+所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。
+
+| 地图线路 | 站点数 | 被任一章节目标提及 | 未覆盖站点 | 可能相关章节（仅编号交集） |
+|---|---:|---:|---:|---|
+| 1号线 `guangzhou-r1` | 16 | 16 | 无 | guangzhou-network-reconciliation-2026-10-01 (16), guangzhou-network-milestone-1999-06-28 (12), gz-line1-1997 (4) |
+| 2号线 `guangzhou-r2` | 24 | 24 | 无 | guangzhou-network-milestone-2010-09-25 (24), guangzhou-network-reconciliation-2026-10-01 (24), guangzhou-network-milestone-2016-12-28 (2) |
+| 3号线 `guangzhou-r3` | 33 | 33 | 无 | guangzhou-network-reconciliation-2026-10-01 (33), guangzhou-network-milestone-2018-12-28 (17), guangzhou-network-milestone-2006-12-30 (8) |
+| 4号线 `guangzhou-r4` | 23 | 23 | 无 | guangzhou-network-reconciliation-2026-10-01 (23), guangzhou-network-milestone-2006-12-30 (7), guangzhou-network-milestone-2017-12-28 (7) |
+| 5号线 `guangzhou-r5` | 30 | 30 | 无 | guangzhou-network-milestone-2023-12-28 (30), guangzhou-network-reconciliation-2026-10-01 (30), guangzhou-network-milestone-2009-12-28 (24) |
+| 6号线 `guangzhou-r6` | 32 | 32 | 无 | guangzhou-network-milestone-2016-12-28 (32), guangzhou-network-reconciliation-2026-10-01 (32), guangzhou-network-milestone-1999-06-28 (2) |
+| 7号线 `guangzhou-r7` | 27 | 27 | 无 | guangzhou-network-reconciliation-2026-10-01 (27), guangzhou-network-milestone-2023-12-28 (11), guangzhou-network-milestone-2016-12-28 (9) |
+| 8号线 `guangzhou-r8` | 28 | 28 | 无 | guangzhou-network-milestone-2019-12-28 (28), guangzhou-network-reconciliation-2026-10-01 (28), guangzhou-network-reconciliation-2026-10-01 (2) |
+| 9号线 `guangzhou-r9` | 11 | 11 | 无 | guangzhou-network-milestone-2017-12-28 (11), guangzhou-network-reconciliation-2026-10-01 (11), guangzhou-network-milestone-2018-12-28 (1) |
+| 10号线 `guangzhou-r10` | 12 | 12 | 无 | guangzhou-network-milestone-2025-06-29 (12), guangzhou-network-reconciliation-2026-10-01 (12), guangzhou-network-milestone-1999-06-28 (1) |
+| 11号线 `guangzhou-r11` | 30 | 30 | 无 | guangzhou-network-milestone-2025-09-29 (30), guangzhou-network-reconciliation-2026-10-01 (30), guangzhou-network-milestone-2016-12-28 (2) |
+| 12号线 `guangzhou-r12` | 18 | 18 | 无 | guangzhou-network-reconciliation-2026-10-01 (18), guangzhou-network-milestone-2025-06-29 (9), guangzhou-network-milestone-2025-06-29 (9) |
+| 13号线 `guangzhou-r13` | 15 | 15 | 无 | guangzhou-network-reconciliation-2026-10-01 (15), guangzhou-network-milestone-2017-12-28 (11), guangzhou-network-milestone-2025-09-29 (5) |
+| 14号线 `guangzhou-r14` | 29 | 29 | 无 | guangzhou-network-reconciliation-2026-10-01 (29), guangzhou-network-milestone-2017-12-28 (10), guangzhou-network-milestone-2018-12-28 (8) |
+| 18号线 `guangzhou-r15` | 8 | 8 | 无 | guangzhou-network-milestone-2022-09-28 (8), guangzhou-network-reconciliation-2026-10-01 (8), guangzhou-network-milestone-2022-03-31 (1) |
+| 21号线 `guangzhou-r16` | 20 | 20 | 无 | guangzhou-network-reconciliation-2026-10-01 (20), guangzhou-network-milestone-2019-12-20 (12), guangzhou-network-milestone-2018-12-28 (9) |
+| 22号线 `guangzhou-r17` | 8 | 8 | 无 | guangzhou-network-milestone-2022-03-31 (8), guangzhou-network-reconciliation-2026-10-01 (8), gz-line1-1997 (2) |
+| 佛山2号线 `guangzhou-r18` | 17 | 17 | 无 | guangzhou-network-milestone-2021-12-28 (17), guangzhou-network-reconciliation-2026-10-01 (17), guangzhou-network-milestone-2018-12-28 (1) |
+| 佛山3号线 `guangzhou-r19` | 37 | 37 | 无 | guangzhou-network-milestone-2024-08-23 (37), guangzhou-network-reconciliation-2026-10-01 (37), guangzhou-network-milestone-2018-12-28 (2) |
+| 广佛线 `guangzhou-r20` | 25 | 25 | 无 | guangzhou-network-milestone-2018-12-28 (25), guangzhou-network-reconciliation-2026-10-01 (25), guangzhou-network-milestone-2024-08-23 (2) |
+
+本城可玩章节目标与资料状态：
+
+- `gz-line1-1997` 1997-06-28 · 1号线先行段：5个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `guangzhou-network-milestone-1999-06-28` 1999-06-28 · 1号线 · 本期新增段1：2个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-1999-06-28` 1999-06-28 · 1号线 · 本期新增段2：12个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2005-12-26` 2005-12-26 · 4号线大学城专线：万胜围—新造：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2005-12-26` 2005-12-26 · 3号线首通段：广州东站—客村：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2006-12-30` 2006-12-30 · 3号线南段：客村—番禺广场：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2006-12-30` 2006-12-30 · 3号线支线：天河客运站—体育西路：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2006-12-30` 2006-12-30 · 4号线南延：新造—黄阁：7个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2007-06-28` 2007-06-28 · 4号线南延：黄阁—金洲：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2009-12-28` 2009-12-28 · 5号线首期 · 滘口—文冲：24个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2009-12-28` 2009-12-28 · 4号线北延：万胜围—车陂南：2个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2010-09-25` 2010-09-25 · 2号线：24个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2010-09-25` 2010-09-25 · 4号线北延：车陂南—黄村：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2016-12-28` 2016-12-28 · 6号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2016-12-28` 2016-12-28 · 7号线首期：广州南站—大学城南：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2017-12-28` 2017-12-28 · 4号线南延：金洲—南沙客运港：7个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2017-12-28` 2017-12-28 · 4号线庆盛站增设：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2017-12-28` 2017-12-28 · 9号线：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2017-12-28` 2017-12-28 · 13号线首期 · 鱼珠—新沙：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2017-12-28` 2017-12-28 · 14号线知识城支线 · 新和—镇龙：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2018-12-28` 2018-12-28 · 3号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2018-12-28` 2018-12-28 · 广佛线：25个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2018-12-28` 2018-12-28 · 14号线一期 · 嘉禾望岗—东风 · 本期新增段1：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2018-12-28` 2018-12-28 · 14号线一期 · 嘉禾望岗—东风 · 本期新增段2：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2018-12-28` 2018-12-28 · 21号线首通段 · 镇龙西—增城广场：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2019-12-20` 2019-12-20 · 21号线：12个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2019-12-28` 2019-12-28 · 8号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2021-12-28` 2021-12-28 · 佛山2号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2022-03-31` 2022-03-31 · 22号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2022-05-01` 2022-05-01 · 7号线西延：广州南站—美的大道：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2022-09-28` 2022-09-28 · 18号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2023-12-28` 2023-12-28 · 5号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2023-12-28` 2023-12-28 · 7号线：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2024-08-23` 2024-08-23 · 佛山3号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2025-06-29` 2025-06-29 · 10号线：12个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2025-06-29` 2025-06-29 · 12号线东段（大学城南—二沙岛）：9个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `guangzhou-network-milestone-2025-06-29` 2025-06-29 · 12号线西段（浔峰岗—广州体育馆）：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2025-09-29` 2025-09-29 · 11号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2025-09-29` 2025-09-29 · 13号线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2025-09-29` 2025-09-29 · 14号线二期 · 嘉禾望岗—乐嘉路：8个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 1号线：16个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 2号线：24个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 3号线：33个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 4号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 5号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 6号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 7号线：27个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 8号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 9号线：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 10号线：12个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 11号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 12号线：18个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 12号线西段（浔峰岗—广州体育馆）：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 13号线：15个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 14号线：29个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 18号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 21号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 22号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 佛山2号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 佛山3号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 广佛线：25个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+
+### 深圳
+
+所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。
+
+| 地图线路 | 站点数 | 被任一章节目标提及 | 未覆盖站点 | 可能相关章节（仅编号交集） |
+|---|---:|---:|---:|---|
+| 1号线 `shenzhen-r1` | 30 | 30 | 无 | shenzhen-network-reconciliation-2026-10-01 (30), sz-initial-cross-2004 (15), shenzhen-network-milestone-2011-06-15 (13) |
+| 2号线 `shenzhen-r2` | 36 | 36 | 无 | shenzhen-network-reconciliation-2026-10-01 (36), shenzhen-network-reconciliation-2026-10-01 (31), shenzhen-historical-milestone-2011-06-28 (18) |
+| 3号线 `shenzhen-r3` | 38 | 38 | 无 | shenzhen-network-reconciliation-2026-10-01 (38), shenzhen-historical-milestone-2010-12-28 (16), shenzhen-historical-milestone-2011-06-28 (15) |
+| 4号线 `shenzhen-r4` | 23 | 23 | 无 | shenzhen-network-reconciliation-2026-10-01 (23), shenzhen-historical-milestone-2011-06-16 (15), shenzhen-network-milestone-2020-10-28 (9) |
+| 5号线 `shenzhen-r5` | 37 | 37 | 无 | shenzhen-network-reconciliation-2026-10-01 (37), shenzhen-historical-milestone-2011-06-22 (27), shenzhen-historical-milestone-2019-09-28 (8) |
+| 6号线 `shenzhen-r6` | 27 | 27 | 无 | shenzhen-network-milestone-2020-08-18 (27), shenzhen-network-reconciliation-2026-10-01 (27), shenzhen-historical-milestone-2011-06-16 (2) |
+| 6号线支线 `shenzhen-r7` | 7 | 7 | 无 | shenzhen-network-reconciliation-2026-10-01 (7), shenzhen-historical-milestone-2022-11-28 (4), shenzhen-network-milestone-2025-09-28 (4) |
+| 7号线 `shenzhen-r8` | 29 | 29 | 无 | shenzhen-network-reconciliation-2026-10-01 (29), shenzhen-historical-milestone-2016-10-28 (27), shenzhen-historical-milestone-2011-06-28 (3) |
+| 8号线 `shenzhen-r9` | 43 | 43 | 无 | shenzhen-network-reconciliation-2026-10-01 (43), shenzhen-network-reconciliation-2026-10-01 (31), shenzhen-historical-milestone-2011-06-28 (18) |
+| 9号线 `shenzhen-r10` | 32 | 32 | 无 | shenzhen-network-reconciliation-2026-10-01 (32), shenzhen-historical-milestone-2016-10-28 (22), shenzhen-network-milestone-2019-12-08 (11) |
+| 10号线 `shenzhen-r11` | 25 | 25 | 无 | shenzhen-network-milestone-2020-08-18 (25), shenzhen-network-reconciliation-2026-10-01 (25), shenzhen-historical-milestone-2011-06-16 (1) |
+| 11号线 `shenzhen-r12` | 23 | 23 | 无 | shenzhen-network-reconciliation-2026-10-01 (23), shenzhen-historical-milestone-2016-06-28 (18), shenzhen-network-milestone-2025-12-28 (3) |
+| 12号线 `shenzhen-r13` | 39 | 39 | 无 | shenzhen-network-reconciliation-2026-10-01 (39), shenzhen-historical-milestone-2022-11-28 (32), shenzhen-network-milestone-2024-12-28 (7) |
+| 13号线 `shenzhen-r14` | 26 | 26 | 无 | shenzhen-network-reconciliation-2026-10-01 (26), shenzhen-network-milestone-2026-06-28 (12), shenzhen-network-milestone-2025-12-28 (9) |
+| 14号线 `shenzhen-r15` | 18 | 18 | 无 | shenzhen-network-milestone-2022-10-28 (18), shenzhen-network-reconciliation-2026-10-01 (18), shenzhen-historical-milestone-2010-12-28 (2) |
+| 16号线 `shenzhen-r16` | 32 | 32 | 无 | shenzhen-network-reconciliation-2026-10-01 (32), shenzhen-historical-milestone-2022-12-28 (24), shenzhen-network-milestone-2025-09-28 (9) |
+| 20号线 `shenzhen-r17` | 5 | 5 | 无 | shenzhen-network-milestone-2021-12-28 (5), shenzhen-network-reconciliation-2026-10-01 (5), shenzhen-historical-milestone-2022-11-28 (2) |
+
+本城可玩章节目标与资料状态：
+
+- `sz-initial-cross-2004` 2004-12-28 · 1号线一期：15个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `sz-initial-cross-2004` 2004-12-28 · 4号线一期：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2009-09-28` 2009-09-28 · 1号线二期首通段：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2010-12-28` 2010-12-28 · 2号线一期：12个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2010-12-28` 2010-12-28 · 3号线一期：16个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2011-06-15` 2011-06-15 · 1号线 · 本期新增段4：13个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2011-06-16` 2011-06-16 · 4号线北延伸：15个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2011-06-22` 2011-06-22 · 5号线一期：27个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2011-06-28` 2011-06-28 · 2号线二期：18个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2011-06-28` 2011-06-28 · 3号线二期：15个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2016-06-28` 2016-06-28 · 11号线一期：18个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2016-10-28` 2016-10-28 · 9号线一期：22个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2016-10-28` 2016-10-28 · 7号线一期：27个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2019-09-28` 2019-09-28 · 5号线西延段：8个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2019-12-08` 2019-12-08 · 9号线：11个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2020-08-18` 2020-08-18 · 6号线：27个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-milestone-2020-08-18` 2020-08-18 · 10号线：25个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-milestone-2020-10-28` 2020-10-28 · 2号线三期至莲塘：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2020-10-28` 2020-10-28 · 4号线北延至牛湖：9个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2020-10-28` 2020-10-28 · 8号线一期至盐田路：7个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2020-10-28` 2020-10-28 · 3号线南延至福保：2个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2021-12-28` 2021-12-28 · 20号线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-milestone-2022-10-28` 2022-10-28 · 14号线：18个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-milestone-2022-10-28` 2022-10-28 · 11号线东延至岗厦北：2个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2022-11-28` 2022-11-28 · 6号线支线一期：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2022-11-28` 2022-11-28 · 12号线一期：32个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2022-12-28` 2022-12-28 · 16号线一期：24个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-historical-milestone-2023-12-27` 2023-12-27 · 8号线二期至小梅沙：5个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2024-12-28` 2024-12-28 · 3号线四期东延至坪地六联：8个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2024-12-28` 2024-12-28 · 7号线二期至深大丽湖：3个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2024-12-28` 2024-12-28 · 12号线二期至松岗：7个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2024-12-28` 2024-12-28 · 11号线二期岗厦北至华强南段：2个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2024-12-28` 2024-12-28 · 13号线一期南段至高新中：7个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2025-09-28` 2025-09-28 · 6号线支线：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2025-09-28` 2025-09-28 · 16号线：9个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2025-12-28` 2025-12-28 · 5号线西延至大剧院：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2025-12-28` 2025-12-28 · 8号线三期至溪涌：2个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2025-12-28` 2025-12-28 · 11号线二期华强南至红岭南段：3个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2025-12-28` 2025-12-28 · 13号线一期北段贯通至上屋：9个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-milestone-2026-06-28` 2026-06-28 · 13号线二期北延至李松蓢：12个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 1号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 2号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 3号线：38个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 4号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 5号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 6号线：27个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 6号线支线：7个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 7号线：29个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 8号线：43个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 9号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 10号线：25个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 11号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 12号线：39个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 13号线：26个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 14号线：18个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 16号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shenzhen-network-reconciliation-2026-10-01` 2026-10-01 · 20号线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+
+### 成都
+
+所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。
+
+| 地图线路 | 站点数 | 被任一章节目标提及 | 未覆盖站点 | 可能相关章节（仅编号交集） |
+|---|---:|---:|---:|---|
+| 1号线 `chengdu-r1` | 35 | 35 | 无 | chengdu-network-reconciliation-2026-10-01 (35), chengdu-historical-milestone-2018-03-18 (23), cd-line1-2010 (12) |
+| 2号线 `chengdu-r2` | 32 | 32 | 无 | chengdu-network-milestone-2014-10-26 (32), chengdu-network-reconciliation-2026-10-01 (32), chengdu-network-milestone-2017-12-06 (2) |
+| 3号线 `chengdu-r3` | 37 | 37 | 无 | chengdu-network-milestone-2018-12-26 (37), chengdu-network-reconciliation-2026-10-01 (37), chengdu-network-milestone-2019-12-27 (3) |
+| 4号线 `chengdu-r4` | 30 | 30 | 无 | chengdu-network-milestone-2017-12-26 (30), chengdu-network-reconciliation-2026-10-01 (30), cd-line1-2010 (1) |
+| 5号线 `chengdu-r5` | 41 | 41 | 无 | chengdu-network-milestone-2019-06-02 (41), chengdu-network-reconciliation-2026-10-01 (41), chengdu-network-milestone-2017-12-06 (2) |
+| 6号线 `chengdu-r6` | 57 | 57 | 无 | chengdu-network-milestone-2020-12-18 (57), chengdu-network-reconciliation-2026-10-01 (57), chengdu-network-milestone-2014-10-26 (2) |
+| 7号线 `chengdu-r7` | 31 | 31 | 无 | chengdu-network-milestone-2017-12-06 (31), chengdu-network-reconciliation-2026-10-01 (31), chengdu-historical-milestone-2018-03-18 (2) |
+| 8号线 `chengdu-r8` | 32 | 32 | 无 | chengdu-network-milestone-2020-12-18 (32), chengdu-network-reconciliation-2026-10-01 (32), cd-line1-2010 (1) |
+| 9号线 `chengdu-r9` | 14 | 14 | 无 | chengdu-network-milestone-2020-12-18 (14), chengdu-network-reconciliation-2026-10-01 (14), chengdu-network-milestone-2017-12-26 (1) |
+| 10号线 `chengdu-r10` | 19 | 19 | 无 | chengdu-network-milestone-2019-12-27 (19), chengdu-network-reconciliation-2026-10-01 (19), chengdu-network-milestone-2018-12-26 (3) |
+| 13号线 `chengdu-r11` | 21 | 21 | 无 | chengdu-network-milestone-2025-12-16 (21), chengdu-network-reconciliation-2026-10-01 (21), cd-line1-2010 (1) |
+| 17号线 `chengdu-r12` | 21 | 21 | 无 | chengdu-network-milestone-2020-12-18 (21), chengdu-network-reconciliation-2026-10-01 (21), chengdu-network-milestone-2017-12-06 (2) |
+| 18号线 `chengdu-r13` | 13 | 13 | 无 | chengdu-network-milestone-2020-09-27 (13), chengdu-network-reconciliation-2026-10-01 (13), chengdu-network-milestone-2023-11-28 (6) |
+| 19号线 `chengdu-r14` | 23 | 23 | 无 | chengdu-network-milestone-2023-11-28 (23), chengdu-network-reconciliation-2026-10-01 (23), chengdu-network-milestone-2020-09-27 (6) |
+| 27号线 `chengdu-r15` | 22 | 22 | 无 | chengdu-network-milestone-2025-12-16 (22), chengdu-network-reconciliation-2026-10-01 (22), chengdu-historical-milestone-2018-03-18 (1) |
+| 30号线 `chengdu-r16` | 19 | 19 | 无 | chengdu-network-milestone-2025-12-16 (19), chengdu-network-reconciliation-2026-10-01 (19), chengdu-network-milestone-2014-10-26 (1) |
+
+本城可玩章节目标与资料状态：
+
+- `cd-line1-2010` 2010-09-27 · 1号线一期：16个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `chengdu-network-milestone-2014-10-26` 2014-10-26 · 2号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `cd-line1-2015` 2015-07-25 · 1号线南延：6个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `chengdu-network-milestone-2017-12-06` 2017-12-06 · 7号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2017-12-26` 2017-12-26 · 4号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-historical-milestone-2018-03-18` 2018-03-18 · 1号线三期：23个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
+- `chengdu-network-milestone-2018-12-26` 2018-12-26 · 3号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2019-06-02` 2019-06-02 · 5号线：41个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2019-12-27` 2019-12-27 · 10号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2020-09-27` 2020-09-27 · 1号线 · 本期新增段1：2个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2020-09-27` 2020-09-27 · 1号线 · 本期新增段2：12个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2020-09-27` 2020-09-27 · 18号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2020-12-18` 2020-12-18 · 6号线：57个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2020-12-18` 2020-12-18 · 8号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2020-12-18` 2020-12-18 · 9号线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2020-12-18` 2020-12-18 · 17号线：21个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2023-11-28` 2023-11-28 · 19号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2025-12-16` 2025-12-16 · 13号线：21个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2025-12-16` 2025-12-16 · 27号线：22个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-milestone-2025-12-16` 2025-12-16 · 30号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 1号线：35个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 2号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 3号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 4号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 5号线：41个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 6号线：57个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 7号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 8号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 9号线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 10号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 13号线：21个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 17号线：21个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 18号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 19号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 27号线：22个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `chengdu-network-reconciliation-2026-10-01` 2026-10-01 · 30号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+
+## 结论与使用边界
+
+- 当前可直接得到的是地图包条目数、章节目标数、站点编号覆盖和疑似重叠；这不能替代官方开通年表。
+- 站点覆盖使用截止日基准中排除的未开放车站；地图快照自身独立站点数另列。区间站序和几何来自可分发地图数据，不能替代逐线官方站序审查。官方运营线数量和 OSM 路线关系条目数量不是同一口径。
+- 已确认开通的线路不再因缺少隧道测绘中心线而排除；未进入章节的线路和历史节点在表中明确列出。线位可用近似走廊，但不能把当前完整路线套到早期开放年份。
+- 目前五城均有截至日的线路目标和历史章节目录，但章节数与地图站点覆盖不能证明逐期建设完整；仍需逐段核对开通日期、站序、线路归属和拓扑。
+- 当前项目目录的条目数不是可玩项目章数量。只有登记状态明确、包含实际站序和建设目标的项目才可进入项目章验收；未完成的项目不能解锁自由创作。
+- 本审计不把磁浮、市域线、机场线或其他轨道类别自动算作地铁主线；需要分类复核。

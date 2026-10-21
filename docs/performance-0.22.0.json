@@ -1,0 +1,15 @@
+{
+  "version": "0.22.0",
+  "date": "2026-10-19",
+  "status": "not_measured",
+  "scope": "This source stage was not re-profiled. Values from 0.20.2 are not carried forward as 0.22.0 results.",
+  "requiredScenarios": [
+    "City overview with full route inventory",
+    "Neighborhood pan with buildings and station complexes",
+    "Repeated zoom with blueprints and history overlays",
+    "Save/load at maximum network size",
+    "One-hour continuous run"
+  ],
+  "results": null,
+  "note": "No FPS, frame-time, memory, or save-latency result is claimed for 0.22.0."
+}

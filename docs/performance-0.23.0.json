@@ -1,0 +1,15 @@
+{
+  "version": "0.23.0",
+  "date": "2026-10-19",
+  "status": "not_measured",
+  "scope": "No 0.23.0 export performance run was performed. Previous-version figures are not carried forward.",
+  "requiredScenarios": [
+    "Large-network pan and repeated zoom with blueprint targets",
+    "Dense overlapping target and physical station selection",
+    "Historical service-range preview and commit",
+    "Single-slot save latency at maximum network size",
+    "One-hour continuous run"
+  ],
+  "results": null,
+  "note": "No FPS, frame-time, memory, export interaction, or save-latency result is claimed for 0.23.0. Save serialization and disk writes remain synchronous on the main thread."
+}

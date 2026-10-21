@@ -26,7 +26,12 @@ func track_preview(start: Dictionary, finish: Dictionary, control: Array = [], h
 	var points:=TrackNetwork.edge_points(edge,test,lat,32)
 	var distance:=TrackNetwork.edge_length_m(edge,test,lat)
 	var issue:=""
-	var schematic:=historical_context and _historical_schematic_pair(start,finish)
+	# Historical campaign tasks establish station order and horizontal location,
+	# but most source packages do not establish tunnel depth. Treat crossings
+	# against other lines as informational for these task links: a fictional
+	# default depth must not block a documented historical segment. Workshop and
+	# free-build links keep the full crossing/depth validation.
+	var schematic:=historical_context and str(world.get("mode",""))=="campaign"
 	if schematic:edge["verticalProfile"]="unverified_historical"
 	if not schematic and absf(float(start.get("depthM",-15))-float(finish.get("depthM",-15)))/maxf(0.1,distance)>0.035:issue="坡度超过35‰游戏预设；请调整深度或延长区间。"
 	for i in range(points.size()-1):
@@ -41,22 +46,27 @@ func track_preview(start: Dictionary, finish: Dictionary, control: Array = [], h
 
 
 func _historical_schematic_pair(start: Dictionary, finish: Dictionary) -> bool:
-	# Only explicitly requested historical station pairs may waive invented
-	# engineering constraints. Free nodes and workshop editing stay strict.
+	# Retained for callers that need to identify a chapter-bound historical
+	# station pair. Vertical geometry is unknown for campaign links regardless
+	# of whether a horizontal reference alignment is present.
 	if str(world.get("mode",""))!="campaign":return false
 	var a:=WorldData.find_station(world,str(start.get("stationId","")))
 	var b:=WorldData.find_station(world,str(finish.get("stationId","")))
 	if a.is_empty() or b.is_empty():return false
-	var aid:=str(a.get("historicalId",""));var bid:=str(b.get("historicalId",""))
+	var aid:=str(a.get("historicalId",a.get("stationComplexId","")))
+	var bid:=str(b.get("historicalId",b.get("stationComplexId","")))
 	if aid.is_empty() or bid.is_empty() or aid==bid:return false
-	if not ReferenceAlignment.between(aid,bid).is_empty():return false
-	var groups:=StorySession.groups(world,true).duplicate()
-	for connection in StorySession.chapter(world).get("requiredConnections",[]):
-		groups.append({"stationIds":[connection.fromId,connection.toId]})
-	for group in groups:
+	var line_id:=str(a.get("stationLineId",""))
+	if line_id.is_empty() or line_id!=str(b.get("stationLineId","")):return false
+	for group in StorySession.groups(world,true):
+		if str(group.get("historicalLineId",""))!=line_id:continue
 		var ids:Array=group.get("stationIds",[])
 		for index in range(ids.size()-1):
-			if (str(ids[index])==aid and str(ids[index+1])==bid) or (str(ids[index])==bid and str(ids[index+1])==aid):return true
+			var left_id:=str(ids[index]);var right_id:=str(ids[index+1])
+			var left_instance:=StorySession.station_instance_id(group,left_id)
+			var right_instance:=StorySession.station_instance_id(group,right_id)
+			var direct_pair:=(str(start.get("stationId",""))==left_instance and str(finish.get("stationId",""))==right_instance) or (str(start.get("stationId",""))==right_instance and str(finish.get("stationId",""))==left_instance)
+			if direct_pair:return true
 	return false
 
 func materialize(state: Dictionary, ref: Dictionary) -> String:
@@ -351,6 +361,11 @@ func _station_overlaps_in(candidate: Dictionary, stations: Array) -> bool:
 	var poly := _rect_points(center, along, across, float(candidate.lengthM)*.5, float(candidate.widthM)*.5)
 	for station in stations:
 		if str(station.get("id", "")) == str(candidate.get("id", "")): continue
+		# A historical interchange is a station complex containing distinct line
+		# structures. Their precise footprint/depth is often not public; do not
+		# collapse them into one platform or reject them as a 2-D collision.
+		var complex_id:=str(candidate.get("stationComplexId",""))
+		if not complex_id.is_empty() and complex_id==str(station.get("stationComplexId","")) and str(candidate.get("stationInstanceId",""))!=str(station.get("stationInstanceId","")):continue
 		var other_center := Geo.local_m(station.latlng, ref_lat)
 		var a := deg_to_rad(float(station.get("heading", 90)))
 		var other_along := Vector2(sin(a), cos(a))
@@ -468,7 +483,14 @@ func _align_station_edge_handles(state: Dictionary, station_id: String) -> void:
 				var na:=TrackNetwork.find_node(state,str(edge.aNodeId));var nb:=TrackNetwork.find_node(state,str(edge.bNodeId))
 				var sa:=WorldData.find_station(state,str(na.get("stationId","")));var sb:=WorldData.find_station(state,str(nb.get("stationId","")))
 				if not sa.is_empty() and not sb.is_empty():
-					var alignment:=ReferenceAlignment.between(str(sa.get("historicalId","")),str(sb.get("historicalId","")))
+					# Reference geometry belongs to a physical, line-specific station
+					# instance. historicalId may instead point at its shared station
+					# complex (for example Xujiahui across several lines), which is not
+					# an alignment key and can silently discard a valid segment.
+					var station_a_id:=str(sa.get("stationInstanceId",sa.get("id",sa.get("historicalId",""))))
+					var station_b_id:=str(sb.get("stationInstanceId",sb.get("id",sb.get("historicalId",""))))
+					var alignment:=ReferenceAlignment.between(station_a_id,station_b_id)
+					if alignment.is_empty():alignment=ReferenceAlignment.between(str(sa.get("historicalId","")),str(sb.get("historicalId","")))
 					var preview:=ReferenceAlignment.preview(alignment,{"stationId":sa.id,"nodeId":na.id,"side":na.side,"latlng":na.latlng},{"stationId":sb.id,"nodeId":nb.id,"side":nb.side,"latlng":nb.latlng},state,ref_lat)
 					if str(preview.get("issue",""))=="":edge.referencePoints=preview.points
 					else:edge["adaptationIssue"]=preview.issue

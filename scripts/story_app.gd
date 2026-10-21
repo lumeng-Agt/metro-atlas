@@ -1,9 +1,10 @@
 extends Control
 
-const BUILD_VERSION := "0.20.1 · 2026.10.18"
+const BUILD_VERSION := "0.25.0 · 2026.10.20"
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
 const Story = preload("res://scripts/story_session.gd")
+const Catalog = preload("res://scripts/campaign_system.gd")
 const MapScript = preload("res://scripts/map_view.gd")
 const Rules = preload("res://scripts/story_construction.gd")
 const Ui = preload("res://scripts/ui_theme.gd")
@@ -18,6 +19,10 @@ var tool := "select"
 var selected_kind := ""
 var selected_id := ""
 var pending_track: Dictionary = {}
+var batch_track_mode := false
+var batch_track_targets: Array[String] = []
+var batch_track_segments: Array[Dictionary] = []
+var batch_track_revision := -1
 var evaluation: Dictionary = {}
 var ui_scale := 1.0
 var face: Font
@@ -52,6 +57,7 @@ var problem := ""
 var auto_seconds := 0.0
 var auto_enabled := true
 var auto_interval_seconds := 300.0
+var auto_retry_seconds := 0.0
 var display_seconds := 0.0
 var display_paused := false
 var display_enabled := true
@@ -62,6 +68,7 @@ var line_stops: Array[String] = []
 var preview_station: Dictionary = {}
 var beat_panel: PanelContainer
 var active_beat_id := ""
+var pending_beat_id := ""
 var practice_return: Dictionary = {}
 var plan_view_index := -1
 var guide_map_step := ""
@@ -69,6 +76,11 @@ var advanced_edit := false
 var end_button:Button
 var nav_pages:HFlowContainer
 var tool_flow:HFlowContainer
+var feedback_enabled := true
+var feedback_volume := 0.35
+var feedback_player: AudioStreamPlayer
+var feedback_stream: AudioStreamGenerator
+var outcome_comparison := false
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=false
@@ -76,12 +88,14 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(Ui.CANVAS)
 	WorldData.load_assets()
 	ui_scale=Prefs.load_scale();auto_enabled=Prefs.load_timed_autosave_enabled();auto_interval_seconds=Prefs.load_timed_autosave_interval()*60.0
+	feedback_enabled=Prefs.load_feedback_enabled();feedback_volume=Prefs.load_feedback_volume()
 	var base:=load("res://fonts/NotoSansSC.ttf") as Font
 	var regular:=FontVariation.new();regular.base_font=base;regular.variation_opentype={TextServerManager.get_primary_interface().name_to_tag("wght"):500.0};face=regular
 	var bold:=FontVariation.new();bold.base_font=base;bold.variation_opentype={TextServerManager.get_primary_interface().name_to_tag("wght"):700.0};strong_face=bold
 	theme=Ui.create_theme(face,strong_face,ui_scale)
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_build()
+	_setup_feedback_audio()
 	resized.connect(_layout)
 	_show_menu()
 
@@ -118,7 +132,7 @@ func _build() -> void:
 	map_view.station_dragged.connect(_drag_station);map_view.station_drag_finished.connect(_finish_station_drag)
 	map_view.draft_station_changed.connect(_station_changed)
 	map_view.curve_control_previewed.connect(_preview_curve);map_view.curve_control_finished.connect(_finish_curve)
-	map_view.camera_changed.connect(func(_center:Array,_zoom:int):_mark_dirty())
+	map_view.camera_changed.connect(func(_center:Array,_zoom:int):pass)
 	rules.map_view=map_view
 	left_panel=PanelContainer.new();map_area.add_child(left_panel)
 	var ls:=ScrollContainer.new();ls.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;left_panel.add_child(ls)
@@ -145,6 +159,26 @@ func _build() -> void:
 	map_area.resized.connect(_layout)
 	call_deferred("_layout")
 
+func _setup_feedback_audio() -> void:
+	feedback_stream=AudioStreamGenerator.new();feedback_stream.mix_rate=22050;feedback_stream.buffer_length=0.14
+	feedback_player=AudioStreamPlayer.new();feedback_player.stream=feedback_stream;add_child(feedback_player)
+
+func _play_feedback(kind:String) -> void:
+	if not feedback_enabled or feedback_volume<=0.001 or not is_instance_valid(feedback_player):return
+	var frequency:=620.0
+	if kind=="station":frequency=720.0
+	elif kind=="chapter":frequency=880.0
+	feedback_player.stop();feedback_player.volume_db=linear_to_db(feedback_volume);feedback_player.play()
+	var playback:=feedback_player.get_stream_playback() as AudioStreamGeneratorPlayback
+	if playback==null:return
+	var frames:=PackedVector2Array();var count:=roundi(feedback_stream.mix_rate*0.11)
+	for index in range(count):
+		var t:=float(index)/feedback_stream.mix_rate
+		var envelope:=minf(1.0,float(index)/220.0)*exp(-float(index)/900.0)
+		var sample:=sin(TAU*frequency*t)*envelope*0.16
+		frames.append(Vector2(sample,sample))
+	playback.push_buffer(frames)
+
 func _layout() -> void:
 	if not is_instance_valid(map_area):return
 	if is_instance_valid(tool_flow):tool_flow.custom_minimum_size.x=minf(740*ui_scale,maxf(220,size.x-48))
@@ -168,14 +202,21 @@ func _process(delta:float) -> void:
 	if world.is_empty() or is_instance_valid(menu):return
 	if display_enabled and not display_paused:
 		display_seconds+=delta;map_view.presentation_seconds=display_seconds;map_view.requested_train_redraw()
-	if dirty and auto_enabled:
+	if auto_enabled:
 		auto_seconds+=delta
-		if auto_seconds>=auto_interval_seconds:_save(true)
+		if auto_retry_seconds>0.0:auto_retry_seconds=maxf(0.0,auto_retry_seconds-delta)
+		if auto_seconds>=auto_interval_seconds and auto_retry_seconds<=0.0:
+			if dirty:
+				if not _save():auto_retry_seconds=60.0
+			else:auto_seconds=0.0
 	if tool=="track" and not map_view.track_start_ref.is_empty() and map_view.track_end_ref.is_empty() and not map_view.hover_latlng.is_empty() and Time.get_ticks_usec()-last_preview_usec>33333:
 		last_preview_usec=Time.get_ticks_usec()
 		var hit:=map_view._pick(map_view._to_screen(map_view.hover_latlng))
 		if str(hit.get("type",""))!="endpoint_choice":_track_preview(_ref(hit.get("latlng",map_view.hover_latlng),str(hit.get("type","")),str(hit.get("id","")),str(hit.get("side","")),float(hit.get("t",-1))))
 	_focus_tutorial()
+	if not pending_beat_id.is_empty() and not Tutorial.active(world) and not is_instance_valid(beat_panel):
+		var queued_beat:=Beats.find(world,pending_beat_id);pending_beat_id=""
+		if not queued_beat.is_empty():_show_beat(queued_beat)
 
 func _notification(what:int) -> void:
 	if what==NOTIFICATION_WM_CLOSE_REQUEST:
@@ -183,11 +224,10 @@ func _notification(what:int) -> void:
 		else:_leave(func():get_tree().quit())
 	elif what==NOTIFICATION_APPLICATION_FOCUS_OUT and not world.is_empty():
 		display_paused=true
-		if dirty:_save()
 
 func _show_menu() -> void:
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free()
-	world={};frame.hide();map_view.set_world({});map_view.set_blueprint({});spotlight.clear_focus()
+	world={};outcome_comparison=false;map_view.chapter_baseline_overlay={};map_view.set_world({});map_view.set_blueprint({});map_view.requested_redraw();frame.hide();spotlight.clear_focus()
 	menu=PanelContainer.new();add_child(menu)
 	var margin:=MarginContainer.new()
 	for side in ["margin_left","margin_right","margin_top","margin_bottom"]:margin.add_theme_constant_override(side,24)
@@ -204,7 +244,7 @@ func _show_menu() -> void:
 	body.add_child(button("存档与路网作品",_saves))
 	var extra:=HFlowContainer.new();body.add_child(extra)
 	extra.add_child(button("设置",_settings));extra.add_child(button("基本操作练习",_restart_guide));extra.add_child(button("退出",func():get_tree().quit()))
-	body.add_child(label("五城 · 13个已发布章节\n从首条线路、延伸到贯通与方案变化。后续历史和远期仍在核验。",16))
+	body.add_child(label("五城 · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。",16))
 	body.add_child(label(BUILD_VERSION+"  ·  离线地图 / 本地保存",15))
 	_layout()
 
@@ -242,25 +282,103 @@ func _new_game(city_id:String,tutorial:bool=true) -> void:
 func _enter(state:Dictionary) -> void:
 	_close_beat()
 	guide_map_step=""
+	outcome_comparison=false
+	map_view.chapter_baseline_overlay={}
 	world=state
 	if str(world.get("storyState",{}).get("tutorialStatus",""))=="completed":Prefs.save_onboarding_completed(true)
 	if str(world.get("mode",""))=="campaign" and str(world.get("storyState",{}).get("chapterId","")).is_empty():world.storyState["chapterId"]=str(Story.chapter(world).get("id",""))
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free();menu=null
 	frame.show();history.attach(world);rules.world=world;rules.active_city_id=str(world.cityId)
 	map_view.set_context(WorldData.city(str(world.cityId)),world);map_view.show_road_names=Prefs.load_road_names();map_view.show_train_display=display_enabled
-	selected_id="";selected_kind="";show_left=true;show_right=false;page="story";dirty=false;save_error="";evaluation={};display_seconds=0
+	selected_id="";selected_kind="";show_left=true;show_right=false;page="story";dirty=false;save_error="";evaluation={};display_seconds=0;auto_seconds=0;auto_retry_seconds=0;pending_beat_id=""
 	_tool("select");_refresh();call_deferred("_locate_chapter")
 
 func _mark_dirty() -> void:
 	if world.is_empty():return
 	dirty=true;save_badge.text="保存失败 · 重试" if not save_error.is_empty() else "未保存 · 保存"
 
+func _active_task_id() -> String:
+	var chapter:=Story.chapter(world)
+	if chapter.is_empty():return ""
+	var groups:Array=Story.groups(world,true)
+	if groups.is_empty():return ""
+	var state:Dictionary=world.get("storyState",{})
+	var chapter_id:=str(chapter.get("id",""))
+	var progress:Dictionary=state.get("chapterTaskProgress",{}).get(chapter_id,{})
+	var task_progress:Dictionary=progress.get("tasks",{})
+	var selected:=str(state.get("activeTaskId","")) if str(state.get("activeTaskChapterId",""))==chapter_id else ""
+	for index in range(groups.size()):
+		var task_id:=Story.task_id(chapter,groups[index],index)
+		if task_id==selected and str(task_progress.get(task_id,{}).get("status",""))!="confirmed":return selected
+	for index in range(groups.size()):
+		var task_id:=Story.task_id(chapter,groups[index],index)
+		if str(task_progress.get(task_id,{}).get("status",""))=="confirmed":continue
+		var targets:=Story.targets(world,true,task_id)
+		if targets.any(func(target:Dictionary):return not bool(target.get("built",false))):
+			state["activeTaskId"]=task_id;state["activeTaskChapterId"]=chapter_id;world["storyState"]=state
+			return task_id
+	for index in range(groups.size()):
+		var task_id:=Story.task_id(chapter,groups[index],index)
+		if str(task_progress.get(task_id,{}).get("status",""))!="confirmed":
+			state["activeTaskId"]=task_id;state["activeTaskChapterId"]=chapter_id;world["storyState"]=state
+			return task_id
+	return ""
+
+func _select_chapter_task(task_id:String) -> void:
+	if task_id==_active_task_id():return
+	var has_draft:=not map_view.draft_station.is_empty() or not map_view.track_start_ref.is_empty() or not map_view.track_end_ref.is_empty() or batch_track_mode or not map_view.draft_track_segments.is_empty()
+	var apply:=func():
+		_cancel_drafts();tool="select";map_view.tool="select";evaluation={};problem=""
+		world.storyState["activeTaskId"]=task_id;world.storyState["activeTaskChapterId"]=str(Story.chapter(world).get("id",""))
+		_mark_dirty();_refresh();_locate_chapter()
+	if has_draft:_confirm("切换本章任务","当前有未提交建设草稿。丢弃草稿并切换任务吗？正式路网不会改变。",apply)
+	else:apply.call()
+
 func _save(rotate:bool=false) -> bool:
 	if world.is_empty():return true
 	var result:=SaveManager.save_world(world,rotate)
 	if not bool(result.get("ok",false)):
 		save_error=str(result.get("error","保存失败"));dirty=true;save_badge.text="保存失败 · 重试";save_badge.tooltip_text=save_error;return false
-	dirty=false;save_error="";auto_seconds=0;save_badge.text="已保存";save_badge.tooltip_text="";return true
+	dirty=false;save_error="";auto_seconds=0;auto_retry_seconds=0;save_badge.text="已保存";save_badge.tooltip_text="";return true
+
+func _operation_label(chapter:Dictionary) -> String:
+	var labels:Dictionary={"first_build":"首次建设","extension":"线路延伸","phased_opening":"分期建设","interchange":"形成换乘","reorganization":"贯通与线路重组","plan_revision":"方案调整","network_opening":"线路开通"}
+	return str(labels.get(str(chapter.get("operationType", "")), "历史线路建设"))
+
+func _save_commemorative_image() -> void:
+	var dialog:=FileDialog.new();dialog.file_mode=FileDialog.FILE_MODE_SAVE_FILE;dialog.access=FileDialog.ACCESS_FILESYSTEM;dialog.add_filter("*.png","PNG纪念图")
+	var city_name:=str(world.get("cityName", "城市"));var date:=Story.node_date(world).replace("/", "-").replace("\\", "-")
+	dialog.current_file="%s_%s_地铁建设纪念.png" % [city_name,date];add_child(dialog)
+	dialog.file_selected.connect(func(path:String):
+		dialog.queue_free();call_deferred("_write_commemorative_image",path))
+	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered_ratio(0.72)
+
+func _write_commemorative_image(path:String) -> void:
+	await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	var city_name:=str(world.get("cityName", "城市"))
+	var captured:=get_viewport().get_texture().get_image()
+	if captured.is_empty():_message("纪念图失败","无法读取当前画面。");return
+	var footer_height:=140
+	var output:=Image.create(captured.get_width(),captured.get_height()+footer_height,false,Image.FORMAT_RGBA8)
+	output.fill(Color("#111923"));output.blit_rect(captured,Rect2i(Vector2i.ZERO,captured.get_size()),Vector2i.ZERO)
+	var view:=SubViewport.new();view.size=Vector2i(output.get_width(),output.get_height());view.transparent_bg=false;view.render_target_update_mode=SubViewport.UPDATE_ONCE;add_child(view)
+	var root:=Control.new();root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);view.add_child(root)
+	var image_texture:=TextureRect.new();image_texture.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);image_texture.texture=ImageTexture.create_from_image(captured);image_texture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;root.add_child(image_texture)
+	var footer:=PanelContainer.new();footer.position=Vector2(0,captured.get_height());footer.size=Vector2(captured.get_width(),footer_height);footer.add_theme_stylebox_override("panel",Ui._box(Color("#111923"),Color("#344353"),0));root.add_child(footer)
+	var box:=VBoxContainer.new();footer.add_child(box)
+	box.add_child(label("%s · %s · %s" % [city_name,Story.node_date(world),str(Story.chapter(world).get("title", "地铁建设纪念"))],22,true))
+	box.add_child(label("本期路网 %d 站 · %d 条线路 · 精度：%s" % [world.get("stations",[]).size(),world.get("routes",[]).size(),str(Story.chapter(world).get("alignmentNote", "历史位置资料待核验"))],15))
+	box.add_child(label("现代地理参考 · © OpenStreetMap contributors · 地图日期：%s" % str(map_view.base_map_snapshot),15))
+	await RenderingServer.frame_post_draw
+	var image:=view.get_texture().get_image();var result:=image.save_png(path);view.queue_free()
+	if result!=OK:_message("纪念图保存失败","无法写入所选文件：%s" % path)
+	else:_message("纪念图已保存",path)
+
+func _historical_target_name(historical_id:String) -> String:
+	for target in Story.targets(world,true):
+		if str(target.get("id", ""))==historical_id:return str(target.get("name", "目标站"))
+	return "目标站"
 
 func _leave(callback:Callable) -> void:
 	if world.is_empty() or _save():callback.call();return
@@ -286,12 +404,20 @@ func _open_page(value:String) -> void:
 
 func _refresh() -> void:
 	if world.is_empty():return
-	map_view.set_world(world);map_view.set_blueprint(Story.blueprint(world,true) if str(world.mode)=="campaign" else {})
+	var active_task_id:=_active_task_id() if str(world.mode)=="campaign" and plan_view_index<0 else ""
+	map_view.set_world(world);map_view.set_blueprint(Story.blueprint(world,true,active_task_id) if str(world.mode)=="campaign" else {})
 	map_view.selected_id=selected_id;map_view.selected_type=selected_kind
 	var ch:=Story.chapter(world)
 	map_view.story_markers=Beats.markers(world) if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)) else []
 	line_button.visible=str(world.mode)!="campaign" or bool(ch.get("requiresLineReorganization",false))
 	end_button.visible=tool!="select"
+	var waiting_for_plan:=str(world.mode)=="campaign" and str(world.storyState.get("stage",""))=="build" and not Story.plan_is_final(world)
+	station_button.disabled=waiting_for_plan;track_button.disabled=waiting_for_plan
+	if waiting_for_plan:
+		station_button.tooltip_text="当前是尚未实施的历史草案。先在故事页采用本期方案，再建设。"
+		track_button.tooltip_text=station_button.tooltip_text
+	else:
+		station_button.tooltip_text="按本章目标站区放置历史车站。";track_button.tooltip_text="连接已放置车站，或按本章顺序连续复现区间。"
 	line_button.disabled=str(world.mode)=="campaign" and not bool(ch.get("requiresLineReorganization",false))
 	line_button.tooltip_text="普通章节由检查结果生成历史线路；重组章节再使用此工具。" if line_button.disabled else "核对本章线路重组，或在作品中整理线路。"
 	year.text="%s · %s" % [str(world.get("cityName","")),Story.node_date(world)+" · "+Story.plan_status(world) if str(world.mode)=="campaign" else "路网作品"]
@@ -340,48 +466,372 @@ func _left() -> void:
 	var chapter:=Story.chapter(world)
 	left.add_child(label("%s · 地铁故事" % str(world.cityName),20,true))
 	if chapter.is_empty():
-		left.add_child(label("当前资料已到边界",24,true));left.add_child(label(str(Story.config(world).get("coverageNote","后续故事待核验。")),16))
-		left.add_child(label("已确认的路网已保存。完整历史和远期蓝图核验完成后继续；本次不把样板当作全部历史。",16));return
+		var phase:=str(world.get("storyState",{}).get("phase",""))
+		var coverage:Dictionary={}
+		if phase in ["history_gap","history_content_gap","future_gap"]:
+			coverage=Story.network_coverage(str(world.get("cityId","")))
+		if Story.can_create_workshop_copy(world):
+			if phase=="history_content_gap":
+				left.add_child(label("本版线路目标已登记",24,true))
+				left.add_child(label("这些章节覆盖了地图线路目标，但不等于逐期历史已完整复现。仍有历史分段和截止日后的项目建设任务待补。",16))
+			else:
+				left.add_child(label("已完成截至2026-10-01的历史建设",24,true))
+				left.add_child(label("截止日后的在建与批准项目尚未全部数字化。自由创作会建立独立副本，不会改写历史进度。",16))
+			left.add_child(button("创建自由创作副本",_create_workshop_copy))
+		else:
+			if phase=="history_content_gap":
+				left.add_child(label("本版线路目标已浏览完",24,true))
+				left.add_child(label("这不代表五城逐期历史已完成。项目建设任务仍未全部制作；已保存路网不会因此丢失。",16))
+			else:
+				left.add_child(label("已完成截至日历史建设",24,true))
+				left.add_child(label("项目资料已登记，但自由创作要等必做项目建设章补齐并完成。",16))
+		if phase in ["history_gap","history_content_gap","future_gap"]:
+			left.add_child(label("截至 2026-10-01 路网目录",18,true))
+			if not coverage.is_empty():
+				var official_count:Variant=coverage.get("officialRouteCount",null)
+				var official_label:=str(official_count) if official_count!=null else "官方统计口径不同"
+				left.add_child(label("官方线路口径：%s\n地图候选线路关系：%d 条；站点：%d 个" % [official_label,int(coverage.get("mapRouteEntryCount",0)),int(coverage.get("mapUniqueStationCount",0))],15))
+				left.add_child(label("当前章节目标覆盖：完整 %d 条、部分 %d 条、未覆盖 %d 条地图线路关系" % [int(coverage.get("fullyTargetedRouteEntryCount",0)),int(coverage.get("partiallyTargetedRouteEntryCount",0)),int(coverage.get("uncoveredRouteEntryCount",0))],15,true))
+				left.add_child(label("历史里程碑区间：%d 个；可玩章节：%d 个；尚未制作：%d 个" % [int(coverage.get("milestoneChapterCount",0)),int(coverage.get("playableMilestoneCount",0)),int(coverage.get("missingMilestoneCount",0))],15,true))
+				left.add_child(label("以下为已登记的历史事件，不代表已做成可玩章节：",15))
+				var schedule:Array=coverage.get("milestoneChapters",[])
+				var pending_intervals:Array=coverage.get("pendingMilestoneIntervals",[])
+				for interval in pending_intervals.slice(0,4):
+					var period_start:=str(interval.get("periodStartExclusive",""))
+					var period_end:=str(interval.get("periodEndInclusive",""))
+					left.add_child(label("待制作历史区间：%s—%s · %s" % [period_start if not period_start.is_empty() else "历史起点",period_end,str(interval.get("title","里程碑建设"))],15))
+				if not schedule.is_empty() and str(schedule.back().get("contentStatus",""))=="network_reconciliation_missing":left.add_child(label("最后节点：截至2026-10-01核对全网（尚未制作）",15,true))
+				var pending:Array=coverage.get("pendingMilestones",[])
+				left.add_child(label("已登记但尚未做成可玩章节的里程碑：%d 项" % pending.size(),16,true))
+				for index in range(mini(5,pending.size())):
+					var milestone:Dictionary=pending[index]
+					left.add_child(label("%s · %s" % [str(milestone.get("date","")),str(milestone.get("title","历史节点"))],15))
+					var source_url:=str(milestone.get("source",""))
+					if not source_url.is_empty():left.add_child(button("查看来源",func():OS.shell_open(source_url)))
+				var project_rows:Array=coverage.get("projectsAtCutoff",[])
+				if not project_rows.is_empty():
+					var policy_count:=project_rows.filter(func(row:Dictionary):return str(row.get("playabilityStatus",""))=="policy_only_not_playable").size()
+					left.add_child(label("截止日后的建设篇 · %d 项资料登记，可玩建设章 %d 项，待制作 %d 项，政策方向 %d 项" % [int(coverage.get("projectInventoryCount",project_rows.size())),int(coverage.get("playableProjectCount",0)),int(coverage.get("pendingPlayableProjectCount",project_rows.size()))-policy_count,policy_count],18,true))
+				for project in project_rows:
+					var project_type:=str(project.get("projectType",""))
+					var type_label:="项目资料"
+					match project_type:
+						"under_construction": type_label="在建项目"
+						"under_construction_or_planned": type_label="在建／规划方向"
+						"approved_and_under_construction": type_label="已批并推进建设"
+						"approved_project": type_label="已批准项目"
+						"approved_plan": type_label="已批规划"
+						"public_consultation": type_label="征求意见方案"
+					var playability:=str(project.get("playabilityStatus",""))
+					var task_status:="已有关联建设任务"
+					if playability=="policy_only_not_playable":task_status="政策／规划方向，未发布逐站蓝图，不阻塞解锁"
+					elif playability!="playable_build_task":task_status="尚无可玩的逐站建设任务"
+					left.add_child(label("%s · %s\n%s\n%s" % [type_label,str(project.get("name","")),str(project.get("note","尚未完成项目章节核对。")),task_status],15))
+					var project_url:=str(project.get("source",""))
+					if not project_url.is_empty():left.add_child(button("查看官方项目资料 · %s" % str(project.get("sourceTitle","来源页面")),func():OS.shell_open(project_url)))
+		if phase=="history_gap":left.add_child(label("历史建设任务尚未接续；当前画面中的整城线路不等于已逐段复现。",18,true))
+		elif phase=="history_content_gap":left.add_child(label("地图线路目标已列入章节，但五城逐期建设和截止日后的项目任务仍未补齐。",18,true))
+		else:left.add_child(label("历史篇已完成；后续建设规划与截止日路网分开呈现。",18,true))
+		return
 	left.add_child(label("%s\n%s" % [Story.node_date(world),str(chapter.title)],24,true))
+	var is_project_phase:=str(world.get("storyState",{}).get("phase",""))=="future"
+	var chapter_rows:Array=Catalog.playable_future_plans(str(world.get("cityId",""))) if is_project_phase else Story.config(world).get("chapters",[])
+	var chapter_position:=0
+	for chapter_index in range(chapter_rows.size()):
+		if str(chapter_rows[chapter_index].get("id",""))==str(chapter.get("id","")):chapter_position=chapter_index+1;break
+	if chapter_position>0:left.add_child(label(("截止日后项目建设 %d / %d" if is_project_phase else "历史里程碑 %d / %d · 截止2026-10-01") % [chapter_position,chapter_rows.size()],15,true))
+	var milestone_interval:Dictionary=CampaignSystem.milestone_interval(str(world.get("cityId","")),str(chapter.get("id","")))
+	if not milestone_interval.is_empty():
+		var interval_start:=str(milestone_interval.get("periodStartExclusive",""))
+		var interval_end:=str(milestone_interval.get("periodEndInclusive",chapter.get("date","")))
+		left.add_child(label("本章建设区间：%s—%s" % [interval_start if not interval_start.is_empty() else "历史起点",interval_end],15,true))
 	var story:Dictionary=chapter.get("story",{})
 	var stage:=str(world.storyState.get("stage","intro"))
 	if stage=="intro":
-		left.add_child(label("为什么建设",18,true));left.add_child(label(str(story.get("opening",chapter.get("eventText",""))),18));left.add_child(label(str(story.get("purpose","按目标站区和站序完成本章建设。")),16))
-		begin_button=button("展开本章蓝图",_begin_chapter);left.add_child(begin_button)
+		left.add_child(label("历史节点" if bool(chapter.get("eventOnly",false)) else "本期建设",18,true));left.add_child(label(str(story.get("opening",chapter.get("eventText",""))),18));left.add_child(label(str(story.get("purpose","按目标站区和站序完成本章建设。")),16))
+		if is_project_phase:
+			left.add_child(label("项目状态：%s。完成后记录为规划建设成果，不计作已开通线路。" % str(chapter.get("status","截止日后建设")),15,true))
+			left.add_child(label(str(chapter.get("description","按截止日后的项目范围建设本期目标。")),15))
+		if bool(chapter.get("eventOnly",false)):
+			left.add_child(label("此节点没有可核实的新增站段，不会要求你铺设虚构线路。",15))
+		begin_button=button("查看并确认历史节点" if bool(chapter.get("eventOnly",false)) else "展开本章蓝图",_begin_chapter);left.add_child(begin_button)
 	elif stage=="outcome":
 		left.add_child(label("历史节点已确认",20,true));left.add_child(label(str(story.get("outcome",chapter.get("eventText",""))),18))
-		left.add_child(label("路网现有 %d 站 · %d 组展示区段。列车仅作自动展示，车型与尺寸为游戏示意。" % [world.stations.size(),world.routes.filter(func(route:Dictionary):return bool(route.get("open",false))).size()],16))
+		var changes:=Story.chapter_changes(world)
+		if changes.is_empty():
+			left.add_child(label("本章路网变化正在整理；历史节点已保存。",16))
+		else:
+			left.add_child(label("本章变化",20,true))
+			left.add_child(label("新增车站：%s" % ("、".join(changes.addedStations) if not changes.addedStations.is_empty() else "无；复用既有站点 %s" % ("、".join(changes.reusedStations) if not changes.reusedStations.is_empty() else "无")),16))
+			left.add_child(label("新增轨道 %d 段 · 约 %.1f 公里" % [int(changes.addedTrackSections),float(changes.addedLengthM)/1000.0],16))
+			for pair in changes.focusPairs:
+				var relation:="未形成连续线路" if not bool(pair.connected) else "同线直达" if int(pair.transfers)==0 else "最少换乘 %d 次" % int(pair.transfers)
+				left.add_child(label("%s → %s：%s" % [str(pair.from),str(pair.to),relation],16))
+			if not changes.newInterchanges.is_empty():left.add_child(label("新形成换乘：%s" % "、".join(changes.newInterchanges),16))
+			if not changes.newRoutes.is_empty():left.add_child(label("本期线路：%s" % "、".join(changes.newRoutes),16))
+			if not changes.serviceChanges.is_empty():left.add_child(label("历史服务阶段：%s" % "；".join(changes.serviceChanges),16))
+			if not changes.nextTargets.is_empty():left.add_child(label("后续接口：%s" % "、".join(changes.nextTargets),16))
+		left.add_child(button("返回本章现状" if outcome_comparison else "对照本章建设前",func():
+			outcome_comparison=not outcome_comparison
+			map_view.chapter_baseline_overlay=Story.chapter_baseline_world(world) if outcome_comparison else {}
+			map_view.requested_redraw();_left()))
+		left.add_child(button("保存纪念图 PNG",_save_commemorative_image))
+		left.add_child(label("列车只作开通展示；车型、站体尺寸及未核验工程参数均为游戏示意。",15))
 		left.add_child(button("继续下一章",_next));left.add_child(button("暂停／继续开通展示",func():display_paused=not display_paused))
 	else:
 		var versions:Array=story.get("planVersions",[])
-		left.add_child(label("为什么建设："+str(story.get("purpose","复现本期历史建设。")),15))
+		left.add_child(label(("历史资料：" if bool(chapter.get("eventOnly",false)) else "为什么建设：")+str(story.get("purpose","复现本期历史建设。")),15))
+		if bool(chapter.get("eventOnly",false)):
+			left.add_child(label("资料节点 · 无新增建设任务",20,true))
+			if not str(chapter.get("source","" )).is_empty():left.add_child(button("查看本节点来源",func():OS.shell_open(str(chapter.get("source","")))))
+			left.add_child(button("确认并继续时间线",_check))
 		if not versions.is_empty():
 			var index:=clampi(int(world.storyPlan.get("planIndex",0)),0,versions.size()-1)
 			left.add_child(label(str(versions[index].get("title","方案")),20,true));left.add_child(label(str(versions[index].get("description","")),16))
 			if not Story.plan_is_final(world):
 				left.add_child(label("尚未实施的历史草案；采用修订方案后再建设最终范围。",16))
 				revision_button=button("对比并采用下一版方案",_revise);left.add_child(revision_button)
-		var built:=0
-		for target in Story.targets(world,true):
-			if bool(target.built):built+=1
-		left.add_child(label("现在要做："+Story.current_action(world),18,true))
-		left.add_child(label("目标站区 %d / %d" % [built,Story.targets(world,true).size()],20,true))
-		var missing_names:Array=Story.targets(world,true).filter(func(target:Dictionary):return not bool(target.built)).map(func(target:Dictionary):return str(target.name))
-		left.add_child(label("还缺："+"、".join(missing_names.slice(0,3))+("等站区" if missing_names.size()>3 else "") if not missing_names.is_empty() else "站区齐备；还需核对连续轨道、本期站序和线路关系。",15))
+		if not bool(chapter.get("eventOnly",false)):
+			left.add_child(label("现在要做："+Story.current_action(world),18,true))
+			left.add_child(label("本章操作："+_operation_label(chapter),16,true))
+			left.add_child(label(str(chapter.get("operationGuide","按目标站区、站序与参考走廊复现本期范围。")),15))
+		var chapter_groups:Array=Story.groups(world,true)
+		if chapter_groups.size()>1:
+			var selected_task:=_active_task_id()
+			var task_progress:Dictionary=world.get("storyState",{}).get("chapterTaskProgress",{}).get(str(chapter.get("id","")),{}).get("tasks",{})
+			left.add_child(label("本章建设任务 · %d 项" % chapter_groups.size(),18,true))
+			for group_index in range(chapter_groups.size()):
+				var task_group:Dictionary=chapter_groups[group_index]
+				var task_id:=Story.task_id(chapter,task_group,group_index)
+				var task_targets:=Story.targets(world,true,task_id)
+				var task_built:=task_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
+				var task_name:=str(task_group.get("name",task_group.get("historicalLineId","本期线路")))
+				var task_confirmed:=str(task_progress.get(task_id,{}).get("status",""))=="confirmed"
+				var task_state:="已确认" if task_confirmed else "站体 %d/%d" % [task_built,task_targets.size()]
+				if task_targets.size()>0 and task_built==task_targets.size():task_state="站体已就位 · 待核对区间"
+				if task_confirmed:task_state="已确认"
+				left.add_child(button(("当前 · " if task_id==selected_task else "")+task_name+"  ·  "+task_state,_select_chapter_task.bind(task_id)))
+				if task_id==selected_task and not str(task_group.get("constructionScopeNote","")).is_empty():left.add_child(label(str(task_group.get("constructionScopeNote","")),15))
+			if not selected_task.is_empty():
+				left.add_child(button("检查并确认当前建设任务",_confirm_active_task))
+				left.add_child(label("每项任务单独确认；确认一条线路不会替本章其他线路或历史事件盖章。",15))
+		for transition_index in range(chapter.get("serviceTransitions",[]).size()):
+			var transition:Dictionary=chapter.serviceTransitions[transition_index]
+			var proposal:=_service_transition_proposal(transition,transition_index)
+			var transition_confirmed:=not proposal.is_empty() and Story._has_service_range(world,str(proposal.get("id","")))
+			left.add_child(label("本期状态 · %s：%s%s" % [str(transition.get("historicalLineId","线路")),Story.service_status_label(str(transition.get("status","built")))," · 已确认" if transition_confirmed else ""],16,true))
+			if transition_confirmed:
+				left.add_child(label("范围：%s" % "—".join(proposal.get("displayStationNames",[])),15))
+			else:
+				var status_button:=button("预览并确认本期范围",_preview_service_transition.bind(transition,transition_index))
+				status_button.disabled=proposal.is_empty()
+				left.add_child(status_button)
+				if proposal.is_empty():left.add_child(label("先完成该线路的目标站和连续轨道，才能确认历史服务范围。",15))
+		var active_targets:=Story.targets(world,true,_active_task_id())
+		var built:=active_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
+		if not bool(chapter.get("eventOnly",false)):left.add_child(label("当前任务站体 %d / %d" % [built,active_targets.size()],20,true))
+		var missing_targets:Array[Dictionary]=active_targets.filter(func(target:Dictionary):return not bool(target.built))
+		if not missing_targets.is_empty():
+			left.add_child(label("尚未建设：",15,true))
+			for missing_target in missing_targets.slice(0,4):
+				left.add_child(label("· %s · %s线站体" % [str(missing_target.get("name","目标站")),str(missing_target.get("historicalLineName",missing_target.get("historicalLineId","本期")))],15))
+			if missing_targets.size()>4:left.add_child(label("另有 %d 座目标站体" % (missing_targets.size()-4),15))
+		elif not bool(chapter.get("eventOnly",false)):left.add_child(label("目标站体已建齐；还需核对连续轨道、本期站序和线路关系。",15))
 		if bool(chapter.get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):left.add_child(label("原有站轨保留：请点击下方「线路整理」，核对分段记录的贯通站序。",18))
-		check_button=button("检查本章复现",_check);left.add_child(check_button)
-		left.add_child(button("核对区间走向",_path_picker))
-		if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)):left.add_child(button("预览辅助完成重复建设",_assist))
-		left.add_child(button("返回本章位置",_locate_chapter))
+		var transfer_evaluation:Dictionary=Story.evaluate(world) if not chapter.get("requiredTransfers",[]).is_empty() else {}
+		for transfer in chapter.get("requiredTransfers",[]):
+			var transfer_line_names:=_transfer_line_names(transfer)
+			var transfer_title:=str(transfer.get("name","换乘站"))
+			var transfer_pair:=" ↔ ".join(transfer_line_names)
+			left.add_child(label("换乘站 · %s" % transfer_title,18,true))
+			left.add_child(label("%d座独立站体：%s" % [transfer.get("stationInstanceIds",[]).size(),transfer_pair],15))
+			left.add_child(label("建立的是站体之间的换乘联系；不会合并站厅，也不会把两条轨道接在一起。",15))
+			if _transfer_connected(transfer):left.add_child(label("已建立换乘联系 · %s" % transfer_pair,16,true))
+			else:
+				var transfer_button:=button("建立换乘关系 · %s" % transfer_pair,_preview_transfer.bind(transfer));transfer_button.disabled=not _transfer_ready(transfer,transfer_evaluation);left.add_child(transfer_button)
+				if transfer_button.disabled:
+					for status_line in _transfer_status_lines(transfer,transfer_evaluation):left.add_child(label(status_line,15))
+					left.add_child(label("两侧都显示“已接入本期线路”后，才能建立换乘关系。",15))
+		if not bool(chapter.get("eventOnly",false)):check_button=button("检查本章复现",_check);left.add_child(check_button)
+		if bool(world.storyState.get("learnedTools",false)) and Story.plan_is_final(world):left.add_child(button("连续复现相邻区间",_begin_batch_tracks))
+		if not bool(chapter.get("eventOnly",false)):
+			left.add_child(button("核对区间走向",_path_picker))
+			if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)):left.add_child(button("预览辅助完成重复建设",_assist))
+			left.add_child(button("返回本章位置",_locate_chapter))
 		if Tutorial.active(world):
-			left.add_child(button("跳过操作引导",func():Tutorial.skip(world);_mark_dirty();spotlight.clear_focus();_refresh();_save()))
+			left.add_child(button("跳过操作引导",func():Tutorial.skip(world);_mark_dirty();spotlight.clear_focus();_refresh()))
 		else:left.add_child(label("需要重学基本操作时，可从菜单进入独立练习。",15))
 	if world.has("practiceOf"):left.add_child(button("结束练习，返回原进度",_return_from_practice))
 	left.add_child(label("现代地理参考 · 蓝色虚线为近似走廊；灰色虚线为示意。",15))
 
 func _begin_chapter() -> void:
 	guide_map_step=""
-	world.storyState.stage="build";_mark_dirty();_refresh();_locate_chapter();_save()
+	world.storyState.stage="build";_mark_dirty();_refresh();_locate_chapter()
+
+func _service_transition_proposal(transition:Dictionary,transition_index:int) -> Dictionary:
+	var expected_id:="service_%s_%s" % [str(Story.chapter(world).get("id","")),str(transition.get("id","%s_%d" % [str(transition.get("historicalLineId","")),transition_index]))]
+	for proposal in Story.evaluate(world).get("serviceTransitions",[]):
+		if str(proposal.get("id",""))==expected_id:return proposal
+	return {}
+
+func _preview_service_transition(transition:Dictionary,transition_index:int) -> void:
+	var proposal:=_service_transition_proposal(transition,transition_index)
+	if proposal.is_empty():
+		var checked:=Story.evaluate(world);var details:Array[String]=[]
+		for issue in checked.get("issues",[]):details.append(str(issue.get("text","")))
+		_message("本期范围暂不可确认", "先完成指定站序与连续轨道。\n"+"\n".join(details.slice(0,4)));return
+	if Story._has_service_range(world,str(proposal.id)):_message("本期范围已确认", "该历史服务范围已记录，可在操作历史中撤销。");return
+	var expected_revision:=int(world.get("revision",0))
+	var names:Array=proposal.get("displayStationNames",[])
+	var status:=str(proposal.get("status","built"))
+	var line_name:=str(transition.get("historicalLineId","本期线路"))
+	var source:=str(proposal.get("source",""))
+	var message:="线路：%s\n范围：%s\n历史状态：%s\n\n这是历史范围状态记录，不会创建客流、班次或列车运行安排。确认后作为一步建设历史，可撤销。" % [line_name,"—".join(names),Story.service_status_label(status)]
+	if not source.is_empty():message+="\n\n资料来源："+source
+	_confirm("预览本期历史范围",message,func():
+		var committed:=_commit_service_transition(proposal,expected_revision)
+		if not bool(committed.get("ok",false)):_message("历史范围未确认",str(committed.get("error","请重新检查本期范围。")))
+		_refresh())
+
+func _commit_service_transition(proposal:Dictionary,expected_revision:int,checked:Dictionary={}) -> Dictionary:
+	if expected_revision!=int(world.get("revision",0)):return {"ok":false,"error":"规划已变化，请重新预览历史范围。"}
+	var current:Dictionary={}
+	if checked.is_empty():current=_service_transition_proposal_for_id(str(proposal.get("id","")))
+	else:
+		for candidate in checked.get("serviceTransitions",[]):
+			if str(candidate.get("id",""))==str(proposal.get("id","")):current=candidate;break
+	if current.is_empty() or current.get("stationIds",[])!=proposal.get("stationIds",[]) or current.get("edgePathsBySegment",[])!=proposal.get("edgePathsBySegment",[]):return {"ok":false,"error":"本期站序或轨道已变化，请重新预览。"}
+	if Story._has_service_range(world,str(proposal.get("id",""))):return {"ok":false,"error":"本期历史范围已经确认。"}
+	var record:=proposal.duplicate(true);record.erase("displayStationNames");record.erase("focusLatlng")
+	var candidate:=world.duplicate(true);candidate.serviceRanges.append(record)
+	var invalid:=SaveManager.validate(candidate)
+	if not invalid.is_empty():return {"ok":false,"error":invalid}
+	_execute("确认历史服务范围",func(state:Dictionary):state.serviceRanges.append(record.duplicate(true)))
+	_play_feedback("track")
+	return {"ok":true}
+
+func _service_transition_proposal_for_id(proposal_id:String) -> Dictionary:
+	var transitions:Array=Story.chapter(world).get("serviceTransitions",[])
+	for index in range(transitions.size()):
+		var proposal:=_service_transition_proposal(transitions[index],index)
+		if str(proposal.get("id",""))==proposal_id:return proposal
+	return {}
+
+func _transfer_connected(transfer: Dictionary) -> bool:
+	for saved in world.get("transferConnections", []):
+		if str(saved.get("id", "")) == str(transfer.get("id", "")) and str(saved.get("status", "active")) == "active" and saved.get("stationInstanceIds", []) == transfer.get("stationInstanceIds", []) and saved.get("lineIds", []) == transfer.get("lineIds", []): return true
+	return false
+
+func _transfer_ready(transfer: Dictionary,checked:Dictionary={}) -> bool:
+	var instance_ids: Array = transfer.get("stationInstanceIds", [])
+	var line_ids: Array = transfer.get("lineIds", [])
+	if instance_ids.size() < 2 or instance_ids.size() != line_ids.size(): return false
+	var bodies: Array[Dictionary] = []
+	for instance_id in instance_ids:
+		var station := Story.bound_station(world, str(transfer.get("complexId", "")), str(instance_id))
+		if station.is_empty(): return false
+		bodies.append(station)
+	if checked.is_empty():checked=Story.evaluate(world)
+	for index in range(line_ids.size()):
+		var body_id:=str(bodies[index].get("id", ""));var line_id:=str(line_ids[index])
+		var line_route:=Story.route_for_station_body(checked.get("routes",[]),line_id,body_id)
+		if line_route.is_empty():
+			var existing_routes:Array=world.get("routes",[]).filter(func(route:Dictionary):return bool(route.get("networkBased",false)))
+			line_route=Story.route_for_station_body(existing_routes,line_id,body_id)
+		if line_route.is_empty():return false
+	return true
+
+func _historical_line_name(line_id:String) -> String:
+	for group in Story.groups(world,true):
+		if str(group.get("historicalLineId",""))==line_id:return str(group.get("name",line_id))
+	for route in world.get("routes",[]):
+		if str(route.get("historicalLineId",""))==line_id:return str(route.get("name",line_id))
+	return line_id
+
+func _station_line_name(station:Dictionary) -> String:
+	var saved_name:=str(station.get("stationLineName",""))
+	if not saved_name.is_empty():return saved_name
+	var line_id:=str(station.get("stationLineId",""))
+	if line_id.is_empty():
+		for route in world.get("routes",[]):
+			if station.get("routeIds",[]).has(str(route.get("id",""))):return str(route.get("name","线路"))
+	return _historical_line_name(line_id) if not line_id.is_empty() else "线路未标记"
+
+func _transfer_line_names(transfer:Dictionary) -> Array[String]:
+	var result:Array[String]=[]
+	for line_id in transfer.get("lineIds",[]):result.append(_historical_line_name(str(line_id)))
+	return result
+
+func _transfer_station_status(transfer:Dictionary,index:int,checked:Dictionary={}) -> String:
+	var instance_ids:Array=transfer.get("stationInstanceIds",[]);var line_ids:Array=transfer.get("lineIds",[])
+	if index<0 or index>=instance_ids.size() or index>=line_ids.size():return "配置不完整"
+	var instance_id:=str(instance_ids[index]);var line_id:=str(line_ids[index]);var complex_id:=str(transfer.get("complexId",""))
+	var station:=Story.bound_station(world,complex_id,instance_id)
+	if station.is_empty():return "未建设站体"
+	if checked.is_empty():checked=Story.evaluate(world)
+	var checked_routes:Array=checked.get("routes",[])
+	if not Story.route_for_station_body(checked_routes,line_id,str(station.get("id",""))).is_empty():return "已接入本期线路"
+	var existing_routes:Array=world.get("routes",[]).filter(func(route:Dictionary):return bool(route.get("networkBased",false)))
+	if not Story.route_for_station_body(existing_routes,line_id,str(station.get("id",""))).is_empty():return "已接入既有线路"
+	return "已建站；待本线站序与轨道检查通过"
+
+func _transfer_status_lines(transfer:Dictionary,checked:Dictionary={}) -> Array[String]:
+	var result:Array[String]=[];var names:=_transfer_line_names(transfer)
+	if checked.is_empty():checked=Story.evaluate(world)
+	for index in range(transfer.get("stationInstanceIds",[]).size()):
+		var line_name:=names[index] if index<names.size() else "线路"
+		result.append("· %s站体：%s" % [line_name,_transfer_station_status(transfer,index,checked)])
+	return result
+
+func _preview_transfer(transfer: Dictionary) -> void:
+	var checked:=Story.evaluate(world)
+	if not _transfer_ready(transfer,checked):_message("换乘联系尚不能建立", "请先分别建设两侧线路的目标站体，并完成各自轨道与站序。相邻或几何交叉不自动形成换乘。");return
+	if _transfer_connected(transfer):_message("换乘关系已存在", str(transfer.get("name", "换乘站")) + "已在本期明确建立。");return
+	var instance_ids: Array = transfer.get("stationInstanceIds", []);var line_ids: Array = transfer.get("lineIds", [])
+	var details: Array[String] = []
+	for index in range(instance_ids.size()):
+		var station := Story.bound_station(world, str(transfer.get("complexId", "")), str(instance_ids[index]))
+		details.append("%s线站体：%s（独立站体）" % [_historical_line_name(str(line_ids[index])), str(station.get("name", "车站"))])
+	var expected_revision := int(world.get("revision", 0))
+	var connection: Dictionary = {"id":str(transfer.get("id","")),"name":str(transfer.get("name","换乘站")),"complexId":str(transfer.get("complexId","")),"stationInstanceIds":instance_ids.duplicate(),"lineIds":line_ids.duplicate(),"status":"active","precision":str(transfer.get("precision","schematic")),"source":str(transfer.get("source","")),"effectiveDate":str(Story.chapter(world).get("date",""))}
+	var probe: Dictionary = world.duplicate(true)
+	for route in checked.get("routes", []):
+		if WorldData.find_route(probe, str(route.get("id", ""))).is_empty():
+			var draft_route: Dictionary = route.duplicate(true);draft_route["open"] = false;probe.routes.append(draft_route)
+	probe.transferConnections.append(connection.duplicate(true))
+	var validation := SaveManager.validate(probe)
+	if not validation.is_empty():_message("换乘预览无效", validation);return
+	var body_count:=instance_ids.size()
+	_confirm("建立换乘关系 · " + str(transfer.get("name","换乘站")), "将建立%d座独立站体之间的站间换乘联系：\n%s\n\n这不会把不同线路站体合并，也不会把轨道接在一起；列车仍只沿各自线路运行。确认后可撤销。" % [body_count,"\n".join(details)], func():
+		var committed:=_commit_transfer_connection(transfer,connection,expected_revision,checked)
+		if not bool(committed.get("ok",false)):_message("换乘联系未建立",str(committed.get("error","请重新预览。")))
+		_refresh())
+
+func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expected_revision:int,checked:Dictionary={}) -> Dictionary:
+	if expected_revision!=int(world.get("revision",0)):return {"ok":false,"error":"规划已变化，请重新检查两侧线路。"}
+	if checked.is_empty():checked=Story.evaluate(world)
+	if not _transfer_ready(transfer,checked):return {"ok":false,"error":"两侧独立站体、连续轨道和线路站序尚未全部就绪。"}
+	if _transfer_connected(transfer):return {"ok":false,"error":"这条换乘联系已经建立。"}
+	var candidate:=world.duplicate(true)
+	var missing_routes:Array[Dictionary]=[]
+	for route in checked.get("routes",[]):
+		if WorldData.find_route(candidate,str(route.get("id",""))).is_empty():
+			var route_copy:Dictionary=route.duplicate(true);route_copy["open"]=false;candidate.routes.append(route_copy);missing_routes.append(route_copy)
+	candidate.transferConnections.append(connection.duplicate(true))
+	var validation:=SaveManager.validate(candidate)
+	if not validation.is_empty():return {"ok":false,"error":validation}
+	_execute("建立换乘联系",func(state:Dictionary):
+		for route_copy in missing_routes:
+			if WorldData.find_route(state,str(route_copy.get("id",""))).is_empty():state.routes.append(route_copy.duplicate(true))
+		state.transferConnections.append(connection.duplicate(true)))
+	return {"ok":true}
+
+func _create_workshop_copy() -> void:
+	var copy := Story.create_workshop_copy(world)
+	if copy.is_empty():_message("暂时不能创建", "需要先完成本城当前已发布的全部历史章节。");return
+	_leave(func():
+		_enter(copy)
+		if not _save():_message("自由创作副本保存失败", save_error))
 
 func _restart_guide() -> void:
 	_confirm("独立操作练习","当前进度会先保存。练习使用首章的新副本，结束后可回到原进度。",func():
@@ -431,10 +881,27 @@ func _right() -> void:
 		right.add_child(label(str(pending_track.get("referenceLabel","手工示意连接")),15))
 		if not str(pending_track.get("advisory","")).is_empty():right.add_child(label(str(pending_track.advisory),15))
 		confirm_button=button("确认轨道段",_commit_track);actions.add_child(confirm_button)
+	elif tool=="track" and batch_track_mode:
+		right.add_child(label("连续复现相邻区间",24,true))
+		right.add_child(label("按本章站序点击已经建设的相邻目标站。全部区间共用一次确认与撤销。",16))
+		for index in range(batch_track_targets.size()):
+			var target_name:=_historical_target_name(batch_track_targets[index])
+			right.add_child(label("%d. %s" % [index+1,target_name],16))
+		for segment in batch_track_segments:
+			var a_name:=str(Story.bound_station(world,str(segment.fromId)).get("name","站点"));var b_name:=str(Story.bound_station(world,str(segment.toId)).get("name","站点"))
+			right.add_child(label("%s → %s · %.0f 米 · %s" % [a_name,b_name,float(segment.get("lengthM",0)),"复用既有轨道" if bool(segment.get("reused",false)) else str(segment.get("referenceLabel", "参考线位"))],15))
+			if not str(segment.get("issue", "")).is_empty():right.add_child(label("错误："+str(segment.issue),15,true))
+		if not batch_track_targets.is_empty():
+			actions.add_child(button("移除最后一个区间",_remove_last_batch_segment))
+			actions.add_child(button("清空所选区间",func():batch_track_targets.clear();batch_track_segments.clear();map_view.draft_track_segments.clear();problem="已清空草稿；正式路网未改变。";_right();_instruction()))
+		var batch_valid:=not batch_track_segments.is_empty() and batch_track_segments.all(func(segment:Dictionary):return str(segment.get("issue", "")).is_empty())
+		confirm_button=button("确认全部 %d 段区间" % batch_track_segments.size(),_commit_batch_tracks);confirm_button.disabled=not batch_valid;actions.add_child(confirm_button)
 	elif tool=="station":
 		right.add_child(label("放置车站",24,true));right.add_child(label("点击地图中的历史目标站区，调整朝向后确认。尚未放置预览，不会修改正式路网。",18))
 	elif tool=="track":
 		right.add_child(label("连接轨道",24,true));right.add_child(label("点站端或节点，再点终点。自由端点标为待连接。",18))
+		if str(world.get("mode", ""))=="campaign" and bool(world.storyState.get("learnedTools",false)):
+			right.add_child(button("连续复现本章相邻区间",_begin_batch_tracks))
 		var advanced:=CheckButton.new();advanced.text="高级编辑";advanced.button_pressed=advanced_edit;advanced.toggled.connect(func(value:bool):advanced_edit=value;_cancel_drafts();_right());right.add_child(advanced)
 		if advanced_edit or str(world.mode)!="campaign":
 			var continuous:=CheckButton.new();continuous.text="连续铺设至空地";continuous.button_pressed=map_view.continuous_track;continuous.toggled.connect(func(value:bool):map_view.continuous_track=value);right.add_child(continuous)
@@ -453,11 +920,30 @@ func _right() -> void:
 	elif not evaluation.is_empty():
 		right.add_child(label("本章复现检查",24,true))
 		if bool(evaluation.get("complete",false)):
-			right.add_child(label("目标站、站序和连续轨道已符合本章范围。",18))
-			confirm_button=button("确认历史节点并开通展示" if bool(Story.chapter(world).get("requireOpen",true)) else "确认建成节点（暂不运营）",_commit_chapter);actions.add_child(confirm_button)
+			if bool(Story.chapter(world).get("eventOnly",false)):
+				right.add_child(label("本节点的来源与日期已登记；没有新增铺轨目标。",18))
+			else:
+				right.add_child(label("目标站、站序和连续轨道已符合本章范围。",18))
+			var facts:=Story.factual_report(world)
+			if not facts.stationOffsets.is_empty():
+				right.add_child(label("站区位置事实（相对现代地理参考，不是工程测量）",16,true))
+				for fact in facts.stationOffsets.slice(0,5):
+					right.add_child(label("%s：距参考站区中心 %.0f 米；章节容差 %.0f 米" % [str(fact.name),float(fact.distanceM),float(fact.toleranceM)],15))
+			if not facts.segments.is_empty():
+				right.add_child(label("区间资料",16,true))
+				for fact in facts.segments.slice(0,6):
+					var line_text:="· %s · %.2f 公里" % [str(fact.precision),float(fact.lengthM)/1000.0]
+					if fact.has("meanDeviationM"):line_text+=" · 核验线位平均偏差 %.0f 米，最大 %.0f 米" % [float(fact.meanDeviationM),float(fact.maxDeviationM)]
+					right.add_child(label("%s—%s %s" % [str(fact.from),str(fact.to),line_text],15))
+			var current_chapter:=Story.chapter(world)
+			var confirmation_label:="确认历史节点并开通展示" if bool(current_chapter.get("requireOpen",true)) else "确认建成节点（暂不运营）"
+			if bool(current_chapter.get("eventOnly",false)):confirmation_label="确认历史资料节点"
+			confirm_button=button(confirmation_label,_commit_chapter);actions.add_child(confirm_button)
 		else:
 			for issue in evaluation.get("issues",[]):
 				right.add_child(label(str(issue.get("text","未完成")),16))
+				if issue.has("stationBindingRepair"):
+					right.add_child(button("保留现有轨道，修复站体关联",_repair_legacy_station_binding.bind(issue)))
 				if issue.has("objectId"):right.add_child(button("定位问题",_locate_issue.bind(issue)))
 	elif selected_kind=="station":
 		var st:=WorldData.find_station(world,selected_id)
@@ -478,6 +964,12 @@ func _right() -> void:
 		right.add_child(label("建设形式："+str(st.get("constructionForm","待核验")),15))
 		right.add_child(label(str(st.get("constructionNote","车型、站体及埋深为游戏示意，历史参数待核验。")),15))
 		right.add_child(label("历史身份：%s" % str(st.get("historicalId","自定车站")),15))
+		var complex_id:=str(st.get("stationComplexId",""))
+		if not complex_id.is_empty():
+			right.add_child(label("所属换乘站区：%s" % complex_id,16,true))
+			for member in world.get("stations",[]):
+				if str(member.get("stationComplexId",""))!=complex_id or str(member.get("id",""))==str(st.get("id","")):continue
+				right.add_child(button("切换到另一线路站体 · %s" % str(member.get("stationLineId",member.get("name","站体"))),func():selected_id=str(member.id);selected_kind="station";map_view.selected_id=selected_id;_right();_layout()))
 		actions.add_child(button("删除车站",_delete))
 	elif selected_kind=="link":
 		right.add_child(label("轨道区间",24,true))
@@ -488,6 +980,7 @@ func _right() -> void:
 		actions.add_child(button("删除轨道",_delete))
 	elif selected_kind=="route":
 		var route:=WorldData.find_route(world,selected_id);right.add_child(label(str(route.get("name","线路")),24,true))
+		right.add_child(label("历史服务阶段："+Story.service_status_label(str(route.get("serviceStatus","open" if bool(route.get("open",false)) else "built"))),16))
 		for id in route.get("stationOrder",[]):right.add_child(label(str(WorldData.find_station(world,str(id)).get("name","车站")),16))
 		actions.add_child(button("删除线路记录（保留轨道）",_delete))
 	if not problem.is_empty():actions.add_child(label(problem,15,true))
@@ -507,14 +1000,21 @@ func _rename_station(value:String) -> void:
 func _tool(value:String) -> void:
 	if value!="select" and str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():
 		problem="当前资料已到边界。后续历史与远期蓝图核验完成后继续，自由创作尚未解锁。";_instruction();return
+	# A construction tool must leave read-only comparison first. Otherwise the
+	# user sees an old proposal while the action guard correctly blocks editing,
+	# which looks like the station/track tool ignored the click.
+	if value in ["station","track","line"] and plan_view_index>=0:
+		plan_view_index=-1;map_view.set_blueprint(Story.blueprint(world,true))
+	if value in ["station","track","line"] and str(world.get("mode",""))=="campaign" and not Story.plan_is_final(world):
+		page="story";show_left=true;show_right=false;problem="当前显示的是未实施历史草案。请先点击左侧“对比并采用下一版方案”，之后才能建设。";_refresh();return
 	if value!="select":selected_id="";selected_kind="";map_view.selected_id=""
-	if plan_view_index>=0:plan_view_index=-1;map_view.set_blueprint(Story.blueprint(world,true))
 	_cancel_drafts();tool=value;map_view.tool=value;line_stops.clear();evaluation={};problem="";show_right=value!="select"
 	if show_right and _narrow():show_left=false
 	_right();_instruction();_layout()
 
 func _cancel_drafts() -> void:
 	map_view.assisted_preview={}
+	map_view.draft_track_segments.clear();batch_track_targets.clear();batch_track_segments.clear();batch_track_mode=false;batch_track_revision=-1
 	map_view.cancel_pointer_interaction();map_view.draft_station={};map_view.track_start_ref={};map_view.track_end_ref={};map_view.track_control_latlng=[];map_view.draft_track_points=[];map_view.track_preview_conflict="";map_view.station_preview_edges={};map_view.clear_curve_preview();pending_track={};preview_station={}
 	map_view.highlight_path_points=[]
 
@@ -528,7 +1028,7 @@ func _path_picker() -> void:
 	for gi in range(groups.size()):
 		var ids:Array=groups[gi].get("stationIds",[])
 		for si in range(ids.size()-1):
-			var a:=Story.bound_station(world,str(ids[si]));var b:=Story.bound_station(world,str(ids[si+1]))
+			var a_id:=str(ids[si]);var b_id:=str(ids[si+1]);var a:=Story.bound_station(world,a_id,Story.station_instance_id(groups[gi],a_id),str(groups[gi].get("historicalLineId", "")));var b:=Story.bound_station(world,b_id,Story.station_instance_id(groups[gi],b_id),str(groups[gi].get("historicalLineId", "")))
 			if a.is_empty() or b.is_empty():continue
 			right.add_child(label("%s—%s" % [str(a.name),str(b.name)],16,true))
 			var options:=TrackNetwork.station_path_options(str(a.id),str(b.id),world,float(WorldData.city(str(world.cityId)).center[0]),4)
@@ -540,6 +1040,8 @@ func _path_picker() -> void:
 	actions.add_child(button("返回检查",_check));_layout()
 
 func _cancel() -> void:
+	if batch_track_mode:
+		_cancel_drafts();problem="连续铺轨草稿已取消；正式路网未改变。";_tool("select");return
 	if not map_view.draft_station.is_empty() or not map_view.track_end_ref.is_empty():map_view.draft_station={};map_view.track_end_ref={};map_view.draft_track_points=[];pending_track={};map_view.clear_curve_preview()
 	elif not map_view.track_start_ref.is_empty():map_view.track_start_ref={};map_view.draft_track_points=[]
 	else:_tool("select")
@@ -548,6 +1050,28 @@ func _cancel() -> void:
 func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 	if world.is_empty():return
 	if kind=="story_beat":_show_beat(Beats.find(world,id));return
+	if kind=="blueprint_choice":
+		var choices:=map_view.blueprint_choice_candidates.duplicate(true);show_right=true;clear(right);clear(actions)
+		right.add_child(label("请选择目标站体",20,true))
+		for entry in choices:
+			var target:Dictionary=entry
+			actions.add_child(button("%s · %s线站体" % [str(target.get("name","目标站")),str(target.get("historicalLineName",target.get("historicalLineId","本期线路")))],func():_click(target.get("latlng",ll),"blueprint",str(target.get("id","")),"")))
+		_layout();return
+	if kind=="station_choice":
+		var choices:=map_view.station_choice_candidates.duplicate(true);show_right=true;clear(right);clear(actions)
+		right.add_child(label("请选择具体线路站体",20,true))
+		for entry in choices:
+			var candidate:Dictionary=entry;var candidate_id:=str(candidate.get("id",""));var station:=WorldData.find_station(world,candidate_id)
+			var choice_button:=button("%s线 · %s站体" % [_station_line_name(station),str(station.get("name","车站"))],func():_tool("select");_select("station",candidate_id))
+			choice_button.mouse_entered.connect(func():map_view.selected_id=candidate_id;map_view.selected_type="station";map_view.requested_redraw())
+			choice_button.mouse_exited.connect(func():map_view.selected_id=selected_id;map_view.selected_type=selected_kind;map_view.requested_redraw())
+			actions.add_child(choice_button)
+		_layout();return
+	if tool=="track" and batch_track_mode and kind in ["blueprint","station"]:
+		var historical_id:=id
+		if kind=="station":historical_id=str(WorldData.find_station(world,id).get("stationInstanceId",WorldData.find_station(world,id).get("historicalId","")))
+		if not historical_id.is_empty():_batch_select_target(historical_id)
+		return
 	if kind=="endpoint_choice":
 		var candidates:=map_view.endpoint_choice_candidates.duplicate(true);show_right=true;clear(right);clear(actions)
 		right.add_child(label("请选择接轨端点",20,true))
@@ -556,11 +1080,16 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 			actions.add_child(button("%s · %s" % [str(WorldData.find_station(world,str(c.id)).get("name","节点")),"A端" if str(c.side)=="start" else "B端"],func():_click(c.latlng,str(c.type),str(c.id),str(c.side))))
 		_layout();return
 	if tool=="station":
-		if str(world.mode)=="campaign" and not Story.plan_is_final(world):_open_page("story");return
-		var target:=Story.nearest_target(world,ll) if str(world.mode)=="campaign" else {}
+		if str(world.mode)=="campaign" and not Story.plan_is_final(world):problem="这是未实施历史草案，先在左侧采用本期方案，再放置车站。";_instruction();_right();return
+		var target:Dictionary={}
+		if str(world.mode)=="campaign":
+			if kind=="blueprint":
+				for item in Story.targets(world,false,_active_task_id()):
+					if str(item.get("id",""))==id:target=item;break
+			else:target=Story.nearest_target(world,ll,_active_task_id())
 		if str(world.mode)=="campaign" and target.is_empty():problem="请在蓝图目标站区放置车站；可点击左侧目标定位。";_instruction();return
 		var construction_profile:=Story.profile(world,str(target.get("id","")))
-		var candidate:={"id":"draft","name":str(target.get("name","新建车站%d" % (world.stations.size()+1))),"latlng":ll.duplicate(),"heading":90.0,"lengthM":118.788,"widthM":20.0,"depthM":map_view.current_depth_m,"historicalId":str(target.get("id","")),"vehicleId":"B-6","existing":false,"routeIds":[]}
+		var candidate:={"id":"draft","name":str(target.get("name","新建车站%d" % (world.stations.size()+1))),"latlng":ll.duplicate(),"heading":90.0,"lengthM":118.788,"widthM":20.0,"depthM":map_view.current_depth_m,"historicalId":str(target.get("historicalId",target.get("id",""))),"stationInstanceId":str(target.get("stationInstanceId",target.get("id",""))),"stationComplexId":str(target.get("stationComplexId",target.get("historicalId",target.get("id","")))),"stationLineId":str(target.get("historicalLineId","")),"stationLineName":str(target.get("historicalLineName",target.get("historicalLineId",""))),"vehicleId":"B-6","existing":false,"routeIds":[]}
 		if not target.is_empty():candidate.latlng=target.latlng.duplicate();candidate.heading=map_view.blueprint_heading_for(str(target.id))
 		_apply_profile(candidate,construction_profile)
 		if str(construction_profile.get("parameterStatus",{}).get("depthM","game_estimate"))=="game_estimate":candidate.depthM=map_view.current_depth_m
@@ -578,7 +1107,9 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 		_right();return
 	if kind in ["station","link"]:_select(kind,id)
 	elif kind=="blueprint":
-		_trigger_beat("select",[id]);problem="目标站区：请点击下方「车站」，再在此处放置预览。";_instruction()
+		selected_kind="blueprint";selected_id=id;map_view.selected_id=id;map_view.selected_type="blueprint";show_right=true;evaluation={}
+		if _narrow():show_left=false
+		_trigger_beat("select",[id]);problem="已选中历史目标站区。右侧显示能否建设及下一步。";_right();_instruction();_layout()
 	else:show_left=false;show_right=false;selected_id="";selected_kind="";map_view.selected_id="";map_view.requested_redraw();_layout()
 
 func _ref(ll:Array,kind:String,id:String,side:String,t:float=-1) -> Dictionary:
@@ -603,6 +1134,90 @@ func _ref_name(ref:Dictionary) -> String:
 func _from_station(id:String,side:String) -> void:
 	_tool("track");map_view.track_start_ref=_ref(WorldData.find_station(world,id).latlng,"endpoint",id,side);_instruction()
 
+func _begin_batch_tracks() -> void:
+	if str(world.get("mode", "")) != "campaign" or not Story.plan_is_final(world): return
+	_tool("track");batch_track_mode=true;batch_track_revision=int(world.get("revision", 0));map_view.draft_track_segments=[]
+	problem="连续铺轨已就绪。依次点击本章中已经放置、彼此相邻的目标车站；可一次预览并确认多个区间。"
+	show_right=true;_right();_instruction();_layout()
+
+func _targets_adjacent(first_id:String,second_id:String) -> bool:
+	for group in Story.groups(world,true,_active_task_id()):
+		var ids:Array=group.get("stationIds",[])
+		var instances:Array=[]
+		for raw_id in ids:instances.append(Story.station_instance_id(group,str(raw_id)))
+		var first_index:=instances.find(first_id);var second_index:=instances.find(second_id)
+		if first_index>=0 and absi(first_index-second_index)==1:return true
+	return false
+
+func _batch_select_target(historical_id:String) -> void:
+	var target:Dictionary={}
+	for item in Story.targets(world,true,_active_task_id()):
+		if str(item.get("id", ""))==historical_id:target=item;break
+	if target.is_empty():problem="这不是本章目标站。请点选带目标标记的车站。";_right();_instruction();return
+	var station:=Story.bound_station(world,historical_id)
+	if station.is_empty():problem="请先使用“车站”工具放置并确认「%s」，再从这里批量铺轨。" % str(target.get("name", "目标站"));_right();_instruction();return
+	if batch_track_targets.is_empty():
+		batch_track_targets.append(historical_id);batch_track_revision=int(world.get("revision", 0));problem="已选起点「%s」。请点击同一线路中相邻的下一座目标站。" % str(station.get("name", "车站"))
+	else:
+		var previous_id:=batch_track_targets[-1]
+		if historical_id==previous_id:return
+		if not _targets_adjacent(previous_id,historical_id):problem="「%s」与「%s」不是本章线路中的相邻站；请按蓝图顺序选择相邻目标。" % [str(Story.bound_station(world,previous_id).get("name", "车站")),str(station.get("name", "车站"))];_right();_instruction();return
+		var from_station:=Story.bound_station(world,previous_id)
+		var ref_lat:=float(WorldData.city(str(world.cityId)).get("center",[31.23])[0])
+		var existing_path:=TrackNetwork.shortest_station_path(str(from_station.id),str(station.id),world,ref_lat)
+		var segment:Dictionary={"fromId":previous_id,"toId":historical_id,"issue":"","reused":false,"points":[],"lengthM":0.0}
+		if bool(existing_path.get("valid",false)):
+			segment.reused=true;segment.points=existing_path.get("points",[]);segment.lengthM=float(existing_path.get("distanceM",0))
+		else:
+			var ends:=_facing(from_station,station)
+			var start_ref:=_ref(from_station.latlng,"endpoint",str(from_station.id),str(ends[0]))
+			var finish_ref:=_ref(station.latlng,"endpoint",str(station.id),str(ends[1]))
+			var alignment:=ReferenceAlignment.between(_target_reference_id(previous_id),_target_reference_id(historical_id))
+			var preview:=ReferenceAlignment.preview(alignment,start_ref,finish_ref,world,ref_lat) if not alignment.is_empty() else rules.track_preview(start_ref,finish_ref,[],true)
+			segment.start=start_ref;segment.finish=finish_ref;segment.edge=preview.get("edge",{});segment.points=preview.get("points",[]);segment.lengthM=float(preview.get("lengthM",0));segment.issue=str(preview.get("issue", ""));segment.referenceLabel=str(preview.get("referenceLabel",ReferenceAlignment.label_for({})))
+		batch_track_segments.append(segment);batch_track_targets.append(historical_id)
+		if not str(segment.get("issue", "")).is_empty():problem="%s → %s：%s" % [str(from_station.name),str(station.name),str(segment.issue)]
+		else:problem="已加入「%s → %s」%s。继续点相邻目标站，或确认全部区间。" % [str(from_station.name),str(station.name),"（复用既有轨道）" if bool(segment.reused) else ""]
+		_trigger_beat("preview_track",[previous_id,historical_id])
+	map_view.draft_track_segments=batch_track_segments.duplicate(true);map_view.requested_redraw();_right();_instruction()
+
+func _target_reference_id(instance_id:String) -> String:
+	for target in Story.targets(world,true):
+		if str(target.get("id",""))==instance_id:return str(target.get("referenceId",target.get("historicalId",instance_id)))
+	return instance_id
+
+func _remove_last_batch_segment() -> void:
+	if not batch_track_segments.is_empty():batch_track_segments.pop_back()
+	if batch_track_targets.size()>1:batch_track_targets.pop_back()
+	map_view.draft_track_segments=batch_track_segments.duplicate(true)
+	problem="已移除最后一个区间；正式路网未改变。"
+	_right();_instruction();map_view.requested_redraw()
+
+func _rebuild_batch_tracks() -> void:
+	var targets:=batch_track_targets.duplicate()
+	batch_track_targets.clear();batch_track_segments.clear();map_view.draft_track_segments.clear();batch_track_revision=int(world.get("revision",0))
+	for id in targets:_batch_select_target(id)
+	problem="规划已变化，连续区间已重新校验。请检查更新后的地图预览，再次确认。";_right();_instruction()
+
+func _commit_batch_tracks() -> void:
+	if batch_track_segments.is_empty():return
+	if int(world.get("revision",0))!=batch_track_revision:_rebuild_batch_tracks();return
+	for segment in batch_track_segments:
+		if not str(segment.get("issue", "")).is_empty():problem="存在无效区间；没有任何轨道提交。请调整车站或改用单段工具修正。";_right();_instruction();return
+	var to_commit:=batch_track_segments.duplicate(true)
+	var add_count:=to_commit.filter(func(segment:Dictionary):return not bool(segment.get("reused",false))).size()
+	if add_count==0:problem="选中的区间均已连通；正式路网没有变化。";_right();_instruction();return
+	_execute("连续复现%d段区间" % to_commit.size(),func(state:Dictionary):
+		for segment in to_commit:
+			if bool(segment.get("reused",false)):continue
+			var edge:Dictionary=segment.edge.duplicate(true);var start_ref:Dictionary=segment.start;var finish_ref:Dictionary=segment.finish
+			edge.id="edge_%d_%d" % [Time.get_ticks_usec(),state.trackEdges.size()]
+			edge.aNodeId=rules.materialize(state,start_ref);edge.bNodeId=rules.materialize(state,finish_ref);state.trackEdges.append(edge))
+	if str(world.get("mode", ""))=="campaign":
+		world.storyState.learnedTools=true
+		for segment in to_commit:_trigger_beat("build_track",[str(segment.fromId),str(segment.toId)])
+	_play_feedback("track");_tool("select");show_left=true;show_right=false;_refresh()
+
 func _track_preview(finish:Dictionary) -> void:
 	var start:=map_view.track_start_ref
 	var a:=WorldData.find_station(world,str(start.get("stationId","")));var b:=WorldData.find_station(world,str(finish.get("stationId","")))
@@ -622,6 +1237,7 @@ func _commit_track() -> void:
 	var start:=map_view.track_start_ref.duplicate(true);var finish:=map_view.track_end_ref.duplicate(true);var edge:Dictionary=pending_track.edge.duplicate(true)
 	var continuous:=map_view.continuous_track and str(finish.get("stationId","")).is_empty()
 	_execute("铺设轨道",func(state:Dictionary):edge.id="edge_%d" % Time.get_ticks_usec();edge.aNodeId=rules.materialize(state,start);edge.bNodeId=rules.materialize(state,finish);state.trackEdges.append(edge))
+	_play_feedback("track")
 	if str(world.mode)=="campaign":
 		var first_targets:=Story.targets(world,true)
 		if first_targets.size()>=2:
@@ -635,7 +1251,7 @@ func _commit_track() -> void:
 	_tool("track" if continuous else "select")
 	if continuous:map_view.track_start_ref=next
 	else:show_left=true;show_right=false
-	_save();_refresh()
+	_refresh()
 
 func _station_changed() -> void:
 	map_view.draft_conflict=rules._station_overlaps_in(map_view.draft_station,world.get("stations",[]));map_view.requested_redraw()
@@ -644,21 +1260,31 @@ func _commit_station() -> void:
 	var candidate:Dictionary=map_view.draft_station.duplicate(true)
 	if candidate.is_empty():return
 	if rules._station_overlaps_in(candidate,world.stations):problem="站体重叠，请移动或旋转后确认。";_right();return
-	if not str(candidate.get("historicalId","")).is_empty() and not Story.bound_station(world,str(candidate.historicalId)).is_empty():problem="该历史目标已有车站。";_right();return
-	_execute("建设%s" % str(candidate.name),func(state:Dictionary):candidate.id="station_%d" % Time.get_ticks_usec();state.stations.append(candidate);TrackNetwork.ensure_station_nodes(state))
+	if not str(candidate.get("historicalId","")).is_empty() and not Story.bound_station(world,str(candidate.historicalId),str(candidate.get("stationInstanceId",""))).is_empty():problem="该线路站体目标已经建设。";_right();return
+	_execute("建设%s" % str(candidate.name),func(state:Dictionary):
+		candidate.id="station_%d" % Time.get_ticks_usec()
+		var instance_id:=str(candidate.get("stationInstanceId",""));candidate.stationInstanceId=instance_id if not instance_id.is_empty() else candidate.id
+		var complex_id:=str(candidate.get("stationComplexId",""))
+		if not complex_id.is_empty():
+			if not state.get("stationComplexes",[]).any(func(item:Dictionary):return str(item.get("id",""))==complex_id):state.stationComplexes.append({"id":complex_id,"name":str(candidate.name),"locationPrecision":"station_area_approximation","structureStatus":"not_surveyed"})
+		state.stations.append(candidate);TrackNetwork.ensure_station_nodes(state))
+	_play_feedback("station")
 	_trigger_beat("build_station",[str(candidate.get("historicalId",""))])
-	_tool("select");selected_kind="station";selected_id=str(candidate.id);show_left=true;show_right=false;_refresh();_save()
+	# Keep the station tool active so the next target can be placed immediately.
+	map_view.draft_station={};map_view.tool="station";tool="station"
+	selected_kind="";selected_id="";map_view.selected_id="";map_view.selected_type=""
+	show_left=true;show_right=false;_refresh()
 
 func _execute(title:String,mutation:Callable) -> void:
 	if str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():problem="当前已到资料边界，后续故事与自由创作尚未解锁；已确认路网保持不变。";_instruction();_right();return
-	var fields:Array=["stations","trackNodes","trackEdges","trackLinks","routes"]
+	var fields:Array=["stations","stationComplexes","transferConnections","serviceRanges","trackNodes","trackEdges","trackLinks","routes"]
 	if title in ["采用历史修订方案","确认区间走向"]:fields=["storyPlan"]
 	elif title=="确认线路重组":fields=["storyPlan","routes"]
 	elif title=="修改站名":fields=["stations"]
 	elif title=="添加建设阶段":fields=["planningPhases","currentPlanningPhaseId"]
-	elif title=="辅助完成重复建设":fields=["stations","trackNodes","trackEdges","storyPlan"]
+	elif title=="辅助完成重复建设":fields=["stations","stationComplexes","transferConnections","trackNodes","trackEdges","storyPlan"]
 	if not history.execute(title,mutation,fields):return
-	evaluation={};problem="";rules.world=world;_mark_dirty();_refresh();_save(true)
+	evaluation={};problem="";rules.world=world;_mark_dirty();_refresh()
 
 func _select(kind:String,id:String) -> void:
 	selected_kind=kind;selected_id=id;evaluation={};show_right=true
@@ -742,7 +1368,7 @@ func _undo(redo:bool) -> void:
 	if redo:history.redo()
 	else:history.undo()
 	if selected_kind=="station" and WorldData.find_station(world,selected_id).is_empty():selected_id="";selected_kind=""
-	_mark_dirty();_refresh();_save()
+	_mark_dirty();_refresh()
 
 func _check() -> void:
 	_tool("select")
@@ -750,10 +1376,39 @@ func _check() -> void:
 	if _narrow():show_left=false
 	_right();_layout()
 
+func _confirm_active_task() -> void:
+	var selected_task:=_active_task_id()
+	if selected_task.is_empty():return
+	var result:=Story.evaluate(world,selected_task)
+	if not bool(result.get("complete",false)):
+		var details:Array[String]=[]
+		for issue in result.get("issues",[]):details.append(str(issue.get("text","")))
+		_message("本项建设还不能确认","\n".join(details.slice(0,8)) if not details.is_empty() else "请先完成这条线路的目标站、站序和相邻轨道。")
+		return
+	var chapter:=Story.chapter(world)
+	var group_name:=selected_task
+	for index in range(Story.groups(world,true).size()):
+		var group:Dictionary=Story.groups(world,true)[index]
+		if Story.task_id(chapter,group,index)==selected_task:group_name=str(group.get("name",group.get("historicalLineId",selected_task)));break
+	var expected_revision:=int(result.get("revision",-1))
+	_confirm("确认建设任务 · "+group_name,"只确认这项线路建设及其本期范围，不会确认同一章节里的其他线路、换乘或历史事件。确认后该任务成为当前历史记录。",func():
+		var committed:=Story.confirm_task(world,selected_task,expected_revision,result)
+		if not bool(committed.get("ok",false)):
+			_message("建设任务未确认",str(committed.get("error","请重新检查当前任务。")))
+			_refresh()
+			return
+		_play_feedback("track")
+		_mark_dirty();evaluation={};show_left=true;show_right=false;_refresh();_locate_chapter())
+
 func _commit_chapter() -> void:
+	var chapter_groups:=Story.groups(world,true)
+	if chapter_groups.size()>1 and not _active_task_id().is_empty():
+		_confirm_active_task()
+		return
 	var teaching:=Tutorial.active(world)
-	var result:=Story.commit_chapter(world,int(evaluation.get("revision",-1)))
+	var result:=Story.commit_chapter(world,int(evaluation.get("revision",-1)),evaluation)
 	if not bool(result.get("ok",false)):problem=str(result.get("error","无法确认"));_check();return
+	_play_feedback("chapter")
 	if teaching:
 		world.storyState.tutorialEnabled=false;world.storyState.tutorialStatus="completed";world.storyState.learnedTools=true
 		if Prefs.save_onboarding_completed(true)!=OK:_message("教学设置未保存","本局教程已完成；跨城市的学习记录写入失败，可在设置中重试。")
@@ -768,8 +1423,28 @@ func _locate_issue(issue:Dictionary) -> void:
 	if ll.is_empty():ll=WorldData.find_station(world,str(issue.get("objectId",""))).get("latlng",[])
 	if not ll.is_empty():map_view.center_on(ll,16)
 
+func _repair_legacy_station_binding(issue:Dictionary) -> void:
+	var request:Dictionary=issue.get("stationBindingRepair",{})
+	if request.is_empty():return
+	var expected_revision:=int(request.get("expectedRevision",-1))
+	var preview:=Story.prepare_legacy_station_body_repair(world,request,expected_revision)
+	if not bool(preview.get("ok",false)):_message("无法安全修复",str(preview.get("error","请重新检查本章。")));return
+	var repair:Dictionary=preview.repair
+	var explanation:="将保留已经接好的全部轨道和「%s」站位，把它绑定为%s的本期目标；移除同位置、没有接轨的重复站体。修复会记为一步建设操作，可以撤销。" % [str(repair.get("stationName","车站")),str(repair.get("lineName","本期线路"))]
+	_confirm("修复历史站体关联",explanation,func():
+		if int(world.get("revision",0))!=expected_revision:_check();_message("规划已变化","修复预览已过期，请重新检查。没有修改建设。");return
+		var confirmed:=Story.prepare_legacy_station_body_repair(world,request,expected_revision)
+		if not bool(confirmed.get("ok",false)):_message("没有修改建设",str(confirmed.get("error","请重新检查。")));return
+		var fixed_world:Dictionary=confirmed.world
+		selected_kind="station";selected_id=str(repair.get("connectedStationId",""));map_view.selected_type="station";map_view.selected_id=selected_id
+		_execute("修复历史站体关联",func(state:Dictionary):
+			state.stations=fixed_world.stations.duplicate(true)
+			state.trackNodes=fixed_world.trackNodes.duplicate(true))
+		_check()
+	)
+
 func _locate_chapter() -> void:
-	var targets:Array=Story.blueprint(world).get("stations",[])
+	var targets:Array=Story.blueprint(world,false,_active_task_id()).get("stations",[])
 	if targets.is_empty() or map_area.size.x<100:return
 	var left_width:=left_panel.size.x+32 if left_panel.visible else 32.0
 	var right_width:=right_panel.size.x+32 if right_panel.visible else 32.0
@@ -783,7 +1458,17 @@ func _locate_chapter() -> void:
 
 func _instruction() -> void:
 	if not problem.is_empty():hint.text=problem
-	elif tool=="station":hint.text="站点：点击目标站区，调整后确认。R旋转。"
+	elif tool=="station":
+		var next_target:Dictionary={}
+		for item in Story.targets(world,true,_active_task_id()):
+			if not bool(item.get("built",false)):next_target=item;break
+		hint.text="站点：下一目标「%s」· 点击目标圈预览，调整后确认。R旋转。" % str(next_target.get("name","点击目标站区"))
+	elif tool=="track" and batch_track_mode:
+		var selected_names:Array[String]=[]
+		for id in batch_track_targets:
+			var target:=Story.targets(world,true).filter(func(item:Dictionary):return str(item.id)==id)
+			if not target.is_empty():selected_names.append(str(target[0].name))
+		hint.text="连续复现：%s · 点击下一座相邻目标站；确认会一次提交全部区间。" % (" → ".join(selected_names) if not selected_names.is_empty() else "请选择起始目标站")
 	elif tool=="track":hint.text="轨道：%s → 请选择终点；自由端点待连接。" % _ref_name(map_view.track_start_ref) if not map_view.track_start_ref.is_empty() else "轨道：点击站端或节点选择起点。"
 	else:hint.text="点击选择；拖动空白处平移，滚轮缩放。Esc取消，Ctrl+Z撤销。"
 
@@ -855,32 +1540,46 @@ func _assist() -> void:
 		if revision!=int(world.revision):_message("规划已变化","请重新预览辅助建设。");return
 		_execute("辅助完成重复建设",func(state:Dictionary):
 			for key in ["stations","trackNodes","trackEdges"]:state[key]=result.state[key]
+			state.storyPlan["pathChoices"]=result.state.get("storyPlan",{}).get("pathChoices",{}).duplicate(true)
 			state.storyPlan["assisted"]=true)
-		_tool("select");show_left=true;show_right=false;_refresh();_save(),func():map_view.assisted_preview={};map_view.requested_redraw())
+		_tool("select");show_left=true;show_right=false;_refresh(),func():map_view.assisted_preview={};map_view.requested_redraw())
 
 func _assist_candidate() -> Dictionary:
 	var candidate:=world.duplicate(true);var helper:=Rules.new();helper.world=candidate;helper.active_city_id=str(world.cityId);helper.map_view=map_view
 	for target in Story.targets(candidate,true):
 		if bool(target.built):
-			if bool(target.get("historicalNameRequired",false)):Story.bound_station(candidate,str(target.id)).name=target.name
+			if bool(target.get("historicalNameRequired",false)):Story.bound_station(candidate,str(target.historicalId),str(target.stationInstanceId),str(target.get("historicalLineId", ""))).name=target.name
 			continue
-		var station:={"id":"assist_%s" % str(target.id),"name":str(target.name),"historicalId":str(target.id),"latlng":target.latlng.duplicate(),"heading":map_view.blueprint_heading_for(str(target.id)),"lengthM":118.788,"widthM":20.0,"depthM":-15.0,"vehicleId":"B-6","existing":false,"routeIds":[]}
+		var station:={"id":"assist_%s" % str(target.id),"stationInstanceId":str(target.stationInstanceId),"stationComplexId":str(target.stationComplexId),"stationLineId":str(target.historicalLineId),"stationLineName":str(target.get("historicalLineName",target.historicalLineId)),"name":str(target.name),"historicalId":str(target.historicalId),"latlng":target.latlng.duplicate(),"heading":float(target.referenceHeading) if float(target.referenceHeading)>=0 else map_view.blueprint_heading_for(str(target.id)),"lengthM":118.788,"widthM":20.0,"depthM":-15.0,"vehicleId":"B-6","existing":false,"routeIds":[]}
 		_apply_profile(station,Story.profile(candidate,str(target.id)))
 		if helper._station_overlaps_in(station,candidate.stations):return {"issue":"%s 与现有站体冲突，请手动调整。" % str(station.name)}
-		candidate.stations.append(station);TrackNetwork.ensure_station_nodes(candidate)
+		candidate.stations.append(station)
+		var complex_id:=str(target.stationComplexId)
+		if not candidate.get("stationComplexes",[]).any(func(item:Dictionary):return str(item.get("id",""))==complex_id):candidate.stationComplexes.append({"id":complex_id,"name":str(target.name),"locationPrecision":"station_area_approximation","structureStatus":"not_surveyed"})
+		TrackNetwork.ensure_station_nodes(candidate)
 	var construction_groups:Array=Story.groups(candidate,true)
 	for connection in Story.chapter(candidate).get("requiredConnections",[]):construction_groups.append({"stationIds":[connection.fromId,connection.toId]})
+	var construction_lat:=float(WorldData.city(str(world.cityId)).center[0])
+	TrackNetwork.ensure_station_nodes(candidate)
+	var path_index:=TrackNetwork.build_path_index(candidate,construction_lat)
 	for group in construction_groups:
 		var ids:Array=group.get("stationIds",[]);var prior_arrival:=""
 		for index in range(ids.size()-1):
-			var a:=Story.bound_station(candidate,str(ids[index]));var b:=Story.bound_station(candidate,str(ids[index+1]))
-			var options:=TrackNetwork.station_path_options(str(a.id),str(b.id),candidate,float(WorldData.city(str(world.cityId)).center[0]),4)
+			var a_id:=str(ids[index]);var b_id:=str(ids[index+1]);var a_instance:=Story.station_instance_id(group,a_id);var b_instance:=Story.station_instance_id(group,b_id)
+			var a:=Story.bound_station(candidate,a_id,a_instance,str(group.get("historicalLineId", "")));var b:=Story.bound_station(candidate,b_id,b_instance,str(group.get("historicalLineId", "")))
 			var reusable:Dictionary={}
-			for option in options:
-				if option.get("edges",[]).is_empty():continue
-				if not prior_arrival.is_empty() and str(option.edges[0].get("fromNodeId",""))==prior_arrival:continue
-				if option.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):continue
-				reusable=option;break
+			var primary:=TrackNetwork.shortest_station_path_indexed(str(a.id),str(b.id),candidate,path_index,construction_lat)
+			if bool(primary.get("valid",false)) and not primary.get("edges",[]).is_empty() and (prior_arrival.is_empty() or str(primary.edges[0].get("fromNodeId",""))!=prior_arrival) and not primary.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):
+				reusable=primary
+			else:
+				# Search alternate branches only when the cheapest path would use a
+				# station platform or force an immediate same-end reversal.
+				var options:=TrackNetwork.station_path_options_indexed(str(a.id),str(b.id),candidate,path_index,construction_lat,4)
+				for option in options:
+					if option.get("edges",[]).is_empty():continue
+					if not prior_arrival.is_empty() and str(option.edges[0].get("fromNodeId",""))==prior_arrival:continue
+					if option.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):continue
+					reusable=option;break
 			if not reusable.is_empty():prior_arrival=str(reusable.edges[-1].get("toNodeId",""));continue
 			var ends:=_facing(a,b)
 			if not prior_arrival.is_empty():ends[0]="end" if prior_arrival==TrackNetwork.station_node_id(a,"start") else "start"
@@ -889,15 +1588,49 @@ func _assist_candidate() -> Dictionary:
 			if index+2<ids.size():
 				var next_station:=Story.bound_station(candidate,str(ids[index+2]))
 				if not next_station.is_empty():
-					var onward:=TrackNetwork.shortest_station_path(str(b.id),str(next_station.id),candidate,float(WorldData.city(str(world.cityId)).center[0]))
+					var onward:=TrackNetwork.shortest_station_path_indexed(str(b.id),str(next_station.id),candidate,path_index,construction_lat)
 					if bool(onward.get("valid",false)) and not onward.get("edges",[]).is_empty():
 						ends[1]="end" if str(onward.edges[0].fromNodeId)==TrackNetwork.station_node_id(b,"start") else "start"
 			var start:={"nodeId":TrackNetwork.station_node_id(a,str(ends[0])),"stationId":a.id,"side":str(ends[0]),"latlng":WorldData.station_endpoint(a,str(ends[0])),"depthM":a.get("depthM",-15)}
 			var finish:={"nodeId":TrackNetwork.station_node_id(b,str(ends[1])),"stationId":b.id,"side":str(ends[1]),"latlng":WorldData.station_endpoint(b,str(ends[1])),"depthM":b.get("depthM",-15)}
-			var alignment:=ReferenceAlignment.between(str(a.get("historicalId","")),str(b.get("historicalId","")))
-			var preview:=ReferenceAlignment.preview(alignment,start,finish,candidate,float(WorldData.city(str(world.cityId)).center[0])) if not alignment.is_empty() else helper.track_preview(start,finish,[],true)
+			var alignment:=ReferenceAlignment.between(str(group.get("stationReferenceIds",{}).get(a_id,a_id)),str(group.get("stationReferenceIds",{}).get(b_id,b_id)))
+			var preview:=ReferenceAlignment.preview(alignment,start,finish,candidate,construction_lat) if not alignment.is_empty() else helper.track_preview(start,finish,[],true)
 			if not str(preview.get("issue","")).is_empty():return {"issue":"%s—%s：%s；请手工处理。" % [str(a.name),str(b.name),str(preview.issue)]}
-			var edge:Dictionary=preview.edge;edge.id="assist_edge_%d_%d" % [index,Time.get_ticks_usec()];candidate.trackEdges.append(edge);prior_arrival=str(finish.nodeId)
+			var edge:Dictionary=preview.edge;edge.id="assist_edge_%d_%d" % [index,Time.get_ticks_usec()];candidate.trackEdges.append(edge);TrackNetwork.add_path_index_edge(path_index,edge,candidate,construction_lat);prior_arrival=str(finish.nodeId)
+	# The preview has already selected a continuous, non-reversing path for each
+	# segment. Persist those choices in the draft so the evaluator and the
+	# eventual commit inspect the same physical branch instead of independently
+	# falling back to a shorter route through the opposite platform end.
+	var assisted_choices:Dictionary={}
+	var assisted_groups:Array=Story.groups(candidate,true)
+	for group_index in range(assisted_groups.size()):
+		var assisted_group:Dictionary=assisted_groups[group_index]
+		var station_ids:Array=assisted_group.get("stationIds",[])
+		var prior_end:=""
+		for segment_index in range(station_ids.size()-1):
+			var from_station:=Story.bound_station(candidate,str(station_ids[segment_index]),Story.station_instance_id(assisted_group,str(station_ids[segment_index])),str(assisted_group.get("historicalLineId","")))
+			var to_station:=Story.bound_station(candidate,str(station_ids[segment_index+1]),Story.station_instance_id(assisted_group,str(station_ids[segment_index+1])),str(assisted_group.get("historicalLineId","")))
+			if from_station.is_empty() or to_station.is_empty():continue
+			var primary:=TrackNetwork.shortest_station_path_indexed(str(from_station.id),str(to_station.id),candidate,path_index,construction_lat)
+			if bool(primary.get("valid",false)) and not primary.get("edges",[]).is_empty() and not primary.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))) and (prior_end.is_empty() or str(primary.edges[0].get("fromNodeId",""))!=prior_end):
+				prior_end=str(primary.edges[-1].get("toNodeId",""))
+				continue
+			var options:=TrackNetwork.station_path_options_indexed(str(from_station.id),str(to_station.id),candidate,path_index,construction_lat,4)
+			var selected_index:=-1
+			for option_index in range(options.size()):
+				var option:Dictionary=options[option_index]
+				var path_edges:Array=option.get("edges",[])
+				if path_edges.is_empty() or path_edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):continue
+				if not prior_end.is_empty() and str(path_edges[0].get("fromNodeId",""))==prior_end:continue
+				selected_index=option_index
+				break
+			if selected_index<0:
+				if options.is_empty():continue
+				selected_index=0
+			var selected_path:Dictionary=options[selected_index]
+			assisted_choices["%d:%d" % [group_index,segment_index]]=selected_index
+			if not selected_path.get("edges",[]).is_empty():prior_end=str(selected_path.edges[-1].get("toNodeId",""))
+	candidate.storyPlan["pathChoices"]=assisted_choices
 	return {"state":candidate,"issue":""}
 
 func _workshop_line() -> void:
@@ -984,7 +1717,7 @@ func _saves() -> void:
 			total+=int(row.bytes)
 			if not search.text.is_empty() and not (str(row.title)+str(row.city)+str(row.kind)).to_lower().contains(search.text.to_lower()):continue
 			_save_row(row,list,d)
-		summary.text="共%d份 · %.1f MB；自动历史每局最多3份。原始迁移备份单独归档。" % [entries.size(),float(total)/1048576.0]
+		summary.text="共%d份 · %.1f MB；新自动保存覆盖单一进度槽，旧版自动历史可逐份删除。" % [entries.size(),float(total)/1048576.0]
 	search.text_changed.connect(refresh);refresh.call()
 	var row:=HFlowContainer.new();body.add_child(row)
 	if not world.is_empty():
@@ -1015,7 +1748,7 @@ func _save_row(entry:Dictionary,list:VBoxContainer,dialog:Control) -> void:
 			var result:=SaveManager.overwrite_manual(str(entry.path),world)
 			if bool(result.ok):dialog.queue_free();_saves()
 			else:_message("覆盖失败",str(result.error)))))
-	if str(entry.kind) in ["自动进度","自动历史","手动存档"]:
+	if str(entry.kind) in ["自动进度","自动历史","旧版自动历史原件","手动存档"]:
 		var deletion:=button("删除",_delete_save.bind(entry,dialog));buttons.add_child(deletion)
 		if str(entry.kind)=="自动进度" and str(entry.gameId)==str(world.get("gameId","")):
 			deletion.disabled=true;content.add_child(label("正在使用：请先返回主菜单，再删除此自动进度。",15))
@@ -1027,6 +1760,7 @@ func _delete_save(entry:Dictionary,dialog:Control) -> void:
 		var result:Dictionary
 		if str(entry.kind)=="自动进度":result=SaveManager.delete_game(str(entry.gameId),str(world.get("gameId","")))
 		elif str(entry.kind)=="自动历史":result=SaveManager.delete_auto_history(str(entry.gameId),str(entry.path).get_file())
+		elif str(entry.kind)=="旧版自动历史原件":result=SaveManager.delete_legacy_auto_history(str(entry.path))
 		else:result=SaveManager.delete_manual(str(entry.path))
 		if bool(result.ok):dialog.queue_free();_saves()
 		else:_message("删除失败",str(result.error)))
@@ -1057,13 +1791,17 @@ func _settings() -> void:
 	var trains:=CheckButton.new();trains.text="显示自动演示列车";trains.button_pressed=display_enabled;body.add_child(trains)
 	trains.toggled.connect(func(value:bool):display_enabled=value;map_view.show_train_display=value;map_view.requested_train_redraw())
 	body.add_child(button("暂停／继续展示",func():display_paused=not display_paused))
+	body.add_child(label("建设反馈音效",18,true))
+	var audio_toggle:=CheckButton.new();audio_toggle.text="播放建站、接轨和历史节点提示音";audio_toggle.button_pressed=feedback_enabled;body.add_child(audio_toggle)
+	audio_toggle.toggled.connect(func(value:bool):
+		feedback_enabled=value;Prefs.save_feedback_enabled(value)
+		if value:_play_feedback("track"))
+	var volume:=HSlider.new();volume.min_value=0;volume.max_value=1;volume.step=0.05;volume.value=feedback_volume;volume.custom_minimum_size.y=32;body.add_child(volume)
+	var volume_label:=label("音量 %.0f%%" % roundi(feedback_volume*100),15);body.add_child(volume_label)
+	volume.value_changed.connect(func(value:float):feedback_volume=value;Prefs.save_feedback_volume(value);volume_label.text="音量 %.0f%%" % roundi(value*100))
 	var automatic:=CheckButton.new();automatic.text="定时自动保存未保存修改";automatic.button_pressed=auto_enabled;body.add_child(automatic)
 	automatic.toggled.connect(func(value:bool):auto_enabled=value;Prefs.save_timed_autosave_enabled(value))
-	var minutes:=OptionButton.new();minutes.custom_minimum_size.y=44*ui_scale
-	for value in [2,5,10,15]:minutes.add_item("每%d分钟" % value)
-	minutes.select([2,5,10,15].find(int(auto_interval_seconds/60)));body.add_child(minutes)
-	minutes.item_selected.connect(func(index:int):auto_interval_seconds=[2,5,10,15][index]*60;Prefs.save_timed_autosave_interval(int(auto_interval_seconds/60)))
-	body.add_child(label("确认建设仍会立即自动保存；每局保留最近3份有效自动历史。关闭定时保存不会关闭建设确认时的进度保护。",15))
+	body.add_child(label("自动保存每5分钟检查一次；有修改时覆盖当前进度槽。手动保存和离开游戏时也会保存。",15))
 	body.add_child(label("Ctrl+Z撤销；Ctrl+Shift+Z / Ctrl+Y重做；R旋转；Esc先取消本步，再退出工具。",15))
 	_layout()
 
@@ -1092,7 +1830,22 @@ func _unhandled_key_input(event:InputEvent) -> void:
 	elif (event.ctrl_pressed or event.meta_pressed) and event.keycode==KEY_Y:_undo(true)
 	elif event.keycode==KEY_R:
 		if not map_view.draft_station.is_empty():map_view.draft_station.heading=fposmod(float(map_view.draft_station.heading)+15,360);_station_changed();_right()
-		elif selected_kind=="station":
+	elif selected_kind=="blueprint":
+		var target:Dictionary={}
+		for candidate in Story.targets(world,true):
+			if str(candidate.get("id",""))==selected_id:target=candidate;break
+		if target.is_empty():return
+		right.add_child(label("历史目标站区",24,true));right.add_child(label("%s · %s" % [str(target.get("historicalLineId","本期线路")),str(target.get("name","目标站"))],20,true))
+		if bool(target.get("built",false)):
+			right.add_child(label("已建设；该目标不会重复放置。",16))
+			var existing:=Story.bound_station(world,str(target.get("id","")),str(target.get("stationInstanceId","")))
+			if not existing.is_empty():right.add_child(button("查看已建站体",_select.bind("station",str(existing.id))))
+		elif not Story.plan_is_final(world):
+			right.add_child(label("当前显示的是未实施历史草案，尚不能建设。",16,true));right.add_child(button("对比并采用下一版方案",_revise))
+		else:
+			right.add_child(label("可建设 · 参考站区容差 %.0f 米；该容差不代表资料测量精度。" % float(target.get("toleranceM",100)),16))
+			right.add_child(button("按参考位置与朝向放置",func():_tool("station");_click(target.get("latlng",[]),"blueprint",str(target.get("id","")),"")))
+	elif selected_kind=="station":
 			var candidate:=WorldData.find_station(world,selected_id).duplicate(true);candidate.heading=fposmod(float(candidate.get("heading",90))+15,360);_apply_station(candidate)
 	elif event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN] and tool in ["station","track"]:
 		map_view.current_depth_m=clampf(map_view.current_depth_m+(5 if event.keycode==KEY_PAGEUP else -5),-60,-5)
@@ -1128,9 +1881,10 @@ func _show_beat(beat:Dictionary) -> void:
 
 func _trigger_beat(event:String,ids:Array) -> void:
 	if is_instance_valid(beat_panel):return
-	# Basic instruction retains the single visual focus; stories remain readable in sources.
-	if Tutorial.active(world):return
 	var beat:=Beats.eligible(world,event,ids)
+	if Tutorial.active(world) and not bool(world.get("storyState",{}).get("learnedTools",false)):
+		if not beat.is_empty():pending_beat_id=str(beat.get("id",""))
+		return
 	if not beat.is_empty():_show_beat(beat)
 
 func _track_historical_ids(start:Dictionary,finish:Dictionary) -> Array:

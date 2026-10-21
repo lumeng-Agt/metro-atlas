@@ -26,8 +26,10 @@ var route_path_cache: Dictionary = {}
 var presentation_seconds := 0.0
 var show_train_display := true
 var draft_track_points: Array = []
+var draft_track_segments: Array[Dictionary] = []
 var highlight_path_points: Array = []
 var assisted_preview: Dictionary = {}
+var chapter_baseline_overlay: Dictionary = {}
 var route_path_cache_revision := -1
 var link_geometry_cache: Dictionary = {}
 var station_local_cache: Dictionary = {}
@@ -43,6 +45,9 @@ var selected_id := ""
 var selected_type := ""
 var active_route_id := ""
 var campaign_blueprint: Dictionary = {}
+var blueprint_choice_candidates: Array[Dictionary] = []
+var station_choice_candidates: Array[Dictionary] = []
+var endpoint_choice_candidates: Array[Dictionary] = []
 var story_markers: Array = []
 var _basemap_labels: Array[Dictionary] = []
 var show_road_names := true
@@ -76,7 +81,6 @@ var track_control_latlng: Array = []
 var line_draft_points: Array[Array] = []
 var track_preview_conflict := ""
 var track_preview_notice := ""
-var endpoint_choice_candidates: Array[Dictionary] = []
 var station_preview_edges: Dictionary = {}
 var station_preview_issue := ""
 var current_depth_m := -15.0
@@ -622,14 +626,30 @@ func _draw_campaign_targets() -> void:
 		if latlng.size() < 2: continue
 		var point := _to_screen(latlng)
 		if not Rect2(Vector2(-60, -60), size + Vector2(120, 120)).has_point(point): continue
-		var radius := maxf(13.0, float(target.get("toleranceM", 150.0)) / maxf(0.1, Geo.meters_per_pixel(float(latlng[0]), current_zoom)))
+		var radius := _blueprint_target_radius(target)
 		var color := Color("#278568") if bool(target.get("built", false)) else Color("#b18032")
 		draw_circle(point, radius, Color(color.r, color.g, color.b, 0.055))
 		draw_arc(point, radius, 0.0, TAU, 48, Color(color.r, color.g, color.b, 0.62), 1.6, true)
 		draw_circle(point, 4.5, Color("#fffdf7"))
 		draw_circle(point, 3.0, color)
-		if current_zoom >= 14 and not bool(target.get("built",false)):
-			_draw_label(point + Vector2(9, 9), "目标站区 · %s" % str(target.get("name", "")), color.darkened(0.15), get_theme_default_font(), 15, false)
+		var separate_instance:=str(target.get("stationInstanceId",""))!=str(target.get("stationComplexId",""))
+		if current_zoom >= 14 and (not bool(target.get("built",false)) or separate_instance):
+			var title:="目标站区 · %s" % str(target.get("name", ""))
+			if separate_instance:title="%s线站体 · %s" % [str(target.get("historicalLineName",target.get("historicalLineId","本线"))),str(target.get("name","换乘站"))]
+			var offset_y:=9.0
+			if separate_instance:
+				var siblings:Array=[];var complex_id:=str(target.get("stationComplexId",""))
+				for sibling in campaign_blueprint.get("stations",[]):
+					if str(sibling.get("stationComplexId",""))==complex_id:
+						var sibling_id:=str(sibling.get("stationInstanceId",""))
+						if not siblings.has(sibling_id):siblings.append(sibling_id)
+				siblings.sort();offset_y+=float(siblings.find(str(target.get("stationInstanceId",""))))*27.0
+			_draw_label(point + Vector2(9, offset_y), title, color.darkened(0.15), get_theme_default_font(), 15, false)
+
+func _blueprint_target_radius(target: Dictionary) -> float:
+	var latlng: Array = target.get("latlng", [])
+	if latlng.size() < 2:return 20.0
+	return maxf(20.0, float(target.get("toleranceM", 150.0)) / maxf(0.1, Geo.meters_per_pixel(float(latlng[0]), current_zoom)))
 
 func _draw_local_basemap() -> void:
 	if base_map_features.is_empty() and _base_map_thread_busy:
@@ -918,7 +938,20 @@ func _draw_stations() -> void:
 			draw_circle(pos,4.0,Color.WHITE)
 			draw_arc(pos,10.0,0,TAU,24,marker_color,2,true)
 		if (current_zoom >= 14 or selected or station.get("existing", false) == false):
-			_draw_label(pos + Vector2(10, -9), str(station.get("name", "车站")), Color("#1b2d3b"), get_theme_default_font(), 14 if selected else 12, selected, selected)
+			var siblings:Array=[];var complex_id:=str(station.get("stationComplexId",""));var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
+			if not complex_id.is_empty():
+				for sibling in world.get("stations",[]):
+					if str(sibling.get("stationComplexId",""))!=complex_id:continue
+					var sibling_instance:=str(sibling.get("stationInstanceId",sibling.get("id","")))
+					if sibling_instance!=instance_id and not siblings.has(sibling_instance):siblings.append(sibling_instance)
+			if siblings.size()>0 and current_zoom>=14:
+				var ordered_instances:Array=[instance_id];ordered_instances.append_array(siblings);ordered_instances.sort()
+				var body_index:=ordered_instances.find(instance_id)
+				var body_offset:=Vector2(14.0,-19.0+float(body_index)*22.0)
+				draw_line(pos+Vector2(4,0),pos+body_offset+Vector2(1,3),Color("#314b5a",0.72),1.2,true)
+				_draw_label(pos+body_offset,"%s线 · %s站体" % [_station_line_label(station),str(station.get("name","车站"))],Color("#1b2d3b"),get_theme_default_font(),13,selected,selected)
+			else:
+				_draw_label(pos + Vector2(10, -9), str(station.get("name", "车站")), Color("#1b2d3b"), get_theme_default_font(), 14 if selected else 12, selected, selected)
 		if bool(station.get("plannedTransfer", false)) and (selected or current_zoom >= 14):
 			_draw_label(pos + Vector2(11, 13), "拟换乘", Color("#76561c"), get_theme_default_font(), 15, false)
 		if tool in ["connect", "track", "track_curve"] or selected:
@@ -933,6 +966,18 @@ func _draw_stations() -> void:
 			if show_endpoint_names:
 				_draw_label(start_pos + Vector2(8, -6), "A端", Color("#145c46"), get_theme_default_font(), 12, true)
 				_draw_label(end_pos + Vector2(8, -6), "B端", Color("#8c4d17"), get_theme_default_font(), 12, true)
+
+func _station_line_label(station:Dictionary) -> String:
+	var saved_name:=str(station.get("stationLineName",""))
+	if not saved_name.is_empty():return saved_name
+	var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
+	for target in campaign_blueprint.get("stations",[]):
+		if str(target.get("stationInstanceId",""))==instance_id:return str(target.get("historicalLineName",target.get("historicalLineId","线路")))
+	var line_id:=str(station.get("stationLineId",""))
+	for route_variant in route_cache_by_id.values():
+		var route:Dictionary=route_variant
+		if str(route.get("historicalLineId",""))==line_id:return str(route.get("name",line_id))
+	return line_id if not line_id.is_empty() else "线路未标记"
 	if tool in ["track", "track_curve"]:
 		for node in world.get("trackNodes", []):
 			var point := _to_screen(node.get("latlng", [0, 0]))
@@ -940,6 +985,12 @@ func _draw_stations() -> void:
 			draw_circle(point, 7.0, Color("#ffffff")); draw_circle(point, 4.0, Color("#2589ae"))
 
 func _draw_draft() -> void:
+	if not chapter_baseline_overlay.is_empty():
+		for edge in TrackNetwork.all_physical_edges(chapter_baseline_overlay):
+			var old_points := PackedVector2Array()
+			for ll in TrackNetwork.edge_points(edge, chapter_baseline_overlay, geometry_ref_lat, 24): old_points.append(_to_screen(ll))
+			if old_points.size() > 1:
+				for index in range(old_points.size() - 1): draw_dashed_line(old_points[index], old_points[index + 1], Color(0.24, 0.31, 0.38, 0.78), 3.0, 7.0, true)
 	if not assisted_preview.is_empty():
 		for station in assisted_preview.get("stations",[]):
 			if not WorldData.find_station(world,str(station.id)).is_empty():continue
@@ -988,6 +1039,13 @@ func _draw_draft() -> void:
 		draw_polyline(points,Color("#c14b42") if not track_preview_conflict.is_empty() else Color("#27869d"),4.0,true)
 		draw_circle(points[0],7.0,Color("#d2a24a"));draw_circle(points[-1],7.0,Color("#27869d"))
 		if not track_preview_conflict.is_empty():_draw_map_hint(track_preview_conflict)
+	for segment in draft_track_segments:
+		var batch_points := PackedVector2Array()
+		for ll in segment.get("points", []): batch_points.append(_to_screen(ll))
+		if batch_points.size() > 1:
+			var batch_color := Color("#c14b42") if not str(segment.get("issue", "")).is_empty() else Color("#d09b39") if bool(segment.get("reused", false)) else Color("#27869d")
+			draw_polyline(batch_points, Color(1, 1, 1, 0.92), 9.0, true)
+			draw_polyline(batch_points, batch_color, 5.0, true)
 	if tool in ["line", "repair_route_segment"] and not _line_draft_stops().is_empty():
 		var line_points := PackedVector2Array()
 		for point in line_draft_points: line_points.append(_to_screen(point))
@@ -1185,6 +1243,20 @@ func _pick(point: Vector2) -> Dictionary:
 	if tool=="select":
 		for marker in story_markers:
 			if point.distance_to(_to_screen(marker.latlng)+Vector2(24,24))<=16*ui_scale:return {"type":"story_beat","id":str(marker.id),"latlng":marker.latlng,"side":""}
+	endpoint_choice_candidates.clear();blueprint_choice_candidates.clear();station_choice_candidates.clear()
+	# Keep the visible target ring and its click target identical. A ring click
+	# selects the historical target; the construction preview still snaps to the
+	# exact blueprint center, so this does not enlarge the historical tolerance.
+	if tool in ["select", "station"] and bool(campaign_blueprint.get("visible", false)):
+		for target in campaign_blueprint.get("stations", []):
+			if bool(target.get("built", false)):continue
+			# A tiny sub-pixel epsilon absorbs projection rounding at the visible rim.
+			# It is far below the 20 px minimum hit target and does not change map tolerance.
+			if point.distance_to(_to_screen(target.get("latlng", []))) <= _blueprint_target_radius(target) + 0.01:blueprint_choice_candidates.append(target.duplicate(true))
+		if blueprint_choice_candidates.size()==1:
+			var target:Dictionary=blueprint_choice_candidates[0]
+			return {"type":"blueprint","id":str(target.get("id","")),"side":"","latlng":target.get("latlng",[])}
+		if blueprint_choice_candidates.size()>1:return {"type":"blueprint_choice","id":"","side":""}
 	endpoint_choice_candidates.clear()
 	var snap_disabled := tool in ["track", "track_curve"] and Input.is_key_pressed(KEY_ALT)
 	if tool in ["connect", "track", "track_curve"] and not snap_disabled:
@@ -1221,7 +1293,9 @@ func _pick(point: Vector2) -> Dictionary:
 		var longitudinal_limit := float(station.get("lengthM", 118.8)) * 0.5 / _camera_mpp + 10.0
 		var lateral_limit := float(station.get("widthM", 20.0)) * 0.5 / _camera_mpp + 10.0
 		if absf(local.dot(along)) <= longitudinal_limit and absf(local.dot(across)) <= lateral_limit:
-			return {"type": "station", "id": str(station.get("id", "")), "side": ""}
+			station_choice_candidates.append({"type":"station","id":str(station.get("id","")),"side":"","screen":center})
+	if station_choice_candidates.size()==1:return station_choice_candidates[0]
+	if station_choice_candidates.size()>1:return {"type":"station_choice","id":"","side":""}
 	if tool == "curve":
 		var ref_lat := float(city_data.get("center", [31.23,121.47])[0])
 		var best_handle: Dictionary = {}
@@ -1279,9 +1353,6 @@ func _pick(point: Vector2) -> Dictionary:
 					nearest_link = {"type": edge_type, "id": str(link.get("id", "")), "side": "", "t": snapped_t, "latlng": _screen_to_geo(closest)}
 				previous = current
 		if not nearest_link.is_empty(): return nearest_link
-	if tool in ["select", "station"] and bool(campaign_blueprint.get("visible",false)):
-		for target in campaign_blueprint.get("stations",[]):
-			if point.distance_to(_to_screen(target.latlng)) <= 20.0:return {"type":"blueprint", "id":str(target.id), "latlng":target.latlng, "side":""}
 	return {}
 
 func _find_link(link_id: String) -> Dictionary:

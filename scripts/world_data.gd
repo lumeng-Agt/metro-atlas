@@ -1,7 +1,7 @@
 class_name WorldData
 extends RefCounted
 
-const SAVE_VERSION := 20
+const SAVE_VERSION := 25
 const CampaignSystemScript = preload("res://scripts/campaign_system.gd")
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
@@ -16,6 +16,8 @@ static func load_assets() -> void:
 		_dataset = JSON.parse_string(city_file.get_as_text())
 		for issue in CampaignSystemScript.validate_catalog(_dataset.get("cities", [])):
 			push_error("Campaign catalog validation: %s" % str(issue))
+		for issue in CampaignSystemScript.validate_network_baseline(_dataset.get("cities", [])):
+			push_error("Network baseline validation: %s" % str(issue))
 	var vehicle_file := FileAccess.open(VEHICLES_PATH, FileAccess.READ)
 	if vehicle_file:
 		_vehicle_profiles = JSON.parse_string(vehicle_file.get_as_text())
@@ -39,13 +41,16 @@ static func new_world(city_id: String, mode: String = "campaign") -> Dictionary:
 		"cityId": city_id, "cityName": c.get("name", city_id), "mode": "campaign" if mode == "campaign" else "workshop",
 		"title": "%s · 地铁故事" % c.get("name", city_id), "dataVersion": _dataset.get("generatedAt", "unknown"),
 		"referenceDataVersion":ReferenceAlignment.version(),
-		"stations": [], "routes": [], "trackLinks": [], "trackNodes": [], "trackEdges": [], "depots": [],
-		"storyState": {"chapterIndex":0, "stage":"intro", "completedChapterIds":[], "milestones":[], "tutorialEnabled":true, "tutorialStatus":"active", "beatRead":{}, "learnedTools":false, "assistedChapters":[], "catalogVersion":CampaignSystemScript.content_version(), "phase":"history", "freeUnlocked":false},
+		"stations": [], "stationComplexes": [], "transferConnections": [], "serviceRanges": [], "routes": [], "trackLinks": [], "trackNodes": [], "trackEdges": [], "depots": [],
+		"storyState": {"chapterIndex":0, "stage":"intro", "completedChapterIds":[], "milestones":[], "chapterTaskProgress":{}, "confirmedHistoricalEventIds":[], "tutorialEnabled":true, "tutorialStatus":"active", "beatRead":{}, "learnedTools":false, "assistedChapters":[], "catalogVersion":CampaignSystemScript.content_version(), "phase":"history", "freeUnlocked":false},
 		"storyPlan": {"planIndex":0, "pathChoices":{}}, "milestoneBaseline": {},
 		"planningPhases":[{"id":"history_1", "name":"历史复现", "stationIds":[], "edgeIds":[], "routeIds":[]}], "currentPlanningPhaseId":"history_1",
 		"revision":1, "view":{"center":c.get("center", [31.23,121.47]), "zoom":int(c.get("zoom",12))},
 		"history":{"undo":[], "redo":[]}, "source":{"attribution":"© OpenStreetMap contributors", "snapshot":_dataset.get("generatedAt", "unknown")}
 	}
+	if str(state.get("mode",""))=="campaign":
+		state.storyState["chapterIndex"]=CampaignSystemScript.first_chapter_index(city_id)
+		state.storyState["chapterId"]=CampaignSystemScript.first_chapter_id(city_id)
 	return state
 
 static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:
@@ -182,7 +187,8 @@ static func create_station(state: Dictionary, latlng: Array, heading: float, rou
 	elif not route.is_empty(): vehicle_id = str(route.get("vehicleId", "B-6"))
 	var profile := vehicle(vehicle_id)
 	var phase_id := str(state.get("currentPlanningPhaseId", "phase_1"))
-	var station := {"id": "st_%d" % Time.get_ticks_usec(), "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": depth_m, "vehicleId": vehicle_id, "schematic": false, "existing": false, "planningPhaseId":phase_id, "routeIds": [route_id] if not route_id.is_empty() else []}
+	var station_id := "st_%d" % Time.get_ticks_usec()
+	var station := {"id": station_id, "stationInstanceId": station_id, "stationComplexId": "", "name": "新建车站", "latlng": [float(latlng[0]), float(latlng[1])], "heading": heading, "lengthM": float(profile.get("trainLengthM", 118.788)), "widthM": 20.0, "depthM": depth_m, "vehicleId": vehicle_id, "schematic": false, "existing": false, "planningPhaseId":phase_id, "routeIds": [route_id] if not route_id.is_empty() else []}
 	state["stations"].append(station)
 	for phase in state.get("planningPhases", []):
 		if str(phase.get("id", "")) != phase_id: continue

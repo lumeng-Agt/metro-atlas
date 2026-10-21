@@ -5,7 +5,7 @@ signal changed
 
 var world: Dictionary
 var max_steps := 200
-const PLANNING_KEYS := ["stations", "routes", "trackLinks", "trackNodes", "trackEdges", "depots", "fleetMode", "planningPhases", "currentPlanningPhaseId", "storyPlan"]
+const PLANNING_KEYS := ["stations", "stationComplexes", "transferConnections", "serviceRanges", "routes", "trackLinks", "trackNodes", "trackEdges", "depots", "fleetMode", "planningPhases", "currentPlanningPhaseId", "storyPlan"]
 
 func attach(state: Dictionary) -> void:
 	world = state

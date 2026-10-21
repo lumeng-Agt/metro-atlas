@@ -40,10 +40,10 @@ func run():
 	SaveManager._write_atomic(path,content);var loaded:=SaveManager.load_file(path)
 	check(bool(loaded.get("ok",false)),"19格式可经统一入口迁移")
 	if bool(loaded.get("ok",false)):
-		check(int(loaded.world.schemaVersion)==20 and loaded.world.gameId==old.gameId,"迁移保留游戏身份")
+		check(int(loaded.world.schemaVersion)==WorldData.SAVE_VERSION and loaded.world.gameId==old.gameId,"迁移保留游戏身份并升级至当前存档格式")
 		check(loaded.world.stations==old.stations and loaded.world.history==old.history,"迁移不移站不改历史")
 	check(FileAccess.file_exists(SaveManager.root_path().path_join("originals/v19_%s.json" % content.sha256_text())),"19原档按内容独立备份")
-	var bad:=WorldData.new_world("shanghai","campaign");bad.schemaVersion=21
+	var bad:=WorldData.new_world("shanghai","campaign");bad.schemaVersion=WorldData.SAVE_VERSION+1
 	check(not SaveManager.validate(bad).is_empty(),"未知新版本拒绝")
 	var app:=preload("res://scripts/main.gd").new();root.add_child(app);await process_frame
 	app._new_game("shanghai",false);app._begin_chapter();app._tool("track")

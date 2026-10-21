@@ -4,10 +4,10 @@ extends RefCounted
 ## Canonical operational path for a route. Validation, chapter checks and train
 ## rendering consume the same ordered segments from this module.
 
-static func for_route(route: Dictionary, state: Dictionary, ref_lat: float) -> Dictionary:
+static func for_route(route: Dictionary, state: Dictionary, ref_lat: float, path_index: Dictionary = {}) -> Dictionary:
 	var route_id := str(route.get("id", ""))
 	if bool(route.get("networkBased", false)):
-		return _for_network_route(route, state, ref_lat)
+		return _for_network_route(route, state, ref_lat, path_index)
 	var links: Array[Dictionary] = []
 	for raw_link in state.get("trackLinks", []):
 		if raw_link is Dictionary and raw_link.get("routeIds", []).has(route_id):
@@ -47,7 +47,8 @@ static func for_route(route: Dictionary, state: Dictionary, ref_lat: float) -> D
 	var valid := not directions.is_empty() and errors.is_empty()
 	return {"routeId": route_id, "valid": valid, "directions": directions, "errors": errors}
 
-static func _for_network_route(route: Dictionary, state: Dictionary, ref_lat: float) -> Dictionary:
+static func _for_network_route(route: Dictionary, state: Dictionary, ref_lat: float, path_index: Dictionary = {}) -> Dictionary:
+	if path_index.is_empty(): path_index = TrackNetwork.build_path_index(state, ref_lat)
 	var raw_directions: Array = route.get("directions", [])
 	if raw_directions.is_empty():
 		var order: Array = route.get("stationOrder", [])
@@ -63,12 +64,12 @@ static func _for_network_route(route: Dictionary, state: Dictionary, ref_lat: fl
 			continue
 		var locked_paths: Array = raw.get("edgePathsBySegment", [])
 		if locked_paths.is_empty(): locked_paths = raw.get("edgeIdsBySegment", [])
-		var direction := _build_network_direction(str(raw.get("id", "direction_%d" % index)), raw.get("stationIds", []), route, state, ref_lat, locked_paths)
+		var direction := _build_network_direction(str(raw.get("id", "direction_%d" % index)), raw.get("stationIds", []), route, state, ref_lat, locked_paths, path_index)
 		if bool(direction.get("valid", false)): directions.append(direction)
 		else: errors.append_array(direction.get("errors", []))
 	return {"routeId": str(route.get("id", "")), "valid": not directions.is_empty() and errors.is_empty(), "directions": directions, "errors": errors}
 
-static func _build_network_direction(direction_id: String, station_ids: Array, route: Dictionary, state: Dictionary, ref_lat: float, edge_ids_by_segment: Array = []) -> Dictionary:
+static func _build_network_direction(direction_id: String, station_ids: Array, route: Dictionary, state: Dictionary, ref_lat: float, edge_ids_by_segment: Array = [], path_index: Dictionary = {}) -> Dictionary:
 	var errors: Array[String] = []
 	if station_ids.size() < 2:
 		return {"valid": false, "errors": ["运营线路至少需要选择两座车站"]}
@@ -96,7 +97,7 @@ static func _build_network_direction(direction_id: String, station_ids: Array, r
 					locked_directions.append({"id": str(entry.get("id", "")), "forward": bool(entry.get("forward", true))})
 			else:
 				locked_edge_ids = locked_path
-		var path := TrackNetwork.ordered_station_path(from_id, to_id, locked_directions, state, ref_lat) if not locked_directions.is_empty() else TrackNetwork.shortest_station_path(from_id, to_id, state, ref_lat, locked_edge_ids)
+		var path := TrackNetwork.ordered_station_path(from_id, to_id, locked_directions, state, ref_lat, path_index) if not locked_directions.is_empty() else TrackNetwork.shortest_station_path_indexed(from_id, to_id, state, path_index, ref_lat, locked_edge_ids) if not path_index.is_empty() else TrackNetwork.shortest_station_path(from_id, to_id, state, ref_lat, locked_edge_ids)
 		if not bool(path.get("valid", false)):
 			errors.append("%s → %s：%s" % [_station_name(state, from_id), _station_name(state, to_id), path.get("error", "没有连续轨道")])
 			continue

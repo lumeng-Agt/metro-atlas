@@ -1,0 +1,77 @@
+{
+  "version": "0.20.2",
+  "date": "2026-10-18",
+  "device": {
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "resolution": "1600x980",
+    "godot": "4.7.2 Compatibility"
+  },
+  "fixture": {
+    "city": "Shanghai",
+    "stations": 488,
+    "routes": 18,
+    "undoSteps": 200,
+    "scenarioSeconds": 30,
+    "repeatsPerScenario": 3
+  },
+  "rendererScenarios": {
+    "cityOverview": {
+      "averageFps": [36.8, 36.37, 35.63],
+      "p95FrameMs": [29.689, 31.444, 32.972],
+      "maxFrameMs": [43.633, 38.352, 39.938],
+      "firstMapReadyMs": 2693.638,
+      "pressureThresholdPassed": true
+    },
+    "neighborhoodPan": {
+      "averageFps": [42.69, 40.48, 42.26],
+      "p95FrameMs": [31.258, 30.163, 27.305],
+      "maxFrameMs": [57.544, 49.348, 39.766],
+      "pressureThresholdPassed": true
+    },
+    "continuousZoom": {
+      "averageFps": [118.37, 117.31, 118.55],
+      "p95FrameMs": [8.445, 9.313, 8.439],
+      "maxFrameMs": [41.104, 31.96, 26.755],
+      "pressureThresholdPassed": true
+    },
+    "nearbyBuildings": {
+      "averageFps": [60.61, 59.57, 62.82],
+      "p95FrameMs": [18.051, 21.136, 17.286],
+      "maxFrameMs": [25.88, 32.019, 27.051],
+      "pressureThresholdPassed": true
+    }
+  },
+  "saveMs": 94.534,
+  "savePassed100msThreshold": true,
+  "engineStaticMiB": 160.82,
+  "engineMemoryNote": "Godot static memory monitor, not Windows process working set.",
+  "methodTimings": {
+    "environment": "Godot 4.7.2 headless; Shanghai first-chapter fixture (5 stations, 4 physical track sections, 1 route)",
+    "iterationsPerSample": {
+      "two-section preview": 10,
+      "chapter changes": 100,
+      "baseline reconstruction": 20
+    },
+    "observedAverageMsAcrossThreeRuns": {
+      "two-section preview": [22.4824, 26.4678, 38.5325],
+      "chapter changes": [1.32954, 1.38678, 3.30677],
+      "baseline reconstruction": [0.2449, 0.2589, 0.46375]
+    },
+    "note": "Method timings include app-side selection and UI refresh for preview. They are not per-frame renderer times and not maximum-network tests; run-to-run variation was high."
+  },
+  "thresholds": {
+    "pressureAverageAtLeast30Fps": "passed in all 12 runs",
+    "pressureP95AtMost33_3ms": "passed in all 12 runs",
+    "ordinary60FpsTarget": "not met in city overview and neighborhood pan; nearby buildings approximately met",
+    "maximumFrameAtMost100ms": "passed in all 12 runs",
+    "initialMapReadyUnder100ms": "not met; 2693.638ms asynchronous readiness, not measured as a main-thread stall"
+  },
+  "notRun": [
+    "Final EXE full mouse/keyboard walkthrough",
+    "One-hour continuous runtime",
+    "Clean Windows compatibility device test",
+    "Human novice observation"
+  ],
+  "scope": "Native rendering smoke test, 30 seconds x 3 per scenario. It is not full acceptance; older 0.20.0 measurements are not reused."
+}

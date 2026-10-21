@@ -31,8 +31,9 @@ static func between(a:String,b:String) -> Dictionary:
 	var result:=reverse.duplicate(true);result.points.reverse();result.fromId=a;result.toId=b
 	return result
 
-static func heading(target_id:String,groups:Array,ref_lat:float) -> float:
+static func heading(target_id:String,groups:Array,ref_lat:float,line_id:String="") -> float:
 	for group in groups:
+		if not line_id.is_empty() and str(group.get("historicalLineId",""))!=line_id:continue
 		var ids:Array=group.get("stationIds",[]);var index:=ids.find(target_id)
 		if index<0:continue
 		var other:=index+1 if index+1<ids.size() else index-1

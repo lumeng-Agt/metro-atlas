@@ -110,13 +110,12 @@ static func save_timed_autosave_enabled(value: bool) -> Error:
 	return config.save(target)
 
 static func load_timed_autosave_interval() -> int:
-	var config := ConfigFile.new()
-	if config.load(path()) != OK: return 5
-	var value := int(config.get_value("saving", "timed_autosave_interval_minutes", 5))
-	return value if [2, 5, 10, 15].has(value) else 5
+	# Older preferences may contain 2, 10, or 15 minutes. The game now uses
+	# one documented cadence for every save slot.
+	return 5
 
 static func save_timed_autosave_interval(value: int) -> Error:
-	if not [2, 5, 10, 15].has(value): return ERR_INVALID_PARAMETER
+	if value != 5: return ERR_INVALID_PARAMETER
 	var config := ConfigFile.new()
 	var target := path()
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))

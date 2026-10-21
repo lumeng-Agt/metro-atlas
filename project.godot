@@ -4,7 +4,7 @@ config_version=5
 [application]
 config/name="造一座地铁"
 config/description="亲手重现城市地铁的规划与建设故事"
-config/version="0.20.1"
+config/version="0.25.0"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/use_custom_user_dir=true

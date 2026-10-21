@@ -1,0 +1,7 @@
+{
+  "version": "0.23.1",
+  "date": "2026-10-19",
+  "scope": "No rendering, frame-time, memory, export mouse-input, or save-latency benchmark was run for 0.23.1.",
+  "status": "not_measured",
+  "note": "The patch changes chapter target selection and interchange labels. No performance conclusion is inferred from logic regression tests."
+}

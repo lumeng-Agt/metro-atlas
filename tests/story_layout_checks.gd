@@ -74,6 +74,17 @@ func _run() -> void:
 			app.save_overlay.queue_free()
 			app._show_menu()
 			await process_frame
+	app._new_game("shenzhen",false)
+	app.world.storyState["phase"]="future_gap"
+	app.world.storyState["chapterId"]=""
+	app.world.storyState["chapterIndex"]=999
+	app._refresh()
+	await process_frame
+	var gap_labels:Array[String]=[]
+	for node in app.left_panel.find_children("*","Label",true,false):gap_labels.append(str(node.text))
+	_check(gap_labels.any(func(value:String):return value.contains("当前章节目标覆盖")),"后续资料边界页显示实际线路章节覆盖，而非空白旧页")
+	_check(gap_labels.any(func(value:String):return value.contains("历史里程碑区间")),"后续资料边界页显示可玩与未制作里程碑数量")
+	_check(app.year.text.contains("已完成截至日历史建设") or app.year.text.contains("截止日后的项目篇尚未数字化"),"顶部状态明确区分历史完成与截止日后规划内容")
 	if DisplayServer.get_name()!="headless":
 		root.size=Vector2i(1600,980);app.ui_scale=1.0;app.theme=Ui.create_theme(app.face,app.strong_face,1.0);app._rescale()
 		await process_frame

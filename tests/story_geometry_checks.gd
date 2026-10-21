@@ -1,5 +1,6 @@
 extends SceneTree
 const Rules=preload("res://scripts/story_construction.gd")
+const StorySession=preload("res://scripts/story_session.gd")
 var checks:=0
 var failures:Array[String]=[]
 func _initialize() -> void:call_deferred("_run")
@@ -52,6 +53,17 @@ func _run() -> void:
 	var points:Array=[Geo.from_local(origin+Vector2(-250,-300),31.23),Geo.from_local(origin+Vector2(-250,300),31.23)]
 	_check(not helper._track_crossing_conflict(points,{},-15,-15,31.23).is_empty(),"交点实际同高不能用平均深度放行")
 	_check(helper._track_crossing_conflict(points,{},-25,-25,31.23).is_empty(),"交点实际高差足够允许通过")
+	var campaign:=WorldData.new_world("guangzhou","campaign")
+	campaign.storyState.chapterId="gz-line1-1997"
+	var historical_group:Dictionary=StorySession.groups(campaign,true)[0]
+	var historical_a:=WorldData.create_station(campaign,[23.0,113.0],90);historical_a.historicalId=str(historical_group.stationIds[0])
+	var historical_b:=WorldData.create_station(campaign,[23.01,113.01],90);historical_b.historicalId=str(historical_group.stationIds[1])
+	campaign.stations=[historical_a,historical_b]
+	helper.world=campaign;helper.active_city_id="guangzhou"
+	var historical_start:Dictionary={"nodeId":TrackNetwork.station_node_id(historical_a,"end"),"stationId":historical_a.id,"side":"end","latlng":WorldData.station_endpoint(historical_a,"end"),"depthM":-15}
+	var historical_finish:Dictionary={"nodeId":TrackNetwork.station_node_id(historical_b,"start"),"stationId":historical_b.id,"side":"start","latlng":WorldData.station_endpoint(historical_b,"start"),"depthM":-15}
+	var historical_preview:=helper.track_preview(historical_start,historical_finish,[],true)
+	_check(str(historical_preview.get("issue","" )).is_empty() and str(historical_preview.get("advisory","" )).contains("未核验"),"历史目标区间不因缺失隧道深度而触发虚构的交叉高差门槛")
 	if failures.is_empty():print("PASS: %d story geometry checks" % checks);quit(0)
 	else:
 		for error in failures:push_error(error)

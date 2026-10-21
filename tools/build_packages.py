@@ -55,10 +55,13 @@ def git_state() -> tuple[str, str, str]:
 def source_manifest_hash() -> str:
     digest = hashlib.sha256()
     excluded_dirs = {".git", ".godot", ".tools", "Godot", "release", "test-artifacts", "__pycache__"}
-    # Hash the committed source set, rather than ignored editor sidecars or
-    # machine-local files that another checkout cannot reproduce.
+    # Hash tracked and non-ignored working-tree sources so dirty builds still
+    # identify the exact files they contain, while excluding machine artifacts.
     tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode("utf-8")
-    for path in sorted(ROOT / name for name in tracked.split("\0") if name):
+    untracked = subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard", "-z"], cwd=ROOT).decode("utf-8")
+    source_names = set(name for name in tracked.split("\0") if name)
+    source_names.update(name for name in untracked.split("\0") if name)
+    for path in sorted(ROOT / name for name in source_names):
         relative_parts = path.relative_to(ROOT).parts
         if not path.is_file() or any(part in excluded_dirs or part.startswith("test-") for part in relative_parts):
             continue
@@ -127,6 +130,14 @@ def main() -> None:
             (ROOT / "PRODUCT.md", "PRODUCT.md"),
             (ROOT / "docs" / "interface-references.md", "docs/interface-references.md"),
             (ROOT / "docs" / "campaign-content-audit.md", "docs/campaign-content-audit.md"),
+            (ROOT / "docs" / "network-coverage-2026-10-01.md", "docs/network-coverage-2026-10-01.md"),
+            (ROOT / "docs" / "network-coverage-2026-10-01.json", "docs/network-coverage-2026-10-01.json"),
+            (ROOT / "docs" / "migration-22.md", "docs/migration-22.md"),
+            (ROOT / "docs" / "migration-23.md", "docs/migration-23.md"),
+            (ROOT / "docs" / "migration-24.md", "docs/migration-24.md"),
+            (ROOT / "docs" / "migration-25.md", "docs/migration-25.md"),
+            (ROOT / "data" / "network_baselines_2026-10-01.json", "data/network_baselines_2026-10-01.json"),
+            (ROOT / "docs" / "reference-audit-0.20.md", "docs/reference-audit-0.20.md"),
             (RELEASE / "LICENSES.txt", "LICENSES.txt"),
             (ROOT / "THIRD_PARTY_NOTICES.txt", "THIRD_PARTY_NOTICES.txt"),
             (RELEASE / "OFL.txt", "OFL.txt"),
@@ -142,24 +153,11 @@ def main() -> None:
                 raise FileNotFoundError(f"Missing release content: {source}")
 
         distribution_files.extend([
-            (ROOT / "docs" / "performance-story-0.20.0.json", "docs/performance-story-0.20.0.json"),
             (ROOT / "docs" / "story-sources-0.19.md", "docs/story-sources-0.19.md"),
             (ROOT / "docs" / "migration-20.md", "docs/migration-20.md"),
-            (ROOT / "docs" / "reference-audit-0.20.md", "docs/reference-audit-0.20.md"),
             (ROOT / "data" / "reference_alignments.json", "data/reference_alignments.json"),
         ])
-        previews = [
-            "docs/ui-0.20.1-schematic.png",
-            "docs/ui-0.20-menu.png",
-            "docs/ui-0.20-cities.png",
-            "docs/ui-0.20-workbench.png",
-            "docs/ui-0.20-structure.png",
-            "docs/ui-0.20-station.png",
-            "docs/ui-0.20-story.png",
-            "docs/ui-0.20-revision.png",
-            "docs/ui-0.20-saves.png",
-            "docs/story-0.20-save-1366x768-175.png",
-        ]
+        previews: list[str] = []
         with ZipFile(staged_zip, "w", ZIP_DEFLATED, compresslevel=7) as archive:
             for source, archive_name in distribution_files:
                 archive.write(source, archive_name)

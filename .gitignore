@@ -16,6 +16,9 @@ __pycache__/
 
 # Temporary and machine-local files
 *.tmp
+.tmp-*
+.tmp_*
+.tmp*/
 *.log
 *.bak
 /test-artifacts/

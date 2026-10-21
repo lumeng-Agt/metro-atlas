@@ -35,8 +35,11 @@ func _run() -> void:
 		check(not StoryTutorial.active(app.world),"已学会后%s首章不自动教学" % city.id)
 		for chapter in CampaignSystem.city_config(str(city.id)).chapters:
 			app.world.storyState.chapterId=chapter.id;app.world.storyState.stage="build"
-			check(chapter.story.beats.size()>0,"%s有建设地点故事" % chapter.id)
-			var beat:Dictionary=chapter.story.beats[0]
+			var chapter_beats:Array=chapter.get("story",{}).get("beats",[])
+			if chapter_beats.is_empty():
+				check(not str(chapter.get("source","")).is_empty() and (bool(chapter.get("eventOnly",false)) or not chapter.get("lineGroups",[]).is_empty()),"%s无地点旁注时仍须保留来源与明确节点类型" % chapter.id)
+				continue
+			var beat:Dictionary=chapter_beats[0]
 			var untouched:=JSON.stringify(app.world.storyState)
 			check(StoryBeats.eligible(app.world,"select",["unknown"]).is_empty(),"无关点击不触发故事")
 			check(not StoryBeats.eligible(app.world,"select",beat.stationIds).is_empty(),"相关地点触发故事")
@@ -98,9 +101,13 @@ func _run() -> void:
 	check(batch.roadLabels.size()==1,"城市尺度主要道路有名称")
 	check(absf(MapView._road_angle(PackedVector2Array([Vector2.ZERO,Vector2(1,1)]))+PI/4)<0.01,"路名跟随屏幕道路切线")
 	check(MetroMapStyle.CANVAS!=MetroMapStyle.WATER and MetroMapStyle.BUILDING!=MetroMapStyle.CANVAS,"水域建筑与街区有独立样式")
-	var base:Dictionary=CampaignSystem._catalog.cities.shanghai.chapters[0].duplicate(true)
+	var base_index:=0
+	for index in range(CampaignSystem._catalog.cities.shanghai.chapters.size()):
+		var candidate:Dictionary=CampaignSystem._catalog.cities.shanghai.chapters[index]
+		if not bool(candidate.get("eventOnly",false)) and not candidate.get("lineGroups",[]).is_empty():base_index=index;break
+	var base:Dictionary=CampaignSystem._catalog.cities.shanghai.chapters[base_index].duplicate(true)
 	var target_id:=str(base.lineGroups[0].stationIds[0])
-	CampaignSystem._catalog.cities.shanghai.chapters[0]["stationProfiles"]={target_id:{"lengthM":150.0,"heading":37.2,"depthM":-14.5,"parameterStatus":{"depthM":"public_reference"},"note":"隔离验收配置，不发布为史实"}}
+	CampaignSystem._catalog.cities.shanghai.chapters[base_index]["stationProfiles"]={target_id:{"lengthM":150.0,"heading":37.2,"depthM":-14.5,"parameterStatus":{"depthM":"public_reference"},"note":"隔离验收配置，不发布为史实"}}
 	var profile_world:=WorldData.new_world("shanghai","campaign");StoryTutorial.configure(profile_world,false)
 	app._enter(profile_world);app._begin_chapter();app._tool("station")
 	var target:Dictionary=Story.targets(app.world)[0]
@@ -108,7 +115,7 @@ func _run() -> void:
 	check(is_equal_approx(float(app.map_view.draft_station.lengthM),150.0) and is_equal_approx(float(app.map_view.draft_station.heading),37.2),"站点核验配置优先于统一站体与蓝图估算朝向")
 	check(is_equal_approx(float(app.map_view.draft_station.depthM),-14.5),"已有核验埋深可用于对应目标")
 	check(Story.profile(app.world,target_id).parameterStatus.has("lengthM"),"站点覆盖不丢失其他参数来源状态")
-	CampaignSystem._catalog.cities.shanghai.chapters[0]=base
+	CampaignSystem._catalog.cities.shanghai.chapters[base_index]=base
 	app._new_game("shenzhen",false);app._begin_chapter()
 	var before_plan:=JSON.stringify(app.world.storyPlan)
 	app._view_plan(2)

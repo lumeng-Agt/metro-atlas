@@ -1,23 +1,17 @@
-造一座地铁 · Windows 免安装版 0.20.1 · 存档格式 20
+造一座地铁 · Windows 免安装版 0.25.0 · 存档格式 25
 
-双击“造一座地铁.exe”运行，无需浏览器、Node.js、Godot安装或联网地图服务。
+双击“造一座地铁.exe”运行，无需安装 Godot 或联网加载地图。
 
-本版以城市地铁故事为核心。选择城市，读本章背景，按真实底栏“车站、铺轨”建设；在城市故事页检查并确认历史节点，观看开通展示。没有出行需求、乘客、拥挤、班次或经营统计。
+本版包含上海、北京、广州、深圳、成都五城114个时间轴节点，其中95个节点含铺轨目标；五城离线地图截止日的95条线路关系均有至少一个建设目标引用。旧存档会保留已有路网，并从未完成的稳定章节任务继续。
 
-当前为五城首批故事，共上海4章、北京4章、广州2章、深圳1章、成都2章。深圳可对比1998、2000、2002年一期方案范围。五城全史及远期蓝图仍未完整核验；完成样板停在资料边界，不伪造自由解锁。完整缺口见 docs/campaign-content-audit.md。
+注意：这不是五城逐站全史完成版。部分线路的中间分段开通尚未拆成任务，截止日仍在建及已批准项目也未全部制作成可玩章节。请查看压缩包中的 docs/campaign-content-audit.md、docs/network-coverage-2026-10-01.md 和 docs/test-record.txt，确认内容范围与未完成验收。
 
-操作：拖动空地平移，滚轮缩放；点击站轨查看详情。R旋转，Ctrl+Z撤销，Ctrl+Shift+Z/Ctrl+Y重做，Esc或右键先取消本步再退出工具。空格仅暂停展示。先学两站接轨，随后可选择辅助完成重复建设。确认历史节点建立撤销边界，时间轴复盘另建副本。
-
-存档：自动保存按独立游戏编号隔离，自动历史最多3份；存档中心可搜索、载入、另存、改名、覆盖和删除。当前自动进度需先返回菜单才能删除。旧档导入先留原始备份，旧客流仅归档，路网成为可编辑作品。
-
-地图为OpenStreetMap / Geofabrik现代地理参考，不表示当年街道或工程轨道测绘；数据日期、范围和校验值见basemap-manifest.json。© OpenStreetMap contributors，派生数据使用ODbL 1.0。
-
-更新内容：压缩包内 update-notes-0.20.1.txt
+更新内容：压缩包内 update-notes-0.25.0.txt
 测试记录：压缩包内 test-record.txt
-当前截图：docs/ui-0.20-workbench.png、docs/ui-0.20-menu.png、docs/ui-0.20-station.png
-许可：LICENSES.txt、THIRD_PARTY_NOTICES.txt、OFL.txt
+性能记录：压缩包内 docs/performance-0.25.0.json（本版未测）
+迁移说明：压缩包内 docs/migration-25.md
+五城覆盖：压缩包内 docs/network-coverage-2026-10-01.md
 
-0.20新增：81组连续近似轨道走廊、修正部分换乘站参考、沿蓝图复现、紧凑深色工作台、历史更名与重组核对。3组缺口保留示意；高德逐段对照未完成，不能宣称相同。
-格式19读取前按原始内容备份；既有站轨不自动移动。迁移说明：docs/migration-20.md；区间精度与缺口：docs/reference-audit-0.20.md；故事来源：docs/story-sources-0.19.md。
+存档默认位于 %APPDATA%/MetroAtlas。存档迁移前会保留原始备份。地图为现代地理参考，来源与许可见 LICENSES.txt、THIRD_PARTY_NOTICES.txt、OFL.txt。
 
-已知验收限制：普通街区未稳定达到60FPS，最大路网保存调用约616ms；完整尺寸鼠标、真人新手、一小时运行及干净Windows尚未完成。详见test-record.txt。
+构建版本、源码清单与程序校验值见 build-info.txt 和 SHA256SUMS.txt。

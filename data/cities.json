@@ -5295,17 +5295,6 @@
           ]
         },
         {
-          "id": "shanghai-s410",
-          "name": "东昌路",
-          "latlng": [
-            31.240598,
-            121.5083142
-          ],
-          "osmIds": [
-            7116961652
-          ]
-        },
-        {
           "id": "shanghai-s411",
           "name": "紫竹高新区",
           "latlng": [
@@ -6250,6 +6239,227 @@
             11456217877,
             11456217538
           ]
+        },
+        {
+          "id": "shanghai-f23-hujin",
+          "name": "沪金高速",
+          "latlng": [
+            31.0206023,
+            121.4307337
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "东川路与沪金高速交叉处；站区参考",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-jiangchuan-east",
+          "name": "江川东路",
+          "latlng": [
+            31.028302,
+            121.455987
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "东川路与江川东路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-zilong",
+          "name": "紫龙路",
+          "latlng": [
+            31.035754,
+            121.465012
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与紫龙路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-fanghe",
+          "name": "放鹤路",
+          "latlng": [
+            31.051382,
+            121.461565
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与放鹤路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-wujing-north",
+          "name": "吴泾北",
+          "latlng": [
+            31.066601,
+            121.457014
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与元江路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-mojiang",
+          "name": "墨江路",
+          "latlng": [
+            31.0746732,
+            121.455512
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与墨江路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-chengjiang",
+          "name": "澄江路",
+          "latlng": [
+            31.086355,
+            121.454956
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与澄江路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-longwu",
+          "name": "龙吴路",
+          "latlng": [
+            31.093457,
+            121.453
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与双柏路交叉口西南侧站区参考",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-jinglian",
+          "name": "景联路",
+          "latlng": [
+            31.103095,
+            121.449933
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与景联路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-huajing",
+          "name": "华泾路",
+          "latlng": [
+            31.121923,
+            121.452232
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与华泾路交叉处",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-xupu-bridge",
+          "name": "徐浦大桥",
+          "latlng": [
+            31.129086,
+            121.45146
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与华发路交叉处北侧站区参考",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-longrui",
+          "name": "龙瑞路",
+          "latlng": [
+            31.14119,
+            121.447162
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与罗秀路附近站区参考",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-botanical-garden",
+          "name": "上海植物园",
+          "latlng": [
+            31.155349,
+            121.445497
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "上海植物园东门附近站区参考",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f23-longqi",
+          "name": "龙启路",
+          "latlng": [
+            31.160471,
+            121.444605
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_road_junction",
+          "coordinateNote": "龙吴路与石龙路交叉处附近站区参考",
+          "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f15s-ziguanglu",
+          "name": "紫光路",
+          "latlng": [
+            31.0155,
+            121.4512
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "莲花南路走廊上距紫竹高新区约1.2公里的站区参考点，取现代道路几何；站名依据专项债券项目说明。",
+          "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f15s-huanchengbei",
+          "name": "环城北路",
+          "latlng": [
+            30.9686,
+            121.4667
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "望园路走廊上按公开里程（距紫竹高新区约6.5公里）定位的站区参考点，取现代道路几何。",
+          "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f15s-dongfangmeigu",
+          "name": "东方美谷大道",
+          "latlng": [
+            30.9509,
+            121.4723
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "望园路走廊上按公开里程（距紫竹高新区约8.7公里）定位的站区参考点，取现代道路几何。",
+          "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [
@@ -8314,7 +8524,7 @@
                 "shanghai-s15",
                 "shanghai-s396",
                 "shanghai-s395",
-                "shanghai-s410",
+                "shanghai-s394",
                 "shanghai-s63",
                 "shanghai-s393",
                 "shanghai-s374",
@@ -8367,9 +8577,10 @@
             "shanghai-s406",
             "shanghai-s407",
             "shanghai-s408",
-            "shanghai-s409",
-            "shanghai-s410"
-          ]
+            "shanghai-s409"
+          ],
+          "stationOrderSource": "https://jtw.sh.gov.cn/xydt/20211229/921a5130a02e4d8b99e35a96125fbf73.html",
+          "stationOrderCheckedAt": "2026-10-20"
         },
         {
           "id": "shanghai-r15",
@@ -11808,18 +12019,6 @@
           ]
         },
         {
-          "id": "beijing-s239",
-          "name": "北京未命名车站",
-          "latlng": [
-            39.8774343,
-            116.368085
-          ],
-          "osmIds": [
-            528930289,
-            528930289
-          ]
-        },
-        {
           "id": "beijing-s240",
           "name": "昌平西山口",
           "latlng": [
@@ -14292,7 +14491,7 @@
                 "beijing-s225",
                 "beijing-s81",
                 "beijing-s224",
-                "beijing-s239",
+                "beijing-s223",
                 "beijing-s222",
                 "beijing-s221",
                 "beijing-s159",
@@ -14331,9 +14530,10 @@
             "beijing-s235",
             "beijing-s236",
             "beijing-s237",
-            "beijing-s238",
-            "beijing-s239"
-          ]
+            "beijing-s238"
+          ],
+          "stationOrderSource": "https://www.mtr.bj.cn/service/line/line-4.html",
+          "stationOrderCheckedAt": "2026-10-20"
         },
         {
           "id": "beijing-r5",
@@ -21296,6 +21496,205 @@
             12242793451,
             12242793450
           ]
+        },
+        {
+          "id": "guangzhou-f12-mid-jingtai",
+          "name": "景泰",
+          "latlng": [
+            23.171167,
+            113.2608773
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://huacheng.gz-cmc.com/pages/2026/08/25/fc20b22e8b7e447caf00f556fbe03c0e.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f12-mid-keziling",
+          "name": "柯子岭",
+          "latlng": [
+            23.1648671,
+            113.2693844
+          ],
+          "osmIds": [
+            4492734276
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://huacheng.gz-cmc.com/pages/2026/08/25/fc20b22e8b7e447caf00f556fbe03c0e.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f12-mid-luhu",
+          "name": "麓湖",
+          "latlng": [
+            23.1472,
+            113.2738
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://huacheng.gz-cmc.com/pages/2026/08/25/fc20b22e8b7e447caf00f556fbe03c0e.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-future-jian6",
+          "name": "建设六马路",
+          "latlng": [
+            23.13107,
+            113.284382
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://huacheng.gz-cmc.com/pages/2026/08/25/fc20b22e8b7e447caf00f556fbe03c0e.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-yagang",
+          "name": "鸦岗",
+          "latlng": [
+            23.2273918,
+            113.1950146
+          ],
+          "osmIds": [
+            847374108
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-qingfeng",
+          "name": "庆丰",
+          "latlng": [
+            23.2162994,
+            113.2224001
+          ],
+          "osmIds": [
+            4492734276
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-huanggang",
+          "name": "凰岗",
+          "latlng": [
+            23.1954357,
+            113.2119026
+          ],
+          "osmIds": [
+            979346474
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-chalong",
+          "name": "槎龙",
+          "latlng": [
+            23.1845,
+            113.233
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-songzhou",
+          "name": "松洲",
+          "latlng": [
+            23.1748,
+            113.231
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-luochongwei",
+          "name": "罗冲围",
+          "latlng": [
+            23.1489509,
+            113.2196368
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-cangbian",
+          "name": "仓边路",
+          "latlng": [
+            23.1358085,
+            113.2799413
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-zhixin",
+          "name": "执信",
+          "latlng": [
+            23.1295028,
+            113.287751
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-meidong",
+          "name": "梅东路",
+          "latlng": [
+            23.1342871,
+            113.2981533
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-huacheng-north",
+          "name": "花城广场北",
+          "latlng": [
+            23.1302369,
+            113.3171932
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-shipai-south",
+          "name": "石牌南",
+          "latlng": [
+            23.126494,
+            113.339508
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-jida",
+          "name": "暨大",
+          "latlng": [
+            23.1268,
+            113.345
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f13w-yuancun-shanding",
+          "name": "员村山顶",
+          "latlng": [
+            23.126813,
+            113.3498749
+          ],
+          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
+          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
+          "referenceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [
@@ -28838,6 +29237,149 @@
             13971100282,
             13971100281
           ]
+        },
+        {
+          "id": "shenzhen-f17-qiaoshe",
+          "name": "侨社",
+          "latlng": [
+            22.53334,
+            114.111009
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "和平路南端、罗湖口岸高架桥下站区参考点。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-jiabin",
+          "name": "嘉宾",
+          "latlng": [
+            22.541795,
+            114.110349
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "和平路与嘉宾路交叉口南侧；按现代道路数据定位。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-datanglong",
+          "name": "大塘龙",
+          "latlng": [
+            22.5587218,
+            114.107603
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "笋岗东路与宝岗路附近站区参考；公开站位为交叉口以北。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-sungang-north",
+          "name": "笋岗北",
+          "latlng": [
+            22.5762,
+            114.1065
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "清水河三路与泥岗东路以南站区参考；该路口在本地矢量中缺少完整命名几何，位置为走廊近似。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-dexing",
+          "name": "德兴",
+          "latlng": [
+            22.592637,
+            114.107582
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "粤宝路、西环路、红岗路附近站区参考。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-luogang",
+          "name": "罗岗",
+          "latlng": [
+            22.596501,
+            114.119633
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "荣华路与百鸽路交叉口。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-qiushuishan",
+          "name": "求水山",
+          "latlng": [
+            22.6002,
+            114.1346
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "求水山公园西侧湖东路站区参考；未取得工程坐标，按公开位置和现代底图近似。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-nanling",
+          "name": "南岭",
+          "latlng": [
+            22.6098221,
+            114.14531
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "布沙路与开放路交叉口北侧。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-nanling-north",
+          "name": "南岭北",
+          "latlng": [
+            22.617,
+            114.141
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "华盛玩具厂地块内；采用现代地理参考的地块级近似点。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-xialilang",
+          "name": "下李朗",
+          "latlng": [
+            22.636647,
+            114.126046
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "布澜路与三联东路交叉口北侧。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f17-shenlang",
+          "name": "深朗",
+          "latlng": [
+            22.64484,
+            114.12365
+          ],
+          "schematic": true,
+          "coordinateSource": "official_station_site_description_and_local_OSM_reference",
+          "coordinateNote": "布澜路与甘李二路交叉口附近。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [
@@ -28971,6 +29513,11 @@
               "id": "shenzhen-r2-d1",
               "name": "地铁 2号线：湾厦 → 莲塘",
               "stationIds": [
+                "shenzhen-s112",
+                "shenzhen-s305",
+                "shenzhen-s304",
+                "shenzhen-s303",
+                "shenzhen-s302",
                 "shenzhen-s89",
                 "shenzhen-s90",
                 "shenzhen-s91",
@@ -29031,7 +29578,12 @@
                 "shenzhen-s92",
                 "shenzhen-s91",
                 "shenzhen-s90",
-                "shenzhen-s89"
+                "shenzhen-s89",
+                "shenzhen-s302",
+                "shenzhen-s303",
+                "shenzhen-s304",
+                "shenzhen-s305",
+                "shenzhen-s112"
               ],
               "osmRelationId": 9622750
             },
@@ -29066,6 +29618,11 @@
             21381273
           ],
           "stationIds": [
+            "shenzhen-s112",
+            "shenzhen-s305",
+            "shenzhen-s304",
+            "shenzhen-s303",
+            "shenzhen-s302",
             "shenzhen-s89",
             "shenzhen-s90",
             "shenzhen-s91",

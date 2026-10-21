@@ -1,0 +1,20 @@
+{
+  "version": "0.25.0",
+  "date": "2026-10-20",
+  "status": "not_measured",
+  "reason": "本轮没有对最终导出程序执行规定的三次、每次至少30秒图形压力测试；旧版本短测不代表本版性能。",
+  "requiredScenarios": [
+    "冷启动",
+    "跨地图分块平移",
+    "连续缩放",
+    "密集建筑与五城目标同时显示",
+    "最大路网与200步撤销历史运行一小时"
+  ],
+  "targets": {
+    "normalStreetFps": 60,
+    "stressAverageFpsMinimum": 30,
+    "stressP95FrameMsMaximum": 33.3,
+    "mainThreadBlockingMsMaximum": 100
+  },
+  "result": null
+}

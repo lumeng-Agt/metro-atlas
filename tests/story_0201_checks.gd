@@ -13,7 +13,7 @@ func run():
 	var complete:Dictionary=app._assist_candidate()
 	check(complete.has("state"),"首章辅助夹具可创建")
 	if not complete.has("state"):quit(1);return
-	for key in ["stations","trackNodes","trackEdges"]:app.world[key]=complete.state[key]
+	for key in ["stations","stationComplexes","transferConnections","trackNodes","trackEdges"]:app.world[key]=complete.state[key]
 	var a:Dictionary={};var b:Dictionary={}
 	for st in app.world.stations:
 		if st.name=="漕宝路":a=st
