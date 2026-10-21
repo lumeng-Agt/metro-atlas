@@ -24522,6 +24522,594 @@
               "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
             }
           ]
+        },
+        {
+          "id": "sz-line19-phase1-build",
+          "projectIds": [
+            "sz-line19-phase1"
+          ],
+          "title": "深圳19号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按五期建设规划环评区间表复现19号线一期：南塘围—聚龙，约12.5公里、官方口径12站，公开区间表可核对11站。锦龙、新和、坪山中心与既有14/16号线换乘。项目在截止日仍在建，完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line19-phase1-build",
+              "mapRouteId": "shenzhen-future-line19",
+              "name": "19号线一期",
+              "historicalLineId": "shenzhen-line19-19",
+              "color": "#7E9BB5",
+              "stationIds": [
+                "shenzhen-f19-nantangwei",
+                "shenzhen-f19-renminyiyuan",
+                "shenzhen-f19-tangkeng",
+                "shenzhen-s318",
+                "shenzhen-f19-xinwei",
+                "shenzhen-f19-baoshan",
+                "shenzhen-s369",
+                "shenzhen-f19-wenhuazhongxin",
+                "shenzhen-s321",
+                "shenzhen-f19-lijing",
+                "shenzhen-f19-julong"
+              ],
+              "stationNames": {
+                "shenzhen-f19-nantangwei": "南塘围",
+                "shenzhen-f19-renminyiyuan": "人民医院",
+                "shenzhen-f19-tangkeng": "汤坑",
+                "shenzhen-s318": "锦龙",
+                "shenzhen-f19-xinwei": "新围",
+                "shenzhen-f19-baoshan": "宝山",
+                "shenzhen-s369": "新和",
+                "shenzhen-f19-wenhuazhongxin": "文化中心",
+                "shenzhen-s321": "坪山中心",
+                "shenzhen-f19-lijing": "荔景",
+                "shenzhen-f19-julong": "聚龙"
+              },
+              "toleranceM": 700.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "站序取自《深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书》区间表：南塘围—人民医院—汤坑—锦龙—新围—宝山—新和—文化中心—坪山中心—荔景—聚龙，共11站（官方口径12站，1站在公开区间表中未出现）。锦龙、新和、坪山中心复用既有站区；其余按官方站序在端点间走廊插值定位。2024年修订将文化中心更名坪山剧院并调整坪山中心—聚龙间站序，本篇沿用官方2022口径并在站名注记说明。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-s318": "shenzhen-s318__line19-19",
+                "shenzhen-s369": "shenzhen-s369__line19-19",
+                "shenzhen-s321": "shenzhen-s321__line19-19"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sz19-jinlong-14",
+              "name": "锦龙",
+              "complexId": "shenzhen-s318",
+              "stationInstanceIds": [
+                "shenzhen-s318",
+                "shenzhen-s318__line19-19"
+              ],
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "官方区间表将锦龙列为换乘站（14号线）；两线站体分别建造。"
+            },
+            {
+              "id": "future-transfer-sz19-xinhe-16",
+              "name": "新和",
+              "complexId": "shenzhen-s369",
+              "stationInstanceIds": [
+                "shenzhen-s369__line16-16",
+                "shenzhen-s369__line19-19"
+              ],
+              "lineIds": [
+                "shenzhen-line16-16",
+                "shenzhen-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "官方区间表将新和列为换乘站（16号线）。"
+            },
+            {
+              "id": "future-transfer-sz19-pingshanzhongxin-14",
+              "name": "坪山中心",
+              "complexId": "shenzhen-s321",
+              "stationInstanceIds": [
+                "shenzhen-s321",
+                "shenzhen-s321__line19-19"
+              ],
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "官方区间表将坪山中心列为换乘站（14号线）。"
+            }
+          ]
+        },
+        {
+          "id": "sz-line29-phase1-build",
+          "projectIds": [
+            "sz-line29-phase1"
+          ],
+          "title": "深圳29号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按五期建设规划环评官方口径复现29号线一期：红树湾南—兴东，约11.3公里。公开资料未给出可逐站核对的站序，本篇按两个既有端点站复现走廊。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line29-phase1-build",
+              "mapRouteId": "shenzhen-future-line29",
+              "name": "29号线一期（走廊复现）",
+              "historicalLineId": "shenzhen-line29-29",
+              "color": "#8FB3A8",
+              "stationIds": [
+                "shenzhen-s188",
+                "shenzhen-s124"
+              ],
+              "stationNames": {
+                "shenzhen-s188": "红树湾南",
+                "shenzhen-s124": "兴东"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "29号线一期官方口径为红树湾南—兴东，约11.3公里。公开环评区间表未给出可逐站核对的站序，本篇按两个既有端点站复现走廊（直线走廊约8.4公里，官方里程11.3公里为实际绕行长度），中途站不虚构坐标。红树湾南与9、11号线换乘，兴东与5号线换乘。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-s188": "shenzhen-s188__line29-29",
+                "shenzhen-s124": "shenzhen-s124__line29-29"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sz29-hongshuwan",
+              "name": "红树湾南",
+              "complexId": "shenzhen-s188",
+              "stationInstanceIds": [
+                "shenzhen-s188__line9-10",
+                "shenzhen-s188__line11-12",
+                "shenzhen-s188__line29-29"
+              ],
+              "lineIds": [
+                "shenzhen-line9-10",
+                "shenzhen-line11-12",
+                "shenzhen-line29-29"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "红树湾南为9/11号线既有换乘站，29号线在此设站；通道和层次仅作示意。"
+            },
+            {
+              "id": "future-transfer-sz29-xingdong",
+              "name": "兴东",
+              "complexId": "shenzhen-s124",
+              "stationInstanceIds": [
+                "shenzhen-s124__line5-5",
+                "shenzhen-s124__line29-29"
+              ],
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line29-29"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "兴东为5号线既有站，29号线在此换乘。"
+            }
+          ]
+        },
+        {
+          "id": "sz-line32-phase1-build",
+          "projectIds": [
+            "sz-line32-phase1"
+          ],
+          "title": "深圳32号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按五期建设规划环评官方口径复现32号线一期：溪涌—葵涌东，约9.5公里。公开资料未给出可逐站核对的站序，本篇按既有溪涌站与葵涌东站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line32-phase1-build",
+              "mapRouteId": "shenzhen-future-line32",
+              "name": "32号线一期（走廊复现）",
+              "historicalLineId": "shenzhen-line32-32",
+              "color": "#9BB7C9",
+              "stationIds": [
+                "shenzhen-s291",
+                "shenzhen-f32-kuichongdong"
+              ],
+              "stationNames": {
+                "shenzhen-s291": "溪涌",
+                "shenzhen-f32-kuichongdong": "葵涌东"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "32号线一期官方口径为溪涌—葵涌东，约9.5公里。公开环评区间表未给出可逐站核对的站序，本篇按既有溪涌站与葵涌东站区复现走廊。溪涌与2、8号线换乘；中途站不虚构坐标。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-s291": "shenzhen-s291__line32-32"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sz32-xichong",
+              "name": "溪涌",
+              "complexId": "shenzhen-s291",
+              "stationInstanceIds": [
+                "shenzhen-s291",
+                "shenzhen-s291__line2-2",
+                "shenzhen-s291__line32-32"
+              ],
+              "lineIds": [
+                "shenzhen-line8-9",
+                "shenzhen-line2-2",
+                "shenzhen-line32-32"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "溪涌为2号线（既有线体）与8号线换乘站，32号线在此设站；通道和层次仅作示意。"
+            }
+          ]
+        },
+        {
+          "id": "sz-line20-phase2-build",
+          "projectIds": [
+            "sz-line20-phase2"
+          ],
+          "title": "深圳20号线二期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按五期建设规划环评官方口径复现20号线二期：机场北—福田会展，约34公里，机场北复用既有20号线站体。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line20-phase2-build",
+              "mapRouteId": "shenzhen-future-line20-phase2",
+              "name": "20号线二期（走廊复现）",
+              "historicalLineId": "shenzhen-line20-17",
+              "color": "#C08A6A",
+              "stationIds": [
+                "shenzhen-s194",
+                "shenzhen-f20-futianhuizhan"
+              ],
+              "stationNames": {
+                "shenzhen-s194": "机场北",
+                "shenzhen-f20-futianhuizhan": "福田会展"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "20号线二期官方口径为机场北—福田会展，约34公里。公开环评区间表不能给出完整可核对站序，本篇按既有20号线机场北站体（s194__line20-17）与福田会展站区复现走廊，中途站不虚构坐标。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-s194": "shenzhen-s194__line20-17"
+              }
+            }
+          ],
+          "requiredTransfers": []
+        },
+        {
+          "id": "sz-line22-phase1-build",
+          "projectIds": [
+            "sz-line22-phase1"
+          ],
+          "title": "深圳22号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按五期建设规划环评官方口径复现22号线一期：上沙—黎光，约34.2公里，上沙与7号线换乘。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line22-phase1-build",
+              "mapRouteId": "shenzhen-future-line22",
+              "name": "22号线一期（走廊复现）",
+              "historicalLineId": "shenzhen-line22-22",
+              "color": "#B07A9B",
+              "stationIds": [
+                "shenzhen-s213",
+                "shenzhen-f22-liguang"
+              ],
+              "stationNames": {
+                "shenzhen-s213": "上沙",
+                "shenzhen-f22-liguang": "黎光"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "22号线一期官方口径为上沙—黎光，约34.2公里。公开环评区间表虽能重建部分站序，但不足以逐站核对，本篇按既有上沙站与黎光站区复现走廊（直线约25.8公里，官方34.2公里含绕行），中途站不虚构坐标。上沙与7号线换乘。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-s213": "shenzhen-s213__line22-22"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sz22-shangsha-7",
+              "name": "上沙",
+              "complexId": "shenzhen-s213",
+              "stationInstanceIds": [
+                "shenzhen-s213",
+                "shenzhen-s213__line22-22"
+              ],
+              "lineIds": [
+                "shenzhen-line7-8",
+                "shenzhen-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "上沙为7号线既有站，22号线在此换乘。"
+            }
+          ]
+        },
+        {
+          "id": "sz-line15-build",
+          "projectIds": [
+            "sz-line15"
+          ],
+          "title": "深圳15号线建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "15号线为环线（官方口径前保—前保，约32.2公里）。公开资料未给出可逐站核对的完整站序，本篇按5座既有换乘站与前保站区复现南—西半环开口链，东半环与闭合段未建模。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line15-build",
+              "mapRouteId": "shenzhen-future-line15",
+              "name": "15号线（环线开口复现）",
+              "historicalLineId": "shenzhen-line15-15",
+              "color": "#B58B5A",
+              "stationIds": [
+                "shenzhen-f15-qianbao",
+                "shenzhen-s114",
+                "shenzhen-s350",
+                "shenzhen-s231",
+                "shenzhen-s123",
+                "shenzhen-s26"
+              ],
+              "stationNames": {
+                "shenzhen-f15-qianbao": "前保",
+                "shenzhen-s114": "铁路公园",
+                "shenzhen-s350": "四海",
+                "shenzhen-s231": "深大南",
+                "shenzhen-s123": "洪浪北",
+                "shenzhen-s26": "坪洲"
+              },
+              "toleranceM": 800.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "15号线为环线，官方口径前保—前保、约32.2公里、24座车站。公开资料未给出可逐站核对的完整站序，本篇按既有换乘站（铁路公园/5、四海/12、深大南/9、洪浪北/5、坪洲/1）与前保站区复现南—西半环开口链，东半环与环线闭合段未建模，不虚构中途站坐标。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-s114": "shenzhen-s114__line15-15",
+                "shenzhen-s350": "shenzhen-s350__line15-15",
+                "shenzhen-s231": "shenzhen-s231__line15-15",
+                "shenzhen-s123": "shenzhen-s123__line15-15",
+                "shenzhen-s26": "shenzhen-s26__line15-15"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sz15-tielugongyuan-5",
+              "name": "铁路公园",
+              "complexId": "shenzhen-s114",
+              "stationInstanceIds": [
+                "shenzhen-s114__line5-5",
+                "shenzhen-s114__line15-15"
+              ],
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "铁路公园为5号线既有站，15号线在此换乘。"
+            },
+            {
+              "id": "future-transfer-sz15-sihai-12",
+              "name": "四海",
+              "complexId": "shenzhen-s350",
+              "stationInstanceIds": [
+                "shenzhen-s350__line12-13",
+                "shenzhen-s350__line15-15"
+              ],
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "四海为12号线既有站，15号线在此换乘。"
+            },
+            {
+              "id": "future-transfer-sz15-shendanan-9",
+              "name": "深大南",
+              "complexId": "shenzhen-s231",
+              "stationInstanceIds": [
+                "shenzhen-s231",
+                "shenzhen-s231__line15-15"
+              ],
+              "lineIds": [
+                "shenzhen-line9-10",
+                "shenzhen-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "深大南为9号线既有站，15号线在此换乘。"
+            },
+            {
+              "id": "future-transfer-sz15-honglangbei-5",
+              "name": "洪浪北",
+              "complexId": "shenzhen-s123",
+              "stationInstanceIds": [
+                "shenzhen-s123__line5-5",
+                "shenzhen-s123__line15-15"
+              ],
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "洪浪北为5号线既有站，15号线在此换乘。"
+            },
+            {
+              "id": "future-transfer-sz15-pingzhou-1",
+              "name": "坪洲",
+              "complexId": "shenzhen-s26",
+              "stationInstanceIds": [
+                "shenzhen-s26",
+                "shenzhen-s26__line15-15"
+              ],
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "sourceNote": "坪洲为1号线既有站，15号线在此换乘。"
+            }
+          ]
+        },
+        {
+          "id": "sz-line25-phase1-build",
+          "projectIds": [
+            "sz-line25-phase1"
+          ],
+          "title": "深圳25号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按五期建设规划环评官方口径复现25号线一期：吉华医院—石龙，约16.2公里。公开资料未给出可逐站核对的站序，本篇按两端站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line25-phase1-build",
+              "mapRouteId": "shenzhen-future-line25",
+              "name": "25号线一期（走廊复现）",
+              "historicalLineId": "shenzhen-line25-25",
+              "color": "#A6B58A",
+              "stationIds": [
+                "shenzhen-f25-jihuayiyuan",
+                "shenzhen-f25-shilong"
+              ],
+              "stationNames": {
+                "shenzhen-f25-jihuayiyuan": "吉华医院",
+                "shenzhen-f25-shilong": "石龙"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "25号线一期官方口径为吉华医院—石龙，约16.2公里。公开环评区间表未给出可逐站核对的站序，本篇按两端站区复现走廊（两站直线约9公里，官方里程含绕行），中途站不虚构坐标。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false
+            }
+          ],
+          "requiredTransfers": []
+        },
+        {
+          "id": "sz-line27-phase1-build",
+          "projectIds": [
+            "sz-line27-phase1"
+          ],
+          "title": "深圳27号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_plan_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按五期建设规划环评官方口径复现27号线一期：松坪村—岗头西，约23.2公里。公开资料未给出可逐站核对的站序，本篇按两端站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-09-05",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line27-phase1-build",
+              "mapRouteId": "shenzhen-future-line27",
+              "name": "27号线一期（走廊复现）",
+              "historicalLineId": "shenzhen-line27-27",
+              "color": "#9B8FB5",
+              "stationIds": [
+                "shenzhen-f27-songpingcun",
+                "shenzhen-f27-gangtouxi"
+              ],
+              "stationNames": {
+                "shenzhen-f27-songpingcun": "松坪村",
+                "shenzhen-f27-gangtouxi": "岗头西"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "27号线一期官方口径为松坪村—岗头西，约23.2公里。公开环评区间表未给出可逐站核对的站序，本篇按两端站区复现走廊（两站直线约14公里，官方里程含绕行），中途站不虚构坐标。",
+              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "requireOpen": false
+            }
+          ],
+          "requiredTransfers": []
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -29479,6 +30067,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.16",
-  "contentRevisionNote": "增加上海13号线西延伸、东延伸建设章。"
+  "contentRevision": "2026.10.21.24",
+  "contentRevisionNote": "增加深圳27号线一期走廊复现章。"
 }

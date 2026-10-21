@@ -9,7 +9,7 @@
 | 上海 | 18 | 18 | 487 | 22 | 21 | 9 | 7 |
 | 北京 | 30 | 24 | 402 | 25 | 22 | 9 | 7 |
 | 广州 | 口径不等同 | 20 | 373 | 25 | 21 | 3 | 3 |
-| 深圳 | 17 | 17 | 366 | 27 | 23 | 11 | 1 |
+| 深圳 | 17 | 17 | 366 | 27 | 23 | 11 | 9 |
 | 成都 | 16 | 16 | 375 | 21 | 14 | 2 | 1 |
 
 ## 截止日线路目录与内容缺口
@@ -168,18 +168,18 @@
 - [深圳地铁线路信息（含沿途站点）](https://jtys.sz.gov.cn/ydmh/jtcx/dtcx_180970/dtxl/content/post_12601090.html)：1—14、16、20号线及6号线支线的线路／站序清单。
 - [地铁13号线二期北延段6月28日开通运营](https://jtys.sz.gov.cn/ydmh/jtzx/zyhy_1510/content/post_12867344.html)：13号线北延段实际开通日期、11座车站及与一期贯通。
 
-截止日建设／规划项目：登记 11 项，可玩建设章 1 项，仍待制作 9 项，另有 1 项政策／规划方向（可选）、0 项联络／扩能工程（不新增车站）。
+截止日建设／规划项目：登记 11 项，可玩建设章 9 项，仍待制作 0 项，另有 2 项政策／规划方向（可选）、0 项联络／扩能工程（不新增车站）。
 
-- [15号线](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府报道列入五期持续推进项目；交通局2026年仍发布区间施工进度。
+- [15号线](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府报道列入五期持续推进项目；交通局2026年仍发布区间施工进度。
 - [17号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进，未计入截止日已开通线网。
-- [19号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认五期建设项目；公布的政策里程目标不替代工程站序图。
-- [20号线二期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
-- [22号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
-- [25号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进；以一期正式工程范围为准。
-- [27号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
-- [29号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进。
-- [32号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 尚无可玩建设任务：深圳市政府确认持续推进；按城市轨道交通范围纳入。
-- [13号线二期南延段](https://www.sz.gov.cn/zfgb/2026/gb1420/content/post_12894205.html) · `十五五规划目标` · 尚无可玩建设任务：规划提出建成13号线二期南北延；北延已于2026-06-28开通，此处只登记其余规划范围，不把整段重复算作未建。
+- [19号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认五期建设项目；公布的政策里程目标不替代工程站序图。
+- [20号线二期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进。
+- [22号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进。
+- [25号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进；以一期正式工程范围为准。
+- [27号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进。
+- [29号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进。
+- [32号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进；按城市轨道交通范围纳入。
+- [13号线二期南延段](https://www.sz.gov.cn/zfgb/2026/gb1420/content/post_12894205.html) · `十五五规划目标` · 政策／规划方向，未发布逐站蓝图，不阻塞解锁：规划提出建成13号线二期南北延；北延已于2026-06-28开通，此处只登记其余规划范围，不把整段重复算作未建。
 - [城市轨道交通第五期建设规划（项目库）](https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_10089296.html) · `已批建设规划` · 政策／规划方向，未发布逐站蓝图，不阻塞解锁：规划包含13个项目；只有逐项目工程范围和 stationOrder 完成核对后才转为可玩建设任务。
 
 里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：

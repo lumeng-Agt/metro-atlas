@@ -39117,7 +39117,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府报道列入五期持续推进项目；交通局2026年仍发布区间施工进度。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39141,7 +39141,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府确认五期建设项目；公布的政策里程目标不替代工程站序图。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39153,7 +39153,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府确认持续推进。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39165,7 +39165,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府确认持续推进。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39177,7 +39177,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府确认持续推进；以一期正式工程范围为准。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39189,7 +39189,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府确认持续推进。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39201,7 +39201,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府确认持续推进。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39213,7 +39213,7 @@
           "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html",
           "sourceTitle": "织密地铁网络 赋能城市高质量发展",
           "note": "深圳市政府确认持续推进；按城市轨道交通范围纳入。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -39225,9 +39225,10 @@
           "source": "https://www.sz.gov.cn/zfgb/2026/gb1420/content/post_12894205.html",
           "sourceTitle": "深圳市国民经济和社会发展第十五个五年规划纲要",
           "note": "规划提出建成13号线二期南北延；北延已于2026-06-28开通，此处只登记其余规划范围，不把整段重复算作未建。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "policy_only_not_playable",
           "sourceCheckedAt": "2026-10-20",
-          "statusAtCutoff": "十五五规划目标"
+          "statusAtCutoff": "十五五规划目标",
+          "playabilityNote": "十五五规划提出的13号线二期南北延：北延已于2026-06-28开通，南段（深圳湾口岸—后海）已包含在13号线既有运营站序中；没有新的逐站工程蓝图。"
         },
         {
           "id": "sz-fifth-phase-plan",

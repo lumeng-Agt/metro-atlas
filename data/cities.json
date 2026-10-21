@@ -30797,6 +30797,214 @@
           "coordinateNote": "布澜路与甘李二路交叉口附近。",
           "source": "https://www.szmc.net/SMARTC/upload/file/20250506/1746516250192036661.pdf",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-nantangwei",
+          "name": "南塘围",
+          "latlng": [
+            22.669125,
+            114.302838
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "南塘围公交站位置，作为19号线起点站区参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-renminyiyuan",
+          "name": "人民医院",
+          "latlng": [
+            22.6736,
+            114.3116
+          ],
+          "schematic": true,
+          "coordinateSource": "official_chainage",
+          "coordinateNote": "按官方区间表站序，在南塘围—锦龙走廊上插值定位，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-tangkeng",
+          "name": "汤坑",
+          "latlng": [
+            22.6781,
+            114.3204
+          ],
+          "schematic": true,
+          "coordinateSource": "official_chainage",
+          "coordinateNote": "按官方区间表站序，在南塘围—锦龙走廊上插值定位，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-xinwei",
+          "name": "新围",
+          "latlng": [
+            22.6905,
+            114.3297
+          ],
+          "schematic": true,
+          "coordinateSource": "official_chainage",
+          "coordinateNote": "按官方区间表站序，在锦龙—新和走廊上插值定位，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-baoshan",
+          "name": "宝山",
+          "latlng": [
+            22.6983,
+            114.3302
+          ],
+          "schematic": true,
+          "coordinateSource": "official_chainage",
+          "coordinateNote": "按官方区间表站序，在锦龙—新和走廊上插值定位，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-wenhuazhongxin",
+          "name": "文化中心",
+          "latlng": [
+            22.7087,
+            114.3391
+          ],
+          "schematic": true,
+          "coordinateSource": "official_chainage",
+          "coordinateNote": "按官方区间表站序，在新和—坪山中心之间定位；2024年修订后站名与站序有调整，本篇沿用官方2022区间表。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-lijing",
+          "name": "荔景",
+          "latlng": [
+            22.7212,
+            114.3625
+          ],
+          "schematic": true,
+          "coordinateSource": "official_chainage",
+          "coordinateNote": "按官方区间表站序，在坪山中心—聚龙走廊上插值定位，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f19-julong",
+          "name": "聚龙",
+          "latlng": [
+            22.73103,
+            114.377636
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "聚龙公交站位置（锦绣东路），作为19号线终点站区参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f32-kuichongdong",
+          "name": "葵涌东",
+          "latlng": [
+            22.6349,
+            114.426365
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "葵涌东公交站位置（延安路）作为站区参考；32号线东端终点。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f20-futianhuizhan",
+          "name": "福田会展",
+          "latlng": [
+            22.5355,
+            114.058
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "福田会展中心（深圳会展中心）站区参考；20号线二期东端终点，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f22-liguang",
+          "name": "黎光",
+          "latlng": [
+            22.759247,
+            114.031125
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "黎光村/黎光公交站位置，22号线一期北端终点站区参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f15-qianbao",
+          "name": "前保",
+          "latlng": [
+            22.515,
+            113.885
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "前海保税区/铲湾路北侧站区参考；15号线环线起点。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f25-jihuayiyuan",
+          "name": "吉华医院",
+          "latlng": [
+            22.6441,
+            114.078
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "吉华路走廊公交站位置作吉华医院站区参考，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f25-shilong",
+          "name": "石龙",
+          "latlng": [
+            22.6698,
+            113.9906
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "大浪石龙大道片区城市更新单元位置作站区参考，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f27-songpingcun",
+          "name": "松坪村",
+          "latlng": [
+            22.561102,
+            113.949788
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "松坪村片区位置作站区参考，属走廊级参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shenzhen-f27-gangtouxi",
+          "name": "岗头西",
+          "latlng": [
+            22.661204,
+            114.055801
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "岗头西公交站位置（冲之大道）作站区参考。",
+          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [

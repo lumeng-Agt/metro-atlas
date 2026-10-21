@@ -1,0 +1,80 @@
+{
+  "city": "shenzhen",
+  "projectIds": [
+    "sz-line32-phase1"
+  ],
+  "stations": [
+    {
+      "name": "溪涌",
+      "id": "shenzhen-s291",
+      "existing": true
+    },
+    {
+      "name": "葵涌东",
+      "id": "shenzhen-f32-kuichongdong",
+      "latlng": [
+        22.6349,
+        114.426365
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "葵涌东公交站位置（延安路）作为站区参考；32号线东端终点。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "phase1",
+      "mapRouteId": "shenzhen-future-line32",
+      "name": "32号线一期（走廊复现）",
+      "historicalLineId": "shenzhen-line32-32",
+      "color": "#9BB7C9",
+      "stationIds": [
+        "shenzhen-s291",
+        "shenzhen-f32-kuichongdong"
+      ],
+      "toleranceM": 900,
+      "officialLengthM": 9500,
+      "maxSpacingM": 11000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "32号线一期官方口径为溪涌—葵涌东，约9.5公里。公开环评区间表未给出可逐站核对的站序，本篇按既有溪涌站与葵涌东站区复现走廊。溪涌与2、8号线换乘；中途站不虚构坐标。",
+      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+    }
+  ],
+  "stationInstances": {
+    "shenzhen-s291": "shenzhen-s291__line32-32"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sz32-xichong",
+      "name": "溪涌",
+      "complexId": "shenzhen-s291",
+      "stationInstanceIds": [
+        "shenzhen-s291",
+        "shenzhen-s291__line2-2",
+        "shenzhen-s291__line32-32"
+      ],
+      "lineIds": [
+        "shenzhen-line8-9",
+        "shenzhen-line2-2",
+        "shenzhen-line32-32"
+      ],
+      "sourceNote": "溪涌为2号线（既有线体）与8号线换乘站，32号线在此设站；通道和层次仅作示意。"
+    }
+  ],
+  "plan": {
+    "id": "sz-line32-phase1-build",
+    "title": "深圳32号线一期建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_plan_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2022-09-05",
+    "description": "按五期建设规划环评官方口径复现32号线一期：溪涌—葵涌东，约9.5公里。公开资料未给出可逐站核对的站序，本篇按既有溪涌站与葵涌东站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.19",
+    "contentRevisionNote": "增加深圳32号线一期走廊复现章。"
+  }
+}

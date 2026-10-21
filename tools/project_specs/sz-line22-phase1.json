@@ -1,0 +1,77 @@
+{
+  "city": "shenzhen",
+  "projectIds": [
+    "sz-line22-phase1"
+  ],
+  "stations": [
+    {
+      "name": "上沙",
+      "id": "shenzhen-s213",
+      "existing": true
+    },
+    {
+      "name": "黎光",
+      "id": "shenzhen-f22-liguang",
+      "latlng": [
+        22.759247,
+        114.031125
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "黎光村/黎光公交站位置，22号线一期北端终点站区参考。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "phase1",
+      "mapRouteId": "shenzhen-future-line22",
+      "name": "22号线一期（走廊复现）",
+      "historicalLineId": "shenzhen-line22-22",
+      "color": "#B07A9B",
+      "stationIds": [
+        "shenzhen-s213",
+        "shenzhen-f22-liguang"
+      ],
+      "toleranceM": 900,
+      "maxSpacingM": 30000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "22号线一期官方口径为上沙—黎光，约34.2公里。公开环评区间表虽能重建部分站序，但不足以逐站核对，本篇按既有上沙站与黎光站区复现走廊（直线约25.8公里，官方34.2公里含绕行），中途站不虚构坐标。上沙与7号线换乘。",
+      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+    }
+  ],
+  "stationInstances": {
+    "shenzhen-s213": "shenzhen-s213__line22-22"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sz22-shangsha-7",
+      "name": "上沙",
+      "complexId": "shenzhen-s213",
+      "stationInstanceIds": [
+        "shenzhen-s213",
+        "shenzhen-s213__line22-22"
+      ],
+      "lineIds": [
+        "shenzhen-line7-8",
+        "shenzhen-line22-22"
+      ],
+      "sourceNote": "上沙为7号线既有站，22号线在此换乘。"
+    }
+  ],
+  "plan": {
+    "id": "sz-line22-phase1-build",
+    "title": "深圳22号线一期建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_plan_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2022-09-05",
+    "description": "按五期建设规划环评官方口径复现22号线一期：上沙—黎光，约34.2公里，上沙与7号线换乘。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.21",
+    "contentRevisionNote": "增加深圳22号线一期走廊复现章。"
+  }
+}

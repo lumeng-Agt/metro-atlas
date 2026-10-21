@@ -1,0 +1,63 @@
+{
+  "city": "shenzhen",
+  "projectIds": [
+    "sz-line20-phase2"
+  ],
+  "stations": [
+    {
+      "name": "机场北",
+      "id": "shenzhen-s194",
+      "existing": true
+    },
+    {
+      "name": "福田会展",
+      "id": "shenzhen-f20-futianhuizhan",
+      "latlng": [
+        22.5355,
+        114.058
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "福田会展中心（深圳会展中心）站区参考；20号线二期东端终点，属走廊级参考。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "phase2",
+      "mapRouteId": "shenzhen-future-line20-phase2",
+      "name": "20号线二期（走廊复现）",
+      "historicalLineId": "shenzhen-line20-17",
+      "color": "#C08A6A",
+      "stationIds": [
+        "shenzhen-s194",
+        "shenzhen-f20-futianhuizhan"
+      ],
+      "toleranceM": 900,
+      "officialLengthM": 34000,
+      "maxSpacingM": 36000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "20号线二期官方口径为机场北—福田会展，约34公里。公开环评区间表不能给出完整可核对站序，本篇按既有20号线机场北站体（s194__line20-17）与福田会展站区复现走廊，中途站不虚构坐标。",
+      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+    }
+  ],
+  "stationInstances": {
+    "shenzhen-s194": "shenzhen-s194__line20-17"
+  },
+  "transfers": [],
+  "plan": {
+    "id": "sz-line20-phase2-build",
+    "title": "深圳20号线二期建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_plan_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2022-09-05",
+    "description": "按五期建设规划环评官方口径复现20号线二期：机场北—福田会展，约34公里，机场北复用既有20号线站体。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.20",
+    "contentRevisionNote": "增加深圳20号线二期走廊复现章。"
+  }
+}

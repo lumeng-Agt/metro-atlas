@@ -1,0 +1,89 @@
+{
+  "city": "shenzhen",
+  "projectIds": [
+    "sz-line29-phase1"
+  ],
+  "stations": [
+    {
+      "name": "红树湾南",
+      "id": "shenzhen-s188",
+      "existing": true
+    },
+    {
+      "name": "兴东",
+      "id": "shenzhen-s124",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "phase1",
+      "mapRouteId": "shenzhen-future-line29",
+      "name": "29号线一期（走廊复现）",
+      "historicalLineId": "shenzhen-line29-29",
+      "color": "#8FB3A8",
+      "stationIds": [
+        "shenzhen-s188",
+        "shenzhen-s124"
+      ],
+      "toleranceM": 900,
+      "maxSpacingM": 13000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "29号线一期官方口径为红树湾南—兴东，约11.3公里。公开环评区间表未给出可逐站核对的站序，本篇按两个既有端点站复现走廊（直线走廊约8.4公里，官方里程11.3公里为实际绕行长度），中途站不虚构坐标。红树湾南与9、11号线换乘，兴东与5号线换乘。",
+      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+    }
+  ],
+  "stationInstances": {
+    "shenzhen-s188": "shenzhen-s188__line29-29",
+    "shenzhen-s124": "shenzhen-s124__line29-29"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sz29-hongshuwan",
+      "name": "红树湾南",
+      "complexId": "shenzhen-s188",
+      "stationInstanceIds": [
+        "shenzhen-s188__line9-10",
+        "shenzhen-s188__line11-12",
+        "shenzhen-s188__line29-29"
+      ],
+      "lineIds": [
+        "shenzhen-line9-10",
+        "shenzhen-line11-12",
+        "shenzhen-line29-29"
+      ],
+      "sourceNote": "红树湾南为9/11号线既有换乘站，29号线在此设站；通道和层次仅作示意。"
+    },
+    {
+      "id": "future-transfer-sz29-xingdong",
+      "name": "兴东",
+      "complexId": "shenzhen-s124",
+      "stationInstanceIds": [
+        "shenzhen-s124__line5-5",
+        "shenzhen-s124__line29-29"
+      ],
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line29-29"
+      ],
+      "sourceNote": "兴东为5号线既有站，29号线在此换乘。"
+    }
+  ],
+  "plan": {
+    "id": "sz-line29-phase1-build",
+    "title": "深圳29号线一期建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_plan_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2022-09-05",
+    "description": "按五期建设规划环评官方口径复现29号线一期：红树湾南—兴东，约11.3公里。公开资料未给出可逐站核对的站序，本篇按两个既有端点站复现走廊。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.18",
+    "contentRevisionNote": "增加深圳29号线一期走廊复现章。"
+  }
+}

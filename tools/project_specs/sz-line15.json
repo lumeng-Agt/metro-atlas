@@ -1,0 +1,161 @@
+{
+  "city": "shenzhen",
+  "projectIds": [
+    "sz-line15"
+  ],
+  "stations": [
+    {
+      "name": "前保",
+      "id": "shenzhen-f15-qianbao",
+      "latlng": [
+        22.515,
+        113.885
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "前海保税区/铲湾路北侧站区参考；15号线环线起点。"
+    },
+    {
+      "name": "铁路公园",
+      "id": "shenzhen-s114",
+      "existing": true
+    },
+    {
+      "name": "四海",
+      "id": "shenzhen-s350",
+      "existing": true
+    },
+    {
+      "name": "深大南",
+      "id": "shenzhen-s231",
+      "existing": true
+    },
+    {
+      "name": "洪浪北",
+      "id": "shenzhen-s123",
+      "existing": true
+    },
+    {
+      "name": "坪洲",
+      "id": "shenzhen-s26",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "ring-west",
+      "mapRouteId": "shenzhen-future-line15",
+      "name": "15号线（环线开口复现）",
+      "historicalLineId": "shenzhen-line15-15",
+      "color": "#B58B5A",
+      "stationIds": [
+        "shenzhen-f15-qianbao",
+        "shenzhen-s114",
+        "shenzhen-s350",
+        "shenzhen-s231",
+        "shenzhen-s123",
+        "shenzhen-s26"
+      ],
+      "toleranceM": 800,
+      "maxSpacingM": 7000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "15号线为环线，官方口径前保—前保、约32.2公里、24座车站。公开资料未给出可逐站核对的完整站序，本篇按既有换乘站（铁路公园/5、四海/12、深大南/9、洪浪北/5、坪洲/1）与前保站区复现南—西半环开口链，东半环与环线闭合段未建模，不虚构中途站坐标。",
+      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+    }
+  ],
+  "stationInstances": {
+    "shenzhen-s114": "shenzhen-s114__line15-15",
+    "shenzhen-s350": "shenzhen-s350__line15-15",
+    "shenzhen-s231": "shenzhen-s231__line15-15",
+    "shenzhen-s123": "shenzhen-s123__line15-15",
+    "shenzhen-s26": "shenzhen-s26__line15-15"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sz15-tielugongyuan-5",
+      "name": "铁路公园",
+      "complexId": "shenzhen-s114",
+      "stationInstanceIds": [
+        "shenzhen-s114__line5-5",
+        "shenzhen-s114__line15-15"
+      ],
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line15-15"
+      ],
+      "sourceNote": "铁路公园为5号线既有站，15号线在此换乘。"
+    },
+    {
+      "id": "future-transfer-sz15-sihai-12",
+      "name": "四海",
+      "complexId": "shenzhen-s350",
+      "stationInstanceIds": [
+        "shenzhen-s350__line12-13",
+        "shenzhen-s350__line15-15"
+      ],
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line15-15"
+      ],
+      "sourceNote": "四海为12号线既有站，15号线在此换乘。"
+    },
+    {
+      "id": "future-transfer-sz15-shendanan-9",
+      "name": "深大南",
+      "complexId": "shenzhen-s231",
+      "stationInstanceIds": [
+        "shenzhen-s231",
+        "shenzhen-s231__line15-15"
+      ],
+      "lineIds": [
+        "shenzhen-line9-10",
+        "shenzhen-line15-15"
+      ],
+      "sourceNote": "深大南为9号线既有站，15号线在此换乘。"
+    },
+    {
+      "id": "future-transfer-sz15-honglangbei-5",
+      "name": "洪浪北",
+      "complexId": "shenzhen-s123",
+      "stationInstanceIds": [
+        "shenzhen-s123__line5-5",
+        "shenzhen-s123__line15-15"
+      ],
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line15-15"
+      ],
+      "sourceNote": "洪浪北为5号线既有站，15号线在此换乘。"
+    },
+    {
+      "id": "future-transfer-sz15-pingzhou-1",
+      "name": "坪洲",
+      "complexId": "shenzhen-s26",
+      "stationInstanceIds": [
+        "shenzhen-s26",
+        "shenzhen-s26__line15-15"
+      ],
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line15-15"
+      ],
+      "sourceNote": "坪洲为1号线既有站，15号线在此换乘。"
+    }
+  ],
+  "plan": {
+    "id": "sz-line15-build",
+    "title": "深圳15号线建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_plan_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2022-09-05",
+    "description": "15号线为环线（官方口径前保—前保，约32.2公里）。公开资料未给出可逐站核对的完整站序，本篇按5座既有换乘站与前保站区复现南—西半环开口链，东半环与闭合段未建模。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.22",
+    "contentRevisionNote": "增加深圳15号线开口环复现章。"
+  }
+}
