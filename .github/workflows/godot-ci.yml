@@ -51,6 +51,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Network coverage audit failed" }
           git diff --exit-code -- docs/network-coverage-2026-10-01.json docs/network-coverage-2026-10-01.md
           if ($LASTEXITCODE -ne 0) { throw "Committed network coverage audit is stale" }
+          python tools/report_project_chapters.py --check
+          if ($LASTEXITCODE -ne 0) { throw "Committed project chapter report is stale" }
       - name: Five independent process restarts
         shell: pwsh
         run: ./tests/story_restart_five.ps1 -Godot godot

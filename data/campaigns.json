@@ -29831,7 +29831,7 @@
           "source": "https://www.chengdurail.com/info/1261/55632.htm",
           "sourceTitle": "成都轨道交通18号线三期工程建设进展",
           "sourceCheckedAt": "2026-10-21",
-          "description": "沿既有18号线火车南站向北接入火车北站，形成串联成都铁路枢纽的市区段。项目在截止日仍在建；完成建设篇不视为已经开通。四个中间站区与换乘点按公开范围和现状地图对应，区间线位为近似走廊。",
+          "description": "沿既有18号线火车南站向北接入火车北站，形成串联成都铁路枢纽的市区段。项目在截止日仍在建；完成建设篇不视为已经开通。四个中间站区与换乘点按公开范围和现状地图对应，区间线位为近似走廊。 火车北站、骡马市、省体育馆在18号线既有区段内已由共用站区记录体现换乘，不再重复建立未来换乘；本次只新增倪家桥与1、8号线的换乘。",
           "sourcePublicationDate": "2024-07-01",
           "lineGroups": [
             {
@@ -29844,7 +29844,7 @@
                 "chengdu-s22",
                 "chengdu-s19",
                 "chengdu-s15",
-                "chengdu-s14",
+                "chengdu-s274",
                 "chengdu-s303"
               ],
               "stationNames": {
@@ -29855,10 +29855,7 @@
                 "chengdu-s303": "火车南站"
               },
               "stationInstances": {
-                "chengdu-s22": "chengdu-s22__line18-18",
-                "chengdu-s19": "chengdu-s19__line18-18",
-                "chengdu-s15": "chengdu-s15__line18-18",
-                "chengdu-s14": "chengdu-s14__line18-18"
+                "chengdu-s274": "chengdu-s274__line18-18"
               },
               "stationReferenceIds": {
                 "chengdu-s22": "chengdu-s22",
@@ -29876,108 +29873,12 @@
           ],
           "requiredTransfers": [
             {
-              "id": "future-transfer-north-line1",
-              "name": "火车北站",
-              "complexId": "chengdu-s22",
-              "stationInstanceIds": [
-                "chengdu-s22",
-                "chengdu-s22__line18-18"
-              ],
-              "lineIds": [
-                "chengdu-line1",
-                "chengdu-line18-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
-            },
-            {
-              "id": "future-transfer-north-line7",
-              "name": "火车北站",
-              "complexId": "chengdu-s22",
-              "stationInstanceIds": [
-                "chengdu-s22__line7-7",
-                "chengdu-s22__line18-18"
-              ],
-              "lineIds": [
-                "chengdu-line7-7",
-                "chengdu-line18-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
-            },
-            {
-              "id": "future-transfer-luomashi-line1",
-              "name": "骡马市",
-              "complexId": "chengdu-s19",
-              "stationInstanceIds": [
-                "chengdu-s19",
-                "chengdu-s19__line18-18"
-              ],
-              "lineIds": [
-                "chengdu-line1",
-                "chengdu-line18-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
-            },
-            {
-              "id": "future-transfer-luomashi-line4",
-              "name": "骡马市",
-              "complexId": "chengdu-s19",
-              "stationInstanceIds": [
-                "chengdu-s19__line4-4",
-                "chengdu-s19__line18-18"
-              ],
-              "lineIds": [
-                "chengdu-line4-4",
-                "chengdu-line18-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
-            },
-            {
-              "id": "future-transfer-stadium-line1",
-              "name": "省体育馆",
-              "complexId": "chengdu-s15",
-              "stationInstanceIds": [
-                "chengdu-s15",
-                "chengdu-s15__line18-18"
-              ],
-              "lineIds": [
-                "chengdu-line1",
-                "chengdu-line18-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
-            },
-            {
-              "id": "future-transfer-stadium-line3",
-              "name": "省体育馆",
-              "complexId": "chengdu-s15",
-              "stationInstanceIds": [
-                "chengdu-s15__line3-3",
-                "chengdu-s15__line18-18"
-              ],
-              "lineIds": [
-                "chengdu-line3-3",
-                "chengdu-line18-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
-            },
-            {
               "id": "future-transfer-nijiaqiao-line1",
               "name": "倪家桥",
               "complexId": "chengdu-s14",
               "stationInstanceIds": [
-                "chengdu-s14__line1",
-                "chengdu-s14__line18-18"
+                "chengdu-s274",
+                "chengdu-s274__line18-18"
               ],
               "lineIds": [
                 "chengdu-line1",
@@ -29985,7 +29886,7 @@
               ],
               "precision": "schematic",
               "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
+              "sourceNote": "倪家桥为1号线与18号线换乘站；截至2026-10-01，1号线在该站使用与8号线共用的站区记录（s274），18号线新建本线站体。"
             },
             {
               "id": "future-transfer-nijiaqiao-line8",
@@ -29993,7 +29894,7 @@
               "complexId": "chengdu-s14",
               "stationInstanceIds": [
                 "chengdu-s274",
-                "chengdu-s14__line18-18"
+                "chengdu-s274__line18-18"
               ],
               "lineIds": [
                 "chengdu-line8-8",
@@ -30001,7 +29902,7 @@
               ],
               "precision": "schematic",
               "source": "https://www.chengdurail.com/info/1261/55632.htm",
-              "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
+              "sourceNote": "倪家桥为8号线与18号线换乘站；两线站体分别建造，站内换乘联系按已公布换乘身份确认。"
             }
           ]
         }
