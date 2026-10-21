@@ -1,0 +1,88 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-m101-phase1"
+  ],
+  "stations": [
+    {
+      "name": "商务园",
+      "id": "beijing-f101-shangwuyuan",
+      "latlng": [
+        39.925,
+        116.635
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "通州商务园北部、通州西站东北方向走廊，按环评起点描述定位，属走廊级参考。"
+    },
+    {
+      "name": "通州西站",
+      "id": "beijing-f101-tongzhouxi",
+      "latlng": [
+        39.903713,
+        116.622286
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "通州西站（国铁）站区，环评明确线路服务该枢纽。"
+    },
+    {
+      "name": "城市副中心",
+      "id": "beijing-f101-fuzhongxin",
+      "latlng": [
+        39.907971,
+        116.700146
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "城市副中心站枢纽站区（北京通州站），环评明确线路服务该枢纽。"
+    },
+    {
+      "name": "张家湾东",
+      "id": "beijing-f101-zhangjiawandong",
+      "latlng": [
+        39.8553,
+        116.7291
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "张家湾设计小镇东部，按环评终点描述定位。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "m101",
+      "mapRouteId": "beijing-future-m101",
+      "name": "M101线一期（走廊复现）",
+      "historicalLineId": "beijing-line-m101",
+      "color": "#5B8C5A",
+      "stationIds": [
+        "beijing-f101-shangwuyuan",
+        "beijing-f101-tongzhouxi",
+        "beijing-f101-fuzhongxin",
+        "beijing-f101-zhangjiawandong"
+      ],
+      "toleranceM": 900,
+      "officialLengthM": 19000,
+      "maxSpacingM": 9000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "M101线一期官方站序为14站（商务园、通州西站、通顺路、会议中心、龙旺庄、通胡大街、玉带河大街、城市副中心、行政西区、北京大剧院、体育中心、张家湾西、张家湾、张家湾东，约19公里）。环评报告只以图示给出站位，公开文本没有可逐站核对的站址，因此本篇按端点与两个官方枢纽站（通州西站、城市副中心）复现走廊，其余10站不虚构坐标。区间为走廊近似。",
+      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html"
+    }
+  ],
+  "stationInstances": {},
+  "transfers": [],
+  "plan": {
+    "id": "bj-m101-phase1-build",
+    "title": "北京M101线一期建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "operator_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+    "sourceTitle": "副中心M101线最新线路图公布 14座车站中6站可换乘（北京市人民政府门户网站）",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2022-04-20",
+    "description": "按M101线一期环评与官方线路图复现走廊：商务园—张家湾东，全长约19公里、14座车站。公开文本只给出站名与走向、没有可逐站核对的站址，本篇按端点与通州西站、城市副中心两个枢纽站建模，其余车站只记录在说明中，不虚构坐标。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.15",
+    "contentRevisionNote": "增加北京M101线一期走廊复现章。"
+  }
+}

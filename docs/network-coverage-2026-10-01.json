@@ -113,10 +113,10 @@
           "source": "https://www.shanghai.gov.cn/nw4411/20250724/478b3e2e1ac44d248d1b31022f234b5b.html",
           "sourceTitle": "浦东多个重大工程项目火热推进",
           "note": "官方建设进展将两段均列入实施项目；具体站位须按各段批复及工程资料分别建模。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建",
-          "playableTaskStatus": "not_playable"
+          "playableTaskStatus": "playable"
         },
         {
           "id": "sh-line12-west",
@@ -147,11 +147,12 @@
         }
       ],
       "projectInventoryCount": 9,
-      "playableProjectCount": 6,
-      "pendingPlayableProjectCount": 3,
+      "playableProjectCount": 7,
+      "pendingPlayableProjectCount": 2,
       "policyProjectCount": 2,
       "engineeringProjectCount": 0,
       "playableProjectIds": [
+        "sh-line13-west-east",
         "sh-line15-south",
         "sh-line19",
         "sh-line20-phase1",
@@ -18566,10 +18567,10 @@
           "source": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202606/t20260611_4696243.html",
           "sourceTitle": "北京市重大项目办2026年一季度重点任务进展",
           "note": "2026年一季度车站、区间和停车场均已开始施工。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建",
-          "playableTaskStatus": "not_playable"
+          "playableTaskStatus": "playable"
         },
         {
           "id": "bj-line3-phase1",
@@ -18618,10 +18619,11 @@
           "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
           "sourceTitle": "2026年北京市轨道交通建设计划",
           "note": "属于既有线扩能改造工程，不作为一条新运营线路重复计数。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "engineering_works_only",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "建设计划项目",
-          "playableTaskStatus": "not_playable"
+          "playabilityNote": "13号线扩能提升工程为既有线拆分改造（13A/13B），不是一条有独立站序的新线；本地不重建既有13号线，按扩能工程条目单列。",
+          "playableTaskStatus": "engineering_works"
         },
         {
           "id": "bj-line1-branch",
@@ -18665,16 +18667,17 @@
         }
       ],
       "projectInventoryCount": 9,
-      "playableProjectCount": 6,
-      "pendingPlayableProjectCount": 3,
+      "playableProjectCount": 7,
+      "pendingPlayableProjectCount": 2,
       "policyProjectCount": 0,
-      "engineeringProjectCount": 1,
+      "engineeringProjectCount": 2,
       "playableProjectIds": [
         "bj-line1-branch",
         "bj-line12",
         "bj-line22",
         "bj-line28",
         "bj-line3-phase1",
+        "bj-m101-phase1",
         "bj-new-airport"
       ],
       "documentedMilestones": [

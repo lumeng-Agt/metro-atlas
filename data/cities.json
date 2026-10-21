@@ -7175,6 +7175,84 @@
           "coordinateNote": "环评车站表列新园路站，东延伸终点；按在建线位东端定位。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f13w-yunlelu",
+          "name": "运乐路",
+          "latlng": [
+            31.2079,
+            121.2806
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "运乐路道路走廊位置，按环评站序定位，属走廊级参考。",
+          "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f13w-jilelu",
+          "name": "季乐路",
+          "latlng": [
+            31.213,
+            121.2736
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "联友路与季乐路交叉口，按环评站序取现代道路几何。",
+          "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f13w-fanglelu",
+          "name": "芳乐路",
+          "latlng": [
+            31.2211,
+            121.2695
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "联友路与前湾公园站区（工程名芳乐路），按环评站序定位。",
+          "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f13w-jidailu",
+          "name": "纪翟路",
+          "latlng": [
+            31.242,
+            121.268
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "纪翟路与金沙江西路走廊位置，按环评站序定位，属走廊级参考。",
+          "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f13e-gaokezhonglu",
+          "name": "高科中路",
+          "latlng": [
+            31.1968,
+            121.6
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "高科中路与中科路走廊位置，按环评2.84公里站间距定位，属走廊级参考。",
+          "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f13e-danguilu",
+          "name": "丹桂路",
+          "latlng": [
+            31.2164,
+            121.6
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "丹桂路与张东路走廊位置，按环评1.96公里站间距定位，属走廊级参考。",
+          "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [
@@ -15314,6 +15392,58 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "曹各庄公交站附近（东坝大街），按官方终点站序定位；该站为远期预留。",
           "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f101-shangwuyuan",
+          "name": "商务园",
+          "latlng": [
+            39.925,
+            116.635
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "通州商务园北部、通州西站东北方向走廊，按环评起点描述定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f101-tongzhouxi",
+          "name": "通州西站",
+          "latlng": [
+            39.903713,
+            116.622286
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "通州西站（国铁）站区，环评明确线路服务该枢纽。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f101-fuzhongxin",
+          "name": "城市副中心",
+          "latlng": [
+            39.907971,
+            116.700146
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "城市副中心站枢纽站区（北京通州站），环评明确线路服务该枢纽。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f101-zhangjiawandong",
+          "name": "张家湾东",
+          "latlng": [
+            39.8553,
+            116.7291
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "张家湾设计小镇东部，按环评终点描述定位。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
           "sourceCheckedAt": "2026-10-21"
         }
       ],

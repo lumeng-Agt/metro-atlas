@@ -1,0 +1,159 @@
+{
+  "city": "shanghai",
+  "projectIds": [
+    "sh-line13-west-east"
+  ],
+  "stations": [
+    {
+      "name": "诸光路",
+      "id": "shanghai-s314",
+      "existing": true
+    },
+    {
+      "name": "运乐路",
+      "id": "shanghai-f13w-yunlelu",
+      "latlng": [
+        31.2079,
+        121.2806
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "运乐路道路走廊位置，按环评站序定位，属走廊级参考。"
+    },
+    {
+      "name": "季乐路",
+      "id": "shanghai-f13w-jilelu",
+      "latlng": [
+        31.213,
+        121.2736
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "联友路与季乐路交叉口，按环评站序取现代道路几何。"
+    },
+    {
+      "name": "芳乐路",
+      "id": "shanghai-f13w-fanglelu",
+      "latlng": [
+        31.2211,
+        121.2695
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "联友路与前湾公园站区（工程名芳乐路），按环评站序定位。"
+    },
+    {
+      "name": "纪翟路",
+      "id": "shanghai-f13w-jidailu",
+      "latlng": [
+        31.242,
+        121.268
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "纪翟路与金沙江西路走廊位置，按环评站序定位，属走廊级参考。"
+    },
+    {
+      "name": "金运路",
+      "id": "shanghai-s186",
+      "existing": true
+    },
+    {
+      "name": "张江路",
+      "id": "shanghai-s161",
+      "existing": true
+    },
+    {
+      "name": "高科中路",
+      "id": "shanghai-f13e-gaokezhonglu",
+      "latlng": [
+        31.1968,
+        121.6
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "高科中路与中科路走廊位置，按环评2.84公里站间距定位，属走廊级参考。"
+    },
+    {
+      "name": "丹桂路",
+      "id": "shanghai-f13e-danguilu",
+      "latlng": [
+        31.2164,
+        121.6
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "丹桂路与张东路走廊位置，按环评1.96公里站间距定位，属走廊级参考。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "west",
+      "mapRouteId": "shanghai-future-line13-west",
+      "name": "13号线西延伸",
+      "historicalLineId": "shanghai-line13-13",
+      "color": "#C9A7C4",
+      "stationIds": [
+        "shanghai-s314",
+        "shanghai-f13w-yunlelu",
+        "shanghai-f13w-jilelu",
+        "shanghai-f13w-fanglelu",
+        "shanghai-f13w-jidailu",
+        "shanghai-s186"
+      ],
+      "toleranceM": 600,
+      "officialLengthM": 9648,
+      "maxSpacingM": 6000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "西延伸5座车站（诸光路、运乐路、季乐路、芳乐路、纪翟路，均为暂名）取自13号线西延伸环评：诸光路—金运路，约9.648公里，最大站间距约4.369公里。诸光路复用国家会展中心站区并与17号线换乘；金运路复用既有13号线终点站体；中间站按环评站序与现代道路走廊定位，属走廊级参考。",
+      "stationOrderSource": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+      "stationInstances": {
+        "shanghai-s314": "shanghai-s314__line13-13"
+      }
+    },
+    {
+      "key": "east",
+      "mapRouteId": "shanghai-future-line13-east",
+      "name": "13号线东延伸",
+      "historicalLineId": "shanghai-line13-13",
+      "color": "#C9A7C4",
+      "stationIds": [
+        "shanghai-s161",
+        "shanghai-f13e-gaokezhonglu",
+        "shanghai-f13e-danguilu"
+      ],
+      "toleranceM": 600,
+      "officialLengthM": 4516,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "东延伸2座车站（高科中路、丹桂路，均为暂名）取自13号线东延伸环评：张江路—丹桂路，约4.52公里，站间距2.84/1.96公里。张江路复用既有13号线终点站体；两座新站按环评站序与中科路/张东路走廊定位，属走廊级参考。",
+      "stationOrderSource": "https://ditiepi.com/forum.php?mod=viewthread&action=printable&tid=6261"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-sh13w-zhuguang-17",
+      "name": "诸光路",
+      "complexId": "shanghai-s314",
+      "stationInstanceIds": [
+        "shanghai-s314",
+        "shanghai-s314__line13-13"
+      ],
+      "lineIds": [
+        "shanghai-line17-17",
+        "shanghai-line13-13"
+      ],
+      "sourceNote": "环评明确诸光路站与既有17号线（国家会展中心站）换乘；2号线徐泾东为独立站区记录，本次不并入换乘。"
+    }
+  ],
+  "plan": {
+    "id": "sh-line13-west-east-build",
+    "title": "上海13号线西延伸、东延伸建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "operator_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+    "sourceTitle": "上海市轨道交通13号线西延伸工程环评批前公示、东延伸工程环评公示",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2021-05-18",
+    "description": "按环评复现13号线西延伸（诸光路—金运路，5站，约9.648公里）与东延伸（张江路—丹桂路，2站，约4.52公里）；诸光路与17号线换乘，金运路、张江路复用既有13号线终点站体。站名均为暂名；完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.16",
+    "contentRevisionNote": "增加上海13号线西延伸、东延伸建设章。"
+  }
+}

@@ -6591,6 +6591,98 @@
               "sourceNote": "环评明确嫩江路站与8号线换乘。"
             }
           ]
+        },
+        {
+          "id": "sh-line13-west-east-build",
+          "projectIds": [
+            "sh-line13-west-east"
+          ],
+          "title": "上海13号线西延伸、东延伸建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "operator_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+          "sourceTitle": "上海市轨道交通13号线西延伸工程环评批前公示、东延伸工程环评公示",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按环评复现13号线西延伸（诸光路—金运路，5站，约9.648公里）与东延伸（张江路—丹桂路，2站，约4.52公里）；诸光路与17号线换乘，金运路、张江路复用既有13号线终点站体。站名均为暂名；完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2021-05-18",
+          "lineGroups": [
+            {
+              "taskId": "project:sh-line13-west-east-build:west",
+              "mapRouteId": "shanghai-future-line13-west",
+              "name": "13号线西延伸",
+              "historicalLineId": "shanghai-line13-13",
+              "color": "#C9A7C4",
+              "stationIds": [
+                "shanghai-s314",
+                "shanghai-f13w-yunlelu",
+                "shanghai-f13w-jilelu",
+                "shanghai-f13w-fanglelu",
+                "shanghai-f13w-jidailu",
+                "shanghai-s186"
+              ],
+              "stationNames": {
+                "shanghai-s314": "诸光路",
+                "shanghai-f13w-yunlelu": "运乐路",
+                "shanghai-f13w-jilelu": "季乐路",
+                "shanghai-f13w-fanglelu": "芳乐路",
+                "shanghai-f13w-jidailu": "纪翟路",
+                "shanghai-s186": "金运路"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "西延伸5座车站（诸光路、运乐路、季乐路、芳乐路、纪翟路，均为暂名）取自13号线西延伸环评：诸光路—金运路，约9.648公里，最大站间距约4.369公里。诸光路复用国家会展中心站区并与17号线换乘；金运路复用既有13号线终点站体；中间站按环评站序与现代道路走廊定位，属走廊级参考。",
+              "stationOrderSource": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+              "requireOpen": false,
+              "stationInstances": {
+                "shanghai-s314": "shanghai-s314__line13-13"
+              }
+            },
+            {
+              "taskId": "project:sh-line13-west-east-build:east",
+              "mapRouteId": "shanghai-future-line13-east",
+              "name": "13号线东延伸",
+              "historicalLineId": "shanghai-line13-13",
+              "color": "#C9A7C4",
+              "stationIds": [
+                "shanghai-s161",
+                "shanghai-f13e-gaokezhonglu",
+                "shanghai-f13e-danguilu"
+              ],
+              "stationNames": {
+                "shanghai-s161": "张江路",
+                "shanghai-f13e-gaokezhonglu": "高科中路",
+                "shanghai-f13e-danguilu": "丹桂路"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "东延伸2座车站（高科中路、丹桂路，均为暂名）取自13号线东延伸环评：张江路—丹桂路，约4.52公里，站间距2.84/1.96公里。张江路复用既有13号线终点站体；两座新站按环评站序与中科路/张东路走廊定位，属走廊级参考。",
+              "stationOrderSource": "https://ditiepi.com/forum.php?mod=viewthread&action=printable&tid=6261",
+              "requireOpen": false
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sh13w-zhuguang-17",
+              "name": "诸光路",
+              "complexId": "shanghai-s314",
+              "stationInstanceIds": [
+                "shanghai-s314",
+                "shanghai-s314__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line17-17",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
+              "sourceNote": "环评明确诸光路站与既有17号线（国家会展中心站）换乘；2号线徐泾东为独立站区记录，本次不并入换乘。"
+            }
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -13066,6 +13158,52 @@
               "stationInstances": {
                 "beijing-s396": "beijing-s396__line3-3"
               }
+            }
+          ],
+          "requiredTransfers": []
+        },
+        {
+          "id": "bj-m101-phase1-build",
+          "projectIds": [
+            "bj-m101-phase1"
+          ],
+          "title": "北京M101线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "operator_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+          "sourceTitle": "副中心M101线最新线路图公布 14座车站中6站可换乘（北京市人民政府门户网站）",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按M101线一期环评与官方线路图复现走廊：商务园—张家湾东，全长约19公里、14座车站。公开文本只给出站名与走向、没有可逐站核对的站址，本篇按端点与通州西站、城市副中心两个枢纽站建模，其余车站只记录在说明中，不虚构坐标。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2022-04-20",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-m101-phase1-build",
+              "mapRouteId": "beijing-future-m101",
+              "name": "M101线一期（走廊复现）",
+              "historicalLineId": "beijing-line-m101",
+              "color": "#5B8C5A",
+              "stationIds": [
+                "beijing-f101-shangwuyuan",
+                "beijing-f101-tongzhouxi",
+                "beijing-f101-fuzhongxin",
+                "beijing-f101-zhangjiawandong"
+              ],
+              "stationNames": {
+                "beijing-f101-shangwuyuan": "商务园",
+                "beijing-f101-tongzhouxi": "通州西站",
+                "beijing-f101-fuzhongxin": "城市副中心",
+                "beijing-f101-zhangjiawandong": "张家湾东"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "M101线一期官方站序为14站（商务园、通州西站、通顺路、会议中心、龙旺庄、通胡大街、玉带河大街、城市副中心、行政西区、北京大剧院、体育中心、张家湾西、张家湾、张家湾东，约19公里）。环评报告只以图示给出站位，公开文本没有可逐站核对的站址，因此本篇按端点与两个官方枢纽站（通州西站、城市副中心）复现走廊，其余10站不虚构坐标。区间为走廊近似。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+              "requireOpen": false
             }
           ],
           "requiredTransfers": []
@@ -29341,6 +29479,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.13",
-  "contentRevisionNote": "增加北京28号线建设章。"
+  "contentRevision": "2026.10.21.16",
+  "contentRevisionNote": "增加上海13号线西延伸、东延伸建设章。"
 }

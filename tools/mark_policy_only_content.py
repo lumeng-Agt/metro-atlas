@@ -31,6 +31,7 @@ POLICY_PLANS = {
 
 ENGINEERING_PROJECTS = {
     "bj-yizhuang-connector": "亦庄线至5号线、10号线的联络工程，不新增运营车站，按工程条目单列。",
+    "bj-line13-capacity": "13号线扩能提升工程为既有线拆分改造（13A/13B），不是一条有独立站序的新线；本地不重建既有13号线，按扩能工程条目单列。",
 }
 
 POLICY_PROJECTS = {
