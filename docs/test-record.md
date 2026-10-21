@@ -1,4 +1,4 @@
-# 桌面版测试记录
+﻿# 桌面版测试记录
 
 ## 0.24.0：五城截止日基准与历史边界页修正
 
@@ -404,7 +404,7 @@
 
 测试日期：2026-10-21（Asia/Shanghai）。源码 0.25.0，存档格式 25，提交 `ed8daac` 之上的文档与候选构建。
 
-- 用 Godot 4.7.2 导出 Windows x86_64 候选程序 `release-candidate/造一座地铁.exe`（208,117,144 字节，SHA-256 `0efe7fde286954d2ad100e3f3a36f479284df5091847233d441d46888d61d166`）。导出前删除了误入资源图的 `.tmp_save_roundtrip_probe.gd`。
+- 用 Godot 4.7.2 导出 Windows x86_64 候选程序 `release-candidate/造一座地铁.exe`（208,121,192 字节，SHA-256 `2fefb9526f6b0cd6597011473ad3d512b95901db1169c2c6216d429030398e60`）。导出前删除了误入资源图的 `.tmp_save_roundtrip_probe.gd`。
 - 候选程序冒烟：`--headless --quit` 退出码 0；`--headless` 连续运行 20 秒，stderr 为空。
 - 原生渲染性能（`tests/story_performance_smoke.gd`，1600×980，AMD Ryzen 9 8945HX + RTX 5060 Laptop，OpenGL 3.3 Compatibility）：
   - overview：三次 30 秒，平均 36.27/35.61/35.32 fps，p95 29.23/29.89/30.62 ms，通过；
