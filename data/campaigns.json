@@ -12887,6 +12887,188 @@
               "sourceNote": "1号线支线在张郭庄与14号线换乘；两线站体分别建造。"
             }
           ]
+        },
+        {
+          "id": "bj-line28-build",
+          "projectIds": [
+            "bj-line28"
+          ],
+          "title": "北京28号线建设篇",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "municipal_route_plan_notice",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+          "sourceTitle": "轨道交通28号线规划方案公示（北京市基础设施投资有限公司公示报道）",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按2025年8月28号线线路一体化规划方案公示复现：东大桥—广渠东路，9座车站、约8.7公里，其中6座换乘站。东大桥、大望路、大郊亭与既有线换乘，京广桥与10号线金台夕照站换乘。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2025-08-02",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line28-build",
+              "mapRouteId": "beijing-future-line28",
+              "name": "28号线",
+              "historicalLineId": "beijing-line28-28",
+              "color": "#4E8C7A",
+              "stationIds": [
+                "beijing-s333",
+                "beijing-s169",
+                "beijing-f28-guanghualu",
+                "beijing-f28-hexinqu",
+                "beijing-s47",
+                "beijing-f28-beijingdong",
+                "beijing-s310",
+                "beijing-f28-guangqulu",
+                "beijing-f28-guangqudonglu"
+              ],
+              "stationNames": {
+                "beijing-s333": "东大桥",
+                "beijing-s169": "京广桥",
+                "beijing-f28-guanghualu": "光华路",
+                "beijing-f28-hexinqu": "核心区",
+                "beijing-s47": "大望路",
+                "beijing-f28-beijingdong": "北京东站",
+                "beijing-s310": "大郊亭",
+                "beijing-f28-guangqulu": "广渠路",
+                "beijing-f28-guangqudonglu": "广渠东路"
+              },
+              "toleranceM": 500.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "9座车站取自2025年8月28号线线路一体化规划方案公示（东大桥—百子湾地区，约8.7公里，6座换乘站：东大桥、京广桥、光华路、大望路、茂兴西路、大郊亭）。东大桥、大望路、大郊亭复用既有站区；京广桥、光华路、核心区、北京东站、广渠路、广渠东路按道路/站区走廊定位，属走廊级参考。",
+              "stationOrderSource": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s333": "beijing-s333__line28-28",
+                "beijing-s47": "beijing-s47__line28-28",
+                "beijing-s310": "beijing-s310__line28-28",
+                "beijing-s169": "beijing-s169__line28-28"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-bj28-dongdaqiao",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "stationInstanceIds": [
+                "beijing-s333__line6-6",
+                "beijing-s333__line17-17",
+                "beijing-s333__line28-28"
+              ],
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line17-17",
+                "beijing-line28-28"
+              ],
+              "precision": "schematic",
+              "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+              "sourceNote": "东大桥为6/17号线既有换乘站，28号线为第三线；通道和层次仅作示意。"
+            },
+            {
+              "id": "future-transfer-bj28-jingguangqiao-10",
+              "name": "京广桥",
+              "complexId": "beijing-s169",
+              "stationInstanceIds": [
+                "beijing-s169",
+                "beijing-s169__line28-28"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line28-28"
+              ],
+              "precision": "schematic",
+              "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+              "sourceNote": "京广桥站即10号线金台夕照站同站区（更名/一体化），28号线在此设站换乘；两线站体分别建造。"
+            },
+            {
+              "id": "future-transfer-bj28-dawanglu",
+              "name": "大望路",
+              "complexId": "beijing-s47",
+              "stationInstanceIds": [
+                "beijing-s47",
+                "beijing-s47__line28-28"
+              ],
+              "lineIds": [
+                "beijing-lineearly0",
+                "beijing-line28-28"
+              ],
+              "precision": "schematic",
+              "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+              "sourceNote": "大望路为1号线既有站，28号线在此换乘；14号线同名站为独立站区记录，本换乘只连接1号线，14号线换乘待站区合并后再补。"
+            },
+            {
+              "id": "future-transfer-bj28-dajiaoting-7",
+              "name": "大郊亭",
+              "complexId": "beijing-s310",
+              "stationInstanceIds": [
+                "beijing-s310",
+                "beijing-s310__line28-28"
+              ],
+              "lineIds": [
+                "beijing-line7-7",
+                "beijing-line28-28"
+              ],
+              "precision": "schematic",
+              "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+              "sourceNote": "大郊亭为7号线既有站，28号线在此换乘。"
+            }
+          ]
+        },
+        {
+          "id": "bj-line3-east-build",
+          "projectIds": [
+            "bj-line3-phase1"
+          ],
+          "title": "北京3号线一期东段建设篇",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "municipal_construction_update",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourceTitle": "地铁3号线一期东段启动建设 设5座车站（北京市人民政府门户网站）",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按2025年12月开工报道复现3号线一期东段：管庄路西口—曹各庄北5座车站、约5.1公里。东坝北复用既有3号线站体；曹各庄北为远期预留站。完成本篇只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": "2025-12-19",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line3-east-build",
+              "mapRouteId": "beijing-future-line3-east",
+              "name": "3号线一期东段",
+              "historicalLineId": "beijing-line3-3",
+              "color": "#C94F3D",
+              "stationIds": [
+                "beijing-s396",
+                "beijing-f3e-guanzhuanglu",
+                "beijing-f3e-louzizhuangqiaoxi",
+                "beijing-f3e-louzizhuang",
+                "beijing-f3e-gaoxinzhuang",
+                "beijing-f3e-caogezhuangbei"
+              ],
+              "stationNames": {
+                "beijing-s396": "东坝北",
+                "beijing-f3e-guanzhuanglu": "管庄路西口",
+                "beijing-f3e-louzizhuangqiaoxi": "楼梓庄桥西",
+                "beijing-f3e-louzizhuang": "楼梓庄",
+                "beijing-f3e-gaoxinzhuang": "高辛庄",
+                "beijing-f3e-caogezhuangbei": "曹各庄北"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "5座车站取自2025年12月3号线一期东段开工报道：西起管庄路西口、东至曹各庄北，约5.1公里，分别为管庄路西口、楼梓庄桥西、楼梓庄、高辛庄、远期预留的曹各庄北。东坝北复用既有3号线站体；管庄路西口按楼梓庄路与东苇路交叉口站址定位，其余按官方站序在东坝大街走廊上定位，属走廊级参考。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s396": "beijing-s396__line3-3"
+              }
+            }
+          ],
+          "requiredTransfers": []
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -29159,6 +29341,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.12",
-  "contentRevisionNote": "增加北京1号线支线建设章。"
+  "contentRevision": "2026.10.21.13",
+  "contentRevisionNote": "增加北京28号线建设章。"
 }

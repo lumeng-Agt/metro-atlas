@@ -15185,6 +15185,136 @@
           "coordinateNote": "青龙湖镇东侧走廊位置，按官方终点站序定位，属走廊级参考。",
           "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f28-guanghualu",
+          "name": "光华路",
+          "latlng": [
+            39.9122,
+            116.4639
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "光华路道路走廊位置，按官方站序定位。",
+          "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f28-hexinqu",
+          "name": "核心区",
+          "latlng": [
+            39.9095,
+            116.4665
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "CBD核心区（景辉街）位置，按官方站序在光华路—大望路之间定位，属走廊级参考。",
+          "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f28-beijingdong",
+          "name": "北京东站",
+          "latlng": [
+            39.9011,
+            116.4807
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "国铁北京东站站区，按官方站名定位。",
+          "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f28-guangqulu",
+          "name": "广渠路",
+          "latlng": [
+            39.8918,
+            116.4878
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "广渠路道路走廊位置，按官方站序定位。",
+          "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f28-guangqudonglu",
+          "name": "广渠东路",
+          "latlng": [
+            39.8903,
+            116.4995
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "广渠东路车辆基地区域东侧，按官方终点站序定位，属走廊级参考。",
+          "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f3e-guanzhuanglu",
+          "name": "管庄路西口",
+          "latlng": [
+            39.9738,
+            116.578
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "楼梓庄路与东苇路交叉口南侧，按官方站址描述定位。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f3e-louzizhuangqiaoxi",
+          "name": "楼梓庄桥西",
+          "latlng": [
+            39.975,
+            116.582
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "楼梓庄桥西侧、东坝大街走廊，按官方站序定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f3e-louzizhuang",
+          "name": "楼梓庄",
+          "latlng": [
+            39.973624,
+            116.588997
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "楼梓庄村位置，按官方站序定位。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f3e-gaoxinzhuang",
+          "name": "高辛庄",
+          "latlng": [
+            39.979,
+            116.596
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "高辛庄方向走廊，按官方站序定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f3e-caogezhuangbei",
+          "name": "曹各庄北",
+          "latlng": [
+            39.9802,
+            116.6028
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "曹各庄公交站附近（东坝大街），按官方终点站序定位；该站为远期预留。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [

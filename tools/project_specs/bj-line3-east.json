@@ -1,0 +1,107 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-line3-phase1"
+  ],
+  "stations": [
+    {
+      "name": "东坝北",
+      "id": "beijing-s396",
+      "existing": true
+    },
+    {
+      "name": "管庄路西口",
+      "id": "beijing-f3e-guanzhuanglu",
+      "latlng": [
+        39.9738,
+        116.578
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "楼梓庄路与东苇路交叉口南侧，按官方站址描述定位。"
+    },
+    {
+      "name": "楼梓庄桥西",
+      "id": "beijing-f3e-louzizhuangqiaoxi",
+      "latlng": [
+        39.975,
+        116.582
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "楼梓庄桥西侧、东坝大街走廊，按官方站序定位，属走廊级参考。"
+    },
+    {
+      "name": "楼梓庄",
+      "id": "beijing-f3e-louzizhuang",
+      "latlng": [
+        39.973624,
+        116.588997
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "楼梓庄村位置，按官方站序定位。"
+    },
+    {
+      "name": "高辛庄",
+      "id": "beijing-f3e-gaoxinzhuang",
+      "latlng": [
+        39.979,
+        116.596
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "高辛庄方向走廊，按官方站序定位，属走廊级参考。"
+    },
+    {
+      "name": "曹各庄北",
+      "id": "beijing-f3e-caogezhuangbei",
+      "latlng": [
+        39.9802,
+        116.6028
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "曹各庄公交站附近（东坝大街），按官方终点站序定位；该站为远期预留。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "east",
+      "mapRouteId": "beijing-future-line3-east",
+      "name": "3号线一期东段",
+      "historicalLineId": "beijing-line3-3",
+      "color": "#C94F3D",
+      "stationIds": [
+        "beijing-s396",
+        "beijing-f3e-guanzhuanglu",
+        "beijing-f3e-louzizhuangqiaoxi",
+        "beijing-f3e-louzizhuang",
+        "beijing-f3e-gaoxinzhuang",
+        "beijing-f3e-caogezhuangbei"
+      ],
+      "toleranceM": 600,
+      "officialLengthM": 5100,
+      "maxSpacingM": 4000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "5座车站取自2025年12月3号线一期东段开工报道：西起管庄路西口、东至曹各庄北，约5.1公里，分别为管庄路西口、楼梓庄桥西、楼梓庄、高辛庄、远期预留的曹各庄北。东坝北复用既有3号线站体；管庄路西口按楼梓庄路与东苇路交叉口站址定位，其余按官方站序在东坝大街走廊上定位，属走廊级参考。",
+      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html"
+    }
+  ],
+  "stationInstances": {
+    "beijing-s396": "beijing-s396__line3-3"
+  },
+  "transfers": [],
+  "plan": {
+    "id": "bj-line3-east-build",
+    "title": "北京3号线一期东段建设篇",
+    "date": "2026-10-01",
+    "status": "approved_and_under_construction",
+    "sourceType": "municipal_construction_update",
+    "projectType": "approved_and_under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+    "sourceTitle": "地铁3号线一期东段启动建设 设5座车站（北京市人民政府门户网站）",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2025-12-19",
+    "description": "按2025年12月开工报道复现3号线一期东段：管庄路西口—曹各庄北5座车站、约5.1公里。东坝北复用既有3号线站体；曹各庄北为远期预留站。完成本篇只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.14",
+    "contentRevisionNote": "增加北京3号线一期东段建设章。"
+  }
+}
