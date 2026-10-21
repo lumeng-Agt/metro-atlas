@@ -15,7 +15,10 @@ func _run() -> void:
 	_check(Catalog.validate_catalog(WorldData.cities()).is_empty(),"五城资料引用校验")
 	_check(Catalog.validate_network_baseline(WorldData.cities()).is_empty(),"五城截止日路网基准引用校验")
 	var gz_future:Array=Catalog.playable_future_plans("guangzhou")
-	_check(gz_future.size()==2,"广州12号线中段和13号线二期西段进入可玩项目篇")
+	var gz_future_ids:Array=gz_future.map(func(plan:Dictionary):return str(plan.get("id","")))
+	_check(gz_future.size()==3 and gz_future_ids.has("gz-line12-mid-build") and gz_future_ids.has("gz-line13-phase2-west-build") and gz_future_ids.has("gz-line8-north-branch-build"),"广州12号线中段、13号线二期西段和8号线北延段支线进入可玩项目篇")
+	var sh_future_ids:Array=Catalog.playable_future_plans("shanghai").map(func(plan:Dictionary):return str(plan.get("id","")))
+	_check(sh_future_ids.has("sh-line23-phase1-build") and sh_future_ids.has("sh-line15-south-build") and sh_future_ids.has("sh-line21-phase1-build"),"上海23号线一期、15号线南延伸和21号线一期进入可玩项目篇")
 	var gz_2025:Dictionary={}
 	for candidate in Catalog.city_config("guangzhou").get("chapters",[]):
 		if str(candidate.get("id",""))=="guangzhou-network-milestone-2025-06-29":gz_2025=candidate;break

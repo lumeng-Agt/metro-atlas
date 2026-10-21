@@ -5868,6 +5868,186 @@
               "sourceNote": "专项债券项目说明将望园路站列为15号线南延伸终点；与5号线望园路站同站换乘，通道和层次仅作示意。"
             }
           ]
+        },
+        {
+          "id": "sh-line21-phase1-build",
+          "projectIds": [
+            "sh-line21"
+          ],
+          "title": "上海21号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_initial_design_approval",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceTitle": "上海市住房和城乡建设管理委员会关于上海市轨道交通21号线一期工程初步设计的批复",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按初步设计批复复现21号线一期：六陈路至东靖路，18座车站、全长27.964公里。迪士尼、学林路、广兰路、浦东足球场、金桥、杨高北路、东靖路与既有线路换乘。项目在截止日仍在建，完成本篇只表示规划建设完成，不计作开通；21号线东延伸另期制作。",
+          "sourcePublicationDate": "2021-12-01",
+          "lineGroups": [
+            {
+              "taskId": "project:sh-line21-phase1-build",
+              "mapRouteId": "shanghai-future-line21",
+              "name": "21号线一期",
+              "historicalLineId": "shanghai-line21-21",
+              "color": "#9E8FC0",
+              "stationIds": [
+                "shanghai-f21-liuchenlu",
+                "shanghai-f21-tanghuanglu",
+                "shanghai-s254",
+                "shanghai-f21-shenjiangnanlu",
+                "shanghai-f21-zhangjiang",
+                "shanghai-f21-kangnanlu",
+                "shanghai-f21-junminlu",
+                "shanghai-s162",
+                "shanghai-f21-zhanghenglu",
+                "shanghai-f21-gaosilu",
+                "shanghai-s296",
+                "shanghai-f21-longdongdadao",
+                "shanghai-s388",
+                "shanghai-f21-yunqiaolu",
+                "shanghai-s156",
+                "shanghai-f21-linghelu",
+                "shanghai-s251",
+                "shanghai-s204"
+              ],
+              "stationNames": {
+                "shanghai-f21-liuchenlu": "六陈路",
+                "shanghai-f21-tanghuanglu": "唐黄路",
+                "shanghai-s254": "迪士尼",
+                "shanghai-f21-shenjiangnanlu": "申江南路",
+                "shanghai-f21-zhangjiang": "张江",
+                "shanghai-f21-kangnanlu": "康南路",
+                "shanghai-f21-junminlu": "军民路",
+                "shanghai-s162": "学林路",
+                "shanghai-f21-zhanghenglu": "张衡路",
+                "shanghai-f21-gaosilu": "高斯路",
+                "shanghai-s296": "广兰路",
+                "shanghai-f21-longdongdadao": "龙东大道",
+                "shanghai-s388": "浦东足球场",
+                "shanghai-f21-yunqiaolu": "云桥路",
+                "shanghai-s156": "金桥",
+                "shanghai-f21-linghelu": "凌河路",
+                "shanghai-s251": "杨高北路",
+                "shanghai-s204": "东靖路"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "18座车站及站序取自《上海市轨道交通21号线一期工程初步设计批复》（沪建综规〔2021〕763号）：六陈路—东靖路，全长27.964公里。迪士尼、学林路、广兰路、浦东足球场、金桥、杨高北路、东靖路复用既有站区；其余按批复站址描述与现代道路几何定位。张江、康南路、军民路依赖规划道路，属走廊级参考。21号线东延伸未纳入本篇。金桥站与既有14号线金桥站同址，批复未明确换乘关系，本篇不建立换乘联系。",
+              "stationOrderSource": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shanghai-s254": "shanghai-s254__line21-21",
+                "shanghai-s162": "shanghai-s162__line21-21",
+                "shanghai-s296": "shanghai-s296__line21-21",
+                "shanghai-s388": "shanghai-s388__line21-21",
+                "shanghai-s156": "shanghai-s156__line21-21",
+                "shanghai-s251": "shanghai-s251__line21-21",
+                "shanghai-s204": "shanghai-s204__line21-21"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sh21-disney-11",
+              "name": "迪士尼",
+              "complexId": "shanghai-s254",
+              "stationInstanceIds": [
+                "shanghai-s254",
+                "shanghai-s254__line21-21"
+              ],
+              "lineIds": [
+                "shanghai-line11-11",
+                "shanghai-line21-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+              "sourceNote": "批复明确本线与11号线站厅同站换乘；通道与层次仅作示意。"
+            },
+            {
+              "id": "future-transfer-sh21-xuelin-13",
+              "name": "学林路",
+              "complexId": "shanghai-s162",
+              "stationInstanceIds": [
+                "shanghai-s162",
+                "shanghai-s162__line21-21"
+              ],
+              "lineIds": [
+                "shanghai-line13-13",
+                "shanghai-line21-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+              "sourceNote": "批复明确与13号线通道换乘。"
+            },
+            {
+              "id": "future-transfer-sh21-guanglan-2",
+              "name": "广兰路",
+              "complexId": "shanghai-s296",
+              "stationInstanceIds": [
+                "shanghai-s296",
+                "shanghai-s296__line21-21"
+              ],
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line21-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+              "sourceNote": "批复明确与2号线通道换乘。"
+            },
+            {
+              "id": "future-transfer-sh21-football-14",
+              "name": "浦东足球场",
+              "complexId": "shanghai-s388",
+              "stationInstanceIds": [
+                "shanghai-s388",
+                "shanghai-s388__line21-21"
+              ],
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line21-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+              "sourceNote": "批复明确与14号线通道换乘。"
+            },
+            {
+              "id": "future-transfer-sh21-yanggao-12",
+              "name": "杨高北路",
+              "complexId": "shanghai-s251",
+              "stationInstanceIds": [
+                "shanghai-s251",
+                "shanghai-s251__line21-21"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line21-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+              "sourceNote": "批复明确与12号线通道换乘。"
+            },
+            {
+              "id": "future-transfer-sh21-dongjing-6",
+              "name": "东靖路",
+              "complexId": "shanghai-s204",
+              "stationInstanceIds": [
+                "shanghai-s204",
+                "shanghai-s204__line21-21"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line21-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+              "sourceNote": "批复明确与6号线通道换乘。"
+            }
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -17857,6 +18037,104 @@
           "sourcePublicationDate": "2025-08-27",
           "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。",
           "requiredNote": "政策与线网规划条目，仅作资料呈现，不阻塞自由创作；广州市综合交通体系规划（2023—2035年），属线网层面规划。"
+        },
+        {
+          "id": "gz-line8-north-branch-build",
+          "projectIds": [
+            "gz-line8-north-branch"
+          ],
+          "title": "广州8号线北延段支线建设篇",
+          "date": "2026-10-01",
+          "status": "approved_project",
+          "sourceType": "operator_environmental_impact_report",
+          "projectType": "approved_project",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceTitle": "广州市城市轨道交通8号线北延段支线工程（江府～纪念堂）环境影响报告书",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按环评报告书复现8号线北延段支线：江府至纪念堂，全长约20公里、10座新建车站（纪念堂、梓元岗、远景、棠景、白云站、黄石、夏茅、白云大朗、均禾、桃源）。白云站土建不属本线，仅通过；江府站属8号线北延段工程，本线在此接轨。项目为批准建设项目，完成本章只表示规划建设完成，不计作开通。",
+          "sourcePublicationDate": null,
+          "lineGroups": [
+            {
+              "taskId": "project:gz-line8-north-branch-build",
+              "mapRouteId": "guangzhou-future-line8-north-branch",
+              "name": "8号线北延段支线",
+              "historicalLineId": "guangzhou-line8-8",
+              "color": "#008C95",
+              "stationIds": [
+                "guangzhou-s134",
+                "guangzhou-s346",
+                "guangzhou-f8b-yuanjing",
+                "guangzhou-f8b-tangjing",
+                "guangzhou-f8b-baiyunstation",
+                "guangzhou-f8b-huangshi",
+                "guangzhou-f8b-xiamao",
+                "guangzhou-f8b-baiyundalang",
+                "guangzhou-f8b-junhe",
+                "guangzhou-f8b-taoyuan",
+                "guangzhou-f8b-jiangfu"
+              ],
+              "stationNames": {
+                "guangzhou-s134": "纪念堂",
+                "guangzhou-s346": "梓元岗",
+                "guangzhou-f8b-yuanjing": "远景",
+                "guangzhou-f8b-tangjing": "棠景",
+                "guangzhou-f8b-baiyunstation": "白云站",
+                "guangzhou-f8b-huangshi": "黄石",
+                "guangzhou-f8b-xiamao": "夏茅",
+                "guangzhou-f8b-baiyundalang": "白云大朗",
+                "guangzhou-f8b-junhe": "均禾",
+                "guangzhou-f8b-taoyuan": "桃源",
+                "guangzhou-f8b-jiangfu": "江府"
+              },
+              "toleranceM": 500.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "10座新建车站站序取自《8号线北延段支线工程（江府～纪念堂）环境影响报告书》表2.2-4；环评注明站名均为工程暂定名。白云站土建不属本线，仅通过并纳入站序；江府站属8号线北延段工程，本线在此接轨。纪念堂、梓元岗复用既有站区，其余站位按环评站址描述与现代道路几何定位，区间为走廊近似。",
+              "stationOrderSource": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "guangzhou-s134": "guangzhou-s134__line8-8",
+                "guangzhou-s346": "guangzhou-s346__line8-8"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-gz8b-jiniantang-2",
+              "name": "纪念堂",
+              "complexId": "guangzhou-s134",
+              "stationInstanceIds": [
+                "guangzhou-s134",
+                "guangzhou-s134__line8-8"
+              ],
+              "lineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+              "sourceNote": "环评明确纪念堂站与既有2号线、在建13号线换乘；本线只与既有2号线建立换乘，13号线未建暂不计。"
+            },
+            {
+              "id": "future-transfer-gz8b-ziyuangang-11",
+              "name": "梓元岗",
+              "complexId": "guangzhou-s346",
+              "stationInstanceIds": [
+                "guangzhou-s346",
+                "guangzhou-s346__line8-8"
+              ],
+              "lineIds": [
+                "guangzhou-line11-11",
+                "guangzhou-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+              "sourceNote": "环评为两线换乘站，11号线梓元岗站横跨三元里大道和机场路；通道与层次仅作示意。"
+            }
+          ],
+          "publicationDateNote": "报告书正文未标注发布日期；以广州市生态环境局公示附件为准，核验日期2026-10-21。"
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -27987,6 +28265,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.3",
-  "contentRevisionNote": "增加上海15号线南延伸官方项目说明下的4站建设章；其余在建项目按同一规范继续逐条数字化。"
+  "contentRevision": "2026.10.21.5",
+  "contentRevisionNote": "增加上海21号线一期建设章。"
 }

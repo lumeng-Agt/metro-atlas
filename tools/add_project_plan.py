@@ -67,6 +67,11 @@ def normalize_groups(spec: dict) -> list[dict]:
         groups = [merged]
     if not isinstance(groups, list) or not groups:
         fail("lineGroups must be a non-empty list")
+    # Backward compatibility: an older spec kept one shared stationInstances
+    # map at the top level. Only a single-group spec can use that form.
+    top_level_instances = spec.get("stationInstances")
+    if top_level_instances and len(groups) == 1 and not groups[0].get("stationInstances"):
+        groups[0] = dict(groups[0], stationInstances=top_level_instances)
     return groups
 
 

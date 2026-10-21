@@ -1,0 +1,187 @@
+{
+  "city": "guangzhou",
+  "projectIds": [
+    "gz-line8-north-branch"
+  ],
+  "stations": [
+    {
+      "name": "纪念堂",
+      "id": "guangzhou-s134",
+      "existing": true
+    },
+    {
+      "name": "梓元岗",
+      "id": "guangzhou-s346",
+      "existing": true
+    },
+    {
+      "name": "远景",
+      "id": "guangzhou-f8b-yuanjing",
+      "latlng": [
+        23.174791,
+        113.245997
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "三元里大道与远景路交叉口，按环评站址描述取现代道路几何。"
+    },
+    {
+      "name": "棠景",
+      "id": "guangzhou-f8b-tangjing",
+      "latlng": [
+        23.1820934,
+        113.2460077
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "三元里大道与德康路交叉口，按环评站址描述取现代道路几何。"
+    },
+    {
+      "name": "白云站",
+      "id": "guangzhou-f8b-baiyunstation",
+      "latlng": [
+        23.194037,
+        113.24051
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "白云站铁路枢纽站区；环评明确本线土建不含此站，仅通过并纳入站序。"
+    },
+    {
+      "name": "黄石",
+      "id": "guangzhou-f8b-huangshi",
+      "latlng": [
+        23.207507,
+        113.246682
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "黄石西路与小坪东路交叉口东南侧，按环评站址描述取现代道路几何。"
+    },
+    {
+      "name": "夏茅",
+      "id": "guangzhou-f8b-xiamao",
+      "latlng": [
+        23.230216,
+        113.254413
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "广花一路辅路在建站标注（OSM 夏茅站），与环评站址一致。"
+    },
+    {
+      "name": "白云大朗",
+      "id": "guangzhou-f8b-baiyundalang",
+      "latlng": [
+        23.246483,
+        113.247938
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "夏花一路在建站标注（OSM 白云大朗站）。"
+    },
+    {
+      "name": "均禾",
+      "id": "guangzhou-f8b-junhe",
+      "latlng": [
+        23.257174,
+        113.245758
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "广花二路辅路在建站标注（OSM 均禾站）。"
+    },
+    {
+      "name": "桃源",
+      "id": "guangzhou-f8b-taoyuan",
+      "latlng": [
+        23.2696,
+        113.2423
+      ],
+      "coordinateSource": "official_chainage",
+      "coordinateNote": "按环评中心里程（距均禾约1.36公里、距江府约3.16公里）在均禾—江府走廊上定位，邻近桃源村。"
+    },
+    {
+      "name": "江府",
+      "id": "guangzhou-f8b-jiangfu",
+      "latlng": [
+        23.296426,
+        113.236145
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "广花三路在建站标注（OSM 江府站）；环评注明江府站属8号线北延段工程，本线在此接轨。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "branch",
+      "mapRouteId": "guangzhou-future-line8-north-branch",
+      "name": "8号线北延段支线",
+      "historicalLineId": "guangzhou-line8-8",
+      "color": "#008C95",
+      "stationIds": [
+        "guangzhou-s134",
+        "guangzhou-s346",
+        "guangzhou-f8b-yuanjing",
+        "guangzhou-f8b-tangjing",
+        "guangzhou-f8b-baiyunstation",
+        "guangzhou-f8b-huangshi",
+        "guangzhou-f8b-xiamao",
+        "guangzhou-f8b-baiyundalang",
+        "guangzhou-f8b-junhe",
+        "guangzhou-f8b-taoyuan",
+        "guangzhou-f8b-jiangfu"
+      ],
+      "toleranceM": 500,
+      "officialLengthM": 20000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "10座新建车站站序取自《8号线北延段支线工程（江府～纪念堂）环境影响报告书》表2.2-4；环评注明站名均为工程暂定名。白云站土建不属本线，仅通过并纳入站序；江府站属8号线北延段工程，本线在此接轨。纪念堂、梓元岗复用既有站区，其余站位按环评站址描述与现代道路几何定位，区间为走廊近似。",
+      "stationOrderSource": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf"
+    }
+  ],
+  "stationInstances": {
+    "guangzhou-s134": "guangzhou-s134__line8-8",
+    "guangzhou-s346": "guangzhou-s346__line8-8"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-gz8b-jiniantang-2",
+      "name": "纪念堂",
+      "complexId": "guangzhou-s134",
+      "stationInstanceIds": [
+        "guangzhou-s134",
+        "guangzhou-s134__line8-8"
+      ],
+      "lineIds": [
+        "guangzhou-line2-2",
+        "guangzhou-line8-8"
+      ],
+      "sourceNote": "环评明确纪念堂站与既有2号线、在建13号线换乘；本线只与既有2号线建立换乘，13号线未建暂不计。"
+    },
+    {
+      "id": "future-transfer-gz8b-ziyuangang-11",
+      "name": "梓元岗",
+      "complexId": "guangzhou-s346",
+      "stationInstanceIds": [
+        "guangzhou-s346",
+        "guangzhou-s346__line8-8"
+      ],
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line8-8"
+      ],
+      "sourceNote": "环评为两线换乘站，11号线梓元岗站横跨三元里大道和机场路；通道与层次仅作示意。"
+    }
+  ],
+  "plan": {
+    "id": "gz-line8-north-branch-build",
+    "title": "广州8号线北延段支线建设篇",
+    "date": "2026-10-01",
+    "status": "approved_project",
+    "sourceType": "operator_environmental_impact_report",
+    "projectType": "approved_project",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+    "sourceTitle": "广州市城市轨道交通8号线北延段支线工程（江府～纪念堂）环境影响报告书",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": null,
+    "publicationDateNote": "报告书正文未标注发布日期；以广州市生态环境局公示附件为准，核验日期2026-10-21。",
+    "description": "按环评报告书复现8号线北延段支线：江府至纪念堂，全长约20公里、10座新建车站（纪念堂、梓元岗、远景、棠景、白云站、黄石、夏茅、白云大朗、均禾、桃源）。白云站土建不属本线，仅通过；江府站属8号线北延段工程，本线在此接轨。项目为批准建设项目，完成本章只表示规划建设完成，不计作开通。",
+    "contentRevision": "2026.10.21.4",
+    "contentRevisionNote": "增加广州8号线北延段支线建设章。"
+  }
+}

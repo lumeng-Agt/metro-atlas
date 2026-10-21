@@ -1,0 +1,299 @@
+{
+  "city": "shanghai",
+  "projectIds": [
+    "sh-line21"
+  ],
+  "stations": [
+    {
+      "name": "六陈路",
+      "id": "shanghai-f21-liuchenlu",
+      "latlng": [
+        31.15304,
+        121.70768
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "六陈路与川沙路交叉口西侧，按初步设计批复站址描述取现代道路几何。"
+    },
+    {
+      "name": "唐黄路",
+      "id": "shanghai-f21-tanghuanglu",
+      "latlng": [
+        31.14547,
+        121.67851
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "唐黄路与六陈路交叉口东侧，按批复站址描述取道路几何。"
+    },
+    {
+      "name": "迪士尼",
+      "id": "shanghai-s254",
+      "existing": true
+    },
+    {
+      "name": "申江南路",
+      "id": "shanghai-f21-shenjiangnanlu",
+      "latlng": [
+        31.14121,
+        121.62446
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "申江南路与秀沿路交叉口西侧，按批复站址描述取道路几何。"
+    },
+    {
+      "name": "张江",
+      "id": "shanghai-f21-zhangjiang",
+      "latlng": [
+        31.145,
+        121.612
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "慈桥路与规划路交叉口北侧康桥生态园内；慈桥路走廊按现代道路几何定位，规划路未建成，属走廊级站区参考。"
+    },
+    {
+      "name": "康南路",
+      "id": "shanghai-f21-kangnanlu",
+      "latlng": [
+        31.165,
+        121.61
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "规划哥白尼路与康南路交叉口；两条道路的规划段未建成，按既有康南路走廊与站序定位，属走廊级参考。"
+    },
+    {
+      "name": "军民路",
+      "id": "shanghai-f21-junminlu",
+      "latlng": [
+        31.174,
+        121.6095
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "规划哥白尼路与规划军民路交叉口北侧；按既有军民公路走廊与站序定位，属走廊级参考。"
+    },
+    {
+      "name": "学林路",
+      "id": "shanghai-s162",
+      "existing": true
+    },
+    {
+      "name": "张衡路",
+      "id": "shanghai-f21-zhanghenglu",
+      "latlng": [
+        31.193978,
+        121.608231
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "哥白尼路与张衡路交叉口，按批复站址描述取道路几何。"
+    },
+    {
+      "name": "高斯路",
+      "id": "shanghai-f21-gaosilu",
+      "latlng": [
+        31.20245,
+        121.60945
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "紫薇路与高斯路交叉口东北侧，按批复站址描述取道路几何。"
+    },
+    {
+      "name": "广兰路",
+      "id": "shanghai-s296",
+      "existing": true
+    },
+    {
+      "name": "龙东大道",
+      "id": "shanghai-f21-longdongdadao",
+      "latlng": [
+        31.22295,
+        121.61262
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "广兰路与龙东大道交叉口南侧，按批复站址描述取道路几何。"
+    },
+    {
+      "name": "浦东足球场",
+      "id": "shanghai-s388",
+      "existing": true
+    },
+    {
+      "name": "云桥路",
+      "id": "shanghai-f21-yunqiaolu",
+      "latlng": [
+        31.25142,
+        121.611
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "金港路与云桥路交叉口北侧，按批复站址描述取道路几何。"
+    },
+    {
+      "name": "金桥",
+      "id": "shanghai-s156",
+      "existing": true
+    },
+    {
+      "name": "凌河路",
+      "id": "shanghai-f21-linghelu",
+      "latlng": [
+        31.27372,
+        121.60021
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "杨高北路与凌河路交叉口东侧，按批复站址描述取道路几何。"
+    },
+    {
+      "name": "杨高北路",
+      "id": "shanghai-s251",
+      "existing": true
+    },
+    {
+      "name": "东靖路",
+      "id": "shanghai-s204",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "phase1",
+      "mapRouteId": "shanghai-future-line21",
+      "name": "21号线一期",
+      "historicalLineId": "shanghai-line21-21",
+      "color": "#9E8FC0",
+      "stationIds": [
+        "shanghai-f21-liuchenlu",
+        "shanghai-f21-tanghuanglu",
+        "shanghai-s254",
+        "shanghai-f21-shenjiangnanlu",
+        "shanghai-f21-zhangjiang",
+        "shanghai-f21-kangnanlu",
+        "shanghai-f21-junminlu",
+        "shanghai-s162",
+        "shanghai-f21-zhanghenglu",
+        "shanghai-f21-gaosilu",
+        "shanghai-s296",
+        "shanghai-f21-longdongdadao",
+        "shanghai-s388",
+        "shanghai-f21-yunqiaolu",
+        "shanghai-s156",
+        "shanghai-f21-linghelu",
+        "shanghai-s251",
+        "shanghai-s204"
+      ],
+      "toleranceM": 600,
+      "officialLengthM": 27964,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "18座车站及站序取自《上海市轨道交通21号线一期工程初步设计批复》（沪建综规〔2021〕763号）：六陈路—东靖路，全长27.964公里。迪士尼、学林路、广兰路、浦东足球场、金桥、杨高北路、东靖路复用既有站区；其余按批复站址描述与现代道路几何定位。张江、康南路、军民路依赖规划道路，属走廊级参考。21号线东延伸未纳入本篇。金桥站与既有14号线金桥站同址，批复未明确换乘关系，本篇不建立换乘联系。",
+      "stationOrderSource": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf"
+    }
+  ],
+  "stationInstances": {
+    "shanghai-s254": "shanghai-s254__line21-21",
+    "shanghai-s162": "shanghai-s162__line21-21",
+    "shanghai-s296": "shanghai-s296__line21-21",
+    "shanghai-s388": "shanghai-s388__line21-21",
+    "shanghai-s156": "shanghai-s156__line21-21",
+    "shanghai-s251": "shanghai-s251__line21-21",
+    "shanghai-s204": "shanghai-s204__line21-21"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sh21-disney-11",
+      "name": "迪士尼",
+      "complexId": "shanghai-s254",
+      "stationInstanceIds": [
+        "shanghai-s254",
+        "shanghai-s254__line21-21"
+      ],
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line21-21"
+      ],
+      "sourceNote": "批复明确本线与11号线站厅同站换乘；通道与层次仅作示意。"
+    },
+    {
+      "id": "future-transfer-sh21-xuelin-13",
+      "name": "学林路",
+      "complexId": "shanghai-s162",
+      "stationInstanceIds": [
+        "shanghai-s162",
+        "shanghai-s162__line21-21"
+      ],
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line21-21"
+      ],
+      "sourceNote": "批复明确与13号线通道换乘。"
+    },
+    {
+      "id": "future-transfer-sh21-guanglan-2",
+      "name": "广兰路",
+      "complexId": "shanghai-s296",
+      "stationInstanceIds": [
+        "shanghai-s296",
+        "shanghai-s296__line21-21"
+      ],
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line21-21"
+      ],
+      "sourceNote": "批复明确与2号线通道换乘。"
+    },
+    {
+      "id": "future-transfer-sh21-football-14",
+      "name": "浦东足球场",
+      "complexId": "shanghai-s388",
+      "stationInstanceIds": [
+        "shanghai-s388",
+        "shanghai-s388__line21-21"
+      ],
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line21-21"
+      ],
+      "sourceNote": "批复明确与14号线通道换乘。"
+    },
+    {
+      "id": "future-transfer-sh21-yanggao-12",
+      "name": "杨高北路",
+      "complexId": "shanghai-s251",
+      "stationInstanceIds": [
+        "shanghai-s251",
+        "shanghai-s251__line21-21"
+      ],
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line21-21"
+      ],
+      "sourceNote": "批复明确与12号线通道换乘。"
+    },
+    {
+      "id": "future-transfer-sh21-dongjing-6",
+      "name": "东靖路",
+      "complexId": "shanghai-s204",
+      "stationInstanceIds": [
+        "shanghai-s204",
+        "shanghai-s204__line21-21"
+      ],
+      "lineIds": [
+        "shanghai-line6-6",
+        "shanghai-line21-21"
+      ],
+      "sourceNote": "批复明确与6号线通道换乘。"
+    }
+  ],
+  "plan": {
+    "id": "sh-line21-phase1-build",
+    "title": "上海21号线一期建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_initial_design_approval",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+    "sourceTitle": "上海市住房和城乡建设管理委员会关于上海市轨道交通21号线一期工程初步设计的批复",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2021-12-01",
+    "description": "按初步设计批复复现21号线一期：六陈路至东靖路，18座车站、全长27.964公里。迪士尼、学林路、广兰路、浦东足球场、金桥、杨高北路、东靖路与既有线路换乘。项目在截止日仍在建，完成本篇只表示规划建设完成，不计作开通；21号线东延伸另期制作。",
+    "contentRevision": "2026.10.21.5",
+    "contentRevisionNote": "增加上海21号线一期建设章。"
+  }
+}

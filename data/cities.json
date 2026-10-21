@@ -6460,6 +6460,149 @@
           "coordinateNote": "望园路走廊上按公开里程（距紫竹高新区约8.7公里）定位的站区参考点，取现代道路几何。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-liuchenlu",
+          "name": "六陈路",
+          "latlng": [
+            31.15304,
+            121.70768
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "六陈路与川沙路交叉口西侧，按初步设计批复站址描述取现代道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-tanghuanglu",
+          "name": "唐黄路",
+          "latlng": [
+            31.14547,
+            121.67851
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "唐黄路与六陈路交叉口东侧，按批复站址描述取道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-shenjiangnanlu",
+          "name": "申江南路",
+          "latlng": [
+            31.14121,
+            121.62446
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "申江南路与秀沿路交叉口西侧，按批复站址描述取道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-zhangjiang",
+          "name": "张江",
+          "latlng": [
+            31.145,
+            121.612
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "慈桥路与规划路交叉口北侧康桥生态园内；慈桥路走廊按现代道路几何定位，规划路未建成，属走廊级站区参考。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-kangnanlu",
+          "name": "康南路",
+          "latlng": [
+            31.165,
+            121.61
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "规划哥白尼路与康南路交叉口；两条道路的规划段未建成，按既有康南路走廊与站序定位，属走廊级参考。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-junminlu",
+          "name": "军民路",
+          "latlng": [
+            31.174,
+            121.6095
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "规划哥白尼路与规划军民路交叉口北侧；按既有军民公路走廊与站序定位，属走廊级参考。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-zhanghenglu",
+          "name": "张衡路",
+          "latlng": [
+            31.193978,
+            121.608231
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "哥白尼路与张衡路交叉口，按批复站址描述取道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-gaosilu",
+          "name": "高斯路",
+          "latlng": [
+            31.20245,
+            121.60945
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "紫薇路与高斯路交叉口东北侧，按批复站址描述取道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-longdongdadao",
+          "name": "龙东大道",
+          "latlng": [
+            31.22295,
+            121.61262
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "广兰路与龙东大道交叉口南侧，按批复站址描述取道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-yunqiaolu",
+          "name": "云桥路",
+          "latlng": [
+            31.25142,
+            121.611
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "金港路与云桥路交叉口北侧，按批复站址描述取道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-linghelu",
+          "name": "凌河路",
+          "latlng": [
+            31.27372,
+            121.60021
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "杨高北路与凌河路交叉口东侧，按批复站址描述取道路几何。",
+          "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [
@@ -21695,6 +21838,123 @@
           "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
           "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
           "referenceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-yuanjing",
+          "name": "远景",
+          "latlng": [
+            23.174791,
+            113.245997
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "三元里大道与远景路交叉口，按环评站址描述取现代道路几何。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-tangjing",
+          "name": "棠景",
+          "latlng": [
+            23.1820934,
+            113.2460077
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "三元里大道与德康路交叉口，按环评站址描述取现代道路几何。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-baiyunstation",
+          "name": "白云站",
+          "latlng": [
+            23.194037,
+            113.24051
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "白云站铁路枢纽站区；环评明确本线土建不含此站，仅通过并纳入站序。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-huangshi",
+          "name": "黄石",
+          "latlng": [
+            23.207507,
+            113.246682
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "黄石西路与小坪东路交叉口东南侧，按环评站址描述取现代道路几何。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-xiamao",
+          "name": "夏茅",
+          "latlng": [
+            23.230216,
+            113.254413
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "广花一路辅路在建站标注（OSM 夏茅站），与环评站址一致。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-baiyundalang",
+          "name": "白云大朗",
+          "latlng": [
+            23.246483,
+            113.247938
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "夏花一路在建站标注（OSM 白云大朗站）。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-junhe",
+          "name": "均禾",
+          "latlng": [
+            23.257174,
+            113.245758
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "广花二路辅路在建站标注（OSM 均禾站）。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-taoyuan",
+          "name": "桃源",
+          "latlng": [
+            23.2696,
+            113.2423
+          ],
+          "schematic": true,
+          "coordinateSource": "official_chainage",
+          "coordinateNote": "按环评中心里程（距均禾约1.36公里、距江府约3.16公里）在均禾—江府走廊上定位，邻近桃源村。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8b-jiangfu",
+          "name": "江府",
+          "latlng": [
+            23.296426,
+            113.236145
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "广花三路在建站标注（OSM 江府站）；环评注明江府站属8号线北延段工程，本线在此接轨。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [

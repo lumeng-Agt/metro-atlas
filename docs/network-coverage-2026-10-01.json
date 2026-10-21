@@ -74,10 +74,10 @@
           "source": "https://www.shanghai.gov.cn/nw48306/20250123/db8109b860ae4c5cbcc0ae9e22504f67.html",
           "sourceTitle": "2025年上海市重大工程清单",
           "note": "列入重大工程在建项目；按项目分期呈现，非市域铁路。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建",
-          "playableTaskStatus": "not_playable"
+          "playableTaskStatus": "playable"
         },
         {
           "id": "sh-line23-phase1",
@@ -147,12 +147,13 @@
         }
       ],
       "projectInventoryCount": 9,
-      "playableProjectCount": 2,
-      "pendingPlayableProjectCount": 7,
+      "playableProjectCount": 3,
+      "pendingPlayableProjectCount": 6,
       "policyProjectCount": 2,
       "engineeringProjectCount": 0,
       "playableProjectIds": [
         "sh-line15-south",
+        "sh-line21",
         "sh-line23-phase1"
       ],
       "documentedMilestones": [
@@ -38226,20 +38227,21 @@
           "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
           "sourceTitle": "8号线北延段支线工程环境影响报告",
           "note": "公开环评明确站点与走廊，但本地尚未把官方站序、坐标和版本化蓝图完整整理为可玩任务。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "批准建设项目",
-          "playableTaskStatus": "not_playable"
+          "playableTaskStatus": "playable"
         }
       ],
       "projectInventoryCount": 3,
-      "playableProjectCount": 2,
-      "pendingPlayableProjectCount": 1,
+      "playableProjectCount": 3,
+      "pendingPlayableProjectCount": 0,
       "policyProjectCount": 0,
       "engineeringProjectCount": 0,
       "playableProjectIds": [
         "gz-line12-mid",
-        "gz-line13-phase2-west"
+        "gz-line13-phase2-west",
+        "gz-line8-north-branch"
       ],
       "documentedMilestones": [
         {
