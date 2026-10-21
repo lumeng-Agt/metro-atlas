@@ -525,6 +525,7 @@ func _left() -> void:
 					var playability:=str(project.get("playabilityStatus",""))
 					var task_status:="已有关联建设任务"
 					if playability=="policy_only_not_playable":task_status="政策／规划方向，未发布逐站蓝图，不阻塞解锁"
+					elif playability=="engineering_works_only":task_status="联络／扩能工程，不新增运营车站，按工程条目单列"
 					elif playability!="playable_build_task":task_status="尚无可玩的逐站建设任务"
 					left.add_child(label("%s · %s\n%s\n%s" % [type_label,str(project.get("name","")),str(project.get("note","尚未完成项目章节核对。")),task_status],15))
 					var project_url:=str(project.get("source",""))

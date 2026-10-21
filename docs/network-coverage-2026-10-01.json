@@ -149,6 +149,8 @@
       "projectInventoryCount": 9,
       "playableProjectCount": 2,
       "pendingPlayableProjectCount": 7,
+      "policyProjectCount": 2,
+      "engineeringProjectCount": 0,
       "playableProjectIds": [
         "sh-line15-south",
         "sh-line23-phase1"
@@ -18651,15 +18653,18 @@
           "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
           "sourceTitle": "2026年北京市轨道交通建设计划",
           "note": "为联络工程，不单独计作新线路；目前没有可供逐站复现的公开地图目标。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "engineering_works_only",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "建设计划项目",
-          "playableTaskStatus": "not_playable"
+          "playabilityNote": "亦庄线至5号线、10号线的联络工程，不新增运营车站，按工程条目单列。",
+          "playableTaskStatus": "engineering_works"
         }
       ],
       "projectInventoryCount": 9,
       "playableProjectCount": 0,
       "pendingPlayableProjectCount": 9,
+      "policyProjectCount": 0,
+      "engineeringProjectCount": 1,
       "playableProjectIds": [],
       "documentedMilestones": [
         {
@@ -38230,6 +38235,8 @@
       "projectInventoryCount": 3,
       "playableProjectCount": 2,
       "pendingPlayableProjectCount": 1,
+      "policyProjectCount": 0,
+      "engineeringProjectCount": 0,
       "playableProjectIds": [
         "gz-line12-mid",
         "gz-line13-phase2-west"
@@ -56936,6 +56943,8 @@
       "projectInventoryCount": 11,
       "playableProjectCount": 1,
       "pendingPlayableProjectCount": 10,
+      "policyProjectCount": 1,
+      "engineeringProjectCount": 0,
       "playableProjectIds": [
         "sz-line17-phase1"
       ],
@@ -74690,6 +74699,8 @@
       "projectInventoryCount": 2,
       "playableProjectCount": 1,
       "pendingPlayableProjectCount": 1,
+      "policyProjectCount": 1,
+      "engineeringProjectCount": 0,
       "playableProjectIds": [
         "cd-line18-phase3"
       ],

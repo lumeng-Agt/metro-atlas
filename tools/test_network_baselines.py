@@ -120,7 +120,7 @@ def main() -> int:
             if str(project.get("projectType", "")) not in valid_project_types:
                 failures.append(f"{city_id}/{project_id}: invalid project type")
             status = str(project.get("playabilityStatus", ""))
-            if status not in {"registered_geometry_and_playable_task_pending", "playable_build_task", "policy_only_not_playable"}:
+            if status not in {"registered_geometry_and_playable_task_pending", "playable_build_task", "policy_only_not_playable", "engineering_works_only"}:
                 failures.append(f"{city_id}/{project_id}: invalid playable-task status")
             if status == "playable_build_task" and project_id not in playable_plan_ids:
                 failures.append(f"{city_id}/{project_id}: marked playable without a ready, selectable construction plan")

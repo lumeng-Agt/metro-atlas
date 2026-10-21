@@ -29,6 +29,10 @@ POLICY_PLANS = {
     "cd-fifteenth-five-year-policy-2026": "“十五五”交通发展政策方向，未发布逐站工程蓝图。",
 }
 
+ENGINEERING_PROJECTS = {
+    "bj-yizhuang-connector": "亦庄线至5号线、10号线的联络工程，不新增运营车站，按工程条目单列。",
+}
+
 POLICY_PROJECTS = {
     "sh-line20-east": "十五五建设方向，仅有规划层面表述，未发布逐站工程蓝图。",
     "sh-line12-west": "规划建设方向，未发布逐站工程蓝图。",
@@ -50,9 +54,15 @@ def main() -> None:
             plan["requiredNote"] = "政策与线网规划条目，仅作资料呈现，不阻塞自由创作；" + POLICY_PLANS[plan_id]
             changed_plans.append(plan_id)
     changed_projects = []
+    engineering_projects = []
     for city in baseline["cities"].values():
         for project in city.get("projectsAtCutoff", []):
             project_id = str(project.get("id", ""))
+            if project_id in ENGINEERING_PROJECTS:
+                project["playabilityStatus"] = "engineering_works_only"
+                project["playabilityNote"] = ENGINEERING_PROJECTS[project_id]
+                engineering_projects.append(project_id)
+                continue
             if project_id not in POLICY_PROJECTS:
                 continue
             project["playabilityStatus"] = "policy_only_not_playable"
@@ -62,6 +72,7 @@ def main() -> None:
     BASELINE_PATH.write_text(json.dumps(baseline, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("optional plans:", len(changed_plans), changed_plans)
     print("policy-only projects:", len(changed_projects), changed_projects)
+    print("engineering projects:", len(engineering_projects), engineering_projects)
 
 
 if __name__ == "__main__":

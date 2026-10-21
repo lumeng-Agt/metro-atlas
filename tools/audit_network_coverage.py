@@ -166,6 +166,8 @@ def build_report(cities_doc: dict[str, Any], campaigns_doc: dict[str, Any], base
                 item["playableTaskStatus"] = "playable"
             elif str(project.get("playabilityStatus", "")) == "policy_only_not_playable":
                 item["playableTaskStatus"] = "policy_only"
+            elif str(project.get("playabilityStatus", "")) == "engineering_works_only":
+                item["playableTaskStatus"] = "engineering_works"
             else:
                 item["playableTaskStatus"] = "not_playable"
             project_rows.append(item)
@@ -184,6 +186,8 @@ def build_report(cities_doc: dict[str, Any], campaigns_doc: dict[str, Any], base
             "projectInventoryCount": len(project_rows),
             "playableProjectCount": playable_project_count,
             "pendingPlayableProjectCount": len(project_rows) - playable_project_count,
+            "policyProjectCount": sum(1 for item in project_rows if item["playableTaskStatus"] == "policy_only"),
+            "engineeringProjectCount": sum(1 for item in project_rows if item["playableTaskStatus"] == "engineering_works"),
             "playableProjectIds": sorted(playable_project_ids),
             "documentedMilestones": milestones,
             "documentedMilestoneCount": len(milestones),
@@ -243,13 +247,16 @@ def write_markdown(report: dict[str, Any], destination: Path) -> None:
         lines.append("")
         if city.get("projectsAtCutoff"):
             policy_count = sum(1 for item in city["projectsAtCutoff"] if item["playableTaskStatus"] == "policy_only")
-            lines.append(f"截止日建设／规划项目：登记 {city['projectInventoryCount']} 项，可玩建设章 {city['playableProjectCount']} 项，仍待制作 {city['pendingPlayableProjectCount'] - policy_count} 项，另有 {policy_count} 项仅为政策／规划方向（可选，不阻塞解锁）。")
+            engineering_count = sum(1 for item in city["projectsAtCutoff"] if item["playableTaskStatus"] == "engineering_works")
+            lines.append(f"截止日建设／规划项目：登记 {city['projectInventoryCount']} 项，可玩建设章 {city['playableProjectCount']} 项，仍待制作 {city['pendingPlayableProjectCount'] - policy_count - engineering_count} 项，另有 {policy_count} 项政策／规划方向（可选）、{engineering_count} 项联络／扩能工程（不新增车站）。")
             lines.append("")
             for project in city["projectsAtCutoff"]:
                 if project["playableTaskStatus"] == "playable":
                     task_state = "已有可玩建设任务"
                 elif project["playableTaskStatus"] == "policy_only":
                     task_state = "政策／规划方向，未发布逐站蓝图，不阻塞解锁"
+                elif project["playableTaskStatus"] == "engineering_works":
+                    task_state = "联络／扩能工程，不新增运营车站，按工程条目单列"
                 else:
                     task_state = "尚无可玩建设任务"
                 lines.append(f"- [{project['name']}]({project['source']}) · `{project['status']}` · {task_state}：{project['note']}")

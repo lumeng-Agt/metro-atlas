@@ -64,7 +64,7 @@ CITY_SOURCES: dict[str, dict[str, Any]] = {
             {"id": "bj-line13-capacity", "name": "13号线扩能提升工程", "projectType": "approved_and_under_construction", "status": "建设计划项目", "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html", "sourceTitle": "2026年北京市轨道交通建设计划", "note": "属于既有线扩能改造工程，不作为一条新运营线路重复计数。"},
             {"id": "bj-line1-branch", "name": "1号线支线", "projectType": "approved_and_under_construction", "status": "建设计划项目", "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html", "sourceTitle": "2026年北京市轨道交通建设计划", "note": "列入2026年建设计划；本地逐站参考几何尚未建立。"},
             {"id": "bj-new-airport", "name": "新机场线（草桥—丽泽商务区）", "projectType": "approved_and_under_construction", "status": "建设计划项目", "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html", "sourceTitle": "2026年北京市轨道交通建设计划", "note": "列入2026年建设计划，需与机场快线既有线身份区分。"},
-            {"id": "bj-yizhuang-connector", "name": "亦庄线至5号线、10号线联络工程", "projectType": "approved_and_under_construction", "status": "建设计划项目", "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html", "sourceTitle": "2026年北京市轨道交通建设计划", "note": "为联络工程，不单独计作新线路；目前没有可供逐站复现的公开地图目标。"},
+            {"id": "bj-yizhuang-connector", "name": "亦庄线至5号线、10号线联络工程", "projectType": "approved_and_under_construction", "status": "建设计划项目", "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html", "sourceTitle": "2026年北京市轨道交通建设计划", "note": "为联络工程，不单独计作新线路；目前没有可供逐站复现的公开地图目标。", "playabilityStatus": "engineering_works_only", "playabilityNote": "亦庄线至5号线、10号线的联络工程，不新增运营车站，按工程条目单列。"},
         ],
     },
     "guangzhou": {
