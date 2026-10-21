@@ -6407,6 +6407,190 @@
               "sourceNote": "崇明线一期环评明确申江路站与12号线换乘。"
             }
           ]
+        },
+        {
+          "id": "sh-line20-phase1-build",
+          "projectIds": [
+            "sh-line20-phase1"
+          ],
+          "title": "上海20号线一期建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "operator_environmental_impact_report",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceTitle": "上海市轨道交通20号线一期东段及东延伸工程环境影响报告书（报批稿公示版）及一期西段项目说明",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按官方环评与专项债券项目说明复现20号线一期：金昌路—新园路，西段约7.1公里、东段及东延伸21.16公里，共20座车站。江湾镇、上海财经大学、三门路、嫩江路、上海马戏城与既有线换乘；凉城路、浦东北路对应的19/21号线为规划篇，暂不建立换乘。项目在截止日仍在建，完成本篇只表示规划建设完成。",
+          "sourcePublicationDate": "2024-12-01",
+          "lineGroups": [
+            {
+              "taskId": "project:sh-line20-phase1-build",
+              "mapRouteId": "shanghai-future-line20-phase1",
+              "name": "20号线一期",
+              "historicalLineId": "shanghai-line20-20",
+              "color": "#A0B6C8",
+              "stationIds": [
+                "shanghai-f20-jinchanglu",
+                "shanghai-f20-jiaotonglu",
+                "shanghai-s341",
+                "shanghai-f20-pinglilu",
+                "shanghai-f20-daningpark",
+                "shanghai-s112",
+                "shanghai-f19-liangchenglu",
+                "shanghai-f20-guanglingerlu",
+                "shanghai-f20-chezhannanlu",
+                "shanghai-f20-wananlu",
+                "shanghai-s41",
+                "shanghai-s379",
+                "shanghai-s94",
+                "shanghai-f20-guohelu",
+                "shanghai-s29",
+                "shanghai-f20-gongqing",
+                "shanghai-f20-pudongbeilu",
+                "shanghai-f20-zhangyangbeilu",
+                "shanghai-f20-yanggaobeilu",
+                "shanghai-f20-xinyuanlu"
+              ],
+              "stationNames": {
+                "shanghai-f20-jinchanglu": "金昌路",
+                "shanghai-f20-jiaotonglu": "交通路",
+                "shanghai-s341": "新村路",
+                "shanghai-f20-pinglilu": "平利路",
+                "shanghai-f20-daningpark": "大宁公园",
+                "shanghai-s112": "上海马戏城",
+                "shanghai-f19-liangchenglu": "凉城路",
+                "shanghai-f20-guanglingerlu": "广灵二路",
+                "shanghai-f20-chezhannanlu": "车站南路",
+                "shanghai-f20-wananlu": "万安路",
+                "shanghai-s41": "江湾镇",
+                "shanghai-s379": "上海财经大学",
+                "shanghai-s94": "三门路",
+                "shanghai-f20-guohelu": "国和路",
+                "shanghai-s29": "嫩江路",
+                "shanghai-f20-gongqing": "共青森林公园",
+                "shanghai-f20-pudongbeilu": "浦东北路",
+                "shanghai-f20-zhangyangbeilu": "张杨北路",
+                "shanghai-f20-yanggaobeilu": "杨高北路",
+                "shanghai-f20-xinyuanlu": "新园路"
+              },
+              "toleranceM": 600.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "东段及东延伸14座车站与站序取自20号线一期东段及东延伸环境影响报告书表2.6-1（上海马戏城不含—新园路，21.16公里）；西段金昌路—上海马戏城7.1公里按专项债券项目说明与OSM在建线位/在建站标注补齐。5座既有站复用站区并建立换乘；凉城路（19号线）、浦东北路（21号线）的换乘对象为规划篇，暂不建立；杨高北路按环评无换乘，与12号线同名站不同址。",
+              "stationOrderSource": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shanghai-s341": "shanghai-s341__line20-20",
+                "shanghai-s112": "shanghai-s112__line20-20",
+                "shanghai-s41": "shanghai-s41__line20-20",
+                "shanghai-s379": "shanghai-s379__line20-20",
+                "shanghai-s94": "shanghai-s94__line20-20",
+                "shanghai-s29": "shanghai-s29__line20-20",
+                "shanghai-f19-liangchenglu": "shanghai-f19-liangchenglu__line20-20"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sh20-liangcheng-19",
+              "name": "凉城路",
+              "complexId": "shanghai-f19-liangchenglu",
+              "stationInstanceIds": [
+                "shanghai-f19-liangchenglu",
+                "shanghai-f19-liangchenglu__line20-20"
+              ],
+              "lineIds": [
+                "shanghai-line19-19",
+                "shanghai-line20-20"
+              ],
+              "precision": "schematic",
+              "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+              "sourceNote": "环评明确凉城路站与19号线换乘；19号线与20号线均为规划篇，按同站区两线站体建模，换乘在两条项目章都建成后生效。"
+            },
+            {
+              "id": "future-transfer-sh20-circus-1",
+              "name": "上海马戏城",
+              "complexId": "shanghai-s112",
+              "stationInstanceIds": [
+                "shanghai-s112__line1",
+                "shanghai-s112__line20-20"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line20-20"
+              ],
+              "precision": "schematic",
+              "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+              "sourceNote": "上海马戏城为1号线既有站，20号线在此设站换乘。"
+            },
+            {
+              "id": "future-transfer-sh20-jiangwanzhen-3",
+              "name": "江湾镇",
+              "complexId": "shanghai-s41",
+              "stationInstanceIds": [
+                "shanghai-s41",
+                "shanghai-s41__line20-20"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line20-20"
+              ],
+              "precision": "schematic",
+              "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+              "sourceNote": "环评明确江湾镇站与3号线换乘。"
+            },
+            {
+              "id": "future-transfer-sh20-sufe-18",
+              "name": "上海财经大学",
+              "complexId": "shanghai-s379",
+              "stationInstanceIds": [
+                "shanghai-s379",
+                "shanghai-s379__line20-20"
+              ],
+              "lineIds": [
+                "shanghai-line18-18",
+                "shanghai-line20-20"
+              ],
+              "precision": "schematic",
+              "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+              "sourceNote": "环评明确上海财经大学站与18号线换乘。"
+            },
+            {
+              "id": "future-transfer-sh20-sanmenlu-10",
+              "name": "三门路",
+              "complexId": "shanghai-s94",
+              "stationInstanceIds": [
+                "shanghai-s94",
+                "shanghai-s94__line20-20"
+              ],
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line20-20"
+              ],
+              "precision": "schematic",
+              "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+              "sourceNote": "环评明确三门路站与10号线换乘。"
+            },
+            {
+              "id": "future-transfer-sh20-nenjianglu-8",
+              "name": "嫩江路",
+              "complexId": "shanghai-s29",
+              "stationInstanceIds": [
+                "shanghai-s29",
+                "shanghai-s29__line20-20"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line20-20"
+              ],
+              "precision": "schematic",
+              "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+              "sourceNote": "环评明确嫩江路站与8号线换乘。"
+            }
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -12352,6 +12536,155 @@
           "sourcePublicationDate": "2022-08-17",
           "publicationDateNote": "资料日期采用官方文件或发布页标注日期；实施状态按截止日核对。",
           "requiredNote": "政策与线网规划条目，仅作资料呈现，不阻塞自由创作；北京市轨道交通线网规划（2020—2035年），属线网层面规划。"
+        },
+        {
+          "id": "bj-line22-build",
+          "projectIds": [
+            "bj-line22"
+          ],
+          "title": "北京22号线（平谷线）建设篇",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_station_naming_announcement",
+          "projectType": "under_construction",
+          "required": true,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceTitle": "北京地铁22号线所有车站站名公布（北京市人民政府门户网站，2026-09-24）",
+          "sourceCheckedAt": "2026-10-21",
+          "description": "按北京市政府公布的22号线全部站名复现：红庙—平谷，共20座车站，全长约79.1公里，跨北京与河北三河。红庙、管庄、运河商务区、北运河东与既有线换乘。项目在截止日仍处于空载试运行、未计入已开通路网；完成本篇只表示规划建设完成。",
+          "sourcePublicationDate": "2026-09-24",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line22-build",
+              "mapRouteId": "beijing-future-line22",
+              "name": "22号线（平谷线）",
+              "historicalLineId": "beijing-line22-22",
+              "color": "#B35C44",
+              "stationIds": [
+                "beijing-s277",
+                "beijing-f22-ciyunsi",
+                "beijing-f22-ganluyuan",
+                "beijing-f22-dingfuzhuang",
+                "beijing-s41",
+                "beijing-f22-yongshun",
+                "beijing-s325",
+                "beijing-f22-furongxilu",
+                "beijing-s322",
+                "beijing-f22-luyuan",
+                "beijing-f22-luyuandong",
+                "beijing-f22-yanjiao",
+                "beijing-f22-shenweidajie",
+                "beijing-f22-chaobaidajie",
+                "beijing-f22-gaolou",
+                "beijing-f22-qixinzhuang",
+                "beijing-f22-mafang",
+                "beijing-f22-machangying",
+                "beijing-f22-guononggang",
+                "beijing-f22-pinggu"
+              ],
+              "stationNames": {
+                "beijing-s277": "红庙",
+                "beijing-f22-ciyunsi": "慈云寺",
+                "beijing-f22-ganluyuan": "甘露园",
+                "beijing-f22-dingfuzhuang": "定福庄",
+                "beijing-s41": "管庄",
+                "beijing-f22-yongshun": "永顺",
+                "beijing-s325": "运河商务区",
+                "beijing-f22-furongxilu": "芙蓉西路",
+                "beijing-s322": "北运河东",
+                "beijing-f22-luyuan": "潞源",
+                "beijing-f22-luyuandong": "潞源东",
+                "beijing-f22-yanjiao": "燕郊",
+                "beijing-f22-shenweidajie": "神威大街",
+                "beijing-f22-chaobaidajie": "潮白大街",
+                "beijing-f22-gaolou": "高楼",
+                "beijing-f22-qixinzhuang": "齐心庄",
+                "beijing-f22-mafang": "马坊物流港",
+                "beijing-f22-machangying": "马昌营",
+                "beijing-f22-guononggang": "国农港",
+                "beijing-f22-pinggu": "平谷"
+              },
+              "toleranceM": 800.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "20座车站及站序取自北京市政府2026-09-24公布的22号线全部站名：北京段15座（红庙、慈云寺、甘露园、定福庄、管庄、永顺、运河商务区、芙蓉西路、北运河东、潞源、潞源东及平谷方向4站）、河北段5座（燕郊、神威大街、潮白大街、高楼、齐心庄），其中红庙、管庄、运河商务区、北运河东为既有换乘站。红庙—潞源东按OSM在建站与在建线位定位；永顺、芙蓉西路、潞源、神威大街、潮白大街、高楼按镇区/道路走廊定位；马昌营、国农港按官方站序在马坊—平谷走廊上定位。跨京冀段全长约79.1公里，区间为走廊近似。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s277": "beijing-s277__line22-22",
+                "beijing-s41": "beijing-s41__line22-22",
+                "beijing-s325": "beijing-s325__line22-22",
+                "beijing-s322": "beijing-s322__line22-22"
+              }
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-bj22-hongmiao-14",
+              "name": "红庙",
+              "complexId": "beijing-s277",
+              "stationInstanceIds": [
+                "beijing-s277",
+                "beijing-s277__line22-22"
+              ],
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "sourceNote": "官方公布红庙为22号线与14号线换乘站。"
+            },
+            {
+              "id": "future-transfer-bj22-guanzhuang-batong",
+              "name": "管庄",
+              "complexId": "beijing-s41",
+              "stationInstanceIds": [
+                "beijing-s41",
+                "beijing-s41__line22-22"
+              ],
+              "lineIds": [
+                "beijing-lineearly0",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "sourceNote": "官方公布管庄为22号线与八通线（本地按1号线既有线体建模）换乘站；两站相距较远，通道按示意处理。"
+            },
+            {
+              "id": "future-transfer-bj22-yunhe-6",
+              "name": "运河商务区",
+              "complexId": "beijing-s325",
+              "stationInstanceIds": [
+                "beijing-s325",
+                "beijing-s325__line22-22"
+              ],
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "sourceNote": "运河商务区站即6号线通州北关站同站区，换乘身份已随6号线命名。"
+            },
+            {
+              "id": "future-transfer-bj22-beiyunhedong-6",
+              "name": "北运河东",
+              "complexId": "beijing-s322",
+              "stationInstanceIds": [
+                "beijing-s322",
+                "beijing-s322__line22-22"
+              ],
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "sourceNote": "北运河东站为6号线既有站，22号线在此换乘。"
+            }
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -28624,6 +28957,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.7",
-  "contentRevisionNote": "增加上海22号线（崇明线）建设章。"
+  "contentRevision": "2026.10.21.8",
+  "contentRevisionNote": "增加上海20号线一期建设章。"
 }

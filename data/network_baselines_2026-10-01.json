@@ -45,7 +45,7 @@
           "source": "https://www.shanghai.gov.cn/nw17239/20260819/5103cdd705c64ae78eb3bbfee10cb1e4.html",
           "sourceTitle": "轨道交通20号线首台盾构顺利始发",
           "note": "2026年8月官方报道确认一期施工及盾构始发。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },
@@ -12444,7 +12444,7 @@
           "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202608/t20260825_4836149.html",
           "sourceTitle": "京冀首条跨省地铁进入空载试运行",
           "note": "2026年8月仍在空载试运行，按截止日不计入已开通路网；线路跨北京与河北三河。",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "在建"
         },

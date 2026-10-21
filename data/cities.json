@@ -7006,6 +7006,175 @@
           "coordinateNote": "OSM 崇明线站标注；二期终点。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-jinchanglu",
+          "name": "金昌路",
+          "latlng": [
+            31.271182,
+            121.368046
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "金昌路与交通路走廊西端，按金昌路道路几何定位；OSM 在建线位自交通路起，西端约1.5公里按官方7.1公里范围补足。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-jiaotonglu",
+          "name": "交通路",
+          "latlng": [
+            31.268129,
+            121.384787
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "OSM 20号线在建站标注（交通路），位于在建线位上。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-pinglilu",
+          "name": "平利路",
+          "latlng": [
+            31.270447,
+            121.425782
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "OSM 20号线在建站标注（平利路）。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-daningpark",
+          "name": "大宁公园",
+          "latlng": [
+            31.277425,
+            121.433426
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "OSM 20号线在建站标注（大宁公园）。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-guanglingerlu",
+          "name": "广灵二路",
+          "latlng": [
+            31.288448,
+            121.467172
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列广灵二路站；按 OSM 20号线在建线位投影定位。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-chezhannanlu",
+          "name": "车站南路",
+          "latlng": [
+            31.294857,
+            121.472595
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列车站南路站；OSM 在建站标注重合。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-wananlu",
+          "name": "万安路",
+          "latlng": [
+            31.303212,
+            121.471602
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列万安路站；OSM 在建站标注重合。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-guohelu",
+          "name": "国和路",
+          "latlng": [
+            31.316895,
+            121.515571
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列国和路站；按 OSM 20号线在建线位投影定位。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-gongqing",
+          "name": "共青森林公园",
+          "latlng": [
+            31.317352,
+            121.542072
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列共青森林公园站；OSM 在建站标注重合。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-pudongbeilu",
+          "name": "浦东北路",
+          "latlng": [
+            31.318059,
+            121.575361
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列浦东北路站；与在建21号线换乘，21号线为规划篇，暂不建立换乘。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-zhangyangbeilu",
+          "name": "张杨北路",
+          "latlng": [
+            31.3187,
+            121.5844
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列张杨北路站；按在建线位与张杨北路走廊定位。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-yanggaobeilu",
+          "name": "杨高北路",
+          "latlng": [
+            31.3187,
+            121.5908
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列杨高北路站（表中无换乘）；与12号线同名站不同址，不建立换乘。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f20-xinyuanlu",
+          "name": "新园路",
+          "latlng": [
+            31.322286,
+            121.624344
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评车站表列新园路站，东延伸终点；按在建线位东端定位。",
+          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [
@@ -14691,6 +14860,214 @@
             13413286344,
             13397177863
           ]
+        },
+        {
+          "id": "beijing-f22-ciyunsi",
+          "name": "慈云寺",
+          "latlng": [
+            39.914278,
+            116.487805
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 22号线站台/停靠点标注（慈云寺），位于在建线位上。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-ganluyuan",
+          "name": "甘露园",
+          "latlng": [
+            39.915118,
+            116.508863
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 22号线站台/停靠点标注（甘露园）。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-dingfuzhuang",
+          "name": "定福庄",
+          "latlng": [
+            39.914799,
+            116.550181
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 22号线站台/停靠点标注（定福庄）。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-yongshun",
+          "name": "永顺",
+          "latlng": [
+            39.9168,
+            116.6491
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "永顺镇地名位置；22号线永顺站按镇区走廊定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-furongxilu",
+          "name": "芙蓉西路",
+          "latlng": [
+            39.9146,
+            116.6736
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "芙蓉西路道路位置；车站按道路走廊定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-luyuan",
+          "name": "潞源",
+          "latlng": [
+            39.905,
+            116.7185
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "按官方站序在北运河东—潞源东之间定位；潞城镇方向走廊参考，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-luyuandong",
+          "name": "潞源东",
+          "latlng": [
+            39.909703,
+            116.732762
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 22号线车站标注（潞源东）。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-yanjiao",
+          "name": "燕郊",
+          "latlng": [
+            39.94101,
+            116.819814
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 燕郊站标注；河北段首站。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-shenweidajie",
+          "name": "神威大街",
+          "latlng": [
+            39.97037,
+            116.781331
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "神威北大街道路位置；车站按道路走廊定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-chaobaidajie",
+          "name": "潮白大街",
+          "latlng": [
+            39.990916,
+            116.803894
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "潮白大街道路位置；车站按道路走廊定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-gaolou",
+          "name": "高楼",
+          "latlng": [
+            40.006388,
+            116.800345
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "高楼镇方向地名节点；车站按走廊定位，属走廊级参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-qixinzhuang",
+          "name": "齐心庄",
+          "latlng": [
+            39.990821,
+            116.927852
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 齐心庄地名节点，位于在建线位附近。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-mafang",
+          "name": "马坊物流港",
+          "latlng": [
+            40.069055,
+            116.997389
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 马坊站标注；平谷区马坊物流港站按此定位。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-machangying",
+          "name": "马昌营",
+          "latlng": [
+            40.0956,
+            117.0285
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "按官方站序在马坊—平谷走廊上定位；马昌营镇地名作参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-guononggang",
+          "name": "国农港",
+          "latlng": [
+            40.1222,
+            117.0596
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "按官方站序在马坊—平谷走廊上定位；国农港地名作参考。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "beijing-f22-pinggu",
+          "name": "平谷",
+          "latlng": [
+            40.148733,
+            117.090817
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "OSM 平谷站（在建）标注；线路东端终点。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [

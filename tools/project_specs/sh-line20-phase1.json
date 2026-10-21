@@ -1,0 +1,321 @@
+{
+  "city": "shanghai",
+  "projectIds": [
+    "sh-line20-phase1"
+  ],
+  "stations": [
+    {
+      "name": "金昌路",
+      "id": "shanghai-f20-jinchanglu",
+      "latlng": [
+        31.271182,
+        121.368046
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "金昌路与交通路走廊西端，按金昌路道路几何定位；OSM 在建线位自交通路起，西端约1.5公里按官方7.1公里范围补足。"
+    },
+    {
+      "name": "交通路",
+      "id": "shanghai-f20-jiaotonglu",
+      "latlng": [
+        31.268129,
+        121.384787
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "OSM 20号线在建站标注（交通路），位于在建线位上。"
+    },
+    {
+      "name": "新村路",
+      "id": "shanghai-s341",
+      "existing": true
+    },
+    {
+      "name": "平利路",
+      "id": "shanghai-f20-pinglilu",
+      "latlng": [
+        31.270447,
+        121.425782
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "OSM 20号线在建站标注（平利路）。"
+    },
+    {
+      "name": "大宁公园",
+      "id": "shanghai-f20-daningpark",
+      "latlng": [
+        31.277425,
+        121.433426
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "OSM 20号线在建站标注（大宁公园）。"
+    },
+    {
+      "name": "上海马戏城",
+      "id": "shanghai-s112",
+      "existing": true
+    },
+    {
+      "name": "凉城路",
+      "id": "shanghai-f19-liangchenglu",
+      "existing": true
+    },
+    {
+      "name": "广灵二路",
+      "id": "shanghai-f20-guanglingerlu",
+      "latlng": [
+        31.288448,
+        121.467172
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列广灵二路站；按 OSM 20号线在建线位投影定位。"
+    },
+    {
+      "name": "车站南路",
+      "id": "shanghai-f20-chezhannanlu",
+      "latlng": [
+        31.294857,
+        121.472595
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列车站南路站；OSM 在建站标注重合。"
+    },
+    {
+      "name": "万安路",
+      "id": "shanghai-f20-wananlu",
+      "latlng": [
+        31.303212,
+        121.471602
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列万安路站；OSM 在建站标注重合。"
+    },
+    {
+      "name": "江湾镇",
+      "id": "shanghai-s41",
+      "existing": true
+    },
+    {
+      "name": "上海财经大学",
+      "id": "shanghai-s379",
+      "existing": true
+    },
+    {
+      "name": "三门路",
+      "id": "shanghai-s94",
+      "existing": true
+    },
+    {
+      "name": "国和路",
+      "id": "shanghai-f20-guohelu",
+      "latlng": [
+        31.316895,
+        121.515571
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列国和路站；按 OSM 20号线在建线位投影定位。"
+    },
+    {
+      "name": "嫩江路",
+      "id": "shanghai-s29",
+      "existing": true
+    },
+    {
+      "name": "共青森林公园",
+      "id": "shanghai-f20-gongqing",
+      "latlng": [
+        31.317352,
+        121.542072
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列共青森林公园站；OSM 在建站标注重合。"
+    },
+    {
+      "name": "浦东北路",
+      "id": "shanghai-f20-pudongbeilu",
+      "latlng": [
+        31.318059,
+        121.575361
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列浦东北路站；与在建21号线换乘，21号线为规划篇，暂不建立换乘。"
+    },
+    {
+      "name": "张杨北路",
+      "id": "shanghai-f20-zhangyangbeilu",
+      "latlng": [
+        31.3187,
+        121.5844
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列张杨北路站；按在建线位与张杨北路走廊定位。"
+    },
+    {
+      "name": "杨高北路",
+      "id": "shanghai-f20-yanggaobeilu",
+      "latlng": [
+        31.3187,
+        121.5908
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列杨高北路站（表中无换乘）；与12号线同名站不同址，不建立换乘。"
+    },
+    {
+      "name": "新园路",
+      "id": "shanghai-f20-xinyuanlu",
+      "latlng": [
+        31.322286,
+        121.624344
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评车站表列新园路站，东延伸终点；按在建线位东端定位。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "phase1",
+      "mapRouteId": "shanghai-future-line20-phase1",
+      "name": "20号线一期",
+      "historicalLineId": "shanghai-line20-20",
+      "color": "#A0B6C8",
+      "stationIds": [
+        "shanghai-f20-jinchanglu",
+        "shanghai-f20-jiaotonglu",
+        "shanghai-s341",
+        "shanghai-f20-pinglilu",
+        "shanghai-f20-daningpark",
+        "shanghai-s112",
+        "shanghai-f19-liangchenglu",
+        "shanghai-f20-guanglingerlu",
+        "shanghai-f20-chezhannanlu",
+        "shanghai-f20-wananlu",
+        "shanghai-s41",
+        "shanghai-s379",
+        "shanghai-s94",
+        "shanghai-f20-guohelu",
+        "shanghai-s29",
+        "shanghai-f20-gongqing",
+        "shanghai-f20-pudongbeilu",
+        "shanghai-f20-zhangyangbeilu",
+        "shanghai-f20-yanggaobeilu",
+        "shanghai-f20-xinyuanlu"
+      ],
+      "toleranceM": 600,
+      "officialLengthM": 28260,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "东段及东延伸14座车站与站序取自20号线一期东段及东延伸环境影响报告书表2.6-1（上海马戏城不含—新园路，21.16公里）；西段金昌路—上海马戏城7.1公里按专项债券项目说明与OSM在建线位/在建站标注补齐。5座既有站复用站区并建立换乘；凉城路（19号线）、浦东北路（21号线）的换乘对象为规划篇，暂不建立；杨高北路按环评无换乘，与12号线同名站不同址。",
+      "stationOrderSource": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf"
+    }
+  ],
+  "stationInstances": {
+    "shanghai-s341": "shanghai-s341__line20-20",
+    "shanghai-s112": "shanghai-s112__line20-20",
+    "shanghai-s41": "shanghai-s41__line20-20",
+    "shanghai-s379": "shanghai-s379__line20-20",
+    "shanghai-s94": "shanghai-s94__line20-20",
+    "shanghai-s29": "shanghai-s29__line20-20",
+    "shanghai-f19-liangchenglu": "shanghai-f19-liangchenglu__line20-20"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sh20-liangcheng-19",
+      "name": "凉城路",
+      "complexId": "shanghai-f19-liangchenglu",
+      "stationInstanceIds": [
+        "shanghai-f19-liangchenglu",
+        "shanghai-f19-liangchenglu__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line19-19",
+        "shanghai-line20-20"
+      ],
+      "sourceNote": "环评明确凉城路站与19号线换乘；19号线与20号线均为规划篇，按同站区两线站体建模，换乘在两条项目章都建成后生效。"
+    },
+    {
+      "id": "future-transfer-sh20-circus-1",
+      "name": "上海马戏城",
+      "complexId": "shanghai-s112",
+      "stationInstanceIds": [
+        "shanghai-s112__line1",
+        "shanghai-s112__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line20-20"
+      ],
+      "sourceNote": "上海马戏城为1号线既有站，20号线在此设站换乘。"
+    },
+    {
+      "id": "future-transfer-sh20-jiangwanzhen-3",
+      "name": "江湾镇",
+      "complexId": "shanghai-s41",
+      "stationInstanceIds": [
+        "shanghai-s41",
+        "shanghai-s41__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line20-20"
+      ],
+      "sourceNote": "环评明确江湾镇站与3号线换乘。"
+    },
+    {
+      "id": "future-transfer-sh20-sufe-18",
+      "name": "上海财经大学",
+      "complexId": "shanghai-s379",
+      "stationInstanceIds": [
+        "shanghai-s379",
+        "shanghai-s379__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line20-20"
+      ],
+      "sourceNote": "环评明确上海财经大学站与18号线换乘。"
+    },
+    {
+      "id": "future-transfer-sh20-sanmenlu-10",
+      "name": "三门路",
+      "complexId": "shanghai-s94",
+      "stationInstanceIds": [
+        "shanghai-s94",
+        "shanghai-s94__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line20-20"
+      ],
+      "sourceNote": "环评明确三门路站与10号线换乘。"
+    },
+    {
+      "id": "future-transfer-sh20-nenjianglu-8",
+      "name": "嫩江路",
+      "complexId": "shanghai-s29",
+      "stationInstanceIds": [
+        "shanghai-s29",
+        "shanghai-s29__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line8-8",
+        "shanghai-line20-20"
+      ],
+      "sourceNote": "环评明确嫩江路站与8号线换乘。"
+    }
+  ],
+  "plan": {
+    "id": "sh-line20-phase1-build",
+    "title": "上海20号线一期建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "operator_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+    "sourceTitle": "上海市轨道交通20号线一期东段及东延伸工程环境影响报告书（报批稿公示版）及一期西段项目说明",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2024-12-01",
+    "description": "按官方环评与专项债券项目说明复现20号线一期：金昌路—新园路，西段约7.1公里、东段及东延伸21.16公里，共20座车站。江湾镇、上海财经大学、三门路、嫩江路、上海马戏城与既有线换乘；凉城路、浦东北路对应的19/21号线为规划篇，暂不建立换乘。项目在截止日仍在建，完成本篇只表示规划建设完成。",
+    "contentRevision": "2026.10.21.8",
+    "contentRevisionNote": "增加上海20号线一期建设章。"
+  }
+}

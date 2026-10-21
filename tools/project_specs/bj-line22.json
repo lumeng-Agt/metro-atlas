@@ -1,0 +1,306 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-line22"
+  ],
+  "stations": [
+    {
+      "name": "红庙",
+      "id": "beijing-s277",
+      "existing": true
+    },
+    {
+      "name": "慈云寺",
+      "id": "beijing-f22-ciyunsi",
+      "latlng": [
+        39.914278,
+        116.487805
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 22号线站台/停靠点标注（慈云寺），位于在建线位上。"
+    },
+    {
+      "name": "甘露园",
+      "id": "beijing-f22-ganluyuan",
+      "latlng": [
+        39.915118,
+        116.508863
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 22号线站台/停靠点标注（甘露园）。"
+    },
+    {
+      "name": "定福庄",
+      "id": "beijing-f22-dingfuzhuang",
+      "latlng": [
+        39.914799,
+        116.550181
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 22号线站台/停靠点标注（定福庄）。"
+    },
+    {
+      "name": "管庄",
+      "id": "beijing-s41",
+      "existing": true
+    },
+    {
+      "name": "永顺",
+      "id": "beijing-f22-yongshun",
+      "latlng": [
+        39.9168,
+        116.6491
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "永顺镇地名位置；22号线永顺站按镇区走廊定位，属走廊级参考。"
+    },
+    {
+      "name": "运河商务区",
+      "id": "beijing-s325",
+      "existing": true
+    },
+    {
+      "name": "芙蓉西路",
+      "id": "beijing-f22-furongxilu",
+      "latlng": [
+        39.9146,
+        116.6736
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "芙蓉西路道路位置；车站按道路走廊定位，属走廊级参考。"
+    },
+    {
+      "name": "北运河东",
+      "id": "beijing-s322",
+      "existing": true
+    },
+    {
+      "name": "潞源",
+      "id": "beijing-f22-luyuan",
+      "latlng": [
+        39.905,
+        116.7185
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "按官方站序在北运河东—潞源东之间定位；潞城镇方向走廊参考，属走廊级参考。"
+    },
+    {
+      "name": "潞源东",
+      "id": "beijing-f22-luyuandong",
+      "latlng": [
+        39.909703,
+        116.732762
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 22号线车站标注（潞源东）。"
+    },
+    {
+      "name": "燕郊",
+      "id": "beijing-f22-yanjiao",
+      "latlng": [
+        39.94101,
+        116.819814
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 燕郊站标注；河北段首站。"
+    },
+    {
+      "name": "神威大街",
+      "id": "beijing-f22-shenweidajie",
+      "latlng": [
+        39.97037,
+        116.781331
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "神威北大街道路位置；车站按道路走廊定位，属走廊级参考。"
+    },
+    {
+      "name": "潮白大街",
+      "id": "beijing-f22-chaobaidajie",
+      "latlng": [
+        39.990916,
+        116.803894
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "潮白大街道路位置；车站按道路走廊定位，属走廊级参考。"
+    },
+    {
+      "name": "高楼",
+      "id": "beijing-f22-gaolou",
+      "latlng": [
+        40.006388,
+        116.800345
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "高楼镇方向地名节点；车站按走廊定位，属走廊级参考。"
+    },
+    {
+      "name": "齐心庄",
+      "id": "beijing-f22-qixinzhuang",
+      "latlng": [
+        39.990821,
+        116.927852
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 齐心庄地名节点，位于在建线位附近。"
+    },
+    {
+      "name": "马坊物流港",
+      "id": "beijing-f22-mafang",
+      "latlng": [
+        40.069055,
+        116.997389
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 马坊站标注；平谷区马坊物流港站按此定位。"
+    },
+    {
+      "name": "马昌营",
+      "id": "beijing-f22-machangying",
+      "latlng": [
+        40.0956,
+        117.0285
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "按官方站序在马坊—平谷走廊上定位；马昌营镇地名作参考。"
+    },
+    {
+      "name": "国农港",
+      "id": "beijing-f22-guononggang",
+      "latlng": [
+        40.1222,
+        117.0596
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "按官方站序在马坊—平谷走廊上定位；国农港地名作参考。"
+    },
+    {
+      "name": "平谷",
+      "id": "beijing-f22-pinggu",
+      "latlng": [
+        40.148733,
+        117.090817
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "OSM 平谷站（在建）标注；线路东端终点。"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "line22",
+      "mapRouteId": "beijing-future-line22",
+      "name": "22号线（平谷线）",
+      "historicalLineId": "beijing-line22-22",
+      "color": "#B35C44",
+      "stationIds": [
+        "beijing-s277",
+        "beijing-f22-ciyunsi",
+        "beijing-f22-ganluyuan",
+        "beijing-f22-dingfuzhuang",
+        "beijing-s41",
+        "beijing-f22-yongshun",
+        "beijing-s325",
+        "beijing-f22-furongxilu",
+        "beijing-s322",
+        "beijing-f22-luyuan",
+        "beijing-f22-luyuandong",
+        "beijing-f22-yanjiao",
+        "beijing-f22-shenweidajie",
+        "beijing-f22-chaobaidajie",
+        "beijing-f22-gaolou",
+        "beijing-f22-qixinzhuang",
+        "beijing-f22-mafang",
+        "beijing-f22-machangying",
+        "beijing-f22-guononggang",
+        "beijing-f22-pinggu"
+      ],
+      "toleranceM": 800,
+      "maxSpacingM": 12000,
+      "officialLengthM": 79100,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "20座车站及站序取自北京市政府2026-09-24公布的22号线全部站名：北京段15座（红庙、慈云寺、甘露园、定福庄、管庄、永顺、运河商务区、芙蓉西路、北运河东、潞源、潞源东及平谷方向4站）、河北段5座（燕郊、神威大街、潮白大街、高楼、齐心庄），其中红庙、管庄、运河商务区、北运河东为既有换乘站。红庙—潞源东按OSM在建站与在建线位定位；永顺、芙蓉西路、潞源、神威大街、潮白大街、高楼按镇区/道路走廊定位；马昌营、国农港按官方站序在马坊—平谷走廊上定位。跨京冀段全长约79.1公里，区间为走廊近似。",
+      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html"
+    }
+  ],
+  "stationInstances": {
+    "beijing-s277": "beijing-s277__line22-22",
+    "beijing-s41": "beijing-s41__line22-22",
+    "beijing-s325": "beijing-s325__line22-22",
+    "beijing-s322": "beijing-s322__line22-22"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-bj22-hongmiao-14",
+      "name": "红庙",
+      "complexId": "beijing-s277",
+      "stationInstanceIds": [
+        "beijing-s277",
+        "beijing-s277__line22-22"
+      ],
+      "lineIds": [
+        "beijing-line14-14",
+        "beijing-line22-22"
+      ],
+      "sourceNote": "官方公布红庙为22号线与14号线换乘站。"
+    },
+    {
+      "id": "future-transfer-bj22-guanzhuang-batong",
+      "name": "管庄",
+      "complexId": "beijing-s41",
+      "stationInstanceIds": [
+        "beijing-s41",
+        "beijing-s41__line22-22"
+      ],
+      "lineIds": [
+        "beijing-lineearly0",
+        "beijing-line22-22"
+      ],
+      "sourceNote": "官方公布管庄为22号线与八通线（本地按1号线既有线体建模）换乘站；两站相距较远，通道按示意处理。"
+    },
+    {
+      "id": "future-transfer-bj22-yunhe-6",
+      "name": "运河商务区",
+      "complexId": "beijing-s325",
+      "stationInstanceIds": [
+        "beijing-s325",
+        "beijing-s325__line22-22"
+      ],
+      "lineIds": [
+        "beijing-line6-6",
+        "beijing-line22-22"
+      ],
+      "sourceNote": "运河商务区站即6号线通州北关站同站区，换乘身份已随6号线命名。"
+    },
+    {
+      "id": "future-transfer-bj22-beiyunhedong-6",
+      "name": "北运河东",
+      "complexId": "beijing-s322",
+      "stationInstanceIds": [
+        "beijing-s322",
+        "beijing-s322__line22-22"
+      ],
+      "lineIds": [
+        "beijing-line6-6",
+        "beijing-line22-22"
+      ],
+      "sourceNote": "北运河东站为6号线既有站，22号线在此换乘。"
+    }
+  ],
+  "plan": {
+    "id": "bj-line22-build",
+    "title": "北京22号线（平谷线）建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_station_naming_announcement",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+    "sourceTitle": "北京地铁22号线所有车站站名公布（北京市人民政府门户网站，2026-09-24）",
+    "sourceCheckedAt": "2026-10-21",
+    "sourcePublicationDate": "2026-09-24",
+    "description": "按北京市政府公布的22号线全部站名复现：红庙—平谷，共20座车站，全长约79.1公里，跨北京与河北三河。红庙、管庄、运河商务区、北运河东与既有线换乘。项目在截止日仍处于空载试运行、未计入已开通路网；完成本篇只表示规划建设完成。",
+    "contentRevision": "2026.10.21.9",
+    "contentRevisionNote": "增加北京22号线（平谷线）建设章。"
+  }
+}
