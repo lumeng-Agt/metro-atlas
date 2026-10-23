@@ -1,28 +1,36 @@
 {
   "city": "shanghai",
   "projectIds": [
-    "sh-line20-phase1"
+    "sh-line20-phase1",
+    "sh-line20-east"
   ],
   "stations": [
     {
-      "name": "金昌路",
-      "id": "shanghai-f20-jinchanglu",
+      "name": "交通路",
+      "id": "shanghai-f20-traffic-scope38",
       "latlng": [
-        31.271182,
-        121.368046
+        31.2684655,
+        121.3829705
       ],
-      "coordinateSource": "local_road_geometry",
-      "coordinateNote": "金昌路与交通路走廊西端，按金昌路道路几何定位；OSM 在建线位自交通路起，西端约1.5公里按官方7.1公里范围补足。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "2026-08-28普陀官方范围：交通路—上海西站—真华路—新村路—平利路；位置取本地OSM way/1383748455（原工程名金昌路），不使用旧版偏西1.5公里的插值端点。",
+      "source": "https://www.shpt.gov.cn/yaowen/20260828/972539.html"
     },
     {
-      "name": "交通路",
-      "id": "shanghai-f20-jiaotonglu",
+      "name": "上海西站",
+      "id": "shanghai-s269",
+      "existing": true
+    },
+    {
+      "name": "真华路",
+      "id": "shanghai-f20-zhenhualu",
       "latlng": [
-        31.268129,
-        121.384787
+        31.2636348,
+        121.4077615
       ],
-      "coordinateSource": "local_road_geometry",
-      "coordinateNote": "OSM 20号线在建站标注（交通路），位于在建线位上。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方普陀范围第3站，原工程名广泉路；OSM way/1383748444站体轮廓地理参考。",
+      "source": "https://www.shpt.gov.cn/yaowen/20260828/972539.html"
     },
     {
       "name": "新村路",
@@ -168,6 +176,17 @@
       ],
       "coordinateSource": "official_site_description",
       "coordinateNote": "环评车站表列新园路站，东延伸终点；按在建线位东端定位。"
+    },
+    {
+      "name": "上海西站20号线站址参考",
+      "id": "shanghai-f20-west-site",
+      "latlng": [
+        31.265563,
+        121.397559
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方站位为真南路以东真金路以西交通路地下；采用交通路/水泉南路交叉口地理参考（本地way/696849469与way/769635735），不冒充测绘中心；11/15既有站体不搬动。",
+      "source": "https://www.ndrc.gov.cn/fggz/zcssfz/dffz/202302/t20230228_1350098.html"
     }
   ],
   "lineGroups": [
@@ -178,8 +197,9 @@
       "historicalLineId": "shanghai-line20-20",
       "color": "#A0B6C8",
       "stationIds": [
-        "shanghai-f20-jinchanglu",
-        "shanghai-f20-jiaotonglu",
+        "shanghai-f20-traffic-scope38",
+        "shanghai-s269",
+        "shanghai-f20-zhenhualu",
         "shanghai-s341",
         "shanghai-f20-pinglilu",
         "shanghai-f20-daningpark",
@@ -202,8 +222,11 @@
       "toleranceM": 600,
       "officialLengthM": 28260,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "东段及东延伸14座车站与站序取自20号线一期东段及东延伸环境影响报告书表2.6-1（上海马戏城不含—新园路，21.16公里）；西段金昌路—上海马戏城7.1公里按专项债券项目说明与OSM在建线位/在建站标注补齐。5座既有站复用站区并建立换乘；凉城路（19号线）、浦东北路（21号线）的换乘对象为规划篇，暂不建立；杨高北路按环评无换乘，与12号线同名站不同址。",
-      "stationOrderSource": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf"
+      "precisionNote": "西段7站按2026普陀官方范围及国家发改委项目说明补全，东段及东延伸14站按环评表2.6-1；合计21站。西端交通路原工程名金昌路，真华路原名广泉路，浦东终点新园路采用环评工程名（现见北新园路）。各线独立站体，不以旧错误站替代。地理点与隧道均为近似。",
+      "stationOrderSource": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
+      "stationReferenceIds": {
+        "shanghai-s269": "shanghai-f20-west-site"
+      }
     }
   ],
   "stationInstances": {
@@ -213,7 +236,8 @@
     "shanghai-s379": "shanghai-s379__line20-20",
     "shanghai-s94": "shanghai-s94__line20-20",
     "shanghai-s29": "shanghai-s29__line20-20",
-    "shanghai-f19-liangchenglu": "shanghai-f19-liangchenglu__line20-20"
+    "shanghai-f19-liangchenglu": "shanghai-f19-liangchenglu__line20-20",
+    "shanghai-s269": "shanghai-s269__line20-20"
   },
   "transfers": [
     {
@@ -299,6 +323,36 @@
         "shanghai-line20-20"
       ],
       "sourceNote": "环评明确嫩江路站与8号线换乘。"
+    },
+    {
+      "id": "future-transfer-sh20-west-11",
+      "name": "上海西站",
+      "complexId": "shanghai-s269",
+      "stationInstanceIds": [
+        "shanghai-s269__line11-11",
+        "shanghai-s269__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line20-20"
+      ],
+      "source": "https://www.ndrc.gov.cn/fggz/zcssfz/dffz/202302/t20230228_1350098.html",
+      "sourceNote": "国家发改委2023项目说明明确上海西站与11/15换乘，保持3个独立线路站体。"
+    },
+    {
+      "id": "future-transfer-sh20-west-15",
+      "name": "上海西站",
+      "complexId": "shanghai-s269",
+      "stationInstanceIds": [
+        "shanghai-s269__line15-15",
+        "shanghai-s269__line20-20"
+      ],
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line20-20"
+      ],
+      "source": "https://www.ndrc.gov.cn/fggz/zcssfz/dffz/202302/t20230228_1350098.html",
+      "sourceNote": "国家发改委2023项目说明明确上海西站与11/15换乘，保持3个独立线路站体。"
     }
   ],
   "plan": {
@@ -312,10 +366,11 @@
     "exactAlignment": "corridor_only",
     "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
     "sourceTitle": "上海市轨道交通20号线一期东段及东延伸工程环境影响报告书（报批稿公示版）及一期西段项目说明",
-    "sourceCheckedAt": "2026-10-21",
+    "sourceCheckedAt": "2026-10-23",
     "sourcePublicationDate": "2024-12-01",
-    "description": "按官方环评与专项债券项目说明复现20号线一期：金昌路—新园路，西段约7.1公里、东段及东延伸21.16公里，共20座车站。江湾镇、上海财经大学、三门路、嫩江路、上海马戏城与既有线换乘；凉城路、浦东北路对应的19/21号线为规划篇，暂不建立换乘。项目在截止日仍在建，完成本篇只表示规划建设完成。",
-    "contentRevision": "2026.10.21.8",
-    "contentRevisionNote": "增加上海20号线一期建设章。"
+    "description": "建设西段7站及东段、东延伸14站，共21站。补上海西站及11/15换乘，纠正旧西端范围，不移动旧存档站轨。新园路采用环评工程名，2026亦见北新园路。",
+    "contentRevision": "2026.10.23.38",
+    "contentRevisionNote": "上海20号线补漏站与西端官方范围，新增12号线西延伸任务。",
+    "requiresScopeRecheck": true
   }
 }

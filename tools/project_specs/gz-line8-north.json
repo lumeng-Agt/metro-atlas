@@ -1,0 +1,243 @@
+{
+  "city": "guangzhou",
+  "projectIds": [
+    "gz-line8-north"
+  ],
+  "stations": [
+    {
+      "name": "滘心",
+      "id": "guangzhou-s145",
+      "existing": true
+    },
+    {
+      "name": "江府",
+      "id": "guangzhou-f8b-jiangfu",
+      "existing": true
+    },
+    {
+      "name": "广州北站",
+      "id": "guangzhou-s222",
+      "existing": true
+    },
+    {
+      "name": "凤翔路",
+      "id": "guangzhou-f8n-fengxiang",
+      "latlng": [
+        23.2591,
+        113.20955
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表4.1-1凤翔路站冷却塔附近空地监测点N1-1：N23°15′32.76″、E113°12′34.38″，作为站区地理锚点，非站台中心。",
+      "coordinateAccuracyM": 150,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "江高",
+      "id": "guangzhou-f8n-jianggao",
+      "latlng": [
+        23.27949,
+        113.21755
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第66页：环镇东路/金沙北路以东。道路交叉点23.279483,113.216533，站区沿路东侧近似定位；不把广清城际站体当作地铁站体。",
+      "coordinateAccuracyM": 180,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "江村",
+      "id": "guangzhou-f8n-jiangcun",
+      "latlng": [
+        23.277704,
+        113.231275
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第67页：夏花三路/江人一路交叉口；本地OSM way/526714462、661953535。区别于北侧同名国铁货运站。",
+      "coordinateAccuracyM": 100,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "水沥",
+      "id": "guangzhou-f8n-shuili",
+      "latlng": [
+        23.3088,
+        113.2308
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第69页：广花三路与水沥路以南；按江府—水沥1.416公里中心距及广花三路way/1284849170、1551079683站区走廊近似定位。",
+      "coordinateAccuracyM": 250,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "神山东",
+      "id": "guangzhou-f8n-shenshandong",
+      "latlng": [
+        23.32935,
+        113.2250692
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评广花公路/新楼路北侧；本地OSM地铁在建站点node/14109394512。",
+      "coordinateAccuracyM": 120,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "东镜",
+      "id": "guangzhou-f8n-dongjing",
+      "latlng": [
+        23.3445908,
+        113.221268
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评广花公路/镜湖大道；本地OSM地铁在建站点node/14109394515。",
+      "coordinateAccuracyM": 120,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "雅源",
+      "id": "guangzhou-f8n-yayuan",
+      "latlng": [
+        23.3564944,
+        113.2209474
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第72页广花公路/雅源南路。现代道路名雅源路、广花五路，OSM way/1240659315、356915778真实交点，站区近似。",
+      "coordinateAccuracyM": 180,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "雅瑶",
+      "id": "guangzhou-f8n-yayao",
+      "latlng": [
+        23.3688,
+        113.2159
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第73页广花公路/三向东路，按广花路现代道路、雅瑶隧道北侧及中心距近似定位；未声称测绘中心。",
+      "coordinateAccuracyM": 250,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "秀全公园",
+      "id": "guangzhou-f8n-xiuquan",
+      "latlng": [
+        23.37435,
+        113.2054
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第74页华南路/建设南路西侧。现代建设路与华南路交点23.374367,113.206712（OSM way/607215649、356915817），站区沿路向西近似。",
+      "coordinateAccuracyM": 180,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    },
+    {
+      "name": "广州北规划线路站址参考",
+      "id": "guangzhou-f24-north-site",
+      "latlng": [
+        23.3782,
+        113.1946
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评第75页：广州北站西侧地块、9号线南侧、通道换乘约160米；单独的近似站区，保留9号线既有站体位置。",
+      "coordinateAccuracyM": 220,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf"
+    }
+  ],
+  "lineGroups": [
+    {
+      "toleranceM": 300,
+      "alignmentPrecision": "corridor_only",
+      "stationOrderSource": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+      "precisionNote": "环评表2.1-3完整11座新站及滘心接头；工程范围与未来线路服务归属分别记录。站区采用官方站址及现代地理近似，不宣称隧道测绘精度。",
+      "key": "main",
+      "mapRouteId": "guangzhou-future-line8-north-main",
+      "name": "8号线北延：滘心—江府",
+      "historicalLineId": "guangzhou-line8-8",
+      "color": "#008C95",
+      "stationIds": [
+        "guangzhou-s145",
+        "guangzhou-f8n-fengxiang",
+        "guangzhou-f8n-jianggao",
+        "guangzhou-f8n-jiangcun",
+        "guangzhou-f8b-jiangfu"
+      ],
+      "stationInstances": {
+        "guangzhou-s145": "guangzhou-s145",
+        "guangzhou-f8b-jiangfu": "guangzhou-f8b-jiangfu__line8-8"
+      }
+    },
+    {
+      "toleranceM": 300,
+      "alignmentPrecision": "corridor_only",
+      "stationOrderSource": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+      "precisionNote": "环评表2.1-3完整11座新站及滘心接头；工程范围与未来线路服务归属分别记录。站区采用官方站址及现代地理近似，不宣称隧道测绘精度。",
+      "key": "north24",
+      "mapRouteId": "guangzhou-future-line24-north",
+      "name": "24号线北段（8号线北延工程）",
+      "historicalLineId": "guangzhou-line24-planned",
+      "color": "#F29255",
+      "stationIds": [
+        "guangzhou-f8b-jiangfu",
+        "guangzhou-f8n-shuili",
+        "guangzhou-f8n-shenshandong",
+        "guangzhou-f8n-dongjing",
+        "guangzhou-f8n-yayuan",
+        "guangzhou-f8n-yayao",
+        "guangzhou-f8n-xiuquan",
+        "guangzhou-s222"
+      ],
+      "stationInstances": {
+        "guangzhou-f8b-jiangfu": "guangzhou-f8b-jiangfu",
+        "guangzhou-s222": "guangzhou-s222__line24-planned"
+      },
+      "stationReferenceIds": {
+        "guangzhou-s222": "guangzhou-f24-north-site"
+      }
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-gz-jiangfu-8-24",
+      "name": "江府",
+      "complexId": "guangzhou-f8b-jiangfu",
+      "stationInstanceIds": [
+        "guangzhou-f8b-jiangfu__line8-8",
+        "guangzhou-f8b-jiangfu"
+      ],
+      "lineIds": [
+        "guangzhou-line8-8",
+        "guangzhou-line24-planned"
+      ],
+      "sourceNote": "环评第68页双岛换乘：两条线路轨道分别保存，共用站厅有资料支持；站内通道不作为列车行车轨道。"
+    },
+    {
+      "id": "future-transfer-gz-north-9-24",
+      "name": "广州北站",
+      "complexId": "guangzhou-s222",
+      "stationInstanceIds": [
+        "guangzhou-s222",
+        "guangzhou-s222__line24-planned"
+      ],
+      "lineIds": [
+        "guangzhou-line9-9",
+        "guangzhou-line24-planned"
+      ],
+      "sourceNote": "环评第75页与既有9号线通道换乘，独立站体，通道约160米。"
+    }
+  ],
+  "plan": {
+    "id": "gz-line8-north-build",
+    "title": "广州8号线北延与24号线北段建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "official_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+    "sourceTitle": "8号线北延段（滘心—广州北站）环评表2.1-3及逐站站址",
+    "sourcePublicationDate": "2023-02-23",
+    "sourceCheckedAt": "2026-10-23",
+    "description": "建设11座公布新站及滘心既有接头。在江府区分8号线主线与24号线独立站体，并完成广州北站9/24换乘；批准工程名与规划线路归属不混用。成果为规划建设完成，不虚构未来开通日期。",
+    "contentRevision": "2026.10.23.41",
+    "contentRevisionNote": "补齐广州8号线北延与东延完整公布站序及独立线路关系。",
+    "requiresScopeRecheck": true
+  }
+}

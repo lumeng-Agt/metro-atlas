@@ -40,6 +40,8 @@ func _run() -> void:
 	var wrong_body:=world.duplicate(true);wrong_body.stations[3].stationLineId="another-line"
 	_check(not OfficialNetworkAudit.current_project_errors(wrong_body,["sz-line15"]).is_empty(),"another line's physical platform cannot stand in")
 	_check(Story.task_confirmed(world,task),"fresh scope fingerprint confirms")
+	var final_records:=CampaignSystem.chapter_task_records("shenzhen","sz-line15-build")
+	_check(str(final_records.get(task,{}).get("scopeFingerprint",""))==Story.task_scope_fingerprint(world,task),"chapter completion preserves the normalized task scope fingerprint, including a ring closure")
 	world.storyState.chapterTaskProgress["sz-line15-build"].tasks[task].scopeFingerprint="obsolete"
 	_check(not Story.task_confirmed(world,task),"old task completion cannot cover changed construction scope")
 	var legacy:=WorldData.new_world("beijing","campaign")
@@ -90,6 +92,80 @@ func _run() -> void:
 	_check(rebinding_world.transferConnections[0].stationInstanceIds[0]=="shenzhen-s3","platform correction does not run during preview")
 	Story._apply_scope_corrections(rebinding_world,rebind)
 	_check(rebinding_world.transferConnections[0].stationInstanceIds[0]=="shenzhen-s3__line3-3" and rebinding_world.transferConnections[0].status=="active","confirm rebinds the specified platform without destroying transfer identity")
+	var repeated:=Story.scope_correction_preview(rebinding_world,"route:shenzhen-r3")
+	_check(repeated.ok and repeated.changes.is_empty(),"a correctly rebound transfer is idempotent when another line in the chapter is checked")
+	var extension_world:=WorldData.new_world("shanghai","campaign")
+	extension_world.storyState.chapterId="shanghai-network-reconciliation-2026-10-01"
+	extension_world.storyState.completedChapterIds=["sh-line12-west-build"]
+	extension_world.storyState.chapterTaskProgress={"sh-line12-west-build":{"tasks":{"earlier":{"status":"confirmed"}}}}
+	extension_world.stations=[{"id":"physical-track-remains"}]
+	extension_world.routes=[{"id":"old-service","historicalLineId":"shanghai-line12-12","stationOrder":["old"]}]
+	var extension_notice:=Story.scope_correction_preview(extension_world,"route:shanghai-r12")
+	_check(extension_notice.ok and extension_notice.changes.any(func(change:Dictionary):return str(change.id)=="future-service-recheck:sh-line12-west-build"),"cutoff correction explains why an already-built future extension needs service reconfirmation")
+	_check(extension_world.storyState.completedChapterIds.has("sh-line12-west-build"),"preview cannot revoke a future completion")
+	Story._store_historical_route(extension_world,{"id":"corrected-service","historicalLineId":"shanghai-line12-12","replaceExistingService":true,"stationOrder":["correct"]})
+	_check(not extension_world.storyState.completedChapterIds.has("sh-line12-west-build") and extension_world.storyState.legacyTaskProgress.has("sh-line12-west-build"),"confirmed cutoff replacement retains the old completion evidence and reopens only its future service")
+	_check(extension_world.stations.size()==1 and extension_world.stations[0].id=="physical-track-remains","service reconfirmation preserves already-built physical objects")
+	_check(extension_world.storyState.serviceReconfirmationIds==["sh-line12-west-build"],"service reconfirmation has a stable pending project identity")
+	var branch_world:Dictionary={"stations":[{"id":"a","name":"A"},{"id":"b","name":"B"},{"id":"c","name":"C"},{"id":"d","name":"D"}],"routes":[{"historicalLineId":"branch-line","directions":[{"stationIds":["a","b","c"]},{"stationIds":["a","b","d"]}]}]}
+	var branches:Dictionary={"groups":[{"id":"one","historicalLineId":"branch-line","stationNames":["A","B","C"]},{"id":"two","historicalLineId":"branch-line","stationNames":["A","B","D"]}]}
+	_check(OfficialNetworkAudit.service_shape_errors(branch_world,branches).is_empty(),"independent branch orders accept two physical paths sharing a trunk")
+	branch_world.routes[0].directions.append({"stationIds":["a","c"]})
+	_check(not OfficialNetworkAudit.service_shape_errors(branch_world,branches).is_empty(),"an extra ghost branch is rejected even if every stop name is documented")
+	branch_world.routes[0].directions=[{"stationIds":["a","b","a"]}]
+	var ring_shape:Dictionary={"groups":[{"id":"branch-line","stationNames":["A","B"],"loop":true}]}
+	_check(OfficialNetworkAudit.service_shape_errors(branch_world,ring_shape).is_empty(),"a documented ring repeats its departure stop exactly once for closure")
+	branch_world.routes[0].directions[0].stationIds=["a","b","b","a"]
+	_check(not OfficialNetworkAudit.service_shape_errors(branch_world,ring_shape).is_empty(),"a duplicate middle platform is not legitimized by ring closure")
+	var opposite:=Story._merge_route_directions({"stationIds":["A","B"],"edgePathsBySegment":[[{"id":"AB","forward":true}]]},{"stationIds":["A","C","D"],"edgePathsBySegment":[[{"id":"AC","forward":true}],[{"id":"CD","forward":true}]]})
+	_check(not opposite.is_empty() and opposite.direction.stationIds==["D","C","A","B"],"oppositely authored extensions join at a single shared endpoint")
+	_check(opposite.direction.edgePathsBySegment[0][0]=={"id":"CD","forward":false} and opposite.direction.edgePathsBySegment[1][0]=={"id":"AC","forward":false},"reversing an extension also reverses segment order and every directed edge")
+	var real_fork:=Story._merge_route_directions({"stationIds":["A","B","C"],"edgePathsBySegment":[[],[]]},{"stationIds":["A","B","D"],"edgePathsBySegment":[[],[]]})
+	_check(real_fork.is_empty(),"a shared trunk remains two branches, never a fake route traversing it twice")
+	var reconfirmed_opposite:=Story._merge_route_directions({"stationIds":["D","C","A","B"],"edgePathsBySegment":[[{"id":"CD","forward":false}],[{"id":"AC","forward":false}],[{"id":"AB","forward":true}]]},{"stationIds":["A","C","D"],"edgePathsBySegment":[[{"id":"AC","forward":true}],[{"id":"CD","forward":true}]]})
+	_check(not reconfirmed_opposite.is_empty() and reconfirmed_opposite.direction.stationIds==["D","C","A","B"] and reconfirmed_opposite.direction.edgePathsBySegment.size()==3,"reconfirming an already-contained reverse extension cannot double back over its stations")
+	var corrected_branch:=WorldData.new_world("shanghai","campaign")
+	corrected_branch.storyState.chapterId="shanghai-network-reconciliation-2026-10-01"
+	var tenth:Array=Story.groups(corrected_branch,true).filter(func(group:Dictionary):return str(group.get("historicalLineId",""))=="shanghai-line10-10")
+	var first_group:Dictionary=tenth[0];var second_group:Dictionary=tenth[1]
+	var physical:Dictionary={};var older_directions:Array=[]
+	for group in [first_group,second_group]:
+		var ids:Array=[]
+		for id in group.stationIds:
+			var instance:=Story.station_instance_id(group,str(id));var actual:="physical_"+instance
+			ids.append(actual)
+			if not physical.has(instance):corrected_branch.stations.append({"id":actual,"stationInstanceId":instance,"stationComplexId":str(id)})
+			physical[instance]=true
+		var paths:Array=[]
+		for i in range(ids.size()-1):paths.append([])
+		older_directions.append({"id":str(group.taskId),"stationIds":ids,"edgePathsBySegment":paths})
+	corrected_branch.routes=[{"id":"old10","historicalLineId":"shanghai-line10-10","chapterId":corrected_branch.storyState.chapterId,"directions":older_directions+[{'stationIds':['ghost'],'edgePathsBySegment':[]}]}]
+	corrected_branch.storyState.chapterTaskProgress={str(corrected_branch.storyState.chapterId):{"tasks":{str(second_group.taskId):{"status":"confirmed","scopeFingerprint":Story.task_scope_fingerprint(corrected_branch,str(second_group.taskId))}}}}
+	var first_service:Dictionary={"id":"old10","historicalLineId":"shanghai-line10-10","chapterId":corrected_branch.storyState.chapterId,"stationOrder":older_directions[0].stationIds,"directions":[older_directions[0]],"replaceExistingService":true}
+	Story._store_historical_route(corrected_branch,first_service)
+	_check(corrected_branch.routes[0].directions.size()==2 and not corrected_branch.routes[0].directions.any(func(direction:Dictionary):return direction.stationIds.has("ghost")),"cutoff replacement preserves an already-confirmed sibling arm and removes an undocumented ghost")
+	corrected_branch.storyState.legacyTaskProgress={str(corrected_branch.storyState.chapterId):{}}
+	corrected_branch.storyState.milestones=[{"chapterId":corrected_branch.storyState.chapterId,"planningDiff":{"fields":{"routes":{"items":{"old10":{"after":corrected_branch.routes[0].duplicate(true),"before":{"id":"old10","historicalLineId":"shanghai-line10-10","stationOrder":["ghost"],"directions":[{"stationIds":["ghost"],"edgePathsBySegment":[]}]}}}}}}}]
+	Story._store_historical_route(corrected_branch,{"id":"old10","historicalLineId":"shanghai-line10-10","chapterId":corrected_branch.storyState.chapterId,"stationOrder":older_directions[1].stationIds,"directions":[older_directions[1]]})
+	_check(corrected_branch.routes[0].directions.size()==2 and not corrected_branch.routes[0].directions.any(func(direction:Dictionary):return direction.stationIds.has("ghost")),"chapter confirmation cannot rewind a reconfirmed branch to a stale milestone snapshot")
+	var old_branch:=WorldData.new_world("guangzhou","campaign")
+	old_branch.storyState.phase="future";old_branch.storyState.chapterId="gz-line8-north-branch-build"
+	var branch_group:Dictionary=Story.groups(old_branch,true)[0]
+	var old_branch_ids:Array=[]
+	for id in branch_group.stationIds:
+		var instance:=Story.station_instance_id(branch_group,str(id));var actual:="old_"+instance
+		old_branch_ids.append(actual)
+		old_branch.stations.append({"id":actual,"stationInstanceId":instance,"stationLineId":"guangzhou-line8-8","latlng":[23.2,113.2],"heading":27.0})
+	old_branch.routes=[{"id":"main8","historicalLineId":"guangzhou-line8-8","directions":[{"stationIds":["base-A","base-B"],"edgePathsBySegment":[[]]},{"stationIds":old_branch_ids.duplicate(),"edgePathsBySegment":[]}]}]
+	var physical_before:Array=old_branch.stations.map(func(station:Dictionary):return [station.id,station.latlng.duplicate(),station.heading])
+	var split_notice:=Story.scope_correction_preview(old_branch,str(branch_group.taskId))
+	_check(split_notice.ok and split_notice.changes.any(func(change:Dictionary):return str(change.get("kind",""))=="archive_service_direction"),"the old wrongly attached branch has an explicit service-identity correction preview")
+	Story._apply_scope_corrections(old_branch,split_notice)
+	_check(old_branch.routes[0].directions.size()==1 and old_branch.routes[0].directions[0].stationIds==["base-A","base-B"] and old_branch.routes[0].legacyDirections.size()==1,"branch correction archives only the matching old path and preserves the main line")
+	_check(old_branch.stations.all(func(station:Dictionary):return station.stationLineId=="guangzhou-line24-planned") and old_branch.stations.map(func(station:Dictionary):return [station.id,station.latlng,station.heading])==physical_before,"line-identity correction changes ownership without moving or duplicating any station body")
+	_check(Story.scope_correction_preview(old_branch,str(branch_group.taskId)).changes.is_empty(),"the independent-branch correction is idempotent")
+	old_branch.routes[0].directions.append({"stationIds":old_branch_ids.slice(1),"edgePathsBySegment":[]})
+	_check(not Story.scope_correction_preview(old_branch,str(branch_group.taskId)).ok,"an edited old branch is a conflict, rather than a direction to delete by guesswork")
 	app.queue_free();await process_frame
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())
 	for failure in failures:push_error(failure)

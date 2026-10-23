@@ -41,7 +41,7 @@ def check_project(target, plans, names):
                 errors.append(f'{group_id}: unsupported corridor exception')
             if any(s not in actual for s in expected.get('requiredPlaces', [])):
                 errors.append(f'{group_id}: required corridor places missing')
-        elif not wanted or (actual != wanted and not (expected.get('allowReverse') and actual == list(reversed(wanted)))):
+        elif not wanted or not station_order_matches(actual, wanted, expected):
             errors.append(f'{group_id}: station order differs; missing={[n for n in wanted if n not in actual]}, unexpected={[n for n in actual if n not in wanted]}, expected={len(wanted)}, actual={len(actual)}')
         if bool(group.get('loop', False)) != bool(expected.get('loop', False)):
             errors.append(f'{group_id}: loop closure requirement differs')
@@ -49,6 +49,15 @@ def check_project(target, plans, names):
         if not any(t.get('id') == transfer for p in matched for t in p.get('requiredTransfers', [])):
             errors.append(f'{transfer}: required transfer missing')
     return errors
+
+
+def station_order_matches(actual, wanted, expected):
+    candidates = [wanted]
+    if expected.get('allowReverse'):
+        candidates.append(list(reversed(wanted)))
+    if expected.get('matchScope') == 'contiguous_subsequence':
+        return any(actual[start:start + len(wanted)] in candidates for start in range(len(actual) - len(wanted) + 1))
+    return actual in candidates
 
 
 def audit(campaigns=None, cities=None, targets=None):

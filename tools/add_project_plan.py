@@ -214,7 +214,13 @@ def main() -> int:
         }
         if instances:
             group["stationInstances"] = instances
-        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId'):
+        if group_spec.get('stationReferenceIds'):
+            references = group_spec['stationReferenceIds']
+            for identity, reference in references.items():
+                if identity not in resolved_ids or reference not in catalog:
+                    fail(f'group {key}: invalid line-specific station reference {identity}: {reference}')
+            group['stationReferenceIds'] = references
+        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId', 'servicePathRevision'):
             if field in group_spec:
                 group[field] = group_spec[field]
         if float(group["toleranceM"]) <= 0:
@@ -238,11 +244,17 @@ def main() -> int:
         if len(instance_ids) < 2 or len(instance_ids) != len(line_ids):
             fail(f"transfer {transfer_id}: needs matching bodies and line ids (at least two)")
         project_lines = sum(1 for line_id in line_ids if line_id in {str(g["historicalLineId"]) for g in groups_spec})
-        if project_lines != 1:
-            fail(f"transfer {transfer_id}: exactly one line id must be this plan's line")
-        other_line = next(line_id for line_id in line_ids if line_id not in {str(g["historicalLineId"]) for g in groups_spec})
-        if other_line not in known_lines:
-            fail(f"transfer {transfer_id}: unknown existing line {other_line}")
+        if project_lines < 1 or len(set(line_ids)) != len(line_ids) or len(set(instance_ids)) != len(instance_ids):
+            fail(f"transfer {transfer_id}: distinct lines and physical bodies, including a project line, are required")
+        for line_id in line_ids:
+            if line_id not in known_lines:
+                fail(f"transfer {transfer_id}: unknown line {line_id}")
+        # A multi-line project may construct both sides of an interchange.
+        # Each project-side body must still belong to that explicit line group.
+        for body, line_id in zip(instance_ids, line_ids):
+            matching = [g for g in groups if g['historicalLineId'] == line_id]
+            if matching and not any(complex_id in g['stationIds'] and g.get('stationInstances', {}).get(complex_id, complex_id) == body for g in matching):
+                fail(f"transfer {transfer_id}: body {body} is not a bound project-side platform")
         if not str(entry.get("sourceNote", "")).strip():
             fail(f"transfer {transfer_id}: sourceNote is required")
         transfers.append({

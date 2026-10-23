@@ -76,7 +76,10 @@ static func validate(data: Dictionary) -> String:
 			if linked_instances.has(str(instance_id)):return "换乘关系重复引用了同一物理站体。"
 			linked_instances[str(instance_id)]=true
 			for station in data.get("stations",[]):
-				if str(station.get("stationInstanceId",station.get("id","")))==str(instance_id) and str(station.get("stationComplexId",station.get("historicalId","")))!=str(connection.complexId):return "换乘站体与其历史站区不一致。"
+				if str(station.get("stationInstanceId",station.get("id","")))!=str(instance_id):continue
+				var body_complex:=CampaignSystem.canonical_station_complex(str(data.cityId),str(station.get("stationComplexId",station.get("historicalId",""))))
+				var relation_complex:=CampaignSystem.canonical_station_complex(str(data.cityId),str(connection.complexId))
+				if body_complex!=relation_complex:return "换乘站体与其历史站区不一致。"
 		if str(connection.get("status","active"))=="active":
 			if not connection.get("lineIds",[]) is Array or connection.lineIds.size()!=connection.stationInstanceIds.size():return "已建立的换乘关系需要逐一对应物理站体和线路。"
 			var linked_lines:Dictionary={}
@@ -98,7 +101,7 @@ static func validate(data: Dictionary) -> String:
 							break
 					if route_serves_station:break
 				if not matching_line_found:return "换乘关系引用了不存在的线路。"
-				if not route_serves_station:return "换乘线路没有停靠对应的物理站体。"
+				if not route_serves_station:return "换乘「%s」的%s没有停靠站体%s（关系%s）。"%[str(connection.get("name","换乘")),line_id,serving_instance,str(connection.get("id",""))]
 	for node in data.get("trackNodes",[]):
 		if not _coordinate_valid(node.get("latlng")):return "轨道节点坐标无效。"
 		if not str(node.get("stationId","")).is_empty() and not indexes.stations.has(str(node.stationId)):return "站端节点引用了不存在的车站。"

@@ -1,0 +1,30 @@
+{
+  "city":"shanghai",
+  "projectIds":["sh-line12-west"],
+  "stations":[
+    {"name":"洞泾","id":"shanghai-s134","existing":true},
+    {"name":"刘五公路","id":"shanghai-f12-liuwugonglu","latlng":[31.0915533,121.2430977],"coordinateSource":"official_project_statement_and_local_road_geometry","coordinateNote":"官方12西延站序，位置参考本地OSM站体way/1354660070；工程暂名。","source":"https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html"},
+    {"name":"沪松公路","id":"shanghai-f12-husonggonglu","latlng":[31.0950533,121.2648802],"coordinateSource":"official_project_statement_and_local_road_geometry","coordinateNote":"官方工程名沪松公路；地理参考OSM way/1354660068（本地现名同乐路），不把后续名称提前作为当期唯一名称。","source":"https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html"},
+    {"name":"科技园","id":"shanghai-f12-kejiyuan","latlng":[31.0942753,121.3211699],"coordinateSource":"official_project_statement_and_local_road_geometry","coordinateNote":"采用官方工程名科技园，亦见科创云廊；位置参考OSM way/1354660065（本地名千帆路），非测绘中心。","source":"https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html"},
+    {"name":"场西路","id":"shanghai-f12-changxilu","latlng":[31.0953466,121.3349367],"coordinateSource":"official_project_statement_and_local_road_geometry","coordinateNote":"官方工程站序，位置参考OSM way/1354660057站体。","source":"https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html"},
+    {"name":"场东路","id":"shanghai-f12-changdonglu","latlng":[31.1017728,121.3524771],"coordinateSource":"official_project_statement_and_local_road_geometry","coordinateNote":"官方工程站序，位置参考OSM way/1354660054站体。","source":"https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html"},
+    {"name":"七莘路","id":"shanghai-s233","existing":true},
+    {"name":"洞泾12号线站址参考","id":"shanghai-f12-dongjing-site","latlng":[31.0881587,121.2276132],"coordinateSource":"official_project_statement_and_local_road_geometry","coordinateNote":"洞泾12号线在建站体way/1354660075，区别于9号线既有站体；共同历史站区身份不变。","source":"https://www.songjiang.gov.cn/ztzl/005019/005019001/20240313/f6aad798-58a3-4329-94e8-e1bb2d0d7d46.html"}
+  ],
+  "lineGroups":[{
+    "key":"west","mapRouteId":"shanghai-future-line12-west","name":"12号线西延伸（工程站名）","historicalLineId":"shanghai-line12-12","color":"#007B61",
+    "stationIds":["shanghai-s134","shanghai-f12-liuwugonglu","shanghai-f12-husonggonglu","shanghai-f12-kejiyuan","shanghai-f12-changxilu","shanghai-f12-changdonglu","shanghai-s233"],
+    "stationInstances":{"shanghai-s134":"shanghai-s134__line12-12","shanghai-s233":"shanghai-s233"},
+    "stationReferenceIds":{"shanghai-s134":"shanghai-f12-dongjing-site"},
+    "toleranceM":150,"officialLengthM":17270,"alignmentPrecision":"corridor_only",
+    "precisionNote":"6座新站与七莘路既有接头。官方2025-02工程站序；科技园亦见科创云廊，地理点与隧道均为近似。洞泾9/12站体独立，不把换乘通道当行车轨道。",
+    "stationOrderSource":"https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html"
+  }],
+  "transfers":[{"id":"future-transfer-sh12-dongjing-9","name":"洞泾","complexId":"shanghai-s134","stationInstanceIds":["shanghai-s134","shanghai-s134__line12-12"],"lineIds":["shanghai-line9-9","shanghai-line12-12"],"sourceNote":"洞泾为9/12换乘，分别建设独立站体；通道与层次仅作示意。"}],
+  "plan":{
+    "id":"sh-line12-west-build","title":"上海12号线西延伸建设篇","date":"2026-10-01","status":"under_construction","sourceType":"official_construction_report","projectType":"under_construction","required":true,"exactAlignment":"corridor_only",
+    "source":"https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html","sourceTitle":"松江官方：12号线西延伸工程6站及七莘路接头","sourcePublicationDate":"2025-02-28","sourceCheckedAt":"2026-10-23",
+    "description":"从洞泾建设6座新站至既有七莘路，补齐12号线西延伸范围并建立洞泾9/12换乘。采用工程暂名；完成表示规划建设，不编造未来开通日期。",
+    "contentRevision":"2026.10.23.38","contentRevisionNote":"补齐已在建12号线西延伸，独立站体参考位置与近似几何。","requiresScopeRecheck":true
+  }
+}

@@ -37,7 +37,8 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 						var body_line:=str(body.get("stationLineId",line_id))
 						var shared:Array=expected.get("sharedBodyLines",{}).get(str(names[i]),[])
 						var permitted_shared:bool=(i==offset or i==offset+wanted.size()-1) and shared.has(body_line) and not str(expected.get("sharedBodyEvidence","")).is_empty()
-						if body_line!=line_id and not permitted_shared:errors.append("%s: stop belongs to another physical line body: %s" % [str(expected.id),str(ids[i])])
+						var same_lineage:bool=expected.get("bodyLineAliases",[]).has(body_line) and not str(expected.get("bodyLineAliasEvidence","")).is_empty()
+						if body_line!=line_id and not permitted_shared and not same_lineage:errors.append("%s: stop belongs to another physical line body: %s" % [str(expected.id),str(ids[i])])
 					for i in range(offset,offset+wanted.size()-1):
 						var path:=TrackNetwork.ordered_station_path(str(ids[i]),str(ids[i+1]),paths[i],world,latitude,path_index)
 						if not bool(path.get("valid",false)):
@@ -82,24 +83,39 @@ static func cutoff_errors(world:Dictionary) -> Array[String]:
 	var network:Dictionary=city.get("cutoffNetwork",{})
 	if network.is_empty():return ["independent cutoff network not yet available"]
 	var errors:=project_errors(world,network)
+	errors.append_array(service_shape_errors(world,network,city.get("projects",[])))
+	return errors
+
+static func service_shape_errors(world:Dictionary,network:Dictionary,projects:Array=[]) -> Array[String]:
+	var errors:Array[String]=[]
+	var checked_lines:Dictionary={}
 	for expected in network.get("groups",[]):
-		var line_id:=str(expected.id)
-		var permitted:Array=expected.get("stationNames",[]).duplicate()
+		var line_id:=str(expected.get("historicalLineId",expected.id))
+		if checked_lines.has(line_id):continue
+		checked_lines[line_id]=true
+		var permitted:Array=[]
+		var patterns:Array=[]
+		for scope in network.get("groups",[]):
+			if str(scope.get("historicalLineId",scope.id))!=line_id:continue
+			patterns.append(scope.get("stationNames",[]))
+			for name in scope.get("stationNames",[]):
+				if not permitted.has(name):permitted.append(name)
 		# Later, independently documented extensions may coexist with the
 		# historical checkpoint. They cannot legitimise arbitrary stray stops.
-		for project in city.get("projects",[]):
+		for project in projects:
 			for future in project.get("groups",[]):
 				if str(future.get("historicalLineId",future.id))==line_id:
 					for name in future.get("stationNames",[]):
 						if not permitted.has(name):permitted.append(name)
 		for route in world.get("routes",[]):
 			if str(route.get("historicalLineId",""))!=line_id:continue
-			if route.get("directions",[]).size()!=1:errors.append("%s: cutoff service has extra disconnected directions"%line_id)
+			if route.get("directions",[]).size()!=patterns.size():errors.append("%s: cutoff service direction count differs from documented branches"%line_id)
 			for direction in route.get("directions",[]):
 				var seen:Dictionary={}
 				for id in direction.get("stationIds",[]):
 					var name:=str(WorldData.find_station(world,str(id)).get("name",""))
 					if not permitted.has(name):errors.append("%s: undocumented stop in saved service: %s"%[line_id,name])
-					if seen.has(str(id)):errors.append("%s: duplicate platform in cutoff service: %s"%[line_id,name])
+					var is_ring_closure:bool=bool(expected.get("loop",false)) and id==direction.get("stationIds",[]).back() and id==direction.get("stationIds",[]).front() and seen.size()==direction.get("stationIds",[]).size()-1
+					if seen.has(str(id)) and not is_ring_closure:errors.append("%s: duplicate platform in cutoff service: %s"%[line_id,name])
 					seen[str(id)]=true
 	return errors

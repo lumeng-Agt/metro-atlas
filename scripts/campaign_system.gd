@@ -41,7 +41,14 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 						if str(station.get("id",""))==str(station_id):name=str(station.get("name",""));break
 				names.append(name)
 			if str(expected.get("scopeType","stations"))=="stations":
-				if expected.get("stationNames",[]).is_empty() or names!=expected.get("stationNames",[]):reasons.append("项目%s仍有缺站或站序差异。" % project_id)
+				var wanted:Array=expected.get("stationNames",[])
+				var matches:bool=names==wanted
+				if bool(expected.get("allowReverse",false)):
+					var reversed:=wanted.duplicate();reversed.reverse();matches=matches or names==reversed
+				if str(expected.get("matchScope",""))=="contiguous_subsequence" and not wanted.is_empty():
+					for start in range(maxi(0,names.size()-wanted.size()+1)):
+						if names.slice(start,start+wanted.size())==wanted:matches=true
+				if wanted.is_empty() or not matches:reasons.append("项目%s仍有缺站或站序差异。" % project_id)
 			else:
 				if str(expected.get("unpublishedStationOrderEvidence",""))=="":reasons.append("项目%s的走廊验收缺少依据。" % project_id)
 				for name in expected.get("requiredPlaces",[]):
@@ -191,6 +198,12 @@ static func milestone_interval(city_id: String, chapter_id: String) -> Dictionar
 			return row.duplicate(true)
 	return {}
 
+static func group_scope_fingerprint(group:Dictionary) -> String:
+	var normalized:=group.duplicate(true)
+	var ids:Array=normalized.get("stationIds",[])
+	if bool(normalized.get("loop",false)) and ids.size()>2 and ids.front()!=ids.back():ids.append(ids.front())
+	return JSON.stringify(normalized).sha256_text()
+
 static func chapter_task_records(city_id: String, chapter_id: String) -> Dictionary:
 	var result: Dictionary = {}
 	var chapter_row: Dictionary = {}
@@ -202,7 +215,7 @@ static func chapter_task_records(city_id: String, chapter_id: String) -> Diction
 	for group in chapter_row.get("lineGroups", []):
 		var line_id := str(group.get("historicalLineId", group.get("id", "line")))
 		var task_id := str(group.get("taskId", "line:" + line_id))
-		result[task_id] = {"status":"confirmed", "type":"line_group", "historicalLineId":line_id}
+		result[task_id] = {"status":"confirmed", "type":"line_group", "historicalLineId":line_id,"scopeFingerprint":group_scope_fingerprint(group)}
 	for transition in chapter_row.get("serviceTransitions", []):
 		var transition_id := str(transition.get("id", transition.get("historicalLineId", "service")))
 		result["service:" + transition_id] = {"status":"confirmed", "type":"service_range", "historicalLineId":str(transition.get("historicalLineId", ""))}

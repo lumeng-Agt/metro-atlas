@@ -7044,7 +7044,7 @@
           "coordinateSource": "local_road_geometry",
           "coordinateNote": "OSM 20号线在建站标注（平利路）。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-daningpark",
@@ -7057,7 +7057,7 @@
           "coordinateSource": "local_road_geometry",
           "coordinateNote": "OSM 20号线在建站标注（大宁公园）。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-guanglingerlu",
@@ -7070,7 +7070,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列广灵二路站；按 OSM 20号线在建线位投影定位。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-chezhannanlu",
@@ -7083,7 +7083,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列车站南路站；OSM 在建站标注重合。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-wananlu",
@@ -7096,7 +7096,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列万安路站；OSM 在建站标注重合。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-guohelu",
@@ -7109,7 +7109,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列国和路站；按 OSM 20号线在建线位投影定位。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-gongqing",
@@ -7122,7 +7122,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列共青森林公园站；OSM 在建站标注重合。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-pudongbeilu",
@@ -7135,7 +7135,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列浦东北路站；与在建21号线换乘，21号线为规划篇，暂不建立换乘。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-zhangyangbeilu",
@@ -7148,7 +7148,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列张杨北路站；按在建线位与张杨北路走廊定位。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-yanggaobeilu",
@@ -7161,7 +7161,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列杨高北路站（表中无换乘）；与12号线同名站不同址，不建立换乘。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f20-xinyuanlu",
@@ -7174,7 +7174,7 @@
           "coordinateSource": "official_site_description",
           "coordinateNote": "环评车站表列新园路站，东延伸终点；按在建线位东端定位。",
           "source": "https://link.sthj.sh.gov.cn/file/exchange_file/5A3D558B920C4923865ADD53911D4BBC_%E6%9C%80%E7%BB%88%E7%89%88%E7%8E%AF%E8%AF%84%E6%8A%A5%E5%91%8A%E5%85%AC%E7%A4%BA%E7%89%88_1.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shanghai-f13w-yunlelu",
@@ -7318,6 +7318,123 @@
           "coordinateNote": "官方浦东机场T3航站楼预留枢纽范围，站区近似；不作为现有T1/T2站体。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
           "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f12-liuwugonglu",
+          "name": "刘五公路",
+          "latlng": [
+            31.0915533,
+            121.2430977
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方12西延站序，位置参考本地OSM站体way/1354660070；工程暂名。",
+          "source": "https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f12-husonggonglu",
+          "name": "沪松公路",
+          "latlng": [
+            31.0950533,
+            121.2648802
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方工程名沪松公路；地理参考OSM way/1354660068（本地现名同乐路），不把后续名称提前作为当期唯一名称。",
+          "source": "https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f12-kejiyuan",
+          "name": "科技园",
+          "latlng": [
+            31.0942753,
+            121.3211699
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "采用官方工程名科技园，亦见科创云廊；位置参考OSM way/1354660065（本地名千帆路），非测绘中心。",
+          "source": "https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f12-changxilu",
+          "name": "场西路",
+          "latlng": [
+            31.0953466,
+            121.3349367
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方工程站序，位置参考OSM way/1354660057站体。",
+          "source": "https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f12-changdonglu",
+          "name": "场东路",
+          "latlng": [
+            31.1017728,
+            121.3524771
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方工程站序，位置参考OSM way/1354660054站体。",
+          "source": "https://www.songjiang.gov.cn/xwzx/001001/20250228/780df614-60d3-44bf-98dc-ffa72704be83.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f12-dongjing-site",
+          "name": "洞泾12号线站址参考",
+          "latlng": [
+            31.0881587,
+            121.2276132
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "洞泾12号线在建站体way/1354660075，区别于9号线既有站体；共同历史站区身份不变。",
+          "source": "https://www.songjiang.gov.cn/ztzl/005019/005019001/20240313/f6aad798-58a3-4329-94e8-e1bb2d0d7d46.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f20-traffic-scope38",
+          "name": "交通路",
+          "latlng": [
+            31.2684655,
+            121.3829705
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "2026-08-28普陀官方范围：交通路—上海西站—真华路—新村路—平利路；位置取本地OSM way/1383748455（原工程名金昌路），不使用旧版偏西1.5公里的插值端点。",
+          "source": "https://www.shpt.gov.cn/yaowen/20260828/972539.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f20-zhenhualu",
+          "name": "真华路",
+          "latlng": [
+            31.2636348,
+            121.4077615
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方普陀范围第3站，原工程名广泉路；OSM way/1383748444站体轮廓地理参考。",
+          "source": "https://www.shpt.gov.cn/yaowen/20260828/972539.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-f20-west-site",
+          "name": "上海西站20号线站址参考",
+          "latlng": [
+            31.265563,
+            121.397559
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方站位为真南路以东真金路以西交通路地下；采用交通路/水泉南路交叉口地理参考（本地way/696849469与way/769635735），不冒充测绘中心；11/15既有站体不搬动。",
+          "source": "https://www.ndrc.gov.cn/fggz/zcssfz/dffz/202302/t20230228_1350098.html",
+          "sourceCheckedAt": "2026-10-23"
         }
       ],
       "lines": [
@@ -23323,6 +23440,258 @@
           "coordinateNote": "广花三路在建站标注（OSM 江府站）；环评注明江府站属8号线北延段工程，本线在此接轨。",
           "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "guangzhou-f8n-fengxiang",
+          "name": "凤翔路",
+          "latlng": [
+            23.2591,
+            113.20955
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表4.1-1凤翔路站冷却塔附近空地监测点N1-1：N23°15′32.76″、E113°12′34.38″，作为站区地理锚点，非站台中心。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 150
+        },
+        {
+          "id": "guangzhou-f8n-jianggao",
+          "name": "江高",
+          "latlng": [
+            23.27949,
+            113.21755
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第66页：环镇东路/金沙北路以东。道路交叉点23.279483,113.216533，站区沿路东侧近似定位；不把广清城际站体当作地铁站体。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 180
+        },
+        {
+          "id": "guangzhou-f8n-jiangcun",
+          "name": "江村",
+          "latlng": [
+            23.277704,
+            113.231275
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第67页：夏花三路/江人一路交叉口；本地OSM way/526714462、661953535。区别于北侧同名国铁货运站。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 100
+        },
+        {
+          "id": "guangzhou-f8n-shuili",
+          "name": "水沥",
+          "latlng": [
+            23.3088,
+            113.2308
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第69页：广花三路与水沥路以南；按江府—水沥1.416公里中心距及广花三路way/1284849170、1551079683站区走廊近似定位。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 250
+        },
+        {
+          "id": "guangzhou-f8n-shenshandong",
+          "name": "神山东",
+          "latlng": [
+            23.32935,
+            113.2250692
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评广花公路/新楼路北侧；本地OSM地铁在建站点node/14109394512。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 120
+        },
+        {
+          "id": "guangzhou-f8n-dongjing",
+          "name": "东镜",
+          "latlng": [
+            23.3445908,
+            113.221268
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评广花公路/镜湖大道；本地OSM地铁在建站点node/14109394515。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 120
+        },
+        {
+          "id": "guangzhou-f8n-yayuan",
+          "name": "雅源",
+          "latlng": [
+            23.3564944,
+            113.2209474
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第72页广花公路/雅源南路。现代道路名雅源路、广花五路，OSM way/1240659315、356915778真实交点，站区近似。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 180
+        },
+        {
+          "id": "guangzhou-f8n-yayao",
+          "name": "雅瑶",
+          "latlng": [
+            23.3688,
+            113.2159
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第73页广花公路/三向东路，按广花路现代道路、雅瑶隧道北侧及中心距近似定位；未声称测绘中心。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 250
+        },
+        {
+          "id": "guangzhou-f8n-xiuquan",
+          "name": "秀全公园",
+          "latlng": [
+            23.37435,
+            113.2054
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第74页华南路/建设南路西侧。现代建设路与华南路交点23.374367,113.206712（OSM way/607215649、356915817），站区沿路向西近似。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 180
+        },
+        {
+          "id": "guangzhou-f24-north-site",
+          "name": "广州北规划线路站址参考",
+          "latlng": [
+            23.3782,
+            113.1946
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评第75页：广州北站西侧地块、9号线南侧、通道换乘约160米；单独的近似站区，保留9号线既有站体位置。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7238/7238515/8817067.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 220
+        },
+        {
+          "id": "guangzhou-f8e-fengpu",
+          "name": "凤浦公园",
+          "latlng": [
+            23.0967643,
+            113.3926201
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868091409地理参考；工程暂名，非隧道测绘点。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 160
+        },
+        {
+          "id": "guangzhou-f8e-xinzhou",
+          "name": "新洲",
+          "latlng": [
+            23.089255,
+            113.4023283
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868091416地理参考；工程暂名，非隧道测绘点。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 160
+        },
+        {
+          "id": "guangzhou-f8e-zhanmaocheng",
+          "name": "展贸城",
+          "latlng": [
+            23.0597856,
+            113.4485969
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868130359地理参考；工程暂名，非隧道测绘点。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 160
+        },
+        {
+          "id": "guangzhou-f8e-hualong",
+          "name": "化龙",
+          "latlng": [
+            23.0483388,
+            113.4531296
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第40—46页官方站址，现代OSM node/10654494880地理参考；工程暂名，非隧道测绘点。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 160
+        },
+        {
+          "id": "guangzhou-f8e-mengdi",
+          "name": "蒙地",
+          "latlng": [
+            23.021683,
+            113.4639729
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第40—46页官方站址，现代OSM way/1468019861（蒙地站施工用地中心参考，非同名村落）地理参考；工程暂名，非隧道测绘点。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 160
+        },
+        {
+          "id": "guangzhou-f8e-longzelu",
+          "name": "龙泽路",
+          "latlng": [
+            23.0100661,
+            113.4795124
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868130376地理参考；工程暂名，非隧道测绘点。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 160
+        },
+        {
+          "id": "guangzhou-f8e-lianhua",
+          "name": "莲花",
+          "latlng": [
+            23.0042883,
+            113.4879848
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868130388地理参考；工程暂名，非隧道测绘点。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 160
+        },
+        {
+          "id": "guangzhou-f8e-changzhou-site",
+          "name": "长洲8号线站址参考",
+          "latlng": [
+            23.0785526,
+            113.4237395
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评金洲北路/金蝶路，OSM node/9463457807参考，独立于既有7号线站体。",
+          "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 150
         }
       ],
       "lines": [

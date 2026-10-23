@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.23.37",
+  "contentRevision": "2026.10.23.42",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -69,17 +69,37 @@
         "historyReviewStatus: independent review incomplete",
         "independent milestone requirements missing",
         "sh-line19: independent project requirements missing",
-        "sh-line20-phase1: independent project requirements missing",
-        "sh-line20-east: independent project requirements missing",
         "sh-line23-phase1: independent project requirements missing",
-        "sh-line15-south: independent project requirements missing",
-        "sh-line13-west-east: independent project requirements missing",
-        "sh-line12-west: independent project requirements missing",
         "sh-line22-chongming: independent project requirements missing"
       ],
       "projects": [
         {
           "id": "sh-line21",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sh-line12-west",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sh-line20-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sh-line20-east",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sh-line15-south",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sh-line13-west-east",
           "ok": true,
           "errors": []
         }
@@ -115,10 +135,25 @@
         "historyReviewStatus: independent review incomplete",
         "independent milestone requirements missing",
         "gz-line12-mid: independent project requirements missing",
-        "gz-line13-phase2-west: independent project requirements missing",
-        "gz-line8-north-branch: independent project requirements missing"
+        "gz-line13-phase2-west: independent project requirements missing"
       ],
-      "projects": []
+      "projects": [
+        {
+          "id": "gz-line8-north",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "gz-line8-east",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "gz-line8-north-branch",
+          "ok": true,
+          "errors": []
+        }
+      ]
     },
     "chengdu": {
       "ok": false,

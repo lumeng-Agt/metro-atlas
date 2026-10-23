@@ -78,8 +78,9 @@
     "sourceCheckedAt": "2026-10-21",
     "sourcePublicationDate": "2026-03-20",
     "description": "按2026年上海市政府专项债券项目说明复现15号线南延伸：自既有紫竹高新区站向南，沿莲花南路走行、越江后沿望园路至望园路站，新建紫光路、环城北路、东方美谷大道、望园路4座地下车站，全长10.26公里。西闸公路仅预留车站土建，不计作本期车站。项目在截止日仍在建，完成本篇只表示规划建设完成。",
-    "contentRevision": "2026.10.21.3",
-    "contentRevisionNote": "增加上海15号线南延伸官方项目说明下的4站建设章；其余在建项目按同一规范继续逐条数字化。"
+    "contentRevision": "2026.10.23.42",
+    "contentRevisionNote": "增加上海15号线南延伸官方项目说明下的4站建设章；其余在建项目按同一规范继续逐条数字化。",
+    "requiresScopeRecheck": true
   },
   "lineGroup": {
     "mapRouteId": "shanghai-future-line15-south",
@@ -89,6 +90,7 @@
     "toleranceM": 600,
     "alignmentPrecision": "corridor_only",
     "precisionNote": "4座车站站名依据专项债券项目说明；紫光路位于莲花南路走廊，环城北路、东方美谷大道位于望园路走廊，点位按公开里程比例结合现代道路几何定位，属走廊级站区参考，不是隧道测绘线位；西闸公路预留站未计入。",
-    "stationOrderSource": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf"
+    "stationOrderSource": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+    "servicePathRevision": 2
   }
 }

@@ -547,7 +547,7 @@ static func task_scope_fingerprint(world:Dictionary,selected_task_id:String) -> 
 	var all_groups:=groups(world,true)
 	for index in range(all_groups.size()):
 		if task_id(ch,all_groups[index],index)==selected_task_id:
-			return JSON.stringify(all_groups[index]).sha256_text()
+			return Catalog.group_scope_fingerprint(all_groups[index])
 	return ""
 
 static func confirmed_task_count(world: Dictionary) -> int:
@@ -566,6 +566,21 @@ static func _merge_route_directions(existing_direction: Dictionary, incoming_dir
 	var new_ids: Array = incoming_direction.get("stationIds", [])
 	var new_paths: Array = incoming_direction.get("edgePathsBySegment", [])
 	if old_ids.is_empty() or new_ids.is_empty(): return {}
+	# Two sections can be authored in opposite geographic directions. A single
+	# shared endpoint permits reversal; a shared trunk does not, because that
+	# would turn a real branch into a path traversing the trunk twice.
+	var common:Array=[]
+	for id in new_ids:
+		if old_ids.has(id) and not common.has(id):common.append(id)
+	var reverse_ids:=new_ids.duplicate();reverse_ids.reverse()
+	var reverse_is_contained:=false
+	for offset in range(maxi(0,old_ids.size()-reverse_ids.size()+1)):
+		if old_ids.slice(offset,offset+reverse_ids.size())==reverse_ids:reverse_is_contained=true;break
+	for offset in range(maxi(0,reverse_ids.size()-old_ids.size()+1)):
+		if reverse_ids.slice(offset,offset+old_ids.size())==old_ids:reverse_is_contained=true;break
+	if reverse_is_contained or (common.size()==1 and (old_ids.front()==new_ids.front() or old_ids.back()==new_ids.back())):
+		incoming_direction=_reverse_service_direction(incoming_direction)
+		new_ids=incoming_direction.stationIds;new_paths=incoming_direction.edgePathsBySegment
 	var mode := ""
 	var overlap := 0
 	if old_ids == new_ids:
@@ -621,6 +636,21 @@ static func _merge_route_directions(existing_direction: Dictionary, incoming_dir
 	merged["edgePathsBySegment"] = merged_paths
 	merged["serviceStatusBySegment"] = []
 	return {"direction": merged, "mode": mode}
+
+static func _reverse_service_direction(direction:Dictionary) -> Dictionary:
+	var reversed:=direction.duplicate(true)
+	reversed.stationIds.reverse()
+	var paths:Array=[]
+	var old_paths:Array=direction.get("edgePathsBySegment",[]).duplicate(true);old_paths.reverse()
+	for segment in old_paths:
+		if segment is Array:
+			segment.reverse()
+			for reference in segment:
+				if reference is Dictionary:reference["forward"]=not bool(reference.get("forward",true))
+		paths.append(segment)
+	reversed.edgePathsBySegment=paths
+	if reversed.get("serviceStatusBySegment") is Array:reversed.serviceStatusBySegment.reverse()
+	return reversed
 
 static func _merge_historical_route(existing: Dictionary, incoming: Dictionary) -> Dictionary:
 	if existing.is_empty(): return incoming.duplicate(true)
@@ -687,7 +717,41 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 			route_index = index; break
 	if route_index < 0: world.routes.append(route.duplicate(true))
 	elif bool(route.get("replaceExistingService",false)):
-		world.routes[route_index]=route.duplicate(true)
+		var replacement:=route.duplicate(true)
+		# A cutoff correction in an old save can coexist with completed future
+		# extensions. Preserve only their documented, physically continuous
+		# sections from the previous service; never append an arbitrary old path.
+		if str(chapter(world).get("chapterScope",""))=="cutoff_reconciliation":
+			for plan in Catalog.city_config(str(world.cityId)).get("futurePlans",[]):
+				var state:Dictionary=world.get("storyState",{})
+				if not state.get("completedChapterIds",[]).has(str(plan.id)) and not state.get("serviceReconfirmationIds",[]).has(str(plan.id)):continue
+				for group in plan.get("lineGroups",[]):
+					if str(group.get("historicalLineId",""))==str(route.get("historicalLineId","")):
+						replacement=_preserve_documented_service_section(world,world.routes[route_index],replacement,group)
+		# A second arm can be built and confirmed first. Replacing an obsolete
+		# service must preserve that already-confirmed arm, while discarding
+		# unrelated ghost directions. No task is confirmed by this preservation.
+		for group in groups(world,true):
+			if str(group.get("historicalLineId",""))!=str(route.get("historicalLineId","")) or bool(group.get("replaceExistingService",false)):continue
+			var group_index:=groups(world,true).find(group)
+			if not task_confirmed(world,task_id(chapter(world),group,group_index)):continue
+			var wanted:Array=[]
+			for id in group.get("stationIds",[]):
+				var station:=_station_for_instance(world,station_instance_id(group,str(id)))
+				if not station.is_empty():wanted.append(str(station.id))
+			if wanted.size()!=group.get("stationIds",[]).size():continue
+			for direction in world.routes[route_index].get("directions",[]):
+				var ids:Array=direction.get("stationIds",[])
+				for offset in range(maxi(0,ids.size()-wanted.size()+1)):
+					if ids.slice(offset,offset+wanted.size())!=wanted:continue
+					var retained:Dictionary=direction.duplicate(true)
+					retained.stationIds=wanted.duplicate()
+					retained.edgePathsBySegment=direction.get("edgePathsBySegment",[]).slice(offset,offset+wanted.size()-1)
+					retained.id="confirmed_branch_"+str(group.get("coverageGroupId",group_index))
+					replacement=_merge_historical_route(replacement,{"chapterId":route.get("chapterId",""),"historicalLineId":route.get("historicalLineId",""),"directions":[retained]})
+					break
+		world.routes[route_index]=replacement
+		_recheck_future_services_after_cutoff_correction(world,route)
 	else:
 		var existing:Dictionary=_scope_upgrade_route_base(world,world.routes[route_index],route)
 		if str(existing.get("chapterId",""))==str(route.get("chapterId","")):
@@ -705,6 +769,49 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 			if retained.is_empty():world.routes[route_index]=route.duplicate(true);return
 		world.routes[route_index] = _merge_historical_route(existing, route)
 
+static func _preserve_documented_service_section(world:Dictionary,old_route:Dictionary,replacement:Dictionary,group:Dictionary) -> Dictionary:
+	var wanted:Array=[]
+	for id in group.get("stationIds",[]):
+		var station:=_station_for_instance(world,station_instance_id(group,str(id)))
+		if station.is_empty():return replacement
+		wanted.append(str(station.id))
+	if wanted.size()<2:return replacement
+	var reverse_wanted:=wanted.duplicate();reverse_wanted.reverse()
+	for direction in old_route.get("directions",[]):
+		var ids:Array=direction.get("stationIds",[])
+		for offset in range(maxi(0,ids.size()-wanted.size()+1)):
+			var section:=ids.slice(offset,offset+wanted.size())
+			if section!=wanted and section!=reverse_wanted:continue
+			var paths:Array=direction.get("edgePathsBySegment",[])
+			if paths.size()!=ids.size()-1:continue
+			var retained:Dictionary=direction.duplicate(true)
+			retained.stationIds=section
+			retained.edgePathsBySegment=paths.slice(offset,offset+wanted.size()-1)
+			retained.id="retained_documented_extension"
+			return _merge_historical_route(replacement,{"chapterId":replacement.get("chapterId",""),"historicalLineId":replacement.get("historicalLineId",""),"directions":[retained]})
+	return replacement
+
+static func _recheck_future_services_after_cutoff_correction(world:Dictionary,route:Dictionary) -> void:
+	if str(chapter(world).get("chapterScope",""))!="cutoff_reconciliation":return
+	var state:Dictionary=world.get("storyState",{})
+	var completed:Array=state.get("completedChapterIds",[])
+	var line_id:=str(route.get("historicalLineId",""))
+	for plan in Catalog.city_config(str(world.cityId)).get("futurePlans",[]):
+		var id:=str(plan.get("id",""))
+		if not completed.has(id):continue
+		if not plan.get("lineGroups",[]).any(func(group:Dictionary):return str(group.get("historicalLineId",""))==line_id):continue
+		# The dated correction replaces service, never construction. Retain the
+		# earlier completion as evidence and ask to reconfirm the future service
+		# from the already-built track instead of silently losing its extension.
+		var archived:Dictionary=state.get("legacyTaskProgress",{})
+		archived[id]=state.get("chapterTaskProgress",{}).get(id,{}).duplicate(true)
+		state["legacyTaskProgress"]=archived
+		state.get("chapterTaskProgress",{}).erase(id)
+		completed.erase(id)
+		var pending:Array=state.get("serviceReconfirmationIds",[])
+		if not pending.has(id):pending.append(id)
+		state["serviceReconfirmationIds"]=pending
+
 static func _scope_contains(new_ids:Array,old_ids:Array) -> bool:
 	if old_ids.size()<2 or new_ids.size()<old_ids.size() or new_ids.front()!=old_ids.front() or new_ids.back()!=old_ids.back():return false
 	var cursor:=0
@@ -715,6 +822,19 @@ static func _scope_contains(new_ids:Array,old_ids:Array) -> bool:
 static func _scope_upgrade_route_base(world:Dictionary,existing:Dictionary,incoming:Dictionary) -> Dictionary:
 	var id:=str(incoming.get("chapterId",""))
 	if not world.get("storyState",{}).get("legacyTaskProgress",{}).has(id):return existing.duplicate(true)
+	# A reconfirmed task is already the new authority. A chapter-wide commit
+	# must not rewind it to a stale milestone's "before" snapshot merely because
+	# the corrected path happens to equal an earlier milestone's "after" path.
+	if id==str(chapter(world).get("id","")):
+		var all_groups:=groups(world,true)
+		for index in range(all_groups.size()):
+			var group:Dictionary=all_groups[index]
+			if str(group.get("historicalLineId",""))!=str(incoming.get("historicalLineId","")):continue
+			var wanted:Array=[]
+			for station_id in group.get("stationIds",[]):
+				var body:=_station_for_instance(world,station_instance_id(group,str(station_id)))
+				if not body.is_empty():wanted.append(str(body.id))
+			if wanted==incoming.get("stationOrder",[]) and task_confirmed(world,task_id(chapter(world),group,index)):return existing.duplicate(true)
 	for milestone in world.get("storyState",{}).get("milestones",[]):
 		if str(milestone.get("chapterId",""))!=id:continue
 		var change:Dictionary=milestone.get("planningDiff",{}).get("fields",{}).get("routes",{}).get("items",{}).get(str(existing.get("id","")),{})
@@ -736,22 +856,85 @@ static func _direction_complexes(world:Dictionary,direction:Dictionary) -> Array
 static func scope_correction_preview(world:Dictionary, selected_task_id:String) -> Dictionary:
 	var ch:=chapter(world)
 	var changes:Array=[]
+	if str(ch.get("chapterScope",""))=="cutoff_reconciliation":
+		var lines:Array=[]
+		for group in groups(world,true,selected_task_id):
+			if bool(group.get("replaceExistingService",false)):lines.append(str(group.get("historicalLineId","")))
+		for plan in Catalog.city_config(str(world.cityId)).get("futurePlans",[]):
+			if not world.get("storyState",{}).get("completedChapterIds",[]).has(str(plan.id)):continue
+			if plan.get("lineGroups",[]).any(func(group:Dictionary):return lines.has(str(group.get("historicalLineId","")))):
+				changes.append({"id":"future-service-recheck:"+str(plan.id),"text":"%s：保留已经建设的站轨，截止日线路更正后重新确认该规划篇线路关系。"%str(plan.get("title","后续建设")),"source":str(ch.get("source",""))})
 	for correction in ch.get("scopeCorrections",[]):
 		if str(correction.get("taskId",""))!=selected_task_id:continue
+		if correction.has("obsoleteService"):
+			var obsolete:Dictionary=correction.obsoleteService
+			var wanted:Array=obsolete.get("stationInstanceIds",[])
+			for route in world.get("routes",[]):
+				if str(route.get("historicalLineId",""))!=str(obsolete.get("historicalLineId","")):continue
+				for direction in route.get("directions",[]):
+					var instances:Array=[]
+					for id in direction.get("stationIds",[]):instances.append(str(WorldData.find_station(world,str(id)).get("stationInstanceId",id)))
+					var reversed:=instances.duplicate();reversed.reverse()
+					if instances==wanted or reversed==wanted:
+						changes.append({"kind":"archive_service_direction","id":str(route.id),"stationIds":direction.stationIds.duplicate(),"text":str(correction.description),"source":str(correction.source)})
+					elif instances.filter(func(id:Variant):return wanted.has(id)).size()>1:
+						return {"ok":false,"error":"原规划支线的站序已经修改，请先核对线路归属，本次不会覆盖。","changes":[]}
+			continue
+		if correction.has("bodyLineReclassification"):
+			var reclassification:Dictionary=correction.bodyLineReclassification
+			var station:=_station_for_instance(world,str(reclassification.stationInstanceId))
+			if station.is_empty() or str(station.get("stationLineId",""))==str(reclassification.newLineId):continue
+			if str(station.get("stationLineId",""))!=str(reclassification.oldLineId):return {"ok":false,"error":"站体线路归属已经修改，请先核对，本次不会覆盖。","changes":[]}
+			changes.append({"kind":"reclassify_station_line","id":str(station.id),"newLineId":str(reclassification.newLineId),"newLineName":str(reclassification.get("newLineName","")),"text":str(correction.description),"source":str(correction.source)})
+			continue
 		for connection in world.get("transferConnections",[]):
 			if str(connection.get("id",""))!=str(correction.get("transferId","")) or str(connection.get("status","active"))!="active":continue
+			if not correction.get("bodyRebindings",[]).is_empty():
+				if connection.get("lineIds",[])!=correction.get("oldLineIds",[]):return {"ok":false,"error":"旧换乘线路已被修改，请先核对 %s。"%str(connection.get("name","换乘")),"changes":[]}
+				var current_ids:Array=connection.get("stationInstanceIds",[]).duplicate()
+				var changed:=false
+				for binding in correction.bodyRebindings:
+					var index:=int(binding.index)
+					if index<0 or index>=current_ids.size():return {"ok":false,"error":"换乘站体配对不完整，请先核对 %s。"%str(connection.get("name","换乘")),"changes":[]}
+					if current_ids[index]==binding.newStationInstanceId:continue
+					if current_ids[index]!=binding.oldStationInstanceId:return {"ok":false,"error":"旧换乘站体已被修改，请先核对 %s，不能自动替换。"%str(connection.get("name","换乘")),"changes":[]}
+					current_ids[index]=binding.newStationInstanceId;changed=true
+				if changed:changes.append({"id":str(connection.id),"text":str(correction.get("description","")),"source":str(correction.get("source","")),"newStationInstanceIds":current_ids})
+				continue
+			if not correction.get("newStationInstanceIds",[]).is_empty() and connection.get("lineIds",[])==correction.get("newLineIds",correction.get("oldLineIds",[])) and connection.get("stationInstanceIds",[])==correction.get("newStationInstanceIds",[]):continue
 			if connection.get("lineIds",[])!=correction.get("oldLineIds",[]) or connection.get("stationInstanceIds",[])!=correction.get("oldStationInstanceIds",[]):
 				return {"ok":false,"error":"旧换乘关系已被修改，请先核对 %s，不能自动替换。"%str(connection.get("name","换乘")),"changes":[]}
-			changes.append({"id":str(connection.id),"text":str(correction.get("description","")),"source":str(correction.get("source","")),"newStationInstanceIds":correction.get("newStationInstanceIds",[]).duplicate()})
+			changes.append({"id":str(connection.id),"text":str(correction.get("description","")),"source":str(correction.get("source","")),"newStationInstanceIds":correction.get("newStationInstanceIds",[]).duplicate(),"newLineIds":correction.get("newLineIds",connection.get("lineIds",[])).duplicate()})
 	return {"ok":true,"changes":changes}
 
 static func _apply_scope_corrections(candidate:Dictionary, preview:Dictionary) -> void:
 	for change in preview.get("changes",[]):
+		if str(change.get("kind",""))=="archive_service_direction":
+			for route in candidate.get("routes",[]):
+				if str(route.id)!=str(change.id):continue
+				var retained:Array=[];var archive:Array=route.get("legacyDirections",[]).duplicate(true)
+				for direction in route.get("directions",[]):
+					if direction.get("stationIds",[])==change.stationIds:archive.append({"direction":direction.duplicate(true),"reason":change.text,"source":change.source})
+					else:retained.append(direction)
+				route.directions=retained;route["legacyDirections"]=archive
+				route.stationOrder=[] if retained.is_empty() else retained[0].get("stationIds",[]).duplicate()
+				if retained.is_empty():route["open"]=false;route["retired"]=true
+			continue
+		if str(change.get("kind",""))=="reclassify_station_line":
+			for station in candidate.get("stations",[]):
+				if str(station.id)!=str(change.id):continue
+				station["previousStationLineId"]=station.get("stationLineId","")
+				station["stationLineId"]=change.newLineId;station["stationLineName"]=change.newLineName
+				station["lineReclassificationSource"]=change.source
+			continue
 		for connection in candidate.get("transferConnections",[]):
 			if str(connection.get("id",""))!=str(change.id):continue
 			if not change.get("newStationInstanceIds",[]).is_empty():
 				connection["previousStationInstanceIds"]=connection.get("stationInstanceIds",[]).duplicate()
 				connection["stationInstanceIds"]=change.newStationInstanceIds.duplicate()
+				if change.has("newLineIds"):
+					connection["previousLineIds"]=connection.get("lineIds",[]).duplicate()
+					connection["lineIds"]=change.newLineIds.duplicate()
 			else:connection["status"]="superseded"
 			connection["supersededByScopeRevision"]=str(chapter(candidate).get("scopeRevision",""))
 			connection["supersededReason"]=str(change.text)
@@ -796,7 +979,7 @@ static func confirm_task(world: Dictionary, selected_task_id: String, expected_r
 	world["routes"] = candidate.get("routes", []).duplicate(true)
 	for key in ["stations", "trackEdges", "trackLinks", "transferConnections"]:
 		world[key] = candidate.get(key, []).duplicate(true)
-	var state: Dictionary = world.get("storyState", {}).duplicate(true)
+	var state: Dictionary = candidate.get("storyState", {}).duplicate(true)
 	var progress_by_chapter: Dictionary = state.get("chapterTaskProgress", {})
 	var progress: Dictionary = progress_by_chapter.get(str(ch.get("id", "")), {})
 	var tasks: Dictionary = progress.get("tasks", {})

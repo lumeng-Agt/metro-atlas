@@ -1,0 +1,179 @@
+{
+  "city": "guangzhou",
+  "projectIds": [
+    "gz-line8-east"
+  ],
+  "stations": [
+    {
+      "name": "万胜围",
+      "id": "guangzhou-s64",
+      "existing": true
+    },
+    {
+      "name": "长洲",
+      "id": "guangzhou-s213",
+      "existing": true
+    },
+    {
+      "name": "凤浦公园",
+      "id": "guangzhou-f8e-fengpu",
+      "latlng": [
+        23.0967643,
+        113.3926201
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868091409地理参考；工程暂名，非隧道测绘点。",
+      "coordinateAccuracyM": 160,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    },
+    {
+      "name": "新洲",
+      "id": "guangzhou-f8e-xinzhou",
+      "latlng": [
+        23.089255,
+        113.4023283
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868091416地理参考；工程暂名，非隧道测绘点。",
+      "coordinateAccuracyM": 160,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    },
+    {
+      "name": "展贸城",
+      "id": "guangzhou-f8e-zhanmaocheng",
+      "latlng": [
+        23.0597856,
+        113.4485969
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868130359地理参考；工程暂名，非隧道测绘点。",
+      "coordinateAccuracyM": 160,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    },
+    {
+      "name": "化龙",
+      "id": "guangzhou-f8e-hualong",
+      "latlng": [
+        23.0483388,
+        113.4531296
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第40—46页官方站址，现代OSM node/10654494880地理参考；工程暂名，非隧道测绘点。",
+      "coordinateAccuracyM": 160,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    },
+    {
+      "name": "蒙地",
+      "id": "guangzhou-f8e-mengdi",
+      "latlng": [
+        23.021683,
+        113.4639729
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第40—46页官方站址，现代OSM way/1468019861（蒙地站施工用地中心参考，非同名村落）地理参考；工程暂名，非隧道测绘点。",
+      "coordinateAccuracyM": 160,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    },
+    {
+      "name": "龙泽路",
+      "id": "guangzhou-f8e-longzelu",
+      "latlng": [
+        23.0100661,
+        113.4795124
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868130376地理参考；工程暂名，非隧道测绘点。",
+      "coordinateAccuracyM": 160,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    },
+    {
+      "name": "莲花",
+      "id": "guangzhou-f8e-lianhua",
+      "latlng": [
+        23.0042883,
+        113.4879848
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评第40—46页官方站址，现代OSM node/8868130388地理参考；工程暂名，非隧道测绘点。",
+      "coordinateAccuracyM": 160,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    },
+    {
+      "name": "长洲8号线站址参考",
+      "id": "guangzhou-f8e-changzhou-site",
+      "latlng": [
+        23.0785526,
+        113.4237395
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评金洲北路/金蝶路，OSM node/9463457807参考，独立于既有7号线站体。",
+      "coordinateAccuracyM": 150,
+      "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "east",
+      "mapRouteId": "guangzhou-future-line8-east",
+      "name": "8号线东延：万胜围—莲花",
+      "historicalLineId": "guangzhou-line8-8",
+      "color": "#008C95",
+      "stationIds": [
+        "guangzhou-s64",
+        "guangzhou-f8e-fengpu",
+        "guangzhou-f8e-xinzhou",
+        "guangzhou-s213",
+        "guangzhou-f8e-zhanmaocheng",
+        "guangzhou-f8e-hualong",
+        "guangzhou-f8e-mengdi",
+        "guangzhou-f8e-longzelu",
+        "guangzhou-f8e-lianhua"
+      ],
+      "stationInstances": {
+        "guangzhou-s64": "guangzhou-s64__line8-8",
+        "guangzhou-s213": "guangzhou-s213__line8-8"
+      },
+      "stationReferenceIds": {
+        "guangzhou-s213": "guangzhou-f8e-changzhou-site"
+      },
+      "toleranceM": 220,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "完整8座新站加既有万胜围接头，按环评表2.2-4及逐站站址制作；区间为近似走廊。",
+      "stationOrderSource": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-gz-changzhou-7-8",
+      "name": "长洲",
+      "complexId": "guangzhou-s213",
+      "stationInstanceIds": [
+        "guangzhou-s213",
+        "guangzhou-s213__line8-8"
+      ],
+      "lineIds": [
+        "guangzhou-line7-7",
+        "guangzhou-line8-8"
+      ],
+      "sourceNote": "环评明确长洲与7号线换乘，两线站体和轨道独立。"
+    }
+  ],
+  "plan": {
+    "id": "gz-line8-east-build",
+    "title": "广州8号线东延建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "official_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
+    "sourceTitle": "8号线东延（万胜围—莲花）环评完整8座新站及站址",
+    "sourcePublicationDate": "2023-11-16",
+    "sourceCheckedAt": "2026-10-23",
+    "description": "从既有万胜围建设至莲花，包含凤浦公园、新洲、长洲、展贸城、化龙、蒙地、龙泽路、莲花八座新站。长洲8/7分别接轨并建立换乘。成果为规划建设完成。",
+    "contentRevision": "2026.10.23.41",
+    "contentRevisionNote": "补齐广州8号线北延与东延完整公布站序及独立线路关系。",
+    "requiresScopeRecheck": true
+  }
+}

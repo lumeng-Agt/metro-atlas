@@ -48,6 +48,15 @@ class CoverageRules(unittest.TestCase):
         self.target['reviewStatus'] = 'pending'
         self.assertTrue(check_project(self.target, self.plans, self.names))
 
+    def test_documented_extension_can_be_contained_in_full_line(self):
+        self.target['groups'][0].update(stationNames=['B', 'C'], matchScope='contiguous_subsequence')
+        self.assertEqual(check_project(self.target, self.plans, self.names), [])
+
+    def test_contained_extension_still_cannot_skip_intermediate_station(self):
+        self.target['groups'][0].update(matchScope='contiguous_subsequence')
+        self.plans[0]['lineGroups'][0]['stationIds'] = ['a', 'c']
+        self.assertTrue(check_project(self.target, self.plans, self.names))
+
 
 if __name__ == '__main__':
     unittest.main()

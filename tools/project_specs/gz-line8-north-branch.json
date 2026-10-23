@@ -109,8 +109,8 @@
     {
       "key": "branch",
       "mapRouteId": "guangzhou-future-line8-north-branch",
-      "name": "8号线北延段支线",
-      "historicalLineId": "guangzhou-line8-8",
+      "name": "24号线南段（8号线北延支线工程）",
+      "historicalLineId": "guangzhou-line24-planned",
       "color": "#008C95",
       "stationIds": [
         "guangzhou-s134",
@@ -128,14 +128,23 @@
       "toleranceM": 500,
       "officialLengthM": 20000,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "10座新建车站站序取自《8号线北延段支线工程（江府～纪念堂）环境影响报告书》表2.2-4；环评注明站名均为工程暂定名。白云站土建不属本线，仅通过并纳入站序；江府站属8号线北延段工程，本线在此接轨。纪念堂、梓元岗复用既有站区，其余站位按环评站址描述与现代道路几何定位，区间为走廊近似。",
-      "stationOrderSource": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf"
+      "precisionNote": "10座新建车站站序取自《8号线北延段支线工程（江府～纪念堂）环境影响报告书》表2.2-4；环评注明站名均为工程暂定名。白云站土建不属本线，仅通过并纳入站序；江府站属8号线北延段工程，本线在此接轨。纪念堂、梓元岗复用既有站区，其余站位按环评站址描述与现代道路几何定位，区间为走廊近似。 江府至纪念堂独立于8号线主线；2026-09白云官方文件已使用24号线称谓。",
+      "stationOrderSource": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
+      "stationInstances": {
+        "guangzhou-s134": "guangzhou-s134__line8-8",
+        "guangzhou-s346": "guangzhou-s346__line8-8",
+        "guangzhou-f8b-yuanjing": "guangzhou-f8b-yuanjing",
+        "guangzhou-f8b-tangjing": "guangzhou-f8b-tangjing",
+        "guangzhou-f8b-baiyunstation": "guangzhou-f8b-baiyunstation",
+        "guangzhou-f8b-huangshi": "guangzhou-f8b-huangshi",
+        "guangzhou-f8b-xiamao": "guangzhou-f8b-xiamao",
+        "guangzhou-f8b-baiyundalang": "guangzhou-f8b-baiyundalang",
+        "guangzhou-f8b-junhe": "guangzhou-f8b-junhe",
+        "guangzhou-f8b-taoyuan": "guangzhou-f8b-taoyuan",
+        "guangzhou-f8b-jiangfu": "guangzhou-f8b-jiangfu"
+      }
     }
   ],
-  "stationInstances": {
-    "guangzhou-s134": "guangzhou-s134__line8-8",
-    "guangzhou-s346": "guangzhou-s346__line8-8"
-  },
   "transfers": [
     {
       "id": "future-transfer-gz8b-jiniantang-2",
@@ -147,7 +156,7 @@
       ],
       "lineIds": [
         "guangzhou-line2-2",
-        "guangzhou-line8-8"
+        "guangzhou-line24-planned"
       ],
       "sourceNote": "环评明确纪念堂站与既有2号线、在建13号线换乘；本线只与既有2号线建立换乘，13号线未建暂不计。"
     },
@@ -161,7 +170,7 @@
       ],
       "lineIds": [
         "guangzhou-line11-11",
-        "guangzhou-line8-8"
+        "guangzhou-line24-planned"
       ],
       "sourceNote": "环评为两线换乘站，11号线梓元岗站横跨三元里大道和机场路；通道与层次仅作示意。"
     }
@@ -178,10 +187,198 @@
     "source": "https://sthjj.gz.gov.cn/attachment/7/7228/7228124/8784545.pdf",
     "sourceTitle": "广州市城市轨道交通8号线北延段支线工程（江府～纪念堂）环境影响报告书",
     "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": null,
-    "publicationDateNote": "报告书正文未标注发布日期；以广州市生态环境局公示附件为准，核验日期2026-10-21。",
-    "description": "按环评报告书复现8号线北延段支线：江府至纪念堂，全长约20公里、10座新建车站（纪念堂、梓元岗、远景、棠景、白云站、黄石、夏茅、白云大朗、均禾、桃源）。白云站土建不属本线，仅通过；江府站属8号线北延段工程，本线在此接轨。项目为批准建设项目，完成本章只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.4",
-    "contentRevisionNote": "增加广州8号线北延段支线建设章。"
+    "sourcePublicationDate": "2023-02-02",
+    "description": "按环评报告书复现8号线北延段支线：江府至纪念堂，全长约20公里、10座新建车站（纪念堂、梓元岗、远景、棠景、白云站、黄石、夏茅、白云大朗、均禾、桃源）。白云站土建不属本线，仅通过；江府站属8号线北延段工程，本线在此接轨。项目为批准建设项目，完成本章只表示规划建设完成，不计作开通。 规划线路独立保存为24号线，不与既有8号线主线串成一条轨道路径。",
+    "contentRevision": "2026.10.23.41",
+    "contentRevisionNote": "补齐广州8号线北延、东延及独立支线归属，全部为规划建设成果。",
+    "requiresScopeRecheck": true,
+    "scopeCorrections": [
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "obsoleteService": {
+          "historicalLineId": "guangzhou-line8-8",
+          "stationInstanceIds": [
+            "guangzhou-s134__line8-8",
+            "guangzhou-s346__line8-8",
+            "guangzhou-f8b-yuanjing",
+            "guangzhou-f8b-tangjing",
+            "guangzhou-f8b-baiyunstation",
+            "guangzhou-f8b-huangshi",
+            "guangzhou-f8b-xiamao",
+            "guangzhou-f8b-baiyundalang",
+            "guangzhou-f8b-junhe",
+            "guangzhou-f8b-taoyuan",
+            "guangzhou-f8b-jiangfu"
+          ]
+        },
+        "description": "将旧版错误挂在8号线主线的纪念堂—江府支线路径归档，保留全部站轨并确认独立规划线路。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-s134__line8-8",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-s346__line8-8",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-yuanjing",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-tangjing",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-baiyunstation",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-huangshi",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-xiamao",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-baiyundalang",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-junhe",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-taoyuan",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "bodyLineReclassification": {
+          "stationInstanceId": "guangzhou-f8b-jiangfu",
+          "oldLineId": "guangzhou-line8-8",
+          "newLineId": "guangzhou-line24-planned",
+          "newLineName": "24号线南段（8号线北延支线工程）"
+        },
+        "description": "更正北延支线站体的线路归属，保持站位、朝向与接轨不变。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "transferId": "future-transfer-gz8b-jiniantang-2",
+        "oldLineIds": [
+          "guangzhou-line2-2",
+          "guangzhou-line8-8"
+        ],
+        "oldStationInstanceIds": [
+          "guangzhou-s134",
+          "guangzhou-s134__line8-8"
+        ],
+        "newLineIds": [
+          "guangzhou-line2-2",
+          "guangzhou-line24-planned"
+        ],
+        "newStationInstanceIds": [
+          "guangzhou-s134",
+          "guangzhou-s134__line8-8"
+        ],
+        "description": "纪念堂：将规划支线换乘的线路归属更正为独立的24号线，保留两侧站体。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      },
+      {
+        "taskId": "project:gz-line8-north-branch-build",
+        "transferId": "future-transfer-gz8b-ziyuangang-11",
+        "oldLineIds": [
+          "guangzhou-line11-11",
+          "guangzhou-line8-8"
+        ],
+        "oldStationInstanceIds": [
+          "guangzhou-s346",
+          "guangzhou-s346__line8-8"
+        ],
+        "newLineIds": [
+          "guangzhou-line11-11",
+          "guangzhou-line24-planned"
+        ],
+        "newStationInstanceIds": [
+          "guangzhou-s346",
+          "guangzhou-s346__line8-8"
+        ],
+        "description": "梓元岗：将规划支线换乘的线路归属更正为独立的24号线，保留两侧站体。",
+        "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
+      }
+    ]
   }
 }
