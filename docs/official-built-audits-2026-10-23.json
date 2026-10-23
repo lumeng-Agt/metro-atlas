@@ -1,0 +1,97 @@
+{
+  "scope": "已独立整理的四个项目，不是五城全量验收",
+  "reports": [
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line15"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line27-phase1"
+        }
+      ],
+      "city": "shenzhen",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "项目sz-line17-phase1缺少独立建设目标。",
+          "项目sz-line19-phase1缺少独立建设目标。",
+          "项目sz-line20-phase2缺少独立建设目标。",
+          "项目sz-line22-phase1缺少独立建设目标。",
+          "项目sz-line25-phase1缺少独立建设目标。",
+          "项目sz-line29-phase1缺少独立建设目标。",
+          "项目sz-line32-phase1缺少独立建设目标。",
+          "项目sz-line13-phase2-south缺少独立建设目标。"
+        ]
+      },
+      "contentRevision": "2026.10.23.28",
+      "gameId": "shenzhen_1792651832_3804cd932dc6",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery."
+    },
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-m101-phase1"
+        }
+      ],
+      "city": "beijing",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "项目bj-line22缺少独立建设目标。",
+          "项目bj-line3-phase1缺少独立建设目标。",
+          "项目bj-line12缺少独立建设目标。",
+          "项目bj-line28缺少独立建设目标。",
+          "项目bj-line13-capacity缺少独立建设目标。",
+          "项目bj-line1-branch缺少独立建设目标。",
+          "项目bj-new-airport缺少独立建设目标。",
+          "项目bj-yizhuang-connector缺少独立建设目标。"
+        ]
+      },
+      "contentRevision": "2026.10.23.27",
+      "gameId": "beijing_1792670027_81f5d19bf452",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery."
+    },
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line21"
+        }
+      ],
+      "city": "shanghai",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "项目sh-line19缺少独立建设目标。",
+          "项目sh-line20-phase1缺少独立建设目标。",
+          "项目sh-line20-east缺少独立建设目标。",
+          "项目sh-line23-phase1缺少独立建设目标。",
+          "项目sh-line15-south缺少独立建设目标。",
+          "项目sh-line13-west-east缺少独立建设目标。",
+          "项目sh-line12-west缺少独立建设目标。",
+          "项目sh-line22-chongming缺少独立建设目标。"
+        ]
+      },
+      "contentRevision": "2026.10.23.27",
+      "gameId": "shanghai_1792670027_0a97bc35311f",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery."
+    }
+  ]
+}

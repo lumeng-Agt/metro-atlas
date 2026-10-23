@@ -7253,6 +7253,71 @@
           "coordinateNote": "丹桂路与张东路走廊位置，按环评1.96公里站间距定位，属走廊级参考。",
           "source": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=43456",
           "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-shixinlu",
+          "name": "施新路",
+          "latlng": [
+            31.1514548,
+            121.7535442
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "现代OSM在建站 node/12222691494；施新路与川南奉公路附近。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+          "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-wenjulu",
+          "name": "闻居路",
+          "latlng": [
+            31.1325925,
+            121.7596038
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "现代OSM在建站 node/12222691495；闻居路与川南奉公路附近。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+          "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-jinwenlu",
+          "name": "金闻路",
+          "latlng": [
+            31.1195899,
+            121.7690328
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "现代OSM在建站 node/12222691496；金闻路走廊。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+          "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-shanghaidong",
+          "name": "上海东站",
+          "latlng": [
+            31.113,
+            121.79
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "官方东方枢纽上海东站范围，站区近似；具体轨交站心位置尚未完成地理复核。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+          "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html",
+          "sourceCheckedAt": "2026-10-21"
+        },
+        {
+          "id": "shanghai-f21-pudongt3",
+          "name": "T3航站楼",
+          "latlng": [
+            31.108,
+            121.818
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "官方浦东机场T3航站楼预留枢纽范围，站区近似；不作为现有T1/T2站体。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+          "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html",
+          "sourceCheckedAt": "2026-10-21"
         }
       ],
       "lines": [
@@ -15398,53 +15463,197 @@
           "id": "beijing-f101-shangwuyuan",
           "name": "商务园",
           "latlng": [
-            39.925,
-            116.635
+            39.9456281,
+            116.6442493
           ],
           "schematic": true,
           "coordinateSource": "official_site_description",
-          "coordinateNote": "通州商务园北部、通州西站东北方向走廊，按环评起点描述定位，属走廊级参考。",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateNote": "商通大道与榆东二街交叉口；离线OSM道路交点。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106893.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 100
         },
         {
           "id": "beijing-f101-tongzhouxi",
           "name": "通州西站",
           "latlng": [
-            39.903713,
-            116.622286
+            39.938,
+            116.645
           ],
           "schematic": true,
           "coordinateSource": "official_site_description",
-          "coordinateNote": "通州西站（国铁）站区，环评明确线路服务该枢纽。",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateNote": "新站位于通州商务园商通大道下方，临时用地在富河大街与商通大道路口东侧。现路网未完整标出富河大街，采用商通大道相邻规划站区近似位置，非既有国铁通州西站；站中心仍需地理对照。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081815.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 350
         },
         {
           "id": "beijing-f101-fuzhongxin",
           "name": "城市副中心",
           "latlng": [
-            39.907971,
-            116.700146
+            39.9033366,
+            116.6997128
           ],
           "schematic": true,
           "coordinateSource": "official_site_description",
-          "coordinateNote": "城市副中心站枢纽站区（北京通州站），环评明确线路服务该枢纽。",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateNote": "副中心枢纽内M101独立站体，离线OSM建筑way/1462913240轮廓中心。不能用整个国铁枢纽的标签点代替本线站体。",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 150
         },
         {
           "id": "beijing-f101-zhangjiawandong",
           "name": "张家湾东",
           "latlng": [
-            39.8553,
-            116.7291
+            39.8503,
+            116.7375
           ],
           "schematic": true,
           "coordinateSource": "official_site_description",
-          "coordinateNote": "张家湾设计小镇东部，按环评终点描述定位。",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateNote": "批复位于张梁路与规划紫薇路路口。离线OSM尚未标出紫薇路，使用广通街（原张梁路）东段规划片区近似位置，站中心仍需对照；不是已核验站址。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106894.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "beijing-f101-tongshunlu",
+          "name": "通顺路",
+          "latlng": [
+            39.928784,
+            116.652285
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "通顺路与滨榆东路交叉口西北侧；离线OSM交点，站区示意。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081791.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 150
+        },
+        {
+          "id": "beijing-f101-huiyizhongxin",
+          "name": "通州会议中心",
+          "latlng": [
+            39.9309559,
+            116.6676756
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "潞苑五街与陈列馆路交叉口；离线OSM道路交点。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250626_4127218.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 100
+        },
+        {
+          "id": "beijing-f101-longwangzhuang",
+          "name": "龙旺庄",
+          "latlng": [
+            39.929206,
+            116.678989
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "京榆旧线与潞苑东路交叉口；离线OSM道路交点。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081829.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 100
+        },
+        {
+          "id": "beijing-f101-tonghudajie",
+          "name": "通胡大街",
+          "latlng": [
+            39.914013,
+            116.684808
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "2023环评：沿芙蓉东路（现紫运中路）敷设，通胡大街路口；离线OSM道路交点。",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 100
+        },
+        {
+          "id": "beijing-f101-yudaihedajie",
+          "name": "玉带河大街",
+          "latlng": [
+            39.90665,
+            116.69165
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "批复位于潞通大街与紫运中路相交路口西侧。离线道路缺该交点连接，采用紫运中路站区近似位置，站中心需进一步对照；不采用两条断开道路的中点充当交点。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081825.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 350
+        },
+        {
+          "id": "beijing-f101-xingzhengxiqu",
+          "name": "行政办公西区",
+          "latlng": [
+            39.899749,
+            116.707783
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "通运东路与崇善北街交叉口东南象限；离线OSM交点，站区示意。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250626_4127224.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 150
+        },
+        {
+          "id": "beijing-f101-dajuyuan",
+          "name": "北京大剧院",
+          "latlng": [
+            39.8855,
+            116.7101
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "2023环评：三大公共建筑所在的城市绿心北部。使用离线OSM北京艺术中心way/1151193751西侧站区近似位置，非剧院建筑中心或工程测绘点。",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 350
+        },
+        {
+          "id": "beijing-f101-tiyuzhongxin",
+          "name": "体育中心",
+          "latlng": [
+            39.86572,
+            116.714829
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "绿心路与运兴路交叉口西南象限；离线OSM交点，站区示意。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106888.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 150
+        },
+        {
+          "id": "beijing-f101-zhangjiawanxi",
+          "name": "张家湾西",
+          "latlng": [
+            39.857033,
+            116.715448
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "张凤路与广源路交叉口；建设单位公布站址，离线OSM道路交点。",
+          "source": "https://ccic.cscec.com/xwzx/xwdt/202406/3794487.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 100
+        },
+        {
+          "id": "beijing-f101-zhangjiawan",
+          "name": "张家湾",
+          "latlng": [
+            39.85075,
+            116.7262
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "张梁路与梧桐路路口西北侧天纳克地块。OSM张梁路现名广通街（way/58689302 old_name）；对应交点39.8504875,116.727034，向西北取站区示意中心。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106901.html",
+          "sourceCheckedAt": "2026-10-22",
+          "coordinateAccuracyM": 200
         }
       ],
       "lines": [
@@ -22890,12 +23099,14 @@
           "id": "guangzhou-f13w-chalong",
           "name": "槎龙",
           "latlng": [
-            23.1845,
-            113.233
+            23.1763159,
+            113.2196519
           ],
-          "coordinateNote": "按公开车站名称、道路地名与开放地图定位的站区参考点；不是工程坐标或隧道中心线。",
-          "referenceSource": "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10991618.html",
-          "referenceCheckedAt": "2026-10-21"
+          "coordinateNote": "离线OSM way/1322361789在建13号线西洲站（工程暂名）站体轮廓中心；2026官方命名为槎龙，位于江南果菜批发市场西侧。此工程暂名不指现12/13号线西洲换乘站。",
+          "referenceSource": "https://mzj.gz.gov.cn/dt/gggs/content/post_10991631.html",
+          "referenceCheckedAt": "2026-10-23",
+          "coordinateSource": "local_building_geometry",
+          "coordinateGeometrySource": "https://www.openstreetmap.org/way/1322361789"
         },
         {
           "id": "guangzhou-f13w-songzhou",
@@ -30950,9 +31161,9 @@
           ],
           "schematic": true,
           "coordinateSource": "official_site_description",
-          "coordinateNote": "前海保税区/铲湾路北侧站区参考；15号线环线起点。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateNote": "原参考站区保留；环评妈湾四路走廊近似，未视作测绘中心；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
         },
         {
           "id": "shenzhen-f25-jihuayiyuan",
@@ -30984,27 +31195,430 @@
           "id": "shenzhen-f27-songpingcun",
           "name": "松坪村",
           "latlng": [
-            22.561102,
-            113.949788
+            22.558948,
+            113.947035
           ],
           "schematic": true,
           "coordinateSource": "official_site_description",
-          "coordinateNote": "松坪村片区位置作站区参考，属走廊级参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateNote": "松坪山路与朗山路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
         },
         {
           "id": "shenzhen-f27-gangtouxi",
           "name": "岗头西",
           "latlng": [
-            22.661204,
-            114.055801
+            22.6611302,
+            114.0558088
           ],
           "schematic": true,
           "coordinateSource": "official_site_description",
-          "coordinateNote": "岗头西公交站位置（冲之大道）作站区参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateNote": "张衡路与冲之大道交叉口偏西。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-future-xili-hsr",
+          "name": "西丽高铁站",
+          "latlng": [
+            22.5698711,
+            113.9401782
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "西丽综合交通枢纽，现代OSM way/1460974431轮廓中心；枢纽级近似。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-wenguang",
+          "name": "文光",
+          "latlng": [
+            22.5751998,
+            113.9433354
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "打石一路与石鼓路交叉口东北侧。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-lishan",
+          "name": "丽山",
+          "latlng": [
+            22.5924589,
+            113.9601219
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "学苑大道与丽山路交叉口东侧；现代OSM way/1453655466在建站轮廓中心。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-lishui",
+          "name": "丽水",
+          "latlng": [
+            22.592856,
+            113.977058
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "学苑大道与丽水路交叉口东侧。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-xuefuyiyuan",
+          "name": "学府医院",
+          "latlng": [
+            22.595138,
+            113.986947
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "学苑大道与笃学路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-nankeda",
+          "name": "南科大",
+          "latlng": [
+            22.596303,
+            113.996398
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "学苑大道与麦地巷路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-beizhanxiguangchang",
+          "name": "北站西广场",
+          "latlng": [
+            22.6126,
+            114.0217
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "致远中路、深圳北站西广场公园；按站区近似定位。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-minfenglu",
+          "name": "民丰路",
+          "latlng": [
+            22.6039275,
+            114.0244185
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "玉龙路与民丰路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-minkang",
+          "name": "民康",
+          "latlng": [
+            22.614956,
+            114.032443
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "龙华大道与民康路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-minbao",
+          "name": "民宝",
+          "latlng": [
+            22.623372,
+            114.027869
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "龙华大道与民宝路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-huacheng",
+          "name": "华城",
+          "latlng": [
+            22.630715,
+            114.025455
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "龙华大道与中梅路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-yinquan",
+          "name": "银泉",
+          "latlng": [
+            22.637,
+            114.0247
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "龙华大道与布龙路交叉口北侧。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-youfu",
+          "name": "油福",
+          "latlng": [
+            22.6450049,
+            114.027607
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "龙华大道与工业路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-songhe",
+          "name": "松和",
+          "latlng": [
+            22.65609,
+            114.040552
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "民清路与清泉路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f27-yangmeibei",
+          "name": "杨美北",
+          "latlng": [
+            22.638,
+            114.0785
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环城路与规划坂田三号路交叉站区，距吉华医院约0.7公里；站区近似，不是测绘中心线。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-tinghailu",
+          "name": "听海路",
+          "latlng": [
+            22.5231,
+            113.8806
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评听海路站区、妈湾四路走廊近似；规划道路未完整入本地底图；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-xibuwuliu",
+          "name": "西部物流",
+          "latlng": [
+            22.5051,
+            113.879
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评通港南一街、妈湾三路东北侧物流用地站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-yueliangwangongyuan",
+          "name": "月亮湾公园",
+          "latlng": [
+            22.5081,
+            113.8935
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评前海路、规划港湾路附近大南山北侧站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-dongbinlu",
+          "name": "东滨路",
+          "latlng": [
+            22.507841,
+            113.927181
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "后海大道与东滨路路口北侧；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-chuangyelu",
+          "name": "创业路",
+          "latlng": [
+            22.517863,
+            113.92774
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "后海大道与创业路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-shendabei",
+          "name": "深大北",
+          "latlng": [
+            22.5442694,
+            113.9308089
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "深南大道与科技中一路北侧站区；道路断点附近近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-yuquanlu",
+          "name": "玉泉路",
+          "latlng": [
+            22.552592,
+            113.9320065
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "科技中一路与高新中一道交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-langshanlu",
+          "name": "朗山路",
+          "latlng": [
+            22.559843,
+            113.934286
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "科技北二路与朗山路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-dashiyilu",
+          "name": "打石一路",
+          "latlng": [
+            22.5753992,
+            113.9340412
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "打石一路与创科路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-tongleguan",
+          "name": "同乐关",
+          "latlng": [
+            22.5750235,
+            113.9174168
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "隆昌路与京港澳高速交会南侧原同乐检查站用地；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-baoangongyuan",
+          "name": "宝安公园",
+          "latlng": [
+            22.5846131,
+            113.898812
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "新安三路与上川路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-xixianggongyuan",
+          "name": "西乡公园",
+          "latlng": [
+            22.5817333,
+            113.8780873
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "广深公路与流塘路交叉口北侧；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-haicheng",
+          "name": "海城",
+          "latlng": [
+            22.5644896,
+            113.859583
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "海城路与兴业路交叉口南侧；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-chanwanbei",
+          "name": "铲湾北",
+          "latlng": [
+            22.553,
+            113.8565
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评大铲湾辅八路与辅三路规划站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-chanwanzhong",
+          "name": "铲湾中",
+          "latlng": [
+            22.5414,
+            113.8573
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评大铲湾辅八路走廊中段站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f15-chanwan",
+          "name": "铲湾",
+          "latlng": [
+            22.5316,
+            113.8644
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "环评大铲湾东南侧站区、接跨海段，规划道路位置近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceCheckedAt": "2026-10-22"
         }
       ],
       "lines": [

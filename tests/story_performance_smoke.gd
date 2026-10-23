@@ -1,6 +1,6 @@
 extends SceneTree
 const App=preload("res://scripts/main.gd")
-var report:Dictionary={"kind":"native-renderer-smoke","version":"0.20.0","notFullAcceptance":true,"scenarios":[]}
+var report:Dictionary={"kind":"native-renderer-smoke","version":"0.25.0","notFullAcceptance":true,"scenarios":[]}
 func _initialize() -> void:call_deferred("_run")
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir() or DisplayServer.get_name()=="headless":push_error("Native rendering and isolated --data-dir required");quit(2);return
@@ -39,9 +39,17 @@ func _run() -> void:
 			var row:={"scenario":name,"run":run,"frames":samples.size(),"averageFps":samples.size()/duration,"p95Ms":samples[clampi(ceili(samples.size()*0.95)-1,0,samples.size()-1)],"maxFrameMs":samples[-1],"prepareMs":cold_ms,"engineStaticMiB":Performance.get_monitor(Performance.MEMORY_STATIC)/1048576.0}
 			row["pressureGoalMet"]=float(row.averageFps)>=30 and float(row.p95Ms)<=33.3
 			report.scenarios.append(row);print(JSON.stringify(row))
-	var saving:=Time.get_ticks_usec();var result:=SaveManager.save_world(world,true);report["saveMs"]=(Time.get_ticks_usec()-saving)/1000.0;report["saveOk"]=bool(result.ok)
+	var saving:=Time.get_ticks_usec()
+	var ticket:int=app.save_writer.request(world,1)
+	var request_ms:=(Time.get_ticks_usec()-saving)/1000.0
+	var result:Dictionary=await app.save_writer.wait_for(ticket)
+	report["saveTotalMs"]=(Time.get_ticks_usec()-saving)/1000.0
+	report["saveMainThreadRequestMs"]=request_ms
+	report["saveSnapshotMs"]=float(result.get("snapshotMs",0))
+	report["saveWorkerMs"]=float(result.get("workerMs",0))
+	report["saveOk"]=bool(result.ok)
 	SaveManager._write_atomic(SaveManager.root_path().path_join("performance.json"),JSON.stringify(report,"  "))
-	var passed:=bool(result.ok) and float(report.saveMs)<=100.0
+	var passed:=bool(result.ok) and request_ms<=100.0
 	for row in report.scenarios:
 		if not bool(row.pressureGoalMet) or float(row.maxFrameMs)>100.0:passed=false
 	report["measuredThresholdsPassed"]=passed

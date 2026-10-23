@@ -85,6 +85,12 @@ def main() -> None:
     parser.add_argument("--version", default=current_version())
     args = parser.parse_args()
 
+    from official_coverage import audit
+    coverage = audit()
+    if not coverage['ok']:
+        failed = [city for city, result in coverage['cities'].items() if not result['ok']]
+        raise RuntimeError('Release blocked by independent official coverage: ' + ', '.join(failed))
+
     source_exe = args.exe.resolve() if args.exe else STABLE_EXE
     if not source_exe.is_file():
         raise FileNotFoundError(f"Fresh exported executable not found: {source_exe}")

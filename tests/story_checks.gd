@@ -153,6 +153,8 @@ func _run() -> void:
 	await process_frame
 	_check(not auto_accept_quit,"关闭窗口由保存结果决定，不由引擎提前退出")
 	api._new_game("shanghai",true)
+	_check(Story.targets(api.world).is_empty(),"新局先展示历史起点，操作教学等待首个建设节点")
+	await _reach_first_construction(api)
 	await process_frame
 	_check(api.world.get("storyState",{}).get("tutorialEnabled",false),"真实新游戏使用首章引导")
 	_check(not api.map_view.campaign_blueprint.get("stations",[]).is_empty(),"首章引导不隐藏历史蓝图")
@@ -175,16 +177,15 @@ func _run() -> void:
 	var assistant:=api._assist_candidate()
 	_check(str(assistant.get("issue","")).is_empty(),"余下重复建设有有效预览")
 	if assistant.has("state"):
-		api._execute("辅助完成重复建设",func(state:Dictionary):
-			for key in ["stations","stationComplexes","transferConnections","trackNodes","trackEdges"]:state[key]=assistant.state[key]
-			state.storyPlan["assisted"]=true)
+		var assisted_commit:Dictionary=api._commit_assisted_construction(assistant,int(api.world.revision))
+		_check(bool(assisted_commit.get("ok",false)),"辅助建设经正式提交接口")
 		_check(bool(Story.evaluate(api.world).complete),"真实默认朝向和辅助可通过首章")
 		api._undo(false)
 		_check(api.world.stations.size()==2 and not bool(api.world.storyPlan.get("assisted",false)),"撤销辅助同时恢复站轨和辅助标记")
 		api._undo(true)
 		_check(api.world.stations.size()==5 and bool(api.world.storyPlan.get("assisted",false)),"重做辅助完整恢复")
 	for city in WorldData.cities():
-		api._new_game(str(city.id),false);api.world.storyState.learnedTools=true
+		api._new_game(str(city.id),false);await _reach_first_construction(api);api.world.storyState.learnedTools=true
 		var chapter_count:int=Catalog.city_config(str(city.id)).get("chapters",[]).size()
 		# The interface path is exercised once per city. All chapter task groups
 		# are separately checked for stable IDs and selectable target stations;
@@ -201,7 +202,8 @@ func _run() -> void:
 			var preview:=api._assist_candidate()
 			_check(str(preview.get("issue","")).is_empty(),"%s/%d 跨章保留建设后仍可辅助连接：%s" % [str(city.id),chapter_index,str(preview.get("issue",""))])
 			if not preview.has("state"):break
-			for key in ["stations","stationComplexes","transferConnections","trackNodes","trackEdges"]:api.world[key]=preview.state[key]
+			var applied:Dictionary=api._commit_assisted_construction(preview,int(api.world.revision))
+			_check(bool(applied.get("ok",false)),"城市建设经正式提交接口")
 			if bool(Story.chapter(api.world).get("requiresLineReorganization",false)):
 				_check(not bool(Story.evaluate(api.world).complete),"重组章节不能只凭站轨完成")
 				api._tool("line");api._confirm_line_reorganization()
@@ -233,8 +235,10 @@ func _run() -> void:
 			_check(bool(result.complete),"%s/%d 累计故事可以通过：%s" % [str(city.id),chapter_index,JSON.stringify(result.issues)])
 			if not bool(result.complete):break
 			api._check();api._commit_chapter()
+			while api.saves_in_flight>0:await process_frame
 			_check(not api.dirty and api.save_error.is_empty(),"历史节点与镜头一并保存，界面不误报未保存")
 			api._next()
+			while api.saves_in_flight>0:await process_frame
 			_check(not api.dirty and api.save_error.is_empty(),"章节转换保存完成后保持已保存状态")
 		_check(str(api.world.storyState.get("phase",""))=="history" and not bool(api.world.storyState.freeUnlocked),"代表性建设后继续留在历史章节链")
 		var gap_coverage:Dictionary=Catalog.network_coverage(str(api.world.get("cityId","")))
@@ -265,9 +269,9 @@ func _run() -> void:
 	_check(str(future_gate.storyState.phase)=="future" and not bool(future_gate.storyState.freeUnlocked),"有已核验必做远期内容时先进入远期")
 	_check(str(Story.chapter(future_gate).get("id",""))=="acceptance-only-future","远期按稳定编号读取对应蓝图")
 	future_gate.storyState.stage="outcome";future_gate.storyState.completedChapterIds.append("acceptance-only-future");Story.next_chapter(future_gate)
-	_check(str(future_gate.mode)=="campaign" and bool(Story.can_create_workshop_copy(future_gate)) and not bool(future_gate.storyState.freeUnlocked),"远期样例完成后提供独立创作副本，不将样例当作已发布内容")
+	_check(str(future_gate.mode)=="campaign" and not bool(Story.can_create_workshop_copy(future_gate)) and not bool(future_gate.storyState.freeUnlocked),"伪填完成标记不能绕过独立官方范围核对")
 	var workshop_copy:=Story.create_workshop_copy(future_gate)
-	_check(str(workshop_copy.get("mode",""))=="workshop" and str(workshop_copy.get("gameId",""))!=str(future_gate.gameId) and str(future_gate.mode)=="campaign","完成历史与可玩项目章后自由创作副本独立保存")
+	_check(workshop_copy.is_empty() and str(future_gate.mode)=="campaign","未满足完整交付资格时不生成假通关副本")
 	Catalog._catalog.cities.shanghai=original_city
 	api.queue_free();await process_frame
 	if failures.is_empty():print("PASS: %d story checks" % checks);quit(0)
@@ -375,3 +379,14 @@ func _check(ok:bool,message:String) -> void:
 	checks+=1
 	if not ok:failures.append(message)
 
+
+func _reach_first_construction(app:Control) -> void:
+	while app.saves_in_flight>0:await process_frame
+	var count:=0
+	while bool(Story.chapter(app.world).get("eventOnly",false)) and count<20:
+		app._begin_chapter()
+		var confirmed:Dictionary=Story.commit_chapter(app.world,int(app.world.revision))
+		_check(bool(confirmed.get("ok",false)),"introductory event confirms through normal story command")
+		if not bool(confirmed.get("ok",false)):return
+		Story.next_chapter(app.world);count+=1
+	app._enter(app.world)

@@ -1,6 +1,7 @@
 extends Control
 
-const BUILD_VERSION := "0.25.0 · 2026.10.20"
+const BUILD_VERSION := "0.25.0 · 2026.10.23"
+const SaveWriter = preload("res://scripts/save_coordinator.gd")
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
 const Story = preload("res://scripts/story_session.gd")
@@ -53,6 +54,9 @@ var spotlight: Control
 var page := "story"
 var dirty := false
 var save_error := ""
+var save_writer:=SaveWriter.new()
+var save_change_serial:=0
+var saves_in_flight:=0
 var problem := ""
 var auto_seconds := 0.0
 var auto_enabled := true
@@ -95,6 +99,7 @@ func _ready() -> void:
 	theme=Ui.create_theme(face,strong_face,ui_scale)
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_build()
+	add_child(save_writer)
 	_setup_feedback_audio()
 	resized.connect(_layout)
 	_show_menu()
@@ -205,9 +210,9 @@ func _process(delta:float) -> void:
 	if auto_enabled:
 		auto_seconds+=delta
 		if auto_retry_seconds>0.0:auto_retry_seconds=maxf(0.0,auto_retry_seconds-delta)
-		if auto_seconds>=auto_interval_seconds and auto_retry_seconds<=0.0:
+		if auto_seconds>=auto_interval_seconds and auto_retry_seconds<=0.0 and saves_in_flight==0:
 			if dirty:
-				if not _save():auto_retry_seconds=60.0
+				if not (await _save()):auto_retry_seconds=60.0
 			else:auto_seconds=0.0
 	if tool=="track" and not map_view.track_start_ref.is_empty() and map_view.track_end_ref.is_empty() and not map_view.hover_latlng.is_empty() and Time.get_ticks_usec()-last_preview_usec>33333:
 		last_preview_usec=Time.get_ticks_usec()
@@ -295,6 +300,7 @@ func _enter(state:Dictionary) -> void:
 
 func _mark_dirty() -> void:
 	if world.is_empty():return
+	save_change_serial+=1
 	dirty=true;save_badge.text="保存失败 · 重试" if not save_error.is_empty() else "未保存 · 保存"
 
 func _active_task_id() -> String:
@@ -334,12 +340,25 @@ func _select_chapter_task(task_id:String) -> void:
 	if has_draft:_confirm("切换本章任务","当前有未提交建设草稿。丢弃草稿并切换任务吗？正式路网不会改变。",apply)
 	else:apply.call()
 
-func _save(rotate:bool=false) -> bool:
+func _save(_rotate:bool=false) -> bool:
 	if world.is_empty():return true
-	var result:=SaveManager.save_world(world,rotate)
+	var requested_id:=str(world.gameId)
+	var requested_serial:=save_change_serial
+	var ticket:=save_writer.request(world,requested_serial)
+	saves_in_flight+=1
+	save_badge.text="保存中…"
+	var result:Dictionary=await save_writer.wait_for(ticket)
+	saves_in_flight-=1
+	if str(world.get("gameId",""))!=requested_id:return bool(result.get("ok",false))
 	if not bool(result.get("ok",false)):
-		save_error=str(result.get("error","保存失败"));dirty=true;save_badge.text="保存失败 · 重试";save_badge.tooltip_text=save_error;return false
-	dirty=false;save_error="";auto_seconds=0;auto_retry_seconds=0;save_badge.text="已保存";save_badge.tooltip_text="";return true
+		save_error=str(result.get("error","保存失败"));dirty=true;save_badge.text="保存失败 · 重试";save_badge.tooltip_text=save_error;auto_retry_seconds=60.0;return false
+	world["savedAt"]=str(result.get("savedAt",world.get("savedAt","")))
+	save_error="";auto_seconds=0;auto_retry_seconds=0
+	# The writer may have coalesced this request with a newer queued snapshot.
+	dirty=save_change_serial!=int(result.get("changeSerial",requested_serial))
+	save_badge.text="未保存 · 保存" if dirty else ("保存中…" if saves_in_flight>0 else "已保存")
+	save_badge.tooltip_text=""
+	return true
 
 func _operation_label(chapter:Dictionary) -> String:
 	var labels:Dictionary={"first_build":"首次建设","extension":"线路延伸","phased_opening":"分期建设","interchange":"形成换乘","reorganization":"贯通与线路重组","plan_revision":"方案调整","network_opening":"线路开通"}
@@ -381,11 +400,11 @@ func _historical_target_name(historical_id:String) -> String:
 	return "目标站"
 
 func _leave(callback:Callable) -> void:
-	if world.is_empty() or _save():callback.call();return
+	if world.is_empty() or (await _save()):callback.call();return
 	var dialog:=_dialog("保存失败")
 	var box:=VBoxContainer.new();dialog.add_child(box);box.add_child(label(save_error+"\n当前会话保留。重试、另存JSON或取消离开。",16))
 	box.add_child(button("重试并离开",func():
-		if _save():dialog.queue_free();callback.call()))
+		if await _save():dialog.queue_free();callback.call()))
 	box.add_child(button("另存JSON",_export))
 	box.add_child(button("放弃未保存修改",func():_confirm("放弃修改","确定放弃未保存修改？",func():dialog.queue_free();callback.call())))
 	dialog.popup_centered(Vector2i(700,380))
@@ -471,13 +490,9 @@ func _left() -> void:
 		if phase in ["history_gap","history_content_gap","future_gap"]:
 			coverage=Story.network_coverage(str(world.get("cityId","")))
 		if Story.can_create_workshop_copy(world):
-			if phase=="history_content_gap":
-				left.add_child(label("本版线路目标已登记",24,true))
-				left.add_child(label("这些章节覆盖了地图线路目标，但不等于逐期历史已完整复现。仍有历史分段和截止日后的项目建设任务待补。",16))
-			else:
-				left.add_child(label("已完成截至2026-10-01的历史建设",24,true))
-				left.add_child(label("截止日后的在建与批准项目尚未全部数字化。自由创作会建立独立副本，不会改写历史进度。",16))
-			left.add_child(button("创建自由创作副本",_create_workshop_copy))
+			left.add_child(label("历史与规划必做建设已完成",24,true))
+			left.add_child(label("可以在当前进度继续自由创作。已确认的历史记录和原存档身份会保留。",16))
+			left.add_child(button("进入自由创作",_unlock_free))
 		else:
 			if phase=="history_content_gap":
 				left.add_child(label("本版线路目标已浏览完",24,true))
@@ -797,8 +812,10 @@ func _preview_transfer(transfer: Dictionary) -> void:
 	var connection: Dictionary = {"id":str(transfer.get("id","")),"name":str(transfer.get("name","换乘站")),"complexId":str(transfer.get("complexId","")),"stationInstanceIds":instance_ids.duplicate(),"lineIds":line_ids.duplicate(),"status":"active","precision":str(transfer.get("precision","schematic")),"source":str(transfer.get("source","")),"effectiveDate":str(Story.chapter(world).get("date",""))}
 	var probe: Dictionary = world.duplicate(true)
 	for route in checked.get("routes", []):
-		if WorldData.find_route(probe, str(route.get("id", ""))).is_empty():
-			var draft_route: Dictionary = route.duplicate(true);draft_route["open"] = false;probe.routes.append(draft_route)
+		var draft_route:Dictionary=route.duplicate(true)
+		var existing:=WorldData.find_route(probe,str(route.get("id","")))
+		draft_route["open"]=bool(existing.get("open",false))
+		Story._store_historical_route(probe,draft_route)
 	probe.transferConnections.append(connection.duplicate(true))
 	var validation := SaveManager.validate(probe)
 	if not validation.is_empty():_message("换乘预览无效", validation);return
@@ -810,29 +827,42 @@ func _preview_transfer(transfer: Dictionary) -> void:
 
 func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expected_revision:int,checked:Dictionary={}) -> Dictionary:
 	if expected_revision!=int(world.get("revision",0)):return {"ok":false,"error":"规划已变化，请重新检查两侧线路。"}
-	if checked.is_empty():checked=Story.evaluate(world)
+	# Recheck formal planning, not a caller's previously computed readiness.
+	checked=Story.evaluate(world)
+	var current_transfers:Array=Story.chapter(world).get("requiredTransfers",[])
+	if not current_transfers.any(func(t:Dictionary):return str(t.get("id",""))==str(transfer.get("id","")) and t.get("stationInstanceIds",[])==transfer.get("stationInstanceIds",[]) and t.get("lineIds",[])==transfer.get("lineIds",[])):return {"ok":false,"error":"换乘目标已变化，请重新预览。"}
+	for key in ["id","complexId","stationInstanceIds","lineIds"]:
+		if connection.get(key)!=transfer.get(key):return {"ok":false,"error":"换乘预览与当前目标不一致。"}
 	if not _transfer_ready(transfer,checked):return {"ok":false,"error":"两侧独立站体、连续轨道和线路站序尚未全部就绪。"}
 	if _transfer_connected(transfer):return {"ok":false,"error":"这条换乘联系已经建立。"}
 	var candidate:=world.duplicate(true)
-	var missing_routes:Array[Dictionary]=[]
 	for route in checked.get("routes",[]):
-		if WorldData.find_route(candidate,str(route.get("id",""))).is_empty():
-			var route_copy:Dictionary=route.duplicate(true);route_copy["open"]=false;candidate.routes.append(route_copy);missing_routes.append(route_copy)
+		var route_copy:Dictionary=route.duplicate(true)
+		var existing:=WorldData.find_route(candidate,str(route.get("id","")))
+		route_copy["open"]=bool(existing.get("open",false))
+		Story._store_historical_route(candidate,route_copy)
 	candidate.transferConnections.append(connection.duplicate(true))
+	Story._refresh_route_memberships(candidate)
 	var validation:=SaveManager.validate(candidate)
 	if not validation.is_empty():return {"ok":false,"error":validation}
 	_execute("建立换乘联系",func(state:Dictionary):
-		for route_copy in missing_routes:
-			if WorldData.find_route(state,str(route_copy.get("id",""))).is_empty():state.routes.append(route_copy.duplicate(true))
-		state.transferConnections.append(connection.duplicate(true)))
+		for key in ["routes","stations","trackEdges","trackLinks","transferConnections"]:state[key]=candidate[key].duplicate(true))
 	return {"ok":true}
+
+func _unlock_free() -> void:
+	var revision:=int(world.revision)
+	_confirm("进入自由创作","保留当前城市路网、历史成果与存档，在同一进度解除蓝图建设限制。",func():
+		var result:=Story.unlock_free(world,revision)
+		if not bool(result.get("ok",false)):_message("尚不能进入自由创作",str(result.get("error","请重新检查必做建设。")));return
+		_enter(world);_mark_dirty()
+		if not (await _save()):_message("自由创作尚未保存",save_error))
 
 func _create_workshop_copy() -> void:
 	var copy := Story.create_workshop_copy(world)
 	if copy.is_empty():_message("暂时不能创建", "需要先完成本城当前已发布的全部历史章节。");return
 	_leave(func():
 		_enter(copy)
-		if not _save():_message("自由创作副本保存失败", save_error))
+		if not (await _save()):_message("自由创作副本保存失败", save_error))
 
 func _restart_guide() -> void:
 	_confirm("独立操作练习","当前进度会先保存。练习使用首章的新副本，结束后可回到原进度。",func():
@@ -863,7 +893,15 @@ func _revise() -> void:
 	map_view.set_blueprint(Story.blueprint(preview,true))
 	_confirm("方案变化 · "+str(versions[index+1].get("date","")),change+"\n旧方案保留在历史草案层，不生成开通线路。",func():
 		if revision!=int(world.revision):_refresh();_message("规划已变化","请重新对比方案。");return
-		_execute("采用历史修订方案",func(state:Dictionary):state.storyPlan.planIndex=index+1),func():map_view.set_blueprint(Story.blueprint(world,true)))
+		var result:=_commit_plan_revision(index+1,revision)
+		if not bool(result.get("ok",false)):_message("方案未采用",str(result.get("error","请重新对照。"))),func():map_view.set_blueprint(Story.blueprint(world,true)))
+
+func _commit_plan_revision(index:int,expected_revision:int) -> Dictionary:
+	if expected_revision!=int(world.revision):return {"ok":false,"error":"规划已变化，请重新对照。"}
+	var versions:Array=Story.chapter(world).get("story",{}).get("planVersions",[])
+	if index!=int(world.storyPlan.get("planIndex",0))+1 or index>=versions.size():return {"ok":false,"error":"只能依次采用本章下一版方案。"}
+	_execute("采用历史修订方案",func(state:Dictionary):state.storyPlan.planIndex=index)
+	return {"ok":true}
 
 func _right() -> void:
 	clear(right);clear(actions);confirm_button=null
@@ -1538,11 +1576,8 @@ func _assist() -> void:
 	map_view.assisted_preview=result.state;map_view.requested_redraw();_locate_chapter()
 	_confirm("辅助完成预览","金色为将加入的站轨：新增 %d 座站、%d 段轨道，并核对本章历史名称。保留已有建设；整体应用并可撤销，不自动确认历史节点。" % [result.state.stations.size()-world.stations.size(),result.state.trackEdges.size()-world.trackEdges.size()],func():
 		map_view.assisted_preview={};map_view.requested_redraw()
-		if revision!=int(world.revision):_message("规划已变化","请重新预览辅助建设。");return
-		_execute("辅助完成重复建设",func(state:Dictionary):
-			for key in ["stations","trackNodes","trackEdges"]:state[key]=result.state[key]
-			state.storyPlan["pathChoices"]=result.state.get("storyPlan",{}).get("pathChoices",{}).duplicate(true)
-			state.storyPlan["assisted"]=true)
+		var committed:=_commit_assisted_construction(result,revision)
+		if not bool(committed.get("ok",false)):_message("辅助建设未应用",str(committed.get("error","请重新预览。")));return
 		_tool("select");show_left=true;show_right=false;_refresh(),func():map_view.assisted_preview={};map_view.requested_redraw())
 
 func _assist_candidate() -> Dictionary:
@@ -1564,7 +1599,7 @@ func _assist_candidate() -> Dictionary:
 	TrackNetwork.ensure_station_nodes(candidate)
 	var path_index:=TrackNetwork.build_path_index(candidate,construction_lat)
 	for group in construction_groups:
-		var ids:Array=group.get("stationIds",[]);var prior_arrival:=""
+		var ids:Array=group.get("stationIds",[]);var prior_arrival:="";var first_departure:=""
 		for index in range(ids.size()-1):
 			var a_id:=str(ids[index]);var b_id:=str(ids[index+1]);var a_instance:=Story.station_instance_id(group,a_id);var b_instance:=Story.station_instance_id(group,b_id)
 			var a:=Story.bound_station(candidate,a_id,a_instance,str(group.get("historicalLineId", "")));var b:=Story.bound_station(candidate,b_id,b_instance,str(group.get("historicalLineId", "")))
@@ -1581,9 +1616,12 @@ func _assist_candidate() -> Dictionary:
 					if not prior_arrival.is_empty() and str(option.edges[0].get("fromNodeId",""))==prior_arrival:continue
 					if option.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):continue
 					reusable=option;break
-			if not reusable.is_empty():prior_arrival=str(reusable.edges[-1].get("toNodeId",""));continue
+			if not reusable.is_empty():
+				if first_departure.is_empty():first_departure=str(reusable.edges[0].get("fromNodeId",""))
+				prior_arrival=str(reusable.edges[-1].get("toNodeId",""));continue
 			var ends:=_facing(a,b)
 			if not prior_arrival.is_empty():ends[0]="end" if prior_arrival==TrackNetwork.station_node_id(a,"start") else "start"
+			if bool(group.get("loop",false)) and index==ids.size()-2 and not first_departure.is_empty():ends[1]="end" if first_departure==TrackNetwork.station_node_id(b,"start") else "start"
 			# An extension entering an already built section must use the other
 			# platform end; nearest geometry alone can imply a hidden reversal.
 			if index+2<ids.size():
@@ -1598,6 +1636,7 @@ func _assist_candidate() -> Dictionary:
 			var preview:=ReferenceAlignment.preview(alignment,start,finish,candidate,construction_lat) if not alignment.is_empty() else helper.track_preview(start,finish,[],true)
 			if not str(preview.get("issue","")).is_empty():return {"issue":"%s—%s：%s；请手工处理。" % [str(a.name),str(b.name),str(preview.issue)]}
 			var edge:Dictionary=preview.edge;edge.id="assist_edge_%d_%d" % [index,Time.get_ticks_usec()];candidate.trackEdges.append(edge);TrackNetwork.add_path_index_edge(path_index,edge,candidate,construction_lat);prior_arrival=str(finish.nodeId)
+			if first_departure.is_empty():first_departure=str(start.nodeId)
 	# The preview has already selected a continuous, non-reversing path for each
 	# segment. Persist those choices in the draft so the evaluator and the
 	# eventual commit inspect the same physical branch instead of independently
@@ -1632,7 +1671,24 @@ func _assist_candidate() -> Dictionary:
 			assisted_choices["%d:%d" % [group_index,segment_index]]=selected_index
 			if not selected_path.get("edges",[]).is_empty():prior_end=str(selected_path.edges[-1].get("toNodeId",""))
 	candidate.storyPlan["pathChoices"]=assisted_choices
-	return {"state":candidate,"issue":""}
+	return {"state":candidate,"issue":"","revision":int(world.revision),"gameId":str(world.gameId),"chapterId":str(Story.chapter(world).get("id",""))}
+
+## The same transaction is used by the visible preview confirmation and replay.
+func _commit_assisted_construction(preview:Dictionary,expected_revision:int) -> Dictionary:
+	if expected_revision!=int(world.revision) or int(preview.get("revision",-1))!=expected_revision:return {"ok":false,"error":"规划已变化，请重新预览辅助建设。"}
+	if str(preview.get("gameId",""))!=str(world.gameId) or str(preview.get("chapterId",""))!=str(Story.chapter(world).get("id","")):return {"ok":false,"error":"草稿不属于当前游戏或章节。"}
+	if not Story.plan_is_final(world):return {"ok":false,"error":"请先采用本期方案。"}
+	if not str(preview.get("issue","")).is_empty() or not preview.get("state") is Dictionary:return {"ok":false,"error":str(preview.get("issue","辅助草稿无效。"))}
+	var candidate:Dictionary=preview.state
+	var invalid:=SaveManager.validate(candidate)
+	if not invalid.is_empty():return {"ok":false,"error":invalid}
+	var changed:=history.execute("辅助完成重复建设",func(state:Dictionary):
+		for key in ["stations","stationComplexes","trackNodes","trackEdges"]:state[key]=candidate.get(key,[]).duplicate(true)
+		state.storyPlan["pathChoices"]=candidate.get("storyPlan",{}).get("pathChoices",{}).duplicate(true)
+		state.storyPlan["assisted"]=true,
+		["stations","stationComplexes","trackNodes","trackEdges","storyPlan"])
+	if changed:evaluation={};problem="";rules.world=world;_mark_dirty();_refresh()
+	return {"ok":true,"changed":changed}
 
 func _workshop_line() -> void:
 	if line_stops.size()<2:problem="请选择至少两座车站。";_right();return
@@ -1650,9 +1706,16 @@ func _workshop_line() -> void:
 		_tool("select"))
 
 func _confirm_line_reorganization() -> void:
+	var result:=_commit_line_reorganization(int(world.revision))
+	if not bool(result.get("ok",false)):evaluation=result.get("evaluation",Story.evaluate(world));show_right=true;_right();_layout();return
+	_tool("select");show_left=true;show_right=false;_refresh()
+
+func _commit_line_reorganization(expected_revision:int) -> Dictionary:
+	if expected_revision!=int(world.revision):return {"ok":false,"error":"规划已变化，请重新核对线路重组。"}
+	if not bool(Story.chapter(world).get("requiresLineReorganization",false)):return {"ok":false,"error":"当前章节不需要线路重组。"}
 	var probe:=world.duplicate(false);probe["storyPlan"]=world.storyPlan.duplicate(true);probe.storyPlan.reorganizationAccepted=true
 	var checked:=Story.evaluate(probe)
-	if not bool(checked.complete):evaluation=checked;_tool("select");evaluation=checked;show_right=true;_right();_layout();return
+	if not bool(checked.complete):return {"ok":false,"error":"请先完成本期站序、连接与换乘。","evaluation":checked}
 	var routes:Array=checked.routes
 	_execute("确认线路重组",func(state:Dictionary):
 		state.storyPlan["reorganizationAccepted"]=true
@@ -1660,7 +1723,7 @@ func _confirm_line_reorganization() -> void:
 			route=route.duplicate(true);route["open"]=false
 			state.routes=state.routes.filter(func(old:Dictionary):return str(old.get("historicalLineId",""))!=str(route.get("historicalLineId","")))
 			state.routes.append(route))
-	_tool("select");show_left=true;show_right=false;_refresh()
+	return {"ok":true}
 
 func _new_phase() -> void:
 	_text_prompt("建设阶段","新的规划阶段",func(value:String):_execute("添加建设阶段",func(state:Dictionary):
@@ -1723,7 +1786,7 @@ func _saves() -> void:
 	var row:=HFlowContainer.new();body.add_child(row)
 	if not world.is_empty():
 		row.add_child(button("立即保存",func():
-			if not _save():_message("保存失败",save_error)
+			if not (await _save()):_message("保存失败",save_error)
 			else:refresh.call()))
 		row.add_child(button("当前进度另存为…",func():_text_prompt("保存当前进度副本",str(world.get("title","路网作品")),func(value:String):
 			var result:=SaveManager.save_named(world,value)

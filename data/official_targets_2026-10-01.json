@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "cutoffDate": "2026-10-01",
+  "evidencePolicy": "独立整理官方文件中的范围与站序；不得从章节或项目规格反向生成验收目标。未知与未审核状态阻止完整交付。",
+  "cities": {
+    "shenzhen": {
+      "inventoryReviewStatus": "pending",
+      "historyReviewStatus": "pending",
+      "requiredProjectIds": [
+        "sz-line15",
+        "sz-line17-phase1",
+        "sz-line19-phase1",
+        "sz-line20-phase2",
+        "sz-line22-phase1",
+        "sz-line25-phase1",
+        "sz-line27-phase1",
+        "sz-line29-phase1",
+        "sz-line32-phase1",
+        "sz-line13-phase2-south"
+      ],
+      "historicalMilestones": [],
+      "projects": [
+        {
+          "id": "sz-line15",
+          "reviewStatus": "verified",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourcePublicationDate": "2023-07-12",
+          "sourceCheckedAt": "2026-10-22",
+          "groups": [
+            {
+              "id": "shenzhen-line15-15",
+              "scopeType": "stations",
+              "stationNames": [
+                "听海路",
+                "前保",
+                "西部物流",
+                "铁路公园",
+                "月亮湾公园",
+                "四海",
+                "东滨路",
+                "创业路",
+                "学府路",
+                "深大北",
+                "玉泉路",
+                "朗山路",
+                "西丽火车站",
+                "打石一路",
+                "同乐关",
+                "洪浪北",
+                "宝安公园",
+                "流塘",
+                "西乡公园",
+                "坪洲",
+                "海城",
+                "铲湾北",
+                "铲湾中",
+                "铲湾"
+              ],
+              "loop": true
+            }
+          ],
+          "note": "表2.1-3，印刷页79—80。均为环评暂名；24站闭环。后续名称变更另核对，不以此证明截止日全量项目已审核。"
+        },
+        {
+          "id": "sz-line27-phase1",
+          "reviewStatus": "verified",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourcePublicationDate": "2024-09-25",
+          "sourceCheckedAt": "2026-10-22",
+          "groups": [
+            {
+              "id": "shenzhen-line27-27",
+              "scopeType": "stations",
+              "stationNames": [
+                "松坪村",
+                "西丽高铁站",
+                "文光",
+                "西丽",
+                "丽山",
+                "丽水",
+                "学府医院",
+                "南科大",
+                "长岭陂",
+                "北站西广场",
+                "民丰路",
+                "白石龙",
+                "民康",
+                "民宝",
+                "华城",
+                "银泉",
+                "油福",
+                "松和",
+                "岗头西"
+              ],
+              "historicalLineId": "shenzhen-line27-27"
+            },
+            {
+              "id": "shenzhen-line27-separated",
+              "scopeType": "stations",
+              "stationNames": [
+                "吉华医院",
+                "杨美北"
+              ],
+              "historicalLineId": "shenzhen-line27-27"
+            }
+          ],
+          "note": "表2.1-1，印刷页42—43；19站24.1公里主段和2站0.9公里独立段，禁止伪造中间贯通。"
+        }
+      ]
+    },
+    "shanghai": {
+      "inventoryReviewStatus": "pending",
+      "historyReviewStatus": "pending",
+      "requiredProjectIds": [
+        "sh-line19",
+        "sh-line20-phase1",
+        "sh-line20-east",
+        "sh-line21",
+        "sh-line23-phase1",
+        "sh-line15-south",
+        "sh-line13-west-east",
+        "sh-line12-west",
+        "sh-line22-chongming"
+      ],
+      "historicalMilestones": [],
+      "projects": [
+        {
+          "id": "sh-line21",
+          "reviewStatus": "verified",
+          "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html",
+          "sourcePublicationDate": "2026-08-06",
+          "sourceCheckedAt": "2026-10-22",
+          "groups": [
+            {
+              "id": "shanghai-line21-21",
+              "scopeType": "stations",
+              "stationNames": [
+                "六陈路",
+                "唐黄路",
+                "迪士尼",
+                "申江南路",
+                "张江",
+                "康南路",
+                "军民路",
+                "学林路",
+                "张衡路",
+                "高斯路",
+                "广兰路",
+                "龙东大道",
+                "浦东足球场",
+                "云桥路",
+                "金桥",
+                "凌河路",
+                "杨高北路",
+                "东靖路"
+              ],
+              "historicalLineId": "shanghai-line21-21"
+            },
+            {
+              "id": "shanghai-line21-east",
+              "scopeType": "stations",
+              "stationNames": [
+                "T3航站楼",
+                "上海东站",
+                "金闻路",
+                "闻居路",
+                "施新路",
+                "六陈路"
+              ],
+              "historicalLineId": "shanghai-line21-21"
+            }
+          ],
+          "note": "一期18站；东延伸新增5站、复用六陈路接口。T3暂不随首段投用，建设篇不计作开放。"
+        }
+      ]
+    },
+    "beijing": {
+      "inventoryReviewStatus": "pending",
+      "historyReviewStatus": "pending",
+      "requiredProjectIds": [
+        "bj-line22",
+        "bj-m101-phase1",
+        "bj-line3-phase1",
+        "bj-line12",
+        "bj-line28",
+        "bj-line13-capacity",
+        "bj-line1-branch",
+        "bj-new-airport",
+        "bj-yizhuang-connector"
+      ],
+      "historicalMilestones": [],
+      "projects": [
+        {
+          "id": "bj-m101-phase1",
+          "reviewStatus": "verified",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202306/t20230606_3122554.html",
+          "sourcePublicationDate": "2023-06-06",
+          "sourceCheckedAt": "2026-10-22",
+          "groups": [
+            {
+              "id": "beijing-line-m101",
+              "scopeType": "stations",
+              "stationNames": [
+                "商务园",
+                "通州西站",
+                "通顺路",
+                "通州会议中心",
+                "龙旺庄",
+                "通胡大街",
+                "玉带河大街",
+                "城市副中心",
+                "行政办公西区",
+                "北京大剧院",
+                "体育中心",
+                "张家湾西",
+                "张家湾",
+                "张家湾东"
+              ]
+            }
+          ],
+          "note": "2023环评官方报道14站、18.1公里；不使用2022旧版19公里。"
+        }
+      ]
+    },
+    "guangzhou": {
+      "inventoryReviewStatus": "pending",
+      "historyReviewStatus": "pending",
+      "requiredProjectIds": [
+        "gz-line12-mid",
+        "gz-line13-phase2-west",
+        "gz-line8-north-branch"
+      ],
+      "historicalMilestones": [],
+      "projects": []
+    },
+    "chengdu": {
+      "inventoryReviewStatus": "pending",
+      "historyReviewStatus": "pending",
+      "requiredProjectIds": [
+        "cd-line18-phase3"
+      ],
+      "historicalMilestones": [],
+      "projects": []
+    }
+  }
+}

@@ -3,9 +3,51 @@ extends RefCounted
 
 const CATALOG_PATH := "res://data/campaigns.json"
 const NETWORK_BASELINE_PATH := "res://data/network_baselines_2026-10-01.json"
+const OFFICIAL_TARGET_PATH := "res://data/official_targets_2026-10-01.json"
 static var _catalog: Dictionary = {}
 static var _network_baseline: Dictionary = {}
 static var _known_station_ids_by_city: Dictionary = {}
+
+static func delivery_eligibility(city_id:String) -> Dictionary:
+	var reasons:Array[String]=[]
+	var file:=FileAccess.open(OFFICIAL_TARGET_PATH,FileAccess.READ)
+	if file==null:return {"ok":false,"reasons":["缺少独立官方目标清单。"]}
+	var parsed:Variant=JSON.parse_string(file.get_as_text());file.close()
+	if not parsed is Dictionary:return {"ok":false,"reasons":["官方目标清单格式无效。"]}
+	var target:Dictionary=parsed.get("cities",{}).get(city_id,{})
+	if str(target.get("inventoryReviewStatus",""))!="verified":reasons.append("截止日项目与路网清单尚未完成独立核对。")
+	if str(target.get("historyReviewStatus",""))!="verified" or target.get("historicalMilestones",[]).is_empty():reasons.append("各历史里程碑的官方范围尚未全部核对。")
+	var campaign:=city_config(city_id)
+	var requirements:Array=target.get("projects",[])
+	for project_id in target.get("requiredProjectIds",[]):
+		if not requirements.any(func(p:Dictionary):return str(p.get("id",""))==str(project_id) and not bool(p.get("optional",false))):reasons.append("项目%s缺少独立建设目标。" % str(project_id))
+	for requirement in requirements:
+		if bool(requirement.get("optional",false)):continue
+		var project_id:=str(requirement.get("id",""))
+		if str(requirement.get("reviewStatus",""))!="verified" or str(requirement.get("source",""))=="" or str(requirement.get("sourcePublicationDate",""))=="":reasons.append("项目%s的官方范围尚未核对。" % project_id)
+		var matching:Array=campaign.get("futurePlans",[]).filter(func(p:Dictionary):return p.get("projectIds",[]).has(project_id))
+		if matching.is_empty() or requirement.get("groups",[]).is_empty():reasons.append("项目%s缺少可玩建设目标。" % project_id)
+		var actual_groups:Array=[]
+		for plan in matching:actual_groups.append_array(plan.get("lineGroups",[]))
+		for expected in requirement.get("groups",[]):
+			var matching_groups:Array=actual_groups.filter(func(g:Dictionary):return str(g.get("coverageGroupId",g.get("historicalLineId","")))==str(expected.get("id","")))
+			if matching_groups.size()!=1:reasons.append("项目%s的区段范围不完整。" % project_id);continue
+			var group:Dictionary=matching_groups[0]
+			var names:Array=[]
+			for station_id in group.get("stationIds",[]):
+				var name:=str(group.get("stationNames",{}).get(str(station_id),""))
+				if name.is_empty():
+					for station in WorldData.city(city_id).get("stations",[]):
+						if str(station.get("id",""))==str(station_id):name=str(station.get("name",""));break
+				names.append(name)
+			if str(expected.get("scopeType","stations"))=="stations":
+				if expected.get("stationNames",[]).is_empty() or names!=expected.get("stationNames",[]):reasons.append("项目%s仍有缺站或站序差异。" % project_id)
+			else:
+				if str(expected.get("unpublishedStationOrderEvidence",""))=="":reasons.append("项目%s的走廊验收缺少依据。" % project_id)
+				for name in expected.get("requiredPlaces",[]):
+					if not names.has(name):reasons.append("项目%s缺少必经区域。" % project_id)
+			if bool(group.get("loop",false))!=bool(expected.get("loop",false)):reasons.append("项目%s的闭环关系不完整。" % project_id)
+	return {"ok":reasons.is_empty(),"reasons":reasons}
 
 static func load_catalog() -> void:
 	var file := FileAccess.open(CATALOG_PATH, FileAccess.READ)
@@ -29,6 +71,10 @@ static func cutoff_date() -> String:
 static func content_version() -> String:
 	if _catalog.is_empty():load_catalog()
 	return str(_catalog.get("contentVersion","unknown"))
+
+static func content_revision() -> String:
+	if _catalog.is_empty():load_catalog()
+	return str(_catalog.get("contentRevision","unknown"))
 
 static func city_config(city_id: String) -> Dictionary:
 	if _catalog.is_empty(): load_catalog()
@@ -148,7 +194,9 @@ static func milestone_interval(city_id: String, chapter_id: String) -> Dictionar
 static func chapter_task_records(city_id: String, chapter_id: String) -> Dictionary:
 	var result: Dictionary = {}
 	var chapter_row: Dictionary = {}
-	for candidate in city_config(city_id).get("chapters", []):
+	var definitions:Array=city_config(city_id).get("chapters",[]).duplicate()
+	definitions.append_array(city_config(city_id).get("futurePlans",[]))
+	for candidate in definitions:
 		if str(candidate.get("id", "")) == chapter_id: chapter_row = candidate; break
 	if chapter_row.is_empty(): return result
 	for group in chapter_row.get("lineGroups", []):

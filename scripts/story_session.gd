@@ -70,6 +70,16 @@ static func groups(world: Dictionary, final_plan: bool = false, selected_task_id
 			result=versions[index].get("lineGroups", [])
 			uses_revision=true
 	if not uses_revision:result=ch.get("lineGroups", [])
+	# A loop binds each physical station once, but its path explicitly includes
+	# the final-to-first section. Every drawing/builder/evaluator consumes this
+	# normalized order so a ring cannot pass using an open chain.
+	var normalized:Array=[]
+	for source_group in result:
+		var normalized_group:Dictionary=source_group.duplicate(true)
+		var station_ids:Array=normalized_group.get("stationIds",[])
+		if bool(normalized_group.get("loop",false)) and station_ids.size()>2 and station_ids.front()!=station_ids.back():station_ids.append(station_ids.front())
+		normalized.append(normalized_group)
+	result=normalized
 	if selected_task_id.is_empty():return result
 	var filtered:Array=[]
 	for group_index in range(result.size()):
@@ -321,6 +331,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 			ids.append(str(station.id))
 		if not group_valid: continue
 		var prior_end := ""
+		var first_departure := ""
 		for i in range(ids.size()-1):
 			var path_key := "%d:%d" % [group_index,i]
 			var path_choices: Dictionary = world.get("storyPlan",{}).get("pathChoices",{})
@@ -362,7 +373,9 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 				var first: Dictionary = path.edges[0]
 				if prior_end == str(first.get("fromNodeId","")):
 					issues.append({"text":"%s 的相邻区间从同一站端进出，形成了未经确认的站内折返。" % str(WorldData.find_station(world,str(ids[i])).name),"kind":"station","objectId":str(ids[i])});group_valid=false
-			if not path.edges.is_empty(): prior_end=str(path.edges[-1].get("toNodeId",""))
+			if not path.edges.is_empty():
+				if first_departure.is_empty():first_departure=str(path.edges[0].get("fromNodeId",""))
+				prior_end=str(path.edges[-1].get("toNodeId",""))
 			# Exact centerlines are evaluated only when sourced geometry is available.
 			var corridor: Array = group.get("alignment",[])
 			var pair_reference:=ReferenceAlignment.between(str(group.stationIds[i]),str(group.stationIds[i+1]))
@@ -375,6 +388,8 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 					if nearest > float(group.get("alignmentToleranceM",80)):
 						issues.append({"text":"区间明显偏离已核验参考走廊。","kind":"station","objectId":str(ids[i])});group_valid=false;break
 			paths.append(ordered)
+		if bool(group.get("loop",false)) and not prior_end.is_empty() and prior_end==first_departure:
+			issues.append({"text":"环线首站的闭合区间与出发区间接在同一站端，尚未形成连续环线。","kind":"station","objectId":str(ids[0])});group_valid=false
 		var default_status:="open" if bool(ch.get("requireOpen",true)) and ch.get("serviceTransitions",[]).is_empty() else "built"
 		var segment_statuses:Array=[]
 		for segment_index in range(paths.size()):
@@ -520,7 +535,19 @@ static func task_confirmed(world: Dictionary, selected_task_id: String) -> bool:
 	if ch.is_empty() or selected_task_id.is_empty(): return false
 	var chapter_progress: Dictionary = world.get("storyState", {}).get("chapterTaskProgress", {}).get(str(ch.get("id", "")), {})
 	var task_progress: Dictionary = chapter_progress.get("tasks", {})
-	return str(task_progress.get(selected_task_id, {}).get("status", "")) == "confirmed"
+	var record:Dictionary=task_progress.get(selected_task_id,{})
+	if str(record.get("status",""))!="confirmed":return false
+	if bool(ch.get("requiresScopeRecheck",false)):
+		return str(record.get("scopeFingerprint",""))==task_scope_fingerprint(world,selected_task_id)
+	return true
+
+static func task_scope_fingerprint(world:Dictionary,selected_task_id:String) -> String:
+	var ch:=chapter(world)
+	var all_groups:=groups(world,true)
+	for index in range(all_groups.size()):
+		if task_id(ch,all_groups[index],index)==selected_task_id:
+			return JSON.stringify(all_groups[index]).sha256_text()
+	return ""
 
 static func confirmed_task_count(world: Dictionary) -> int:
 	var ch := chapter(world)
@@ -529,7 +556,7 @@ static func confirmed_task_count(world: Dictionary) -> int:
 	var task_progress: Dictionary = chapter_progress.get("tasks", {})
 	var count := 0
 	for group_index in range(groups(world, true).size()):
-		if task_progress.get(task_id(ch, groups(world, true)[group_index], group_index), {}).get("status", "") == "confirmed": count += 1
+		if task_confirmed(world,task_id(ch, groups(world, true)[group_index], group_index)): count += 1
 	return count
 
 static func _merge_route_directions(existing_direction: Dictionary, incoming_direction: Dictionary) -> Dictionary:
@@ -596,6 +623,10 @@ static func _merge_route_directions(existing_direction: Dictionary, incoming_dir
 
 static func _merge_historical_route(existing: Dictionary, incoming: Dictionary) -> Dictionary:
 	if existing.is_empty(): return incoming.duplicate(true)
+	# A complete closed circuit is authoritative for this line, rather than an
+	# extension to append to an earlier open circuit from the same project.
+	var incoming_order:Array=incoming.get("stationOrder",[])
+	if incoming_order.size()>2 and incoming_order.front()==incoming_order.back():return incoming.duplicate(true)
 	var result := existing.duplicate(true)
 	var old_directions: Array = result.get("directions", []).duplicate(true)
 	var new_directions: Array = incoming.get("directions", [])
@@ -654,7 +685,28 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 		if str(saved.get("id", "")) == str(route.get("id", "")) or (str(route.get("historicalLineId", "")) != "" and str(saved.get("historicalLineId", "")) == str(route.get("historicalLineId", ""))):
 			route_index = index; break
 	if route_index < 0: world.routes.append(route.duplicate(true))
-	else: world.routes[route_index] = _merge_historical_route(world.routes[route_index], route)
+	else:
+		var existing:Dictionary=world.routes[route_index].duplicate(true)
+		if str(existing.get("chapterId",""))==str(route.get("chapterId","")):
+			# Reconfirming a corrected task replaces that task's former physical
+			# platform bindings, rather than adding an obsolete parallel service.
+			var retained:Array=[]
+			for old_direction in existing.get("directions",[]):
+				var old_complexes:=_direction_complexes(world,old_direction)
+				var replaced:=false
+				for new_direction in route.get("directions",[]):
+					if old_complexes==_direction_complexes(world,new_direction):replaced=true;break
+				if not replaced:retained.append(old_direction)
+			existing["directions"]=retained
+			if retained.is_empty():world.routes[route_index]=route.duplicate(true);return
+		world.routes[route_index] = _merge_historical_route(existing, route)
+
+static func _direction_complexes(world:Dictionary,direction:Dictionary) -> Array:
+	var result:Array=[]
+	for id in direction.get("stationIds",[]):
+		var station:=WorldData.find_station(world,str(id))
+		result.append(Catalog.canonical_station_complex(str(world.cityId),str(station.get("stationComplexId",station.get("historicalId",id)))))
+	return result
 
 static func _refresh_route_memberships(world: Dictionary) -> void:
 	for station in world.get("stations", []): station["routeIds"] = []
@@ -702,7 +754,7 @@ static func confirm_task(world: Dictionary, selected_task_id: String, expected_r
 		if task_id(ch, all_groups[index], index) == selected_task_id: group_index = index; break
 	if group_index < 0: return {"ok":false,"error":"当前任务已不存在。"}
 	var group: Dictionary = all_groups[group_index]
-	tasks[selected_task_id] = {"status":"confirmed","type":"line_group","historicalLineId":str(group.get("historicalLineId", "")),"confirmedAt":str(ch.get("date", "")),"routeId":str(result.get("routes", [{}])[0].get("id", ""))}
+	tasks[selected_task_id] = {"status":"confirmed","type":"line_group","historicalLineId":str(group.get("historicalLineId", "")),"confirmedAt":str(ch.get("date", "")),"routeId":str(result.get("routes", [{}])[0].get("id", "")),"scopeFingerprint":task_scope_fingerprint(world,selected_task_id)}
 	progress["status"] = "in_progress"
 	progress["tasks"] = tasks
 	progress["taskCount"] = all_groups.size()
@@ -730,7 +782,7 @@ static func commit_chapter(world: Dictionary, expected_revision: int, checked: D
 		var confirmed_tasks: Dictionary = chapter_progress.get("tasks", {})
 		for group_index in range(chapter_groups.size()):
 			var required_task_id := task_id(ch, chapter_groups[group_index], group_index)
-			if str(confirmed_tasks.get(required_task_id, {}).get("status", "")) != "confirmed":
+			if not task_confirmed(world,required_task_id):
 				return {"ok":false,"error":"请先逐项确认本章各条线路建设任务；未确认的任务不会被本次操作一并盖章。"}
 	if not (state.get("chapterTaskProgress", null) is Dictionary): state["chapterTaskProgress"] = {}
 	if not (state.get("confirmedHistoricalEventIds", null) is Array): state["confirmedHistoricalEventIds"] = []
@@ -752,7 +804,7 @@ static func commit_chapter(world: Dictionary, expected_revision: int, checked: D
 	if event_ids.is_empty():event_ids=[str(ch.id)]
 	for event_id in event_ids:
 		if not state.confirmedHistoricalEventIds.has(str(event_id)):state.confirmedHistoricalEventIds.append(str(event_id))
-	state.chapterTaskProgress[str(ch.id)]={"status":"confirmed","confirmedHistoricalEventIds":event_ids.duplicate(),"tasks":Catalog.chapter_task_records(str(world.get("cityId","")),str(ch.id)),"date":str(ch.get("date",""))}
+	state.chapterTaskProgress[str(ch.id)]={"status":"confirmed","confirmedHistoricalEventIds":event_ids.duplicate(),"tasks":Catalog.chapter_task_records(str(world.get("cityId","")),str(ch.id)),"date":str(ch.get("date","")),"scopeRevision":str(ch.get("scopeRevision",""))}
 	state["stage"]="outcome"
 	state["chapterId"]=str(ch.id)
 	if bool(world.get("storyPlan",{}).get("assisted",false)) and not state.get("assistedChapters",[]).has(str(ch.id)):state.assistedChapters.append(str(ch.id))
@@ -992,23 +1044,31 @@ static func next_chapter(world: Dictionary) -> void:
 	var index:=int(st.get("chapterIndex",0))
 	for i in range(chapters.size()):
 		if str(chapters[i].get("id",""))==str(current.get("id","")):index=i;break
-	st["tutorialEnabled"]=false;st["learnedTools"]=true
-	st["chapterIndex"]=index+1;st["chapterId"]=""
+	if StoryTutorial.is_first(world):st["tutorialEnabled"]=false;st["learnedTools"]=true
+	var next_index:=-1
+	var completed:Array=st.get("completedChapterIds",[])
+	for candidate_index in range(index+1,chapters.size()):
+		if not completed.has(str(chapters[candidate_index].get("id",""))):next_index=candidate_index;break
+	if next_index<0:
+		for candidate_index in range(mini(index+1,chapters.size())):
+			if not completed.has(str(chapters[candidate_index].get("id",""))):next_index=candidate_index;break
+	st["chapterIndex"]=next_index if next_index>=0 else chapters.size()
+	st["chapterId"]=str(chapters[next_index].get("id","")) if next_index>=0 else ""
 	st["stage"]="intro";world["storyPlan"]={"planIndex":0,"pathChoices":{}}
-	if chapter(world).is_empty():
+	if next_index<0:
 		var history_status:=str(config(world).get("historyStatus","partial"))
 		if str(st.get("phase","history"))=="future":
 			st["phase"]="future_gap";st["chapterIndex"]=Catalog.playable_future_plans(str(world.cityId)).size()
 		elif history_status in ["complete", "route_inventory_complete"]:
 			var playable := Catalog.playable_future_plans(str(world.cityId))
 			var next_plan: Dictionary = {}
-			var next_index := -1
+			var future_index := -1
 			for plan_index in range(playable.size()):
 				var candidate: Dictionary = playable[plan_index]
 				if st.get("completedChapterIds", []).has(str(candidate.get("id", ""))): continue
-				next_plan = candidate; next_index = plan_index; break
-			if next_index >= 0:
-				st["phase"]="future";st["chapterIndex"]=next_index;st["chapterId"]=str(next_plan.get("id", ""));st["stage"]="intro"
+				next_plan = candidate; future_index = plan_index; break
+			if future_index >= 0:
+				st["phase"]="future";st["chapterIndex"]=future_index;st["chapterId"]=str(next_plan.get("id", ""));st["stage"]="intro"
 			else:
 				st["phase"]="history_content_gap" if history_status=="route_inventory_complete" else "future_gap"
 		elif history_status=="partial": st["phase"]="history_gap"
@@ -1016,21 +1076,38 @@ static func next_chapter(world: Dictionary) -> void:
 	if not chapter(world).is_empty():st["chapterId"]=str(chapter(world).id)
 
 static func can_create_workshop_copy(world: Dictionary) -> bool:
-	if str(world.get("mode", "")) != "campaign" or str(world.get("storyState", {}).get("phase", "")) != "future_gap": return false
-	var city_config := config(world)
-	if str(city_config.get("historyStatus", "")) != "complete" or str(city_config.get("futureStatus", "")) != "complete": return false
-	var chapters: Array = config(world).get("chapters", [])
-	if chapters.is_empty(): return false
-	var completed: Array = world.get("storyState", {}).get("completedChapterIds", [])
-	for entry in chapters:
-		if not completed.has(str(entry.get("id", ""))): return false
-	var required:Array=city_config.get("futurePlans",[]).filter(func(p:Dictionary):return bool(p.get("required",false)))
-	if required.is_empty() and not Catalog.network_coverage(str(world.get("cityId",""))).get("projectsAtCutoff",[]).is_empty(): return false
-	var city_data:=WorldData.city(str(world.get("cityId","")))
+	return bool(completion_eligibility(world).get("ok",false))
+
+static func completion_eligibility(world:Dictionary) -> Dictionary:
+	var content:=Catalog.delivery_eligibility(str(world.get("cityId","")))
+	var reasons:Array=content.get("reasons",[]).duplicate()
+	if str(world.get("mode",""))!="campaign":reasons.append("当前不是历史主进度。")
+	var completed:Array=world.get("storyState",{}).get("completedChapterIds",[])
+	var campaign:=config(world)
+	var required:Array=campaign.get("chapters",[]).duplicate()
+	for plan in campaign.get("futurePlans",[]):
+		if bool(plan.get("required",false)):required.append(plan)
 	for entry in required:
-		if not Catalog.future_data_ready(entry, city_data): return false
-		if not completed.has(str(entry.get("id",""))):return false
-	return true
+		if not completed.has(str(entry.get("id",""))):reasons.append("尚未完成：%s" % str(entry.get("title",entry.get("id",""))))
+	# Completion flags alone cannot unlock an edited/broken formal network.
+	if reasons.is_empty():
+		var saved_problem:=SaveManager.validate(world)
+		if not saved_problem.is_empty():reasons.append(saved_problem)
+		var project_ids:Array=[]
+		for plan in campaign.get("futurePlans",[]):
+			if bool(plan.get("required",false)):project_ids.append_array(plan.get("projectIds",[]))
+		reasons.append_array(OfficialNetworkAudit.current_project_errors(world,project_ids))
+	return {"ok":reasons.is_empty(),"reasons":reasons,"contentReady":bool(content.get("ok",false))}
+
+static func unlock_free(world:Dictionary,expected_revision:int) -> Dictionary:
+	if int(world.get("revision",0))!=expected_revision:return {"ok":false,"error":"进度已变化，请重新检查。"}
+	var qualification:=completion_eligibility(world)
+	if not bool(qualification.ok):return {"ok":false,"error":"历史与规划必做条件尚未全部满足。","qualification":qualification}
+	world["mode"]="workshop"
+	world.storyState["phase"]="free";world.storyState["stage"]="free";world.storyState["freeUnlocked"]=true
+	world.storyState["tutorialEnabled"]=false
+	world["revision"]=int(world.get("revision",0))+1
+	return {"ok":true}
 
 static func create_workshop_copy(world: Dictionary) -> Dictionary:
 	if not can_create_workshop_copy(world): return {}

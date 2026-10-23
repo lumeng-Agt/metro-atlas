@@ -1,0 +1,103 @@
+{
+  "cutoffDate": "2026-10-01",
+  "contentRevision": "2026.10.23.28",
+  "ok": false,
+  "cities": {
+    "shenzhen": {
+      "ok": false,
+      "errors": [
+        "inventoryReviewStatus: independent review incomplete",
+        "historyReviewStatus: independent review incomplete",
+        "independent milestone requirements missing",
+        "sz-line17-phase1: independent project requirements missing",
+        "sz-line19-phase1: independent project requirements missing",
+        "sz-line20-phase2: independent project requirements missing",
+        "sz-line22-phase1: independent project requirements missing",
+        "sz-line25-phase1: independent project requirements missing",
+        "sz-line29-phase1: independent project requirements missing",
+        "sz-line32-phase1: independent project requirements missing",
+        "sz-line13-phase2-south: independent project requirements missing"
+      ],
+      "projects": [
+        {
+          "id": "sz-line15",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line27-phase1",
+          "ok": true,
+          "errors": []
+        }
+      ]
+    },
+    "shanghai": {
+      "ok": false,
+      "errors": [
+        "inventoryReviewStatus: independent review incomplete",
+        "historyReviewStatus: independent review incomplete",
+        "independent milestone requirements missing",
+        "sh-line19: independent project requirements missing",
+        "sh-line20-phase1: independent project requirements missing",
+        "sh-line20-east: independent project requirements missing",
+        "sh-line23-phase1: independent project requirements missing",
+        "sh-line15-south: independent project requirements missing",
+        "sh-line13-west-east: independent project requirements missing",
+        "sh-line12-west: independent project requirements missing",
+        "sh-line22-chongming: independent project requirements missing"
+      ],
+      "projects": [
+        {
+          "id": "sh-line21",
+          "ok": true,
+          "errors": []
+        }
+      ]
+    },
+    "beijing": {
+      "ok": false,
+      "errors": [
+        "inventoryReviewStatus: independent review incomplete",
+        "historyReviewStatus: independent review incomplete",
+        "independent milestone requirements missing",
+        "bj-line22: independent project requirements missing",
+        "bj-line3-phase1: independent project requirements missing",
+        "bj-line12: independent project requirements missing",
+        "bj-line28: independent project requirements missing",
+        "bj-line13-capacity: independent project requirements missing",
+        "bj-line1-branch: independent project requirements missing",
+        "bj-new-airport: independent project requirements missing",
+        "bj-yizhuang-connector: independent project requirements missing"
+      ],
+      "projects": [
+        {
+          "id": "bj-m101-phase1",
+          "ok": true,
+          "errors": []
+        }
+      ]
+    },
+    "guangzhou": {
+      "ok": false,
+      "errors": [
+        "inventoryReviewStatus: independent review incomplete",
+        "historyReviewStatus: independent review incomplete",
+        "independent milestone requirements missing",
+        "gz-line12-mid: independent project requirements missing",
+        "gz-line13-phase2-west: independent project requirements missing",
+        "gz-line8-north-branch: independent project requirements missing"
+      ],
+      "projects": []
+    },
+    "chengdu": {
+      "ok": false,
+      "errors": [
+        "inventoryReviewStatus: independent review incomplete",
+        "historyReviewStatus: independent review incomplete",
+        "independent milestone requirements missing",
+        "cd-line18-phase3: independent project requirements missing"
+      ],
+      "projects": []
+    }
+  }
+}

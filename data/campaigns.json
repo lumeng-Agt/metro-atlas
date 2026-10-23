@@ -5874,7 +5874,7 @@
           "projectIds": [
             "sh-line21"
           ],
-          "title": "上海21号线一期建设篇",
+          "title": "上海21号线一期及东延伸建设篇",
           "date": "2026-10-01",
           "status": "under_construction",
           "sourceType": "municipal_initial_design_approval",
@@ -5885,11 +5885,11 @@
           "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
           "sourceTitle": "上海市住房和城乡建设管理委员会关于上海市轨道交通21号线一期工程初步设计的批复",
           "sourceCheckedAt": "2026-10-21",
-          "description": "按初步设计批复复现21号线一期：六陈路至东靖路，18座车站、全长27.964公里。迪士尼、学林路、广兰路、浦东足球场、金桥、杨高北路、东靖路与既有线路换乘。项目在截止日仍在建，完成本篇只表示规划建设完成，不计作开通；21号线东延伸另期制作。",
+          "description": "一期18站与东延伸新增5站分为两个建设任务，复用六陈路站并形成连续线路。站名采用工程暂名；截止日全部作为在建规划，不计作实际开通。上海东站与T3站区为近似参考，须继续完成地理核对。",
           "sourcePublicationDate": "2021-12-01",
           "lineGroups": [
             {
-              "taskId": "project:sh-line21-phase1-build",
+              "taskId": "project:sh-line21-phase1-build:phase1",
               "mapRouteId": "shanghai-future-line21",
               "name": "21号线一期",
               "historicalLineId": "shanghai-line21-21",
@@ -5947,7 +5947,39 @@
                 "shanghai-s156": "shanghai-s156__line21-21",
                 "shanghai-s251": "shanghai-s251__line21-21",
                 "shanghai-s204": "shanghai-s204__line21-21"
-              }
+              },
+              "officialLengthM": 27964,
+              "coverageGroupId": "shanghai-line21-21"
+            },
+            {
+              "taskId": "project:sh-line21-phase1-build:east",
+              "mapRouteId": "shanghai-future-line21-east",
+              "name": "21号线一期东延伸",
+              "historicalLineId": "shanghai-line21-21",
+              "color": "#9E8FC0",
+              "stationIds": [
+                "shanghai-f21-pudongt3",
+                "shanghai-f21-shanghaidong",
+                "shanghai-f21-jinwenlu",
+                "shanghai-f21-wenjulu",
+                "shanghai-f21-shixinlu",
+                "shanghai-f21-liuchenlu"
+              ],
+              "stationNames": {
+                "shanghai-f21-pudongt3": "T3航站楼",
+                "shanghai-f21-shanghaidong": "上海东站",
+                "shanghai-f21-jinwenlu": "金闻路",
+                "shanghai-f21-wenjulu": "闻居路",
+                "shanghai-f21-shixinlu": "施新路",
+                "shanghai-f21-liuchenlu": "六陈路"
+              },
+              "toleranceM": 700.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "东延伸新增施新路、闻居路、金闻路、上海东站、T3航站楼5站，复用一期六陈路接口。采用T3至六陈路顺序与一期衔接；前三站采用现代OSM在建站点，枢纽末两站为站区近似，不能宣称测绘精度。建设完成不计作历史开通，T3不提前开放。",
+              "stationOrderSource": "https://news.xinmin.cn/2023/03/21/32343762.html",
+              "requireOpen": false,
+              "officialLengthM": 14080,
+              "coverageGroupId": "shanghai-line21-east"
             }
           ],
           "requiredTransfers": [
@@ -6047,7 +6079,9 @@
               "source": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
               "sourceNote": "批复明确与6号线通道换乘。"
             }
-          ]
+          ],
+          "scopeRevision": "2026.10.22.25",
+          "requiresScopeRecheck": true
         },
         {
           "id": "sh-line19-build",
@@ -13175,38 +13209,61 @@
           "required": true,
           "dataStatus": "blueprint_ready",
           "exactAlignment": "corridor_only",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
-          "sourceTitle": "副中心M101线最新线路图公布 14座车站中6站可换乘（北京市人民政府门户网站）",
-          "sourceCheckedAt": "2026-10-21",
-          "description": "按M101线一期环评与官方线路图复现走廊：商务园—张家湾东，全长约19公里、14座车站。公开文本只给出站名与走向、没有可逐站核对的站址，本篇按端点与通州西站、城市副中心两个枢纽站建模，其余车站只记录在说明中，不虚构坐标。完成本篇只表示规划建设完成，不计作开通。",
-          "sourcePublicationDate": "2022-04-20",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf",
+          "sourceTitle": "北京轨道交通M101线一期工程环境影响报告书（2023年5月）",
+          "sourceCheckedAt": "2026-10-22",
+          "description": "完整复现商务园至张家湾东14站及13个相邻区间。站序依据2023环评，站址结合用地批复及离线地理资料；部分规划站区为明确标注的近似位置。线路全长约18.1公里，建设篇完成不代表真实开通。",
+          "sourcePublicationDate": "2023-05-26",
           "lineGroups": [
             {
               "taskId": "project:bj-m101-phase1-build",
               "mapRouteId": "beijing-future-m101",
-              "name": "M101线一期（走廊复现）",
+              "name": "M101线一期（14站建设）",
               "historicalLineId": "beijing-line-m101",
               "color": "#5B8C5A",
               "stationIds": [
                 "beijing-f101-shangwuyuan",
                 "beijing-f101-tongzhouxi",
+                "beijing-f101-tongshunlu",
+                "beijing-f101-huiyizhongxin",
+                "beijing-f101-longwangzhuang",
+                "beijing-f101-tonghudajie",
+                "beijing-f101-yudaihedajie",
                 "beijing-f101-fuzhongxin",
+                "beijing-f101-xingzhengxiqu",
+                "beijing-f101-dajuyuan",
+                "beijing-f101-tiyuzhongxin",
+                "beijing-f101-zhangjiawanxi",
+                "beijing-f101-zhangjiawan",
                 "beijing-f101-zhangjiawandong"
               ],
               "stationNames": {
                 "beijing-f101-shangwuyuan": "商务园",
                 "beijing-f101-tongzhouxi": "通州西站",
+                "beijing-f101-tongshunlu": "通顺路",
+                "beijing-f101-huiyizhongxin": "通州会议中心",
+                "beijing-f101-longwangzhuang": "龙旺庄",
+                "beijing-f101-tonghudajie": "通胡大街",
+                "beijing-f101-yudaihedajie": "玉带河大街",
                 "beijing-f101-fuzhongxin": "城市副中心",
+                "beijing-f101-xingzhengxiqu": "行政办公西区",
+                "beijing-f101-dajuyuan": "北京大剧院",
+                "beijing-f101-tiyuzhongxin": "体育中心",
+                "beijing-f101-zhangjiawanxi": "张家湾西",
+                "beijing-f101-zhangjiawan": "张家湾",
                 "beijing-f101-zhangjiawandong": "张家湾东"
               },
-              "toleranceM": 900.0,
+              "toleranceM": 150.0,
               "alignmentPrecision": "corridor_only",
-              "precisionNote": "M101线一期官方站序为14站（商务园、通州西站、通顺路、会议中心、龙旺庄、通胡大街、玉带河大街、城市副中心、行政西区、北京大剧院、体育中心、张家湾西、张家湾、张家湾东，约19公里）。环评报告只以图示给出站位，公开文本没有可逐站核对的站址，因此本篇按端点与两个官方枢纽站（通州西站、城市副中心）复现走廊，其余10站不虚构坐标。区间为走廊近似。",
-              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
-              "requireOpen": false
+              "precisionNote": "14站按2023年环评表2-1-2完整站序制作；站址优先采用2025用地批复与离线OSM交点。通州西、玉带河大街、北京大剧院和张家湾东为片区近似位置，逐站说明误差；隧道走向为近似走廊，非施工中心线。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202306/t20230606_3122554.html",
+              "requireOpen": false,
+              "officialLengthM": 18100
             }
           ],
-          "requiredTransfers": []
+          "requiredTransfers": [],
+          "scopeRevision": "2026.10.22.26",
+          "requiresScopeRecheck": true
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -24902,46 +24959,85 @@
           "required": true,
           "dataStatus": "blueprint_ready",
           "exactAlignment": "corridor_only",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-          "sourceCheckedAt": "2026-10-21",
-          "description": "15号线为环线（官方口径前保—前保，约32.2公里）。公开资料未给出可逐站核对的完整站序，本篇按5座既有换乘站与前保站区复现南—西半环开口链，东半环与闭合段未建模。完成本篇只表示规划建设完成，不计作开通。",
-          "sourcePublicationDate": "2022-09-05",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+          "sourceTitle": "深圳市城市轨道交通15号线工程环境影响报告书（征求意见稿）",
+          "sourceCheckedAt": "2026-10-22",
+          "description": "复现2023环评的完整24站闭环，站名为该版暂名，轨道包含铲湾至听海路闭合段。站位与区间为近似参考，部分规划道路位置仍须地理复核；不宣称地下测绘精度。完成表示规划建设完成。",
+          "sourcePublicationDate": "2023-07-12",
           "lineGroups": [
             {
               "taskId": "project:sz-line15-build",
               "mapRouteId": "shenzhen-future-line15",
-              "name": "15号线（环线开口复现）",
+              "name": "15号线（24站环线，环评暂名）",
               "historicalLineId": "shenzhen-line15-15",
               "color": "#B58B5A",
               "stationIds": [
+                "shenzhen-f15-tinghailu",
                 "shenzhen-f15-qianbao",
+                "shenzhen-f15-xibuwuliu",
                 "shenzhen-s114",
+                "shenzhen-f15-yueliangwangongyuan",
                 "shenzhen-s350",
+                "shenzhen-f15-dongbinlu",
+                "shenzhen-f15-chuangyelu",
                 "shenzhen-s231",
+                "shenzhen-f15-shendabei",
+                "shenzhen-f15-yuquanlu",
+                "shenzhen-f15-langshanlu",
+                "shenzhen-future-xili-hsr",
+                "shenzhen-f15-dashiyilu",
+                "shenzhen-f15-tongleguan",
                 "shenzhen-s123",
-                "shenzhen-s26"
+                "shenzhen-f15-baoangongyuan",
+                "shenzhen-s343",
+                "shenzhen-f15-xixianggongyuan",
+                "shenzhen-s26",
+                "shenzhen-f15-haicheng",
+                "shenzhen-f15-chanwanbei",
+                "shenzhen-f15-chanwanzhong",
+                "shenzhen-f15-chanwan"
               ],
               "stationNames": {
+                "shenzhen-f15-tinghailu": "听海路",
                 "shenzhen-f15-qianbao": "前保",
+                "shenzhen-f15-xibuwuliu": "西部物流",
                 "shenzhen-s114": "铁路公园",
+                "shenzhen-f15-yueliangwangongyuan": "月亮湾公园",
                 "shenzhen-s350": "四海",
-                "shenzhen-s231": "深大南",
+                "shenzhen-f15-dongbinlu": "东滨路",
+                "shenzhen-f15-chuangyelu": "创业路",
+                "shenzhen-s231": "学府路",
+                "shenzhen-f15-shendabei": "深大北",
+                "shenzhen-f15-yuquanlu": "玉泉路",
+                "shenzhen-f15-langshanlu": "朗山路",
+                "shenzhen-future-xili-hsr": "西丽火车站",
+                "shenzhen-f15-dashiyilu": "打石一路",
+                "shenzhen-f15-tongleguan": "同乐关",
                 "shenzhen-s123": "洪浪北",
-                "shenzhen-s26": "坪洲"
+                "shenzhen-f15-baoangongyuan": "宝安公园",
+                "shenzhen-s343": "流塘",
+                "shenzhen-f15-xixianggongyuan": "西乡公园",
+                "shenzhen-s26": "坪洲",
+                "shenzhen-f15-haicheng": "海城",
+                "shenzhen-f15-chanwanbei": "铲湾北",
+                "shenzhen-f15-chanwanzhong": "铲湾中",
+                "shenzhen-f15-chanwan": "铲湾"
               },
               "toleranceM": 800.0,
               "alignmentPrecision": "corridor_only",
-              "precisionNote": "15号线为环线，官方口径前保—前保、约32.2公里、24座车站。公开资料未给出可逐站核对的完整站序，本篇按既有换乘站（铁路公园/5、四海/12、深大南/9、洪浪北/5、坪洲/1）与前保站区复现南—西半环开口链，东半环与环线闭合段未建模，不虚构中途站坐标。",
-              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "precisionNote": "2023环评表2.1-3、2.1-4完整24站闭环；采用该版暂名，学府路对应既有深大南站区，西丽火车站对应西丽高铁枢纽。站位及区间为近似，部分规划道路未完成地理复核，不能宣称施工线位一致。",
+              "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
               "requireOpen": false,
               "stationInstances": {
                 "shenzhen-s114": "shenzhen-s114__line15-15",
                 "shenzhen-s350": "shenzhen-s350__line15-15",
                 "shenzhen-s231": "shenzhen-s231__line15-15",
                 "shenzhen-s123": "shenzhen-s123__line15-15",
-                "shenzhen-s26": "shenzhen-s26__line15-15"
-              }
+                "shenzhen-s26": "shenzhen-s26__line15-15",
+                "shenzhen-s343": "shenzhen-s343__line15-15"
+              },
+              "loop": true,
+              "officialLengthM": 32210
             }
           ],
           "requiredTransfers": [
@@ -24958,7 +25054,7 @@
                 "shenzhen-line15-15"
               ],
               "precision": "schematic",
-              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
               "sourceNote": "铁路公园为5号线既有站，15号线在此换乘。"
             },
             {
@@ -24974,7 +25070,7 @@
                 "shenzhen-line15-15"
               ],
               "precision": "schematic",
-              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
               "sourceNote": "四海为12号线既有站，15号线在此换乘。"
             },
             {
@@ -24990,7 +25086,7 @@
                 "shenzhen-line15-15"
               ],
               "precision": "schematic",
-              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
               "sourceNote": "深大南为9号线既有站，15号线在此换乘。"
             },
             {
@@ -25006,7 +25102,7 @@
                 "shenzhen-line15-15"
               ],
               "precision": "schematic",
-              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
               "sourceNote": "洪浪北为5号线既有站，15号线在此换乘。"
             },
             {
@@ -25022,10 +25118,28 @@
                 "shenzhen-line15-15"
               ],
               "precision": "schematic",
-              "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
               "sourceNote": "坪洲为1号线既有站，15号线在此换乘。"
+            },
+            {
+              "id": "future-transfer-sz15-liutang-12",
+              "name": "流塘",
+              "complexId": "shenzhen-s343",
+              "stationInstanceIds": [
+                "shenzhen-s343__line12-13",
+                "shenzhen-s343__line15-15"
+              ],
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+              "sourceNote": "环评表2.1-3列明与12号线换乘。"
             }
-          ]
+          ],
+          "scopeRevision": "2026.10.23.28",
+          "requiresScopeRecheck": true
         },
         {
           "id": "sz-line25-phase1-build",
@@ -25082,34 +25196,169 @@
           "required": true,
           "dataStatus": "blueprint_ready",
           "exactAlignment": "corridor_only",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-          "sourceCheckedAt": "2026-10-21",
-          "description": "按五期建设规划环评官方口径复现27号线一期：松坪村—岗头西，约23.2公里。公开资料未给出可逐站核对的站序，本篇按两端站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
-          "sourcePublicationDate": "2022-09-05",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+          "sourceTitle": "深圳市城市轨道交通27号线一期工程环境影响报告书（第二次征求意见稿）",
+          "sourceCheckedAt": "2026-10-22",
+          "description": "复现2024年环评完整范围：松坪村—岗头西19站主段与吉华医院—杨美北2站独立段，共21站。完整站序和区段关系采用官方资料，地理连接为近似走廊。两段不虚构贯通；完成表示规划建设完成。",
+          "sourcePublicationDate": "2024-09-25",
           "lineGroups": [
             {
-              "taskId": "project:sz-line27-phase1-build",
+              "taskId": "project:sz-line27-phase1-build:phase1",
               "mapRouteId": "shenzhen-future-line27",
-              "name": "27号线一期（走廊复现）",
+              "name": "27号线一期主段",
               "historicalLineId": "shenzhen-line27-27",
               "color": "#9B8FB5",
               "stationIds": [
                 "shenzhen-f27-songpingcun",
+                "shenzhen-future-xili-hsr",
+                "shenzhen-f27-wenguang",
+                "shenzhen-s126",
+                "shenzhen-f27-lishan",
+                "shenzhen-f27-lishui",
+                "shenzhen-f27-xuefuyiyuan",
+                "shenzhen-f27-nankeda",
+                "shenzhen-s129",
+                "shenzhen-f27-beizhanxiguangchang",
+                "shenzhen-f27-minfenglu",
+                "shenzhen-s74",
+                "shenzhen-f27-minkang",
+                "shenzhen-f27-minbao",
+                "shenzhen-f27-huacheng",
+                "shenzhen-f27-yinquan",
+                "shenzhen-f27-youfu",
+                "shenzhen-f27-songhe",
                 "shenzhen-f27-gangtouxi"
               ],
               "stationNames": {
                 "shenzhen-f27-songpingcun": "松坪村",
+                "shenzhen-future-xili-hsr": "西丽高铁站",
+                "shenzhen-f27-wenguang": "文光",
+                "shenzhen-s126": "西丽",
+                "shenzhen-f27-lishan": "丽山",
+                "shenzhen-f27-lishui": "丽水",
+                "shenzhen-f27-xuefuyiyuan": "学府医院",
+                "shenzhen-f27-nankeda": "南科大",
+                "shenzhen-s129": "长岭陂",
+                "shenzhen-f27-beizhanxiguangchang": "北站西广场",
+                "shenzhen-f27-minfenglu": "民丰路",
+                "shenzhen-s74": "白石龙",
+                "shenzhen-f27-minkang": "民康",
+                "shenzhen-f27-minbao": "民宝",
+                "shenzhen-f27-huacheng": "华城",
+                "shenzhen-f27-yinquan": "银泉",
+                "shenzhen-f27-youfu": "油福",
+                "shenzhen-f27-songhe": "松和",
                 "shenzhen-f27-gangtouxi": "岗头西"
               },
               "toleranceM": 900.0,
               "alignmentPrecision": "corridor_only",
-              "precisionNote": "27号线一期官方口径为松坪村—岗头西，约23.2公里。公开环评区间表未给出可逐站核对的站序，本篇按两端站区复现走廊（两站直线约14公里，官方里程含绕行），中途站不虚构坐标。",
-              "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-              "requireOpen": false
+              "precisionNote": "2024年第二次环评表2.1-1：松坪村—岗头西19站主段，工程长24.1公里。站序完整，站区与连接走廊近似；不含吉华医院—杨美北独立段。",
+              "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-s126": "shenzhen-s126__line27-27",
+                "shenzhen-s129": "shenzhen-s129__line27-27",
+                "shenzhen-s74": "shenzhen-s74__line27-27",
+                "shenzhen-future-xili-hsr": "shenzhen-future-xili-hsr__line27-27"
+              },
+              "officialLengthM": 24100,
+              "coverageGroupId": "shenzhen-line27-27"
+            },
+            {
+              "taskId": "project:sz-line27-phase1-build:separated",
+              "mapRouteId": "shenzhen-future-line27-separated",
+              "name": "27号线一期独立段",
+              "historicalLineId": "shenzhen-line27-27",
+              "color": "#9B8FB5",
+              "stationIds": [
+                "shenzhen-f25-jihuayiyuan",
+                "shenzhen-f27-yangmeibei"
+              ],
+              "stationNames": {
+                "shenzhen-f25-jihuayiyuan": "吉华医院",
+                "shenzhen-f27-yangmeibei": "杨美北"
+              },
+              "toleranceM": 900.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "2024年第二次环评表2.1-1续表：吉华医院—杨美北2站0.9公里独立段，单线往返；与主段之间不生成不存在的连接。",
+              "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "shenzhen-f25-jihuayiyuan": "shenzhen-f25-jihuayiyuan__line27-27"
+              },
+              "officialLengthM": 900,
+              "officialCenterSpanM": 705.605,
+              "coverageGroupId": "shenzhen-line27-separated"
             }
           ],
-          "requiredTransfers": []
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-sz27-xili-5",
+              "name": "西丽",
+              "complexId": "shenzhen-s126",
+              "stationInstanceIds": [
+                "shenzhen-s126__line5-5",
+                "shenzhen-s126__line27-27"
+              ],
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line27-27"
+              ],
+              "precision": "schematic",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+              "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+            },
+            {
+              "id": "future-transfer-sz27-xili-7",
+              "name": "西丽",
+              "complexId": "shenzhen-s126",
+              "stationInstanceIds": [
+                "shenzhen-s126__line7-8",
+                "shenzhen-s126__line27-27"
+              ],
+              "lineIds": [
+                "shenzhen-line7-8",
+                "shenzhen-line27-27"
+              ],
+              "precision": "schematic",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+              "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+            },
+            {
+              "id": "future-transfer-sz27-changlingpi-5",
+              "name": "长岭陂",
+              "complexId": "shenzhen-s129",
+              "stationInstanceIds": [
+                "shenzhen-s129__line5-5",
+                "shenzhen-s129__line27-27"
+              ],
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line27-27"
+              ],
+              "precision": "schematic",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+              "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+            },
+            {
+              "id": "future-transfer-sz27-baishilong-4",
+              "name": "白石龙",
+              "complexId": "shenzhen-s74",
+              "stationInstanceIds": [
+                "shenzhen-s74__line4",
+                "shenzhen-s74__line27-27"
+              ],
+              "lineIds": [
+                "shenzhen-line4",
+                "shenzhen-line27-27"
+              ],
+              "precision": "schematic",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+              "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+            }
+          ],
+          "scopeRevision": "2026.10.23.28",
+          "requiresScopeRecheck": true
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -29968,6 +30217,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.21.24",
-  "contentRevisionNote": "增加深圳27号线一期走廊复现章。"
+  "contentRevision": "2026.10.23.28",
+  "contentRevisionNote": "补齐27号线一期21站与两个独立区段。"
 }

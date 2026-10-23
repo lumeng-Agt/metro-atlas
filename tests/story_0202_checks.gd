@@ -25,7 +25,7 @@ func _run() -> void:
 			_check(not str(chapter.get("operationGuide", "")).is_empty(), "%s has a construction instruction" % str(chapter.get("id", "")))
 
 	var app = App.new(); root.add_child(app); await process_frame
-	app._new_game("shanghai", false); app._begin_chapter()
+	app._new_game("shanghai", false); await _reach_first_construction(app); app._begin_chapter()
 	var targets: Array = Story.targets(app.world, true)
 	for target in targets.slice(0, 3):
 		var station: Dictionary = {"id": "batch_%s" % str(target.id), "name": str(target.name), "historicalId": str(target.id), "latlng": target.latlng.duplicate(), "heading": float(target.get("referenceHeading", 90.0)) if float(target.get("referenceHeading", 90.0)) >= 0 else 90.0, "lengthM": 118.788, "widthM": 20.0, "depthM": -15.0, "vehicleId": "B-6", "existing": false, "routeIds": []}
@@ -64,11 +64,12 @@ func _run() -> void:
 	app.queue_free(); await process_frame
 
 	var result_app = App.new(); root.add_child(result_app); await process_frame
-	result_app._new_game("shanghai", false); result_app._begin_chapter()
+	result_app._new_game("shanghai", false); await _reach_first_construction(result_app); result_app._begin_chapter()
 	var candidate: Dictionary = result_app._assist_candidate()
 	_check(candidate.has("state"), "chapter completion fixture is available")
 	if candidate.has("state"):
-		for key in ["stations", "stationComplexes", "transferConnections", "trackNodes", "trackEdges"]: result_app.world[key] = candidate.state[key]
+		var applied:Dictionary=result_app._commit_assisted_construction(candidate,int(result_app.world.revision))
+		_check(bool(applied.get("ok",false)),"completion fixture uses formal assisted commit")
 		var evaluation: Dictionary = Story.evaluate(result_app.world)
 		_check(bool(evaluation.get("complete", false)), "Shanghai first chapter fixture passes its real checks")
 		var committed := Story.commit_chapter(result_app.world, int(result_app.world.revision))
@@ -92,7 +93,7 @@ func _run() -> void:
 			root.size=Vector2i(1600,980);result_app._refresh();result_app.show_left=true;result_app.show_right=false;result_app._layout();result_app.map_view.center_on(WorldData.city("shanghai").get("center",[31.23,121.47]),13)
 			var ready_deadline:=Time.get_ticks_msec()+25000
 			while (result_app.map_view._base_map_thread_busy or not result_app.map_view._base_map_pending_request.is_empty()) and Time.get_ticks_msec()<ready_deadline:await process_frame
-			result_app._mark_dirty();result_app._save()
+			result_app._mark_dirty();await result_app._save()
 			for _frame in range(8):await process_frame
 			await RenderingServer.frame_post_draw
 			var screenshot:=root.get_texture().get_image()
@@ -107,3 +108,14 @@ func _check_batch(app: Control) -> void:
 	_check(app.batch_track_segments.size() == 2, "batch tool previews each adjacent section")
 	_check(app.batch_track_segments.all(func(segment: Dictionary): return str(segment.get("issue", "")).is_empty()), "batch preview is valid before commit")
 	_check(app.map_view.draft_track_segments.size() == 2, "map displays all pending section geometries")
+
+func _reach_first_construction(app:Control) -> void:
+	while app.saves_in_flight>0:await process_frame
+	var count:=0
+	while bool(Story.chapter(app.world).get("eventOnly",false)) and count<20:
+		app._begin_chapter()
+		var confirmed:Dictionary=Story.commit_chapter(app.world,int(app.world.revision))
+		_check(bool(confirmed.get("ok",false)),"introductory event confirms through normal story command")
+		if not bool(confirmed.get("ok",false)):return
+		Story.next_chapter(app.world);count+=1
+	app._enter(app.world)

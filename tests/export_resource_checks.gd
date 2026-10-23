@@ -8,6 +8,7 @@ func _run() -> void:
 	if not FileAccess.file_exists("res://project.binary") or not SaveManager.using_explicit_data_dir():push_error("Exported --main-pack and isolated --data-dir required");quit(2);return
 	WorldData.load_assets()
 	if WorldData.SAVE_VERSION!=25 or str(ProjectSettings.get_setting("application/config/version",""))!="0.25.0":push_error("Wrong exported version");quit(1);return
+	if not FileAccess.file_exists(OfficialNetworkAudit.TARGET_PATH):push_error("Missing exported official target manifest");quit(1);return
 	ReferenceAlignment.load_data()
 	if ReferenceAlignment._data.get("alignments",[]).size()!=81:push_error("Missing exported reference corridors");quit(1);return
 	if WorldData.cities().size()!=5 or not CampaignSystem.validate_catalog(WorldData.cities()).is_empty():push_error("Missing exported city/story data");quit(1);return
@@ -23,23 +24,20 @@ func _run() -> void:
 			if not FileAccess.file_exists(path):push_error("Missing map chunk: "+path);quit(1);return
 			chunks+=1
 	var app=load("res://scripts/main.gd").new();root.add_child(app);await process_frame
-	app._new_game("shanghai",false);app._begin_chapter()
+	app._new_game("shanghai",false);await _reach_construction(app);app._begin_chapter()
 	var preview:Dictionary=app._assist_candidate()
 	if not str(preview.get("issue","")).is_empty():push_error(str(preview));quit(1);return
-	for key in ["stations","stationComplexes","transferConnections","trackNodes","trackEdges"]:app.world[key]=preview.state[key]
+	if not bool(app._commit_assisted_construction(preview,int(app.world.revision)).get("ok",false)):push_error("Exported assisted commit failed");quit(1);return
 	app._check();app._commit_chapter()
-	if str(app.world.storyState.stage)!="outcome" or not app._save():push_error("Exported story/save flow failed");quit(1);return
-	app._new_game("shenzhen",false);app._begin_chapter()
+	if str(app.world.storyState.stage)!="outcome" or not (await app._save()):push_error("Exported story/save flow failed");quit(1);return
+	app._new_game("shenzhen",false);await _reach_construction(app);app._begin_chapter()
 	var shenzhen_chapter:Dictionary=Story.chapter(app.world)
 	var versions:Array=shenzhen_chapter.get("story",{}).get("planVersions",[])
-	app.world.storyPlan.planIndex=versions.size()-1
-	app.world.storyState.stage="build"
+	while not Story.plan_is_final(app.world):
+		if not bool(app._commit_plan_revision(int(app.world.storyPlan.planIndex)+1,int(app.world.revision)).get("ok",false)):push_error("Exported plan revision failed");quit(1);return
 	var shenzhen_preview:Dictionary=app._assist_candidate()
 	if not shenzhen_preview.has("state"):push_error("Exported Shenzhen interchange preview failed: "+str(shenzhen_preview.get("issue","")));quit(1);return
-	var shenzhen_world:Dictionary=shenzhen_preview.state
-	# Keep the live dictionary attached to CommandHistory; the UI transaction
-	# must mutate that same session object, as it does during a real play session.
-	for key in shenzhen_world:app.world[key]=shenzhen_world[key]
+	if not bool(app._commit_assisted_construction(shenzhen_preview,int(app.world.revision)).get("ok",false)):push_error("Exported Shenzhen assisted commit failed");quit(1);return
 	var transfer:Dictionary=shenzhen_chapter.get("requiredTransfers",[])[0]
 	var shenzhen_groups:Array=Story.groups(app.world,true)
 	for group_index in range(shenzhen_groups.size()):
@@ -59,5 +57,13 @@ func _run() -> void:
 	for node in app.left_panel.find_children("*","Label",true,false):gap_labels.append(str(node.text))
 	if not gap_labels.any(func(value:String):return value.contains("当前章节目标覆盖")) or not gap_labels.any(func(value:String):return value.contains("历史里程碑区间")) or not app.year.text.contains("截止日后的项目篇尚未数字化"):
 		push_error("Exported history-gap page did not show the actual content coverage");quit(1);return
-	print("PASS exported resources: five cities, %d chunks, 81 corridors, font, Shanghai chapter, Shenzhen independent interchange bodies, Beijing built/trial/open phases, schema25 saves, and visible future-gap coverage" % chunks)
+	print("PASS exported resources: five cities, %d chunks, 81 corridors, font, Shanghai chapter, Shenzhen independent interchange bodies, schema25 saves, and visible future-gap coverage" % chunks)
 	app.queue_free();await process_frame;quit(0)
+
+func _reach_construction(app:Control) -> void:
+	while app.saves_in_flight>0:await process_frame
+	while bool(Story.chapter(app.world).get("eventOnly",false)):
+		app._begin_chapter()
+		if not bool(Story.commit_chapter(app.world,int(app.world.revision)).get("ok",false)):push_error("Exported introductory event failed");quit(1);return
+		Story.next_chapter(app.world)
+	app._enter(app.world)

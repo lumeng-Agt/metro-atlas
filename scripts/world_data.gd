@@ -49,8 +49,10 @@ static func new_world(city_id: String, mode: String = "campaign") -> Dictionary:
 		"history":{"undo":[], "redo":[]}, "source":{"attribution":"© OpenStreetMap contributors", "snapshot":_dataset.get("generatedAt", "unknown")}
 	}
 	if str(state.get("mode",""))=="campaign":
-		state.storyState["chapterIndex"]=CampaignSystemScript.first_chapter_index(city_id)
-		state.storyState["chapterId"]=CampaignSystemScript.first_chapter_id(city_id)
+		state.storyState["scopeContentRevision"]=CampaignSystemScript.content_revision()
+		state.storyState["chapterIndex"]=0
+		var chapters:Array=CampaignSystemScript.city_config(city_id).get("chapters",[])
+		state.storyState["chapterId"]=str(chapters[0].get("id","")) if not chapters.is_empty() else ""
 	return state
 
 static func _import_existing_network(state: Dictionary, c: Dictionary) -> void:

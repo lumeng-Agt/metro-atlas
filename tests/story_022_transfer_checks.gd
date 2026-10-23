@@ -65,6 +65,7 @@ func _run() -> void:
 	_check(bool(indexed_path.get("valid",false)) and bool(rebuilt_path.get("valid",false)),"indexed and one-shot path queries both find a connected segment")
 	_check(indexed_path.get("linkIds",[])==rebuilt_path.get("linkIds",[]) and is_equal_approx(float(indexed_path.get("distanceM",0.0)),float(rebuilt_path.get("distanceM",0.0))),"reusing a path index preserves route identity and length")
 	var world:Dictionary=WorldData.new_world("shenzhen","campaign")
+	world.storyState.chapterId="sz-initial-cross-2004" # Explicit 2004 body-selection unit fixture.
 	var chapter_targets:Array=Story.targets(world,true)
 	var huizhan_targets:Array=[]
 	for target in chapter_targets:

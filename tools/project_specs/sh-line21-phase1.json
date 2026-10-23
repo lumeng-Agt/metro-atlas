@@ -148,6 +148,61 @@
       "name": "东靖路",
       "id": "shanghai-s204",
       "existing": true
+    },
+    {
+      "name": "施新路",
+      "id": "shanghai-f21-shixinlu",
+      "latlng": [
+        31.1514548,
+        121.7535442
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "现代OSM在建站 node/12222691494；施新路与川南奉公路附近。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+      "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html"
+    },
+    {
+      "name": "闻居路",
+      "id": "shanghai-f21-wenjulu",
+      "latlng": [
+        31.1325925,
+        121.7596038
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "现代OSM在建站 node/12222691495；闻居路与川南奉公路附近。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+      "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html"
+    },
+    {
+      "name": "金闻路",
+      "id": "shanghai-f21-jinwenlu",
+      "latlng": [
+        31.1195899,
+        121.7690328
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "现代OSM在建站 node/12222691496；金闻路走廊。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+      "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html"
+    },
+    {
+      "name": "上海东站",
+      "id": "shanghai-f21-shanghaidong",
+      "latlng": [
+        31.113,
+        121.79
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "官方东方枢纽上海东站范围，站区近似；具体轨交站心位置尚未完成地理复核。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+      "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html"
+    },
+    {
+      "name": "T3航站楼",
+      "id": "shanghai-f21-pudongt3",
+      "latlng": [
+        31.108,
+        121.818
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "官方浦东机场T3航站楼预留枢纽范围，站区近似；不作为现有T1/T2站体。东延伸工程站序依据官方施工与规划公告；区间为近似参考。",
+      "source": "https://www.shanghai.gov.cn/nw4411/20260806/93eecb4ca5f34240aa5b95d03b97bf49.html"
     }
   ],
   "lineGroups": [
@@ -181,18 +236,40 @@
       "officialLengthM": 27964,
       "alignmentPrecision": "corridor_only",
       "precisionNote": "18座车站及站序取自《上海市轨道交通21号线一期工程初步设计批复》（沪建综规〔2021〕763号）：六陈路—东靖路，全长27.964公里。迪士尼、学林路、广兰路、浦东足球场、金桥、杨高北路、东靖路复用既有站区；其余按批复站址描述与现代道路几何定位。张江、康南路、军民路依赖规划道路，属走廊级参考。21号线东延伸未纳入本篇。金桥站与既有14号线金桥站同址，批复未明确换乘关系，本篇不建立换乘联系。",
-      "stationOrderSource": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf"
+      "stationOrderSource": "https://www.shanghai.gov.cn/cmsres/d1/d1e73f2d4b1f41a5af55ccefd85b322e/73f39bc5de0dd1695dd7d5d1378a430e.pdf",
+      "stationInstances": {
+        "shanghai-s254": "shanghai-s254__line21-21",
+        "shanghai-s162": "shanghai-s162__line21-21",
+        "shanghai-s296": "shanghai-s296__line21-21",
+        "shanghai-s388": "shanghai-s388__line21-21",
+        "shanghai-s156": "shanghai-s156__line21-21",
+        "shanghai-s251": "shanghai-s251__line21-21",
+        "shanghai-s204": "shanghai-s204__line21-21"
+      },
+      "coverageGroupId": "shanghai-line21-21"
+    },
+    {
+      "key": "east",
+      "mapRouteId": "shanghai-future-line21-east",
+      "name": "21号线一期东延伸",
+      "historicalLineId": "shanghai-line21-21",
+      "coverageGroupId": "shanghai-line21-east",
+      "color": "#9E8FC0",
+      "stationIds": [
+        "shanghai-f21-pudongt3",
+        "shanghai-f21-shanghaidong",
+        "shanghai-f21-jinwenlu",
+        "shanghai-f21-wenjulu",
+        "shanghai-f21-shixinlu",
+        "shanghai-f21-liuchenlu"
+      ],
+      "toleranceM": 700,
+      "alignmentPrecision": "corridor_only",
+      "officialLengthM": 14080,
+      "precisionNote": "东延伸新增施新路、闻居路、金闻路、上海东站、T3航站楼5站，复用一期六陈路接口。采用T3至六陈路顺序与一期衔接；前三站采用现代OSM在建站点，枢纽末两站为站区近似，不能宣称测绘精度。建设完成不计作历史开通，T3不提前开放。",
+      "stationOrderSource": "https://news.xinmin.cn/2023/03/21/32343762.html"
     }
   ],
-  "stationInstances": {
-    "shanghai-s254": "shanghai-s254__line21-21",
-    "shanghai-s162": "shanghai-s162__line21-21",
-    "shanghai-s296": "shanghai-s296__line21-21",
-    "shanghai-s388": "shanghai-s388__line21-21",
-    "shanghai-s156": "shanghai-s156__line21-21",
-    "shanghai-s251": "shanghai-s251__line21-21",
-    "shanghai-s204": "shanghai-s204__line21-21"
-  },
   "transfers": [
     {
       "id": "future-transfer-sh21-disney-11",
@@ -281,7 +358,7 @@
   ],
   "plan": {
     "id": "sh-line21-phase1-build",
-    "title": "上海21号线一期建设篇",
+    "title": "上海21号线一期及东延伸建设篇",
     "date": "2026-10-01",
     "status": "under_construction",
     "sourceType": "municipal_initial_design_approval",
@@ -292,8 +369,9 @@
     "sourceTitle": "上海市住房和城乡建设管理委员会关于上海市轨道交通21号线一期工程初步设计的批复",
     "sourceCheckedAt": "2026-10-21",
     "sourcePublicationDate": "2021-12-01",
-    "description": "按初步设计批复复现21号线一期：六陈路至东靖路，18座车站、全长27.964公里。迪士尼、学林路、广兰路、浦东足球场、金桥、杨高北路、东靖路与既有线路换乘。项目在截止日仍在建，完成本篇只表示规划建设完成，不计作开通；21号线东延伸另期制作。",
-    "contentRevision": "2026.10.21.5",
-    "contentRevisionNote": "增加上海21号线一期建设章。"
+    "description": "一期18站与东延伸新增5站分为两个建设任务，复用六陈路站并形成连续线路。站名采用工程暂名；截止日全部作为在建规划，不计作实际开通。上海东站与T3站区为近似参考，须继续完成地理核对。",
+    "contentRevision": "2026.10.22.25",
+    "contentRevisionNote": "补入东延伸5站与一期接头，分项确认，不虚构开通。",
+    "requiresScopeRecheck": true
   }
 }

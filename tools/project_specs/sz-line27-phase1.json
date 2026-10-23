@@ -8,43 +8,338 @@
       "name": "松坪村",
       "id": "shenzhen-f27-songpingcun",
       "latlng": [
-        22.561102,
-        113.949788
+        22.558948,
+        113.947035
       ],
       "coordinateSource": "official_site_description",
-      "coordinateNote": "松坪村片区位置作站区参考，属走廊级参考。"
+      "coordinateNote": "松坪山路与朗山路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "西丽高铁站",
+      "id": "shenzhen-future-xili-hsr",
+      "latlng": [
+        22.5698711,
+        113.9401782
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "西丽综合交通枢纽，现代OSM way/1460974431轮廓中心；枢纽级近似。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "文光",
+      "id": "shenzhen-f27-wenguang",
+      "latlng": [
+        22.5751998,
+        113.9433354
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "打石一路与石鼓路交叉口东北侧。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "西丽",
+      "id": "shenzhen-s126",
+      "existing": true
+    },
+    {
+      "name": "丽山",
+      "id": "shenzhen-f27-lishan",
+      "latlng": [
+        22.5924589,
+        113.9601219
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "学苑大道与丽山路交叉口东侧；现代OSM way/1453655466在建站轮廓中心。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "丽水",
+      "id": "shenzhen-f27-lishui",
+      "latlng": [
+        22.592856,
+        113.977058
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "学苑大道与丽水路交叉口东侧。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "学府医院",
+      "id": "shenzhen-f27-xuefuyiyuan",
+      "latlng": [
+        22.595138,
+        113.986947
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "学苑大道与笃学路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "南科大",
+      "id": "shenzhen-f27-nankeda",
+      "latlng": [
+        22.596303,
+        113.996398
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "学苑大道与麦地巷路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "长岭陂",
+      "id": "shenzhen-s129",
+      "existing": true
+    },
+    {
+      "name": "北站西广场",
+      "id": "shenzhen-f27-beizhanxiguangchang",
+      "latlng": [
+        22.6126,
+        114.0217
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "致远中路、深圳北站西广场公园；按站区近似定位。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "民丰路",
+      "id": "shenzhen-f27-minfenglu",
+      "latlng": [
+        22.6039275,
+        114.0244185
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "玉龙路与民丰路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "白石龙",
+      "id": "shenzhen-s74",
+      "existing": true
+    },
+    {
+      "name": "民康",
+      "id": "shenzhen-f27-minkang",
+      "latlng": [
+        22.614956,
+        114.032443
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "龙华大道与民康路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "民宝",
+      "id": "shenzhen-f27-minbao",
+      "latlng": [
+        22.623372,
+        114.027869
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "龙华大道与民宝路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "华城",
+      "id": "shenzhen-f27-huacheng",
+      "latlng": [
+        22.630715,
+        114.025455
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "龙华大道与中梅路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "银泉",
+      "id": "shenzhen-f27-yinquan",
+      "latlng": [
+        22.637,
+        114.0247
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "龙华大道与布龙路交叉口北侧。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "油福",
+      "id": "shenzhen-f27-youfu",
+      "latlng": [
+        22.6450049,
+        114.027607
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "龙华大道与工业路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "松和",
+      "id": "shenzhen-f27-songhe",
+      "latlng": [
+        22.65609,
+        114.040552
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "民清路与清泉路交叉口。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
     },
     {
       "name": "岗头西",
       "id": "shenzhen-f27-gangtouxi",
       "latlng": [
-        22.661204,
-        114.055801
+        22.6611302,
+        114.0558088
       ],
       "coordinateSource": "official_site_description",
-      "coordinateNote": "岗头西公交站位置（冲之大道）作站区参考。"
+      "coordinateNote": "张衡路与冲之大道交叉口偏西。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
+    },
+    {
+      "name": "吉华医院",
+      "id": "shenzhen-f25-jihuayiyuan",
+      "existing": true
+    },
+    {
+      "name": "杨美北",
+      "id": "shenzhen-f27-yangmeibei",
+      "latlng": [
+        22.638,
+        114.0785
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环城路与规划坂田三号路交叉站区，距吉华医院约0.7公里；站区近似，不是测绘中心线。站址依据环评印刷页49—52，路口取现代离线OSM地理参考；不代表隧道测绘坐标。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf"
     }
   ],
   "lineGroups": [
     {
       "key": "phase1",
       "mapRouteId": "shenzhen-future-line27",
-      "name": "27号线一期（走廊复现）",
+      "name": "27号线一期主段",
       "historicalLineId": "shenzhen-line27-27",
       "color": "#9B8FB5",
       "stationIds": [
         "shenzhen-f27-songpingcun",
+        "shenzhen-future-xili-hsr",
+        "shenzhen-f27-wenguang",
+        "shenzhen-s126",
+        "shenzhen-f27-lishan",
+        "shenzhen-f27-lishui",
+        "shenzhen-f27-xuefuyiyuan",
+        "shenzhen-f27-nankeda",
+        "shenzhen-s129",
+        "shenzhen-f27-beizhanxiguangchang",
+        "shenzhen-f27-minfenglu",
+        "shenzhen-s74",
+        "shenzhen-f27-minkang",
+        "shenzhen-f27-minbao",
+        "shenzhen-f27-huacheng",
+        "shenzhen-f27-yinquan",
+        "shenzhen-f27-youfu",
+        "shenzhen-f27-songhe",
         "shenzhen-f27-gangtouxi"
       ],
       "toleranceM": 900,
-      "maxSpacingM": 18000,
+      "maxSpacingM": 4000,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "27号线一期官方口径为松坪村—岗头西，约23.2公里。公开环评区间表未给出可逐站核对的站序，本篇按两端站区复现走廊（两站直线约14公里，官方里程含绕行），中途站不虚构坐标。",
-      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+      "precisionNote": "2024年第二次环评表2.1-1：松坪村—岗头西19站主段，工程长24.1公里。站序完整，站区与连接走廊近似；不含吉华医院—杨美北独立段。",
+      "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "coverageGroupId": "shenzhen-line27-27",
+      "officialLengthM": 24100,
+      "stationInstances": {
+        "shenzhen-s126": "shenzhen-s126__line27-27",
+        "shenzhen-s129": "shenzhen-s129__line27-27",
+        "shenzhen-s74": "shenzhen-s74__line27-27",
+        "shenzhen-future-xili-hsr": "shenzhen-future-xili-hsr__line27-27"
+      }
+    },
+    {
+      "key": "separated",
+      "mapRouteId": "shenzhen-future-line27-separated",
+      "name": "27号线一期独立段",
+      "historicalLineId": "shenzhen-line27-27",
+      "color": "#9B8FB5",
+      "stationIds": [
+        "shenzhen-f25-jihuayiyuan",
+        "shenzhen-f27-yangmeibei"
+      ],
+      "toleranceM": 900,
+      "maxSpacingM": 4000,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "2024年第二次环评表2.1-1续表：吉华医院—杨美北2站0.9公里独立段，单线往返；与主段之间不生成不存在的连接。",
+      "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "coverageGroupId": "shenzhen-line27-separated",
+      "officialLengthM": 900,
+      "officialCenterSpanM": 705.605,
+      "stationInstances": {
+        "shenzhen-f25-jihuayiyuan": "shenzhen-f25-jihuayiyuan__line27-27"
+      }
     }
   ],
   "stationInstances": {},
-  "transfers": [],
+  "transfers": [
+    {
+      "id": "future-transfer-sz27-xili-5",
+      "name": "西丽",
+      "complexId": "shenzhen-s126",
+      "stationInstanceIds": [
+        "shenzhen-s126__line5-5",
+        "shenzhen-s126__line27-27"
+      ],
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line27-27"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+    },
+    {
+      "id": "future-transfer-sz27-xili-7",
+      "name": "西丽",
+      "complexId": "shenzhen-s126",
+      "stationInstanceIds": [
+        "shenzhen-s126__line7-8",
+        "shenzhen-s126__line27-27"
+      ],
+      "lineIds": [
+        "shenzhen-line7-8",
+        "shenzhen-line27-27"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+    },
+    {
+      "id": "future-transfer-sz27-changlingpi-5",
+      "name": "长岭陂",
+      "complexId": "shenzhen-s129",
+      "stationInstanceIds": [
+        "shenzhen-s129__line5-5",
+        "shenzhen-s129__line27-27"
+      ],
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line27-27"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+    },
+    {
+      "id": "future-transfer-sz27-baishilong-4",
+      "name": "白石龙",
+      "complexId": "shenzhen-s74",
+      "stationInstanceIds": [
+        "shenzhen-s74__line4",
+        "shenzhen-s74__line27-27"
+      ],
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line27-27"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+    }
+  ],
   "plan": {
     "id": "sz-line27-phase1-build",
     "title": "深圳27号线一期建设篇",
@@ -54,12 +349,13 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-09-05",
-    "description": "按五期建设规划环评官方口径复现27号线一期：松坪村—岗头西，约23.2公里。公开资料未给出可逐站核对的站序，本篇按两端站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.24",
-    "contentRevisionNote": "增加深圳27号线一期走廊复现章。"
+    "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+    "sourceTitle": "深圳市城市轨道交通27号线一期工程环境影响报告书（第二次征求意见稿）",
+    "sourceCheckedAt": "2026-10-22",
+    "sourcePublicationDate": "2024-09-25",
+    "description": "复现2024年环评完整范围：松坪村—岗头西19站主段与吉华医院—杨美北2站独立段，共21站。完整站序和区段关系采用官方资料，地理连接为近似走廊。两段不虚构贯通；完成表示规划建设完成。",
+    "contentRevision": "2026.10.23.28",
+    "contentRevisionNote": "补齐27号线一期21站与两个独立区段。",
+    "requiresScopeRecheck": true
   }
 }

@@ -14,8 +14,11 @@ static func active(world: Dictionary) -> bool:
 	return bool(state.get("tutorialEnabled", false)) and str(state.get("tutorialStatus", "active")) == "active" and str(state.get("stage", "")) != "outcome" and is_first(world)
 
 static func configure(world: Dictionary, enabled: bool) -> void:
-	world.storyState["tutorialEnabled"] = enabled and is_first(world)
-	world.storyState["tutorialStatus"] = "active" if enabled and is_first(world) else "skipped"
+	# Introductory history events may precede the first construction chapter.
+	# Keep the requested lesson pending; active() still focuses real controls
+	# only in that first construction chapter.
+	world.storyState["tutorialEnabled"] = enabled
+	world.storyState["tutorialStatus"] = "active" if enabled else "skipped"
 	world.storyState["learnedTools"] = not enabled
 
 static func finish(world: Dictionary) -> bool:

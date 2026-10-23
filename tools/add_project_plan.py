@@ -119,6 +119,7 @@ def build_station_catalog(city: dict, spec: dict) -> tuple[dict[str, dict], dict
                 "coordinateSource": coordinate_source,
                 "coordinateNote": str(entry.get("coordinateNote", "")),
                 "source": str(entry.get("source", plan_source)),
+                "coordinateAccuracyM": entry.get("coordinateAccuracyM"),
             }
             if not record["coordinateNote"]:
                 fail(f"station {name}: new station needs a coordinateNote")
@@ -213,6 +214,9 @@ def main() -> int:
         }
         if instances:
             group["stationInstances"] = instances
+        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId'):
+            if field in group_spec:
+                group[field] = group_spec[field]
         if float(group["toleranceM"]) <= 0:
             fail(f"group {key}: toleranceM must be positive")
         if not str(group["mapRouteId"]).startswith(city_id + "-future-"):
@@ -275,6 +279,8 @@ def main() -> int:
         "sourcePublicationDate": plan_spec["sourcePublicationDate"],
         "lineGroups": groups,
         "requiredTransfers": transfers,
+        "scopeRevision": str(plan_spec.get("contentRevision", "")),
+        "requiresScopeRecheck": bool(plan_spec.get("requiresScopeRecheck", False)),
     }
     if plan["sourcePublicationDate"] is None:
         plan["publicationDateNote"] = str(plan_spec["publicationDateNote"])
@@ -318,6 +324,8 @@ def main() -> int:
             "source": record["source"],
             "sourceCheckedAt": str(plan_spec["sourceCheckedAt"]),
         }
+        if record.get("coordinateAccuracyM") is not None:
+            value["coordinateAccuracyM"] = record["coordinateAccuracyM"]
         if station_id in by_id:
             by_id[station_id].update(value)
         else:

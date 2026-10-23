@@ -117,8 +117,14 @@ def main() -> None:
     print(f"PASS: project states {counts}")
     if pending:
         print("pending projects: " + ", ".join(pending))
-    if args.require_complete and pending:
-        raise SystemExit(f"FAIL: {len(pending)} project(s) still pending")
+    if args.require_complete:
+        from official_coverage import audit
+        coverage = audit()
+        incomplete = [f"{city}: {error}" for city, row in coverage['cities'].items() if not args.city or city == args.city for error in row['errors']]
+        if pending or incomplete:
+            for error in incomplete:
+                print('FAIL: ' + error)
+            raise SystemExit(f'FAIL: {len(pending)} pending classifications; {len(incomplete)} independent coverage failures')
     print("PASS: project plan coverage")
 
 

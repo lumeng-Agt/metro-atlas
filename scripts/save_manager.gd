@@ -247,18 +247,58 @@ static func load_file(path: String, confirm_recovery: bool = false) -> Dictionar
 		var preserved:=_preserve_original(str(raw.text),"v%d" % int(raw.data.get("schemaVersion",0)))
 		if not bool(preserved.ok):return preserved
 		var migrated:=migrate(raw.data,str(raw.text))
+		_recheck_expanded_projects(migrated)
+		if str(migrated.get("storyState",{}).get("phase","")) in ["history_gap","history_content_gap","future_gap"]:
+			_resume_expanded_history(migrated.storyState,str(migrated.get("cityId","")),str(migrated.get("mode","")))
 		problem=validate(migrated)
 		return {"ok":problem.is_empty(),"error":problem,"world":migrated,"migrated":true}
 	# Content catalogs evolve independently of the save schema. Old saves with
 	# a persisted gap phase must resume into the first new dated chapter even
 	# when their data format is already current.
 	var loaded_world:Dictionary=raw.data.duplicate(true)
+	var content_recheck:=_recheck_expanded_projects(loaded_world)
+	if bool(content_recheck.get("changed",false)):
+		var preserved:=_preserve_original(str(raw.text),"content_upgrade")
+		if not bool(preserved.get("ok",false)):return preserved
 	var resumed_phase:=str(loaded_world.get("storyState",{}).get("phase",""))
 	if resumed_phase in ["history_gap","history_content_gap","future_gap"]:
 		var loaded_state:Dictionary=loaded_world.storyState
 		_resume_expanded_history(loaded_state,str(loaded_world.get("cityId","")),str(loaded_world.get("mode","")))
 		loaded_world["storyState"]=loaded_state
 	return {"ok":true,"world":loaded_world}
+
+static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
+	if str(world.get("mode",""))!="campaign":return {"changed":false}
+	var state:Dictionary=world.get("storyState",{})
+	if str(state.get("scopeContentRevision",""))==CampaignSystem.content_revision():return {"changed":false}
+	var story=load("res://scripts/story_session.gd")
+	var changed:=false
+	var completed:Array=state.get("completedChapterIds",[])
+	var progress:Dictionary=state.get("chapterTaskProgress",{})
+	for plan in CampaignSystem.city_config(str(world.get("cityId",""))).get("futurePlans",[]):
+		var id:=str(plan.get("id",""))
+		if not completed.has(id) or not bool(plan.get("requiresScopeRecheck",false)):continue
+		var old:Dictionary=progress.get(id,{})
+		if str(old.get("scopeRevision",""))==str(plan.get("scopeRevision","")):continue
+		var probe:Dictionary=world.duplicate(false)
+		probe["storyState"]=state.duplicate(true)
+		probe.storyState["phase"]="future";probe.storyState["chapterId"]=id;probe.storyState["stage"]="build"
+		var checked:Dictionary=story.evaluate(probe)
+		var official_errors:=OfficialNetworkAudit.current_project_errors(probe,plan.get("projectIds",[]))
+		if bool(checked.get("complete",false)) and official_errors.is_empty():
+			old["scopeRevision"]=str(plan.get("scopeRevision",""));progress[id]=old
+		else:
+			var archived:Dictionary=state.get("legacyTaskProgress",{})
+			archived[id]=old.duplicate(true);state["legacyTaskProgress"]=archived
+			completed.erase(id)
+			progress[id]={"status":"needs_scope_recheck","tasks":{},"previousScopeRetained":true}
+			state["phase"]="future_gap";state["chapterId"]="";state["stage"]="intro"
+		changed=true
+	state["scopeContentRevision"]=CampaignSystem.content_revision()
+	state["completedChapterIds"]=completed;state["chapterTaskProgress"]=progress
+	world["storyState"]=state
+	if changed:world["contentUpgradeNotice"]="项目范围已补充。原路网与历史里程碑保留；只重新检查新增站点、区段和闭环。"
+	return {"changed":changed}
 
 static func _preserve_original(text: String, prefix: String) -> Dictionary:
 	var path:=root_path().path_join("originals").path_join("%s_%s.json" % [prefix,text.sha256_text()])

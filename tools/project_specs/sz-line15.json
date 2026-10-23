@@ -5,6 +5,17 @@
   ],
   "stations": [
     {
+      "name": "听海路",
+      "id": "shenzhen-f15-tinghailu",
+      "latlng": [
+        22.5231,
+        113.8806
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评听海路站区、妈湾四路走廊近似；规划道路未完整入本地底图；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
       "name": "前保",
       "id": "shenzhen-f15-qianbao",
       "latlng": [
@@ -12,7 +23,19 @@
         113.885
       ],
       "coordinateSource": "official_site_description",
-      "coordinateNote": "前海保税区/铲湾路北侧站区参考；15号线环线起点。"
+      "coordinateNote": "原参考站区保留；环评妈湾四路走廊近似，未视作测绘中心；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "西部物流",
+      "id": "shenzhen-f15-xibuwuliu",
+      "latlng": [
+        22.5051,
+        113.879
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评通港南一街、妈湾三路东北侧物流用地站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
     },
     {
       "name": "铁路公园",
@@ -20,14 +43,107 @@
       "existing": true
     },
     {
+      "name": "月亮湾公园",
+      "id": "shenzhen-f15-yueliangwangongyuan",
+      "latlng": [
+        22.5081,
+        113.8935
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评前海路、规划港湾路附近大南山北侧站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
       "name": "四海",
       "id": "shenzhen-s350",
       "existing": true
     },
     {
-      "name": "深大南",
+      "name": "东滨路",
+      "id": "shenzhen-f15-dongbinlu",
+      "latlng": [
+        22.507841,
+        113.927181
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "后海大道与东滨路路口北侧；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "创业路",
+      "id": "shenzhen-f15-chuangyelu",
+      "latlng": [
+        22.517863,
+        113.92774
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "后海大道与创业路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "学府路",
       "id": "shenzhen-s231",
       "existing": true
+    },
+    {
+      "name": "深大北",
+      "id": "shenzhen-f15-shendabei",
+      "latlng": [
+        22.5442694,
+        113.9308089
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "深南大道与科技中一路北侧站区；道路断点附近近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "玉泉路",
+      "id": "shenzhen-f15-yuquanlu",
+      "latlng": [
+        22.552592,
+        113.9320065
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "科技中一路与高新中一道交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "朗山路",
+      "id": "shenzhen-f15-langshanlu",
+      "latlng": [
+        22.559843,
+        113.934286
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "科技北二路与朗山路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "西丽火车站",
+      "id": "shenzhen-future-xili-hsr",
+      "existing": true
+    },
+    {
+      "name": "打石一路",
+      "id": "shenzhen-f15-dashiyilu",
+      "latlng": [
+        22.5753992,
+        113.9340412
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "打石一路与创科路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "同乐关",
+      "id": "shenzhen-f15-tongleguan",
+      "latlng": [
+        22.5750235,
+        113.9174168
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "隆昌路与京港澳高速交会南侧原同乐检查站用地；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
     },
     {
       "name": "洪浪北",
@@ -35,31 +151,125 @@
       "existing": true
     },
     {
+      "name": "宝安公园",
+      "id": "shenzhen-f15-baoangongyuan",
+      "latlng": [
+        22.5846131,
+        113.898812
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "新安三路与上川路交叉口；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "流塘",
+      "id": "shenzhen-s343",
+      "existing": true
+    },
+    {
+      "name": "西乡公园",
+      "id": "shenzhen-f15-xixianggongyuan",
+      "latlng": [
+        22.5817333,
+        113.8780873
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "广深公路与流塘路交叉口北侧；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
       "name": "坪洲",
       "id": "shenzhen-s26",
       "existing": true
+    },
+    {
+      "name": "海城",
+      "id": "shenzhen-f15-haicheng",
+      "latlng": [
+        22.5644896,
+        113.859583
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "海城路与兴业路交叉口南侧；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "铲湾北",
+      "id": "shenzhen-f15-chanwanbei",
+      "latlng": [
+        22.553,
+        113.8565
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评大铲湾辅八路与辅三路规划站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "铲湾中",
+      "id": "shenzhen-f15-chanwanzhong",
+      "latlng": [
+        22.5414,
+        113.8573
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评大铲湾辅八路走廊中段站区近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "name": "铲湾",
+      "id": "shenzhen-f15-chanwan",
+      "latlng": [
+        22.5316,
+        113.8644
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "环评大铲湾东南侧站区、接跨海段，规划道路位置近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
     }
   ],
   "lineGroups": [
     {
-      "key": "ring-west",
+      "key": "ring",
       "mapRouteId": "shenzhen-future-line15",
-      "name": "15号线（环线开口复现）",
+      "name": "15号线（24站环线，环评暂名）",
       "historicalLineId": "shenzhen-line15-15",
       "color": "#B58B5A",
       "stationIds": [
+        "shenzhen-f15-tinghailu",
         "shenzhen-f15-qianbao",
+        "shenzhen-f15-xibuwuliu",
         "shenzhen-s114",
+        "shenzhen-f15-yueliangwangongyuan",
         "shenzhen-s350",
+        "shenzhen-f15-dongbinlu",
+        "shenzhen-f15-chuangyelu",
         "shenzhen-s231",
+        "shenzhen-f15-shendabei",
+        "shenzhen-f15-yuquanlu",
+        "shenzhen-f15-langshanlu",
+        "shenzhen-future-xili-hsr",
+        "shenzhen-f15-dashiyilu",
+        "shenzhen-f15-tongleguan",
         "shenzhen-s123",
-        "shenzhen-s26"
+        "shenzhen-f15-baoangongyuan",
+        "shenzhen-s343",
+        "shenzhen-f15-xixianggongyuan",
+        "shenzhen-s26",
+        "shenzhen-f15-haicheng",
+        "shenzhen-f15-chanwanbei",
+        "shenzhen-f15-chanwanzhong",
+        "shenzhen-f15-chanwan"
       ],
       "toleranceM": 800,
-      "maxSpacingM": 7000,
+      "maxSpacingM": 4000,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "15号线为环线，官方口径前保—前保、约32.2公里、24座车站。公开资料未给出可逐站核对的完整站序，本篇按既有换乘站（铁路公园/5、四海/12、深大南/9、洪浪北/5、坪洲/1）与前保站区复现南—西半环开口链，东半环与环线闭合段未建模，不虚构中途站坐标。",
-      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+      "precisionNote": "2023环评表2.1-3、2.1-4完整24站闭环；采用该版暂名，学府路对应既有深大南站区，西丽火车站对应西丽高铁枢纽。站位及区间为近似，部分规划道路未完成地理复核，不能宣称施工线位一致。",
+      "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+      "loop": true,
+      "officialLengthM": 32210,
+      "stationNames": {
+        "shenzhen-future-xili-hsr": "西丽火车站"
+      }
     }
   ],
   "stationInstances": {
@@ -67,7 +277,8 @@
     "shenzhen-s350": "shenzhen-s350__line15-15",
     "shenzhen-s231": "shenzhen-s231__line15-15",
     "shenzhen-s123": "shenzhen-s123__line15-15",
-    "shenzhen-s26": "shenzhen-s26__line15-15"
+    "shenzhen-s26": "shenzhen-s26__line15-15",
+    "shenzhen-s343": "shenzhen-s343__line15-15"
   },
   "transfers": [
     {
@@ -82,7 +293,8 @@
         "shenzhen-line5-5",
         "shenzhen-line15-15"
       ],
-      "sourceNote": "铁路公园为5号线既有站，15号线在此换乘。"
+      "sourceNote": "铁路公园为5号线既有站，15号线在此换乘。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
     },
     {
       "id": "future-transfer-sz15-sihai-12",
@@ -96,7 +308,8 @@
         "shenzhen-line12-13",
         "shenzhen-line15-15"
       ],
-      "sourceNote": "四海为12号线既有站，15号线在此换乘。"
+      "sourceNote": "四海为12号线既有站，15号线在此换乘。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
     },
     {
       "id": "future-transfer-sz15-shendanan-9",
@@ -110,7 +323,8 @@
         "shenzhen-line9-10",
         "shenzhen-line15-15"
       ],
-      "sourceNote": "深大南为9号线既有站，15号线在此换乘。"
+      "sourceNote": "深大南为9号线既有站，15号线在此换乘。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
     },
     {
       "id": "future-transfer-sz15-honglangbei-5",
@@ -124,7 +338,8 @@
         "shenzhen-line5-5",
         "shenzhen-line15-15"
       ],
-      "sourceNote": "洪浪北为5号线既有站，15号线在此换乘。"
+      "sourceNote": "洪浪北为5号线既有站，15号线在此换乘。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
     },
     {
       "id": "future-transfer-sz15-pingzhou-1",
@@ -138,7 +353,23 @@
         "shenzhen-line1",
         "shenzhen-line15-15"
       ],
-      "sourceNote": "坪洲为1号线既有站，15号线在此换乘。"
+      "sourceNote": "坪洲为1号线既有站，15号线在此换乘。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf"
+    },
+    {
+      "id": "future-transfer-sz15-liutang-12",
+      "name": "流塘",
+      "complexId": "shenzhen-s343",
+      "stationInstanceIds": [
+        "shenzhen-s343__line12-13",
+        "shenzhen-s343__line15-15"
+      ],
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line15-15"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+      "sourceNote": "环评表2.1-3列明与12号线换乘。"
     }
   ],
   "plan": {
@@ -150,12 +381,13 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-09-05",
-    "description": "15号线为环线（官方口径前保—前保，约32.2公里）。公开资料未给出可逐站核对的完整站序，本篇按5座既有换乘站与前保站区复现南—西半环开口链，东半环与闭合段未建模。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.22",
-    "contentRevisionNote": "增加深圳15号线开口环复现章。"
+    "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
+    "sourceTitle": "深圳市城市轨道交通15号线工程环境影响报告书（征求意见稿）",
+    "sourceCheckedAt": "2026-10-22",
+    "sourcePublicationDate": "2023-07-12",
+    "description": "复现2023环评的完整24站闭环，站名为该版暂名，轨道包含铲湾至听海路闭合段。站位与区间为近似参考，部分规划道路位置仍须地理复核；不宣称地下测绘精度。完成表示规划建设完成。",
+    "contentRevision": "2026.10.23.28",
+    "contentRevisionNote": "补齐24站、闭合区间及流塘换乘；地理精度单独记录。",
+    "requiresScopeRecheck": true
   }
 }

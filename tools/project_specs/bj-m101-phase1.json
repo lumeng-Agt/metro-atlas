@@ -8,62 +8,200 @@
       "name": "商务园",
       "id": "beijing-f101-shangwuyuan",
       "latlng": [
-        39.925,
-        116.635
+        39.9456281,
+        116.6442493
       ],
       "coordinateSource": "official_site_description",
-      "coordinateNote": "通州商务园北部、通州西站东北方向走廊，按环评起点描述定位，属走廊级参考。"
+      "coordinateNote": "商通大道与榆东二街交叉口；离线OSM道路交点。",
+      "coordinateAccuracyM": 100,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106893.html"
     },
     {
       "name": "通州西站",
       "id": "beijing-f101-tongzhouxi",
       "latlng": [
-        39.903713,
-        116.622286
+        39.938,
+        116.645
       ],
       "coordinateSource": "official_site_description",
-      "coordinateNote": "通州西站（国铁）站区，环评明确线路服务该枢纽。"
+      "coordinateNote": "新站位于通州商务园商通大道下方，临时用地在富河大街与商通大道路口东侧。现路网未完整标出富河大街，采用商通大道相邻规划站区近似位置，非既有国铁通州西站；站中心仍需地理对照。",
+      "coordinateAccuracyM": 350,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081815.html"
+    },
+    {
+      "name": "通顺路",
+      "id": "beijing-f101-tongshunlu",
+      "latlng": [
+        39.928784,
+        116.652285
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "通顺路与滨榆东路交叉口西北侧；离线OSM交点，站区示意。",
+      "coordinateAccuracyM": 150,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081791.html"
+    },
+    {
+      "name": "通州会议中心",
+      "id": "beijing-f101-huiyizhongxin",
+      "latlng": [
+        39.9309559,
+        116.6676756
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "潞苑五街与陈列馆路交叉口；离线OSM道路交点。",
+      "coordinateAccuracyM": 100,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250626_4127218.html"
+    },
+    {
+      "name": "龙旺庄",
+      "id": "beijing-f101-longwangzhuang",
+      "latlng": [
+        39.929206,
+        116.678989
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "京榆旧线与潞苑东路交叉口；离线OSM道路交点。",
+      "coordinateAccuracyM": 100,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081829.html"
+    },
+    {
+      "name": "通胡大街",
+      "id": "beijing-f101-tonghudajie",
+      "latlng": [
+        39.914013,
+        116.684808
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "2023环评：沿芙蓉东路（现紫运中路）敷设，通胡大街路口；离线OSM道路交点。",
+      "coordinateAccuracyM": 100,
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf"
+    },
+    {
+      "name": "玉带河大街",
+      "id": "beijing-f101-yudaihedajie",
+      "latlng": [
+        39.90665,
+        116.69165
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "批复位于潞通大街与紫运中路相交路口西侧。离线道路缺该交点连接，采用紫运中路站区近似位置，站中心需进一步对照；不采用两条断开道路的中点充当交点。",
+      "coordinateAccuracyM": 350,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202505/t20250506_4081825.html"
     },
     {
       "name": "城市副中心",
       "id": "beijing-f101-fuzhongxin",
       "latlng": [
-        39.907971,
-        116.700146
+        39.9033366,
+        116.6997128
       ],
       "coordinateSource": "official_site_description",
-      "coordinateNote": "城市副中心站枢纽站区（北京通州站），环评明确线路服务该枢纽。"
+      "coordinateNote": "副中心枢纽内M101独立站体，离线OSM建筑way/1462913240轮廓中心。不能用整个国铁枢纽的标签点代替本线站体。",
+      "coordinateAccuracyM": 150,
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf"
+    },
+    {
+      "name": "行政办公西区",
+      "id": "beijing-f101-xingzhengxiqu",
+      "latlng": [
+        39.899749,
+        116.707783
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "通运东路与崇善北街交叉口东南象限；离线OSM交点，站区示意。",
+      "coordinateAccuracyM": 150,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250626_4127224.html"
+    },
+    {
+      "name": "北京大剧院",
+      "id": "beijing-f101-dajuyuan",
+      "latlng": [
+        39.8855,
+        116.7101
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "2023环评：三大公共建筑所在的城市绿心北部。使用离线OSM北京艺术中心way/1151193751西侧站区近似位置，非剧院建筑中心或工程测绘点。",
+      "coordinateAccuracyM": 350,
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf"
+    },
+    {
+      "name": "体育中心",
+      "id": "beijing-f101-tiyuzhongxin",
+      "latlng": [
+        39.86572,
+        116.714829
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "绿心路与运兴路交叉口西南象限；离线OSM交点，站区示意。",
+      "coordinateAccuracyM": 150,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106888.html"
+    },
+    {
+      "name": "张家湾西",
+      "id": "beijing-f101-zhangjiawanxi",
+      "latlng": [
+        39.857033,
+        116.715448
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "张凤路与广源路交叉口；建设单位公布站址，离线OSM道路交点。",
+      "coordinateAccuracyM": 100,
+      "source": "https://ccic.cscec.com/xwzx/xwdt/202406/3794487.html"
+    },
+    {
+      "name": "张家湾",
+      "id": "beijing-f101-zhangjiawan",
+      "latlng": [
+        39.85075,
+        116.7262
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "张梁路与梧桐路路口西北侧天纳克地块。OSM张梁路现名广通街（way/58689302 old_name）；对应交点39.8504875,116.727034，向西北取站区示意中心。",
+      "coordinateAccuracyM": 200,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106901.html"
     },
     {
       "name": "张家湾东",
       "id": "beijing-f101-zhangjiawandong",
       "latlng": [
-        39.8553,
-        116.7291
+        39.8503,
+        116.7375
       ],
       "coordinateSource": "official_site_description",
-      "coordinateNote": "张家湾设计小镇东部，按环评终点描述定位。"
+      "coordinateNote": "批复位于张梁路与规划紫薇路路口。离线OSM尚未标出紫薇路，使用广通街（原张梁路）东段规划片区近似位置，站中心仍需对照；不是已核验站址。",
+      "coordinateAccuracyM": 500,
+      "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/tz/202506/t20250605_4106894.html"
     }
   ],
   "lineGroups": [
     {
       "key": "m101",
       "mapRouteId": "beijing-future-m101",
-      "name": "M101线一期（走廊复现）",
+      "name": "M101线一期（14站建设）",
       "historicalLineId": "beijing-line-m101",
       "color": "#5B8C5A",
       "stationIds": [
         "beijing-f101-shangwuyuan",
         "beijing-f101-tongzhouxi",
+        "beijing-f101-tongshunlu",
+        "beijing-f101-huiyizhongxin",
+        "beijing-f101-longwangzhuang",
+        "beijing-f101-tonghudajie",
+        "beijing-f101-yudaihedajie",
         "beijing-f101-fuzhongxin",
+        "beijing-f101-xingzhengxiqu",
+        "beijing-f101-dajuyuan",
+        "beijing-f101-tiyuzhongxin",
+        "beijing-f101-zhangjiawanxi",
+        "beijing-f101-zhangjiawan",
         "beijing-f101-zhangjiawandong"
       ],
-      "toleranceM": 900,
-      "officialLengthM": 19000,
-      "maxSpacingM": 9000,
+      "toleranceM": 150,
+      "officialLengthM": 18100,
+      "maxSpacingM": 4000,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "M101线一期官方站序为14站（商务园、通州西站、通顺路、会议中心、龙旺庄、通胡大街、玉带河大街、城市副中心、行政西区、北京大剧院、体育中心、张家湾西、张家湾、张家湾东，约19公里）。环评报告只以图示给出站位，公开文本没有可逐站核对的站址，因此本篇按端点与两个官方枢纽站（通州西站、城市副中心）复现走廊，其余10站不虚构坐标。区间为走廊近似。",
-      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html"
+      "precisionNote": "14站按2023年环评表2-1-2完整站序制作；站址优先采用2025用地批复与离线OSM交点。通州西、玉带河大街、北京大剧院和张家湾东为片区近似位置，逐站说明误差；隧道走向为近似走廊，非施工中心线。",
+      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202306/t20230606_3122554.html"
     }
   ],
   "stationInstances": {},
@@ -77,12 +215,13 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
-    "sourceTitle": "副中心M101线最新线路图公布 14座车站中6站可换乘（北京市人民政府门户网站）",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-04-20",
-    "description": "按M101线一期环评与官方线路图复现走廊：商务园—张家湾东，全长约19公里、14座车站。公开文本只给出站名与走向、没有可逐站核对的站址，本篇按端点与通州西站、城市副中心两个枢纽站建模，其余车站只记录在说明中，不虚构坐标。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.15",
-    "contentRevisionNote": "增加北京M101线一期走廊复现章。"
+    "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf",
+    "sourceTitle": "北京轨道交通M101线一期工程环境影响报告书（2023年5月）",
+    "sourceCheckedAt": "2026-10-22",
+    "sourcePublicationDate": "2023-05-26",
+    "description": "完整复现商务园至张家湾东14站及13个相邻区间。站序依据2023环评，站址结合用地批复及离线地理资料；部分规划站区为明确标注的近似位置。线路全长约18.1公里，建设篇完成不代表真实开通。",
+    "contentRevision": "2026.10.22.26",
+    "contentRevisionNote": "补齐M101缺失10站，纠正旧通州西和副中心整枢纽标签代替独立站体的位置；逐站保留近似范围。",
+    "requiresScopeRecheck": true
   }
 }

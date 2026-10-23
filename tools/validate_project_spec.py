@@ -137,7 +137,10 @@ def validate(spec: dict, city: dict, existing_lines: set[str]) -> list[str]:
                 delta = bearing_delta(points[pair - 1], points[pair], points[pair + 1])
                 if delta > FOLD_BACK_DEGREES:
                     errors.append(f"group {key}: {ids[pair]} folds back {int(delta)}° between its neighbours")
-        official = float(group.get("officialLengthM", 0) or 0)
+        # Siting points are station centers. An engineering route length may
+        # include end tunnels, so compare a published center-to-center span
+        # when the official station chainage table supplies one.
+        official = float(group.get("officialCenterSpanM", group.get("officialLengthM", 0)) or 0)
         if official > 0:
             deviation = abs(total - official) / official
             if deviation > MAX_LENGTH_DEVIATION:

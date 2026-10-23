@@ -50,6 +50,8 @@ def render(baseline: dict, campaigns: dict) -> str:
     lines.append("")
     lines.append("由 `tools/report_project_chapters.py` 从 `data/network_baselines_2026-10-01.json` 与 `data/campaigns.json` 生成，随数据一起校验；请勿手工编辑。")
     lines.append("")
+    lines.append("**这是制作状态目录，不是完整交付证明。** ‘可玩’仅表示配置有建设目标；完整站序、闭环、延伸和实际建成结果另由独立官方目标及正式命令重放验证。政策／工程分类不豁免必做建设。")
+    lines.append("")
     totals = {"playable_build_task": 0, "policy_only_not_playable": 0, "engineering_works_only": 0, "registered_geometry_and_playable_task_pending": 0}
     for cid in CITY_ORDER:
         city_data = campaigns["cities"][cid]
