@@ -60,6 +60,23 @@ def station_order_matches(actual, wanted, expected):
     return actual in candidates
 
 
+def cutoff_evidence_errors(network, cutoff_date):
+    if not network or not network.get('groups'):
+        return ['independent cutoff station orders missing']
+    errors = []
+    if network.get('date') != cutoff_date:
+        errors.append('independent network has a different cutoff date')
+    if network.get('temporalReviewStatus') != 'verified':
+        errors.append('cutoff opening status not independently reviewed')
+    evidence = network.get('temporalEvidence', [])
+    if not evidence:
+        errors.append('dated cutoff opening evidence missing')
+    for item in evidence:
+        if not item.get('source') or not item.get('effectiveDate') or item['effectiveDate'] > cutoff_date:
+            errors.append('invalid or post-cutoff opening evidence')
+    return errors
+
+
 def audit(campaigns=None, cities=None, targets=None):
     campaigns = campaigns if campaigns is not None else read(ROOT / 'data/campaigns.json')
     cities = cities if cities is not None else read(ROOT / 'data/cities.json')
@@ -75,6 +92,7 @@ def audit(campaigns=None, cities=None, targets=None):
                 errors.append(f'{field}: independent review incomplete')
         if not target.get('historicalMilestones'):
             errors.append('independent milestone requirements missing')
+        errors.extend(cutoff_evidence_errors(target.get('cutoffNetwork', {}), targets.get('cutoffDate', '2026-10-01')))
         names = {s['id']: s['name'] for s in city_data[city_id]['stations']}
         projects = []
         for project in target.get('projects', []):

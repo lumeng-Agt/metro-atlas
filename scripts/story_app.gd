@@ -841,7 +841,16 @@ func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expec
 		var existing:=WorldData.find_route(candidate,str(route.get("id","")))
 		route_copy["open"]=bool(existing.get("open",false))
 		Story._store_historical_route(candidate,route_copy)
-	candidate.transferConnections.append(connection.duplicate(true))
+	var restored:=false
+	for index in range(candidate.transferConnections.size()):
+		var saved:Dictionary=candidate.transferConnections[index]
+		if str(saved.get("id",""))!=str(connection.id):continue
+		if str(saved.get("status","active"))=="active":return {"ok":false,"error":"同一换乘编号仍有不同的有效配对，请先核对变更；本次不会覆盖。"}
+		var restored_connection:=connection.duplicate(true)
+		var previous:=saved.duplicate(true);previous.erase("previousConnection")
+		restored_connection["previousConnection"]=previous
+		candidate.transferConnections[index]=restored_connection;restored=true;break
+	if not restored:candidate.transferConnections.append(connection.duplicate(true))
 	Story._refresh_route_memberships(candidate)
 	var validation:=SaveManager.validate(candidate)
 	if not validation.is_empty():return {"ok":false,"error":validation}

@@ -17,6 +17,11 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 	var target:Dictionary=parsed.get("cities",{}).get(city_id,{})
 	if str(target.get("inventoryReviewStatus",""))!="verified":reasons.append("截止日项目与路网清单尚未完成独立核对。")
 	if str(target.get("historyReviewStatus",""))!="verified" or target.get("historicalMilestones",[]).is_empty():reasons.append("各历史里程碑的官方范围尚未全部核对。")
+	var cutoff:Dictionary=target.get("cutoffNetwork",{})
+	if cutoff.get("groups",[]).is_empty() or str(cutoff.get("date",""))!=str(parsed.get("cutoffDate","2026-10-01")):reasons.append("缺少对应截止日的独立站序目标。")
+	if str(cutoff.get("temporalReviewStatus",""))!="verified" or cutoff.get("temporalEvidence",[]).is_empty():reasons.append("截止日开放范围缺少独立日期证据，现行时刻表不能代替。")
+	for evidence in cutoff.get("temporalEvidence",[]):
+		if str(evidence.get("source","")).is_empty() or str(evidence.get("effectiveDate","")).is_empty() or str(evidence.get("effectiveDate",""))>str(parsed.get("cutoffDate","2026-10-01")):reasons.append("截止日证据缺失或包含后期开通。")
 	var campaign:=city_config(city_id)
 	var requirements:Array=target.get("projects",[])
 	for project_id in target.get("requiredProjectIds",[]):
@@ -29,6 +34,8 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 		if matching.is_empty() or requirement.get("groups",[]).is_empty():reasons.append("项目%s缺少可玩建设目标。" % project_id)
 		var actual_groups:Array=[]
 		for plan in matching:actual_groups.append_array(plan.get("lineGroups",[]))
+		for required_transfer in requirement.get("transfers",[]):
+			if not matching.any(func(plan:Dictionary):return plan.get("requiredTransfers",[]).any(func(relation:Dictionary):return str(relation.get("id",""))==str(required_transfer))):reasons.append("项目%s缺少必要换乘目标。" % project_id)
 		for expected in requirement.get("groups",[]):
 			var matching_groups:Array=actual_groups.filter(func(g:Dictionary):return str(g.get("coverageGroupId",g.get("historicalLineId","")))==str(expected.get("id","")))
 			if matching_groups.size()!=1:reasons.append("项目%s的区段范围不完整。" % project_id);continue
@@ -46,8 +53,10 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 				if bool(expected.get("allowReverse",false)):
 					var reversed:=wanted.duplicate();reversed.reverse();matches=matches or names==reversed
 				if str(expected.get("matchScope",""))=="contiguous_subsequence" and not wanted.is_empty():
+					var reverse_wanted:=wanted.duplicate();reverse_wanted.reverse()
 					for start in range(maxi(0,names.size()-wanted.size()+1)):
-						if names.slice(start,start+wanted.size())==wanted:matches=true
+						var section:=names.slice(start,start+wanted.size())
+						if section==wanted or (bool(expected.get("allowReverse",false)) and section==reverse_wanted):matches=true
 				if wanted.is_empty() or not matches:reasons.append("项目%s仍有缺站或站序差异。" % project_id)
 			else:
 				if str(expected.get("unpublishedStationOrderEvidence",""))=="":reasons.append("项目%s的走廊验收缺少依据。" % project_id)

@@ -59,8 +59,10 @@ def main():
     sys.stdout.reconfigure(encoding='utf-8')
     p=argparse.ArgumentParser();p.add_argument('city');p.add_argument('sites',nargs='+');args=p.parse_args()
     index=roads(args.city)
+    cities=json.loads((ROOT/'data/cities.json').read_text(encoding='utf-8'))['cities']
+    latitude=float(next(city for city in cities if city['id']==args.city)['center'][0])
     for site in args.sites:
         first,second=site.split('|')
-        print(json.dumps(junction(index,first,second,22.6 if args.city=='shenzhen' else 40),ensure_ascii=False))
+        print(json.dumps(junction(index,first,second,latitude),ensure_ascii=False))
 
 if __name__=='__main__':main()

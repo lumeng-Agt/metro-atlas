@@ -39,6 +39,10 @@ func _run() -> void:
 	_check(not OfficialNetworkAudit.current_project_errors(missing,["sz-line15"]).is_empty(),"wrong intermediate stop fails independent order")
 	var wrong_body:=world.duplicate(true);wrong_body.stations[3].stationLineId="another-line"
 	_check(not OfficialNetworkAudit.current_project_errors(wrong_body,["sz-line15"]).is_empty(),"another line's physical platform cannot stand in")
+	var retired_world:=world.duplicate(true);retired_world.routes[0].retired=true
+	_check(not OfficialNetworkAudit.current_project_errors(retired_world,["sz-line15"]).is_empty(),"a retired correct route cannot certify the current project")
+	var closed_world:=world.duplicate(true);closed_world.routes[0].open=false
+	_check(not OfficialNetworkAudit.current_project_errors(closed_world,["sz-line15"]).is_empty(),"an unopened archived path cannot certify an active service")
 	_check(Story.task_confirmed(world,task),"fresh scope fingerprint confirms")
 	var final_records:=CampaignSystem.chapter_task_records("shenzhen","sz-line15-build")
 	_check(str(final_records.get(task,{}).get("scopeFingerprint",""))==Story.task_scope_fingerprint(world,task),"chapter completion preserves the normalized task scope fingerprint, including a ring closure")
@@ -166,6 +170,45 @@ func _run() -> void:
 	_check(Story.scope_correction_preview(old_branch,str(branch_group.taskId)).changes.is_empty(),"the independent-branch correction is idempotent")
 	old_branch.routes[0].directions.append({"stationIds":old_branch_ids.slice(1),"edgePathsBySegment":[]})
 	_check(not Story.scope_correction_preview(old_branch,str(branch_group.taskId)).ok,"an edited old branch is a conflict, rather than a direction to delete by guesswork")
+	var missing_revision:Dictionary={"lineGroups":[{"stationIds":["A","B"]}]}
+	var first_revision:=SaveManager._chapter_scope_revision(missing_revision)
+	_check(not first_revision.is_empty(),"a missing optional scope revision cannot skip old-save content revalidation")
+	missing_revision.lineGroups[0].stationIds.append("C")
+	_check(SaveManager._chapter_scope_revision(missing_revision)!=first_revision,"adding a target changes the fallback scope revision")
+	var collision_rules=load("res://scripts/story_construction.gd").new()
+	collision_rules.active_city_id="guangzhou"
+	var east_old:Dictionary={"id":"old-east","stationComplexId":"guangzhou-s342","stationInstanceId":"old-line11","latlng":[23.1552,113.3197],"heading":90.0,"lengthM":120.0,"widthM":20.0}
+	var east_new:=east_old.duplicate(true);east_new.id="new-east";east_new.stationInstanceId="new-line18";east_new.stationComplexId="guangzhou-s177"
+	_check(not collision_rules._station_overlaps_in(east_new,[east_old]),"documented complex aliases allow independent interchange bodies without moving the old structure")
+	east_new.stationComplexId="unrelated-place"
+	_check(collision_rules._station_overlaps_in(east_new,[east_old]),"nearby unrelated station bodies still conflict")
+	var pending_north:=WorldData.new_world("chengdu","campaign")
+	pending_north.storyState.chapterId="chengdu-network-reconciliation-2026-10-01"
+	pending_north.transferConnections=[{"id":"future-transfer-nijiaqiao-line8","lineIds":["chengdu-line8-8","chengdu-line18-13"],"stationInstanceIds":["chengdu-s274","chengdu-s274__line18-18"],"status":"active"}]
+	var old_pair_notice:=Story.scope_correction_preview(pending_north,"route:chengdu-r13")
+	_check(old_pair_notice.ok and old_pair_notice.changes.size()==1,"known old shared-body pairing is explicitly archived before future service reconstruction")
+	pending_north.transferConnections[0].stationInstanceIds[0]="chengdu-s274__line8-8"
+	_check(Story.scope_correction_preview(pending_north,"route:chengdu-r13").ok,"the separately repaired old platform pairing is also recognized")
+	pending_north.transferConnections[0].stationInstanceIds[0]="player-edited-platform"
+	_check(not Story.scope_correction_preview(pending_north,"route:chengdu-r13").ok,"unknown player-edited pairing is not archived by the known-version alternatives")
+	var phased_branch:=WorldData.new_world("guangzhou","campaign")
+	phased_branch.storyState.chapterId="guangzhou-network-reconciliation-2026-10-01"
+	var branch_correction:Dictionary={}
+	for correction in Story.chapter(phased_branch).get("scopeCorrections",[]):
+		if not str(correction.get("restoreAfterTaskId","")).is_empty():branch_correction=correction;break
+	_check(not branch_correction.is_empty(),"branch replacement documents its temporary transfer boundary")
+	if not branch_correction.is_empty():
+		phased_branch.transferConnections=[{"id":branch_correction.transferId,"lineIds":branch_correction.oldLineIds.duplicate(),"stationInstanceIds":branch_correction.oldStationInstanceIds.duplicate(),"status":"active"}]
+		var phase_preview:=Story.scope_correction_preview(phased_branch,str(branch_correction.taskId))
+		_check(phase_preview.ok and phase_preview.changes.size()==1,"first path temporarily archives only its documented unavailable branch connection")
+		var restored_task:=str(branch_correction.restoreAfterTaskId)
+		phased_branch.storyState.chapterTaskProgress={str(Story.chapter(phased_branch).id):{"tasks":{restored_task:{"status":"confirmed","scopeFingerprint":Story.task_scope_fingerprint(phased_branch,restored_task)}}}}
+		_check(Story.scope_correction_preview(phased_branch,"").changes.is_empty(),"chapter confirmation does not archive a transfer restored after the second path")
+	var dependent_plan:=WorldData.new_world("guangzhou","campaign")
+	dependent_plan.storyState.chapterId="guangzhou-network-reconciliation-2026-10-01"
+	dependent_plan.storyState.completedChapterIds=["gz-line13-phase2-west-build"]
+	Story._recheck_future_services_after_cutoff_correction(dependent_plan,{"historicalLineId":"guangzhou-line12-12"})
+	_check(not dependent_plan.storyState.completedChapterIds.has("gz-line13-phase2-west-build"),"a changed interchange dependency requires project reconfirmation even when its own track line is unchanged")
 	app.queue_free();await process_frame
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())
 	for failure in failures:push_error(failure)

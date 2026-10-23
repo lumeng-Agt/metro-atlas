@@ -1,13 +1,15 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.23.42",
+  "contentRevision": "2026.10.24.4",
   "ok": false,
   "cities": {
     "shenzhen": {
       "ok": false,
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
-        "historyReviewStatus: independent review incomplete"
+        "historyReviewStatus: independent review incomplete",
+        "cutoff opening status not independently reviewed",
+        "dated cutoff opening evidence missing"
       ],
       "projects": [
         {
@@ -68,6 +70,8 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "independent milestone requirements missing",
+        "cutoff opening status not independently reviewed",
+        "dated cutoff opening evidence missing",
         "sh-line19: independent project requirements missing",
         "sh-line23-phase1: independent project requirements missing",
         "sh-line22-chongming: independent project requirements missing"
@@ -111,6 +115,7 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "independent milestone requirements missing",
+        "independent cutoff station orders missing",
         "bj-line22: independent project requirements missing",
         "bj-line3-phase1: independent project requirements missing",
         "bj-line12: independent project requirements missing",
@@ -133,9 +138,8 @@
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
-        "independent milestone requirements missing",
-        "gz-line12-mid: independent project requirements missing",
-        "gz-line13-phase2-west: independent project requirements missing"
+        "cutoff opening status not independently reviewed",
+        "dated cutoff opening evidence missing"
       ],
       "projects": [
         {
@@ -152,6 +156,21 @@
           "id": "gz-line8-north-branch",
           "ok": true,
           "errors": []
+        },
+        {
+          "id": "gz-line13-phase2-west",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "gz-line12-mid",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "gz-line18-remainder",
+          "ok": true,
+          "errors": []
         }
       ]
     },
@@ -160,10 +179,34 @@
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
-        "independent milestone requirements missing",
-        "cd-line18-phase3: independent project requirements missing"
+        "cutoff opening status not independently reviewed",
+        "dated cutoff opening evidence missing",
+        "cd-line18-phase3: official requirements not independently reviewed"
       ],
-      "projects": []
+      "projects": [
+        {
+          "id": "cd-line18-phase3",
+          "ok": false,
+          "errors": [
+            "official requirements not independently reviewed"
+          ]
+        },
+        {
+          "id": "cd-line10-phase3-remainder",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "cd-line27-phase2",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "cd-line10-phase4",
+          "ok": true,
+          "errors": []
+        }
+      ]
     }
   }
 }

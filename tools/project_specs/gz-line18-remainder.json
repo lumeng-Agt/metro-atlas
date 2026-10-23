@@ -1,0 +1,83 @@
+{
+  "city": "guangzhou",
+  "projectIds": [
+    "gz-line18-remainder"
+  ],
+  "stations": [
+    {
+      "id": "guangzhou-s279",
+      "name": "冼村",
+      "existing": true
+    },
+    {
+      "id": "guangzhou-s177",
+      "name": "广州东站",
+      "existing": true
+    },
+    {
+      "id": "guangzhou-f18-east-site",
+      "name": "广州东站18号线站区参考",
+      "latlng": [
+        23.156,
+        113.3195
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "2026-02-09用地许可所示广州东站工程北侧站区，结合现代铁路枢纽的近似参考；不是1/3号线南侧站位，也不声称测绘精度。",
+      "coordinateAccuracyM": 300,
+      "source": "https://ghzyj.gz.gov.cn/ywpd/cxgh/ghxkgsgb/phgbnew/ydghxkz/2025/content/post_10687579.html"
+    }
+  ],
+  "lineGroup": {
+    "mapRouteId": "guangzhou-future-line18-remainder",
+    "name": "18号线后通段",
+    "historicalLineId": "guangzhou-line18-15",
+    "color": "#0047BA",
+    "stationIds": [
+      "guangzhou-s279",
+      "guangzhou-s177"
+    ],
+    "stationInstances": {
+      "guangzhou-s177": "guangzhou-s177__line18-15"
+    },
+    "stationReferenceIds": {
+      "guangzhou-s177": "guangzhou-f18-east-site"
+    },
+    "toleranceM": 350,
+    "alignmentPrecision": "corridor_only",
+    "precisionNote": "官方明确1站1区间：冼村—广州东。新站及隧道为近似走廊，不复用1/3号线站体。"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-gz-east-1-3-18",
+      "name": "广州东站",
+      "complexId": "guangzhou-s177",
+      "stationInstanceIds": [
+        "guangzhou-s177__line1",
+        "guangzhou-s177__line3-3",
+        "guangzhou-s177__line18-15"
+      ],
+      "lineIds": [
+        "guangzhou-line1",
+        "guangzhou-line3-3",
+        "guangzhou-line18-15"
+      ],
+      "sourceNote": "同一铁路枢纽的规划换乘联系，独立线路站体；通道及层次不作工程校核。"
+    }
+  ],
+  "plan": {
+    "id": "gz-line18-remainder-build",
+    "title": "18号线后通段：接入广州东站",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_construction_status",
+    "projectType": "under_construction",
+    "required": true,
+    "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+    "sourceTitle": "白云区官方2026年4月进度：18号线后通1站1区间",
+    "sourcePublicationDate": "2026-04-28",
+    "sourceCheckedAt": "2026-10-23",
+    "description": "从既有冼村继续建设至广州东站，完成独立18号线站体和枢纽换乘。截止日仍在建，确认结果为规划建设完成，不写未来开通日期。",
+    "contentRevision": "2026.10.23.45",
+    "requiresScopeRecheck": true
+  }
+}

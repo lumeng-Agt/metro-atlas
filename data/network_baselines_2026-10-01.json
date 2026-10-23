@@ -26034,6 +26034,16 @@
           "sourceCheckedAt": "2026-10-23",
           "playabilityStatus": "playable_build_task",
           "note": "8座公布新站及万胜围接头；新增龙泽路属于本次工程范围。"
+        },
+        {
+          "id": "gz-line18-remainder",
+          "name": "18号线后通段（冼村—广州东站）",
+          "projectType": "under_construction",
+          "statusAtCutoff": "在建",
+          "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+          "sourceTitle": "白云区官方2026年4月进度：18号线后通1站1区间",
+          "note": "1座新增站、1个区间，已有许可及施工进度，不能漏出项目清单。",
+          "playabilityStatus": "playable_build_task"
         }
       ],
       "documentedMilestones": [
@@ -51325,6 +51335,36 @@
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "征求意见／未见国家批复",
           "playabilityNote": "第五期建设规划初步方案征求意见，尚未进入工程实施。"
+        },
+        {
+          "id": "cd-line10-phase3-remainder",
+          "name": "10号线三期后通段（武侯祠—人民公园）",
+          "projectType": "under_construction",
+          "statusAtCutoff": "在建",
+          "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+          "sourceTitle": "成都地铁2025-09-16开通公告及10号线三期环评",
+          "note": "首开范围之外的两座车站，不能在2019年一期／二期章节提前开放。",
+          "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "cd-line27-phase2",
+          "name": "27号线二期（蜀鑫路—黄田坝）",
+          "projectType": "approved_preparatory",
+          "statusAtCutoff": "第五期项目，前期工作",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceTitle": "四川省人民政府新闻办公室四川发布2025-11-06：27号线二期工程概况",
+          "note": "3座公布新站，节能审查只证明公开范围，不代表施工或开放许可。",
+          "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "cd-line10-phase4",
+          "name": "10号线四期（人民公园—白莲池）",
+          "projectType": "approved_preparatory",
+          "statusAtCutoff": "第五期项目，前期工作",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceTitle": "四川省政府新闻办四川发布2025-11-06：10号线四期8站工程概况",
+          "note": "8座公布新站，前期手续不等于已经运营。",
+          "playabilityStatus": "playable_build_task"
         }
       ],
       "documentedMilestones": [

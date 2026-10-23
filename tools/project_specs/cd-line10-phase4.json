@@ -1,0 +1,177 @@
+{
+  "city": "chengdu",
+  "projectIds": [
+    "cd-line10-phase4"
+  ],
+  "stations": [
+    {
+      "id": "chengdu-s38",
+      "name": "人民公园",
+      "existing": true
+    },
+    {
+      "id": "chengdu-s19",
+      "name": "骡马市",
+      "existing": true
+    },
+    {
+      "id": "chengdu-s196",
+      "name": "梁家巷",
+      "existing": true
+    },
+    {
+      "id": "chengdu-s97",
+      "name": "驷马桥",
+      "existing": true
+    },
+    {
+      "id": "chengdu-f10p4-wenshudong",
+      "name": "文殊院东",
+      "latlng": [
+        30.6712356,
+        104.0710558
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "现代锣锅巷走廊OSM way586386577，工程站区近似；不是已核验站体中心。 站名和相邻顺序单独据四川发布工程概况核对。",
+      "coordinateAccuracyM": 500
+    },
+    {
+      "id": "chengdu-f10p4-gaosuntang",
+      "name": "高笋塘",
+      "latlng": [
+        30.6920795,
+        104.0853401
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "现代红花东路/解放路一段路口（OSM ways184296325/184255152），工程站区近似。 站名和相邻顺序单独据四川发布工程概况核对。",
+      "coordinateAccuracyM": 500
+    },
+    {
+      "id": "chengdu-f10p4-zhaojuesi",
+      "name": "昭觉寺",
+      "latlng": [
+        30.7148952,
+        104.1070556
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "现代东紫路走廊（OSM way299446993）工程站区近似；不是既有3号线昭觉寺南路站，也不据名字合并站体。 站名和相邻顺序单独据四川发布工程概况核对。",
+      "coordinateAccuracyM": 500
+    },
+    {
+      "id": "chengdu-f10p4-qinglongchang",
+      "name": "青龙场",
+      "latlng": [
+        30.714701,
+        104.111822
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "现代东荆路/荆竹东路交点（OSM ways281243371/920032544）的工程站区近似，不使用同名国铁青龙场站。 站名和相邻顺序单独据四川发布工程概况核对。",
+      "coordinateAccuracyM": 500
+    },
+    {
+      "id": "chengdu-f10p4-bailianchi",
+      "name": "白莲池",
+      "latlng": [
+        30.7253328,
+        104.1152803
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "现代富安五路/熊猫大道附近（OSM ways975248250/801887701），道路几何相距19米的走廊参考，非测量站心。 站名和相邻顺序单独据四川发布工程概况核对。",
+      "coordinateAccuracyM": 500
+    }
+  ],
+  "lineGroup": {
+    "mapRouteId": "chengdu-future-line10-phase4",
+    "name": "10号线四期",
+    "historicalLineId": "chengdu-line10-10",
+    "color": "#005EB8",
+    "stationIds": [
+      "chengdu-s38",
+      "chengdu-s19",
+      "chengdu-f10p4-wenshudong",
+      "chengdu-s196",
+      "chengdu-f10p4-gaosuntang",
+      "chengdu-s97",
+      "chengdu-f10p4-zhaojuesi",
+      "chengdu-f10p4-qinglongchang",
+      "chengdu-f10p4-bailianchi"
+    ],
+    "stationInstances": {
+      "chengdu-s38": "chengdu-s38__line10-10",
+      "chengdu-s19": "chengdu-s19__line10-10",
+      "chengdu-s196": "chengdu-s196__line10-10",
+      "chengdu-s97": "chengdu-s97__line10-10"
+    },
+    "toleranceM": 550,
+    "alignmentPrecision": "corridor_only",
+    "precisionNote": "8座公布新站全部进入任务，人民公园为三期接头。非换乘站采用现代街道与片区近似，不将道路参考声明为正式站址；断轨、站序及独立站体仍需检查。",
+    "stationOrderSource": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+    "officialLengthM": 10100
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-cd10-luoma-1-4-18",
+      "name": "骡马市",
+      "complexId": "chengdu-s19",
+      "stationInstanceIds": [
+        "chengdu-s19",
+        "chengdu-s19__line4-4",
+        "chengdu-s19__line18-13",
+        "chengdu-s19__line10-10"
+      ],
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line4-4",
+        "chengdu-line18-13",
+        "chengdu-line10-10"
+      ],
+      "sourceNote": "骡马市18号线与10号线共同施工节点、1/4既有站体分别保留。"
+    },
+    {
+      "id": "future-transfer-cd10-liangjia-6",
+      "name": "梁家巷",
+      "complexId": "chengdu-s196",
+      "stationInstanceIds": [
+        "chengdu-s196",
+        "chengdu-s196__line10-10"
+      ],
+      "lineIds": [
+        "chengdu-line6-6",
+        "chengdu-line10-10"
+      ],
+      "sourceNote": "既有6号线与四期公布梁家巷站的线路换乘关系；未以邻近为由额外合并其他站。"
+    },
+    {
+      "id": "future-transfer-cd10-sima-3-7",
+      "name": "驷马桥",
+      "complexId": "chengdu-s97",
+      "stationInstanceIds": [
+        "chengdu-s97__line3-3",
+        "chengdu-s97__line7-7",
+        "chengdu-s97__line10-10"
+      ],
+      "lineIds": [
+        "chengdu-line3-3",
+        "chengdu-line7-7",
+        "chengdu-line10-10"
+      ],
+      "sourceNote": "分别引用3、7号线及四期10号线站体，换乘边不进入列车轨道图。"
+    }
+  ],
+  "plan": {
+    "id": "cd-line10-phase4-build",
+    "title": "10号线四期：从骡马市向城北延伸",
+    "date": "2026-10-01",
+    "status": "approved_preparatory",
+    "sourceType": "provincial_government_information_office_project_scope",
+    "projectType": "approved_preparatory",
+    "required": true,
+    "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+    "sourceTitle": "四川省政府新闻办四川发布2025-11-06：10号线四期8站工程概况",
+    "sourcePublicationDate": "2025-11-06",
+    "sourceCheckedAt": "2026-10-23",
+    "description": "复用人民公园接头，按公布站序建设骡马市、文殊院东、梁家巷、高笋塘、驷马桥、昭觉寺、青龙场、白莲池8站。非已建换乘站的位置是走廊参考；成果为规划建设完成，不把节能审查当作开通许可。",
+    "contentRevision": "2026.10.23.51",
+    "requiresScopeRecheck": true
+  }
+}

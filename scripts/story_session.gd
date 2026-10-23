@@ -799,7 +799,7 @@ static func _recheck_future_services_after_cutoff_correction(world:Dictionary,ro
 	for plan in Catalog.city_config(str(world.cityId)).get("futurePlans",[]):
 		var id:=str(plan.get("id",""))
 		if not completed.has(id):continue
-		if not plan.get("lineGroups",[]).any(func(group:Dictionary):return str(group.get("historicalLineId",""))==line_id):continue
+		if not _plan_uses_line(plan,line_id):continue
 		# The dated correction replaces service, never construction. Retain the
 		# earlier completion as evidence and ask to reconfirm the future service
 		# from the already-built track instead of silently losing its extension.
@@ -811,6 +811,10 @@ static func _recheck_future_services_after_cutoff_correction(world:Dictionary,ro
 		var pending:Array=state.get("serviceReconfirmationIds",[])
 		if not pending.has(id):pending.append(id)
 		state["serviceReconfirmationIds"]=pending
+
+static func _plan_uses_line(plan:Dictionary,line_id:String) -> bool:
+	if plan.get("lineGroups",[]).any(func(group:Dictionary):return str(group.get("historicalLineId",""))==line_id):return true
+	return plan.get("requiredTransfers",[]).any(func(transfer:Dictionary):return transfer.get("lineIds",[]).has(line_id))
 
 static func _scope_contains(new_ids:Array,old_ids:Array) -> bool:
 	if old_ids.size()<2 or new_ids.size()<old_ids.size() or new_ids.front()!=old_ids.front() or new_ids.back()!=old_ids.back():return false
@@ -862,10 +866,11 @@ static func scope_correction_preview(world:Dictionary, selected_task_id:String) 
 			if bool(group.get("replaceExistingService",false)):lines.append(str(group.get("historicalLineId","")))
 		for plan in Catalog.city_config(str(world.cityId)).get("futurePlans",[]):
 			if not world.get("storyState",{}).get("completedChapterIds",[]).has(str(plan.id)):continue
-			if plan.get("lineGroups",[]).any(func(group:Dictionary):return lines.has(str(group.get("historicalLineId","")))):
+			if lines.any(func(line_id:String):return _plan_uses_line(plan,line_id)):
 				changes.append({"id":"future-service-recheck:"+str(plan.id),"text":"%s：保留已经建设的站轨，截止日线路更正后重新确认该规划篇线路关系。"%str(plan.get("title","后续建设")),"source":str(ch.get("source",""))})
 	for correction in ch.get("scopeCorrections",[]):
-		if str(correction.get("taskId",""))!=selected_task_id:continue
+		if not selected_task_id.is_empty() and str(correction.get("taskId",""))!=selected_task_id:continue
+		if not str(correction.get("restoreAfterTaskId","")).is_empty() and task_confirmed(world,str(correction.restoreAfterTaskId)):continue
 		if correction.has("obsoleteService"):
 			var obsolete:Dictionary=correction.obsoleteService
 			var wanted:Array=obsolete.get("stationInstanceIds",[])
@@ -902,7 +907,8 @@ static func scope_correction_preview(world:Dictionary, selected_task_id:String) 
 				if changed:changes.append({"id":str(connection.id),"text":str(correction.get("description","")),"source":str(correction.get("source","")),"newStationInstanceIds":current_ids})
 				continue
 			if not correction.get("newStationInstanceIds",[]).is_empty() and connection.get("lineIds",[])==correction.get("newLineIds",correction.get("oldLineIds",[])) and connection.get("stationInstanceIds",[])==correction.get("newStationInstanceIds",[]):continue
-			if connection.get("lineIds",[])!=correction.get("oldLineIds",[]) or connection.get("stationInstanceIds",[])!=correction.get("oldStationInstanceIds",[]):
+			var known_old_pair:bool=connection.get("stationInstanceIds",[])==correction.get("oldStationInstanceIds",[]) or correction.get("alternativeOldStationInstanceIds",[]).has(connection.get("stationInstanceIds",[]))
+			if connection.get("lineIds",[])!=correction.get("oldLineIds",[]) or not known_old_pair:
 				return {"ok":false,"error":"旧换乘关系已被修改，请先核对 %s，不能自动替换。"%str(connection.get("name","换乘")),"changes":[]}
 			changes.append({"id":str(connection.id),"text":str(correction.get("description","")),"source":str(correction.get("source","")),"newStationInstanceIds":correction.get("newStationInstanceIds",[]).duplicate(),"newLineIds":correction.get("newLineIds",connection.get("lineIds",[])).duplicate()})
 	return {"ok":true,"changes":changes}
@@ -1021,11 +1027,24 @@ static func commit_chapter(world: Dictionary, expected_revision: int, checked: D
 				return {"ok":false,"error":"请先逐项确认本章各条线路建设任务；未确认的任务不会被本次操作一并盖章。"}
 	if not (state.get("chapterTaskProgress", null) is Dictionary): state["chapterTaskProgress"] = {}
 	if not (state.get("confirmedHistoricalEventIds", null) is Array): state["confirmedHistoricalEventIds"] = []
-	StoryTutorial.finish(world)
+	# A chapter-wide reconfirmation must apply the same sourced corrections
+	# as task confirmation, including tasks already confirmed by an older pack.
+	# Validate the complete candidate before changing progress or milestones.
+	var correction_preview:=scope_correction_preview(world,"")
+	if not bool(correction_preview.get("ok",false)):return correction_preview
+	var candidate:=world.duplicate(true)
 	for id in ch.get("retireRouteIds",[]):
-		var old:=WorldData.find_route(world,str(id))
+		var old:=WorldData.find_route(candidate,str(id))
 		if not old.is_empty():old["open"]=false;old["retired"]=true;old["retiredAt"]=str(ch.date)
-	for route in result.routes: _store_historical_route(world, route)
+	for route in result.routes: _store_historical_route(candidate, route)
+	_apply_scope_corrections(candidate,correction_preview)
+	_refresh_route_memberships(candidate)
+	var candidate_error:=SaveManager.validate(candidate)
+	if not candidate_error.is_empty():return {"ok":false,"error":"历史节点尚未确认：%s" % candidate_error}
+	for key in ["stations","routes","trackEdges","trackLinks","transferConnections","storyState"]:
+		world[key]=candidate.get(key,[] if key!="storyState" else {}).duplicate(true)
+	state=world.storyState
+	StoryTutorial.finish(world)
 	if not world.get("serviceRanges",[]) is Array:world["serviceRanges"]=[]
 	_refresh_route_memberships(world)
 	var h := CommandHistory.new(); h.attach(world)

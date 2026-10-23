@@ -287,7 +287,8 @@ static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
 		var id:=str(plan.get("id",""))
 		if not completed.has(id) or not bool(plan.get("requiresScopeRecheck",false)):continue
 		var old:Dictionary=progress.get(id,{})
-		if str(old.get("scopeRevision",""))==str(plan.get("scopeRevision","")):continue
+		var scope_revision:=_chapter_scope_revision(plan)
+		if str(old.get("scopeRevision",""))==scope_revision:continue
 		var probe:Dictionary=world.duplicate(false)
 		probe["storyState"]=state.duplicate(true)
 		probe.storyState["phase"]=str(entry.phase);probe.storyState["chapterId"]=id;probe.storyState["stage"]="build"
@@ -295,7 +296,7 @@ static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
 		var official_errors:=OfficialNetworkAudit.current_project_errors(probe,plan.get("projectIds",[]))
 		if str(plan.get("chapterScope",""))=="cutoff_reconciliation":official_errors.append_array(OfficialNetworkAudit.cutoff_errors(probe))
 		if bool(checked.get("complete",false)) and official_errors.is_empty():
-			old["scopeRevision"]=str(plan.get("scopeRevision",""));progress[id]=old
+			old["scopeRevision"]=scope_revision;progress[id]=old
 		else:
 			var archived:Dictionary=state.get("legacyTaskProgress",{})
 			archived[id]=old.duplicate(true);state["legacyTaskProgress"]=archived
@@ -309,6 +310,16 @@ static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
 	world["storyState"]=state
 	if changed:world["contentUpgradeNotice"]="项目范围已补充。原路网与历史里程碑保留；只重新检查新增站点、区段和闭环。"
 	return {"changed":changed}
+
+static func _chapter_scope_revision(plan:Dictionary) -> String:
+	var explicit_revision:=str(plan.get("scopeRevision",""))
+	if not explicit_revision.is_empty():return explicit_revision
+	# A missing optional revision must not equal an old missing revision and
+	# silently skip an expanded task. Hash the actual authoritative scope.
+	var scope:Dictionary={}
+	for key in ["lineGroups","requiredTransfers","requiredConnections","serviceTransitions","scopeCorrections"]:
+		scope[key]=plan.get(key,[])
+	return JSON.stringify(scope).sha256_text()
 
 static func _preserve_original(text: String, prefix: String) -> Dictionary:
 	var path:=root_path().path_join("originals").path_join("%s_%s.json" % [prefix,text.sha256_text()])

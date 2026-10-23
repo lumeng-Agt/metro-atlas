@@ -365,7 +365,10 @@ func _station_overlaps_in(candidate: Dictionary, stations: Array) -> bool:
 		# structures. Their precise footprint/depth is often not public; do not
 		# collapse them into one platform or reject them as a 2-D collision.
 		var complex_id:=str(candidate.get("stationComplexId",""))
-		if not complex_id.is_empty() and complex_id==str(station.get("stationComplexId","")) and str(candidate.get("stationInstanceId",""))!=str(station.get("stationInstanceId","")):continue
+		var other_complex:=str(station.get("stationComplexId",""))
+		if not complex_id.is_empty():complex_id=CampaignSystem.canonical_station_complex(active_city_id,complex_id)
+		if not other_complex.is_empty():other_complex=CampaignSystem.canonical_station_complex(active_city_id,other_complex)
+		if not complex_id.is_empty() and complex_id==other_complex and str(candidate.get("stationInstanceId",""))!=str(station.get("stationInstanceId","")):continue
 		var other_center := Geo.local_m(station.latlng, ref_lat)
 		var a := deg_to_rad(float(station.get("heading", 90)))
 		var other_along := Vector2(sin(a), cos(a))

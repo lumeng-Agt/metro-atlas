@@ -350,8 +350,14 @@ def main() -> int:
             project.pop("playabilityNote", None)
 
     if plan_spec.get("contentRevision"):
-        campaigns["contentRevision"] = str(plan_spec["contentRevision"])
-        campaigns["contentRevisionNote"] = str(plan_spec.get("contentRevisionNote", ""))
+        incoming = str(plan_spec["contentRevision"])
+        current = str(campaigns.get("contentRevision", ""))
+        # Re-materializing an older reviewed project must not roll back the
+        # content package version used by save scope reconciliation.
+        revision_key = lambda value: tuple(int(part) for part in value.split("."))
+        if not current or revision_key(incoming) >= revision_key(current):
+            campaigns["contentRevision"] = incoming
+            campaigns["contentRevisionNote"] = str(plan_spec.get("contentRevisionNote", ""))
 
     write(CITY_PATH, cities)
     write(CAMPAIGN_PATH, campaigns)

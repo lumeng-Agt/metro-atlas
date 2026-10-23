@@ -1,7 +1,7 @@
 """Negative fixtures for coverage rules; not evidence of any city's completeness."""
 import copy
 import unittest
-from official_coverage import check_project
+from official_coverage import check_project, cutoff_evidence_errors
 
 
 class CoverageRules(unittest.TestCase):
@@ -56,6 +56,25 @@ class CoverageRules(unittest.TestCase):
         self.target['groups'][0].update(matchScope='contiguous_subsequence')
         self.plans[0]['lineGroups'][0]['stationIds'] = ['a', 'c']
         self.assertTrue(check_project(self.target, self.plans, self.names))
+
+    def test_later_timetable_is_not_cutoff_opening_evidence(self):
+        network = dict(date='2026-10-01', groups=[self.target['groups'][0]],
+                       sourceRetrievedAt='2026-10-23', temporalReviewStatus='pending')
+        self.assertTrue(cutoff_evidence_errors(network, '2026-10-01'))
+
+    def test_just_setting_reviewed_flag_is_insufficient(self):
+        network = dict(date='2026-10-01', groups=[self.target['groups'][0]], temporalReviewStatus='verified')
+        self.assertTrue(cutoff_evidence_errors(network, '2026-10-01'))
+
+    def test_future_opening_cannot_enter_cutoff(self):
+        network = dict(date='2026-10-01', groups=[self.target['groups'][0]], temporalReviewStatus='verified',
+                       temporalEvidence=[dict(source='https://example.invalid/opening', effectiveDate='2026-10-02')])
+        self.assertTrue(cutoff_evidence_errors(network, '2026-10-01'))
+
+    def test_explicit_dated_cutoff_evidence(self):
+        network = dict(date='2026-10-01', groups=[self.target['groups'][0]], temporalReviewStatus='verified',
+                       temporalEvidence=[dict(source='https://example.invalid/opening', effectiveDate='2026-09-28')])
+        self.assertEqual(cutoff_evidence_errors(network, '2026-10-01'), [])
 
 
 if __name__ == '__main__':

@@ -16,7 +16,7 @@ func _run() -> void:
 	_check(Catalog.validate_network_baseline(WorldData.cities()).is_empty(),"五城截止日路网基准引用校验")
 	var gz_future:Array=Catalog.playable_future_plans("guangzhou")
 	var gz_future_ids:Array=gz_future.map(func(plan:Dictionary):return str(plan.get("id","")))
-	_check(gz_future.size()==5 and ["gz-line12-mid-build","gz-line13-phase2-west-build","gz-line8-north-branch-build","gz-line8-north-build","gz-line8-east-build"].all(func(id:String):return gz_future_ids.has(id)),"广州12号线中段、13号线二期西段及8号线北延、东延、独立支线均进入可玩项目篇")
+	_check(gz_future.size()==6 and ["gz-line12-mid-build","gz-line13-phase2-west-build","gz-line8-north-branch-build","gz-line8-north-build","gz-line8-east-build","gz-line18-remainder-build"].all(func(id:String):return gz_future_ids.has(id)),"广州12号线中段、13号线二期西段、8号线北延及东延和18号线后通段均进入可玩项目篇")
 	var sh_future_ids:Array=Catalog.playable_future_plans("shanghai").map(func(plan:Dictionary):return str(plan.get("id","")))
 	_check(sh_future_ids.has("sh-line23-phase1-build") and sh_future_ids.has("sh-line15-south-build") and sh_future_ids.has("sh-line21-phase1-build"),"上海23号线一期、15号线南延伸和21号线一期进入可玩项目篇")
 	var gz_2025:Dictionary={}

@@ -17,6 +17,7 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 		var line_id:=str(expected.get("historicalLineId",expected.id))
 		var matched:=false
 		for route in world.get("routes",[]):
+			if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
 			if str(route.get("historicalLineId",""))!=line_id:continue
 			for direction in route.get("directions",[]):
 				var ids:Array=direction.get("stationIds",[])
@@ -63,6 +64,7 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 				for station in world.get("stations",[]):
 					if str(station.get("stationInstanceId",station.get("id","")))==str(bodies[i]):physical_id=str(station.id);break
 				for route in world.get("routes",[]):
+					if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
 					if str(route.get("historicalLineId",""))!=str(lines[i]):continue
 					for direction in route.get("directions",[]):
 						if not physical_id.is_empty() and direction.get("stationIds",[]).has(physical_id):serves=true
@@ -75,6 +77,36 @@ static func current_project_errors(world:Dictionary,project_ids:Array) -> Array[
 	var errors:Array[String]=[]
 	for project in targets.get("cities",{}).get(str(world.cityId),{}).get("projects",[]):
 		if project_ids.has(str(project.id)):errors.append_array(project_errors(world,project))
+	return errors
+
+## Check the real committed path at each independently documented opening,
+## including extra future stops on a line whose period is already reviewed.
+static func historical_chapter_errors(world:Dictionary,chapter_id:String) -> Array[String]:
+	var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(TARGET_PATH))
+	var milestones:Array=targets.get("cities",{}).get(str(world.cityId),{}).get("historicalMilestones",[])
+	var current:Dictionary={}
+	for milestone in milestones:
+		if str(milestone.get("chapterId",""))==chapter_id:current=milestone;break
+	if current.is_empty():return []
+	var errors:=project_errors(world,current)
+	var reviewed_lines:Dictionary={}
+	for group in current.get("groups",[]):reviewed_lines[str(group.get("historicalLineId",group.id))]=true
+	var permitted:Dictionary={}
+	for milestone in milestones:
+		if str(milestone.get("date",""))>str(current.get("date","")):continue
+		for group in milestone.get("groups",[]):
+			var line_id:=str(group.get("historicalLineId",group.id))
+			if not permitted.has(line_id):permitted[line_id]=[]
+			for name in group.get("stationNames",[]):
+				if not permitted[line_id].has(name):permitted[line_id].append(name)
+	for route in world.get("routes",[]):
+		if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
+		var line_id:=str(route.get("historicalLineId",""))
+		if not reviewed_lines.has(line_id):continue
+		for direction in route.get("directions",[]):
+			for id in direction.get("stationIds",[]):
+				var name:=str(WorldData.find_station(world,str(id)).get("name",""))
+				if not permitted.get(line_id,[]).has(name):errors.append("%s: future or undocumented stop at %s: %s"%[line_id,str(current.get("date","")),name])
 	return errors
 
 static func cutoff_errors(world:Dictionary) -> Array[String]:
@@ -107,9 +139,19 @@ static func service_shape_errors(world:Dictionary,network:Dictionary,projects:Ar
 				if str(future.get("historicalLineId",future.id))==line_id:
 					for name in future.get("stationNames",[]):
 						if not permitted.has(name):permitted.append(name)
+		var required_direction_count:=patterns.size()
+		for change in network.get("futureTopologyChanges",[]):
+			if str(change.get("historicalLineId",""))!=line_id or str(change.get("kind",""))!="merge_cutoff_branches":continue
+			if str(change.get("source","")).is_empty() or int(change.get("cutoffBranchCount",0))!=patterns.size() or int(change.get("resultBranchCount",0))!=1:continue
+			for project in projects:
+				if str(project.get("id",""))!=str(change.get("projectId","")) or str(project.get("reviewStatus",""))!="verified" or project.get("groups",[]).is_empty():continue
+				# A claimed completion flag is insufficient: the connecting scope
+				# and its required transfers must exist in the real saved world.
+				if project_errors(world,project).is_empty():required_direction_count=1
 		for route in world.get("routes",[]):
+			if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
 			if str(route.get("historicalLineId",""))!=line_id:continue
-			if route.get("directions",[]).size()!=patterns.size():errors.append("%s: cutoff service direction count differs from documented branches"%line_id)
+			if route.get("directions",[]).size()!=required_direction_count:errors.append("%s: cutoff service direction count differs from documented branches"%line_id)
 			for direction in route.get("directions",[]):
 				var seen:Dictionary={}
 				for id in direction.get("stationIds",[]):

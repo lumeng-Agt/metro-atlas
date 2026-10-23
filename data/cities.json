@@ -23692,6 +23692,20 @@
           "source": "https://sthjj.gz.gov.cn/attachment/7/7510/7510809/9335300.pdf",
           "sourceCheckedAt": "2026-10-23",
           "coordinateAccuracyM": 150
+        },
+        {
+          "id": "guangzhou-f18-east-site",
+          "name": "广州东站18号线站区参考",
+          "latlng": [
+            23.156,
+            113.3195
+          ],
+          "schematic": true,
+          "coordinateSource": "official_site_description",
+          "coordinateNote": "2026-02-09用地许可所示广州东站工程北侧站区，结合现代铁路枢纽的近似参考；不是1/3号线南侧站位，也不声称测绘精度。",
+          "source": "https://ghzyj.gz.gov.cn/ywpd/cxgh/ghxkgsgb/phgbnew/ydghxkz/2025/content/post_10687579.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 300
         }
       ],
       "lines": [
@@ -39390,6 +39404,176 @@
           "osmIds": [
             13392617779
           ]
+        },
+        {
+          "id": "chengdu-official-l30-n13380485910",
+          "name": "府城桥",
+          "latlng": [
+            30.5912769,
+            104.0731875
+          ],
+          "coordinateSource": "existing_station",
+          "coordinateNote": "运营方站序存在、旧地图库遗漏；OSM地铁站节点13380485910，现代站区参考，不代表隧道测绘。",
+          "source": "https://www.chengdurail.com/op/station-time",
+          "osmNodeId": 13380485910
+        },
+        {
+          "id": "chengdu-official-l30-n13380485918",
+          "name": "金融城北",
+          "latlng": [
+            30.5910068,
+            104.0672093
+          ],
+          "coordinateSource": "existing_station",
+          "coordinateNote": "运营方站序存在、旧地图库遗漏；OSM地铁站节点13380485918，现代站区参考，不代表隧道测绘。",
+          "source": "https://www.chengdurail.com/op/station-time",
+          "osmNodeId": 13380485918
+        },
+        {
+          "id": "chengdu-official-l30-n13380485921",
+          "name": "益州大道",
+          "latlng": [
+            30.5910484,
+            104.0579647
+          ],
+          "coordinateSource": "existing_station",
+          "coordinateNote": "运营方站序存在、旧地图库遗漏；OSM地铁站节点13380485921，现代站区参考，不代表隧道测绘。",
+          "source": "https://www.chengdurail.com/op/station-time",
+          "osmNodeId": 13380485921
+        },
+        {
+          "id": "chengdu-official-l30-n13380485923",
+          "name": "新园大道",
+          "latlng": [
+            30.5904794,
+            104.0372783
+          ],
+          "coordinateSource": "existing_station",
+          "coordinateNote": "运营方站序存在、旧地图库遗漏；OSM地铁站节点13380485923，现代站区参考，不代表隧道测绘。",
+          "source": "https://www.chengdurail.com/op/station-time",
+          "osmNodeId": 13380485923
+        },
+        {
+          "id": "chengdu-official-l30-n13380485924",
+          "name": "石羊东",
+          "latlng": [
+            30.586455,
+            104.0306541
+          ],
+          "coordinateSource": "existing_station",
+          "coordinateNote": "运营方站序存在、旧地图库遗漏；OSM地铁站节点13380485924，现代站区参考，不代表隧道测绘。",
+          "source": "https://www.chengdurail.com/op/station-time",
+          "osmNodeId": 13380485924
+        },
+        {
+          "id": "chengdu-official-l30-n13380485925",
+          "name": "大同",
+          "latlng": [
+            30.5752522,
+            104.0146206
+          ],
+          "coordinateSource": "existing_station",
+          "coordinateNote": "运营方站序存在、旧地图库遗漏；OSM地铁站节点13380485925，现代站区参考，不代表隧道测绘。",
+          "source": "https://www.chengdurail.com/op/station-time",
+          "osmNodeId": 13380485925
+        },
+        {
+          "id": "chengdu-f27-qingbailu",
+          "name": "清百路",
+          "latlng": [
+            30.695537,
+            103.983353
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "站名及顺序据四川发布节能审查概况表；以现代蜀江路与清百路交点（OSM ways604104004/604104008）作工程站区近似，不代表正式中心点，不作精确贴合评分。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f27-huangjinlu",
+          "name": "黄金路",
+          "latlng": [
+            30.69735,
+            103.979635
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "站名及顺序据四川发布节能审查概况表；以现代蜀江路西端OSM way1466932351作走廊站区参考，结合勘探现场公开记录定位，非测绘中心点。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f10p4-wenshudong",
+          "name": "文殊院东",
+          "latlng": [
+            30.6712356,
+            104.0710558
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "现代锣锅巷走廊OSM way586386577，工程站区近似；不是已核验站体中心。 站名和相邻顺序单独据四川发布工程概况核对。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f10p4-gaosuntang",
+          "name": "高笋塘",
+          "latlng": [
+            30.6920795,
+            104.0853401
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "现代红花东路/解放路一段路口（OSM ways184296325/184255152），工程站区近似。 站名和相邻顺序单独据四川发布工程概况核对。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f10p4-zhaojuesi",
+          "name": "昭觉寺",
+          "latlng": [
+            30.7148952,
+            104.1070556
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "现代东紫路走廊（OSM way299446993）工程站区近似；不是既有3号线昭觉寺南路站，也不据名字合并站体。 站名和相邻顺序单独据四川发布工程概况核对。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f10p4-qinglongchang",
+          "name": "青龙场",
+          "latlng": [
+            30.714701,
+            104.111822
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "现代东荆路/荆竹东路交点（OSM ways281243371/920032544）的工程站区近似，不使用同名国铁青龙场站。 站名和相邻顺序单独据四川发布工程概况核对。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f10p4-bailianchi",
+          "name": "白莲池",
+          "latlng": [
+            30.7253328,
+            104.1152803
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "现代富安五路/熊猫大道附近（OSM ways975248250/801887701），道路几何相距19米的走廊参考，非测量站心。 站名和相邻顺序单独据四川发布工程概况核对。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-23",
+          "coordinateAccuracyM": 500
         }
       ],
       "lines": [

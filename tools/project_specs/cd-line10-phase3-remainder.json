@@ -1,0 +1,90 @@
+{
+  "city": "chengdu",
+  "projectIds": [
+    "cd-line10-phase3-remainder"
+  ],
+  "stations": [
+    {
+      "id": "chengdu-s142",
+      "name": "武侯祠",
+      "existing": true
+    },
+    {
+      "id": "chengdu-s322",
+      "name": "文翁石室",
+      "existing": true
+    },
+    {
+      "id": "chengdu-s38",
+      "name": "人民公园",
+      "existing": true
+    }
+  ],
+  "lineGroup": {
+    "mapRouteId": "chengdu-future-line10-phase3-remainder",
+    "name": "10号线三期后通段",
+    "historicalLineId": "chengdu-line10-10",
+    "color": "#005EB8",
+    "stationIds": [
+      "chengdu-s142",
+      "chengdu-s322",
+      "chengdu-s38"
+    ],
+    "stationInstances": {
+      "chengdu-s322": "chengdu-s322__line10-10",
+      "chengdu-s38": "chengdu-s38__line10-10"
+    },
+    "toleranceM": 220,
+    "alignmentPrecision": "corridor_only",
+    "stationOrderSource": "https://sthjt.sc.gov.cn/sthjt/uploadfiles/20191018094016265.pdf",
+    "precisionNote": "环评第32—33页逐段顺序与站址，武侯祠为已开放接头，人民公园和文翁石室为截止日尚未开放部分；近似走廊不代表施工测量。"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-cd10-wenweng-13",
+      "name": "文翁石室",
+      "complexId": "chengdu-s322",
+      "stationInstanceIds": [
+        "chengdu-s322",
+        "chengdu-s322__line10-10"
+      ],
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line10-10"
+      ],
+      "sourceNote": "环评明确10/13换乘，各线路站体独立。"
+    },
+    {
+      "id": "future-transfer-cd10-park-2-17",
+      "name": "人民公园",
+      "complexId": "chengdu-s38",
+      "stationInstanceIds": [
+        "chengdu-s38__line2-2",
+        "chengdu-s38__line17-12",
+        "chengdu-s38__line10-10"
+      ],
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line17-12",
+        "chengdu-line10-10"
+      ],
+      "sourceNote": "环评明确人民公园10/17/2换乘，各自线路路径分开。"
+    }
+  ],
+  "plan": {
+    "id": "cd-line10-phase3-remainder-build",
+    "title": "10号线三期：补齐文翁石室与人民公园",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "operator_opening_scope_and_official_eia",
+    "projectType": "under_construction",
+    "required": true,
+    "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+    "sourceTitle": "成都地铁2025-09-16开通公告及10号线三期环评",
+    "sourcePublicationDate": "2025-09-16",
+    "sourceCheckedAt": "2026-10-23",
+    "description": "2025年首开仅武侯祠—太平园。向北补建文翁石室与人民公园两座站、与13/2/17号线换乘。截止日尚未投用，成果只记规划建设完成；不代替后续四期范围。",
+    "contentRevision": "2026.10.23.48",
+    "requiresScopeRecheck": true
+  }
+}

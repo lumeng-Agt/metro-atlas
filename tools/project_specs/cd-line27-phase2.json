@@ -1,0 +1,92 @@
+{
+  "city": "chengdu",
+  "projectIds": [
+    "cd-line27-phase2"
+  ],
+  "stations": [
+    {
+      "id": "chengdu-s348",
+      "name": "蜀鑫路",
+      "existing": true
+    },
+    {
+      "id": "chengdu-f27-qingbailu",
+      "name": "清百路",
+      "latlng": [
+        30.695537,
+        103.983353
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "站名及顺序据四川发布节能审查概况表；以现代蜀江路与清百路交点（OSM ways604104004/604104008）作工程站区近似，不代表正式中心点，不作精确贴合评分。",
+      "coordinateAccuracyM": 500
+    },
+    {
+      "id": "chengdu-f27-huangjinlu",
+      "name": "黄金路",
+      "latlng": [
+        30.69735,
+        103.979635
+      ],
+      "coordinateSource": "local_road_geometry",
+      "coordinateNote": "站名及顺序据四川发布节能审查概况表；以现代蜀江路西端OSM way1466932351作走廊站区参考，结合勘探现场公开记录定位，非测绘中心点。",
+      "coordinateAccuracyM": 500
+    },
+    {
+      "id": "chengdu-s177",
+      "name": "黄田坝",
+      "existing": true
+    }
+  ],
+  "lineGroup": {
+    "mapRouteId": "chengdu-future-line27-phase2",
+    "name": "27号线二期",
+    "historicalLineId": "chengdu-line27-15",
+    "color": "#00A9CE",
+    "stationIds": [
+      "chengdu-s348",
+      "chengdu-f27-qingbailu",
+      "chengdu-f27-huangjinlu",
+      "chengdu-s177"
+    ],
+    "stationInstances": {
+      "chengdu-s177": "chengdu-s177__line27-15"
+    },
+    "toleranceM": 550,
+    "alignmentPrecision": "corridor_only",
+    "precisionNote": "公布3座新站全部进入任务，复用蜀鑫路接头。清百路、黄金路为走廊级站区示意；位置精度不冒充已核验隧道中心线。",
+    "stationOrderSource": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+    "officialLengthM": 2190
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-cd27-huangtianba-9",
+      "name": "黄田坝",
+      "complexId": "chengdu-s177",
+      "stationInstanceIds": [
+        "chengdu-s177",
+        "chengdu-s177__line27-15"
+      ],
+      "lineIds": [
+        "chengdu-line9-9",
+        "chengdu-line27-15"
+      ],
+      "sourceNote": "政府新闻办公开的工程概况表明确黄田坝与9号线换乘；各线路站体与轨道独立。"
+    }
+  ],
+  "plan": {
+    "id": "cd-line27-phase2-build",
+    "title": "27号线二期：向黄田坝延伸",
+    "date": "2026-10-01",
+    "status": "approved_preparatory",
+    "sourceType": "provincial_government_information_office_project_scope",
+    "projectType": "approved_preparatory",
+    "required": true,
+    "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+    "sourceTitle": "四川省人民政府新闻办公室四川发布2025-11-06：27号线二期工程概况",
+    "sourcePublicationDate": "2025-11-06",
+    "sourceCheckedAt": "2026-10-23",
+    "description": "复用蜀鑫路端点，依次建设清百路、黄金路、黄田坝3座公布新站，与既有9号线建立换乘。范围据公开节能审查概况，不把节能审查当作施工许可证或未来开通日期。",
+    "contentRevision": "2026.10.23.52",
+    "requiresScopeRecheck": true
+  }
+}
