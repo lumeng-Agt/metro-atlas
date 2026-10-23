@@ -338,6 +338,81 @@
       ],
       "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
       "sourceNote": "环评印刷页44—48车站表明确的换乘关系；不同线路保留独立站体。"
+    },
+    {
+      "id": "future-transfer-sz27-youfu-25",
+      "name": "油福",
+      "complexId": "shenzhen-f27-youfu",
+      "stationInstanceIds": [
+        "shenzhen-f27-youfu",
+        "shenzhen-f27-youfu__line25-25"
+      ],
+      "lineIds": [
+        "shenzhen-line27-27",
+        "shenzhen-line25-25"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "同期项目已发布站序确定的换乘；分别建站体并明确确认，换乘边不进入列车轨道。"
+    },
+    {
+      "id": "future-transfer-sz27-fukang-22",
+      "name": "富康（环评名松和）",
+      "complexId": "shenzhen-f27-songhe",
+      "stationInstanceIds": [
+        "shenzhen-f27-songhe",
+        "shenzhen-f27-songhe__line22-22"
+      ],
+      "lineIds": [
+        "shenzhen-line27-27",
+        "shenzhen-line22-22"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "同期项目已发布站序确定的换乘；分别建站体并明确确认，换乘边不进入列车轨道。"
+    },
+    {
+      "id": "future-transfer-sz27-jihuayiyuan-25",
+      "name": "吉华医院",
+      "complexId": "shenzhen-f25-jihuayiyuan",
+      "stationInstanceIds": [
+        "shenzhen-f25-jihuayiyuan__line27-27",
+        "shenzhen-f25-jihuayiyuan__line25-25"
+      ],
+      "lineIds": [
+        "shenzhen-line27-27",
+        "shenzhen-line25-25"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "同期项目已发布站序确定的换乘；分别建站体并明确确认，换乘边不进入列车轨道。"
+    },
+    {
+      "id": "future-transfer-sz27-xilihsr-15",
+      "name": "西丽高铁站",
+      "complexId": "shenzhen-future-xili-hsr",
+      "stationInstanceIds": [
+        "shenzhen-future-xili-hsr__line27-27",
+        "shenzhen-future-xili-hsr"
+      ],
+      "lineIds": [
+        "shenzhen-line27-27",
+        "shenzhen-line15-15"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "同期项目已发布站序确定的换乘；分别建站体并明确确认，换乘边不进入列车轨道。"
+    },
+    {
+      "id": "future-transfer-sz27-xilihsr-29",
+      "name": "西丽高铁站",
+      "complexId": "shenzhen-future-xili-hsr",
+      "stationInstanceIds": [
+        "shenzhen-future-xili-hsr__line27-27",
+        "shenzhen-future-xili-hsr__line29-29"
+      ],
+      "lineIds": [
+        "shenzhen-line27-27",
+        "shenzhen-line29-29"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20240925/1727251696167036498.pdf",
+      "sourceNote": "同期项目已发布站序确定的换乘；分别建站体并明确确认，换乘边不进入列车轨道。"
     }
   ],
   "plan": {
@@ -354,8 +429,8 @@
     "sourceCheckedAt": "2026-10-22",
     "sourcePublicationDate": "2024-09-25",
     "description": "复现2024年环评完整范围：松坪村—岗头西19站主段与吉华医院—杨美北2站独立段，共21站。完整站序和区段关系采用官方资料，地理连接为近似走廊。两段不虚构贯通；完成表示规划建设完成。",
-    "contentRevision": "2026.10.23.28",
-    "contentRevisionNote": "补齐27号线一期21站与两个独立区段。",
+    "contentRevision": "2026.10.23.33",
+    "contentRevisionNote": "补齐22/25/27/29同期建设的换乘联系，保存旧关系身份。",
     "requiresScopeRecheck": true
   }
 }

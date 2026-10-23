@@ -41,7 +41,7 @@ def check_project(target, plans, names):
                 errors.append(f'{group_id}: unsupported corridor exception')
             if any(s not in actual for s in expected.get('requiredPlaces', [])):
                 errors.append(f'{group_id}: required corridor places missing')
-        elif not wanted or actual != wanted:
+        elif not wanted or (actual != wanted and not (expected.get('allowReverse') and actual == list(reversed(wanted)))):
             errors.append(f'{group_id}: station order differs; missing={[n for n in wanted if n not in actual]}, unexpected={[n for n in actual if n not in wanted]}, expected={len(wanted)}, actual={len(actual)}')
         if bool(group.get('loop', False)) != bool(expected.get('loop', False)):
             errors.append(f'{group_id}: loop closure requirement differs')

@@ -5,44 +5,232 @@
   ],
   "stations": [
     {
-      "name": "机场北",
-      "id": "shenzhen-s194",
+      "name": "白石洲",
+      "id": "shenzhen-s16",
       "existing": true
     },
     {
-      "name": "福田会展",
-      "id": "shenzhen-f20-futianhuizhan",
+      "name": "高新园",
+      "id": "shenzhen-s17",
+      "existing": true
+    },
+    {
+      "name": "深大",
+      "id": "shenzhen-s18",
+      "existing": true
+    },
+    {
+      "name": "南头古城",
+      "id": "shenzhen-s348",
+      "existing": true
+    },
+    {
+      "name": "中山公园西",
+      "id": "shenzhen-f20-zhongshangongyuanxi",
       "latlng": [
-        22.5355,
-        114.058
+        22.5479914,
+        113.9106082
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "福田会展中心（深圳会展中心）站区参考；20号线二期东端终点，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.6-2：中山公园西门前，离线OSM广场way/247577956中心，站区近似。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf"
+    },
+    {
+      "name": "新安老城",
+      "id": "shenzhen-f20-xinanlaocheng",
+      "latlng": [
+        22.5617446,
+        113.8982273
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.6-2：广深公路与甲岸路路口，离线道路最近距离16.8米，站区近似。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf"
+    },
+    {
+      "name": "上川一路",
+      "id": "shenzhen-f20-shangchuanyilu",
+      "latlng": [
+        22.5737895,
+        113.8855994
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.6-2：广深公路与上川一路路口，离线道路最近距离1.3米。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf"
+    },
+    {
+      "name": "西乡公园",
+      "id": "shenzhen-f15-xixianggongyuan",
+      "latlng": [
+        22.5817333,
+        113.8780873
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.6-2：广深公路与流塘路路口，与15号线同一历史站区、不同物理站体。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf"
+    },
+    {
+      "name": "航城大道东",
+      "id": "shenzhen-f20-hangcheng",
+      "latlng": [
+        22.6126162,
+        113.8543252
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.6-2：2023环评暂名航城；后续工程名航城大道东。广深公路与航城大道路口，离线道路参考。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf"
+    },
+    {
+      "name": "狮子山公园",
+      "id": "shenzhen-f20-hangchengyiyuan",
+      "latlng": [
+        22.6207452,
+        113.8399382
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.6-2：2023环评暂名航城医院；2026官方工程名狮子山公园。离线OSM在建站用地way/1383405755中心，非站体测绘。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf"
+    },
+    {
+      "name": "机场东",
+      "id": "shenzhen-s30",
+      "existing": true
+    },
+    {
+      "name": "机场北",
+      "id": "shenzhen-s194",
+      "existing": true
     }
   ],
   "lineGroups": [
     {
       "key": "phase2",
       "mapRouteId": "shenzhen-future-line20-phase2",
-      "name": "20号线二期（走廊复现）",
+      "name": "20号线二期（白石洲—机场北）",
       "historicalLineId": "shenzhen-line20-17",
       "color": "#C08A6A",
       "stationIds": [
         "shenzhen-s194",
-        "shenzhen-f20-futianhuizhan"
+        "shenzhen-s30",
+        "shenzhen-f20-hangchengyiyuan",
+        "shenzhen-f20-hangcheng",
+        "shenzhen-f15-xixianggongyuan",
+        "shenzhen-f20-shangchuanyilu",
+        "shenzhen-f20-xinanlaocheng",
+        "shenzhen-f20-zhongshangongyuanxi",
+        "shenzhen-s348",
+        "shenzhen-s18",
+        "shenzhen-s17",
+        "shenzhen-s16"
       ],
-      "toleranceM": 900,
-      "officialLengthM": 34000,
-      "maxSpacingM": 36000,
+      "toleranceM": 150,
+      "officialLengthM": 24821,
+      "maxSpacingM": 6000,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "20号线二期官方口径为机场北—福田会展，约34公里。公开环评区间表不能给出完整可核对站序，本篇按既有20号线机场北站体（s194__line20-17）与福田会展站区复现走廊，中途站不虚构坐标。",
-      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+      "precisionNote": "2023项目环评表2.1.6-1完整11座新站，加既有机场北接头。2026工程公告确认白石洲—机场北范围；不包含早期福田会展远景段。航城、航城医院采用后续工程名航城大道东、狮子山公园。",
+      "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf"
     }
   ],
   "stationInstances": {
-    "shenzhen-s194": "shenzhen-s194__line20-17"
+    "shenzhen-s16": "shenzhen-s16__line20-17",
+    "shenzhen-s17": "shenzhen-s17__line20-17",
+    "shenzhen-s18": "shenzhen-s18__line20-17",
+    "shenzhen-s348": "shenzhen-s348__line20-17",
+    "shenzhen-s30": "shenzhen-s30__line20-17",
+    "shenzhen-s194": "shenzhen-s194__line20-17",
+    "shenzhen-f15-xixianggongyuan": "shenzhen-f15-xixianggongyuan__line20-17"
   },
-  "transfers": [],
+  "transfers": [
+    {
+      "id": "future-transfer-sz20-shenzhen-s16-shenzhen-line1",
+      "name": "白石洲",
+      "complexId": "shenzhen-s16",
+      "stationInstanceIds": [
+        "shenzhen-s16__line1",
+        "shenzhen-s16__line20-17"
+      ],
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line20-17"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+      "sourceNote": "环评公布的换乘；站体独立，通道示意。"
+    },
+    {
+      "id": "future-transfer-sz20-shenzhen-s17-shenzhen-line1",
+      "name": "高新园",
+      "complexId": "shenzhen-s17",
+      "stationInstanceIds": [
+        "shenzhen-s17__line1",
+        "shenzhen-s17__line20-17"
+      ],
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line20-17"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+      "sourceNote": "环评公布的换乘；站体独立，通道示意。"
+    },
+    {
+      "id": "future-transfer-sz20-shenzhen-s18-shenzhen-line1",
+      "name": "深大",
+      "complexId": "shenzhen-s18",
+      "stationInstanceIds": [
+        "shenzhen-s18__line1",
+        "shenzhen-s18__line20-17"
+      ],
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line20-17"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+      "sourceNote": "环评公布的换乘；站体独立，通道示意。"
+    },
+    {
+      "id": "future-transfer-sz20-shenzhen-s348-shenzhen-line12-13",
+      "name": "南头古城",
+      "complexId": "shenzhen-s348",
+      "stationInstanceIds": [
+        "shenzhen-s348__line12-13",
+        "shenzhen-s348__line20-17"
+      ],
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line20-17"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+      "sourceNote": "环评公布的换乘；站体独立，通道示意。"
+    },
+    {
+      "id": "future-transfer-sz20-shenzhen-s30-shenzhen-line1",
+      "name": "机场东",
+      "complexId": "shenzhen-s30",
+      "stationInstanceIds": [
+        "shenzhen-s30__line1",
+        "shenzhen-s30__line20-17"
+      ],
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line20-17"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+      "sourceNote": "环评公布的换乘；站体独立，通道示意。"
+    },
+    {
+      "id": "future-transfer-sz20-shenzhen-s30-shenzhen-line12-13",
+      "name": "机场东",
+      "complexId": "shenzhen-s30",
+      "stationInstanceIds": [
+        "shenzhen-s30__line12-13",
+        "shenzhen-s30__line20-17"
+      ],
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line20-17"
+      ],
+      "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+      "sourceNote": "环评公布的换乘；站体独立，通道示意。"
+    }
+  ],
   "plan": {
     "id": "sz-line20-phase2-build",
     "title": "深圳20号线二期建设篇",
@@ -52,12 +240,13 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-09-05",
-    "description": "按五期建设规划环评官方口径复现20号线二期：机场北—福田会展，约34公里，机场北复用既有20号线站体。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.20",
-    "contentRevisionNote": "增加深圳20号线二期走廊复现章。"
+    "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+    "sourceTitle": "深圳市城市轨道交通20号线二期工程环境影响报告书（2023年10月）",
+    "sourceCheckedAt": "2026-10-23",
+    "sourcePublicationDate": "2023-10-27",
+    "description": "按项目环评建设白石洲至机场北完整范围：11座新站并接入既有机场北。隧道几何为近似走廊；不再把早期福田会展设想当作本期工程。完成只表示规划建设完成。",
+    "contentRevision": "2026.10.23.29",
+    "contentRevisionNote": "补全20、32号线具体建设范围与独立目标，移除早期范围和虚构换乘。",
+    "requiresScopeRecheck": true
   }
 }

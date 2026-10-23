@@ -39225,10 +39225,9 @@
           "source": "https://www.sz.gov.cn/zfgb/2026/gb1420/content/post_12894205.html",
           "sourceTitle": "深圳市国民经济和社会发展第十五个五年规划纲要",
           "note": "规划提出建成13号线二期南北延；北延已于2026-06-28开通，此处只登记其余规划范围，不把整段重复算作未建。",
-          "playabilityStatus": "policy_only_not_playable",
+          "playabilityStatus": "playable_build_task",
           "sourceCheckedAt": "2026-10-20",
-          "statusAtCutoff": "十五五规划目标",
-          "playabilityNote": "十五五规划提出的13号线二期南北延：北延已于2026-06-28开通，南段（深圳湾口岸—后海）已包含在13号线既有运营站序中；没有新的逐站工程蓝图。"
+          "statusAtCutoff": "十五五规划目标"
         },
         {
           "id": "sz-fifth-phase-plan",
@@ -50568,7 +50567,7 @@
       ],
       "milestoneChapterCount": 27,
       "mapRouteEntryCount": 17,
-      "mapRouteStopOccurrenceCount": 470,
+      "mapRouteStopOccurrenceCount": 433,
       "mapUniqueStationCount": 366,
       "routes": [
         {
@@ -50576,7 +50575,7 @@
           "ref": "1号线",
           "name": "1号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 30,
           "cutoffStationIds": [
             "shenzhen-s1",
@@ -50616,15 +50615,16 @@
             7913935,
             19902978,
             19902979
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r2",
           "ref": "2号线",
           "name": "2号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-          "mapStationCount": 36,
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+          "mapStationCount": 32,
           "cutoffStationIds": [
             "shenzhen-s112",
             "shenzhen-s305",
@@ -50657,11 +50657,7 @@
             "shenzhen-s108",
             "shenzhen-s109",
             "shenzhen-s110",
-            "shenzhen-s111",
-            "shenzhen-s299",
-            "shenzhen-s293",
-            "shenzhen-s292",
-            "shenzhen-s291"
+            "shenzhen-s111"
           ],
           "excludedStations": [],
           "routeRelations": [
@@ -50672,14 +50668,15 @@
             21381271,
             21381272,
             21381273
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r3",
           "ref": "3号线",
           "name": "3号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 38,
           "cutoffStationIds": [
             "shenzhen-s31",
@@ -50725,18 +50722,19 @@
           "routeRelations": [
             2287559,
             9629886
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r4",
           "ref": "4号线",
           "name": "4号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 23,
           "cutoffStationIds": [
             "shenzhen-s68",
-            "shenzhen-s69",
+            "shenzhen-s271",
             "shenzhen-s8",
             "shenzhen-s70",
             "shenzhen-s36",
@@ -50763,14 +50761,15 @@
           "routeRelations": [
             2287563,
             7713527
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r5",
           "ref": "5号线",
           "name": "5号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 37,
           "cutoffStationIds": [
             "shenzhen-s112",
@@ -50815,78 +50814,81 @@
           "routeRelations": [
             2752389,
             9645951
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r6",
           "ref": "6号线",
           "name": "6号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 27,
           "cutoffStationIds": [
-            "shenzhen-s201",
-            "shenzhen-s250",
-            "shenzhen-s251",
-            "shenzhen-s252",
-            "shenzhen-s253",
-            "shenzhen-s254",
-            "shenzhen-s255",
-            "shenzhen-s256",
-            "shenzhen-s257",
-            "shenzhen-s258",
-            "shenzhen-s259",
-            "shenzhen-s260",
-            "shenzhen-s261",
-            "shenzhen-s262",
-            "shenzhen-s263",
-            "shenzhen-s264",
-            "shenzhen-s265",
-            "shenzhen-s266",
-            "shenzhen-s76",
-            "shenzhen-s75",
-            "shenzhen-s267",
-            "shenzhen-s268",
-            "shenzhen-s243",
-            "shenzhen-s220",
-            "shenzhen-s269",
+            "shenzhen-s270",
             "shenzhen-s39",
-            "shenzhen-s270"
+            "shenzhen-s269",
+            "shenzhen-s220",
+            "shenzhen-s243",
+            "shenzhen-s268",
+            "shenzhen-s267",
+            "shenzhen-s75",
+            "shenzhen-s76",
+            "shenzhen-s266",
+            "shenzhen-s265",
+            "shenzhen-s264",
+            "shenzhen-s263",
+            "shenzhen-s262",
+            "shenzhen-s261",
+            "shenzhen-s260",
+            "shenzhen-s259",
+            "shenzhen-s258",
+            "shenzhen-s257",
+            "shenzhen-s256",
+            "shenzhen-s255",
+            "shenzhen-s254",
+            "shenzhen-s253",
+            "shenzhen-s252",
+            "shenzhen-s251",
+            "shenzhen-s250",
+            "shenzhen-s201"
           ],
           "excludedStations": [],
           "routeRelations": [
             11583141,
             11583148
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r7",
           "ref": "6号线支线",
           "name": "6号线支线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 7,
           "cutoffStationIds": [
-            "shenzhen-s354",
-            "shenzhen-s355",
-            "shenzhen-s356",
-            "shenzhen-s258",
-            "shenzhen-s357",
+            "shenzhen-s359",
             "shenzhen-s358",
-            "shenzhen-s359"
+            "shenzhen-s357",
+            "shenzhen-s258",
+            "shenzhen-s356",
+            "shenzhen-s355",
+            "shenzhen-s354"
           ],
           "excludedStations": [],
           "routeRelations": [
             14953715,
             14953716
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r8",
           "ref": "7号线",
           "name": "7号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 29,
           "cutoffStationIds": [
             "shenzhen-s203",
@@ -50923,59 +50925,29 @@
           "routeRelations": [
             6781618,
             9629865
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r9",
           "ref": "8号线",
           "name": "8号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-          "mapStationCount": 43,
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+          "mapStationCount": 12,
           "cutoffStationIds": [
-            "shenzhen-s291",
-            "shenzhen-s292",
-            "shenzhen-s293",
-            "shenzhen-s294",
-            "shenzhen-s295",
-            "shenzhen-s296",
-            "shenzhen-s297",
-            "shenzhen-s298",
-            "shenzhen-s299",
-            "shenzhen-s300",
-            "shenzhen-s301",
             "shenzhen-s111",
-            "shenzhen-s110",
-            "shenzhen-s109",
-            "shenzhen-s108",
-            "shenzhen-s107",
-            "shenzhen-s106",
-            "shenzhen-s4",
-            "shenzhen-s105",
-            "shenzhen-s104",
-            "shenzhen-s103",
-            "shenzhen-s70",
-            "shenzhen-s35",
-            "shenzhen-s102",
-            "shenzhen-s101",
-            "shenzhen-s100",
-            "shenzhen-s99",
-            "shenzhen-s98",
-            "shenzhen-s97",
-            "shenzhen-s96",
-            "shenzhen-s95",
-            "shenzhen-s15",
-            "shenzhen-s94",
-            "shenzhen-s93",
-            "shenzhen-s92",
-            "shenzhen-s91",
-            "shenzhen-s90",
-            "shenzhen-s89",
-            "shenzhen-s302",
-            "shenzhen-s303",
-            "shenzhen-s304",
-            "shenzhen-s305",
-            "shenzhen-s112"
+            "shenzhen-s301",
+            "shenzhen-s300",
+            "shenzhen-s299",
+            "shenzhen-s298",
+            "shenzhen-s297",
+            "shenzhen-s296",
+            "shenzhen-s295",
+            "shenzhen-s294",
+            "shenzhen-s293",
+            "shenzhen-s292",
+            "shenzhen-s291"
           ],
           "excludedStations": [],
           "routeRelations": [
@@ -50988,14 +50960,15 @@
             21381273,
             21381274,
             21381275
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r10",
           "ref": "9号线",
           "name": "9号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 32,
           "cutoffStationIds": [
             "shenzhen-s117",
@@ -51035,15 +51008,16 @@
           "routeRelations": [
             9699771,
             13163478
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r11",
           "ref": "10号线",
           "name": "10号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-          "mapStationCount": 25,
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+          "mapStationCount": 24,
           "cutoffStationIds": [
             "shenzhen-s68",
             "shenzhen-s271",
@@ -51068,22 +51042,22 @@
             "shenzhen-s286",
             "shenzhen-s287",
             "shenzhen-s288",
-            "shenzhen-s289",
-            "shenzhen-s290"
+            "shenzhen-s289"
           ],
           "excludedStations": [],
           "routeRelations": [
             11583538,
             11583621
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r12",
           "ref": "11号线",
           "name": "11号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-          "mapStationCount": 23,
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+          "mapStationCount": 22,
           "cutoffStationIds": [
             "shenzhen-s185",
             "shenzhen-s186",
@@ -51106,76 +51080,77 @@
             "shenzhen-s199",
             "shenzhen-s200",
             "shenzhen-s201",
-            "shenzhen-s202",
-            "shenzhen-s224"
+            "shenzhen-s202"
           ],
           "excludedStations": [],
           "routeRelations": [
             6450277,
             9318441,
             21395022
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r13",
           "ref": "12号线",
           "name": "12号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 39,
           "cutoffStationIds": [
-            "shenzhen-s201",
-            "shenzhen-s324",
-            "shenzhen-s325",
-            "shenzhen-s326",
-            "shenzhen-s327",
-            "shenzhen-s328",
-            "shenzhen-s329",
-            "shenzhen-s330",
-            "shenzhen-s307",
-            "shenzhen-s308",
-            "shenzhen-s331",
-            "shenzhen-s332",
-            "shenzhen-s333",
-            "shenzhen-s334",
-            "shenzhen-s335",
-            "shenzhen-s30",
-            "shenzhen-s336",
-            "shenzhen-s337",
-            "shenzhen-s338",
-            "shenzhen-s339",
-            "shenzhen-s340",
-            "shenzhen-s341",
-            "shenzhen-s342",
-            "shenzhen-s343",
-            "shenzhen-s344",
-            "shenzhen-s122",
-            "shenzhen-s345",
-            "shenzhen-s346",
-            "shenzhen-s347",
-            "shenzhen-s348",
-            "shenzhen-s19",
-            "shenzhen-s190",
-            "shenzhen-s349",
-            "shenzhen-s229",
-            "shenzhen-s350",
-            "shenzhen-s351",
-            "shenzhen-s304",
+            "shenzhen-s353",
             "shenzhen-s352",
-            "shenzhen-s353"
+            "shenzhen-s304",
+            "shenzhen-s351",
+            "shenzhen-s350",
+            "shenzhen-s229",
+            "shenzhen-s349",
+            "shenzhen-s190",
+            "shenzhen-s19",
+            "shenzhen-s348",
+            "shenzhen-s347",
+            "shenzhen-s346",
+            "shenzhen-s345",
+            "shenzhen-s122",
+            "shenzhen-s344",
+            "shenzhen-s343",
+            "shenzhen-s342",
+            "shenzhen-s341",
+            "shenzhen-s340",
+            "shenzhen-s339",
+            "shenzhen-s338",
+            "shenzhen-s337",
+            "shenzhen-s336",
+            "shenzhen-s30",
+            "shenzhen-s335",
+            "shenzhen-s334",
+            "shenzhen-s333",
+            "shenzhen-s332",
+            "shenzhen-s331",
+            "shenzhen-s308",
+            "shenzhen-s307",
+            "shenzhen-s330",
+            "shenzhen-s329",
+            "shenzhen-s328",
+            "shenzhen-s327",
+            "shenzhen-s326",
+            "shenzhen-s325",
+            "shenzhen-s324",
+            "shenzhen-s201"
           ],
           "excludedStations": [],
           "routeRelations": [
             14944727,
             14944728
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r14",
           "ref": "13号线",
           "name": "13号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 26,
           "cutoffStationIds": [
             "shenzhen-s390",
@@ -51211,14 +51186,15 @@
             18470805,
             21045037,
             21045038
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r15",
           "ref": "14号线",
           "name": "14号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 18,
           "cutoffStationIds": [
             "shenzhen-s103",
@@ -51244,61 +51220,63 @@
           "routeRelations": [
             14752075,
             14764337
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r16",
           "ref": "16号线",
           "name": "16号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 32,
           "cutoffStationIds": [
-            "shenzhen-s360",
-            "shenzhen-s361",
-            "shenzhen-s362",
-            "shenzhen-s363",
-            "shenzhen-s364",
-            "shenzhen-s365",
-            "shenzhen-s366",
-            "shenzhen-s367",
-            "shenzhen-s368",
-            "shenzhen-s369",
-            "shenzhen-s370",
-            "shenzhen-s371",
-            "shenzhen-s372",
-            "shenzhen-s373",
-            "shenzhen-s60",
-            "shenzhen-s374",
-            "shenzhen-s375",
-            "shenzhen-s376",
-            "shenzhen-s377",
-            "shenzhen-s378",
-            "shenzhen-s379",
-            "shenzhen-s380",
-            "shenzhen-s381",
-            "shenzhen-s55",
-            "shenzhen-s382",
-            "shenzhen-s383",
-            "shenzhen-s384",
-            "shenzhen-s385",
-            "shenzhen-s386",
-            "shenzhen-s387",
+            "shenzhen-s389",
             "shenzhen-s388",
-            "shenzhen-s389"
+            "shenzhen-s387",
+            "shenzhen-s386",
+            "shenzhen-s385",
+            "shenzhen-s384",
+            "shenzhen-s383",
+            "shenzhen-s382",
+            "shenzhen-s55",
+            "shenzhen-s381",
+            "shenzhen-s380",
+            "shenzhen-s379",
+            "shenzhen-s378",
+            "shenzhen-s377",
+            "shenzhen-s376",
+            "shenzhen-s375",
+            "shenzhen-s374",
+            "shenzhen-s60",
+            "shenzhen-s373",
+            "shenzhen-s372",
+            "shenzhen-s371",
+            "shenzhen-s370",
+            "shenzhen-s369",
+            "shenzhen-s368",
+            "shenzhen-s367",
+            "shenzhen-s366",
+            "shenzhen-s365",
+            "shenzhen-s364",
+            "shenzhen-s363",
+            "shenzhen-s362",
+            "shenzhen-s361",
+            "shenzhen-s360"
           ],
           "excludedStations": [],
           "routeRelations": [
             15059916,
             15059917
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         },
         {
           "mapRouteId": "shenzhen-r17",
           "ref": "20号线",
           "name": "20号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
           "mapStationCount": 5,
           "cutoffStationIds": [
             "shenzhen-s306",
@@ -51311,7 +51289,8 @@
           "routeRelations": [
             13620409,
             13620410
-          ]
+          ],
+          "identityReconciliationNote": "站序与2026-06官方票价表独立目标一致后，绑定已核对的稳定历史身份；不保留OSM关系中的重复尾站或整条2/8贯通服务作为8号线单独范围。"
         }
       ],
       "milestoneRule": "章节边界只对应有来源的实际开通、试运营、建成节点或现有可玩里程碑；规划和修订事件保留在相邻区间，不独立构成建设章节。本清单只给截止日目标，历史逐期任务必须由开通事件台账生成，不能把当前整条线路倒灌到首开年份。",

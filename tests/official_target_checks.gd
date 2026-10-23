@@ -65,6 +65,31 @@ func _run() -> void:
 	var corrected:Dictionary={"id":"line","historicalLineId":"line","chapterId":"same-task","stationOrder":["anew","bnew","cnew"],"directions":[{"stationIds":["anew","bnew","cnew"],"edgePathsBySegment":[[],[]]}]}
 	Story._store_historical_route(rebinding,corrected)
 	_check(rebinding.routes[0].directions.size()==1 and rebinding.routes[0].stationOrder==corrected.stationOrder,"same-task physical rebinding replaces obsolete service instead of retaining a ghost branch")
+	var correction_world:=WorldData.new_world("shenzhen","campaign")
+	correction_world.storyState.phase="future";correction_world.storyState.chapterId="sz-line32-phase1-build";correction_world.storyState.stage="build"
+	var old_transfer:Dictionary={"id":"future-transfer-sz32-xichong","name":"溪涌","lineIds":["shenzhen-line8-9","shenzhen-line2-2","shenzhen-line32-32"],"stationInstanceIds":["shenzhen-s291","shenzhen-s291__line2-2","shenzhen-s291__line32-32"],"status":"active"}
+	correction_world.transferConnections=[old_transfer.duplicate(true),{"id":"unrelated","status":"active"}]
+	var corrections:=Story.scope_correction_preview(correction_world,"project:sz-line32-phase1-build")
+	_check(corrections.ok and corrections.changes.size()==1,"obsolete transfer has an explicit correction preview")
+	_check(correction_world.transferConnections[0].status=="active","preview does not change the original relationship")
+	var corrected_world:=correction_world.duplicate(true)
+	Story._apply_scope_corrections(corrected_world,corrections)
+	_check(corrected_world.transferConnections[0].status=="superseded" and corrected_world.transferConnections[1].status=="active","confirmed correction archives only the specified old relation")
+	correction_world.transferConnections[0].lineIds=["player-edited"]
+	_check(not Story.scope_correction_preview(correction_world,"project:sz-line32-phase1-build").ok,"player-edited old relationship is a conflict rather than silently overwritten")
+	var replacement_world:Dictionary={"cityId":"shenzhen","stations":[],"routes":[old_route.duplicate(true),{"id":"unrelated-line","stationOrder":["keep"]}]}
+	var replacement:=corrected.duplicate(true);replacement.chapterId="later-official-correction";replacement.replaceExistingService=true
+	Story._store_historical_route(replacement_world,replacement)
+	_check(replacement_world.routes[0].directions.size()==1 and replacement_world.routes[0].stationOrder==replacement.stationOrder,"explicit official scope correction replaces obsolete branches")
+	_check(replacement_world.routes[1].stationOrder==["keep"],"scope replacement does not touch unrelated services")
+	var rebinding_world:=WorldData.new_world("shenzhen","campaign")
+	rebinding_world.storyState.phase="history";rebinding_world.storyState.chapterId="shenzhen-network-reconciliation-2026-10-01";rebinding_world.storyState.stage="build"
+	rebinding_world.transferConnections=[{"id":"future-transfer-laojie-line3","name":"老街","lineIds":["shenzhen-line3-3","shenzhen-line17-17"],"stationInstanceIds":["shenzhen-s3","shenzhen-s3__line17-17"],"status":"active"}]
+	var rebind:=Story.scope_correction_preview(rebinding_world,"route:shenzhen-r3")
+	_check(rebind.ok and rebind.changes.size()==1,"physical platform correction is included in explicit task preview")
+	_check(rebinding_world.transferConnections[0].stationInstanceIds[0]=="shenzhen-s3","platform correction does not run during preview")
+	Story._apply_scope_corrections(rebinding_world,rebind)
+	_check(rebinding_world.transferConnections[0].stationInstanceIds[0]=="shenzhen-s3__line3-3" and rebinding_world.transferConnections[0].status=="active","confirm rebinds the specified platform without destroying transfer identity")
 	app.queue_free();await process_frame
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())
 	for failure in failures:push_error(failure)

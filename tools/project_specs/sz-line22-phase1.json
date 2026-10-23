@@ -10,36 +10,256 @@
       "existing": true
     },
     {
+      "name": "香蜜西",
+      "id": "shenzhen-f22-xiangmixi",
+      "latlng": [
+        22.5399606,
+        114.0274625
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617311 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "国交中心",
+      "id": "shenzhen-f22-guojiaozhongxin",
+      "latlng": [
+        22.5454652,
+        114.0251913
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617310 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "香梅北",
+      "id": "shenzhen-s100",
+      "existing": true
+    },
+    {
+      "name": "梅丰",
+      "id": "shenzhen-f22-meifeng",
+      "latlng": [
+        22.5650739,
+        114.0477902
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617295 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "凯丰",
+      "id": "shenzhen-f22-kaifeng",
+      "latlng": [
+        22.5711636,
+        114.0584102
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459103 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "民乐",
+      "id": "shenzhen-s73",
+      "existing": true
+    },
+    {
+      "name": "民新",
+      "id": "shenzhen-f22-minxin",
+      "latlng": [
+        22.6085319,
+        114.0407935
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617257 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "民治",
+      "id": "shenzhen-s130",
+      "existing": true
+    },
+    {
+      "name": "民治北",
+      "id": "shenzhen-f22-minzhibei",
+      "latlng": [
+        22.634169,
+        114.0320514
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459105 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "松和",
+      "id": "shenzhen-f22-songhe",
+      "latlng": [
+        22.6429777,
+        114.0334247
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617239 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "富康",
+      "id": "shenzhen-f27-songhe",
+      "existing": true
+    },
+    {
+      "name": "岗头北",
+      "id": "shenzhen-f22-gangtoubei",
+      "latlng": [
+        22.6674353,
+        114.054919
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459107 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "风门坳",
+      "id": "shenzhen-f22-fengmenao",
+      "latlng": [
+        22.6742856,
+        114.0616074
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459109 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "观湖",
+      "id": "shenzhen-f22-guanhu",
+      "latlng": [
+        22.6921549,
+        114.065766
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617226 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "鹭湖",
+      "id": "shenzhen-f22-luhu",
+      "latlng": [
+        22.7024731,
+        114.0673599
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617220 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "松轩",
+      "id": "shenzhen-f22-songxuan",
+      "latlng": [
+        22.7113032,
+        114.0631473
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617209 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "松元厦",
+      "id": "shenzhen-s86",
+      "existing": true
+    },
+    {
+      "name": "桂花",
+      "id": "shenzhen-f22-guihua",
+      "latlng": [
+        22.7340671,
+        114.0461454
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617195 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
+      "name": "库坑",
+      "id": "shenzhen-f22-kukeng",
+      "latlng": [
+        22.7406391,
+        114.0282075
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617174 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
+    },
+    {
       "name": "黎光",
       "id": "shenzhen-f22-liguang",
       "latlng": [
-        22.759247,
-        114.031125
+        22.7600468,
+        114.0332389
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "黎光村/黎光公交站位置，22号线一期北端终点站区参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636596554 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html"
     }
   ],
   "lineGroups": [
     {
       "key": "phase1",
       "mapRouteId": "shenzhen-future-line22",
-      "name": "22号线一期（走廊复现）",
+      "name": "22号线一期（21站）",
       "historicalLineId": "shenzhen-line22-22",
       "color": "#B07A9B",
       "stationIds": [
         "shenzhen-s213",
+        "shenzhen-f22-xiangmixi",
+        "shenzhen-f22-guojiaozhongxin",
+        "shenzhen-s100",
+        "shenzhen-f22-meifeng",
+        "shenzhen-f22-kaifeng",
+        "shenzhen-s73",
+        "shenzhen-f22-minxin",
+        "shenzhen-s130",
+        "shenzhen-f22-minzhibei",
+        "shenzhen-f22-songhe",
+        "shenzhen-f27-songhe",
+        "shenzhen-f22-gangtoubei",
+        "shenzhen-f22-fengmenao",
+        "shenzhen-f22-guanhu",
+        "shenzhen-f22-luhu",
+        "shenzhen-f22-songxuan",
+        "shenzhen-s86",
+        "shenzhen-f22-guihua",
+        "shenzhen-f22-kukeng",
         "shenzhen-f22-liguang"
       ],
-      "toleranceM": 900,
-      "maxSpacingM": 30000,
+      "toleranceM": 150,
+      "maxSpacingM": 5000,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "22号线一期官方口径为上沙—黎光，约34.2公里。公开环评区间表虽能重建部分站序，但不足以逐站核对，本篇按既有上沙站与黎光站区复现走廊（直线约25.8公里，官方34.2公里含绕行），中途站不虚构坐标。上沙与7号线换乘。",
-      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+      "precisionNote": "官方2026-04-10新版工程名图21站、20个区间；富康原名松和，松和原名油松，两站不是同一站。站序完整，站址采用地理参考，隧道为近似走廊。",
+      "stationOrderSource": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+      "officialLengthM": 34760
     }
   ],
   "stationInstances": {
-    "shenzhen-s213": "shenzhen-s213__line22-22"
+    "shenzhen-s213": "shenzhen-s213__line22-22",
+    "shenzhen-f22-xiangmixi": "shenzhen-f22-xiangmixi__line22-22",
+    "shenzhen-f22-guojiaozhongxin": "shenzhen-f22-guojiaozhongxin__line22-22",
+    "shenzhen-s100": "shenzhen-s100__line22-22",
+    "shenzhen-f22-meifeng": "shenzhen-f22-meifeng__line22-22",
+    "shenzhen-f22-kaifeng": "shenzhen-f22-kaifeng__line22-22",
+    "shenzhen-s73": "shenzhen-s73__line22-22",
+    "shenzhen-f22-minxin": "shenzhen-f22-minxin__line22-22",
+    "shenzhen-s130": "shenzhen-s130__line22-22",
+    "shenzhen-f22-minzhibei": "shenzhen-f22-minzhibei__line22-22",
+    "shenzhen-f22-songhe": "shenzhen-f22-songhe__line22-22",
+    "shenzhen-f27-songhe": "shenzhen-f27-songhe__line22-22",
+    "shenzhen-f22-gangtoubei": "shenzhen-f22-gangtoubei__line22-22",
+    "shenzhen-f22-fengmenao": "shenzhen-f22-fengmenao__line22-22",
+    "shenzhen-f22-guanhu": "shenzhen-f22-guanhu__line22-22",
+    "shenzhen-f22-luhu": "shenzhen-f22-luhu__line22-22",
+    "shenzhen-f22-songxuan": "shenzhen-f22-songxuan__line22-22",
+    "shenzhen-s86": "shenzhen-s86__line22-22",
+    "shenzhen-f22-guihua": "shenzhen-f22-guihua__line22-22",
+    "shenzhen-f22-kukeng": "shenzhen-f22-kukeng__line22-22",
+    "shenzhen-f22-liguang": "shenzhen-f22-liguang__line22-22"
   },
   "transfers": [
     {
@@ -54,7 +274,68 @@
         "shenzhen-line7-8",
         "shenzhen-line22-22"
       ],
-      "sourceNote": "上沙为7号线既有站，22号线在此换乘。"
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+      "sourceNote": "官方新版线路图的既有线路换乘标识；新线采用独立站体。"
+    },
+    {
+      "id": "future-transfer-sz22-xiangmeibei-2",
+      "name": "香梅北",
+      "complexId": "shenzhen-s100",
+      "stationInstanceIds": [
+        "shenzhen-s100__line2-2",
+        "shenzhen-s100__line22-22"
+      ],
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line22-22"
+      ],
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+      "sourceNote": "官方新版线路图的既有线路换乘标识；新线采用独立站体。"
+    },
+    {
+      "id": "future-transfer-sz22-minle-4",
+      "name": "民乐",
+      "complexId": "shenzhen-s73",
+      "stationInstanceIds": [
+        "shenzhen-s73__line4",
+        "shenzhen-s73__line22-22"
+      ],
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line22-22"
+      ],
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+      "sourceNote": "官方新版线路图的既有线路换乘标识；新线采用独立站体。"
+    },
+    {
+      "id": "future-transfer-sz22-minzhi-5",
+      "name": "民治",
+      "complexId": "shenzhen-s130",
+      "stationInstanceIds": [
+        "shenzhen-s130__line5-5",
+        "shenzhen-s130__line22-22"
+      ],
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line22-22"
+      ],
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+      "sourceNote": "官方新版线路图的既有线路换乘标识；新线采用独立站体。"
+    },
+    {
+      "id": "future-transfer-sz22-songyuanxia-4",
+      "name": "松元厦",
+      "complexId": "shenzhen-s86",
+      "stationInstanceIds": [
+        "shenzhen-s86",
+        "shenzhen-s86__line22-22"
+      ],
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line22-22"
+      ],
+      "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+      "sourceNote": "官方新版线路图的既有线路换乘标识；新线采用独立站体。"
     }
   ],
   "plan": {
@@ -66,12 +347,13 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-09-05",
-    "description": "按五期建设规划环评官方口径复现22号线一期：上沙—黎光，约34.2公里，上沙与7号线换乘。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.21",
-    "contentRevisionNote": "增加深圳22号线一期走廊复现章。"
+    "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+    "sourceTitle": "22号线一期新版工程名（龙华区重点区域建设推进中心）",
+    "sourceCheckedAt": "2026-10-23",
+    "sourcePublicationDate": "2026-04-10",
+    "description": "复现上沙—黎光21站20区间，采用2026年已公布工程名。换乘各线路使用独立站体，不把相邻的松和与富康混为一站。完成仅表示规划建设完成。",
+    "contentRevision": "2026.10.23.30",
+    "contentRevisionNote": "补全22号线21站；修正20、32号线范围及旧档关系。",
+    "requiresScopeRecheck": true
   }
 }

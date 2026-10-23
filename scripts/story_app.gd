@@ -1430,7 +1430,13 @@ func _confirm_active_task() -> void:
 		var group:Dictionary=Story.groups(world,true)[index]
 		if Story.task_id(chapter,group,index)==selected_task:group_name=str(group.get("name",group.get("historicalLineId",selected_task)));break
 	var expected_revision:=int(result.get("revision",-1))
-	_confirm("确认建设任务 · "+group_name,"只确认这项线路建设及其本期范围，不会确认同一章节里的其他线路、换乘或历史事件。确认后该任务成为当前历史记录。",func():
+	var corrections:=Story.scope_correction_preview(world,selected_task)
+	if not bool(corrections.ok):
+		_message("请核对旧方案关系",str(corrections.get("error","")))
+		return
+	var confirmation_text:="只确认这项线路建设及其本期范围，不会确认同一章节里的其他线路、换乘或历史事件。确认后该任务成为当前历史记录。"
+	for correction in corrections.get("changes",[]):confirmation_text+="\n\n资料修正："+str(correction.text)+" 原关系保留为历史记录，原有站体与轨道不删除。\n来源："+str(correction.source)
+	_confirm("确认建设任务 · "+group_name,confirmation_text,func():
 		var committed:=Story.confirm_task(world,selected_task,expected_revision,result)
 		if not bool(committed.get("ok",false)):
 			_message("建设任务未确认",str(committed.get("error","请重新检查当前任务。")))

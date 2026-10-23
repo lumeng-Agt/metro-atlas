@@ -8,31 +8,34 @@
       "name": "南塘围",
       "id": "shenzhen-f19-nantangwei",
       "latlng": [
-        22.669125,
+        22.6691246,
         114.302838
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "南塘围公交站位置，作为19号线起点站区参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032137607站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     },
     {
       "name": "人民医院",
       "id": "shenzhen-f19-renminyiyuan",
       "latlng": [
-        22.6736,
-        114.3116
+        22.6692515,
+        114.3181503
       ],
-      "coordinateSource": "official_chainage",
-      "coordinateNote": "按官方区间表站序，在南塘围—锦龙走廊上插值定位，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139402站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     },
     {
       "name": "汤坑",
       "id": "shenzhen-f19-tangkeng",
       "latlng": [
-        22.6781,
-        114.3204
+        22.6756306,
+        114.3273878
       ],
-      "coordinateSource": "official_chainage",
-      "coordinateNote": "按官方区间表站序，在南塘围—锦龙走廊上插值定位，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12030492652站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     },
     {
       "name": "锦龙",
@@ -43,21 +46,23 @@
       "name": "新围",
       "id": "shenzhen-f19-xinwei",
       "latlng": [
-        22.6905,
-        114.3297
+        22.6902047,
+        114.3266436
       ],
-      "coordinateSource": "official_chainage",
-      "coordinateNote": "按官方区间表站序，在锦龙—新和走廊上插值定位，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139397站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     },
     {
       "name": "宝山",
       "id": "shenzhen-f19-baoshan",
       "latlng": [
-        22.6983,
-        114.3302
+        22.7013718,
+        114.32543
       ],
-      "coordinateSource": "official_chainage",
-      "coordinateNote": "按官方区间表站序，在锦龙—新和走廊上插值定位，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12030492627站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     },
     {
       "name": "新和",
@@ -68,11 +73,12 @@
       "name": "文化中心",
       "id": "shenzhen-f19-wenhuazhongxin",
       "latlng": [
-        22.7087,
-        114.3391
+        22.7075273,
+        114.3380471
       ],
-      "coordinateSource": "official_chainage",
-      "coordinateNote": "按官方区间表站序，在新和—坪山中心之间定位；2024年修订后站名与站序有调整，本篇沿用官方2022区间表。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139392站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     },
     {
       "name": "坪山中心",
@@ -80,31 +86,44 @@
       "existing": true
     },
     {
-      "name": "荔景",
-      "id": "shenzhen-f19-lijing",
+      "name": "燕子岭",
+      "id": "shenzhen-f19-yanziling",
       "latlng": [
-        22.7212,
-        114.3625
+        22.7056307,
+        114.35689
       ],
-      "coordinateSource": "official_chainage",
-      "coordinateNote": "按官方区间表站序，在坪山中心—聚龙走廊上插值定位，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139386站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
+    },
+    {
+      "name": "南布",
+      "id": "shenzhen-f19-nanbu",
+      "latlng": [
+        22.7078513,
+        114.3689429
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139384站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     },
     {
       "name": "聚龙",
       "id": "shenzhen-f19-julong",
       "latlng": [
-        22.73103,
-        114.377636
+        22.7310305,
+        114.3776364
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "聚龙公交站位置（锦绣东路），作为19号线终点站区参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139381站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+      "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     }
   ],
   "lineGroups": [
     {
       "key": "phase1",
       "mapRouteId": "shenzhen-future-line19",
-      "name": "19号线一期",
+      "name": "19号线一期（12站）",
       "historicalLineId": "shenzhen-line19-19",
       "color": "#7E9BB5",
       "stationIds": [
@@ -117,21 +136,31 @@
         "shenzhen-s369",
         "shenzhen-f19-wenhuazhongxin",
         "shenzhen-s321",
-        "shenzhen-f19-lijing",
+        "shenzhen-f19-yanziling",
+        "shenzhen-f19-nanbu",
         "shenzhen-f19-julong"
       ],
-      "toleranceM": 700,
-      "officialLengthM": 12500,
-      "maxSpacingM": 4000,
+      "toleranceM": 150,
+      "officialLengthM": 14775,
+      "maxSpacingM": 4500,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "站序取自《深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书》区间表：南塘围—人民医院—汤坑—锦龙—新围—宝山—新和—文化中心—坪山中心—荔景—聚龙，共11站（官方口径12站，1站在公开区间表中未出现）。锦龙、新和、坪山中心复用既有站区；其余按官方站序在端点间走廊插值定位。2024年修订将文化中心更名坪山剧院并调整坪山中心—聚龙间站序，本篇沿用官方2022口径并在站名注记说明。",
-      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+      "precisionNote": "施工方2026年6月17日完整12站序列：补燕子岭、南布，撤销旧荔景目标。站名采用工程施工口径，文化中心/坪山剧院保留别名说明；站点为地理参考，隧道为近似走廊。",
+      "stationOrderSource": "https://zcpt.szcg.cn/announcement/60504?projectSource=1"
     }
   ],
   "stationInstances": {
     "shenzhen-s318": "shenzhen-s318__line19-19",
     "shenzhen-s369": "shenzhen-s369__line19-19",
-    "shenzhen-s321": "shenzhen-s321__line19-19"
+    "shenzhen-s321": "shenzhen-s321__line19-19",
+    "shenzhen-f19-nantangwei": "shenzhen-f19-nantangwei__line19_scope37",
+    "shenzhen-f19-renminyiyuan": "shenzhen-f19-renminyiyuan__line19_scope37",
+    "shenzhen-f19-tangkeng": "shenzhen-f19-tangkeng__line19_scope37",
+    "shenzhen-f19-xinwei": "shenzhen-f19-xinwei__line19_scope37",
+    "shenzhen-f19-baoshan": "shenzhen-f19-baoshan__line19_scope37",
+    "shenzhen-f19-wenhuazhongxin": "shenzhen-f19-wenhuazhongxin__line19_scope37",
+    "shenzhen-f19-yanziling": "shenzhen-f19-yanziling__line19_scope37",
+    "shenzhen-f19-nanbu": "shenzhen-f19-nanbu__line19_scope37",
+    "shenzhen-f19-julong": "shenzhen-f19-julong__line19_scope37"
   },
   "transfers": [
     {
@@ -186,12 +215,13 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-09-05",
-    "description": "按五期建设规划环评区间表复现19号线一期：南塘围—聚龙，约12.5公里、官方口径12站，公开区间表可核对11站。锦龙、新和、坪山中心与既有14/16号线换乘。项目在截止日仍在建，完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.17",
-    "contentRevisionNote": "增加深圳19号线一期建设章。"
+    "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+    "sourceTitle": "深圳市属施工方19号线19101标完整范围；官方站址公示",
+    "sourceCheckedAt": "2026-10-23",
+    "sourcePublicationDate": "2026-06-17",
+    "description": "建设南塘围—聚龙12站11区间，采用已实施工程范围。旧版插值站体保留，补建采用核对地理参考的站体，不在载入时自动搬站。确认后线路使用本次预览路径。",
+    "contentRevision": "2026.10.23.37",
+    "contentRevisionNote": "19号线补燕子岭和南布，移除旧荔景任务，修正插值站址并保留旧建设。",
+    "requiresScopeRecheck": true
   }
 }

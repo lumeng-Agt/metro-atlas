@@ -5,46 +5,224 @@
   ],
   "stations": [
     {
-      "name": "吉华医院",
-      "id": "shenzhen-f25-jihuayiyuan",
+      "id": "shenzhen-f25-shilong",
+      "name": "石龙",
       "latlng": [
-        22.6441,
-        114.078
+        22.6954779,
+        113.96614
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "吉华路走廊公交站位置作吉华医院站区参考，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "离线OSM node/11892568587 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html"
     },
     {
-      "name": "石龙",
-      "id": "shenzhen-f25-shilong",
+      "id": "shenzhen-f25-chuangyicheng",
+      "name": "创意城",
       "latlng": [
-        22.6698,
-        113.9906
+        22.7047061,
+        113.9826758
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "大浪石龙大道片区城市更新单元位置作站区参考，属走廊级参考。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "离线OSM node/11892574252 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html"
+    },
+    {
+      "id": "shenzhen-f25-shiao",
+      "name": "石凹",
+      "latlng": [
+        22.69349,
+        113.9930895
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "离线OSM node/11892574254 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html"
+    },
+    {
+      "id": "shenzhen-f25-huachang",
+      "name": "华昌",
+      "latlng": [
+        22.6848366,
+        113.9972316
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "离线OSM node/11892574256 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html"
+    },
+    {
+      "id": "shenzhen-f25-huafu",
+      "name": "华富",
+      "latlng": [
+        22.6754356,
+        114.0016631
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "离线OSM node/11892574258 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html"
+    },
+    {
+      "id": "shenzhen-f25-longhuagongyuan",
+      "name": "龙华公园",
+      "latlng": [
+        22.662717,
+        114.0119223
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "离线OSM node/11892574260 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html"
+    },
+    {
+      "id": "shenzhen-s79",
+      "name": "龙华",
+      "existing": true
+    },
+    {
+      "id": "shenzhen-f25-jinglong",
+      "name": "景龙",
+      "latlng": [
+        22.6488704,
+        114.0230352
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "离线OSM node/11892574172 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html"
+    },
+    {
+      "id": "shenzhen-f27-youfu",
+      "name": "油福",
+      "existing": true
+    },
+    {
+      "id": "shenzhen-f22-songhe",
+      "name": "松和",
+      "existing": true
+    },
+    {
+      "id": "shenzhen-f25-shangyousong",
+      "name": "上油松",
+      "latlng": [
+        22.638433,
+        114.04559
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "2024-05-29官方站址为工业路/东环二路；离线道路交点，非村落地名点。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://cgj.sz.gov.cn/zwgk/xmgs/content/post_11319162.html"
+    },
+    {
+      "id": "shenzhen-f25-huangjunshan",
+      "name": "黄君山",
+      "latlng": [
+        22.6444204,
+        114.0557702
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "2024-07-05占道范围贝尔路五和大道西100米至冲之大道；采用两路口之间近似站区中心。 站序据官方资料，地理位置近似，非工程测绘。",
+      "source": "https://www.sz.gov.cn/szzt2010/sjfb/sjkd/content/post_11409569.html"
+    },
+    {
+      "id": "shenzhen-s278",
+      "name": "贝尔路",
+      "existing": true
+    },
+    {
+      "id": "shenzhen-f25-jihuayiyuan",
+      "name": "吉华医院",
+      "existing": true
     }
   ],
   "lineGroups": [
     {
       "key": "phase1",
       "mapRouteId": "shenzhen-future-line25",
-      "name": "25号线一期（走廊复现）",
+      "name": "25号线一期（14站）",
       "historicalLineId": "shenzhen-line25-25",
       "color": "#A6B58A",
       "stationIds": [
-        "shenzhen-f25-jihuayiyuan",
-        "shenzhen-f25-shilong"
+        "shenzhen-f25-shilong",
+        "shenzhen-f25-chuangyicheng",
+        "shenzhen-f25-shiao",
+        "shenzhen-f25-huachang",
+        "shenzhen-f25-huafu",
+        "shenzhen-f25-longhuagongyuan",
+        "shenzhen-s79",
+        "shenzhen-f25-jinglong",
+        "shenzhen-f27-youfu",
+        "shenzhen-f22-songhe",
+        "shenzhen-f25-shangyousong",
+        "shenzhen-f25-huangjunshan",
+        "shenzhen-s278",
+        "shenzhen-f25-jihuayiyuan"
       ],
-      "toleranceM": 900,
-      "maxSpacingM": 20000,
+      "toleranceM": 150,
+      "maxSpacingM": 4500,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "25号线一期官方口径为吉华医院—石龙，约16.2公里。公开环评区间表未给出可逐站核对的站序，本篇按两端站区复现走廊（两站直线约9公里，官方里程含绕行），中途站不虚构坐标。",
-      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+      "precisionNote": "官方线路图14站；2026年已将油松称松和。补齐完整站序和13个区间，隧道走向为近似走廊。",
+      "stationOrderSource": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+      "officialLengthM": 16500
     }
   ],
-  "stationInstances": {},
-  "transfers": [],
+  "stationInstances": {
+    "shenzhen-f25-shilong": "shenzhen-f25-shilong__line25-25",
+    "shenzhen-f25-chuangyicheng": "shenzhen-f25-chuangyicheng__line25-25",
+    "shenzhen-f25-shiao": "shenzhen-f25-shiao__line25-25",
+    "shenzhen-f25-huachang": "shenzhen-f25-huachang__line25-25",
+    "shenzhen-f25-huafu": "shenzhen-f25-huafu__line25-25",
+    "shenzhen-f25-longhuagongyuan": "shenzhen-f25-longhuagongyuan__line25-25",
+    "shenzhen-s79": "shenzhen-s79__line25-25",
+    "shenzhen-f25-jinglong": "shenzhen-f25-jinglong__line25-25",
+    "shenzhen-f27-youfu": "shenzhen-f27-youfu__line25-25",
+    "shenzhen-f22-songhe": "shenzhen-f22-songhe__line25-25",
+    "shenzhen-f25-shangyousong": "shenzhen-f25-shangyousong__line25-25",
+    "shenzhen-f25-huangjunshan": "shenzhen-f25-huangjunshan__line25-25",
+    "shenzhen-s278": "shenzhen-s278__line25-25",
+    "shenzhen-f25-jihuayiyuan": "shenzhen-f25-jihuayiyuan__line25-25"
+  },
+  "transfers": [
+    {
+      "id": "future-transfer-sz25-longhua-4",
+      "name": "龙华",
+      "complexId": "shenzhen-s79",
+      "stationInstanceIds": [
+        "shenzhen-s79__line4",
+        "shenzhen-s79__line25-25"
+      ],
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line25-25"
+      ],
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+      "sourceNote": "已公布线路图换乘关系；各线独立站体，换乘边不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-sz25-songhe-22",
+      "name": "松和",
+      "complexId": "shenzhen-f22-songhe",
+      "stationInstanceIds": [
+        "shenzhen-f22-songhe__line22-22",
+        "shenzhen-f22-songhe__line25-25"
+      ],
+      "lineIds": [
+        "shenzhen-line22-22",
+        "shenzhen-line25-25"
+      ],
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+      "sourceNote": "已公布线路图换乘关系；各线独立站体，换乘边不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-sz25-beierlu-10",
+      "name": "贝尔路",
+      "complexId": "shenzhen-s278",
+      "stationInstanceIds": [
+        "shenzhen-s278",
+        "shenzhen-s278__line25-25"
+      ],
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line25-25"
+      ],
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+      "sourceNote": "已公布线路图换乘关系；各线独立站体，换乘边不进入轨道图。"
+    }
+  ],
   "plan": {
     "id": "sz-line25-phase1-build",
     "title": "深圳25号线一期建设篇",
@@ -54,12 +232,16 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-09-05",
-    "description": "按五期建设规划环评官方口径复现25号线一期：吉华医院—石龙，约16.2公里。公开资料未给出可逐站核对的站序，本篇按两端站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.23",
-    "contentRevisionNote": "增加深圳25号线一期走廊复现章。"
+    "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+    "sourceTitle": "25号线一期14站官方线路示意图；2026-09-24龙华段区间公示补正工程名",
+    "sourceCheckedAt": "2026-10-23",
+    "sourcePublicationDate": "2025-09-11",
+    "description": "自石龙至吉华医院14站13区间；复用油福、松和共同站区，各线分别建站体。只确认规划建设，不冒充开通。",
+    "contentRevision": "2026.10.23.31",
+    "contentRevisionNote": "补全22、25号线中间站、区间与换乘任务。",
+    "requiresScopeRecheck": true,
+    "additionalSources": [
+      "https://www.sz.gov.cn/szzt2010/wgkzl/glgk/jgxxgk/gtzy/content/mpost_12998364.html"
+    ]
   }
 }

@@ -400,6 +400,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		elif segment_statuses.all(func(status:String):return status=="trial"):service_status="trial"
 		elif segment_statuses.has("trial") or segment_statuses.has("open"):service_status="mixed"
 		var route := {"id":"historical_%s" % str(group.get("historicalLineId", group.get("name","line"))),"name":str(group.get("name","线路")),"color":str(group.get("color","#36769c")),"stationOrder":ids,"networkBased":true,"vehicleId":str(group.get("vehicleId",profile(world).get("vehicleId","historical-schematic"))),"open":all_open,"serviceStatus":service_status,"directions":[{"id":"forward","stationIds":ids,"edgePathsBySegment":paths,"serviceStatusBySegment":segment_statuses}],"historicalLineId":str(group.get("historicalLineId",group.get("name","line"))),"chapterId":str(ch.get("id",""))}
+		if bool(group.get("replaceExistingService",false)):route["replaceExistingService"]=true
 		if group_valid and paths.size()==maxi(0,ids.size()-1):
 			var canonical := Paths.for_route(route,world,reference_lat,path_index)
 			if not bool(canonical.get("valid",false)):
@@ -685,8 +686,10 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 		if str(saved.get("id", "")) == str(route.get("id", "")) or (str(route.get("historicalLineId", "")) != "" and str(saved.get("historicalLineId", "")) == str(route.get("historicalLineId", ""))):
 			route_index = index; break
 	if route_index < 0: world.routes.append(route.duplicate(true))
+	elif bool(route.get("replaceExistingService",false)):
+		world.routes[route_index]=route.duplicate(true)
 	else:
-		var existing:Dictionary=world.routes[route_index].duplicate(true)
+		var existing:Dictionary=_scope_upgrade_route_base(world,world.routes[route_index],route)
 		if str(existing.get("chapterId",""))==str(route.get("chapterId","")):
 			# Reconfirming a corrected task replaces that task's former physical
 			# platform bindings, rather than adding an obsolete parallel service.
@@ -695,11 +698,31 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 				var old_complexes:=_direction_complexes(world,old_direction)
 				var replaced:=false
 				for new_direction in route.get("directions",[]):
-					if old_complexes==_direction_complexes(world,new_direction):replaced=true;break
+					var new_complexes:=_direction_complexes(world,new_direction)
+					if old_complexes==new_complexes or _scope_contains(new_complexes,old_complexes):replaced=true;break
 				if not replaced:retained.append(old_direction)
 			existing["directions"]=retained
 			if retained.is_empty():world.routes[route_index]=route.duplicate(true);return
 		world.routes[route_index] = _merge_historical_route(existing, route)
+
+static func _scope_contains(new_ids:Array,old_ids:Array) -> bool:
+	if old_ids.size()<2 or new_ids.size()<old_ids.size() or new_ids.front()!=old_ids.front() or new_ids.back()!=old_ids.back():return false
+	var cursor:=0
+	for id in new_ids:
+		if cursor<old_ids.size() and old_ids[cursor]==id:cursor+=1
+	return cursor==old_ids.size()
+
+static func _scope_upgrade_route_base(world:Dictionary,existing:Dictionary,incoming:Dictionary) -> Dictionary:
+	var id:=str(incoming.get("chapterId",""))
+	if not world.get("storyState",{}).get("legacyTaskProgress",{}).has(id):return existing.duplicate(true)
+	for milestone in world.get("storyState",{}).get("milestones",[]):
+		if str(milestone.get("chapterId",""))!=id:continue
+		var change:Dictionary=milestone.get("planningDiff",{}).get("fields",{}).get("routes",{}).get("items",{}).get(str(existing.get("id","")),{})
+		var after:Variant=change.get("after")
+		if after is Dictionary and after.get("stationOrder",[])==existing.get("stationOrder",[]) and after.get("directions",[])==existing.get("directions",[]):
+			var before:Variant=change.get("before")
+			return before.duplicate(true) if before is Dictionary else {}
+	return existing.duplicate(true)
 
 static func _direction_complexes(world:Dictionary,direction:Dictionary) -> Array:
 	var result:Array=[]
@@ -707,6 +730,32 @@ static func _direction_complexes(world:Dictionary,direction:Dictionary) -> Array
 		var station:=WorldData.find_station(world,str(id))
 		result.append(Catalog.canonical_station_complex(str(world.cityId),str(station.get("stationComplexId",station.get("historicalId",id)))))
 	return result
+
+## Content corrections are explicit, sourced proposals. Loading never applies
+## them; the player accepts them together with the corrected task's route.
+static func scope_correction_preview(world:Dictionary, selected_task_id:String) -> Dictionary:
+	var ch:=chapter(world)
+	var changes:Array=[]
+	for correction in ch.get("scopeCorrections",[]):
+		if str(correction.get("taskId",""))!=selected_task_id:continue
+		for connection in world.get("transferConnections",[]):
+			if str(connection.get("id",""))!=str(correction.get("transferId","")) or str(connection.get("status","active"))!="active":continue
+			if connection.get("lineIds",[])!=correction.get("oldLineIds",[]) or connection.get("stationInstanceIds",[])!=correction.get("oldStationInstanceIds",[]):
+				return {"ok":false,"error":"旧换乘关系已被修改，请先核对 %s，不能自动替换。"%str(connection.get("name","换乘")),"changes":[]}
+			changes.append({"id":str(connection.id),"text":str(correction.get("description","")),"source":str(correction.get("source","")),"newStationInstanceIds":correction.get("newStationInstanceIds",[]).duplicate()})
+	return {"ok":true,"changes":changes}
+
+static func _apply_scope_corrections(candidate:Dictionary, preview:Dictionary) -> void:
+	for change in preview.get("changes",[]):
+		for connection in candidate.get("transferConnections",[]):
+			if str(connection.get("id",""))!=str(change.id):continue
+			if not change.get("newStationInstanceIds",[]).is_empty():
+				connection["previousStationInstanceIds"]=connection.get("stationInstanceIds",[]).duplicate()
+				connection["stationInstanceIds"]=change.newStationInstanceIds.duplicate()
+			else:connection["status"]="superseded"
+			connection["supersededByScopeRevision"]=str(chapter(candidate).get("scopeRevision",""))
+			connection["supersededReason"]=str(change.text)
+			connection["correctionSource"]=str(change.source)
 
 static func _refresh_route_memberships(world: Dictionary) -> void:
 	for station in world.get("stations", []): station["routeIds"] = []
@@ -737,12 +786,15 @@ static func confirm_task(world: Dictionary, selected_task_id: String, expected_r
 	var result := checked if not checked.is_empty() else evaluate(world, selected_task_id)
 	if not bool(result.get("complete", false)): return {"ok":false,"error":"当前任务还有未完成条件。","evaluation":result}
 	var candidate: Dictionary = world.duplicate(true)
+	var correction_preview:=scope_correction_preview(world,selected_task_id)
+	if not bool(correction_preview.ok):return correction_preview
 	for route in result.get("routes", []): _store_historical_route(candidate, route)
+	_apply_scope_corrections(candidate,correction_preview)
 	_refresh_route_memberships(candidate)
 	var validation := SaveManager.validate(candidate)
 	if not validation.is_empty(): return {"ok":false,"error":"任务线路暂时无法保存：%s" % validation}
 	world["routes"] = candidate.get("routes", []).duplicate(true)
-	for key in ["stations", "trackEdges", "trackLinks"]:
+	for key in ["stations", "trackEdges", "trackLinks", "transferConnections"]:
 		world[key] = candidate.get(key, []).duplicate(true)
 	var state: Dictionary = world.get("storyState", {}).duplicate(true)
 	var progress_by_chapter: Dictionary = state.get("chapterTaskProgress", {})

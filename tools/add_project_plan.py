@@ -281,6 +281,7 @@ def main() -> int:
         "requiredTransfers": transfers,
         "scopeRevision": str(plan_spec.get("contentRevision", "")),
         "requiresScopeRecheck": bool(plan_spec.get("requiresScopeRecheck", False)),
+        "scopeCorrections": plan_spec.get("scopeCorrections", []),
     }
     if plan["sourcePublicationDate"] is None:
         plan["publicationDateNote"] = str(plan_spec["publicationDateNote"])

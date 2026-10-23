@@ -10,56 +10,76 @@
       "existing": true
     },
     {
+      "name": "上洞",
+      "id": "shenzhen-f32-shangdong",
+      "latlng": [
+        22.6152295,
+        114.3711137
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724331轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf"
+    },
+    {
+      "name": "土洋",
+      "id": "shenzhen-f32-tuyang",
+      "latlng": [
+        22.6182275,
+        114.3987174
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724330轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf"
+    },
+    {
+      "name": "葵涌",
+      "id": "shenzhen-f32-kuichong",
+      "latlng": [
+        22.6329853,
+        114.4157409
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724327轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf"
+    },
+    {
       "name": "葵涌东",
       "id": "shenzhen-f32-kuichongdong",
       "latlng": [
-        22.6349,
-        114.426365
+        22.6349707,
+        114.4265863
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "葵涌东公交站位置（延安路）作为站区参考；32号线东端终点。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724326轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf"
     }
   ],
   "lineGroups": [
     {
       "key": "phase1",
       "mapRouteId": "shenzhen-future-line32",
-      "name": "32号线一期（走廊复现）",
+      "name": "32号线一期（4座新站）",
       "historicalLineId": "shenzhen-line32-32",
       "color": "#9BB7C9",
       "stationIds": [
         "shenzhen-s291",
+        "shenzhen-f32-shangdong",
+        "shenzhen-f32-tuyang",
+        "shenzhen-f32-kuichong",
         "shenzhen-f32-kuichongdong"
       ],
-      "toleranceM": 900,
-      "officialLengthM": 9500,
-      "maxSpacingM": 11000,
+      "toleranceM": 150,
+      "officialLengthM": 9511,
+      "maxSpacingM": 4500,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "32号线一期官方口径为溪涌—葵涌东，约9.5公里。公开环评区间表未给出可逐站核对的站序，本篇按既有溪涌站与葵涌东站区复现走廊。溪涌与2、8号线换乘；中途站不虚构坐标。",
-      "stationOrderSource": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf"
+      "precisionNote": "表2.1.7-3：上洞、土洋、葵涌、葵涌东4座新站；溪涌为8号线既有接头，不另建虚构的换乘站体。站区使用离线在建站体，隧道为近似走廊。",
+      "stationOrderSource": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf"
     }
   ],
   "stationInstances": {
-    "shenzhen-s291": "shenzhen-s291__line32-32"
+    "shenzhen-s291": "shenzhen-s291"
   },
-  "transfers": [
-    {
-      "id": "future-transfer-sz32-xichong",
-      "name": "溪涌",
-      "complexId": "shenzhen-s291",
-      "stationInstanceIds": [
-        "shenzhen-s291",
-        "shenzhen-s291__line2-2",
-        "shenzhen-s291__line32-32"
-      ],
-      "lineIds": [
-        "shenzhen-line8-9",
-        "shenzhen-line2-2",
-        "shenzhen-line32-32"
-      ],
-      "sourceNote": "溪涌为2号线（既有线体）与8号线换乘站，32号线在此设站；通道和层次仅作示意。"
-    }
-  ],
+  "transfers": [],
   "plan": {
     "id": "sz-line32-phase1-build",
     "title": "深圳32号线一期建设篇",
@@ -69,12 +89,21 @@
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-    "sourceTitle": "深圳市城市轨道交通第五期建设规划（2023-2028年）环境影响报告书",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2022-09-05",
-    "description": "按五期建设规划环评官方口径复现32号线一期：溪涌—葵涌东，约9.5公里。公开资料未给出可逐站核对的站序，本篇按既有溪涌站与葵涌东站区复现走廊。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.19",
-    "contentRevisionNote": "增加深圳32号线一期走廊复现章。"
+    "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf",
+    "sourceTitle": "深圳市城市轨道交通32号线一期工程环境影响报告书（2024年11月）",
+    "sourceCheckedAt": "2026-10-23",
+    "sourcePublicationDate": "2024-11-20",
+    "description": "自既有溪涌接头建设上洞、土洋、葵涌、葵涌东4座新站和4个区间。葵涌与城际的换乘作为背景，不新增不在主线范围内的城际任务。完成建设篇不代表实际开通。",
+    "contentRevision": "2026.10.23.29",
+    "contentRevisionNote": "补全20、32号线具体建设范围与独立目标，移除早期范围和虚构换乘。",
+    "requiresScopeRecheck": true
+    ,"scopeCorrections": [{
+      "taskId": "project:sz-line32-phase1-build",
+      "transferId": "future-transfer-sz32-xichong",
+      "oldLineIds": ["shenzhen-line8-9", "shenzhen-line2-2", "shenzhen-line32-32"],
+      "oldStationInstanceIds": ["shenzhen-s291", "shenzhen-s291__line2-2", "shenzhen-s291__line32-32"],
+      "description": "溪涌复用既有8号线接头；取消旧版额外创建的2／8／32号线三站体换乘。",
+      "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf"
+    }]
   }
 }

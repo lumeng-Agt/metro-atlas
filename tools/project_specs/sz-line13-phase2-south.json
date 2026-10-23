@@ -1,0 +1,100 @@
+{
+  "city": "shenzhen",
+  "projectIds": [
+    "sz-line13-phase2-south"
+  ],
+  "stations": [
+    {
+      "id": "shenzhen-s302",
+      "name": "东角头",
+      "existing": true
+    },
+    {
+      "id": "shenzhen-f13-gejuyuan",
+      "name": "歌剧院",
+      "latlng": [
+        22.4865784,
+        113.935485
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方用海文件图2.2-1的歌剧院站；离线OSM在建13号线stop node/11842916055地理参考，非测绘。",
+      "source": "https://pnr.sz.gov.cn/attachment/1/1339/1339561/10746918.pdf"
+    },
+    {
+      "id": "shenzhen-f13-richujuchang",
+      "name": "日出剧场",
+      "latlng": [
+        22.4949772,
+        113.9468674
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "采用官方2026-01工程名日出剧场；位置参考离线13号线在建站点node/11639185850（本地名潮汐公园），与官方望海路/深圳湾大桥南侧线位范围对照。不是北面日出剧场公园或公交点，非测绘。",
+      "source": "https://pnr.sz.gov.cn/attachment/1/1339/1339561/10746918.pdf"
+    },
+    {
+      "id": "shenzhen-s390",
+      "name": "深圳湾口岸",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "south",
+      "mapRouteId": "shenzhen-future-line13-south",
+      "name": "13号线二期南延（3座新站）",
+      "historicalLineId": "shenzhen-line13-14",
+      "color": "#DEB132",
+      "stationIds": [
+        "shenzhen-s302",
+        "shenzhen-f13-gejuyuan",
+        "shenzhen-f13-richujuchang",
+        "shenzhen-s390"
+      ],
+      "stationInstances": {
+        "shenzhen-s302": "shenzhen-s302__line13-14",
+        "shenzhen-s390": "shenzhen-s390"
+      },
+      "toleranceM": 150,
+      "maxSpacingM": 3000,
+      "officialLengthM": 4067,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "官方站序为东角头、歌剧院、日出剧场，接既有深圳湾口岸；3座新站3区间，隧道近似走廊。不是仅政策文字的工程。",
+      "stationOrderSource": "https://hmo.sz.gov.cn/zx/gqdt/content/post_1125266.html"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-sz13south-dongjiaotou-2",
+      "name": "东角头",
+      "complexId": "shenzhen-s302",
+      "stationInstanceIds": [
+        "shenzhen-s302__line2-2",
+        "shenzhen-s302__line13-14"
+      ],
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line13-14"
+      ],
+      "source": "https://hmo.sz.gov.cn/zx/gqdt/content/post_1125266.html",
+      "sourceNote": "13号线南延在东角头与既有2号线换乘，分别建独立站体。"
+    }
+  ],
+  "plan": {
+    "id": "sz-line13-phase2-south-build",
+    "title": "深圳13号线二期南延建设篇",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "sourceType": "municipal_plan_environmental_impact_report",
+    "projectType": "under_construction",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "source": "https://hmo.sz.gov.cn/zx/gqdt/content/post_1125266.html",
+    "sourceTitle": "13号线二期南延建设范围、站序与用海文件",
+    "sourcePublicationDate": "2024-01-18",
+    "sourceCheckedAt": "2026-10-23",
+    "description": "从东角头建设歌剧院、日出剧场，经既有深圳湾口岸与一期接通；在东角头确认独立站体换乘。成果为规划建设，不虚构开通日期。",
+    "contentRevision": "2026.10.23.37",
+    "contentRevisionNote": "更正东角头2号线独立站体引用。",
+    "requiresScopeRecheck": true
+  }
+}

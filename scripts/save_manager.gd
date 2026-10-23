@@ -275,16 +275,22 @@ static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
 	var changed:=false
 	var completed:Array=state.get("completedChapterIds",[])
 	var progress:Dictionary=state.get("chapterTaskProgress",{})
-	for plan in CampaignSystem.city_config(str(world.get("cityId",""))).get("futurePlans",[]):
+	var definitions:Array=[]
+	for row in CampaignSystem.city_config(str(world.get("cityId",""))).get("chapters",[]):definitions.append({"phase":"history","definition":row})
+	for row in CampaignSystem.city_config(str(world.get("cityId",""))).get("futurePlans",[]):definitions.append({"phase":"future","definition":row})
+	var history_reopened:=str(state.get("phase","history")) in ["history","history_gap","history_content_gap"]
+	for entry in definitions:
+		var plan:Dictionary=entry.definition
 		var id:=str(plan.get("id",""))
 		if not completed.has(id) or not bool(plan.get("requiresScopeRecheck",false)):continue
 		var old:Dictionary=progress.get(id,{})
 		if str(old.get("scopeRevision",""))==str(plan.get("scopeRevision","")):continue
 		var probe:Dictionary=world.duplicate(false)
 		probe["storyState"]=state.duplicate(true)
-		probe.storyState["phase"]="future";probe.storyState["chapterId"]=id;probe.storyState["stage"]="build"
+		probe.storyState["phase"]=str(entry.phase);probe.storyState["chapterId"]=id;probe.storyState["stage"]="build"
 		var checked:Dictionary=story.evaluate(probe)
 		var official_errors:=OfficialNetworkAudit.current_project_errors(probe,plan.get("projectIds",[]))
+		if str(plan.get("chapterScope",""))=="cutoff_reconciliation":official_errors.append_array(OfficialNetworkAudit.cutoff_errors(probe))
 		if bool(checked.get("complete",false)) and official_errors.is_empty():
 			old["scopeRevision"]=str(plan.get("scopeRevision",""));progress[id]=old
 		else:
@@ -292,7 +298,8 @@ static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
 			archived[id]=old.duplicate(true);state["legacyTaskProgress"]=archived
 			completed.erase(id)
 			progress[id]={"status":"needs_scope_recheck","tasks":{},"previousScopeRetained":true}
-			state["phase"]="future_gap";state["chapterId"]="";state["stage"]="intro"
+			if str(entry.phase)=="history":history_reopened=true
+			state["phase"]="history_gap" if history_reopened else "future_gap";state["chapterId"]="";state["stage"]="intro"
 		changed=true
 	state["scopeContentRevision"]=CampaignSystem.content_revision()
 	state["completedChapterIds"]=completed;state["chapterTaskProgress"]=progress

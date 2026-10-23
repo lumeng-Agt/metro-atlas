@@ -1,22 +1,13 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.23.28",
+  "contentRevision": "2026.10.23.37",
   "ok": false,
   "cities": {
     "shenzhen": {
       "ok": false,
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
-        "historyReviewStatus: independent review incomplete",
-        "independent milestone requirements missing",
-        "sz-line17-phase1: independent project requirements missing",
-        "sz-line19-phase1: independent project requirements missing",
-        "sz-line20-phase2: independent project requirements missing",
-        "sz-line22-phase1: independent project requirements missing",
-        "sz-line25-phase1: independent project requirements missing",
-        "sz-line29-phase1: independent project requirements missing",
-        "sz-line32-phase1: independent project requirements missing",
-        "sz-line13-phase2-south: independent project requirements missing"
+        "historyReviewStatus: independent review incomplete"
       ],
       "projects": [
         {
@@ -26,6 +17,46 @@
         },
         {
           "id": "sz-line27-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line20-phase2",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line32-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line22-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line25-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line29-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line13-phase2-south",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line17-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line19-phase1",
           "ok": true,
           "errors": []
         }

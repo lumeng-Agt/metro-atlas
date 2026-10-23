@@ -80,6 +80,9 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 	var completed:Dictionary=Story.commit_chapter(app.world,int(app.world.revision),evaluated)
 	if not bool(completed.get("ok",false)):return _fail(city,id,"chapter",JSON.stringify(completed))
 	var official_errors:=OfficialNetworkAudit.current_project_errors(app.world,chapter.get("projectIds",[]))
+	if str(chapter.get("chapterScope",""))=="cutoff_reconciliation":
+		var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(OfficialNetworkAudit.TARGET_PATH))
+		if not targets.get("cities",{}).get(city,{}).get("cutoffNetwork",{}).is_empty():official_errors.append_array(OfficialNetworkAudit.cutoff_errors(app.world))
 	if not official_errors.is_empty():return _fail(city,id,"official_target",JSON.stringify(official_errors))
 	if not _checkpoint(city,id,"milestone"):return false
 	Story.next_chapter(app.world)

@@ -31013,79 +31013,79 @@
           "id": "shenzhen-f19-nantangwei",
           "name": "南塘围",
           "latlng": [
-            22.669125,
+            22.6691246,
             114.302838
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "南塘围公交站位置，作为19号线起点站区参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032137607站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f19-renminyiyuan",
           "name": "人民医院",
           "latlng": [
-            22.6736,
-            114.3116
+            22.6692515,
+            114.3181503
           ],
           "schematic": true,
-          "coordinateSource": "official_chainage",
-          "coordinateNote": "按官方区间表站序，在南塘围—锦龙走廊上插值定位，属走廊级参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139402站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f19-tangkeng",
           "name": "汤坑",
           "latlng": [
-            22.6781,
-            114.3204
+            22.6756306,
+            114.3273878
           ],
           "schematic": true,
-          "coordinateSource": "official_chainage",
-          "coordinateNote": "按官方区间表站序，在南塘围—锦龙走廊上插值定位，属走廊级参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12030492652站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f19-xinwei",
           "name": "新围",
           "latlng": [
-            22.6905,
-            114.3297
+            22.6902047,
+            114.3266436
           ],
           "schematic": true,
-          "coordinateSource": "official_chainage",
-          "coordinateNote": "按官方区间表站序，在锦龙—新和走廊上插值定位，属走廊级参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139397站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f19-baoshan",
           "name": "宝山",
           "latlng": [
-            22.6983,
-            114.3302
+            22.7013718,
+            114.32543
           ],
           "schematic": true,
-          "coordinateSource": "official_chainage",
-          "coordinateNote": "按官方区间表站序，在锦龙—新和走廊上插值定位，属走廊级参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12030492627站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f19-wenhuazhongxin",
           "name": "文化中心",
           "latlng": [
-            22.7087,
-            114.3391
+            22.7075273,
+            114.3380471
           ],
           "schematic": true,
-          "coordinateSource": "official_chainage",
-          "coordinateNote": "按官方区间表站序，在新和—坪山中心之间定位；2024年修订后站名与站序有调整，本篇沿用官方2022区间表。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139392站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f19-lijing",
@@ -31104,27 +31104,27 @@
           "id": "shenzhen-f19-julong",
           "name": "聚龙",
           "latlng": [
-            22.73103,
-            114.377636
+            22.7310305,
+            114.3776364
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "聚龙公交站位置（锦绣东路），作为19号线终点站区参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139381站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f32-kuichongdong",
           "name": "葵涌东",
           "latlng": [
-            22.6349,
-            114.426365
+            22.6349707,
+            114.4265863
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "葵涌东公交站位置（延安路）作为站区参考；32号线东端终点。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724326轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f20-futianhuizhan",
@@ -31143,14 +31143,14 @@
           "id": "shenzhen-f22-liguang",
           "name": "黎光",
           "latlng": [
-            22.759247,
-            114.031125
+            22.7600468,
+            114.0332389
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "黎光村/黎光公交站位置，22号线一期北端终点站区参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636596554 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f15-qianbao",
@@ -31182,14 +31182,14 @@
           "id": "shenzhen-f25-shilong",
           "name": "石龙",
           "latlng": [
-            22.6698,
-            113.9906
+            22.6954779,
+            113.96614
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "大浪石龙大道片区城市更新单元位置作站区参考，属走廊级参考。",
-          "source": "http://www.rail-transit.com/file/upload/202209/05/15295121134.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/11892568587 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f27-songpingcun",
@@ -31563,10 +31563,10 @@
             113.8780873
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "广深公路与流塘路交叉口北侧；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
-          "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
-          "sourceCheckedAt": "2026-10-22"
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.6-2：广深公路与流塘路路口，与15号线同一历史站区、不同物理站体。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+          "sourceCheckedAt": "2026-10-23"
         },
         {
           "id": "shenzhen-f15-haicheng",
@@ -31619,6 +31619,500 @@
           "coordinateNote": "环评大铲湾东南侧站区、接跨海段，规划道路位置近似；站序及站址依据2023环评表2.1-3、2.1-4，地理位置为游戏近似参考，部分规划道路仍需地理复核。",
           "source": "https://www.szmc.net/SMARTC/upload/file/20230712/1689133308719000306.pdf",
           "sourceCheckedAt": "2026-10-22"
+        },
+        {
+          "id": "shenzhen-f20-zhongshangongyuanxi",
+          "name": "中山公园西",
+          "latlng": [
+            22.5479914,
+            113.9106082
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.6-2：中山公园西门前，离线OSM广场way/247577956中心，站区近似。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f20-xinanlaocheng",
+          "name": "新安老城",
+          "latlng": [
+            22.5617446,
+            113.8982273
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.6-2：广深公路与甲岸路路口，离线道路最近距离16.8米，站区近似。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f20-shangchuanyilu",
+          "name": "上川一路",
+          "latlng": [
+            22.5737895,
+            113.8855994
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.6-2：广深公路与上川一路路口，离线道路最近距离1.3米。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f20-hangcheng",
+          "name": "航城大道东",
+          "latlng": [
+            22.6126162,
+            113.8543252
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.6-2：2023环评暂名航城；后续工程名航城大道东。广深公路与航城大道路口，离线道路参考。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f20-hangchengyiyuan",
+          "name": "狮子山公园",
+          "latlng": [
+            22.6207452,
+            113.8399382
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.6-2：2023环评暂名航城医院；2026官方工程名狮子山公园。离线OSM在建站用地way/1383405755中心，非站体测绘。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f32-shangdong",
+          "name": "上洞",
+          "latlng": [
+            22.6152295,
+            114.3711137
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724331轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f32-tuyang",
+          "name": "土洋",
+          "latlng": [
+            22.6182275,
+            114.3987174
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724330轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f32-kuichong",
+          "name": "葵涌",
+          "latlng": [
+            22.6329853,
+            114.4157409
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评表2.1.7-3及站址表；离线OSM在建32号线站体way/1478724327轮廓均值，非工程测绘。葵涌站区别于大鹏支线和深汕城际站体。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-xiangmixi",
+          "name": "香蜜西",
+          "latlng": [
+            22.5399606,
+            114.0274625
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617311 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-guojiaozhongxin",
+          "name": "国交中心",
+          "latlng": [
+            22.5454652,
+            114.0251913
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617310 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-meifeng",
+          "name": "梅丰",
+          "latlng": [
+            22.5650739,
+            114.0477902
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617295 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-kaifeng",
+          "name": "凯丰",
+          "latlng": [
+            22.5711636,
+            114.0584102
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459103 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-minxin",
+          "name": "民新",
+          "latlng": [
+            22.6085319,
+            114.0407935
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617257 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-minzhibei",
+          "name": "民治北",
+          "latlng": [
+            22.634169,
+            114.0320514
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459105 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-songhe",
+          "name": "松和",
+          "latlng": [
+            22.6429777,
+            114.0334247
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617239 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-gangtoubei",
+          "name": "岗头北",
+          "latlng": [
+            22.6674353,
+            114.054919
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459107 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-fengmenao",
+          "name": "风门坳",
+          "latlng": [
+            22.6742856,
+            114.0616074
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/12050459109 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-guanhu",
+          "name": "观湖",
+          "latlng": [
+            22.6921549,
+            114.065766
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617226 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-luhu",
+          "name": "鹭湖",
+          "latlng": [
+            22.7024731,
+            114.0673599
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617220 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-songxuan",
+          "name": "松轩",
+          "latlng": [
+            22.7113032,
+            114.0631473
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617209 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-guihua",
+          "name": "桂花",
+          "latlng": [
+            22.7340671,
+            114.0461454
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617195 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f22-kukeng",
+          "name": "库坑",
+          "latlng": [
+            22.7406391,
+            114.0282075
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方2026-04-10新版工程名示意图确定站序；离线OSM node/11636617174 站点位置作现代地理参考，非测绘中心；站体朝向和隧道为示意。",
+          "source": "https://www.szlhq.gov.cn/lhzdqyjstjzx/gkmlpt/content/12/12729/mpost_12729895.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-chuangyicheng",
+          "name": "创意城",
+          "latlng": [
+            22.7047061,
+            113.9826758
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/11892574252 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-shiao",
+          "name": "石凹",
+          "latlng": [
+            22.69349,
+            113.9930895
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/11892574254 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-huachang",
+          "name": "华昌",
+          "latlng": [
+            22.6848366,
+            113.9972316
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/11892574256 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-huafu",
+          "name": "华富",
+          "latlng": [
+            22.6754356,
+            114.0016631
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/11892574258 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-longhuagongyuan",
+          "name": "龙华公园",
+          "latlng": [
+            22.662717,
+            114.0119223
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/11892574260 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-jinglong",
+          "name": "景龙",
+          "latlng": [
+            22.6488704,
+            114.0230352
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/11892574172 站点参考位置；公开线路图对应的现代地理站点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_12373733.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-shangyousong",
+          "name": "上油松",
+          "latlng": [
+            22.638433,
+            114.04559
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "2024-05-29官方站址为工业路/东环二路；离线道路交点，非村落地名点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://cgj.sz.gov.cn/zwgk/xmgs/content/post_11319162.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f25-huangjunshan",
+          "name": "黄君山",
+          "latlng": [
+            22.6444204,
+            114.0557702
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "2024-07-05占道范围贝尔路五和大道西100米至冲之大道；采用两路口之间近似站区中心。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://www.sz.gov.cn/szzt2010/sjfb/sjkd/content/post_11409569.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f29-baishizhoubei",
+          "name": "白石洲北",
+          "latlng": [
+            22.5496212,
+            113.9633993
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/12048450894 站点参考位置；官方调整后9站方案对应的现代地理参考点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://pnr.sz.gov.cn/xxgk/gggs/content/post_11142263.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f29-dashahegongyuandong",
+          "name": "大沙河公园东",
+          "latlng": [
+            22.5598959,
+            113.9621751
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/12048450892 站点参考位置；官方调整后9站方案对应的现代地理参考点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://pnr.sz.gov.cn/xxgk/gggs/content/post_11142263.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f29-xilidong",
+          "name": "西丽东",
+          "latlng": [
+            22.5689261,
+            113.9462086
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/12048451006 站点参考位置；官方调整后9站方案对应的现代地理参考点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://pnr.sz.gov.cn/xxgk/gggs/content/post_11142263.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f29-xilixi",
+          "name": "西丽西",
+          "latlng": [
+            22.5687811,
+            113.9347636
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "离线OSM node/12048366861 站点参考位置；官方调整后9站方案对应的现代地理参考点。 站序据官方资料，地理位置近似，非工程测绘。",
+          "source": "https://pnr.sz.gov.cn/xxgk/gggs/content/post_11142263.html",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f13-gejuyuan",
+          "name": "歌剧院",
+          "latlng": [
+            22.4865784,
+            113.935485
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方用海文件图2.2-1的歌剧院站；离线OSM在建13号线stop node/11842916055地理参考，非测绘。",
+          "source": "https://pnr.sz.gov.cn/attachment/1/1339/1339561/10746918.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f13-richujuchang",
+          "name": "日出剧场",
+          "latlng": [
+            22.4949772,
+            113.9468674
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "采用官方2026-01工程名日出剧场；位置参考离线13号线在建站点node/11639185850（本地名潮汐公园），与官方望海路/深圳湾大桥南侧线位范围对照。不是北面日出剧场公园或公交点，非测绘。",
+          "source": "https://pnr.sz.gov.cn/attachment/1/1339/1339561/10746918.pdf",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f19-yanziling",
+          "name": "燕子岭",
+          "latlng": [
+            22.7056307,
+            114.35689
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139386站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shenzhen-f19-nanbu",
+          "name": "南布",
+          "latlng": [
+            22.7078513,
+            114.3689429
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方施工方2026-06-17全线12站序列、2024-07站址公告；离线OSM node/12032139384站点地理参考。文化中心亦见工程名坪山剧院，人民医院亦见坪山人民医院；不再插值定位。",
+          "source": "https://zcpt.szcg.cn/announcement/60504?projectSource=1",
+          "sourceCheckedAt": "2026-10-23"
         }
       ],
       "lines": [
