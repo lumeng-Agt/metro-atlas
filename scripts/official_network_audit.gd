@@ -9,7 +9,12 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 	var errors:Array[String]=[]
 	var latitude:=float(WorldData.city(str(world.cityId)).get("center",[0])[0])
 	var path_index:=TrackNetwork.build_path_index(world,latitude)
-	for expected in project.get("groups",[]):
+	var requirements:Array=project.get("groups",[]).duplicate()
+	requirements.append_array(project.get("existingScopes",[]))
+	requirements.append_array(project.get("closedScopes",[]))
+	for expected in requirements:
+		var required_status:=str(expected.get("requiredServiceStatus",""))
+		var construction_only:=bool(project.get("constructionOnly",false)) and not bool(expected.get("requireServiceOpen",false))
 		var wanted:Array=expected.get("stationNames",[]).duplicate()
 		if wanted.is_empty():
 			errors.append("%s: independent station order unavailable" % str(expected.id));continue
@@ -17,7 +22,7 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 		var line_id:=str(expected.get("historicalLineId",expected.id))
 		var matched:=false
 		for route in world.get("routes",[]):
-			if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
+			if bool(route.get("retired",false)) or (required_status.is_empty() and not construction_only and not bool(route.get("open",true))):continue
 			if str(route.get("historicalLineId",""))!=line_id:continue
 			for direction in route.get("directions",[]):
 				var ids:Array=direction.get("stationIds",[])
@@ -41,6 +46,12 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 						var same_lineage:bool=expected.get("bodyLineAliases",[]).has(body_line) and not str(expected.get("bodyLineAliasEvidence","")).is_empty()
 						if body_line!=line_id and not permitted_shared and not same_lineage:errors.append("%s: stop belongs to another physical line body: %s" % [str(expected.id),str(ids[i])])
 					for i in range(offset,offset+wanted.size()-1):
+						if not construction_only or not required_status.is_empty():
+							var statuses:Array=direction.get("serviceStatusBySegment",[])
+							var status:=str(statuses[i]) if statuses.size()==ids.size()-1 else str(route.get("serviceStatus","open" if bool(route.get("open",false)) else "built"))
+							if not required_status.is_empty():
+								if status!=required_status:errors.append("%s: expected %s segment: %s—%s, actual %s"%[str(expected.id),required_status,str(names[i]),str(names[i+1]),status])
+							elif status not in ["open","trial"]:errors.append("%s: non-open historical segment: %s—%s"%[str(expected.id),str(names[i]),str(names[i+1])])
 						var path:=TrackNetwork.ordered_station_path(str(ids[i]),str(ids[i+1]),paths[i],world,latitude,path_index)
 						if not bool(path.get("valid",false)):
 							errors.append("%s: %s—%s: %s" % [str(expected.id),str(names[i]),str(names[i+1]),str(path.get("error","invalid path"))]);continue
@@ -64,7 +75,7 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 				for station in world.get("stations",[]):
 					if str(station.get("stationInstanceId",station.get("id","")))==str(bodies[i]):physical_id=str(station.id);break
 				for route in world.get("routes",[]):
-					if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
+					if bool(route.get("retired",false)) or (not bool(project.get("constructionOnly",false)) and not bool(route.get("open",true))):continue
 					if str(route.get("historicalLineId",""))!=str(lines[i]):continue
 					for direction in route.get("directions",[]):
 						if not physical_id.is_empty() and direction.get("stationIds",[]).has(physical_id):serves=true
@@ -81,7 +92,7 @@ static func current_project_errors(world:Dictionary,project_ids:Array) -> Array[
 
 ## Check the real committed path at each independently documented opening,
 ## including extra future stops on a line whose period is already reviewed.
-static func historical_chapter_errors(world:Dictionary,chapter_id:String) -> Array[String]:
+static func historical_chapter_errors(world:Dictionary,chapter_id:String,scope_only_for_backfill:bool=false) -> Array[String]:
 	var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(TARGET_PATH))
 	var milestones:Array=targets.get("cities",{}).get(str(world.cityId),{}).get("historicalMilestones",[])
 	var current:Dictionary={}
@@ -89,14 +100,22 @@ static func historical_chapter_errors(world:Dictionary,chapter_id:String) -> Arr
 		if str(milestone.get("chapterId",""))==chapter_id:current=milestone;break
 	if current.is_empty():return []
 	var errors:=project_errors(world,current)
+	# Compatibility backfills check the missing old task against construction
+	# that legitimately already contains later milestones. They are not evidence
+	# that a fresh chronological playthrough had no premature later stops.
+	if scope_only_for_backfill:return errors
 	var reviewed_lines:Dictionary={}
 	for group in current.get("groups",[]):reviewed_lines[str(group.get("historicalLineId",group.id))]=true
 	var permitted:Dictionary={}
-	for milestone in milestones:
+	var chronological:=milestones.duplicate()
+	chronological.sort_custom(func(a:Dictionary,b:Dictionary):return str(a.get("date",""))<str(b.get("date","")))
+	for milestone in chronological:
 		if str(milestone.get("date",""))>str(current.get("date","")):continue
 		for group in milestone.get("groups",[]):
 			var line_id:=str(group.get("historicalLineId",group.id))
-			if not permitted.has(line_id):permitted[line_id]=[]
+			# A documented split replaces the former service scope. Unioning all
+			# historical names would let the old unsplit line survive indefinitely.
+			if not permitted.has(line_id) or bool(group.get("fullServiceOrder",false)):permitted[line_id]=[]
 			for name in group.get("stationNames",[]):
 				if not permitted[line_id].has(name):permitted[line_id].append(name)
 	for route in world.get("routes",[]):
@@ -149,7 +168,7 @@ static func service_shape_errors(world:Dictionary,network:Dictionary,projects:Ar
 				# and its required transfers must exist in the real saved world.
 				if project_errors(world,project).is_empty():required_direction_count=1
 		for route in world.get("routes",[]):
-			if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
+			if bool(route.get("retired",false)):continue
 			if str(route.get("historicalLineId",""))!=line_id:continue
 			if route.get("directions",[]).size()!=required_direction_count:errors.append("%s: cutoff service direction count differs from documented branches"%line_id)
 			for direction in route.get("directions",[]):

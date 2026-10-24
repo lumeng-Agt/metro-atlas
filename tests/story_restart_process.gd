@@ -12,7 +12,16 @@ func _run() -> void:
 	var world:Dictionary
 	if round==0:
 		world=WorldData.new_world("shanghai","campaign");world.storyState.stage="build"
+		# The current first nodes introduce historical plans without stations.
+		# Advance those through actual event confirmation; a restart fixture
+		# must not index empty targets or pretend these events contain geometry.
+		var introductions:=0
+		while bool(StorySession.chapter(world).get("eventOnly",false)):
+			var confirmed:=StorySession.commit_chapter(world,int(world.revision),StorySession.evaluate(world))
+			if not bool(confirmed.get("ok",false)) or introductions>100:push_error("Unable to confirm story introduction");quit(1);return
+			StorySession.next_chapter(world);world.storyState.stage="build";introductions+=1
 		var refs:Array=StorySession.targets(world)
+		if refs.size()<2:push_error("Restart fixture requires two real construction targets");quit(1);return
 		var a:=WorldData.create_station(world,refs[0].latlng,90)
 		var b:=WorldData.create_station(world,refs[1].latlng,90)
 		a.historicalId=refs[0].id;b.historicalId=refs[1].id

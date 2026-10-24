@@ -26044,6 +26044,38 @@
           "sourceTitle": "白云区官方2026年4月进度：18号线后通1站1区间",
           "note": "1座新增站、1个区间，已有许可及施工进度，不能漏出项目清单。",
           "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "gz-line14-remainder",
+          "name": "14号线二期乐嘉路—广州火车站",
+          "projectType": "approved_project",
+          "statusAtCutoff": "已批未建，受国铁改造影响",
+          "source": "https://ghzyj.gz.gov.cn/ywpd/cxgh/ghxkgsgb/gzyjfk/content/post_10815588.html",
+          "sourceTitle": "广州市规划和自然资源局2026-05-18：乐嘉路—广州火车站暂未建设",
+          "sourceCheckedAt": "2026-10-24",
+          "playabilityStatus": "playable_build_task",
+          "note": "独立于已开通七站；一座新站、一个区间与2/5换乘，不漏出项目目录。"
+        },
+        {
+          "id": "gz-line10-remainder",
+          "name": "10号线后通段（杨箕东—天河路—石牌桥）",
+          "projectType": "under_construction",
+          "statusAtCutoff": "在建，未开放",
+          "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+          "sourceTitle": "白云区2026-04官方工程进度：十号线后通一站两区间",
+          "playabilityStatus": "playable_build_task",
+          "note": "新增一站两区间；既有3号线支线只复用接头，拆分实施时间不作虚构。"
+        },
+        {
+          "id": "gz-line11-railway-station",
+          "name": "11号线广州火车站未开放工程",
+          "projectType": "under_construction",
+          "statusAtCutoff": "主体及附属工程继续建设，未开放",
+          "source": "https://static.cninfo.com.cn/finalpage/2025-07-15/1224176165.PDF",
+          "sourceTitle": "广州地铁发行人资料：广州火车站与广州东站原暂缓开放工程",
+          "note": "广州东站已于2025-09-29开放，广州火车站剩余工程不可遗漏；下一步核对截止日状态并制作独立站体、环线路径及换乘任务。",
+          "sourceCheckedAt": "2026-10-24",
+          "playabilityStatus": "registered_geometry_and_playable_task_pending"
         }
       ],
       "documentedMilestones": [
@@ -39233,6 +39265,28 @@
           "sourceCheckedAt": "2026-10-20",
           "statusAtCutoff": "已批建设规划",
           "playabilityNote": "五期建设规划项目库，属规划集合而非单一工程。"
+        },
+        {
+          "id": "sz-line10-east-shenzhen",
+          "name": "10号线东延深圳段",
+          "projectType": "approved_project",
+          "statusAtCutoff": "第五期批准的深圳段",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240619/1718790831457082212.pdf",
+          "sourceTitle": "深圳地铁10号线东延深圳段环境影响评价项目范围",
+          "note": "深圳段工程不得被东莞段审批情况替代；需制作公开站点及跨界接头，不虚构境外开通。",
+          "sourceCheckedAt": "2026-10-24",
+          "playabilityStatus": "registered_geometry_and_playable_task_pending"
+        },
+        {
+          "id": "sz-line11-north-shenzhen",
+          "name": "11号线北延深圳段",
+          "projectType": "approved_project",
+          "statusAtCutoff": "第五期批准的深圳段",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20240202/1706841517912063272.pdf",
+          "sourceTitle": "深圳地铁11号线北延深圳段环评项目范围",
+          "note": "纯区间边界接头仍是实际工程，不能因深圳境内无新增车站就用工程分类免除可玩任务。",
+          "sourceCheckedAt": "2026-10-24",
+          "playabilityStatus": "registered_geometry_and_playable_task_pending"
         }
       ],
       "documentedMilestones": [
@@ -51327,14 +51381,14 @@
           "id": "cd-fifth-phase-consultation",
           "name": "第五期建设规划（2024—2029）初步方案",
           "projectType": "public_consultation",
-          "status": "征求意见／未见国家批复",
+          "status": "保留原征求意见版本作资料；实际第五期项目分别登记",
           "source": "https://m.xjgjxk.com/shiping/show.php?itemid=1891",
           "sourceTitle": "成都市城市轨道交通第五期建设规划第二次环评公示（转载）",
           "note": "包含5号线三期、9号线二期、10号线四期、12号线一期、16号线一期、18号线四期、20号线一期、22号线一期、23号线一期和27号线二期；这是环评征求意见方案，不作为已批建设蓝图。",
           "playabilityStatus": "policy_only_not_playable",
           "sourceCheckedAt": "2026-10-20",
-          "statusAtCutoff": "征求意见／未见国家批复",
-          "playabilityNote": "第五期建设规划初步方案征求意见，尚未进入工程实施。"
+          "statusAtCutoff": "原始征求意见版本，非后续批准项目范围",
+          "playabilityNote": "此条仅是旧征求意见方案，不代表10四、12一、18四、27二等后续工程尚未立项或已被制作。"
         },
         {
           "id": "cd-line10-phase3-remainder",
@@ -51365,6 +51419,28 @@
           "sourceTitle": "四川省政府新闻办四川发布2025-11-06：10号线四期8站工程概况",
           "note": "8座公布新站，前期手续不等于已经运营。",
           "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "cd-line18-phase4",
+          "name": "18号线四期（北段及简阳南东段）",
+          "projectType": "approved_preparatory",
+          "statusAtCutoff": "第五期项目，前期工作",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceTitle": "四川省政府新闻办四川发布2025-11-06：18号线四期工程概况",
+          "sourceCheckedAt": "2026-10-24",
+          "playabilityStatus": "playable_build_task",
+          "note": "4座公布新站全部制作；两段独立复用三期接头。不得将节能审查记为开放，国铁和市域接驳不计作已建地铁换乘。"
+        },
+        {
+          "id": "cd-line12-phase1",
+          "name": "12号线一期（普安—舜和家园）",
+          "projectType": "approved_preparatory",
+          "statusAtCutoff": "已立项，前期环评与设计",
+          "source": "https://www.chengdurail.com/info/1171/134904.htm",
+          "sourceTitle": "成都轨道集团2026-08-26首次环评：34.2千米、28座车站",
+          "note": "独立登记必做项目。完整站名表尚未在此次公告中公布，不能拿已制作的其他三项第五期工程代替本线；须制作有依据的站区和走廊任务。",
+          "sourceCheckedAt": "2026-10-24",
+          "playabilityStatus": "registered_geometry_and_playable_task_pending"
         }
       ],
       "documentedMilestones": [
@@ -61323,9 +61399,53 @@
           "ref": "1号线",
           "name": "1号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 35,
           "cutoffStationIds": [
+            "chengdu-s24",
+            "chengdu-s23",
+            "chengdu-s22",
+            "chengdu-s21",
+            "chengdu-s20",
+            "chengdu-s19",
+            "chengdu-s18",
+            "chengdu-s17",
+            "chengdu-s16",
+            "chengdu-s15",
+            "chengdu-s14",
+            "chengdu-s13",
+            "chengdu-s303",
+            "chengdu-s11",
+            "chengdu-s10",
+            "chengdu-s9",
+            "chengdu-s8",
+            "chengdu-s7",
+            "chengdu-s6",
+            "chengdu-s5",
+            "chengdu-s4",
+            "chengdu-s3",
+            "chengdu-s2",
+            "chengdu-s1",
+            "chengdu-s157",
+            "chengdu-s158",
+            "chengdu-s159",
+            "chengdu-s160",
+            "chengdu-s161",
+            "chengdu-s162",
+            "chengdu-s163",
+            "chengdu-s164",
+            "chengdu-s165",
+            "chengdu-s166",
+            "chengdu-s167"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            2381768,
+            7913598,
+            8297247,
+            8303538
+          ],
+          "mapStationIds": [
             "chengdu-s1",
             "chengdu-s2",
             "chengdu-s3",
@@ -61362,20 +61482,17 @@
             "chengdu-s166",
             "chengdu-s167"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            2381768,
-            7913598,
-            8297247,
-            8303538
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 35
         },
         {
           "mapRouteId": "chengdu-r2",
           "ref": "2号线",
           "name": "2号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 32,
           "cutoffStationIds": [
             "chengdu-s25",
@@ -61415,14 +61532,52 @@
           "routeRelations": [
             2474349,
             8298109
-          ]
+          ],
+          "mapStationIds": [
+            "chengdu-s25",
+            "chengdu-s26",
+            "chengdu-s27",
+            "chengdu-s28",
+            "chengdu-s29",
+            "chengdu-s30",
+            "chengdu-s31",
+            "chengdu-s32",
+            "chengdu-s33",
+            "chengdu-s34",
+            "chengdu-s35",
+            "chengdu-s36",
+            "chengdu-s37",
+            "chengdu-s38",
+            "chengdu-s18",
+            "chengdu-s39",
+            "chengdu-s40",
+            "chengdu-s41",
+            "chengdu-s42",
+            "chengdu-s43",
+            "chengdu-s44",
+            "chengdu-s45",
+            "chengdu-s46",
+            "chengdu-s47",
+            "chengdu-s48",
+            "chengdu-s49",
+            "chengdu-s50",
+            "chengdu-s51",
+            "chengdu-s52",
+            "chengdu-s53",
+            "chengdu-s54",
+            "chengdu-s55"
+          ],
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 32
         },
         {
           "mapRouteId": "chengdu-r3",
           "ref": "3号线",
           "name": "3号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 37,
           "cutoffStationIds": [
             "chengdu-s84",
@@ -61467,14 +61622,57 @@
           "routeRelations": [
             6517083,
             8297265
-          ]
+          ],
+          "mapStationIds": [
+            "chengdu-s84",
+            "chengdu-s85",
+            "chengdu-s86",
+            "chengdu-s87",
+            "chengdu-s88",
+            "chengdu-s89",
+            "chengdu-s90",
+            "chengdu-s91",
+            "chengdu-s92",
+            "chengdu-s93",
+            "chengdu-s94",
+            "chengdu-s95",
+            "chengdu-s96",
+            "chengdu-s97",
+            "chengdu-s98",
+            "chengdu-s99",
+            "chengdu-s100",
+            "chengdu-s74",
+            "chengdu-s39",
+            "chengdu-s101",
+            "chengdu-s102",
+            "chengdu-s15",
+            "chengdu-s103",
+            "chengdu-s104",
+            "chengdu-s105",
+            "chengdu-s106",
+            "chengdu-s107",
+            "chengdu-s108",
+            "chengdu-s109",
+            "chengdu-s110",
+            "chengdu-s111",
+            "chengdu-s112",
+            "chengdu-s113",
+            "chengdu-s114",
+            "chengdu-s115",
+            "chengdu-s116",
+            "chengdu-s117"
+          ],
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 37
         },
         {
           "mapRouteId": "chengdu-r4",
           "ref": "4号线",
           "name": "4号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 30,
           "cutoffStationIds": [
             "chengdu-s56",
@@ -61512,16 +61710,100 @@
           "routeRelations": [
             6385133,
             8298131
-          ]
+          ],
+          "mapStationIds": [
+            "chengdu-s56",
+            "chengdu-s57",
+            "chengdu-s58",
+            "chengdu-s59",
+            "chengdu-s60",
+            "chengdu-s61",
+            "chengdu-s62",
+            "chengdu-s63",
+            "chengdu-s64",
+            "chengdu-s65",
+            "chengdu-s66",
+            "chengdu-s67",
+            "chengdu-s68",
+            "chengdu-s69",
+            "chengdu-s70",
+            "chengdu-s71",
+            "chengdu-s36",
+            "chengdu-s72",
+            "chengdu-s19",
+            "chengdu-s73",
+            "chengdu-s74",
+            "chengdu-s75",
+            "chengdu-s76",
+            "chengdu-s77",
+            "chengdu-s78",
+            "chengdu-s79",
+            "chengdu-s80",
+            "chengdu-s81",
+            "chengdu-s82",
+            "chengdu-s83"
+          ],
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 30
         },
         {
           "mapRouteId": "chengdu-r5",
           "ref": "5号线",
           "name": "5号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 41,
           "cutoffStationIds": [
+            "chengdu-s224",
+            "chengdu-s259",
+            "chengdu-s258",
+            "chengdu-s257",
+            "chengdu-s256",
+            "chengdu-s255",
+            "chengdu-s254",
+            "chengdu-s253",
+            "chengdu-s252",
+            "chengdu-s251",
+            "chengdu-s171",
+            "chengdu-s250",
+            "chengdu-s249",
+            "chengdu-s248",
+            "chengdu-s127",
+            "chengdu-s247",
+            "chengdu-s246",
+            "chengdu-s104",
+            "chengdu-s245",
+            "chengdu-s244",
+            "chengdu-s36",
+            "chengdu-s243",
+            "chengdu-s242",
+            "chengdu-s195",
+            "chengdu-s137",
+            "chengdu-s241",
+            "chengdu-s240",
+            "chengdu-s239",
+            "chengdu-s238",
+            "chengdu-s237",
+            "chengdu-s236",
+            "chengdu-s235",
+            "chengdu-s234",
+            "chengdu-s233",
+            "chengdu-s232",
+            "chengdu-s231",
+            "chengdu-s230",
+            "chengdu-s229",
+            "chengdu-s228",
+            "chengdu-s227",
+            "chengdu-s226"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            9627905,
+            10526315
+          ],
+          "mapStationIds": [
             "chengdu-s226",
             "chengdu-s227",
             "chengdu-s228",
@@ -61564,20 +61846,82 @@
             "chengdu-s259",
             "chengdu-s224"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            9627905,
-            10526315
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 41
         },
         {
           "mapRouteId": "chengdu-r6",
           "ref": "6号线",
           "name": "6号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 57,
           "cutoffStationIds": [
+            "chengdu-s225",
+            "chengdu-s224",
+            "chengdu-s223",
+            "chengdu-s222",
+            "chengdu-s221",
+            "chengdu-s220",
+            "chengdu-s164",
+            "chengdu-s219",
+            "chengdu-s218",
+            "chengdu-s217",
+            "chengdu-s216",
+            "chengdu-s215",
+            "chengdu-s214",
+            "chengdu-s213",
+            "chengdu-s212",
+            "chengdu-s211",
+            "chengdu-s210",
+            "chengdu-s209",
+            "chengdu-s208",
+            "chengdu-s207",
+            "chengdu-s206",
+            "chengdu-s205",
+            "chengdu-s168",
+            "chengdu-s204",
+            "chengdu-s203",
+            "chengdu-s202",
+            "chengdu-s201",
+            "chengdu-s200",
+            "chengdu-s199",
+            "chengdu-s41",
+            "chengdu-s75",
+            "chengdu-s198",
+            "chengdu-s197",
+            "chengdu-s99",
+            "chengdu-s196",
+            "chengdu-s21",
+            "chengdu-s195",
+            "chengdu-s194",
+            "chengdu-s135",
+            "chengdu-s193",
+            "chengdu-s192",
+            "chengdu-s191",
+            "chengdu-s190",
+            "chengdu-s189",
+            "chengdu-s188",
+            "chengdu-s187",
+            "chengdu-s186",
+            "chengdu-s25",
+            "chengdu-s185",
+            "chengdu-s184",
+            "chengdu-s183",
+            "chengdu-s182",
+            "chengdu-s181",
+            "chengdu-s180",
+            "chengdu-s179",
+            "chengdu-s178"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            9627850,
+            12038668
+          ],
+          "mapStationIds": [
             "chengdu-s178",
             "chengdu-s179",
             "chengdu-s180",
@@ -61636,20 +61980,57 @@
             "chengdu-s225",
             "chengdu-s329"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            9627850,
-            12038668
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 56
         },
         {
           "mapRouteId": "chengdu-r7",
           "ref": "7号线",
           "name": "7号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 31,
           "cutoffStationIds": [
+            "chengdu-s22",
+            "chengdu-s97",
+            "chengdu-s138",
+            "chengdu-s139",
+            "chengdu-s140",
+            "chengdu-s141",
+            "chengdu-s118",
+            "chengdu-s119",
+            "chengdu-s120",
+            "chengdu-s121",
+            "chengdu-s45",
+            "chengdu-s122",
+            "chengdu-s123",
+            "chengdu-s124",
+            "chengdu-s125",
+            "chengdu-s126",
+            "chengdu-s303",
+            "chengdu-s127",
+            "chengdu-s128",
+            "chengdu-s106",
+            "chengdu-s129",
+            "chengdu-s130",
+            "chengdu-s131",
+            "chengdu-s69",
+            "chengdu-s132",
+            "chengdu-s33",
+            "chengdu-s133",
+            "chengdu-s134",
+            "chengdu-s135",
+            "chengdu-s136",
+            "chengdu-s137"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            7913593,
+            8297136
+          ],
+          "mapStationIds": [
             "chengdu-s118",
             "chengdu-s119",
             "chengdu-s120",
@@ -61682,20 +62063,58 @@
             "chengdu-s140",
             "chengdu-s141"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            7913593,
-            8297136
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 31
         },
         {
           "mapRouteId": "chengdu-r8",
           "ref": "8号线",
           "name": "8号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 32,
           "cutoffStationIds": [
+            "chengdu-s286",
+            "chengdu-s285",
+            "chengdu-s284",
+            "chengdu-s283",
+            "chengdu-s282",
+            "chengdu-s281",
+            "chengdu-s172",
+            "chengdu-s280",
+            "chengdu-s279",
+            "chengdu-s278",
+            "chengdu-s128",
+            "chengdu-s277",
+            "chengdu-s276",
+            "chengdu-s275",
+            "chengdu-s14",
+            "chengdu-s273",
+            "chengdu-s272",
+            "chengdu-s201",
+            "chengdu-s271",
+            "chengdu-s43",
+            "chengdu-s76",
+            "chengdu-s270",
+            "chengdu-s269",
+            "chengdu-s268",
+            "chengdu-s267",
+            "chengdu-s266",
+            "chengdu-s265",
+            "chengdu-s264",
+            "chengdu-s263",
+            "chengdu-s262",
+            "chengdu-s261",
+            "chengdu-s260"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            9761272,
+            12086371
+          ],
+          "mapStationIds": [
             "chengdu-s260",
             "chengdu-s261",
             "chengdu-s262",
@@ -61729,20 +62148,39 @@
             "chengdu-s285",
             "chengdu-s286"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            9761272,
-            12086371
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 32
         },
         {
           "mapRouteId": "chengdu-r9",
           "ref": "9号线",
           "name": "9号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 14,
           "cutoffStationIds": [
+            "chengdu-s168",
+            "chengdu-s169",
+            "chengdu-s9",
+            "chengdu-s171",
+            "chengdu-s172",
+            "chengdu-s173",
+            "chengdu-s144",
+            "chengdu-s174",
+            "chengdu-s109",
+            "chengdu-s175",
+            "chengdu-s176",
+            "chengdu-s67",
+            "chengdu-s177"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            9627519,
+            12094622
+          ],
+          "mapStationIds": [
             "chengdu-s168",
             "chengdu-s169",
             "chengdu-s170",
@@ -61758,20 +62196,47 @@
             "chengdu-s177",
             "chengdu-s330"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            9627519,
-            12094622
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 13
         },
         {
           "mapRouteId": "chengdu-r10",
           "ref": "10号线",
           "name": "10号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 19,
           "cutoffStationIds": [
+            "chengdu-s142",
+            "chengdu-s328",
+            "chengdu-s105",
+            "chengdu-s106",
+            "chengdu-s143",
+            "chengdu-s144",
+            "chengdu-s145",
+            "chengdu-s146",
+            "chengdu-s147",
+            "chengdu-s117",
+            "chengdu-s148",
+            "chengdu-s149",
+            "chengdu-s150",
+            "chengdu-s151",
+            "chengdu-s152",
+            "chengdu-s153",
+            "chengdu-s154",
+            "chengdu-s155",
+            "chengdu-s156"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            7913594,
+            8298253,
+            11807052,
+            11807053
+          ],
+          "mapStationIds": [
             "chengdu-s142",
             "chengdu-s105",
             "chengdu-s106",
@@ -61792,22 +62257,47 @@
             "chengdu-s156",
             "chengdu-s328"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            7913594,
-            8298253,
-            11807052,
-            11807053
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 19
         },
         {
           "mapRouteId": "chengdu-r11",
           "ref": "13号线",
           "name": "13号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 21,
           "cutoffStationIds": [
+            "chengdu-s314",
+            "chengdu-s315",
+            "chengdu-s316",
+            "chengdu-s317",
+            "chengdu-s318",
+            "chengdu-s319",
+            "chengdu-s271",
+            "chengdu-s200",
+            "chengdu-s320",
+            "chengdu-s101",
+            "chengdu-s16",
+            "chengdu-s322",
+            "chengdu-s292",
+            "chengdu-s244",
+            "chengdu-s323",
+            "chengdu-s324",
+            "chengdu-s131",
+            "chengdu-s325",
+            "chengdu-s176",
+            "chengdu-s326",
+            "chengdu-s327"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            11528274,
+            19975015
+          ],
+          "mapStationIds": [
             "chengdu-s314",
             "chengdu-s315",
             "chengdu-s316",
@@ -61830,20 +62320,47 @@
             "chengdu-s326",
             "chengdu-s327"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            11528274,
-            19975015
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 21
         },
         {
           "mapRouteId": "chengdu-r12",
           "ref": "17号线",
           "name": "17号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 21,
           "cutoffStationIds": [
+            "chengdu-s302",
+            "chengdu-s301",
+            "chengdu-s300",
+            "chengdu-s299",
+            "chengdu-s298",
+            "chengdu-s140",
+            "chengdu-s297",
+            "chengdu-s296",
+            "chengdu-s295",
+            "chengdu-s294",
+            "chengdu-s293",
+            "chengdu-s38",
+            "chengdu-s292",
+            "chengdu-s245",
+            "chengdu-s291",
+            "chengdu-s290",
+            "chengdu-s130",
+            "chengdu-s289",
+            "chengdu-s175",
+            "chengdu-s288",
+            "chengdu-s287"
+          ],
+          "excludedStations": [],
+          "routeRelations": [
+            9851799,
+            12095437
+          ],
+          "mapStationIds": [
             "chengdu-s287",
             "chengdu-s288",
             "chengdu-s175",
@@ -61866,20 +62383,47 @@
             "chengdu-s301",
             "chengdu-s302"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            9851799,
-            12095437
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 21
         },
         {
           "mapRouteId": "chengdu-r13",
           "ref": "18号线",
           "name": "18号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 13,
           "cutoffStationIds": [
+            "chengdu-s303",
+            "chengdu-s9",
+            "chengdu-s305",
+            "chengdu-s7",
+            "chengdu-s158",
+            "chengdu-s306",
+            "chengdu-s307",
+            "chengdu-s308",
+            "chengdu-s309",
+            "chengdu-s310",
+            "chengdu-s312",
+            "chengdu-s313"
+          ],
+          "excludedStations": [
+            {
+              "id": "chengdu-s311",
+              "name": "天府机场3号4号航站楼",
+              "reason": "预留未开放",
+              "source": "https://www.chengdurail.com/op/station-time"
+            }
+          ],
+          "routeRelations": [
+            9869750,
+            11697794,
+            13367599,
+            13367600
+          ],
+          "mapStationIds": [
             "chengdu-s303",
             "chengdu-s304",
             "chengdu-s305",
@@ -61894,22 +62438,59 @@
             "chengdu-s312",
             "chengdu-s313"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            9869750,
-            11697794,
-            13367599,
-            13367600
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 12
         },
         {
           "mapRouteId": "chengdu-r14",
           "ref": "19号线",
           "name": "19号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 23,
           "cutoffStationIds": [
+            "chengdu-s313",
+            "chengdu-s312",
+            "chengdu-s310",
+            "chengdu-s309",
+            "chengdu-s308",
+            "chengdu-s361",
+            "chengdu-s219",
+            "chengdu-s360",
+            "chengdu-s359",
+            "chengdu-s258",
+            "chengdu-s358",
+            "chengdu-s357",
+            "chengdu-s286",
+            "chengdu-s356",
+            "chengdu-s355",
+            "chengdu-s287",
+            "chengdu-s354",
+            "chengdu-s353",
+            "chengdu-s352",
+            "chengdu-s351",
+            "chengdu-s350",
+            "chengdu-s349"
+          ],
+          "excludedStations": [
+            {
+              "id": "chengdu-s311",
+              "name": "天府机场3号4号航站楼",
+              "reason": "预留未开放",
+              "source": "https://www.chengdurail.com/op/station-time"
+            }
+          ],
+          "routeRelations": [
+            16494768,
+            16494854,
+            16764492,
+            16764493,
+            16764494,
+            16764495
+          ],
+          "mapStationIds": [
             "chengdu-s349",
             "chengdu-s350",
             "chengdu-s351",
@@ -61934,22 +62515,17 @@
             "chengdu-s310",
             "chengdu-s309"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            16494768,
-            16494854,
-            16764492,
-            16764493,
-            16764494,
-            16764495
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 22
         },
         {
           "mapRouteId": "chengdu-r15",
           "ref": "27号线",
           "name": "27号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 22,
           "cutoffStationIds": [
             "chengdu-s331",
@@ -61979,16 +62555,86 @@
           "routeRelations": [
             12123402,
             18436260
-          ]
+          ],
+          "mapStationIds": [
+            "chengdu-s331",
+            "chengdu-s332",
+            "chengdu-s333",
+            "chengdu-s334",
+            "chengdu-s335",
+            "chengdu-s336",
+            "chengdu-s337",
+            "chengdu-s338",
+            "chengdu-s339",
+            "chengdu-s24",
+            "chengdu-s340",
+            "chengdu-s341",
+            "chengdu-s238",
+            "chengdu-s342",
+            "chengdu-s343",
+            "chengdu-s192",
+            "chengdu-s344",
+            "chengdu-s345",
+            "chengdu-s32",
+            "chengdu-s346",
+            "chengdu-s347",
+            "chengdu-s348"
+          ],
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 22
         },
         {
           "mapRouteId": "chengdu-r16",
           "ref": "30号线",
           "name": "30号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
           "mapStationCount": 19,
           "cutoffStationIds": [
+            "chengdu-s362",
+            "chengdu-s365",
+            "chengdu-s47",
+            "chengdu-s366",
+            "chengdu-s367",
+            "chengdu-s318",
+            "chengdu-s368",
+            "chengdu-s369",
+            "chengdu-s204",
+            "chengdu-official-l30-n13380485910",
+            "chengdu-official-l30-n13380485918",
+            "chengdu-official-l30-n13380485921",
+            "chengdu-s370",
+            "chengdu-official-l30-n13380485923",
+            "chengdu-official-l30-n13380485924",
+            "chengdu-official-l30-n13380485925",
+            "chengdu-s282",
+            "chengdu-s371",
+            "chengdu-s372",
+            "chengdu-s373",
+            "chengdu-s374",
+            "chengdu-s356"
+          ],
+          "excludedStations": [
+            {
+              "id": "chengdu-s363",
+              "name": "玉虹路",
+              "reason": "已建暂缓开放",
+              "source": "https://infosharingp2-oss.camet.org.cn/resources/manual/2026/01/04/759313381470277.pdf"
+            },
+            {
+              "id": "chengdu-s364",
+              "name": "分水",
+              "reason": "已建暂缓开放",
+              "source": "https://infosharingp2-oss.camet.org.cn/resources/manual/2026/01/04/759313381470277.pdf"
+            }
+          ],
+          "routeRelations": [
+            19970753,
+            19970754
+          ],
+          "mapStationIds": [
             "chengdu-s362",
             "chengdu-s363",
             "chengdu-s364",
@@ -62009,18 +62655,20 @@
             "chengdu-s356",
             "chengdu-s375"
           ],
-          "excludedStations": [],
-          "routeRelations": [
-            19970753,
-            19970754
-          ]
+          "stationOrderEvidence": "data/official_evidence/chengdu_operator_orders_retrieved2026-10-23.json",
+          "sourceRetrievedAt": "2026-10-23",
+          "cutoffTemporalReviewStatus": "pending",
+          "cutoffStationCount": 22
         }
       ],
       "milestoneRule": "章节边界只对应有来源的实际开通、试运营、建成节点或现有可玩里程碑；规划和修订事件保留在相邻区间，不独立构成建设章节。本清单只给截止日目标，历史逐期任务必须由开通事件台账生成，不能把当前整条线路倒灌到首开年份。",
       "contentStatus": "playable_cutoff_inventory",
       "playableRouteTaskCount": 16,
       "unassignedRouteIds": [],
-      "routeTaskSource": "https://www.chengdurail.com/gywm.htm"
+      "routeTaskSource": "https://www.chengdurail.com/gywm.htm",
+      "cutoffStopOccurrenceCount": 446,
+      "cutoffUniqueStationComplexCount": 370,
+      "inventoryNote": "原始地图计数和对象另存；截止日目标使用独立运营站序对应的稳定站区身份。取回日期晚于截止日，逐站开放时间仍需独立有日期资料审核。"
     }
   },
   "contentStatus": "playable_cutoff_route_inventories"

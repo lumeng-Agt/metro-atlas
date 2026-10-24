@@ -48,6 +48,10 @@ class CoverageRules(unittest.TestCase):
         self.target['reviewStatus'] = 'pending'
         self.assertTrue(check_project(self.target, self.plans, self.names))
 
+    def test_reviewed_station_order_does_not_certify_missing_transfer_inventory(self):
+        self.target['transferReviewStatus'] = 'pending'
+        self.assertIn('independent transfer coverage incomplete', check_project(self.target, self.plans, self.names))
+
     def test_documented_extension_can_be_contained_in_full_line(self):
         self.target['groups'][0].update(stationNames=['B', 'C'], matchScope='contiguous_subsequence')
         self.assertEqual(check_project(self.target, self.plans, self.names), [])

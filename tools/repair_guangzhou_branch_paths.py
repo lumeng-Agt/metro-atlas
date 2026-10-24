@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-REVISION = '2026.10.24.4'
+REVISION = '2026.10.24.5'
 SCOPE_SOURCES = {
     '3': 'https://news.dayoo.com/guangzhou/202605/03/139995_54955522.htm',
     '12': 'https://news.dayoo.com/gzrbrmt/202506/13/170628_54835315.htm',
@@ -73,6 +73,10 @@ def main():
                          stationOrderSource=SCOPE_SOURCES[number],
                          precisionNote='独立线路路径：支线与分段不串成一条跨城跳跃的折线；3号线机场南按2026-05-07暂停服务公告不列为截止日停站，原站体保留。')
             groups.append(group)
+            if number == '12' and index == 0:
+                # The middle is physically retained but must be reconfirmed
+                # after the two genuinely disconnected historical sections.
+                group['retainDocumentedFutureService'] = False
             expected.append({'id':group['coverageGroupId'],'historicalLineId':line_id,
                              'stationNames':names,'scopeType':'stations','allowReverse':True})
     chapter['lineGroups'] = groups

@@ -253,7 +253,11 @@ def main() -> int:
         # Each project-side body must still belong to that explicit line group.
         for body, line_id in zip(instance_ids, line_ids):
             matching = [g for g in groups if g['historicalLineId'] == line_id]
-            if matching and not any(complex_id in g['stationIds'] and g.get('stationInstances', {}).get(complex_id, complex_id) == body for g in matching):
+            aliases = campaign.get('stationComplexAliases', {})
+            canonical = lambda station_id: aliases.get(station_id, station_id)
+            if matching and not any(canonical(station_id) == canonical(complex_id)
+                    and g.get('stationInstances', {}).get(station_id, station_id) == body
+                    for g in matching for station_id in g['stationIds']):
                 fail(f"transfer {transfer_id}: body {body} is not a bound project-side platform")
         if not str(entry.get("sourceNote", "")).strip():
             fail(f"transfer {transfer_id}: sourceNote is required")
@@ -282,6 +286,8 @@ def main() -> int:
         "sourceType": str(plan_spec["sourceType"]),
         "projectType": str(plan_spec["projectType"]),
         "required": bool(plan_spec.get("required", True)),
+        "requireOpen": False,
+        "serviceStatusSchema": 2,
         "dataStatus": "blueprint_ready",
         "exactAlignment": str(plan_spec.get("exactAlignment", "corridor_only")),
         "source": str(plan_spec["source"]),

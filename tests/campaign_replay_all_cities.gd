@@ -7,6 +7,9 @@ var app: Control
 var failures := 0
 var checkpoints := 0
 
+func _trace(stage:String) -> void:
+	if OS.get_environment("METRO_REPLAY_TRACE")=="1":print("REPLAY_TRACE ",str(Story.chapter(app.world).get("id",""))," ",stage)
+
 func _initialize() -> void:
 	call_deferred("_run")
 
@@ -37,6 +40,7 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 		if not bool(revision_result.get("ok",false)):return _fail(city,id,"plan",str(revision_result.get("error","")))
 	var groups:Array=Story.groups(app.world,true)
 	if not groups.is_empty():
+		_trace("assist-preview")
 		var preview:Dictionary=app._assist_candidate()
 		if not str(preview.get("issue","")).is_empty():return _fail(city,id,"preview",str(preview.issue))
 		var applied:Dictionary=app._commit_assisted_construction(preview,int(app.world.revision))
@@ -48,6 +52,7 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 			if app.history.redo().is_empty():return _fail(city,id,"redo","construction could not be restored")
 			for key in ["stations","stationComplexes","trackNodes","trackEdges","storyPlan"]:
 				if constructed.get(key)!=JSON.parse_string(JSON.stringify(app.world.get(key))):return _fail(city,id,"redo","geometry differs: "+key)
+	_trace("evaluate-service")
 	var checked:Dictionary=Story.evaluate(app.world)
 	for proposal in checked.get("serviceTransitions",[]):
 		if Story._has_service_range(app.world,str(proposal.id)):continue
@@ -60,15 +65,17 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 			var result:Dictionary=Story.confirm_task(app.world,task,int(app.world.revision))
 			if not bool(result.get("ok",false)):return _fail(city,id,task,JSON.stringify(result))
 			if not _checkpoint(city,id,task):return false
+	_trace("evaluate-reorganization")
 	checked=Story.evaluate(app.world)
+	if bool(chapter.get("requiresLineReorganization",false)):
+		var reorganized:Dictionary=app._commit_line_reorganization(int(app.world.revision))
+		if not bool(reorganized.get("ok",false)):return _fail(city,id,"reorganization",JSON.stringify(reorganized))
+		checked=Story.evaluate(app.world)
 	for transfer in checked.get("requiredTransfers",[]):
 		if app._transfer_connected(transfer):continue
 		var connection:Dictionary={"id":str(transfer.id),"name":str(transfer.get("name","换乘")),"complexId":str(transfer.get("complexId","")),"stationInstanceIds":transfer.get("stationInstanceIds",[]).duplicate(),"lineIds":transfer.get("lineIds",[]).duplicate(),"status":"active","precision":str(transfer.get("precision","schematic")),"source":str(transfer.get("source","")),"effectiveDate":str(chapter.get("date",""))}
 		var linked:Dictionary=app._commit_transfer_connection(transfer,connection,int(app.world.revision))
 		if not bool(linked.get("ok",false)):return _fail(city,id,str(transfer.id),str(linked.get("error","")))
-	if bool(chapter.get("requiresLineReorganization",false)):
-		var reorganized:Dictionary=app._commit_line_reorganization(int(app.world.revision))
-		if not bool(reorganized.get("ok",false)):return _fail(city,id,"reorganization",JSON.stringify(reorganized))
 	if bool(chapter.get("requiresLineReorganization",false)):
 		for i in range(groups.size()):
 			var task:=Story.task_id(chapter,groups[i],i)
@@ -76,12 +83,20 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 			var result:Dictionary=Story.confirm_task(app.world,task,int(app.world.revision))
 			if not bool(result.get("ok",false)):return _fail(city,id,task,JSON.stringify(result))
 			if not _checkpoint(city,id,task):return false
+	_trace("evaluate-chapter")
 	var evaluated:Dictionary=Story.evaluate(app.world)
+	_trace("commit-chapter")
 	var completed:Dictionary=Story.commit_chapter(app.world,int(app.world.revision),evaluated)
 	if not bool(completed.get("ok",false)):return _fail(city,id,"chapter",JSON.stringify(completed))
+	_trace("official-audit")
 	var official_errors:=OfficialNetworkAudit.current_project_errors(app.world,chapter.get("projectIds",[]))
 	if str(chapter.get("chapterScope",""))!="cutoff_reconciliation":
-		official_errors.append_array(OfficialNetworkAudit.historical_chapter_errors(app.world,id))
+		var backfill:=false
+		if OS.get_environment("METRO_REPLAY_RESUME")=="1":
+			for milestone in app.world.get("storyState",{}).get("milestones",[]):
+				if str(milestone.get("date",""))>str(chapter.get("date","")) and not milestone.get("planningDiff",{}).get("fields",{}).get("routes",{}).get("items",{}).is_empty():backfill=true;break
+		if backfill:print("REPLAY_BACKFILL_SCOPE_ONLY ",city," ",id," later saved construction retained; not a fresh period-exclusive check")
+		official_errors.append_array(OfficialNetworkAudit.historical_chapter_errors(app.world,id,backfill))
 	if str(chapter.get("chapterScope",""))=="cutoff_reconciliation":
 		var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(OfficialNetworkAudit.TARGET_PATH))
 		if not targets.get("cities",{}).get(city,{}).get("cutoffNetwork",{}).is_empty():official_errors.append_array(OfficialNetworkAudit.cutoff_errors(app.world))

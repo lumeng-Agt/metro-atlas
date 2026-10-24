@@ -119,7 +119,7 @@ static func validate(data: Dictionary) -> String:
 	var edge_ids:Dictionary={}
 	for edge in data.get("trackEdges",[])+data.get("trackLinks",[]):edge_ids[str(edge.id)]=true
 	for service_range in data.get("serviceRanges",[]):
-		if str(service_range.get("status","")) not in ["built","trial","open"]:return "历史服务范围状态无效。"
+		if str(service_range.get("status","")) not in ["built","trial","open","suspended"]:return "历史服务范围状态无效。"
 		if not service_range.get("stationIds",[]) is Array or service_range.stationIds.size()<2:return "历史服务范围至少需要两个站点。"
 		if not service_range.get("edgePathsBySegment",[]) is Array or service_range.edgePathsBySegment.size()!=service_range.stationIds.size()-1:return "历史服务范围的站间路径数量不匹配。"
 		for station_id in service_range.stationIds:
@@ -295,6 +295,8 @@ static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
 		var checked:Dictionary=story.evaluate(probe)
 		var official_errors:=OfficialNetworkAudit.current_project_errors(probe,plan.get("projectIds",[]))
 		if str(plan.get("chapterScope",""))=="cutoff_reconciliation":official_errors.append_array(OfficialNetworkAudit.cutoff_errors(probe))
+		if str(entry.phase)=="future" and not bool(plan.get("requireOpen",true)) and not _planning_statuses_match(world,checked.get("routes",[])):
+			official_errors.append("规划区间开放状态需重新确认，不能把旧版开放标记直接沿用为真实开通。")
 		if bool(checked.get("complete",false)) and official_errors.is_empty():
 			old["scopeRevision"]=scope_revision;progress[id]=old
 		else:
@@ -311,9 +313,36 @@ static func _recheck_expanded_projects(world:Dictionary) -> Dictionary:
 	if changed:world["contentUpgradeNotice"]="项目范围已补充。原路网与历史里程碑保留；只重新检查新增站点、区段和闭环。"
 	return {"changed":changed}
 
+static func _planning_statuses_match(world:Dictionary,expected_routes:Array) -> bool:
+	for expected in expected_routes:
+		for wanted_direction in expected.get("directions",[]):
+			var wanted:Array=wanted_direction.get("stationIds",[])
+			var desired:Array=wanted_direction.get("serviceStatusBySegment",[])
+			if wanted.size()<2 or desired.size()!=wanted.size()-1:return false
+			var found:=false
+			for route in world.get("routes",[]):
+				if bool(route.get("retired",false)) or str(route.get("historicalLineId",""))!=str(expected.get("historicalLineId","")):continue
+				for direction in route.get("directions",[]):
+					var ids:Array=direction.get("stationIds",[])
+					var statuses:Array=direction.get("serviceStatusBySegment",[])
+					if statuses.size()!=ids.size()-1:continue
+					for offset in range(maxi(0,ids.size()-wanted.size()+1)):
+						var section:=ids.slice(offset,offset+wanted.size())
+						var reversed:=wanted.duplicate();reversed.reverse()
+						if section!=wanted and section!=reversed:continue
+						var current:=statuses.slice(offset,offset+wanted.size()-1)
+						if section==reversed:current.reverse()
+						if current==desired:found=true
+			if not found:return false
+	return true
+
 static func _chapter_scope_revision(plan:Dictionary) -> String:
 	var explicit_revision:=str(plan.get("scopeRevision",""))
-	if not explicit_revision.is_empty():return explicit_revision
+	if not explicit_revision.is_empty():
+		# Older geometry-only approvals can hide an entire historical service
+		# marked built after a later planning merge. Re-audit cutoff operation
+		# when that validator changes, even if the station list is unchanged.
+		return explicit_revision+":historical-status-v2" if str(plan.get("chapterScope",""))=="cutoff_reconciliation" else explicit_revision
 	# A missing optional revision must not equal an old missing revision and
 	# silently skip an expanded task. Hash the actual authoritative scope.
 	var scope:Dictionary={}
@@ -405,7 +434,7 @@ static func _resume_expanded_history(state:Dictionary,city_id:String,mode:String
 	var current_index:=-1
 	for index in range(chapters.size()):
 		if str(chapters[index].get("id",""))==current_id:current_index=index;break
-	var gap:=str(state.get("phase","")) in ["history_gap","history_content_gap"] or current_index<0 or int(state.get("chapterIndex",0))>=chapters.size()
+	var gap:=str(state.get("phase","")) in ["history_gap","history_content_gap","future_gap"] or current_index<0 or int(state.get("chapterIndex",0))>=chapters.size()
 	if not gap:
 		state["chapterIndex"]=current_index
 		return

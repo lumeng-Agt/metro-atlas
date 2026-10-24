@@ -4,6 +4,27 @@ extends RefCounted
 ## Canonical operational path for a route. Validation, chapter checks and train
 ## rendering consume the same ordered segments from this module.
 
+## Presentation may only traverse continuous open/trial portions of the
+## validated geometry. Never bridge a built-only or temporarily closed gap.
+static func presentation_directions(path:Dictionary,route:Dictionary) -> Array:
+	var result:Array=[]
+	if not bool(path.get("valid",false)) or not bool(route.get("open",false)) or bool(route.get("retired",false)):return result
+	var directions:Array=path.get("directions",[])
+	var raw:Array=route.get("directions",[])
+	for direction_index in range(directions.size()):
+		var direction:Dictionary=directions[direction_index]
+		var segments:Array=direction.get("segments",[])
+		var statuses:Array=raw[direction_index].get("serviceStatusBySegment",[]) if direction_index<raw.size() else []
+		var fallback:=str(route.get("serviceStatus","open"))
+		var current:Array=[]
+		for index in range(segments.size()):
+			var status:=str(statuses[index]) if statuses.size()==segments.size() else fallback
+			if status in ["open","trial"]:current.append(segments[index])
+			elif not current.is_empty():
+				result.append({"id":str(direction.get("id","")),"segments":current});current=[]
+		if not current.is_empty():result.append({"id":str(direction.get("id","")),"segments":current})
+	return result
+
 static func for_route(route: Dictionary, state: Dictionary, ref_lat: float, path_index: Dictionary = {}) -> Dictionary:
 	var route_id := str(route.get("id", ""))
 	if bool(route.get("networkBased", false)):

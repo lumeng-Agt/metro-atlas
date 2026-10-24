@@ -394,13 +394,16 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		var segment_statuses:Array=[]
 		for segment_index in range(paths.size()):
 			segment_statuses.append(_effective_service_status(world,str(group.get("historicalLineId","")),str(ids[segment_index]),str(ids[segment_index+1]),default_status))
-		var all_open:=not segment_statuses.is_empty() and segment_statuses.all(func(status:String):return status in ["trial","open"])
+		var any_open:=segment_statuses.any(func(status:String):return status in ["trial","open"])
 		var service_status:="built"
 		if segment_statuses.all(func(status:String):return status=="open"):service_status="open"
 		elif segment_statuses.all(func(status:String):return status=="trial"):service_status="trial"
 		elif segment_statuses.has("trial") or segment_statuses.has("open"):service_status="mixed"
-		var route := {"id":"historical_%s" % str(group.get("historicalLineId", group.get("name","line"))),"name":str(group.get("name","线路")),"color":str(group.get("color","#36769c")),"stationOrder":ids,"networkBased":true,"vehicleId":str(group.get("vehicleId",profile(world).get("vehicleId","historical-schematic"))),"open":all_open,"serviceStatus":service_status,"directions":[{"id":"forward","stationIds":ids,"edgePathsBySegment":paths,"serviceStatusBySegment":segment_statuses}],"historicalLineId":str(group.get("historicalLineId",group.get("name","line"))),"chapterId":str(ch.get("id",""))}
+		elif not segment_statuses.is_empty() and segment_statuses.all(func(status:String):return status=="suspended"):service_status="suspended"
+		var route := {"id":"historical_%s" % str(group.get("historicalLineId", group.get("name","line"))),"name":str(group.get("name","线路")),"color":str(group.get("color","#36769c")),"stationOrder":ids,"networkBased":true,"vehicleId":str(group.get("vehicleId",profile(world).get("vehicleId","historical-schematic"))),"open":any_open,"serviceStatus":service_status,"directions":[{"id":"forward","stationIds":ids,"edgePathsBySegment":paths,"serviceStatusBySegment":segment_statuses}],"historicalLineId":str(group.get("historicalLineId",group.get("name","line"))),"chapterId":str(ch.get("id",""))}
 		if bool(group.get("replaceExistingService",false)):route["replaceExistingService"]=true
+		if bool(group.get("reconfirmLaterServices",false)):route["reconfirmLaterServices"]=true
+		if group.has("retainDocumentedFutureService"):route["retainDocumentedFutureService"]=bool(group.retainDocumentedFutureService)
 		if group_valid and paths.size()==maxi(0,ids.size()-1):
 			var canonical := Paths.for_route(route,world,reference_lat,path_index)
 			if not bool(canonical.get("valid",false)):
@@ -460,7 +463,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 				if JSON.stringify(saved.get("stationInstanceIds",[]))==JSON.stringify(instance_ids) and JSON.stringify(saved.get("lineIds",[]))==JSON.stringify(line_ids):
 					linked=true
 					break
-			if not linked:issues.append({"text":"%s：两侧独立站体和线路已就绪，请明确确认建立换乘联系。" % str(transfer.get("name","本章换乘站")),"kind":"transfer","objectId":str(transfer.get("complexId",""))})
+			if not linked:issues.append({"text":"%s：两侧独立站体和线路已就绪，请明确确认建立换乘联系。" % str(transfer.get("name","本章换乘站")),"kind":"transfer","pendingConfirmation":true,"objectId":str(transfer.get("complexId",""))})
 	var service_transitions:Array=[]
 	for transition_index in range(ch.get("serviceTransitions",[]).size()):
 		var transition:Dictionary=ch.serviceTransitions[transition_index]
@@ -527,7 +530,7 @@ static func _service_transition_proposal(world:Dictionary,transition:Dictionary,
 		names.append(str(station.get("name","车站")))
 		if focus.is_empty():focus=station.get("latlng",[])
 	var line_id:=str(transition.get("historicalLineId",""));var status:=str(transition.get("status",""));var chapter_id:=str(chapter(world).get("id",""))
-	if status not in ["built","trial","open"]:return {}
+	if status not in ["built","trial","open","suspended"]:return {}
 	var transition_id:=str(transition.get("id","%s_%d" % [line_id,transition_index]))
 	return {"id":"service_%s_%s" % [chapter_id,transition_id],"chapterId":chapter_id,"routeId":str(route.get("id","")),"historicalLineId":line_id,"stationIds":physical_stations,"edgePathsBySegment":paths,"status":status,"effectiveDate":str(chapter(world).get("date","")),"source":str(transition.get("source",chapter(world).get("source",""))),"confirmed":true,"displayStationNames":names,"focusLatlng":focus}
 
@@ -610,18 +613,25 @@ static func _merge_route_directions(existing_direction: Dictionary, incoming_dir
 	if mode == "same":
 		var same := existing_direction.duplicate(true)
 		same["edgePathsBySegment"] = new_paths.duplicate(true) if not new_paths.is_empty() else old_paths.duplicate(true)
-		same["serviceStatusBySegment"] = []
+		same["serviceStatusBySegment"] = incoming_direction.get("serviceStatusBySegment",existing_direction.get("serviceStatusBySegment",[])).duplicate()
 		return {"direction": same, "mode": mode}
 	var merged_ids: Array = []
 	var merged_paths: Array = []
+	var merged_statuses:Array=[]
+	var old_statuses:Array=existing_direction.get("serviceStatusBySegment",[])
+	var new_statuses:Array=incoming_direction.get("serviceStatusBySegment",[])
 	if mode == "append":
 		merged_ids = old_ids.duplicate(); merged_ids.append_array(new_ids.slice(overlap))
 		merged_paths = old_paths.duplicate(true)
 		if overlap < new_ids.size(): merged_paths.append_array(new_paths.slice(overlap - 1))
+		merged_statuses=old_statuses.duplicate()
+		if overlap < new_ids.size():merged_statuses.append_array(new_statuses.slice(overlap-1))
 	elif mode == "prepend":
 		merged_ids = new_ids.duplicate(); merged_ids.append_array(old_ids.slice(overlap))
 		merged_paths = new_paths.duplicate(true)
 		if overlap < old_ids.size(): merged_paths.append_array(old_paths.slice(overlap - 1))
+		merged_statuses=new_statuses.duplicate()
+		if overlap < old_ids.size():merged_statuses.append_array(old_statuses.slice(overlap-1))
 	else:
 		var start_index := old_ids.find(new_ids.front())
 		var end_index := old_ids.find(new_ids.back())
@@ -631,10 +641,24 @@ static func _merge_route_directions(existing_direction: Dictionary, incoming_dir
 		merged_paths.append_array(old_paths.slice(0, start_index))
 		merged_paths.append_array(new_paths)
 		merged_paths.append_array(old_paths.slice(end_index))
+		merged_statuses.append_array(old_statuses.slice(0,start_index))
+		merged_statuses.append_array(new_statuses)
+		merged_statuses.append_array(old_statuses.slice(end_index))
 	var merged := existing_direction.duplicate(true)
 	merged["stationIds"] = merged_ids
 	merged["edgePathsBySegment"] = merged_paths
-	merged["serviceStatusBySegment"] = []
+	# An opening event can reconfirm an overlapping existing section without
+	# extending either endpoint. Its segment statuses still replace the prior
+	# built-only values; unrelated earlier segments retain their own status.
+	merged_statuses=[]
+	for index in range(merged_ids.size()-1):
+		var status:="built"
+		var old_index:=old_ids.find(merged_ids[index])
+		if old_index>=0 and old_index+1<old_ids.size() and old_ids[old_index+1]==merged_ids[index+1] and old_index<old_statuses.size():status=str(old_statuses[old_index])
+		var new_index:=new_ids.find(merged_ids[index])
+		if new_index>=0 and new_index+1<new_ids.size() and new_ids[new_index+1]==merged_ids[index+1] and new_index<new_statuses.size():status=str(new_statuses[new_index])
+		merged_statuses.append(status)
+	merged["serviceStatusBySegment"] = merged_statuses
 	return {"direction": merged, "mode": mode}
 
 static func _reverse_service_direction(direction:Dictionary) -> Dictionary:
@@ -660,7 +684,9 @@ static func _merge_historical_route(existing: Dictionary, incoming: Dictionary) 
 	if incoming_order.size()>2 and incoming_order.front()==incoming_order.back():return incoming.duplicate(true)
 	var result := existing.duplicate(true)
 	var old_directions: Array = result.get("directions", []).duplicate(true)
-	var new_directions: Array = incoming.get("directions", [])
+	var new_directions: Array = incoming.get("directions", []).duplicate(true)
+	for direction in old_directions:_fill_direction_statuses(direction,existing)
+	for direction in new_directions:_fill_direction_statuses(direction,incoming)
 	if old_directions.is_empty() or new_directions.is_empty():
 		result.merge(incoming, true)
 		return result
@@ -704,10 +730,20 @@ static func _merge_historical_route(existing: Dictionary, incoming: Dictionary) 
 	result["color"] = incoming.get("color", result.get("color", "#36769c"))
 	result["networkBased"] = true
 	result["chapterId"] = incoming.get("chapterId", result.get("chapterId", ""))
-	result["open"] = bool(result.get("open", false)) or bool(incoming.get("open", false))
-	if str(incoming.get("serviceStatus", "")) != str(result.get("serviceStatus", "")):
-		result["serviceStatus"] = "mixed"
+	var statuses:Array=[]
+	for direction in old_directions:statuses.append_array(direction.get("serviceStatusBySegment",[]))
+	result["open"] = statuses.any(func(status:String):return status in ["open","trial"])
+	result["serviceStatus"] = str(statuses[0]) if not statuses.is_empty() and statuses.all(func(status:String):return status==str(statuses[0])) else "mixed"
 	return result
+
+static func _fill_direction_statuses(direction:Dictionary,route:Dictionary) -> void:
+	var count:=maxi(0,direction.get("stationIds",[]).size()-1)
+	if direction.get("serviceStatusBySegment",[]).size()==count:return
+	var fallback:=str(route.get("serviceStatus","open" if bool(route.get("open",false)) else "built"))
+	if fallback=="mixed":fallback="built"
+	var statuses:Array=[]
+	for index in range(count):statuses.append(fallback)
+	direction["serviceStatusBySegment"]=statuses
 
 static func _store_historical_route(world: Dictionary, route: Dictionary) -> void:
 	var route_index := -1
@@ -721,10 +757,10 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 		# A cutoff correction in an old save can coexist with completed future
 		# extensions. Preserve only their documented, physically continuous
 		# sections from the previous service; never append an arbitrary old path.
-		if str(chapter(world).get("chapterScope",""))=="cutoff_reconciliation":
+		if str(chapter(world).get("chapterScope",""))=="cutoff_reconciliation" and bool(route.get("retainDocumentedFutureService",true)):
 			for plan in Catalog.city_config(str(world.cityId)).get("futurePlans",[]):
 				var state:Dictionary=world.get("storyState",{})
-				if not state.get("completedChapterIds",[]).has(str(plan.id)) and not state.get("serviceReconfirmationIds",[]).has(str(plan.id)):continue
+				if not state.get("completedChapterIds",[]).has(str(plan.id)) and not state.get("serviceReconfirmationIds",[]).has(str(plan.id)) and not state.get("legacyTaskProgress",{}).has(str(plan.id)):continue
 				for group in plan.get("lineGroups",[]):
 					if str(group.get("historicalLineId",""))==str(route.get("historicalLineId","")):
 						replacement=_preserve_documented_service_section(world,world.routes[route_index],replacement,group)
@@ -747,11 +783,13 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 					var retained:Dictionary=direction.duplicate(true)
 					retained.stationIds=wanted.duplicate()
 					retained.edgePathsBySegment=direction.get("edgePathsBySegment",[]).slice(offset,offset+wanted.size()-1)
+					retained.serviceStatusBySegment=direction.get("serviceStatusBySegment",[]).slice(offset,offset+wanted.size()-1)
 					retained.id="confirmed_branch_"+str(group.get("coverageGroupId",group_index))
 					replacement=_merge_historical_route(replacement,{"chapterId":route.get("chapterId",""),"historicalLineId":route.get("historicalLineId",""),"directions":[retained]})
 					break
 		world.routes[route_index]=replacement
 		_recheck_future_services_after_cutoff_correction(world,route)
+		_recheck_later_historical_services(world,route)
 	else:
 		var existing:Dictionary=_scope_upgrade_route_base(world,world.routes[route_index],route)
 		if str(existing.get("chapterId",""))==str(route.get("chapterId","")):
@@ -787,12 +825,13 @@ static func _preserve_documented_service_section(world:Dictionary,old_route:Dict
 			var retained:Dictionary=direction.duplicate(true)
 			retained.stationIds=section
 			retained.edgePathsBySegment=paths.slice(offset,offset+wanted.size()-1)
+			retained.serviceStatusBySegment=direction.get("serviceStatusBySegment",[]).slice(offset,offset+wanted.size()-1)
 			retained.id="retained_documented_extension"
 			return _merge_historical_route(replacement,{"chapterId":replacement.get("chapterId",""),"historicalLineId":replacement.get("historicalLineId",""),"directions":[retained]})
 	return replacement
 
 static func _recheck_future_services_after_cutoff_correction(world:Dictionary,route:Dictionary) -> void:
-	if str(chapter(world).get("chapterScope",""))!="cutoff_reconciliation":return
+	if str(chapter(world).get("chapterScope",""))!="cutoff_reconciliation" and not bool(route.get("reconfirmLaterServices",false)):return
 	var state:Dictionary=world.get("storyState",{})
 	var completed:Array=state.get("completedChapterIds",[])
 	var line_id:=str(route.get("historicalLineId",""))
@@ -815,6 +854,28 @@ static func _recheck_future_services_after_cutoff_correction(world:Dictionary,ro
 static func _plan_uses_line(plan:Dictionary,line_id:String) -> bool:
 	if plan.get("lineGroups",[]).any(func(group:Dictionary):return str(group.get("historicalLineId",""))==line_id):return true
 	return plan.get("requiredTransfers",[]).any(func(transfer:Dictionary):return transfer.get("lineIds",[]).has(line_id))
+
+## A corrected early scope can replace an old modern snapshot. Keep later
+## construction and milestones, but explicitly restore the affected service
+## through its dated task. Otherwise a retained completion flag can skip the
+## later extension after the earlier service is corrected.
+static func _recheck_later_historical_services(world:Dictionary,route:Dictionary) -> void:
+	if not bool(route.get("reconfirmLaterServices",false)):return
+	var current:=chapter(world)
+	var state:Dictionary=world.get("storyState",{})
+	var line_id:=str(route.get("historicalLineId",""))
+	for plan in Catalog.city_config(str(world.cityId)).get("chapters",[]):
+		var id:=str(plan.get("id",""))
+		if str(plan.get("date",""))<=str(current.get("date","")) or not state.get("completedChapterIds",[]).has(id):continue
+		if not _plan_uses_line(plan,line_id):continue
+		var archived:Dictionary=state.get("legacyTaskProgress",{})
+		archived[id]=state.get("chapterTaskProgress",{}).get(id,{}).duplicate(true)
+		state["legacyTaskProgress"]=archived
+		state.get("chapterTaskProgress",{}).erase(id)
+		state.completedChapterIds.erase(id)
+		var pending:Array=state.get("serviceReconfirmationIds",[])
+		if not pending.has(id):pending.append(id)
+		state["serviceReconfirmationIds"]=pending
 
 static func _scope_contains(new_ids:Array,old_ids:Array) -> bool:
 	if old_ids.size()<2 or new_ids.size()<old_ids.size() or new_ids.front()!=old_ids.front() or new_ids.back()!=old_ids.back():return false
@@ -860,7 +921,7 @@ static func _direction_complexes(world:Dictionary,direction:Dictionary) -> Array
 static func scope_correction_preview(world:Dictionary, selected_task_id:String) -> Dictionary:
 	var ch:=chapter(world)
 	var changes:Array=[]
-	if str(ch.get("chapterScope",""))=="cutoff_reconciliation":
+	if str(ch.get("chapterScope",""))=="cutoff_reconciliation" or groups(world,true,selected_task_id).any(func(group:Dictionary):return bool(group.get("reconfirmLaterServices",false))):
 		var lines:Array=[]
 		for group in groups(world,true,selected_task_id):
 			if bool(group.get("replaceExistingService",false)):lines.append(str(group.get("historicalLineId","")))
@@ -874,6 +935,9 @@ static func scope_correction_preview(world:Dictionary, selected_task_id:String) 
 		if correction.has("obsoleteService"):
 			var obsolete:Dictionary=correction.obsoleteService
 			var wanted:Array=obsolete.get("stationInstanceIds",[])
+			var preserved:Array=obsolete.get("preservedStationInstanceIds",[])
+			if not preserved.is_empty() and (preserved.size()<2 or wanted.slice(0,preserved.size())!=preserved):
+				return {"ok":false,"error":"旧版线路更正的保留范围无效，本次不会修改。","changes":[]}
 			for route in world.get("routes",[]):
 				if str(route.get("historicalLineId",""))!=str(obsolete.get("historicalLineId","")):continue
 				for direction in route.get("directions",[]):
@@ -881,8 +945,19 @@ static func scope_correction_preview(world:Dictionary, selected_task_id:String) 
 					for id in direction.get("stationIds",[]):instances.append(str(WorldData.find_station(world,str(id)).get("stationInstanceId",id)))
 					var reversed:=instances.duplicate();reversed.reverse()
 					if instances==wanted or reversed==wanted:
-						changes.append({"kind":"archive_service_direction","id":str(route.id),"stationIds":direction.stationIds.duplicate(),"text":str(correction.description),"source":str(correction.source)})
+						var change:Dictionary={"kind":"archive_service_direction","id":str(route.id),"stationIds":direction.stationIds.duplicate(),"text":str(correction.description),"source":str(correction.source)}
+						if not preserved.is_empty():
+							var retained:Dictionary=direction.duplicate(true)
+							if reversed==wanted:retained=_reverse_service_direction(direction)
+							retained.stationIds=retained.stationIds.slice(0,preserved.size())
+							retained.edgePathsBySegment=retained.get("edgePathsBySegment",[]).slice(0,preserved.size()-1)
+							retained.serviceStatusBySegment=retained.get("serviceStatusBySegment",[]).slice(0,preserved.size()-1)
+							change["retainedDirection"]=retained
+						changes.append(change)
 					elif instances.filter(func(id:Variant):return wanted.has(id)).size()>1:
+						# An already corrected service may include later documented
+						# extensions. Only the known obsolete suffix needs removal.
+						if not preserved.is_empty() and not instances.any(func(id:Variant):return wanted.slice(preserved.size()).has(id)):continue
 						return {"ok":false,"error":"原规划支线的站序已经修改，请先核对线路归属，本次不会覆盖。","changes":[]}
 			continue
 		if correction.has("bodyLineReclassification"):
@@ -920,11 +995,28 @@ static func _apply_scope_corrections(candidate:Dictionary, preview:Dictionary) -
 				if str(route.id)!=str(change.id):continue
 				var retained:Array=[];var archive:Array=route.get("legacyDirections",[]).duplicate(true)
 				for direction in route.get("directions",[]):
-					if direction.get("stationIds",[])==change.stationIds:archive.append({"direction":direction.duplicate(true),"reason":change.text,"source":change.source})
+					if direction.get("stationIds",[])==change.stationIds:
+						archive.append({"direction":direction.duplicate(true),"reason":change.text,"source":change.source})
+						if change.has("retainedDirection"):retained.append(change.retainedDirection.duplicate(true))
 					else:retained.append(direction)
 				route.directions=retained;route["legacyDirections"]=archive
 				route.stationOrder=[] if retained.is_empty() else retained[0].get("stationIds",[]).duplicate()
 				if retained.is_empty():route["open"]=false;route["retired"]=true
+				elif change.has("retainedDirection"):
+					# Trimming a documented obsolete suffix may expose the joint
+					# where its corrected extension was already built. Rejoin the
+					# actual directed paths, retaining genuine forks separately.
+					var normalized:Dictionary=route.duplicate(true)
+					normalized.directions=[];normalized.stationOrder=[]
+					for direction in retained:
+						var section:Dictionary=route.duplicate(false)
+						section.directions=[direction];section.stationOrder=direction.stationIds
+						normalized=_merge_historical_route(normalized,section)
+					route.directions=normalized.directions;route.stationOrder=normalized.stationOrder
+					var segment_statuses:Array=[]
+					for direction in normalized.directions:segment_statuses.append_array(direction.get("serviceStatusBySegment",[]))
+					route["open"]=segment_statuses.any(func(status:String):return status in ["open","trial"])
+					route["serviceStatus"]=str(segment_statuses[0]) if not segment_statuses.is_empty() and segment_statuses.all(func(status:String):return status==str(segment_statuses[0])) else "mixed"
 			continue
 		if str(change.get("kind",""))=="reclassify_station_line":
 			for station in candidate.get("stations",[]):
@@ -1201,6 +1293,7 @@ static func service_status_label(status: String) -> String:
 		"trial": return "有限试运营"
 		"open": return "正式向社会开放运营"
 		"mixed": return "本期各区间服务阶段不同"
+		"suspended": return "因工程需要暂停开放，保留既有站轨"
 		_: return "历史状态待核验"
 
 static func _minimum_route_transfers(world: Dictionary, from_station: String, to_station: String, _ref_lat: float) -> int:
@@ -1294,6 +1387,16 @@ static func next_chapter(world: Dictionary) -> void:
 	if str(world.get("storyState",{}).get("stage",""))!="outcome":return
 	var st: Dictionary=world.storyState
 	var current:=chapter(world)
+	# An old checkpoint can still be at the final planning outcome while new
+	# historical tasks have been inserted. Re-enter the first missing history
+	# at this safe boundary; never interrupt an active draft or skip by date.
+	if str(st.get("phase","history"))=="future":
+		var historical:Array=config(world).get("chapters",[])
+		for index in range(historical.size()):
+			if st.get("completedChapterIds",[]).has(str(historical[index].id)):continue
+			st["phase"]="history";st["chapterIndex"]=index;st["chapterId"]=str(historical[index].id);st["stage"]="intro"
+			world["storyPlan"]={"planIndex":0,"pathChoices":{}}
+			return
 	var chapters:Array=config(world).get("chapters",[]) if str(st.get("phase","history"))!="future" else Catalog.playable_future_plans(str(world.cityId))
 	var index:=int(st.get("chapterIndex",0))
 	for i in range(chapters.size()):

@@ -6976,7 +6976,7 @@
           "dataStatus": "blueprint_ready",
           "exactAlignment": "corridor_only",
           "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
-          "sourceTitle": "关于上海市轨道交通23号线一期工程可行性研究报告的批复",
+          "sourceTitle": "上海市住房和城乡建设管理委员会：23号线一期初步设计批复（沪建综规〔2021〕744号）",
           "sourceCheckedAt": "2026-10-21",
           "description": "按可研批复的22站站序，复现闵行开发区至上海体育场的一期建设范围。项目在截止日仍在建；完成本篇只记录为规划建设完成，不计作真实开通。站区可核对，区间是近似走廊。",
           "sourcePublicationDate": "2022-09-27",
@@ -7155,7 +7155,11 @@
               "source": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
               "sourceNote": "官方批复明确该站与既有线路换乘；站内通道和层次仅作示意。"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "sh-line15-south-build",
@@ -7225,8 +7229,10 @@
               "sourceNote": "专项债券项目说明将望园路站列为15号线南延伸终点；与5号线望园路站同站换乘，通道和层次仅作示意。"
             }
           ],
-          "scopeRevision": "2026.10.23.42",
-          "requiresScopeRecheck": true
+          "scopeRevision": "2026.10.24.8",
+          "requiresScopeRecheck": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sh-line21-phase1-build",
@@ -7439,8 +7445,10 @@
               "sourceNote": "批复明确与6号线通道换乘。"
             }
           ],
-          "scopeRevision": "2026.10.22.25",
-          "requiresScopeRecheck": true
+          "scopeRevision": "2026.10.24.8",
+          "requiresScopeRecheck": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sh-line19-build",
@@ -7725,7 +7733,11 @@
               "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
               "sourceNote": "官方工可列海伦路为换乘站（4/10号线）；通道和层次仅作示意。"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "sh-line22-chongming-build",
@@ -7740,11 +7752,11 @@
           "required": true,
           "dataStatus": "blueprint_ready",
           "exactAlignment": "corridor_only",
-          "source": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
-          "sourceTitle": "上海市轨道交通崇明线一期工程环境影响报告书（公示稿）及二期（长兴岛转换北井—裕安站）环评公示稿",
-          "sourceCheckedAt": "2026-10-21",
-          "description": "按崇明线一期、二期环境影响报告书复现：金吉路—申江路—高宝路—凌空北路—长兴岛—陈家镇—东滩—裕安，共8座车站，全长约42.9公里。申江路与12号线换乘；金吉路、长兴岛的换乘对象未建或不在本地路网，暂不建立换乘。项目在截止日仍在建，完成本篇只表示规划建设完成。",
-          "sourcePublicationDate": "2022-11-20",
+          "source": "https://www.shanghai.gov.cn/nw15343/20260827/4e90432266924139b00ebfdd685e548b.html",
+          "sourceTitle": "浦东新区政府：22号线8站及金吉路、申江路换乘",
+          "sourceCheckedAt": "2026-10-24",
+          "description": "复现崇明线8站，在金吉路、申江路分别建立与既有9、12号线的独立站体换乘。截止日处于调试建设阶段，成果仅记为规划建设完成；不虚构长兴岛其他线路已经建成。",
+          "sourcePublicationDate": "2026-08-27",
           "lineGroups": [
             {
               "taskId": "project:sh-line22-chongming-build",
@@ -7798,8 +7810,28 @@
               "precision": "schematic",
               "source": "https://link.sthj.sh.gov.cn/file/exchange_file/08778D0586014DF9B29BE969A6A1E284_%e5%85%ac%e7%a4%ba_1.pdf",
               "sourceNote": "崇明线一期环评明确申江路站与12号线换乘。"
+            },
+            {
+              "id": "future-transfer-sh22-jinji-9",
+              "name": "金吉路",
+              "complexId": "shanghai-f22-jinjilu",
+              "stationInstanceIds": [
+                "shanghai-f22-jinjilu__line9-9",
+                "shanghai-f22-jinjilu"
+              ],
+              "lineIds": [
+                "shanghai-line9-9",
+                "shanghai-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw15343/20260827/4e90432266924139b00ebfdd685e548b.html",
+              "sourceNote": "浦东新区政府2026-08-27逐站说明明确金吉路与9号线换乘；使用截止日9号线独立站体，不再以旧地图库缺站为由省略。"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.12",
+          "serviceStatusSchema": 2
         },
         {
           "id": "sh-line20-phase1-build",
@@ -8024,9 +8056,11 @@
               "sourceNote": "国家发改委2023项目说明明确上海西站与11/15换乘，保持3个独立线路站体。"
             }
           ],
-          "scopeRevision": "2026.10.23.39",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sh-line13-west-east-build",
@@ -8122,7 +8156,9 @@
             }
           ],
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.23.41"
+          "scopeRevision": "2026.10.24.8",
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sh-line12-west-build",
@@ -8200,9 +8236,11 @@
               "sourceNote": "洞泾为9/12换乘，分别建设独立站体；通道与层次仅作示意。"
             }
           ],
-          "scopeRevision": "2026.10.23.38",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -14321,7 +14359,11 @@
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
               "sourceNote": "北运河东站为6号线既有站，22号线在此换乘。"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "bj-new-airport-lize-build",
@@ -14400,7 +14442,11 @@
               "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
               "sourceNote": "丽泽商务区为16号线既有站，新机场线北延在此设站换乘。"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "bj-line12-dongba-build",
@@ -14445,7 +14491,11 @@
               }
             }
           ],
-          "requiredTransfers": []
+          "requiredTransfers": [],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "bj-line1-branch-build",
@@ -14523,7 +14573,11 @@
               "source": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
               "sourceNote": "1号线支线在张郭庄与14号线换乘；两线站体分别建造。"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "bj-line28-build",
@@ -14652,7 +14706,11 @@
               "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
               "sourceNote": "大郊亭为7号线既有站，28号线在此换乘。"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "bj-line3-east-build",
@@ -14705,7 +14763,11 @@
               }
             }
           ],
-          "requiredTransfers": []
+          "requiredTransfers": [],
+          "requireOpen": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8",
+          "serviceStatusSchema": 2
         },
         {
           "id": "bj-m101-phase1-build",
@@ -14773,8 +14835,10 @@
             }
           ],
           "requiredTransfers": [],
-          "scopeRevision": "2026.10.22.26",
-          "requiresScopeRecheck": true
+          "scopeRevision": "2026.10.24.8",
+          "requiresScopeRecheck": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -20463,7 +20527,8 @@
               },
               "coverageGroupId": "guangzhou-line12-12:service-1",
               "replaceExistingService": true,
-              "servicePathRevision": 3
+              "servicePathRevision": 3,
+              "retainDocumentedFutureService": false
             },
             {
               "taskId": "route:guangzhou-r12:service-2",
@@ -20857,7 +20922,7 @@
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.4",
+          "scopeRevision": "2026.10.24.5",
           "scopeCorrections": [
             {
               "taskId": "route:guangzhou-r12:service-1",
@@ -21203,7 +21268,10 @@
             "https://jtj.gz.gov.cn/hdjl/yjzjcnqkgb/content/post_10267702.html",
             "https://mzj.gz.gov.cn/attachment/7/7676/7676800/9902090.pdf",
             "https://ghzyj.gz.gov.cn/ywpd/slgsnew/content/post_9906079.html"
-          ]
+          ],
+          "serviceStatusSchema": 2,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8"
         },
         {
           "id": "gz-line13-phase2-west-build",
@@ -21386,7 +21454,10 @@
             }
           ],
           "requireOpen": false,
-          "sourceType": "municipal_construction_status_and_station_naming"
+          "sourceType": "municipal_construction_status_and_station_naming",
+          "serviceStatusSchema": 2,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.8"
         },
         {
           "id": "gz-2023-2035",
@@ -21511,7 +21582,7 @@
               "sourceNote": "环评为两线换乘站，11号线梓元岗站横跨三元里大道和机场路；通道与层次仅作示意。"
             }
           ],
-          "scopeRevision": "2026.10.23.41",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
           "scopeCorrections": [
             {
@@ -21700,7 +21771,9 @@
               "description": "梓元岗：将规划支线换乘的线路归属更正为独立的24号线，保留两侧站体。",
               "source": "https://www.by.gov.cn/gzjg/sghhzrzyjbyqfj/tdgl/mskd/jgz/content/post_11003521.html"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "gz-line8-north-build",
@@ -21825,9 +21898,11 @@
               "sourceNote": "环评第75页与既有9号线通道换乘，独立站体，通道约160米。"
             }
           ],
-          "scopeRevision": "2026.10.23.41",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "gz-line8-east-build",
@@ -21908,9 +21983,11 @@
               "sourceNote": "环评明确长洲与7号线换乘，两线站体和轨道独立。"
             }
           ],
-          "scopeRevision": "2026.10.23.41",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "gz-line18-remainder-build",
@@ -21978,7 +22055,182 @@
               "sourceNote": "同一铁路枢纽的规划换乘联系，独立线路站体；通道及层次不作工程校核。"
             }
           ],
-          "scopeRevision": "2026.10.23.45",
+          "scopeRevision": "2026.10.24.8",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
+        },
+        {
+          "id": "gz-line14-remainder-build",
+          "projectIds": [
+            "gz-line14-remainder"
+          ],
+          "title": "14号线二期：接入广州火车站",
+          "date": "2026-10-01",
+          "status": "approved_unbuilt",
+          "sourceType": "municipal_planning_reply_and_approved_project_scope",
+          "projectType": "approved_project",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://ghzyj.gz.gov.cn/ywpd/cxgh/ghxkgsgb/gzyjfk/content/post_10815588.html",
+          "sourceTitle": "广州市规划和自然资源局2026-05-18：乐嘉路—广州火车站暂未建设",
+          "sourceCheckedAt": "2026-10-24",
+          "description": "2025年二期开通仅到乐嘉路。按批准工程补建广州火车站一站及接头区间，明确建立2/5/14换乘。市规划部门2026年5月说明受国铁改造影响暂未建设，本任务只记规划建设完成，不编造未来开通日期。",
+          "sourcePublicationDate": "2026-05-19",
+          "lineGroups": [
+            {
+              "taskId": "project:gz-line14-remainder-build",
+              "mapRouteId": "guangzhou-future-line14-remainder",
+              "name": "14号线二期广州火车站段",
+              "historicalLineId": "guangzhou-line14-14",
+              "color": "#81312F",
+              "stationIds": [
+                "guangzhou-s136",
+                "guangzhou-s231"
+              ],
+              "stationNames": {
+                "guangzhou-s136": "广州火车站",
+                "guangzhou-s231": "乐嘉路"
+              },
+              "toleranceM": 350.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "已批准的一站一区间剩余范围，复用乐嘉路接头；铁路枢纽地铁站体为近似位置，不冒充已经开通或施工测绘。",
+              "stationOrderSource": "https://static.cninfo.com.cn/finalpage/2025-07-15/1224176165.PDF",
+              "requireOpen": false,
+              "stationInstances": {
+                "guangzhou-s136": "guangzhou-s136__line14-14",
+                "guangzhou-s231": "guangzhou-s231"
+              },
+              "coverageGroupId": "guangzhou-line14-remainder"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-gz14-railway-2",
+              "name": "广州火车站",
+              "complexId": "guangzhou-s136",
+              "stationInstanceIds": [
+                "guangzhou-s136__line2-2",
+                "guangzhou-s136__line14-14"
+              ],
+              "lineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://ghzyj.gz.gov.cn/ywpd/cxgh/ghxkgsgb/gzyjfk/content/post_10815588.html",
+              "sourceNote": "交通运输局车站命名资料明确与既有2号线换乘；使用独立14号线站体。"
+            },
+            {
+              "id": "future-transfer-gz14-railway-5",
+              "name": "广州火车站",
+              "complexId": "guangzhou-s136",
+              "stationInstanceIds": [
+                "guangzhou-s136__line5-5",
+                "guangzhou-s136__line14-14"
+              ],
+              "lineIds": [
+                "guangzhou-line5-5",
+                "guangzhou-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://ghzyj.gz.gov.cn/ywpd/cxgh/ghxkgsgb/gzyjfk/content/post_10815588.html",
+              "sourceNote": "交通运输局车站命名资料明确与既有5号线换乘；11号线该站未开放，不能当作现成换乘。"
+            }
+          ],
+          "scopeRevision": "2026.10.24.15",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": []
+        },
+        {
+          "id": "gz-line10-remainder-build",
+          "projectIds": [
+            "gz-line10-remainder"
+          ],
+          "title": "10号线后通段：天河路与石牌桥接头",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "municipal_construction_progress",
+          "projectType": "under_construction",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+          "sourceTitle": "白云区2026-04官方工程进度：十号线后通一站两区间",
+          "sourceCheckedAt": "2026-10-24",
+          "description": "复现杨箕东—天河路—石牌桥的已公布后通建设范围，保留3号线既有天河客运站支线。未来拆分实施方案和日期未确定，不借本任务提前改写现状或宣称开通。",
+          "sourcePublicationDate": "2026-04-28",
+          "lineGroups": [
+            {
+              "taskId": "project:gz-line10-remainder-build",
+              "mapRouteId": "guangzhou-future-line10-remainder",
+              "name": "10号线后通建设段",
+              "historicalLineId": "guangzhou-line10-10",
+              "color": "#7D9CCB",
+              "stationIds": [
+                "guangzhou-s362",
+                "guangzhou-f10-tianhelu",
+                "guangzhou-s5"
+              ],
+              "stationNames": {
+                "guangzhou-s362": "杨箕东",
+                "guangzhou-f10-tianhelu": "天河路",
+                "guangzhou-s5": "石牌桥"
+              },
+              "toleranceM": 450.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "官方2026-04明确一座新站、两个区间；石牌桥复用既有支线接头。建设完成不调整3号线实际归属，不把尚未确定的拆分实施日期写成历史。",
+              "stationOrderSource": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "guangzhou-s362": "guangzhou-s362",
+                "guangzhou-f10-tianhelu": "guangzhou-f10-tianhelu__line10-10",
+                "guangzhou-s5": "guangzhou-s5__line3-3"
+              },
+              "coverageGroupId": "guangzhou-line10-remainder"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-gz10-tianhe-1",
+              "name": "天河路／体育西路",
+              "complexId": "guangzhou-s6",
+              "stationInstanceIds": [
+                "guangzhou-s6__line1",
+                "guangzhou-f10-tianhelu__line10-10"
+              ],
+              "lineIds": [
+                "guangzhou-line1",
+                "guangzhou-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+              "sourceNote": "广州地铁2023年公开资料明确远期接入1号线体育西路站的通道；独立10号线站体，不共用站厅或轨道。"
+            },
+            {
+              "id": "future-transfer-gz10-tianhe-3",
+              "name": "天河路／体育西路",
+              "complexId": "guangzhou-s6",
+              "stationInstanceIds": [
+                "guangzhou-s6__line3-3",
+                "guangzhou-f10-tianhelu__line10-10"
+              ],
+              "lineIds": [
+                "guangzhou-line3-3",
+                "guangzhou-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+              "sourceNote": "通过天河路与体育西路既有1/3换乘站区建立线路联系；通道形制示意，不声称两线共轨或提前完成3号线拆分。"
+            }
+          ],
+          "scopeRevision": "2026.10.24.16",
           "requiresScopeRecheck": true,
           "scopeCorrections": []
         }
@@ -22038,7 +22290,8 @@
       },
       "stationComplexAliases": {
         "guangzhou-s298": "guangzhou-s27",
-        "guangzhou-s342": "guangzhou-s177"
+        "guangzhou-s342": "guangzhou-s177",
+        "guangzhou-f10-tianhelu": "guangzhou-s6"
       },
       "stationInstanceAliases": {
         "guangzhou-line1|guangzhou-s27": "guangzhou-s298"
@@ -27866,8 +28119,10 @@
               "sourceNote": "两线站体分别建造；站内换乘联系按已公布的换乘站身份确认，具体通道和层次不作推断。"
             }
           ],
-          "scopeRevision": "2026.10.23.36",
-          "requiresScopeRecheck": true
+          "scopeRevision": "2026.10.24.8",
+          "requiresScopeRecheck": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line19-phase1-build",
@@ -27994,9 +28249,11 @@
               "sourceNote": "官方区间表将坪山中心列为换乘站（14号线）。"
             }
           ],
-          "scopeRevision": "2026.10.23.37",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line29-phase1-build",
@@ -28132,9 +28389,11 @@
               "sourceNote": "已公布线路图换乘关系；各线独立站体，换乘边不进入轨道图。"
             }
           ],
-          "scopeRevision": "2026.10.23.32",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line32-phase1-build",
@@ -28187,7 +28446,7 @@
             }
           ],
           "requiredTransfers": [],
-          "scopeRevision": "2026.10.23.29",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
           "scopeCorrections": [
             {
@@ -28206,7 +28465,9 @@
               "description": "溪涌复用既有8号线接头；取消旧版额外创建的2／8／32号线三站体换乘。",
               "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf"
             }
-          ]
+          ],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line20-phase2-build",
@@ -28376,8 +28637,36 @@
               "sourceNote": "环评公布的换乘；站体独立，通道示意。"
             }
           ],
-          "scopeRevision": "2026.10.23.29",
-          "requiresScopeRecheck": true
+          "scopeRevision": "2026.10.24.10",
+          "requiresScopeRecheck": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "scopeCorrections": [
+            {
+              "id": "sz20-obsolete-futian-suffix",
+              "taskId": "project:sz-line20-phase2-build",
+              "source": "https://www.szmc.net/SMARTC/upload/file/20231027/1698413258781080792.pdf",
+              "description": "归档旧版错误的机场北—福田会展远景线路关系，保留会展城至机场北已建站轨与既有线路；本期按环评向白石洲延伸。",
+              "obsoleteService": {
+                "historicalLineId": "shenzhen-line20-17",
+                "stationInstanceIds": [
+                  "shenzhen-s306",
+                  "shenzhen-s307__line20-17",
+                  "shenzhen-s308__line20-17",
+                  "shenzhen-s309",
+                  "shenzhen-s194__line20-17",
+                  "shenzhen-f20-futianhuizhan"
+                ],
+                "preservedStationInstanceIds": [
+                  "shenzhen-s306",
+                  "shenzhen-s307__line20-17",
+                  "shenzhen-s308__line20-17",
+                  "shenzhen-s309",
+                  "shenzhen-s194__line20-17"
+                ]
+              }
+            }
+          ]
         },
         {
           "id": "sz-line22-phase1-build",
@@ -28563,9 +28852,11 @@
               "sourceNote": "官方新版线路图的既有线路换乘标识；新线采用独立站体。"
             }
           ],
-          "scopeRevision": "2026.10.23.30",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line15-build",
@@ -28759,8 +29050,10 @@
               "sourceNote": "环评表2.1-3列明与12号线换乘。"
             }
           ],
-          "scopeRevision": "2026.10.23.28",
-          "requiresScopeRecheck": true
+          "scopeRevision": "2026.10.24.8",
+          "requiresScopeRecheck": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line25-phase1-build",
@@ -28893,9 +29186,11 @@
               "sourceNote": "已公布线路图换乘关系；各线独立站体，换乘边不进入轨道图。"
             }
           ],
-          "scopeRevision": "2026.10.23.31",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line27-phase1-build",
@@ -29151,9 +29446,11 @@
               "sourceNote": "同期项目已发布站序确定的换乘；分别建站体并明确确认，换乘边不进入列车轨道。"
             }
           ],
-          "scopeRevision": "2026.10.23.33",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "sz-line13-phase2-south-build",
@@ -29222,9 +29519,11 @@
               "sourceNote": "13号线南延在东角头与既有2号线换乘，分别建独立站体。"
             }
           ],
-          "scopeRevision": "2026.10.23.37",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -29583,9 +29882,9 @@
           "title": "1号线一期：南北主轴",
           "lineGroups": [
             {
-              "taskId": "opening:cd-line1-2010:1",
+              "taskId": "opening:cd1-first-2010",
               "mapRouteId": "chengdu-r1",
-              "name": "1号线一期：南北主轴",
+              "name": "1号线",
               "stationIds": [
                 "chengdu-s23",
                 "chengdu-s22",
@@ -29602,14 +29901,13 @@
                 "chengdu-s11",
                 "chengdu-s10",
                 "chengdu-s9",
-                "chengdu-s8",
                 "chengdu-s7"
               ],
               "toleranceM": 220,
-              "precisionNote": "开通日期与本期端点据列明资料核对，站序用运营方逐站资料交叉检查；现代地理站区和隧道走廊为近似参考。",
+              "precisionNote": "站序按成都轨道交通运营方逐站时刻表核对；1号线两条分支独立保存，7号线闭环。站区和地下区间为现代地理参考，历史开放日期另据公告核对。",
               "historicalLineId": "chengdu-line1",
               "color": "#10069F",
-              "stationOrderSource": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "stationOrderSource": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "chengdu-s23": "chengdu-s23",
@@ -29627,7 +29925,6 @@
                 "chengdu-s11": "chengdu-s11",
                 "chengdu-s10": "chengdu-s10",
                 "chengdu-s9": "chengdu-s9",
-                "chengdu-s8": "chengdu-s8",
                 "chengdu-s7": "chengdu-s7"
               },
               "stationNames": {
@@ -29646,17 +29943,17 @@
                 "chengdu-s11": "高新",
                 "chengdu-s10": "金融城",
                 "chengdu-s9": "孵化园",
-                "chengdu-s8": "锦城广场",
                 "chengdu-s7": "世纪城"
               },
-              "coverageGroupId": "chengdu-line1:cd-line1-2010:1",
-              "replaceExistingService": false,
+              "coverageGroupId": "opening:cd1-first-2010",
+              "replaceExistingService": true,
               "loop": false,
-              "servicePathRevision": 3
+              "servicePathRevision": 6,
+              "reconfirmLaterServices": true
             }
           ],
           "requireOpen": true,
-          "eventText": "2010-09-27，1号线一期：南北主轴。本期仅增加所列站段，既有端站复用，后期开通范围不提前加入。",
+          "eventText": "2010年9月27日，1号线升仙湖至世纪城开放16座车站。海洋公园站后来单独增设并于2013年开放，不提前加入首开停站。",
           "precision": "station_areas",
           "source": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
           "sourceTitle": "有日期的开通范围资料与运营方逐站时刻表交叉核对",
@@ -29667,8 +29964,8 @@
           "sourceType": "government_or_operator_retrospective",
           "sourcePublicationDate": "2026-06-18",
           "story": {
-            "opening": "2010-09-27，1号线一期：南北主轴。本期仅增加所列站段，既有端站复用，后期开通范围不提前加入。",
-            "purpose": "接续既有路网，建设本期新增范围；每个接头复用所属线路站体。",
+            "opening": "2010年9月27日，1号线升仙湖至世纪城开放16座车站。海洋公园站后来单独增设并于2013年开放，不提前加入首开停站。",
+            "purpose": "复现首开16站南北主轴；后来的增站与名称变化分别处理。",
             "outcome": "新增站段与既有线路相接，本历史节点已记录；后续建设另列任务。",
             "eventKind": "first_build",
             "planVersions": [],
@@ -29775,8 +30072,55 @@
           "eventOnly": false,
           "chapterScope": "dated_opening_ranges",
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.2",
-          "routeTargetCount": 1
+          "scopeRevision": "2026.10.24.18",
+          "routeTargetCount": 1,
+          "scopeCorrections": [
+            {
+              "id": "defer-later-line1-historic-transfer-chengdu-s158-line1-line18-13",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s158-line1-line18-13",
+              "oldStationInstanceIds": [
+                "chengdu-s158__line1",
+                "chengdu-s158__line18-13"
+              ],
+              "oldLineIds": [
+                "chengdu-line1",
+                "chengdu-line18-13"
+              ],
+              "source": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+              "description": "海昌路不在2010首开1号线范围；保留站轨，在其所属后续任务中重新确认线路与换乘。"
+            },
+            {
+              "id": "defer-later-line1-historic-transfer-chengdu-s164-line1-line6-6",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s164-line1-line6-6",
+              "oldStationInstanceIds": [
+                "chengdu-s164__line1",
+                "chengdu-s164__line6-6"
+              ],
+              "oldLineIds": [
+                "chengdu-line1",
+                "chengdu-line6-6"
+              ],
+              "source": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+              "description": "西博城不在2010首开1号线范围；保留站轨，在其所属后续任务中重新确认线路与换乘。"
+            },
+            {
+              "id": "defer-later-line1-historic-transfer-chengdu-s24-line1-line27-15",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s24-line1-line27-15",
+              "oldStationInstanceIds": [
+                "chengdu-s24__line1",
+                "chengdu-s24__line27-15"
+              ],
+              "oldLineIds": [
+                "chengdu-line1",
+                "chengdu-line27-15"
+              ],
+              "source": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+              "description": "韦家碾不在2010首开1号线范围；保留站轨，在其所属后续任务中重新确认线路与换乘。"
+            }
+          ]
         },
         {
           "id": "chengdu-historical-milestone-2012-08",
@@ -30092,6 +30436,410 @@
           "eventOnly": false,
           "requiresScopeRecheck": true,
           "scopeRevision": "2026.10.24.2"
+        },
+        {
+          "id": "chengdu-line1-ocean-2013",
+          "phase": "history",
+          "date": "2013-06-08",
+          "title": "海洋公园站开放：既有区间增站",
+          "lineGroups": [
+            {
+              "taskId": "chengdu-line1-ocean-2013:line1",
+              "mapRouteId": "chengdu-r1",
+              "name": "1号线",
+              "stationIds": [
+                "chengdu-s23",
+                "chengdu-s22",
+                "chengdu-s21",
+                "chengdu-s20",
+                "chengdu-s19",
+                "chengdu-s18",
+                "chengdu-s17",
+                "chengdu-s16",
+                "chengdu-s15",
+                "chengdu-s14",
+                "chengdu-s13",
+                "chengdu-s12",
+                "chengdu-s11",
+                "chengdu-s10",
+                "chengdu-s9",
+                "chengdu-s8",
+                "chengdu-s7"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按成都轨道交通运营方逐站时刻表核对；1号线两条分支独立保存，7号线闭环。站区和地下区间为现代地理参考，历史开放日期另据公告核对。",
+              "historicalLineId": "chengdu-line1",
+              "color": "#10069F",
+              "stationOrderSource": "https://news.sina.com.cn/c/2013-06-08/154027353748.shtml?from=wap",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s23": "chengdu-s23",
+                "chengdu-s22": "chengdu-s22",
+                "chengdu-s21": "chengdu-s21",
+                "chengdu-s20": "chengdu-s20",
+                "chengdu-s19": "chengdu-s19",
+                "chengdu-s18": "chengdu-s18",
+                "chengdu-s17": "chengdu-s17",
+                "chengdu-s16": "chengdu-s16",
+                "chengdu-s15": "chengdu-s15",
+                "chengdu-s14": "chengdu-s14",
+                "chengdu-s13": "chengdu-s13",
+                "chengdu-s12": "chengdu-s12__line1",
+                "chengdu-s11": "chengdu-s11",
+                "chengdu-s10": "chengdu-s10",
+                "chengdu-s9": "chengdu-s9",
+                "chengdu-s8": "chengdu-s8",
+                "chengdu-s7": "chengdu-s7"
+              },
+              "stationNames": {
+                "chengdu-s23": "升仙湖",
+                "chengdu-s22": "火车北站",
+                "chengdu-s21": "人民北路",
+                "chengdu-s20": "文殊院",
+                "chengdu-s19": "骡马市",
+                "chengdu-s18": "天府广场",
+                "chengdu-s17": "锦江宾馆",
+                "chengdu-s16": "华西坝",
+                "chengdu-s15": "省体育馆",
+                "chengdu-s14": "倪家桥",
+                "chengdu-s13": "桐梓林",
+                "chengdu-s12": "火车南站",
+                "chengdu-s11": "高新",
+                "chengdu-s10": "金融城",
+                "chengdu-s9": "孵化园",
+                "chengdu-s8": "海洋公园",
+                "chengdu-s7": "世纪城"
+              },
+              "coverageGroupId": "chengdu-line1-ocean-2013:line1",
+              "replaceExistingService": true,
+              "loop": false,
+              "servicePathRevision": 6,
+              "reconfirmLaterServices": true
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2013年6月8日，海洋公园站随2号线西延线同日开放。复用1号线既有两侧站点，在孵化园与世纪城之间加入该站。",
+          "precision": "station_areas",
+          "source": "https://news.sina.com.cn/c/2013-06-08/154027353748.shtml?from=wap",
+          "sourceTitle": "同期记者从运营方取得的开放／命名公告",
+          "sourceCheckedAt": "2026-10-24",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": "2013-06-08",
+          "story": {
+            "opening": "2013年6月8日，海洋公园站随2号线西延线同日开放。复用1号线既有两侧站点，在孵化园与世纪城之间加入该站。",
+            "purpose": "复用已有建设，完成这次实际增站。",
+            "outcome": "2013年6月8日，海洋公园站随2号线西延线同日开放。复用1号线既有两侧站点，在孵化园与世纪城之间加入该站。",
+            "eventKind": "first_build",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [
+              {
+                "id": "cd-tianfu",
+                "date": "2004—2010",
+                "title": "广场改造中的先行工程",
+                "text": "成都天府广场站结合2004年广场改造先行实施；2005年底一期工程开工，2010年9月开通。建设一条线，往往有先行工点与全线工程不同的时间节点。",
+                "stationIds": [
+                  "chengdu-s18"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+                "sourceTitle": "成都传媒集团红星新闻网：成都轨道上的第一线",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
+            ]
+          },
+          "constructionProfile": {
+            "id": "cd-line1-2010-schematic",
+            "lengthM": 118.788,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "B-6",
+            "form": "原始建设形式待核验",
+            "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "public_reference",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "parameterSources": {
+              "vehicleId": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+            }
+          },
+          "historyFacts": {
+            "date": {
+              "value": "2010-09-27",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。"
+            }
+          },
+          "additionalSources": [
+            {
+              "title": "成都传媒集团红星新闻网：成都轨道上的第一线",
+              "url": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+              "verifiedAt": "2026-10-17"
+            },
+            {
+              "url": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+              "title": "国家发改委：成都1号线南延线工程可研批复",
+              "verifiedAt": "2026-10-17"
+            }
+          ],
+          "operationType": "infill_station",
+          "operationGuide": "首次建设：按目标站区放站并连接本期站序。",
+          "historicalEventIds": [
+            "chengdu-line1-ocean-2013:event"
+          ],
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "chapterScope": "dated_infill_or_rename",
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.18",
+          "routeTargetCount": 1,
+          "scopeCorrections": [],
+          "serviceTransitions": []
+        },
+        {
+          "id": "chengdu-line1-jincheng-rename-2013",
+          "phase": "history",
+          "date": "2013-07-08",
+          "title": "海洋公园更名为锦城广场",
+          "lineGroups": [
+            {
+              "taskId": "chengdu-line1-jincheng-rename-2013:line1",
+              "mapRouteId": "chengdu-r1",
+              "name": "1号线",
+              "stationIds": [
+                "chengdu-s23",
+                "chengdu-s22",
+                "chengdu-s21",
+                "chengdu-s20",
+                "chengdu-s19",
+                "chengdu-s18",
+                "chengdu-s17",
+                "chengdu-s16",
+                "chengdu-s15",
+                "chengdu-s14",
+                "chengdu-s13",
+                "chengdu-s12",
+                "chengdu-s11",
+                "chengdu-s10",
+                "chengdu-s9",
+                "chengdu-s8",
+                "chengdu-s7"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按成都轨道交通运营方逐站时刻表核对；1号线两条分支独立保存，7号线闭环。站区和地下区间为现代地理参考，历史开放日期另据公告核对。",
+              "historicalLineId": "chengdu-line1",
+              "color": "#10069F",
+              "stationOrderSource": "https://news.sina.com.cn/c/2013-07-05/174027588924.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s23": "chengdu-s23",
+                "chengdu-s22": "chengdu-s22",
+                "chengdu-s21": "chengdu-s21",
+                "chengdu-s20": "chengdu-s20",
+                "chengdu-s19": "chengdu-s19",
+                "chengdu-s18": "chengdu-s18",
+                "chengdu-s17": "chengdu-s17",
+                "chengdu-s16": "chengdu-s16",
+                "chengdu-s15": "chengdu-s15",
+                "chengdu-s14": "chengdu-s14",
+                "chengdu-s13": "chengdu-s13",
+                "chengdu-s12": "chengdu-s12__line1",
+                "chengdu-s11": "chengdu-s11",
+                "chengdu-s10": "chengdu-s10",
+                "chengdu-s9": "chengdu-s9",
+                "chengdu-s8": "chengdu-s8",
+                "chengdu-s7": "chengdu-s7"
+              },
+              "stationNames": {
+                "chengdu-s23": "升仙湖",
+                "chengdu-s22": "火车北站",
+                "chengdu-s21": "人民北路",
+                "chengdu-s20": "文殊院",
+                "chengdu-s19": "骡马市",
+                "chengdu-s18": "天府广场",
+                "chengdu-s17": "锦江宾馆",
+                "chengdu-s16": "华西坝",
+                "chengdu-s15": "省体育馆",
+                "chengdu-s14": "倪家桥",
+                "chengdu-s13": "桐梓林",
+                "chengdu-s12": "火车南站",
+                "chengdu-s11": "高新",
+                "chengdu-s10": "金融城",
+                "chengdu-s9": "孵化园",
+                "chengdu-s8": "锦城广场",
+                "chengdu-s7": "世纪城"
+              },
+              "coverageGroupId": "chengdu-line1-jincheng-rename-2013:line1",
+              "replaceExistingService": true,
+              "loop": false,
+              "servicePathRevision": 6,
+              "reconfirmLaterServices": true
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "经市政府批准，2013年7月8日起海洋公园站更名为锦城广场。保持站体身份、位置和轨道，不重复建设。",
+          "precision": "station_areas",
+          "source": "https://news.sina.com.cn/c/2013-07-05/174027588924.shtml",
+          "sourceTitle": "同期记者从运营方取得的开放／命名公告",
+          "sourceCheckedAt": "2026-10-24",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourceType": "government_or_operator_retrospective",
+          "sourcePublicationDate": "2013-07-05",
+          "story": {
+            "opening": "经市政府批准，2013年7月8日起海洋公园站更名为锦城广场。保持站体身份、位置和轨道，不重复建设。",
+            "purpose": "在车站详情确认新名称；保留物理车站及轨道。",
+            "outcome": "经市政府批准，2013年7月8日起海洋公园站更名为锦城广场。保持站体身份、位置和轨道，不重复建设。",
+            "eventKind": "first_build",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [
+              {
+                "id": "cd-tianfu",
+                "date": "2004—2010",
+                "title": "广场改造中的先行工程",
+                "text": "成都天府广场站结合2004年广场改造先行实施；2005年底一期工程开工，2010年9月开通。建设一条线，往往有先行工点与全线工程不同的时间节点。",
+                "stationIds": [
+                  "chengdu-s18"
+                ],
+                "triggers": [
+                  "select",
+                  "build_station",
+                  "preview_track",
+                  "build_track"
+                ],
+                "source": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+                "sourceTitle": "成都传媒集团红星新闻网：成都轨道上的第一线",
+                "verifiedAt": "2026-10-17",
+                "minimumPlanIndex": 0
+              }
+            ]
+          },
+          "constructionProfile": {
+            "id": "cd-line1-2010-schematic",
+            "lengthM": 118.788,
+            "widthM": 20.0,
+            "depthM": -15.0,
+            "vehicleId": "B-6",
+            "form": "原始建设形式待核验",
+            "note": "一期及南延线采用六辆编组B型车，有发改委批复依据。整列总长、站体及埋深未取得原始参数；119×20米、地下15米仅为游戏示意。",
+            "parameterStatus": {
+              "lengthM": "game_estimate",
+              "widthM": "game_estimate",
+              "depthM": "game_estimate",
+              "vehicleId": "public_reference",
+              "heading": "blueprint_estimate"
+            },
+            "verifiedAt": "2026-10-17",
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "parameterSources": {
+              "vehicleId": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html"
+            }
+          },
+          "historyFacts": {
+            "date": {
+              "value": "2010-09-27",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "stationOrder": {
+              "status": "reference_station_areas",
+              "source": "https://www.chengdurail.com/gywm.htm"
+            },
+            "alignment": {
+              "status": "station_areas",
+              "note": "站点坐标引用当前公开站点位置，仅作站区容差参考；不表示历史工程测绘线位。"
+            }
+          },
+          "additionalSources": [
+            {
+              "title": "成都传媒集团红星新闻网：成都轨道上的第一线",
+              "url": "https://news.chengdu.cn/2024/1028/2469234.shtml",
+              "verifiedAt": "2026-10-17"
+            },
+            {
+              "url": "https://www.ndrc.gov.cn/fggz/zcssfz/zdgc/201209/t20120905_1145873.html",
+              "title": "国家发改委：成都1号线南延线工程可研批复",
+              "verifiedAt": "2026-10-17"
+            }
+          ],
+          "operationType": "rename",
+          "operationGuide": "首次建设：按目标站区放站并连接本期站序。",
+          "historicalEventIds": [
+            "chengdu-line1-jincheng-rename-2013:event"
+          ],
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "chapterScope": "dated_infill_or_rename",
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.18",
+          "routeTargetCount": 1,
+          "scopeCorrections": [],
+          "serviceTransitions": []
         },
         {
           "id": "chengdu-network-milestone-2014-10-26",
@@ -32254,12 +33002,12 @@
           "id": "chengdu-network-milestone-2020-09-27",
           "phase": "history",
           "date": "2020-09-27",
-          "title": "18号线首开段",
+          "title": "18号线首开：火车南站至三岔",
           "lineGroups": [
             {
-              "taskId": "route:chengdu-r13",
+              "taskId": "opening:chengdu-network-milestone-2020-09-27:line18:1",
               "mapRouteId": "chengdu-r13",
-              "name": "18号线",
+              "name": "18号线 · 18号线首开：火车南站至三岔",
               "stationIds": [
                 "chengdu-s303",
                 "chengdu-s304",
@@ -32268,47 +33016,56 @@
                 "chengdu-s158",
                 "chengdu-s306",
                 "chengdu-s307",
-                "chengdu-s308",
-                "chengdu-s309",
-                "chengdu-s310",
-                "chengdu-s311",
-                "chengdu-s312",
-                "chengdu-s313"
+                "chengdu-s309"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
               "historicalLineId": "chengdu-line18-13",
               "color": "#006272",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.thepaper.cn/newsDetail_forward_9355981",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "chengdu-s303": "chengdu-s303",
+                "chengdu-s304": "chengdu-s304__line18-13",
+                "chengdu-s305": "chengdu-s305",
                 "chengdu-s7": "chengdu-s7__line18-13",
                 "chengdu-s158": "chengdu-s158__line18-13",
-                "chengdu-s308": "chengdu-s308__line18-13",
-                "chengdu-s309": "chengdu-s309__line18-13",
-                "chengdu-s310": "chengdu-s310__line18-13",
-                "chengdu-s311": "chengdu-s311__line18-13",
-                "chengdu-s312": "chengdu-s312__line18-13",
-                "chengdu-s313": "chengdu-s313__line18-13"
-              }
+                "chengdu-s306": "chengdu-s306",
+                "chengdu-s307": "chengdu-s307",
+                "chengdu-s309": "chengdu-s309__line18-13"
+              },
+              "stationNames": {
+                "chengdu-s303": "火车南站",
+                "chengdu-s304": "孵化园",
+                "chengdu-s305": "锦城广场东",
+                "chengdu-s7": "世纪城",
+                "chengdu-s158": "海昌路",
+                "chengdu-s306": "西博城",
+                "chengdu-s307": "兴隆",
+                "chengdu-s309": "三岔"
+              },
+              "coverageGroupId": "chengdu-line18-13:chengdu-network-milestone-2020-09-27:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
             }
           ],
           "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
+          "eventText": "2020-09-27，18号线首开：火车南站至三岔。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
           "precision": "station_areas",
-          "source": "https://www.chengdurail.com/gywm.htm",
-          "sourceTitle": "成都轨道集团发展历程与运营线路公开资料",
-          "sourceCheckedAt": "2026-10-20",
+          "source": "https://www.thepaper.cn/newsDetail_forward_9355981",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
           "sourceType": "government_or_operator_route_inventory_and_opening_records",
           "status": "operated",
           "geometryStatus": "station_area_approximation",
           "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
+          "sourcePublicationDate": "2020-09-26",
           "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
           "story": {
-            "opening": "2020年前后，1号线、18号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
+            "opening": "2020-09-27，18号线首开：火车南站至三岔。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
             "eventKind": "network_expansion",
             "planVersions": [],
             "steps": [
@@ -32345,8 +33102,8 @@
             "chengdu-r1",
             "chengdu-r13"
           ],
-          "chapterScope": "cutoff_route_completion",
-          "routeTargetCount": 2,
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
           "requiredTransfers": [
             {
               "id": "historic-transfer-chengdu-s158-line1-line18-13",
@@ -32383,18 +33140,18 @@
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.2"
+          "scopeRevision": "2026.10.24.13"
         },
         {
           "id": "chengdu-network-milestone-2020-12-18",
           "phase": "history",
           "date": "2020-12-18",
-          "title": "6号线、8号线、9号线、17号线建设阶段",
+          "title": "五线成网：按本期范围建设",
           "lineGroups": [
             {
-              "taskId": "route:chengdu-r6",
+              "taskId": "opening:chengdu-network-milestone-2020-12-18:line6:1",
               "mapRouteId": "chengdu-r6",
-              "name": "6号线",
+              "name": "6号线 · 五线成网：按本期范围建设",
               "stationIds": [
                 "chengdu-s178",
                 "chengdu-s179",
@@ -32441,54 +33198,144 @@
                 "chengdu-s213",
                 "chengdu-s214",
                 "chengdu-s215",
-                "chengdu-s216",
                 "chengdu-s217",
                 "chengdu-s218",
                 "chengdu-s219",
                 "chengdu-s164",
                 "chengdu-s220",
                 "chengdu-s221",
-                "chengdu-s222",
                 "chengdu-s223",
                 "chengdu-s224",
-                "chengdu-s225",
-                "chengdu-s329"
+                "chengdu-s225"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
               "historicalLineId": "chengdu-line6-6",
               "color": "#B36924",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "chengdu-s178": "chengdu-s178",
+                "chengdu-s179": "chengdu-s179",
+                "chengdu-s180": "chengdu-s180",
+                "chengdu-s181": "chengdu-s181",
+                "chengdu-s182": "chengdu-s182",
+                "chengdu-s183": "chengdu-s183",
+                "chengdu-s184": "chengdu-s184",
+                "chengdu-s185": "chengdu-s185",
                 "chengdu-s25": "chengdu-s25__line6-6",
+                "chengdu-s186": "chengdu-s186",
+                "chengdu-s187": "chengdu-s187",
+                "chengdu-s188": "chengdu-s188",
+                "chengdu-s189": "chengdu-s189",
+                "chengdu-s190": "chengdu-s190",
+                "chengdu-s191": "chengdu-s191",
                 "chengdu-s192": "chengdu-s192__line6-6",
+                "chengdu-s193": "chengdu-s193",
                 "chengdu-s135": "chengdu-s135__line6-6",
+                "chengdu-s194": "chengdu-s194",
                 "chengdu-s195": "chengdu-s195__line6-6",
                 "chengdu-s21": "chengdu-s21__line6-6",
+                "chengdu-s196": "chengdu-s196",
                 "chengdu-s99": "chengdu-s99__line6-6",
+                "chengdu-s197": "chengdu-s197",
+                "chengdu-s198": "chengdu-s198",
                 "chengdu-s75": "chengdu-s75__line6-6",
                 "chengdu-s41": "chengdu-s41__line6-6",
+                "chengdu-s199": "chengdu-s199",
                 "chengdu-s200": "chengdu-s200__line6-6",
                 "chengdu-s201": "chengdu-s201__line6-6",
+                "chengdu-s202": "chengdu-s202",
+                "chengdu-s203": "chengdu-s203",
                 "chengdu-s204": "chengdu-s204__line6-6",
                 "chengdu-s168": "chengdu-s168__line6-6",
+                "chengdu-s205": "chengdu-s205",
+                "chengdu-s206": "chengdu-s206",
+                "chengdu-s207": "chengdu-s207",
+                "chengdu-s208": "chengdu-s208",
+                "chengdu-s209": "chengdu-s209",
+                "chengdu-s210": "chengdu-s210",
+                "chengdu-s211": "chengdu-s211",
+                "chengdu-s212": "chengdu-s212",
+                "chengdu-s213": "chengdu-s213",
+                "chengdu-s214": "chengdu-s214",
+                "chengdu-s215": "chengdu-s215",
+                "chengdu-s217": "chengdu-s217",
+                "chengdu-s218": "chengdu-s218",
                 "chengdu-s219": "chengdu-s219__line6-6",
                 "chengdu-s164": "chengdu-s164__line6-6",
-                "chengdu-s224": "chengdu-s224__line6-6"
-              }
+                "chengdu-s220": "chengdu-s220",
+                "chengdu-s221": "chengdu-s221",
+                "chengdu-s223": "chengdu-s223",
+                "chengdu-s224": "chengdu-s224__line6-6",
+                "chengdu-s225": "chengdu-s225"
+              },
+              "stationNames": {
+                "chengdu-s178": "望丛祠",
+                "chengdu-s179": "和平街",
+                "chengdu-s180": "郫筒",
+                "chengdu-s181": "蜀新大道",
+                "chengdu-s182": "檬梓",
+                "chengdu-s183": "尚锦路",
+                "chengdu-s184": "红高路",
+                "chengdu-s185": "天宇路",
+                "chengdu-s25": "犀浦",
+                "chengdu-s186": "兴业北街",
+                "chengdu-s187": "梓潼宫",
+                "chengdu-s188": "侯家桥",
+                "chengdu-s189": "兴盛",
+                "chengdu-s190": "青杠",
+                "chengdu-s191": "西华大道",
+                "chengdu-s192": "金府",
+                "chengdu-s193": "星河",
+                "chengdu-s135": "西南交大",
+                "chengdu-s194": "沙湾",
+                "chengdu-s195": "西北桥",
+                "chengdu-s21": "人民北路",
+                "chengdu-s196": "梁家巷",
+                "chengdu-s99": "前锋路",
+                "chengdu-s197": "建设北路",
+                "chengdu-s198": "新鸿路",
+                "chengdu-s75": "玉双路",
+                "chengdu-s41": "牛王庙",
+                "chengdu-s199": "顺江路",
+                "chengdu-s200": "三官堂",
+                "chengdu-s201": "东光",
+                "chengdu-s202": "琉璃场",
+                "chengdu-s203": "琉三路",
+                "chengdu-s204": "金石路",
+                "chengdu-s168": "金融城东",
+                "chengdu-s205": "中和",
+                "chengdu-s206": "张家寺",
+                "chengdu-s207": "陆肖",
+                "chengdu-s208": "观东",
+                "chengdu-s209": "新通大道",
+                "chengdu-s210": "新川路",
+                "chengdu-s211": "龙灯山",
+                "chengdu-s212": "蒲草塘",
+                "chengdu-s213": "万安",
+                "chengdu-s214": "麓山大道",
+                "chengdu-s215": "沈阳路",
+                "chengdu-s217": "昌公堰",
+                "chengdu-s218": "杭州路",
+                "chengdu-s219": "天府商务区",
+                "chengdu-s164": "西博城",
+                "chengdu-s220": "秦皇寺",
+                "chengdu-s221": "松林",
+                "chengdu-s223": "钓鱼嘴",
+                "chengdu-s224": "回龙",
+                "chengdu-s225": "兰家沟"
+              },
+              "coverageGroupId": "chengdu-line6-6:chengdu-network-milestone-2020-12-18:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
             },
             {
-              "taskId": "route:chengdu-r8",
+              "taskId": "opening:chengdu-network-milestone-2020-12-18:line8:1",
               "mapRouteId": "chengdu-r8",
-              "name": "8号线",
+              "name": "8号线 · 五线成网：按本期范围建设",
               "stationIds": [
-                "chengdu-s260",
-                "chengdu-s261",
-                "chengdu-s262",
-                "chengdu-s263",
-                "chengdu-s264",
-                "chengdu-s265",
                 "chengdu-s266",
                 "chengdu-s267",
                 "chengdu-s268",
@@ -32513,30 +33360,77 @@
                 "chengdu-s282",
                 "chengdu-s283",
                 "chengdu-s284",
-                "chengdu-s285",
-                "chengdu-s286"
+                "chengdu-s285"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
               "historicalLineId": "chengdu-line8-8",
               "color": "#88DD00",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "chengdu-s266": "chengdu-s266",
+                "chengdu-s267": "chengdu-s267",
+                "chengdu-s268": "chengdu-s268",
+                "chengdu-s269": "chengdu-s269",
+                "chengdu-s270": "chengdu-s270",
                 "chengdu-s76": "chengdu-s76__line8-8",
                 "chengdu-s43": "chengdu-s43__line8-8",
                 "chengdu-s271": "chengdu-s271__line8-8",
                 "chengdu-s201": "chengdu-s201__line8-8",
+                "chengdu-s272": "chengdu-s272",
+                "chengdu-s273": "chengdu-s273",
+                "chengdu-s274": "chengdu-s274",
+                "chengdu-s275": "chengdu-s275",
+                "chengdu-s276": "chengdu-s276",
+                "chengdu-s277": "chengdu-s277",
                 "chengdu-s128": "chengdu-s128__line8-8",
+                "chengdu-s278": "chengdu-s278",
+                "chengdu-s279": "chengdu-s279",
+                "chengdu-s280": "chengdu-s280",
                 "chengdu-s172": "chengdu-s172__line8-8",
+                "chengdu-s281": "chengdu-s281",
                 "chengdu-s282": "chengdu-s282__line8-8",
-                "chengdu-s286": "chengdu-s286__line8-8"
-              }
+                "chengdu-s283": "chengdu-s283",
+                "chengdu-s284": "chengdu-s284",
+                "chengdu-s285": "chengdu-s285"
+              },
+              "stationNames": {
+                "chengdu-s266": "十里店",
+                "chengdu-s267": "理工大学",
+                "chengdu-s268": "东郊记忆",
+                "chengdu-s269": "杉板桥",
+                "chengdu-s270": "万年路",
+                "chengdu-s76": "双桥路",
+                "chengdu-s43": "东大路",
+                "chengdu-s271": "净居寺",
+                "chengdu-s201": "东光",
+                "chengdu-s272": "东湖公园",
+                "chengdu-s273": "川大望江校区",
+                "chengdu-s274": "倪家桥",
+                "chengdu-s275": "芳草街",
+                "chengdu-s276": "永丰",
+                "chengdu-s277": "九兴大道",
+                "chengdu-s128": "高朋大道",
+                "chengdu-s278": "殷家林",
+                "chengdu-s279": "庆安",
+                "chengdu-s280": "石羊",
+                "chengdu-s172": "三元",
+                "chengdu-s281": "顺风",
+                "chengdu-s282": "珠江路",
+                "chengdu-s283": "川大江安校区",
+                "chengdu-s284": "文星",
+                "chengdu-s285": "莲花"
+              },
+              "coverageGroupId": "chengdu-line8-8:chengdu-network-milestone-2020-12-18:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
             },
             {
-              "taskId": "route:chengdu-r9",
+              "taskId": "opening:chengdu-network-milestone-2020-12-18:line9:1",
               "mapRouteId": "chengdu-r9",
-              "name": "9号线",
+              "name": "9号线 · 五线成网：按本期范围建设",
               "stationIds": [
                 "chengdu-s168",
                 "chengdu-s169",
@@ -32550,86 +33444,118 @@
                 "chengdu-s175",
                 "chengdu-s176",
                 "chengdu-s67",
-                "chengdu-s177",
-                "chengdu-s330"
+                "chengdu-s177"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
               "historicalLineId": "chengdu-line9-9",
               "color": "#FFB81C",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "chengdu-s168": "chengdu-s168__line9-9",
+                "chengdu-s169": "chengdu-s169",
+                "chengdu-s170": "chengdu-s170",
                 "chengdu-s171": "chengdu-s171__line9-9",
                 "chengdu-s172": "chengdu-s172__line9-9",
+                "chengdu-s173": "chengdu-s173",
                 "chengdu-s144": "chengdu-s144__line9-9",
+                "chengdu-s174": "chengdu-s174",
                 "chengdu-s109": "chengdu-s109__line9-9",
                 "chengdu-s175": "chengdu-s175__line9-9",
                 "chengdu-s176": "chengdu-s176__line9-9",
-                "chengdu-s67": "chengdu-s67__line9-9"
+                "chengdu-s67": "chengdu-s67__line9-9",
+                "chengdu-s177": "chengdu-s177"
+              },
+              "stationNames": {
+                "chengdu-s168": "金融城东",
+                "chengdu-s169": "心岛",
+                "chengdu-s170": "孵化园",
+                "chengdu-s171": "锦城大道",
+                "chengdu-s172": "三元",
+                "chengdu-s173": "太平寺",
+                "chengdu-s144": "华兴",
+                "chengdu-s174": "簇桥",
+                "chengdu-s109": "武青南路",
+                "chengdu-s175": "机投桥",
+                "chengdu-s176": "培风",
+                "chengdu-s67": "成都西站",
+                "chengdu-s177": "黄田坝"
+              },
+              "coverageGroupId": "chengdu-line9-9:chengdu-network-milestone-2020-12-18:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4,
+              "stationReferenceIds": {
+                "chengdu-s67": "chengdu-s330"
               }
             },
             {
-              "taskId": "route:chengdu-r12",
+              "taskId": "opening:cd17-first-2020",
               "mapRouteId": "chengdu-r12",
               "name": "17号线",
               "stationIds": [
+                "chengdu-s349",
+                "chengdu-s350",
+                "chengdu-s351",
+                "chengdu-s352",
+                "chengdu-s353",
+                "chengdu-s354",
                 "chengdu-s287",
                 "chengdu-s288",
-                "chengdu-s175",
-                "chengdu-s289",
-                "chengdu-s130",
-                "chengdu-s290",
-                "chengdu-s291",
-                "chengdu-s245",
-                "chengdu-s292",
-                "chengdu-s38",
-                "chengdu-s293",
-                "chengdu-s294",
-                "chengdu-s295",
-                "chengdu-s296",
-                "chengdu-s297",
-                "chengdu-s140",
-                "chengdu-s298",
-                "chengdu-s299",
-                "chengdu-s300",
-                "chengdu-s301",
-                "chengdu-s302"
+                "chengdu-s175"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "本期范围和线路关系按开通、拆分公告核对；复用既有物理站体。地下线位与站台结构仍为地理示意。",
               "historicalLineId": "chengdu-line17-12",
               "color": "#80E0A7",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "chengdu-s349": "chengdu-s349",
+                "chengdu-s350": "chengdu-s350",
+                "chengdu-s351": "chengdu-s351",
+                "chengdu-s352": "chengdu-s352",
+                "chengdu-s353": "chengdu-s353",
+                "chengdu-s354": "chengdu-s354",
                 "chengdu-s287": "chengdu-s287__line17-12",
-                "chengdu-s175": "chengdu-s175__line17-12",
-                "chengdu-s130": "chengdu-s130__line17-12",
-                "chengdu-s245": "chengdu-s245__line17-12",
-                "chengdu-s292": "chengdu-s292__line17-12",
-                "chengdu-s38": "chengdu-s38__line17-12",
-                "chengdu-s140": "chengdu-s140__line17-12"
-              }
+                "chengdu-s288": "chengdu-s288",
+                "chengdu-s175": "chengdu-s175__line17-12"
+              },
+              "stationNames": {
+                "chengdu-s349": "金星",
+                "chengdu-s350": "黄石",
+                "chengdu-s351": "市五医院",
+                "chengdu-s352": "凤溪河",
+                "chengdu-s353": "温泉大道",
+                "chengdu-s354": "明光",
+                "chengdu-s287": "九江北",
+                "chengdu-s288": "白佛桥",
+                "chengdu-s175": "机投桥"
+              },
+              "coverageGroupId": "opening:cd17-first-2020",
+              "replaceExistingService": true,
+              "loop": false,
+              "servicePathRevision": 5,
+              "reconfirmLaterServices": true
             }
           ],
           "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
+          "eventText": "2020-12-18，五线成网：按本期范围建设。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
           "precision": "station_areas",
-          "source": "https://www.chengdurail.com/gywm.htm",
-          "sourceTitle": "成都轨道集团发展历程与运营线路公开资料",
-          "sourceCheckedAt": "2026-10-20",
+          "source": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
           "sourceType": "government_or_operator_route_inventory_and_opening_records",
           "status": "operated",
           "geometryStatus": "station_area_approximation",
           "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
+          "sourcePublicationDate": "2020-12-18",
           "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
           "story": {
-            "opening": "2020年前后，6号线、8号线、9号线、17号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
+            "opening": "2020-12-18，五线成网：按本期范围建设。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
             "eventKind": "network_expansion",
             "planVersions": [],
             "steps": [
@@ -32670,7 +33596,7 @@
             "chengdu-r8",
             "chengdu-r9"
           ],
-          "chapterScope": "cutoff_route_completion",
+          "chapterScope": "dated_opening_ranges",
           "routeTargetCount": 4,
           "requiredTransfers": [
             {
@@ -32706,22 +33632,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-chengdu-s130-line7-7-line17-12",
-              "name": "龙爪堰",
-              "complexId": "chengdu-s130",
-              "stationInstanceIds": [
-                "chengdu-s130__line7-7",
-                "chengdu-s130__line17-12"
-              ],
-              "lineIds": [
-                "chengdu-line7-7",
-                "chengdu-line17-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-chengdu-s135-line7-7-line6-6",
               "name": "西南交大",
               "complexId": "chengdu-s135",
@@ -32732,22 +33642,6 @@
               "lineIds": [
                 "chengdu-line7-7",
                 "chengdu-line6-6"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s140-line7-7-line17-12",
-              "name": "二仙桥",
-              "complexId": "chengdu-s140",
-              "stationInstanceIds": [
-                "chengdu-s140__line7-7",
-                "chengdu-s140__line17-12"
-              ],
-              "lineIds": [
-                "chengdu-line7-7",
-                "chengdu-line17-12"
               ],
               "precision": "schematic",
               "source": "https://www.chengdurail.com/gywm.htm",
@@ -32914,22 +33808,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-chengdu-s245-line5-5-line17-12",
-              "name": "省骨科医院",
-              "complexId": "chengdu-s245",
-              "stationInstanceIds": [
-                "chengdu-s245__line5-5",
-                "chengdu-s245__line17-12"
-              ],
-              "lineIds": [
-                "chengdu-line5-5",
-                "chengdu-line17-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-chengdu-s25-line2-2-line6-6",
               "name": "犀浦",
               "complexId": "chengdu-s25",
@@ -32940,22 +33818,6 @@
               "lineIds": [
                 "chengdu-line2-2",
                 "chengdu-line6-6"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s38-line2-2-line17-12",
-              "name": "人民公园",
-              "complexId": "chengdu-s38",
-              "stationInstanceIds": [
-                "chengdu-s38__line2-2",
-                "chengdu-s38__line17-12"
-              ],
-              "lineIds": [
-                "chengdu-line2-2",
-                "chengdu-line17-12"
               ],
               "precision": "schematic",
               "source": "https://www.chengdurail.com/gywm.htm",
@@ -33056,18 +33918,420 @@
               "precision": "schematic",
               "source": "https://www.chengdurail.com/gywm.htm",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-cd-fengxi-4-17",
+              "name": "凤溪河",
+              "complexId": "chengdu-s58",
+              "stationInstanceIds": [
+                "chengdu-s58",
+                "chengdu-s352"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line17-12"
+              ],
+              "source": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+              "precision": "schematic",
+              "sourceNote": "首开时凤溪河与4号线的独立线路站体换乘。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.14",
+          "scopeCorrections": [
+            {
+              "id": "defer-17phase2-historic-transfer-chengdu-s130-line7-7-line17-12",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s130-line7-7-line17-12",
+              "oldStationInstanceIds": [
+                "chengdu-s130__line7-7",
+                "chengdu-s130__line17-12"
+              ],
+              "oldLineIds": [
+                "chengdu-line7-7",
+                "chengdu-line17-12"
+              ],
+              "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "description": "龙爪堰属于2025年17号线二期，保留建设，稍后按实际日期确认线路及换乘。"
+            },
+            {
+              "id": "defer-17phase2-historic-transfer-chengdu-s140-line7-7-line17-12",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s140-line7-7-line17-12",
+              "oldStationInstanceIds": [
+                "chengdu-s140__line7-7",
+                "chengdu-s140__line17-12"
+              ],
+              "oldLineIds": [
+                "chengdu-line7-7",
+                "chengdu-line17-12"
+              ],
+              "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "description": "二仙桥属于2025年17号线二期，保留建设，稍后按实际日期确认线路及换乘。"
+            },
+            {
+              "id": "defer-17phase2-historic-transfer-chengdu-s245-line5-5-line17-12",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s245-line5-5-line17-12",
+              "oldStationInstanceIds": [
+                "chengdu-s245__line5-5",
+                "chengdu-s245__line17-12"
+              ],
+              "oldLineIds": [
+                "chengdu-line5-5",
+                "chengdu-line17-12"
+              ],
+              "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "description": "省骨科医院属于2025年17号线二期，保留建设，稍后按实际日期确认线路及换乘。"
+            },
+            {
+              "id": "defer-17phase2-historic-transfer-chengdu-s38-line2-2-line17-12",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s38-line2-2-line17-12",
+              "oldStationInstanceIds": [
+                "chengdu-s38__line2-2",
+                "chengdu-s38__line17-12"
+              ],
+              "oldLineIds": [
+                "chengdu-line2-2",
+                "chengdu-line17-12"
+              ],
+              "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "description": "人民公园属于2025年17号线二期，保留建设，稍后按实际日期确认线路及换乘。"
+            },
+            {
+              "id": "defer-17phase2-historic-transfer-chengdu-s292-line17-12-line13-11",
+              "taskId": "",
+              "transferId": "historic-transfer-chengdu-s292-line17-12-line13-11",
+              "oldStationInstanceIds": [
+                "chengdu-s292__line17-12",
+                "chengdu-s292__line13-11"
+              ],
+              "oldLineIds": [
+                "chengdu-line17-12",
+                "chengdu-line13-11"
+              ],
+              "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "description": "小南街属于2025年17号线二期，保留建设，稍后按实际日期确认线路及换乘。"
+            }
+          ]
         },
         {
-          "id": "chengdu-network-milestone-2023-11-28",
+          "id": "chengdu-opening-line18-airportnorth-2020",
           "phase": "history",
-          "date": "2023-11-28",
-          "title": "19号线建设阶段",
+          "date": "2020-12-18",
+          "title": "18号线非首开段：抵达机场北",
           "lineGroups": [
             {
-              "taskId": "route:chengdu-r14",
+              "taskId": "opening:chengdu-opening-line18-airportnorth-2020:line18:1",
+              "mapRouteId": "chengdu-r13",
+              "name": "18号线 · 18号线非首开段：抵达机场北",
+              "stationIds": [
+                "chengdu-s309",
+                "chengdu-s313"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line18-13",
+              "color": "#006272",
+              "stationOrderSource": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s309": "chengdu-s309__line18-13",
+                "chengdu-s313": "chengdu-s313__line18-13"
+              },
+              "stationNames": {
+                "chengdu-s309": "三岔",
+                "chengdu-s313": "天府机场北"
+              },
+              "coverageGroupId": "chengdu-line18-13:chengdu-opening-line18-airportnorth-2020:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2020-12-18，18号线非首开段：抵达机场北。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2020-12-18",
+          "story": {
+            "opening": "2020-12-18，18号线非首开段：抵达机场北。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-line18-airportnorth-2020:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
+        },
+        {
+          "id": "chengdu-opening-line18-terminal-2021",
+          "phase": "history",
+          "date": "2021-06-27",
+          "title": "天府机场启航：航站楼站开放",
+          "lineGroups": [
+            {
+              "taskId": "opening:chengdu-opening-line18-terminal-2021:line18:1",
+              "mapRouteId": "chengdu-r13",
+              "name": "18号线 · 天府机场启航：航站楼站开放",
+              "stationIds": [
+                "chengdu-s309",
+                "chengdu-s312",
+                "chengdu-s313"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line18-13",
+              "color": "#006272",
+              "stationOrderSource": "https://tjxzf.gov.cn/xwzx/bmxx/13248491.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s309": "chengdu-s309__line18-13",
+                "chengdu-s312": "chengdu-s312__line18-13",
+                "chengdu-s313": "chengdu-s313__line18-13"
+              },
+              "stationNames": {
+                "chengdu-s309": "三岔",
+                "chengdu-s312": "天府机场1号2号航站楼",
+                "chengdu-s313": "天府机场北"
+              },
+              "coverageGroupId": "chengdu-line18-13:chengdu-opening-line18-terminal-2021:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2021-06-27，天府机场启航：航站楼站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://tjxzf.gov.cn/xwzx/bmxx/13248491.html",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2021-06-21",
+          "story": {
+            "opening": "2021-06-27，天府机场启航：航站楼站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-line18-terminal-2021:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
+        },
+        {
+          "id": "chengdu-opening-line18-futian-2023",
+          "phase": "history",
+          "date": "2023-08-13",
+          "title": "18号线福田站开放",
+          "lineGroups": [
+            {
+              "taskId": "opening:chengdu-opening-line18-futian-2023:line18:1",
+              "mapRouteId": "chengdu-r13",
+              "name": "18号线 · 18号线福田站开放",
+              "stationIds": [
+                "chengdu-s309",
+                "chengdu-s310",
+                "chengdu-s312"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line18-13",
+              "color": "#006272",
+              "stationOrderSource": "https://sichuan.scol.com.cn/xwtg/202308/58952079.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s309": "chengdu-s309__line18-13",
+                "chengdu-s310": "chengdu-s310__line18-13",
+                "chengdu-s312": "chengdu-s312__line18-13"
+              },
+              "stationNames": {
+                "chengdu-s309": "三岔",
+                "chengdu-s310": "福田",
+                "chengdu-s312": "天府机场1号2号航站楼"
+              },
+              "coverageGroupId": "chengdu-line18-13:chengdu-opening-line18-futian-2023:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2023-08-13，18号线福田站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://sichuan.scol.com.cn/xwtg/202308/58952079.html",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2023-08-11",
+          "story": {
+            "opening": "2023-08-13，18号线福田站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-line18-futian-2023:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
+        },
+        {
+          "id": "chengdu-reorganization-17-19-2023",
+          "phase": "history",
+          "date": "2023-11-27",
+          "title": "17／19号线拆分：保留轨道，整理线路归属",
+          "lineGroups": [
+            {
+              "taskId": "reorganization:cd17-short",
+              "mapRouteId": "chengdu-r12",
+              "name": "17号线",
+              "stationIds": [
+                "chengdu-s287",
+                "chengdu-s288",
+                "chengdu-s175"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围和线路关系按开通、拆分公告核对；复用既有物理站体。地下线位与站台结构仍为地理示意。",
+              "historicalLineId": "chengdu-line17-12",
+              "color": "#80E0A7",
+              "stationOrderSource": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s287": "chengdu-s287__line17-12",
+                "chengdu-s288": "chengdu-s288",
+                "chengdu-s175": "chengdu-s175__line17-12"
+              },
+              "stationNames": {
+                "chengdu-s287": "九江北",
+                "chengdu-s288": "白佛桥",
+                "chengdu-s175": "机投桥"
+              },
+              "coverageGroupId": "reorganization:cd17-short",
+              "replaceExistingService": true,
+              "loop": false,
+              "servicePathRevision": 5,
+              "reconfirmLaterServices": true
+            },
+            {
+              "taskId": "reorganization:cd19-first",
               "mapRouteId": "chengdu-r14",
               "name": "19号线",
               "stationIds": [
@@ -33077,6 +34341,231 @@
                 "chengdu-s352",
                 "chengdu-s353",
                 "chengdu-s354",
+                "chengdu-s287"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围和线路关系按开通、拆分公告核对；复用既有物理站体。地下线位与站台结构仍为地理示意。",
+              "historicalLineId": "chengdu-line19-14",
+              "color": "#5c88db",
+              "stationOrderSource": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s349": "chengdu-s349",
+                "chengdu-s350": "chengdu-s350",
+                "chengdu-s351": "chengdu-s351",
+                "chengdu-s352": "chengdu-s352",
+                "chengdu-s353": "chengdu-s353",
+                "chengdu-s354": "chengdu-s354",
+                "chengdu-s287": "chengdu-s287__line19-14"
+              },
+              "stationNames": {
+                "chengdu-s349": "金星",
+                "chengdu-s350": "黄石",
+                "chengdu-s351": "市五医院",
+                "chengdu-s352": "凤溪河",
+                "chengdu-s353": "温泉大道",
+                "chengdu-s354": "明光",
+                "chengdu-s287": "九江北"
+              },
+              "coverageGroupId": "reorganization:cd19-first",
+              "replaceExistingService": true,
+              "loop": false,
+              "servicePathRevision": 5,
+              "sharedTrackEvidence": "https://www.thepaper.cn/newsDetail_forward_24520657",
+              "reconfirmLaterServices": true
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "19号线二期开通前，既有金星—机投桥线路在九江北拆分：西段归入19号线，17号线保留九江北—机投桥。整理线路关系，不拆除既有轨道。",
+          "precision": "station_areas",
+          "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+          "sourceTitle": "成都轨道集团对17／19号线拆分运营的公开答复",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2023-09-04",
+          "story": {
+            "opening": "19号线二期开通前，既有金星—机投桥线路在九江北拆分：西段归入19号线，17号线保留九江北—机投桥。整理线路关系，不拆除既有轨道。",
+            "purpose": "亲手将既有轨道分成两条线路，在九江北确认换乘联系。",
+            "outcome": "原有实体轨道保留；九江北成为两条线路的换乘节点。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "reorganization",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "cd-17-19-service-split-2023"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_service_reorganization",
+          "routeTargetCount": 2,
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-chengdu-s287-line17-12-line19-14",
+              "name": "九江北",
+              "complexId": "chengdu-s287",
+              "stationInstanceIds": [
+                "chengdu-s287__line17-12",
+                "chengdu-s287__line19-14"
+              ],
+              "lineIds": [
+                "chengdu-line17-12",
+                "chengdu-line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-cd-fengxi-4-19",
+              "name": "凤溪河",
+              "complexId": "chengdu-s58",
+              "stationInstanceIds": [
+                "chengdu-s58",
+                "chengdu-s352"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line19-14"
+              ],
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "precision": "schematic",
+              "sourceNote": "拆分后西段归19号线，复用原凤溪河站体；换乘需明确确认新线路配对。"
+            }
+          ],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.14",
+          "requiresLineReorganization": true,
+          "periodEndDateNote": "本章以二期开通前一日为范围终点，不将该日冒充拆分实际生效日；公开答复已说明拆分范围与同台换乘。",
+          "scopeCorrections": [
+            {
+              "id": "cd17-to19-chengdu-s349",
+              "taskId": "",
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "description": "金星既有站体归入19号线，位置、朝向和轨道保持。",
+              "bodyLineReclassification": {
+                "stationInstanceId": "chengdu-s349",
+                "oldLineId": "chengdu-line17-12",
+                "newLineId": "chengdu-line19-14",
+                "newLineName": "19号线"
+              }
+            },
+            {
+              "id": "cd17-to19-chengdu-s350",
+              "taskId": "",
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "description": "黄石既有站体归入19号线，位置、朝向和轨道保持。",
+              "bodyLineReclassification": {
+                "stationInstanceId": "chengdu-s350",
+                "oldLineId": "chengdu-line17-12",
+                "newLineId": "chengdu-line19-14",
+                "newLineName": "19号线"
+              }
+            },
+            {
+              "id": "cd17-to19-chengdu-s351",
+              "taskId": "",
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "description": "市五医院既有站体归入19号线，位置、朝向和轨道保持。",
+              "bodyLineReclassification": {
+                "stationInstanceId": "chengdu-s351",
+                "oldLineId": "chengdu-line17-12",
+                "newLineId": "chengdu-line19-14",
+                "newLineName": "19号线"
+              }
+            },
+            {
+              "id": "cd17-to19-chengdu-s352",
+              "taskId": "",
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "description": "凤溪河既有站体归入19号线，位置、朝向和轨道保持。",
+              "bodyLineReclassification": {
+                "stationInstanceId": "chengdu-s352",
+                "oldLineId": "chengdu-line17-12",
+                "newLineId": "chengdu-line19-14",
+                "newLineName": "19号线"
+              }
+            },
+            {
+              "id": "cd17-to19-chengdu-s353",
+              "taskId": "",
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "description": "温泉大道既有站体归入19号线，位置、朝向和轨道保持。",
+              "bodyLineReclassification": {
+                "stationInstanceId": "chengdu-s353",
+                "oldLineId": "chengdu-line17-12",
+                "newLineId": "chengdu-line19-14",
+                "newLineName": "19号线"
+              }
+            },
+            {
+              "id": "cd17-to19-chengdu-s354",
+              "taskId": "",
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "description": "明光既有站体归入19号线，位置、朝向和轨道保持。",
+              "bodyLineReclassification": {
+                "stationInstanceId": "chengdu-s354",
+                "oldLineId": "chengdu-line17-12",
+                "newLineId": "chengdu-line19-14",
+                "newLineName": "19号线"
+              }
+            },
+            {
+              "id": "archive-fengxi-4-17",
+              "taskId": "",
+              "transferId": "historic-transfer-cd-fengxi-4-17",
+              "oldStationInstanceIds": [
+                "chengdu-s58",
+                "chengdu-s352"
+              ],
+              "oldLineIds": [
+                "chengdu-line4-4",
+                "chengdu-line17-12"
+              ],
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "description": "凤溪河西段改归19号线，确认4／19号线换乘；原4／17历史记录归档。"
+            }
+          ]
+        },
+        {
+          "id": "chengdu-network-milestone-2023-11-28",
+          "phase": "history",
+          "date": "2023-11-28",
+          "title": "双机场联系：19号线二期与18号线共线",
+          "lineGroups": [
+            {
+              "taskId": "opening:cd19-second-2023",
+              "mapRouteId": "chengdu-r14",
+              "name": "19号线",
+              "stationIds": [
                 "chengdu-s287",
                 "chengdu-s355",
                 "chengdu-s356",
@@ -33089,48 +34578,76 @@
                 "chengdu-s219",
                 "chengdu-s361",
                 "chengdu-s308",
-                "chengdu-s313",
-                "chengdu-s312",
-                "chengdu-s311",
+                "chengdu-s309",
                 "chengdu-s310",
-                "chengdu-s309"
+                "chengdu-s312",
+                "chengdu-s313"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "本期范围和线路关系按开通、拆分公告核对；复用既有物理站体。地下线位与站台结构仍为地理示意。",
               "historicalLineId": "chengdu-line19-14",
               "color": "#5c88db",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.chengdurail.com/info/1151/51732.htm",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "chengdu-s287": "chengdu-s287__line19-14",
+                "chengdu-s355": "chengdu-s355",
                 "chengdu-s356": "chengdu-s356__line19-14",
                 "chengdu-s286": "chengdu-s286__line19-14",
+                "chengdu-s357": "chengdu-s357",
+                "chengdu-s358": "chengdu-s358",
                 "chengdu-s258": "chengdu-s258__line19-14",
+                "chengdu-s359": "chengdu-s359",
+                "chengdu-s360": "chengdu-s360",
                 "chengdu-s219": "chengdu-s219__line19-14",
+                "chengdu-s361": "chengdu-s361",
                 "chengdu-s308": "chengdu-s308__line19-14",
-                "chengdu-s313": "chengdu-s313__line19-14",
-                "chengdu-s312": "chengdu-s312__line19-14",
-                "chengdu-s311": "chengdu-s311__line19-14",
-                "chengdu-s310": "chengdu-s310__line19-14",
-                "chengdu-s309": "chengdu-s309__line19-14"
-              }
+                "chengdu-s309": "chengdu-s309__line18-13",
+                "chengdu-s310": "chengdu-s310__line18-13",
+                "chengdu-s312": "chengdu-s312__line18-13",
+                "chengdu-s313": "chengdu-s313__line18-13"
+              },
+              "stationNames": {
+                "chengdu-s287": "九江北",
+                "chengdu-s355": "龙桥路",
+                "chengdu-s356": "双流机场2航站楼东",
+                "chengdu-s286": "龙港",
+                "chengdu-s357": "温家山",
+                "chengdu-s358": "牧华路",
+                "chengdu-s258": "怡心湖",
+                "chengdu-s359": "正兴湾",
+                "chengdu-s360": "红莲",
+                "chengdu-s219": "天府商务区",
+                "chengdu-s361": "蓝家店",
+                "chengdu-s308": "天府站",
+                "chengdu-s309": "三岔",
+                "chengdu-s310": "福田",
+                "chengdu-s312": "天府机场1号2号航站楼",
+                "chengdu-s313": "天府机场北"
+              },
+              "coverageGroupId": "opening:cd19-second-2023",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 5,
+              "sharedTrackEvidence": "https://www.thepaper.cn/newsDetail_forward_24520657",
+              "reconfirmLaterServices": false
             }
           ],
           "requireOpen": true,
           "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
           "precision": "station_areas",
-          "source": "https://www.chengdurail.com/gywm.htm",
-          "sourceTitle": "成都轨道集团发展历程与运营线路公开资料",
+          "source": "https://www.chengdurail.com/info/1151/51732.htm",
+          "sourceTitle": "成都地铁19号线二期11月28日开通初期运营",
           "sourceCheckedAt": "2026-10-20",
           "sourceType": "government_or_operator_route_inventory_and_opening_records",
           "status": "operated",
           "geometryStatus": "station_area_approximation",
           "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
+          "sourcePublicationDate": "2023-11-27",
           "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
           "story": {
-            "opening": "2023年前后，19号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
+            "opening": "复用19号线一期端点，向东连接天府站，并按公开运营方案在天府站以东接入18号线既有轨道。",
+            "purpose": "建设二期新段，并让19号线列车沿18号线既有三岔—机场北区间展示；共线不等于新建四座换乘站。",
             "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
             "eventKind": "network_expansion",
             "planVersions": [],
@@ -33167,7 +34684,7 @@
           "routeMilestoneIds": [
             "chengdu-r14"
           ],
-          "chapterScope": "cutoff_route_completion",
+          "chapterScope": "dated_opening_ranges",
           "routeTargetCount": 1,
           "requiredTransfers": [
             {
@@ -33201,39 +34718,103 @@
               "precision": "schematic",
               "source": "https://www.chengdurail.com/gywm.htm",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
+            }
+          ],
+          "eventOnly": false,
+          "requiresLineReorganization": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.14",
+          "scopeCorrections": []
+        },
+        {
+          "id": "chengdu-opening-line18-tianfu-2023",
+          "phase": "history",
+          "date": "2023-11-28",
+          "title": "天府站开放：接入铁路枢纽",
+          "lineGroups": [
             {
-              "id": "historic-transfer-chengdu-s286-line8-8-line19-14",
-              "name": "龙港",
-              "complexId": "chengdu-s286",
-              "stationInstanceIds": [
-                "chengdu-s286__line8-8",
-                "chengdu-s286__line19-14"
+              "taskId": "opening:chengdu-opening-line18-tianfu-2023:line18:1",
+              "mapRouteId": "chengdu-r13",
+              "name": "18号线 · 天府站开放：接入铁路枢纽",
+              "stationIds": [
+                "chengdu-s307",
+                "chengdu-s308",
+                "chengdu-s309"
               ],
-              "lineIds": [
-                "chengdu-line8-8",
-                "chengdu-line19-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s287-line17-12-line19-14",
-              "name": "九江北",
-              "complexId": "chengdu-s287",
-              "stationInstanceIds": [
-                "chengdu-s287__line17-12",
-                "chengdu-s287__line19-14"
-              ],
-              "lineIds": [
-                "chengdu-line17-12",
-                "chengdu-line19-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line18-13",
+              "color": "#006272",
+              "stationOrderSource": "https://www.chengdurail.com/info/1151/51732.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s307": "chengdu-s307",
+                "chengdu-s308": "chengdu-s308__line18-13",
+                "chengdu-s309": "chengdu-s309__line18-13"
+              },
+              "stationNames": {
+                "chengdu-s307": "兴隆",
+                "chengdu-s308": "天府站",
+                "chengdu-s309": "三岔"
+              },
+              "coverageGroupId": "chengdu-line18-13:chengdu-opening-line18-tianfu-2023:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2023-11-28，天府站开放：接入铁路枢纽。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://www.chengdurail.com/info/1151/51732.htm",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2023-11-27",
+          "story": {
+            "opening": "2023-11-28，天府站开放：接入铁路枢纽。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-line18-tianfu-2023:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [
             {
               "id": "historic-transfer-chengdu-s308-line18-13-line19-14",
               "name": "天府站",
@@ -33249,128 +34830,184 @@
               "precision": "schematic",
               "source": "https://www.chengdurail.com/gywm.htm",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s309-line18-13-line19-14",
-              "name": "三岔",
-              "complexId": "chengdu-s309",
-              "stationInstanceIds": [
-                "chengdu-s309__line18-13",
-                "chengdu-s309__line19-14"
-              ],
-              "lineIds": [
-                "chengdu-line18-13",
-                "chengdu-line19-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s310-line18-13-line19-14",
-              "name": "福田",
-              "complexId": "chengdu-s310",
-              "stationInstanceIds": [
-                "chengdu-s310__line18-13",
-                "chengdu-s310__line19-14"
-              ],
-              "lineIds": [
-                "chengdu-line18-13",
-                "chengdu-line19-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s312-line18-13-line19-14",
-              "name": "天府机场1号2号航站楼",
-              "complexId": "chengdu-s312",
-              "stationInstanceIds": [
-                "chengdu-s312__line18-13",
-                "chengdu-s312__line19-14"
-              ],
-              "lineIds": [
-                "chengdu-line18-13",
-                "chengdu-line19-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s313-line18-13-line19-14",
-              "name": "天府机场北",
-              "complexId": "chengdu-s313",
-              "stationInstanceIds": [
-                "chengdu-s313__line18-13",
-                "chengdu-s313__line19-14"
-              ],
-              "lineIds": [
-                "chengdu-line18-13",
-                "chengdu-line19-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
         },
         {
-          "id": "chengdu-network-milestone-2025-12-16",
+          "id": "chengdu-opening-line6-qingdao-2024",
           "phase": "history",
-          "date": "2025-12-16",
-          "title": "13号线、27号线、30号线建设阶段",
+          "date": "2024-04-08",
+          "title": "6号线青岛路站开放",
           "lineGroups": [
             {
-              "taskId": "route:chengdu-r11",
-              "mapRouteId": "chengdu-r11",
-              "name": "13号线",
+              "taskId": "opening:chengdu-opening-line6-qingdao-2024:line6:1",
+              "mapRouteId": "chengdu-r6",
+              "name": "6号线 · 6号线青岛路站开放",
               "stationIds": [
-                "chengdu-s314",
-                "chengdu-s315",
-                "chengdu-s316",
-                "chengdu-s317",
-                "chengdu-s318",
-                "chengdu-s319",
-                "chengdu-s271",
-                "chengdu-s200",
-                "chengdu-s320",
-                "chengdu-s101",
-                "chengdu-s321",
-                "chengdu-s322",
-                "chengdu-s292",
-                "chengdu-s244",
-                "chengdu-s323",
-                "chengdu-s324",
-                "chengdu-s131",
-                "chengdu-s325",
-                "chengdu-s176",
-                "chengdu-s326",
-                "chengdu-s327"
+                "chengdu-s215",
+                "chengdu-s216",
+                "chengdu-s217"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "chengdu-line13-11",
-              "color": "#C5A900",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line6-6",
+              "color": "#B36924",
+              "stationOrderSource": "https://www.thepaper.cn/newsDetail_forward_26937599",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "chengdu-s318": "chengdu-s318__line13-11",
-                "chengdu-s271": "chengdu-s271__line13-11",
-                "chengdu-s200": "chengdu-s200__line13-11",
-                "chengdu-s101": "chengdu-s101__line13-11",
-                "chengdu-s292": "chengdu-s292__line13-11",
-                "chengdu-s244": "chengdu-s244__line13-11",
-                "chengdu-s131": "chengdu-s131__line13-11",
-                "chengdu-s176": "chengdu-s176__line13-11"
+                "chengdu-s215": "chengdu-s215",
+                "chengdu-s216": "chengdu-s216",
+                "chengdu-s217": "chengdu-s217"
+              },
+              "stationNames": {
+                "chengdu-s215": "沈阳路",
+                "chengdu-s216": "青岛路",
+                "chengdu-s217": "昌公堰"
+              },
+              "coverageGroupId": "chengdu-line6-6:chengdu-opening-line6-qingdao-2024:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2024-04-08，6号线青岛路站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://www.thepaper.cn/newsDetail_forward_26937599",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2024-04-06",
+          "story": {
+            "opening": "2024-04-08，6号线青岛路站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
               }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-line6-qingdao-2024:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
+        },
+        {
+          "id": "chengdu-opening-eight27-2024",
+          "phase": "history",
+          "date": "2024-12-19",
+          "title": "向两端延伸与北部加密",
+          "lineGroups": [
+            {
+              "taskId": "opening:chengdu-opening-eight27-2024:line8:1",
+              "mapRouteId": "chengdu-r8",
+              "name": "8号线 · 向两端延伸与北部加密",
+              "stationIds": [
+                "chengdu-s260",
+                "chengdu-s261",
+                "chengdu-s262",
+                "chengdu-s263",
+                "chengdu-s264",
+                "chengdu-s265",
+                "chengdu-s266"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line8-8",
+              "color": "#88DD00",
+              "stationOrderSource": "https://news.chengdu.cn/2024/1218/2459886.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s260": "chengdu-s260",
+                "chengdu-s261": "chengdu-s261",
+                "chengdu-s262": "chengdu-s262",
+                "chengdu-s263": "chengdu-s263",
+                "chengdu-s264": "chengdu-s264",
+                "chengdu-s265": "chengdu-s265",
+                "chengdu-s266": "chengdu-s266"
+              },
+              "stationNames": {
+                "chengdu-s260": "桂龙路",
+                "chengdu-s261": "桂林",
+                "chengdu-s262": "同乐",
+                "chengdu-s263": "龙潭寺",
+                "chengdu-s264": "龙潭立交",
+                "chengdu-s265": "圣灯公园",
+                "chengdu-s266": "十里店"
+              },
+              "coverageGroupId": "chengdu-line8-8:chengdu-opening-eight27-2024:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
             },
             {
-              "taskId": "route:chengdu-r15",
+              "taskId": "opening:chengdu-opening-eight27-2024:line8:2",
+              "mapRouteId": "chengdu-r8",
+              "name": "8号线 · 向两端延伸与北部加密",
+              "stationIds": [
+                "chengdu-s285",
+                "chengdu-s286"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line8-8",
+              "color": "#88DD00",
+              "stationOrderSource": "https://news.chengdu.cn/2024/1218/2459886.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s285": "chengdu-s285",
+                "chengdu-s286": "chengdu-s286__line8-8"
+              },
+              "stationNames": {
+                "chengdu-s285": "莲花",
+                "chengdu-s286": "龙港"
+              },
+              "coverageGroupId": "chengdu-line8-8:chengdu-opening-eight27-2024:2",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            },
+            {
+              "taskId": "opening:chengdu-opening-eight27-2024:line27:1",
               "mapRouteId": "chengdu-r15",
-              "name": "27号线",
+              "name": "27号线 · 向两端延伸与北部加密",
               "stationIds": [
                 "chengdu-s331",
                 "chengdu-s332",
@@ -33396,74 +35033,748 @@
                 "chengdu-s348"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
               "historicalLineId": "chengdu-line27-15",
               "color": "#00A3E0",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://news.chengdu.cn/2024/1218/2459886.shtml",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "chengdu-s331": "chengdu-s331",
+                "chengdu-s332": "chengdu-s332",
+                "chengdu-s333": "chengdu-s333",
+                "chengdu-s334": "chengdu-s334",
+                "chengdu-s335": "chengdu-s335",
+                "chengdu-s336": "chengdu-s336",
+                "chengdu-s337": "chengdu-s337",
+                "chengdu-s338": "chengdu-s338",
+                "chengdu-s339": "chengdu-s339",
                 "chengdu-s24": "chengdu-s24__line27-15",
+                "chengdu-s340": "chengdu-s340",
+                "chengdu-s341": "chengdu-s341",
                 "chengdu-s238": "chengdu-s238__line27-15",
+                "chengdu-s342": "chengdu-s342",
+                "chengdu-s343": "chengdu-s343",
                 "chengdu-s192": "chengdu-s192__line27-15",
-                "chengdu-s32": "chengdu-s32__line27-15"
+                "chengdu-s344": "chengdu-s344",
+                "chengdu-s345": "chengdu-s345",
+                "chengdu-s32": "chengdu-s32__line27-15",
+                "chengdu-s346": "chengdu-s346",
+                "chengdu-s347": "chengdu-s347",
+                "chengdu-s348": "chengdu-s348"
+              },
+              "stationNames": {
+                "chengdu-s331": "石佛",
+                "chengdu-s332": "慈义",
+                "chengdu-s333": "兴城大道",
+                "chengdu-s334": "旃檀寺",
+                "chengdu-s335": "石门坎",
+                "chengdu-s336": "三圣寺",
+                "chengdu-s337": "范家巷",
+                "chengdu-s338": "鲤鱼湾",
+                "chengdu-s339": "赖家店",
+                "chengdu-s24": "韦家碾",
+                "chengdu-s340": "双水碾",
+                "chengdu-s341": "王贾桥",
+                "chengdu-s238": "洞子口",
+                "chengdu-s342": "沙河源",
+                "chengdu-s343": "新桥",
+                "chengdu-s192": "金府",
+                "chengdu-s344": "花照壁北",
+                "chengdu-s345": "金牛公园",
+                "chengdu-s32": "羊犀立交",
+                "chengdu-s346": "黄忠",
+                "chengdu-s347": "金沙滨河公园",
+                "chengdu-s348": "蜀鑫路"
+              },
+              "coverageGroupId": "chengdu-line27-15:chengdu-opening-eight27-2024:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2024-12-19，向两端延伸与北部加密。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://news.chengdu.cn/2024/1218/2459886.shtml",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2024-12-18",
+          "story": {
+            "opening": "2024-12-19，向两端延伸与北部加密。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
               }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-eight27-2024:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 3,
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-chengdu-s286-line8-8-line19-14",
+              "name": "龙港",
+              "complexId": "chengdu-s286",
+              "stationInstanceIds": [
+                "chengdu-s286__line8-8",
+                "chengdu-s286__line19-14"
+              ],
+              "lineIds": [
+                "chengdu-line8-8",
+                "chengdu-line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "taskId": "route:chengdu-r16",
-              "mapRouteId": "chengdu-r16",
-              "name": "30号线",
+              "id": "historic-transfer-chengdu-s192-line6-6-line27-15",
+              "name": "金府",
+              "complexId": "chengdu-s192",
+              "stationInstanceIds": [
+                "chengdu-s192__line6-6",
+                "chengdu-s192__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s238-line5-5-line27-15",
+              "name": "洞子口",
+              "complexId": "chengdu-s238",
+              "stationInstanceIds": [
+                "chengdu-s238__line5-5",
+                "chengdu-s238__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s24-line1-line27-15",
+              "name": "韦家碾",
+              "complexId": "chengdu-s24",
+              "stationInstanceIds": [
+                "chengdu-s24__line1",
+                "chengdu-s24__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s32-line2-2-line27-15",
+              "name": "羊犀立交",
+              "complexId": "chengdu-s32",
+              "stationInstanceIds": [
+                "chengdu-s32__line2-2",
+                "chengdu-s32__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            }
+          ],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
+        },
+        {
+          "id": "chengdu-opening-line6-lujiao-2025",
+          "phase": "history",
+          "date": "2025-08-22",
+          "title": "6号线芦角站开放",
+          "lineGroups": [
+            {
+              "taskId": "opening:chengdu-opening-line6-lujiao-2025:line6:1",
+              "mapRouteId": "chengdu-r6",
+              "name": "6号线 · 6号线芦角站开放",
               "stationIds": [
-                "chengdu-s362",
-                "chengdu-s363",
-                "chengdu-s364",
-                "chengdu-s365",
-                "chengdu-s47",
-                "chengdu-s366",
-                "chengdu-s367",
-                "chengdu-s318",
-                "chengdu-s368",
-                "chengdu-s369",
-                "chengdu-s204",
-                "chengdu-s370",
-                "chengdu-s282",
-                "chengdu-s371",
-                "chengdu-s372",
-                "chengdu-s373",
-                "chengdu-s374",
-                "chengdu-s356",
-                "chengdu-s375"
+                "chengdu-s221",
+                "chengdu-s222",
+                "chengdu-s223"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "chengdu-line30-16",
-              "color": "#f63676",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line6-6",
+              "color": "#B36924",
+              "stationOrderSource": "https://news.chengdu.cn/2025/0819/68a401a754565111d33e7a7f.shtml",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "chengdu-s47": "chengdu-s47__line30-16",
-                "chengdu-s318": "chengdu-s318__line30-16",
-                "chengdu-s204": "chengdu-s204__line30-16",
+                "chengdu-s221": "chengdu-s221",
+                "chengdu-s222": "chengdu-s222",
+                "chengdu-s223": "chengdu-s223"
+              },
+              "stationNames": {
+                "chengdu-s221": "松林",
+                "chengdu-s222": "芦角",
+                "chengdu-s223": "钓鱼嘴"
+              },
+              "coverageGroupId": "chengdu-line6-6:chengdu-opening-line6-lujiao-2025:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2025-08-22，6号线芦角站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://news.chengdu.cn/2025/0819/68a401a754565111d33e7a7f.shtml",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2025-08-19",
+          "story": {
+            "opening": "2025-08-22，6号线芦角站开放。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-line6-lujiao-2025:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
+        },
+        {
+          "id": "chengdu-opening-line10-phase3-first-2025",
+          "phase": "history",
+          "date": "2025-09-17",
+          "title": "17号线二期与10号线三期先开段",
+          "lineGroups": [
+            {
+              "taskId": "opening:chengdu-opening-line10-phase3-first-2025:line10:1",
+              "mapRouteId": "chengdu-r10",
+              "name": "10号线 · 10号线三期先开武侯祠至太平园",
+              "stationIds": [
+                "chengdu-s142",
+                "chengdu-s328",
+                "chengdu-s105",
+                "chengdu-s106"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line10-10",
+              "color": "#003DA5",
+              "stationOrderSource": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s142": "chengdu-s142",
+                "chengdu-s328": "chengdu-s328",
+                "chengdu-s105": "chengdu-s105__line10-10",
+                "chengdu-s106": "chengdu-s106__line10-10"
+              },
+              "stationNames": {
+                "chengdu-s142": "武侯祠",
+                "chengdu-s328": "高升桥",
+                "chengdu-s105": "红牌楼",
+                "chengdu-s106": "太平园"
+              },
+              "coverageGroupId": "chengdu-line10-10:chengdu-opening-line10-phase3-first-2025:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            },
+            {
+              "taskId": "opening:cd17-second-2025",
+              "mapRouteId": "chengdu-r12",
+              "name": "17号线",
+              "stationIds": [
+                "chengdu-s175",
+                "chengdu-s289",
+                "chengdu-s130",
+                "chengdu-s290",
+                "chengdu-s291",
+                "chengdu-s245",
+                "chengdu-s292",
+                "chengdu-s38",
+                "chengdu-s293",
+                "chengdu-s294",
+                "chengdu-s295",
+                "chengdu-s296",
+                "chengdu-s297",
+                "chengdu-s140",
+                "chengdu-s298",
+                "chengdu-s299",
+                "chengdu-s300",
+                "chengdu-s301",
+                "chengdu-s302"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围和线路关系按开通、拆分公告核对；复用既有物理站体。地下线位与站台结构仍为地理示意。",
+              "historicalLineId": "chengdu-line17-12",
+              "color": "#80E0A7",
+              "stationOrderSource": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s175": "chengdu-s175__line17-12",
+                "chengdu-s289": "chengdu-s289",
+                "chengdu-s130": "chengdu-s130__line17-12",
+                "chengdu-s290": "chengdu-s290",
+                "chengdu-s291": "chengdu-s291",
+                "chengdu-s245": "chengdu-s245__line17-12",
+                "chengdu-s292": "chengdu-s292__line17-12",
+                "chengdu-s38": "chengdu-s38__line17-12",
+                "chengdu-s293": "chengdu-s293",
+                "chengdu-s294": "chengdu-s294",
+                "chengdu-s295": "chengdu-s295",
+                "chengdu-s296": "chengdu-s296",
+                "chengdu-s297": "chengdu-s297",
+                "chengdu-s140": "chengdu-s140__line17-12",
+                "chengdu-s298": "chengdu-s298",
+                "chengdu-s299": "chengdu-s299",
+                "chengdu-s300": "chengdu-s300",
+                "chengdu-s301": "chengdu-s301",
+                "chengdu-s302": "chengdu-s302"
+              },
+              "stationNames": {
+                "chengdu-s175": "机投桥",
+                "chengdu-s289": "阳公桥",
+                "chengdu-s130": "龙爪堰",
+                "chengdu-s290": "清水河大桥",
+                "chengdu-s291": "浣花里",
+                "chengdu-s245": "省骨科医院",
+                "chengdu-s292": "小南街",
+                "chengdu-s38": "人民公园",
+                "chengdu-s293": "西大街",
+                "chengdu-s294": "城隍庙",
+                "chengdu-s295": "红星桥",
+                "chengdu-s296": "建设北路",
+                "chengdu-s297": "踏水桥",
+                "chengdu-s140": "二仙桥",
+                "chengdu-s298": "机车厂",
+                "chengdu-s299": "人民塘",
+                "chengdu-s300": "航天路",
+                "chengdu-s301": "威灵",
+                "chengdu-s302": "高洪"
+              },
+              "coverageGroupId": "opening:cd17-second-2025",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 5,
+              "reconfirmLaterServices": false
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2025-09-17，10号线三期先开武侯祠至太平园。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+          "precision": "station_areas",
+          "source": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2025-09-16",
+          "story": {
+            "opening": "2025-09-17，10号线三期先开武侯祠至太平园。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-opening-line10-phase3-first-2025:opening"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 2,
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-chengdu-s130-line7-7-line17-12",
+              "name": "龙爪堰",
+              "complexId": "chengdu-s130",
+              "stationInstanceIds": [
+                "chengdu-s130__line7-7",
+                "chengdu-s130__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s140-line7-7-line17-12",
+              "name": "二仙桥",
+              "complexId": "chengdu-s140",
+              "stationInstanceIds": [
+                "chengdu-s140__line7-7",
+                "chengdu-s140__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s245-line5-5-line17-12",
+              "name": "省骨科医院",
+              "complexId": "chengdu-s245",
+              "stationInstanceIds": [
+                "chengdu-s245__line5-5",
+                "chengdu-s245__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s38-line2-2-line17-12",
+              "name": "人民公园",
+              "complexId": "chengdu-s38",
+              "stationInstanceIds": [
+                "chengdu-s38__line2-2",
+                "chengdu-s38__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s105-line3-3-line10-10",
+              "name": "红牌楼",
+              "complexId": "chengdu-s105",
+              "stationInstanceIds": [
+                "chengdu-s105__line3-3",
+                "chengdu-s105__line10-10"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            }
+          ],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.14"
+        },
+        {
+          "id": "chengdu-network-milestone-2025-12-16",
+          "phase": "history",
+          "date": "2025-12-16",
+          "title": "东西与机场走廊：13、30号线首开",
+          "lineGroups": [
+            {
+              "taskId": "opening:chengdu-network-milestone-2025-12-16:line13:1",
+              "mapRouteId": "chengdu-r11",
+              "name": "13号线 · 东西与机场走廊：13、30号线首开",
+              "stationIds": [
+                "chengdu-s327",
+                "chengdu-s326",
+                "chengdu-s176",
+                "chengdu-s325",
+                "chengdu-s131",
+                "chengdu-s324",
+                "chengdu-s323",
+                "chengdu-s244",
+                "chengdu-s292",
+                "chengdu-s322",
+                "chengdu-s321",
+                "chengdu-s101",
+                "chengdu-s320",
+                "chengdu-s200",
+                "chengdu-s271",
+                "chengdu-s319",
+                "chengdu-s318",
+                "chengdu-s317",
+                "chengdu-s316",
+                "chengdu-s315",
+                "chengdu-s314"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line13-11",
+              "color": "#C5A900",
+              "stationOrderSource": "https://www.crecg.com/web/xwzx61/gsyw87/2025121815543222258/index.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s327": "chengdu-s327",
+                "chengdu-s326": "chengdu-s326",
+                "chengdu-s176": "chengdu-s176__line13-11",
+                "chengdu-s325": "chengdu-s325",
+                "chengdu-s131": "chengdu-s131__line13-11",
+                "chengdu-s324": "chengdu-s324",
+                "chengdu-s323": "chengdu-s323",
+                "chengdu-s244": "chengdu-s244__line13-11",
+                "chengdu-s292": "chengdu-s292__line13-11",
+                "chengdu-s322": "chengdu-s322",
+                "chengdu-s321": "chengdu-s321",
+                "chengdu-s101": "chengdu-s101__line13-11",
+                "chengdu-s320": "chengdu-s320",
+                "chengdu-s200": "chengdu-s200__line13-11",
+                "chengdu-s271": "chengdu-s271__line13-11",
+                "chengdu-s319": "chengdu-s319",
+                "chengdu-s318": "chengdu-s318__line13-11",
+                "chengdu-s317": "chengdu-s317",
+                "chengdu-s316": "chengdu-s316",
+                "chengdu-s315": "chengdu-s315",
+                "chengdu-s314": "chengdu-s314"
+              },
+              "stationNames": {
+                "chengdu-s327": "瓦窑滩",
+                "chengdu-s326": "万家湾",
+                "chengdu-s176": "培风",
+                "chengdu-s325": "万寿桥",
+                "chengdu-s131": "东坡路",
+                "chengdu-s324": "光华村",
+                "chengdu-s323": "杜甫草堂",
+                "chengdu-s244": "青羊宫",
+                "chengdu-s292": "小南街",
+                "chengdu-s322": "文翁石室",
+                "chengdu-s321": "华西坝",
+                "chengdu-s101": "新南门",
+                "chengdu-s320": "九眼桥站",
+                "chengdu-s200": "三官堂",
+                "chengdu-s271": "净居寺",
+                "chengdu-s319": "四川师大",
+                "chengdu-s318": "娇子立交",
+                "chengdu-s317": "幸福梅林",
+                "chengdu-s316": "三圣花乡",
+                "chengdu-s315": "龙华寺",
+                "chengdu-s314": "龙安"
+              },
+              "coverageGroupId": "chengdu-line13-11:chengdu-network-milestone-2025-12-16:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4
+            },
+            {
+              "taskId": "opening:chengdu-network-milestone-2025-12-16:line30:1",
+              "mapRouteId": "chengdu-r16",
+              "name": "30号线 · 东西与机场走廊：13、30号线首开",
+              "stationIds": [
+                "chengdu-s356",
+                "chengdu-s374",
+                "chengdu-s373",
+                "chengdu-s372",
+                "chengdu-s371",
+                "chengdu-s282",
+                "chengdu-official-l30-n13380485925",
+                "chengdu-official-l30-n13380485924",
+                "chengdu-official-l30-n13380485923",
+                "chengdu-s370",
+                "chengdu-official-l30-n13380485921",
+                "chengdu-official-l30-n13380485918",
+                "chengdu-official-l30-n13380485910",
+                "chengdu-s204",
+                "chengdu-s369",
+                "chengdu-s368",
+                "chengdu-s318",
+                "chengdu-s367",
+                "chengdu-s366",
+                "chengdu-s47",
+                "chengdu-s365",
+                "chengdu-s362"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "本期范围按开通资料分期，站序交叉核对；未开放站不提前加入。现代坐标和隧道均为地理参考。",
+              "historicalLineId": "chengdu-line30-16",
+              "color": "#f63676",
+              "stationOrderSource": "https://www.crecg.com/web/xwzx61/gsyw87/2025121815543222258/index.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s356": "chengdu-s356__line30-16",
+                "chengdu-s374": "chengdu-s374",
+                "chengdu-s373": "chengdu-s373",
+                "chengdu-s372": "chengdu-s372",
+                "chengdu-s371": "chengdu-s371",
                 "chengdu-s282": "chengdu-s282__line30-16",
-                "chengdu-s356": "chengdu-s356__line30-16"
+                "chengdu-official-l30-n13380485925": "chengdu-official-l30-n13380485925",
+                "chengdu-official-l30-n13380485924": "chengdu-official-l30-n13380485924",
+                "chengdu-official-l30-n13380485923": "chengdu-official-l30-n13380485923",
+                "chengdu-s370": "chengdu-s370",
+                "chengdu-official-l30-n13380485921": "chengdu-official-l30-n13380485921",
+                "chengdu-official-l30-n13380485918": "chengdu-official-l30-n13380485918",
+                "chengdu-official-l30-n13380485910": "chengdu-official-l30-n13380485910",
+                "chengdu-s204": "chengdu-s204__line30-16",
+                "chengdu-s369": "chengdu-s369",
+                "chengdu-s368": "chengdu-s368",
+                "chengdu-s318": "chengdu-s318__line30-16",
+                "chengdu-s367": "chengdu-s367",
+                "chengdu-s366": "chengdu-s366",
+                "chengdu-s47": "chengdu-s47__line30-16",
+                "chengdu-s365": "chengdu-s365",
+                "chengdu-s362": "chengdu-s362"
+              },
+              "stationNames": {
+                "chengdu-s356": "双流机场2航站楼东",
+                "chengdu-s374": "寺圣",
+                "chengdu-s373": "星月",
+                "chengdu-s372": "光明",
+                "chengdu-s371": "谢家渡",
+                "chengdu-s282": "珠江路",
+                "chengdu-official-l30-n13380485925": "大同",
+                "chengdu-official-l30-n13380485924": "石羊东",
+                "chengdu-official-l30-n13380485923": "新园大道",
+                "chengdu-s370": "市一医院",
+                "chengdu-official-l30-n13380485921": "益州大道",
+                "chengdu-official-l30-n13380485918": "金融城北",
+                "chengdu-official-l30-n13380485910": "府城桥",
+                "chengdu-s204": "金石路",
+                "chengdu-s369": "棬子树",
+                "chengdu-s368": "锦逸",
+                "chengdu-s318": "娇子立交",
+                "chengdu-s367": "海桐街",
+                "chengdu-s366": "航天立交",
+                "chengdu-s47": "惠王陵",
+                "chengdu-s365": "玉石",
+                "chengdu-s362": "龙泉驿火车站南"
+              },
+              "coverageGroupId": "chengdu-line30-16:chengdu-network-milestone-2025-12-16:1",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 4,
+              "stationReferenceIds": {
+                "chengdu-s318": "chengdu-s375"
               }
             }
           ],
           "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
+          "eventText": "2025-12-16，东西与机场走廊：13、30号线首开。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
           "precision": "station_areas",
-          "source": "https://www.chengdurail.com/gywm.htm",
-          "sourceTitle": "成都轨道集团发展历程与运营线路公开资料",
-          "sourceCheckedAt": "2026-10-20",
+          "source": "https://www.crecg.com/web/xwzx61/gsyw87/2025121815543222258/index.html",
+          "sourceTitle": "本期开通公告与运营方逐站资料交叉核对",
+          "sourceCheckedAt": "2026-10-24",
           "sourceType": "government_or_operator_route_inventory_and_opening_records",
           "status": "operated",
           "geometryStatus": "station_area_approximation",
           "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
+          "sourcePublicationDate": "2025-12-18",
           "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
           "story": {
-            "opening": "2025年前后，13号线、27号线、30号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
+            "opening": "2025-12-16，东西与机场走廊：13、30号线首开。只确认当时实际开放范围，后期开站另列事件；现代地理底图不作为当时城市面貌。",
+            "purpose": "接续所属线路既有站体，复现本期增加或开放的站段。",
+            "outcome": "本期连接已经记录，后续开放与延伸按下一个历史事件处理。",
             "eventKind": "network_expansion",
             "planVersions": [],
             "steps": [
@@ -33501,8 +35812,8 @@
             "chengdu-r15",
             "chengdu-r16"
           ],
-          "chapterScope": "cutoff_route_completion",
-          "routeTargetCount": 3,
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 2,
           "requiredTransfers": [
             {
               "id": "historic-transfer-chengdu-s101-line3-3-line13-11",
@@ -33553,22 +35864,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-chengdu-s192-line6-6-line27-15",
-              "name": "金府",
-              "complexId": "chengdu-s192",
-              "stationInstanceIds": [
-                "chengdu-s192__line6-6",
-                "chengdu-s192__line27-15"
-              ],
-              "lineIds": [
-                "chengdu-line6-6",
-                "chengdu-line27-15"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-chengdu-s200-line6-6-line13-11",
               "name": "三官堂",
               "complexId": "chengdu-s200",
@@ -33595,38 +35890,6 @@
               "lineIds": [
                 "chengdu-line6-6",
                 "chengdu-line30-16"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s238-line5-5-line27-15",
-              "name": "洞子口",
-              "complexId": "chengdu-s238",
-              "stationInstanceIds": [
-                "chengdu-s238__line5-5",
-                "chengdu-s238__line27-15"
-              ],
-              "lineIds": [
-                "chengdu-line5-5",
-                "chengdu-line27-15"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-chengdu-s24-line1-line27-15",
-              "name": "韦家碾",
-              "complexId": "chengdu-s24",
-              "stationInstanceIds": [
-                "chengdu-s24__line1",
-                "chengdu-s24__line27-15"
-              ],
-              "lineIds": [
-                "chengdu-line1",
-                "chengdu-line27-15"
               ],
               "precision": "schematic",
               "source": "https://www.chengdurail.com/gywm.htm",
@@ -33713,22 +35976,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-chengdu-s32-line2-2-line27-15",
-              "name": "羊犀立交",
-              "complexId": "chengdu-s32",
-              "stationInstanceIds": [
-                "chengdu-s32__line2-2",
-                "chengdu-s32__line27-15"
-              ],
-              "lineIds": [
-                "chengdu-line2-2",
-                "chengdu-line27-15"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-chengdu-s356-line19-14-line30-16",
               "name": "双流机场2航站楼东",
               "complexId": "chengdu-s356",
@@ -33761,7 +36008,473 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.13"
+        },
+        {
+          "id": "chengdu-line2-east-suspended",
+          "phase": "history",
+          "date": "2025-12-20",
+          "title": "2号线东段：为铁路建设暂停开放",
+          "lineGroups": [
+            {
+              "taskId": "chengdu-line2-east-suspended:range",
+              "mapRouteId": "chengdu-r2",
+              "name": "2号线",
+              "stationIds": [
+                "chengdu-s25",
+                "chengdu-s26",
+                "chengdu-s27",
+                "chengdu-s28",
+                "chengdu-s29",
+                "chengdu-s30",
+                "chengdu-s31",
+                "chengdu-s32",
+                "chengdu-s33",
+                "chengdu-s34",
+                "chengdu-s35",
+                "chengdu-s36",
+                "chengdu-s37",
+                "chengdu-s38",
+                "chengdu-s18",
+                "chengdu-s39",
+                "chengdu-s40",
+                "chengdu-s41",
+                "chengdu-s42",
+                "chengdu-s43",
+                "chengdu-s44",
+                "chengdu-s45",
+                "chengdu-s46",
+                "chengdu-s47",
+                "chengdu-s48",
+                "chengdu-s49",
+                "chengdu-s50",
+                "chengdu-s51",
+                "chengdu-s52",
+                "chengdu-s53",
+                "chengdu-s54",
+                "chengdu-s55"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按成都轨道交通运营方逐站时刻表核对；1号线两条分支独立保存，7号线闭环。站区和地下区间为现代地理参考，历史开放日期另据公告核对。",
+              "historicalLineId": "chengdu-line2-2",
+              "color": "#FF5C39",
+              "stationOrderSource": "https://news.chengdu.cn/2025/1215/693f705bdcb7c92ce3d26ad1.shtml?phone=yes",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s25": "chengdu-s25__line2-2",
+                "chengdu-s26": "chengdu-s26",
+                "chengdu-s27": "chengdu-s27",
+                "chengdu-s28": "chengdu-s28",
+                "chengdu-s29": "chengdu-s29",
+                "chengdu-s30": "chengdu-s30",
+                "chengdu-s31": "chengdu-s31",
+                "chengdu-s32": "chengdu-s32__line2-2",
+                "chengdu-s33": "chengdu-s33__line2-2",
+                "chengdu-s34": "chengdu-s34",
+                "chengdu-s35": "chengdu-s35",
+                "chengdu-s36": "chengdu-s36__line2-2",
+                "chengdu-s37": "chengdu-s37",
+                "chengdu-s38": "chengdu-s38__line2-2",
+                "chengdu-s18": "chengdu-s18__line2-2",
+                "chengdu-s39": "chengdu-s39__line2-2",
+                "chengdu-s40": "chengdu-s40",
+                "chengdu-s41": "chengdu-s41__line2-2",
+                "chengdu-s42": "chengdu-s42",
+                "chengdu-s43": "chengdu-s43__line2-2",
+                "chengdu-s44": "chengdu-s44",
+                "chengdu-s45": "chengdu-s45__line2-2",
+                "chengdu-s46": "chengdu-s46",
+                "chengdu-s47": "chengdu-s47__line2-2",
+                "chengdu-s48": "chengdu-s48",
+                "chengdu-s49": "chengdu-s49",
+                "chengdu-s50": "chengdu-s50",
+                "chengdu-s51": "chengdu-s51",
+                "chengdu-s52": "chengdu-s52",
+                "chengdu-s53": "chengdu-s53",
+                "chengdu-s54": "chengdu-s54",
+                "chengdu-s55": "chengdu-s55"
+              },
+              "stationNames": {
+                "chengdu-s25": "犀浦",
+                "chengdu-s26": "天河路",
+                "chengdu-s27": "百草路",
+                "chengdu-s28": "金周路",
+                "chengdu-s29": "金科北路",
+                "chengdu-s30": "迎宾大道",
+                "chengdu-s31": "茶店子客运站",
+                "chengdu-s32": "羊犀立交",
+                "chengdu-s33": "一品天下",
+                "chengdu-s34": "蜀汉路东",
+                "chengdu-s35": "白果林",
+                "chengdu-s36": "中医大省医院",
+                "chengdu-s37": "通惠门",
+                "chengdu-s38": "人民公园",
+                "chengdu-s18": "天府广场",
+                "chengdu-s39": "春熙路",
+                "chengdu-s40": "东门大桥",
+                "chengdu-s41": "牛王庙",
+                "chengdu-s42": "牛市口",
+                "chengdu-s43": "东大路",
+                "chengdu-s44": "塔子山公园",
+                "chengdu-s45": "成都东客站",
+                "chengdu-s46": "成渝立交",
+                "chengdu-s47": "惠王陵",
+                "chengdu-s48": "洪河",
+                "chengdu-s49": "成都行政学院",
+                "chengdu-s50": "大面铺",
+                "chengdu-s51": "连山坡",
+                "chengdu-s52": "界牌",
+                "chengdu-s53": "书房",
+                "chengdu-s54": "龙平路",
+                "chengdu-s55": "龙泉驿"
+              },
+              "coverageGroupId": "chengdu-line2-east-suspended",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 2
+            }
+          ],
+          "requireOpen": false,
+          "eventText": "因成渝中线高铁及十陵南站建设，大面铺至龙泉驿六站暂停开放。保留已有站轨，线路东端暂至成都行政学院。",
+          "precision": "station_areas",
+          "source": "https://news.chengdu.cn/2025/1215/693f705bdcb7c92ce3d26ad1.shtml?phone=yes",
+          "sourceTitle": "运营方／成都发布：2号线东段六站暂停及恢复公告",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2025-12-15",
+          "story": {
+            "opening": "因成渝中线高铁及十陵南站建设，大面铺至龙泉驿六站暂停开放。保留已有站轨，线路东端暂至成都行政学院。",
+            "purpose": "核对并确认本期开放范围，保留已建路网，不重复建设既有车站。",
+            "outcome": "服务范围按公告日期记录；列车展示只在已开放区间运行。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-line2-east-suspended:service"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_service_transition",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.17",
+          "serviceTransitions": [
+            {
+              "id": "west-operating",
+              "historicalLineId": "chengdu-line2-2",
+              "stationIds": [
+                "chengdu-s25",
+                "chengdu-s26",
+                "chengdu-s27",
+                "chengdu-s28",
+                "chengdu-s29",
+                "chengdu-s30",
+                "chengdu-s31",
+                "chengdu-s32",
+                "chengdu-s33",
+                "chengdu-s34",
+                "chengdu-s35",
+                "chengdu-s36",
+                "chengdu-s37",
+                "chengdu-s38",
+                "chengdu-s18",
+                "chengdu-s39",
+                "chengdu-s40",
+                "chengdu-s41",
+                "chengdu-s42",
+                "chengdu-s43",
+                "chengdu-s44",
+                "chengdu-s45",
+                "chengdu-s46",
+                "chengdu-s47",
+                "chengdu-s48",
+                "chengdu-s49"
+              ],
+              "status": "open",
+              "source": "https://news.chengdu.cn/2025/1215/693f705bdcb7c92ce3d26ad1.shtml?phone=yes"
+            },
+            {
+              "id": "east-suspended",
+              "historicalLineId": "chengdu-line2-2",
+              "stationIds": [
+                "chengdu-s49",
+                "chengdu-s50",
+                "chengdu-s51",
+                "chengdu-s52",
+                "chengdu-s53",
+                "chengdu-s54",
+                "chengdu-s55"
+              ],
+              "status": "suspended",
+              "source": "https://news.chengdu.cn/2025/1215/693f705bdcb7c92ce3d26ad1.shtml?phone=yes"
+            }
+          ],
+          "scopeCorrections": []
+        },
+        {
+          "id": "chengdu-line2-east-open",
+          "phase": "history",
+          "date": "2026-09-28",
+          "title": "2号线东段：六座车站恢复开放",
+          "lineGroups": [
+            {
+              "taskId": "chengdu-line2-east-open:range",
+              "mapRouteId": "chengdu-r2",
+              "name": "2号线",
+              "stationIds": [
+                "chengdu-s25",
+                "chengdu-s26",
+                "chengdu-s27",
+                "chengdu-s28",
+                "chengdu-s29",
+                "chengdu-s30",
+                "chengdu-s31",
+                "chengdu-s32",
+                "chengdu-s33",
+                "chengdu-s34",
+                "chengdu-s35",
+                "chengdu-s36",
+                "chengdu-s37",
+                "chengdu-s38",
+                "chengdu-s18",
+                "chengdu-s39",
+                "chengdu-s40",
+                "chengdu-s41",
+                "chengdu-s42",
+                "chengdu-s43",
+                "chengdu-s44",
+                "chengdu-s45",
+                "chengdu-s46",
+                "chengdu-s47",
+                "chengdu-s48",
+                "chengdu-s49",
+                "chengdu-s50",
+                "chengdu-s51",
+                "chengdu-s52",
+                "chengdu-s53",
+                "chengdu-s54",
+                "chengdu-s55"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按成都轨道交通运营方逐站时刻表核对；1号线两条分支独立保存，7号线闭环。站区和地下区间为现代地理参考，历史开放日期另据公告核对。",
+              "historicalLineId": "chengdu-line2-2",
+              "color": "#FF5C39",
+              "stationOrderSource": "https://sichuan.scol.com.cn/ggxw/202609/83330005.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "chengdu-s25": "chengdu-s25__line2-2",
+                "chengdu-s26": "chengdu-s26",
+                "chengdu-s27": "chengdu-s27",
+                "chengdu-s28": "chengdu-s28",
+                "chengdu-s29": "chengdu-s29",
+                "chengdu-s30": "chengdu-s30",
+                "chengdu-s31": "chengdu-s31",
+                "chengdu-s32": "chengdu-s32__line2-2",
+                "chengdu-s33": "chengdu-s33__line2-2",
+                "chengdu-s34": "chengdu-s34",
+                "chengdu-s35": "chengdu-s35",
+                "chengdu-s36": "chengdu-s36__line2-2",
+                "chengdu-s37": "chengdu-s37",
+                "chengdu-s38": "chengdu-s38__line2-2",
+                "chengdu-s18": "chengdu-s18__line2-2",
+                "chengdu-s39": "chengdu-s39__line2-2",
+                "chengdu-s40": "chengdu-s40",
+                "chengdu-s41": "chengdu-s41__line2-2",
+                "chengdu-s42": "chengdu-s42",
+                "chengdu-s43": "chengdu-s43__line2-2",
+                "chengdu-s44": "chengdu-s44",
+                "chengdu-s45": "chengdu-s45__line2-2",
+                "chengdu-s46": "chengdu-s46",
+                "chengdu-s47": "chengdu-s47__line2-2",
+                "chengdu-s48": "chengdu-s48",
+                "chengdu-s49": "chengdu-s49",
+                "chengdu-s50": "chengdu-s50",
+                "chengdu-s51": "chengdu-s51",
+                "chengdu-s52": "chengdu-s52",
+                "chengdu-s53": "chengdu-s53",
+                "chengdu-s54": "chengdu-s54",
+                "chengdu-s55": "chengdu-s55"
+              },
+              "stationNames": {
+                "chengdu-s25": "犀浦",
+                "chengdu-s26": "天河路",
+                "chengdu-s27": "百草路",
+                "chengdu-s28": "金周路",
+                "chengdu-s29": "金科北路",
+                "chengdu-s30": "迎宾大道",
+                "chengdu-s31": "茶店子客运站",
+                "chengdu-s32": "羊犀立交",
+                "chengdu-s33": "一品天下",
+                "chengdu-s34": "蜀汉路东",
+                "chengdu-s35": "白果林",
+                "chengdu-s36": "中医大省医院",
+                "chengdu-s37": "通惠门",
+                "chengdu-s38": "人民公园",
+                "chengdu-s18": "天府广场",
+                "chengdu-s39": "春熙路",
+                "chengdu-s40": "东门大桥",
+                "chengdu-s41": "牛王庙",
+                "chengdu-s42": "牛市口",
+                "chengdu-s43": "东大路",
+                "chengdu-s44": "塔子山公园",
+                "chengdu-s45": "成都东客站",
+                "chengdu-s46": "成渝立交",
+                "chengdu-s47": "惠王陵",
+                "chengdu-s48": "洪河",
+                "chengdu-s49": "成都行政学院",
+                "chengdu-s50": "大面铺",
+                "chengdu-s51": "连山坡",
+                "chengdu-s52": "界牌",
+                "chengdu-s53": "书房",
+                "chengdu-s54": "龙平路",
+                "chengdu-s55": "龙泉驿"
+              },
+              "coverageGroupId": "chengdu-line2-east-open",
+              "replaceExistingService": false,
+              "loop": false,
+              "servicePathRevision": 2
+            }
+          ],
+          "requireOpen": false,
+          "eventText": "2026年9月28日，大面铺至龙泉驿六站恢复开放。复用原站轨；新增铁路枢纽站尚未开放，不提前加入停站范围。",
+          "precision": "station_areas",
+          "source": "https://sichuan.scol.com.cn/ggxw/202609/83330005.html",
+          "sourceTitle": "运营方／成都发布：2号线东段六站暂停及恢复公告",
+          "sourceCheckedAt": "2026-10-24",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本期站序来自独立开通范围清单；地理几何只作近似参考，不把现状整线放入早期章节。",
+          "sourcePublicationDate": "2026-09-24",
+          "story": {
+            "opening": "2026年9月28日，大面铺至龙泉驿六站恢复开放。复用原站轨；新增铁路枢纽站尚未开放，不提前加入停站范围。",
+            "purpose": "核对并确认本期开放范围，保留已建路网，不重复建设既有车站。",
+            "outcome": "服务范围按公告日期记录；列车展示只在已开放区间运行。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "chengdu-line2-east-open:service"
+          ],
+          "routeMilestoneIds": [
+            "chengdu-r2"
+          ],
+          "chapterScope": "dated_service_transition",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.17",
+          "serviceTransitions": [
+            {
+              "id": "west-operating",
+              "historicalLineId": "chengdu-line2-2",
+              "stationIds": [
+                "chengdu-s25",
+                "chengdu-s26",
+                "chengdu-s27",
+                "chengdu-s28",
+                "chengdu-s29",
+                "chengdu-s30",
+                "chengdu-s31",
+                "chengdu-s32",
+                "chengdu-s33",
+                "chengdu-s34",
+                "chengdu-s35",
+                "chengdu-s36",
+                "chengdu-s37",
+                "chengdu-s38",
+                "chengdu-s18",
+                "chengdu-s39",
+                "chengdu-s40",
+                "chengdu-s41",
+                "chengdu-s42",
+                "chengdu-s43",
+                "chengdu-s44",
+                "chengdu-s45",
+                "chengdu-s46",
+                "chengdu-s47",
+                "chengdu-s48",
+                "chengdu-s49"
+              ],
+              "status": "open",
+              "source": "https://sichuan.scol.com.cn/ggxw/202609/83330005.html"
+            },
+            {
+              "id": "east-open",
+              "historicalLineId": "chengdu-line2-2",
+              "stationIds": [
+                "chengdu-s49",
+                "chengdu-s50",
+                "chengdu-s51",
+                "chengdu-s52",
+                "chengdu-s53",
+                "chengdu-s54",
+                "chengdu-s55"
+              ],
+              "status": "open",
+              "source": "https://sichuan.scol.com.cn/ggxw/202609/83330005.html"
+            }
+          ],
+          "scopeCorrections": []
         },
         {
           "id": "chengdu-network-reconciliation-2026-10-01",
@@ -35307,10 +38020,10 @@
               "stationOrderSource": "https://www.chengdurail.com/op/station-time",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "chengdu-s313": "chengdu-s313__line19-14",
-                "chengdu-s312": "chengdu-s312__line19-14",
-                "chengdu-s310": "chengdu-s310__line19-14",
-                "chengdu-s309": "chengdu-s309__line19-14",
+                "chengdu-s313": "chengdu-s313__line18-13",
+                "chengdu-s312": "chengdu-s312__line18-13",
+                "chengdu-s310": "chengdu-s310__line18-13",
+                "chengdu-s309": "chengdu-s309__line18-13",
                 "chengdu-s308": "chengdu-s308__line19-14",
                 "chengdu-s361": "chengdu-s361",
                 "chengdu-s219": "chengdu-s219__line19-14",
@@ -35357,7 +38070,8 @@
               "coverageGroupId": "chengdu-line19-14",
               "replaceExistingService": true,
               "loop": false,
-              "servicePathRevision": 2
+              "servicePathRevision": 2,
+              "sharedTrackEvidence": "https://www.thepaper.cn/newsDetail_forward_24520657"
             },
             {
               "taskId": "route:chengdu-r15",
@@ -35599,24 +38313,7 @@
             "chengdu-r15",
             "chengdu-r16"
           ],
-          "requiredTransfers": [
-            {
-              "id": "historic-transfer-chengdu-s105-line3-3-line10-10",
-              "name": "红牌楼",
-              "complexId": "chengdu-s105",
-              "stationInstanceIds": [
-                "chengdu-s105__line3-3",
-                "chengdu-s105__line10-10"
-              ],
-              "lineIds": [
-                "chengdu-line3-3",
-                "chengdu-line10-10"
-              ],
-              "precision": "schematic",
-              "source": "https://www.chengdurail.com/gywm.htm",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            }
-          ],
+          "requiredTransfers": [],
           "eventOnly": false,
           "contentRevision": "2026.10.23.46",
           "requiresScopeRecheck": true,
@@ -35686,7 +38383,8 @@
                 ]
               ]
             }
-          ]
+          ],
+          "scopeRevision": "2026.10.24.14"
         }
       ],
       "futurePlans": [
@@ -35729,7 +38427,7 @@
           "projectIds": [
             "cd-line18-phase3"
           ],
-          "title": "成都18号线三期北延建设篇",
+          "title": "18号线三期：北延与临江预留段",
           "date": "2026-10-01",
           "status": "under_construction",
           "sourceType": "metro_operator_construction_update",
@@ -35740,7 +38438,7 @@
           "source": "https://www.chengdurail.com/info/1261/55632.htm",
           "sourceTitle": "成都轨道交通18号线三期工程建设进展",
           "sourceCheckedAt": "2026-10-23",
-          "description": "从既有火车南站向北建设倪家桥、省体育馆、骡马市、火车北站，分别建立独立18号线站体及换乘。北延段在截止日仍在建，不是既有18号线的一部分；临江段及已先期开通的三站一区间另按具体范围核对，不由本篇自动记为完成。",
+          "description": "北延分别建设火车北、骡马市、省体育馆、倪家桥站体；临江段接出天府机场北至官堰土建预留站。已经运营的三站一区间复用并核对，不重复建造，不把预留站写成历史开放。",
           "sourcePublicationDate": "2024-11-15",
           "lineGroups": [
             {
@@ -35782,6 +38480,35 @@
               "stationOrderSource": "https://www.chengdurail.com/info/1261/55632.htm",
               "requireOpen": false,
               "servicePathRevision": 3
+            },
+            {
+              "key": "linjiang",
+              "taskId": "project:cd-line18-phase3-build:linjiang",
+              "mapRouteId": "chengdu-future-line18-phase3-linjiang",
+              "coverageGroupId": "chengdu-line18-phase3-linjiang",
+              "name": "18号线三期临江段：官堰土建预留",
+              "historicalLineId": "chengdu-line18-13",
+              "color": "#00A4A9",
+              "stationIds": [
+                "chengdu-s313",
+                "chengdu-f18p3-guanyan"
+              ],
+              "stationNames": {
+                "chengdu-s313": "天府机场北",
+                "chengdu-f18p3-guanyan": "官堰"
+              },
+              "stationInstances": {
+                "chengdu-s313": "chengdu-s313__line18-13",
+                "chengdu-f18p3-guanyan": "chengdu-f18p3-guanyan__line18-13"
+              },
+              "toleranceM": 250,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationOrderSource": "https://m.thepaper.cn/newsDetail_forward_17773463",
+              "servicePathRevision": 1,
+              "precisionNote": "天府机场北以东的临江段，官堰为土建预留；现代站区及区间走廊近似，不编造开放日期。",
+              "reservedStationIds": [
+                "chengdu-f18p3-guanyan"
+              ]
             }
           ],
           "requiredTransfers": [
@@ -35915,7 +38642,13 @@
             }
           ],
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.23.48"
+          "scopeRevision": "2026.10.24.8",
+          "additionalSources": [
+            "https://m.thepaper.cn/newsDetail_forward_17773463",
+            "https://www.cdb.com.cn/xwzx/xxgg/fzgg/202604/P020260430518506727486.pdf"
+          ],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "cd-line10-phase3-remainder-build",
@@ -35999,9 +38732,11 @@
               "sourceNote": "环评明确人民公园10/17/2换乘，各自线路路径分开。"
             }
           ],
-          "scopeRevision": "2026.10.23.48",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "cd-line27-phase2-build",
@@ -36069,9 +38804,11 @@
               "sourceNote": "政府新闻办公开的工程概况表明确黄田坝与9号线换乘；各线路站体与轨道独立。"
             }
           ],
-          "scopeRevision": "2026.10.23.52",
+          "scopeRevision": "2026.10.24.8",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
         },
         {
           "id": "cd-line10-phase4-build",
@@ -36190,7 +38927,106 @@
               "sourceNote": "分别引用3、7号线及四期10号线站体，换乘边不进入列车轨道图。"
             }
           ],
-          "scopeRevision": "2026.10.23.51",
+          "scopeRevision": "2026.10.24.8",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": [],
+          "requireOpen": false,
+          "serviceStatusSchema": 2
+        },
+        {
+          "id": "cd-line18-phase4-build",
+          "projectIds": [
+            "cd-line18-phase4"
+          ],
+          "title": "18号线四期：北段与简阳南东段",
+          "date": "2026-10-01",
+          "status": "approved_preparatory",
+          "sourceType": "provincial_government_information_office_project_scope",
+          "projectType": "approved_preparatory",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceTitle": "四川省政府新闻办四川发布2025-11-06：18号线四期工程概况",
+          "sourceCheckedAt": "2026-10-24",
+          "description": "分别建设北段双水碾、凤凰山、利民路及东段简阳南4座新站，复用三期两端。公布正线7.335千米、出入线约1.886千米可兼正线；不把节能审查当作开工或运营许可，站位仍为公开地理参考。",
+          "sourcePublicationDate": "2025-11-06",
+          "lineGroups": [
+            {
+              "taskId": "project:cd-line18-phase4-build:north",
+              "mapRouteId": "chengdu-future-line18-phase4-north",
+              "name": "18号线四期北段",
+              "historicalLineId": "chengdu-line18-13",
+              "color": "#00A4A9",
+              "stationIds": [
+                "chengdu-s22",
+                "chengdu-s340",
+                "chengdu-f18p4-fenghuangshan",
+                "chengdu-f18p4-liminlu"
+              ],
+              "stationNames": {
+                "chengdu-s22": "火车北站",
+                "chengdu-s340": "双水碾",
+                "chengdu-f18p4-fenghuangshan": "凤凰山",
+                "chengdu-f18p4-liminlu": "利民路"
+              },
+              "toleranceM": 700.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "公布北段3座新站全部进入任务，复用三期火车北站接头；道路参考站区及区间为近似，凤凰山与利民路不作精确线位评价。",
+              "stationOrderSource": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "chengdu-s22": "chengdu-s22__line18-13",
+                "chengdu-s340": "chengdu-s340__line18-13"
+              },
+              "coverageGroupId": "chengdu-line18-phase4-north"
+            },
+            {
+              "taskId": "project:cd-line18-phase4-build:east",
+              "mapRouteId": "chengdu-future-line18-phase4-east",
+              "name": "18号线四期东段",
+              "historicalLineId": "chengdu-line18-13",
+              "color": "#00A4A9",
+              "stationIds": [
+                "chengdu-f18p3-guanyan",
+                "chengdu-f18p4-jianyangsouth"
+              ],
+              "stationNames": {
+                "chengdu-f18p3-guanyan": "官堰",
+                "chengdu-f18p4-jianyangsouth": "简阳南"
+              },
+              "toleranceM": 700.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "东段接出三期官堰至简阳南地铁站区，独立于北段；不将两段间虚构为本期新增线路，不编造未来开通日期。",
+              "stationOrderSource": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "chengdu-f18p3-guanyan": "chengdu-f18p3-guanyan__line18-13"
+              },
+              "coverageGroupId": "chengdu-line18-phase4-east"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-cd18-shuangshuinian-27",
+              "name": "双水碾",
+              "complexId": "chengdu-s340",
+              "stationInstanceIds": [
+                "chengdu-s340",
+                "chengdu-s340__line18-13"
+              ],
+              "lineIds": [
+                "chengdu-line27-15",
+                "chengdu-line18-13"
+              ],
+              "precision": "schematic",
+              "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+              "sourceNote": "按四期工程概况及既有27号线站序，建立独立线路站体的换乘联系。凤凰山成德线、简阳南国铁接驳另属背景，不冒充已建地铁换乘。"
+            }
+          ],
+          "scopeRevision": "2026.10.24.9",
           "requiresScopeRecheck": true,
           "scopeCorrections": []
         }
@@ -36248,7 +39084,8 @@
         "chengdu-s329": "chengdu-s25",
         "chengdu-s330": "chengdu-s67",
         "chengdu-s375": "chengdu-s318",
-        "chengdu-s170": "chengdu-s9"
+        "chengdu-s170": "chengdu-s9",
+        "chengdu-s352": "chengdu-s58"
       },
       "stationInstanceAliases": {
         "chengdu-line1|chengdu-s9": "chengdu-s304",
@@ -36257,12 +39094,16 @@
         "chengdu-line1|chengdu-s12": "chengdu-s12",
         "chengdu-line8-8|chengdu-s274": "chengdu-s274__line8-8",
         "chengdu-line13-11|chengdu-s321": "chengdu-s321__line13-11",
-        "chengdu-line18-13|chengdu-s303": "chengdu-s303__line18-13"
+        "chengdu-line18-13|chengdu-s303": "chengdu-s303__line18-13",
+        "chengdu-line19-14|chengdu-s309": "chengdu-s309__line18-13",
+        "chengdu-line19-14|chengdu-s310": "chengdu-s310__line18-13",
+        "chengdu-line19-14|chengdu-s312": "chengdu-s312__line18-13",
+        "chengdu-line19-14|chengdu-s313": "chengdu-s313__line18-13"
       }
     }
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.24.4",
-  "contentRevisionNote": "广州3/14主支线、12东西分段分别保存，修正把不同运营路径串接为同一条线的错误。"
+  "contentRevision": "2026.10.24.18",
+  "contentRevisionNote": "更正2010成都1号线首开16站；2013海洋公园增站与锦城广场更名单列，工程17站不冒充首开全部开放。"
 }

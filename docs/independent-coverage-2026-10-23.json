@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.24.4",
+  "contentRevision": "2026.10.24.18",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -9,7 +9,9 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
-        "dated cutoff opening evidence missing"
+        "dated cutoff opening evidence missing",
+        "sz-line10-east-shenzhen: independent project requirements missing",
+        "sz-line11-north-shenzhen: independent project requirements missing"
       ],
       "projects": [
         {
@@ -72,9 +74,7 @@
         "independent milestone requirements missing",
         "cutoff opening status not independently reviewed",
         "dated cutoff opening evidence missing",
-        "sh-line19: independent project requirements missing",
-        "sh-line23-phase1: independent project requirements missing",
-        "sh-line22-chongming: independent project requirements missing"
+        "sh-line19: independent transfer coverage incomplete"
       ],
       "projects": [
         {
@@ -106,6 +106,23 @@
           "id": "sh-line13-west-east",
           "ok": true,
           "errors": []
+        },
+        {
+          "id": "sh-line23-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sh-line22-chongming",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sh-line19",
+          "ok": false,
+          "errors": [
+            "independent transfer coverage incomplete"
+          ]
         }
       ]
     },
@@ -139,7 +156,8 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
-        "dated cutoff opening evidence missing"
+        "dated cutoff opening evidence missing",
+        "gz-line11-railway-station: independent project requirements missing"
       ],
       "projects": [
         {
@@ -171,6 +189,16 @@
           "id": "gz-line18-remainder",
           "ok": true,
           "errors": []
+        },
+        {
+          "id": "gz-line14-remainder",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "gz-line10-remainder",
+          "ok": true,
+          "errors": []
         }
       ]
     },
@@ -181,15 +209,13 @@
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
         "dated cutoff opening evidence missing",
-        "cd-line18-phase3: official requirements not independently reviewed"
+        "cd-line12-phase1: independent project requirements missing"
       ],
       "projects": [
         {
           "id": "cd-line18-phase3",
-          "ok": false,
-          "errors": [
-            "official requirements not independently reviewed"
-          ]
+          "ok": true,
+          "errors": []
         },
         {
           "id": "cd-line10-phase3-remainder",
@@ -203,6 +229,11 @@
         },
         {
           "id": "cd-line10-phase4",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "cd-line18-phase4",
           "ok": true,
           "errors": []
         }

@@ -396,7 +396,7 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 				for group in chapter.get("lineGroups", []):
 					if str(group.get("historicalLineId", "")) == line_id: matching_group = group; break
 				if line_id.is_empty() or matching_group.is_empty(): errors.append("%s 服务阶段引用了不存在的线路组" % chapter_id)
-				if status not in ["built", "trial", "open"]: errors.append("%s 服务阶段状态无效" % chapter_id)
+				if status not in ["built", "trial", "open", "suspended"]: errors.append("%s 服务阶段状态无效" % chapter_id)
 				if transition_ids.size() < 2 or str(transition.get("source", "")).is_empty(): errors.append("%s 服务阶段缺少范围或来源" % chapter_id)
 				for id in transition_ids:
 					if not station_ids.has(str(id)) or not matching_group.get("stationIds", []).has(str(id)): errors.append("%s 服务阶段范围与本期线路站序不一致：%s" % [chapter_id, str(id)])

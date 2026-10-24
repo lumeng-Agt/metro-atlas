@@ -19,6 +19,8 @@ def check_project(target, plans, names):
     matched = [p for p in plans if target['id'] in p.get('projectIds', [])]
     if target.get('reviewStatus') != 'verified':
         errors.append('official requirements not independently reviewed')
+    if target.get('transferReviewStatus', 'verified') != 'verified':
+        errors.append('independent transfer coverage incomplete')
     if not target.get('source') or not target.get('sourcePublicationDate'):
         errors.append('dated official evidence missing')
     if not matched:

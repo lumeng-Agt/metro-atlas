@@ -6,6 +6,9 @@ signal changed
 var world: Dictionary
 var max_steps := 200
 const PLANNING_KEYS := ["stations", "stationComplexes", "transferConnections", "serviceRanges", "routes", "trackLinks", "trackNodes", "trackEdges", "depots", "fleetMode", "planningPhases", "currentPlanningPhaseId", "storyPlan"]
+## Story progress is captured only by an explicit transaction, never by the
+## default milestone snapshot (which would recursively contain milestones).
+const EXPLICIT_KEYS := ["storyState"]
 
 func attach(state: Dictionary) -> void:
 	world = state
@@ -84,14 +87,14 @@ func _planning_equal(before: Dictionary, after: Dictionary) -> bool:
 func _capture_planning(affected_fields: Array = []) -> Dictionary:
 	var snapshot := {}
 	for key in (PLANNING_KEYS if affected_fields.is_empty() else affected_fields):
-		if not PLANNING_KEYS.has(key): continue
+		if not PLANNING_KEYS.has(key) and not EXPLICIT_KEYS.has(key): continue
 		var value: Variant = world.get(key, [])
 		snapshot[key] = value.duplicate(true) if value is Array or value is Dictionary else value
 	return snapshot
 
 func _build_diff(before: Dictionary, after: Dictionary) -> Dictionary:
 	var fields: Dictionary = {}
-	for key in PLANNING_KEYS:
+	for key in before:
 		var old_value: Variant = before.get(key)
 		var new_value: Variant = after.get(key)
 		if old_value is Array and new_value is Array and _has_stable_ids(old_value) and _has_stable_ids(new_value):
@@ -115,7 +118,7 @@ func _build_diff(before: Dictionary, after: Dictionary) -> Dictionary:
 func _apply_diff(diff: Dictionary, use_after: bool) -> void:
 	var fields: Dictionary = diff.get("fields", {})
 	for key in fields:
-		if not PLANNING_KEYS.has(key): continue
+		if not PLANNING_KEYS.has(key) and not EXPLICIT_KEYS.has(key): continue
 		var change: Dictionary = fields[key]
 		if str(change.get("type", "")) != "identified_array":
 			var value: Variant = change.get("after") if use_after else change.get("before")

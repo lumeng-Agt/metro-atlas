@@ -1,0 +1,104 @@
+{
+  "city": "guangzhou",
+  "projectIds": [
+    "gz-line10-remainder"
+  ],
+  "stations": [
+    {
+      "id": "guangzhou-s362",
+      "name": "杨箕东",
+      "existing": true
+    },
+    {
+      "id": "guangzhou-f10-tianhelu",
+      "name": "天河路",
+      "latlng": [
+        23.1359124,
+        113.3201819
+      ],
+      "coordinateAccuracyM": 450,
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "工程报道定位于BRT体育中心站下方，地理参考取该BRT站OSM node4577368333。该坐标为地面公交站的走廊参考，不是地铁站体测绘；换乘通道另据广州地铁公开资料。"
+    },
+    {
+      "id": "guangzhou-s5",
+      "name": "石牌桥",
+      "existing": true
+    },
+    {
+      "id": "guangzhou-s6",
+      "name": "体育西路",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "remainder",
+      "mapRouteId": "guangzhou-future-line10-remainder",
+      "coverageGroupId": "guangzhou-line10-remainder",
+      "name": "10号线后通建设段",
+      "historicalLineId": "guangzhou-line10-10",
+      "color": "#7D9CCB",
+      "stationIds": [
+        "guangzhou-s362",
+        "guangzhou-f10-tianhelu",
+        "guangzhou-s5"
+      ],
+      "stationInstances": {
+        "guangzhou-s362": "guangzhou-s362",
+        "guangzhou-f10-tianhelu": "guangzhou-f10-tianhelu__line10-10",
+        "guangzhou-s5": "guangzhou-s5__line3-3"
+      },
+      "toleranceM": 450,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "stationOrderSource": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+      "precisionNote": "官方2026-04明确一座新站、两个区间；石牌桥复用既有支线接头。建设完成不调整3号线实际归属，不把尚未确定的拆分实施日期写成历史。"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-gz10-tianhe-1",
+      "name": "天河路／体育西路",
+      "complexId": "guangzhou-s6",
+      "stationInstanceIds": [
+        "guangzhou-s6__line1",
+        "guangzhou-f10-tianhelu__line10-10"
+      ],
+      "lineIds": [
+        "guangzhou-line1",
+        "guangzhou-line10-10"
+      ],
+      "sourceNote": "广州地铁2023年公开资料明确远期接入1号线体育西路站的通道；独立10号线站体，不共用站厅或轨道。"
+    },
+    {
+      "id": "future-transfer-gz10-tianhe-3",
+      "name": "天河路／体育西路",
+      "complexId": "guangzhou-s6",
+      "stationInstanceIds": [
+        "guangzhou-s6__line3-3",
+        "guangzhou-f10-tianhelu__line10-10"
+      ],
+      "lineIds": [
+        "guangzhou-line3-3",
+        "guangzhou-line10-10"
+      ],
+      "sourceNote": "通过天河路与体育西路既有1/3换乘站区建立线路联系；通道形制示意，不声称两线共轨或提前完成3号线拆分。"
+    }
+  ],
+  "plan": {
+    "id": "gz-line10-remainder-build",
+    "title": "10号线后通段：天河路与石牌桥接头",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "projectType": "under_construction",
+    "required": true,
+    "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+    "sourceTitle": "白云区2026-04官方工程进度：十号线后通一站两区间",
+    "sourceType": "municipal_construction_progress",
+    "sourcePublicationDate": "2026-04-28",
+    "sourceCheckedAt": "2026-10-24",
+    "description": "复现杨箕东—天河路—石牌桥的已公布后通建设范围，保留3号线既有天河客运站支线。未来拆分实施方案和日期未确定，不借本任务提前改写现状或宣称开通。",
+    "contentRevision": "2026.10.24.16",
+    "requiresScopeRecheck": true
+  }
+}

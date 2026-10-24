@@ -23706,6 +23706,20 @@
           "source": "https://ghzyj.gz.gov.cn/ywpd/cxgh/ghxkgsgb/phgbnew/ydghxkz/2025/content/post_10687579.html",
           "sourceCheckedAt": "2026-10-23",
           "coordinateAccuracyM": 300
+        },
+        {
+          "id": "guangzhou-f10-tianhelu",
+          "name": "天河路",
+          "latlng": [
+            23.1359124,
+            113.3201819
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "工程报道定位于BRT体育中心站下方，地理参考取该BRT站OSM node4577368333。该坐标为地面公交站的走廊参考，不是地铁站体测绘；换乘通道另据广州地铁公开资料。",
+          "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
+          "sourceCheckedAt": "2026-10-24",
+          "coordinateAccuracyM": 450
         }
       ],
       "lines": [
@@ -39574,6 +39588,61 @@
           "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
           "sourceCheckedAt": "2026-10-23",
           "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f18p3-guanyan",
+          "name": "官堰",
+          "latlng": [
+            30.3514322,
+            104.4799671
+          ],
+          "coordinateSource": "existing_station",
+          "osmNodeId": 8849555979,
+          "source": "https://m.thepaper.cn/newsDetail_forward_17773463",
+          "coordinateNote": "OSM地铁预留站节点8849555979，近临江停车场。用于站区近似；不得把附近国铁简阳南站或村名直接作为本站。",
+          "constructionStatus": "civil_reserved"
+        },
+        {
+          "id": "chengdu-f18p4-fenghuangshan",
+          "name": "凤凰山",
+          "latlng": [
+            30.7332904,
+            104.0728334
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "站名、顺序据四川发布；以北星大道/熊猫大道西段交点（OSM ways517830656/974076328）及成德线环评中的共址走廊作近似参考，非18号线定点或隧道测绘。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-24",
+          "coordinateAccuracyM": 500
+        },
+        {
+          "id": "chengdu-f18p4-liminlu",
+          "name": "利民路",
+          "latlng": [
+            30.7550326,
+            104.0805032
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "站名与顺序据四川发布；以停车场北侧利民路片区（OSM ways353999817/179764931）作近似站区，不能将该路口称作官方站位。出入线可兼正线，未公开各站间精确长度。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-24",
+          "coordinateAccuracyM": 650
+        },
+        {
+          "id": "chengdu-f18p4-jianyangsouth",
+          "name": "简阳南",
+          "latlng": [
+            30.3563573,
+            104.515732
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "成都轨道集团公开答复指出官堰延伸至高铁简阳南站。以国铁枢纽OSM node3500462638附近作地铁独立站区参考，不把国铁站房中心当作地铁站体精确坐标。",
+          "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
+          "sourceCheckedAt": "2026-10-24",
+          "coordinateAccuracyM": 700
         }
       ],
       "lines": [

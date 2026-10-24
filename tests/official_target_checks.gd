@@ -42,7 +42,15 @@ func _run() -> void:
 	var retired_world:=world.duplicate(true);retired_world.routes[0].retired=true
 	_check(not OfficialNetworkAudit.current_project_errors(retired_world,["sz-line15"]).is_empty(),"a retired correct route cannot certify the current project")
 	var closed_world:=world.duplicate(true);closed_world.routes[0].open=false
-	_check(not OfficialNetworkAudit.current_project_errors(closed_world,["sz-line15"]).is_empty(),"an unopened archived path cannot certify an active service")
+	var target_data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(OfficialNetworkAudit.TARGET_PATH))
+	var ring_requirement:Dictionary={}
+	for target in target_data.cities.shenzhen.projects:
+		if target.id=="sz-line15":ring_requirement=target.duplicate(true);break
+	_check(OfficialNetworkAudit.current_project_errors(closed_world,["sz-line15"]).is_empty(),"an unopened planned path can certify construction without inventing historical opening")
+	ring_requirement["constructionOnly"]=false
+	_check(not OfficialNetworkAudit.project_errors(closed_world,ring_requirement).is_empty(),"the same unopened path cannot certify historical operation")
+	var built_section:=world.duplicate(true);built_section.routes[0].directions[0].serviceStatusBySegment[0]="built"
+	_check(not OfficialNetworkAudit.project_errors(built_section,ring_requirement).is_empty(),"one built-only segment fails historical opening even when another segment keeps the line open")
 	_check(Story.task_confirmed(world,task),"fresh scope fingerprint confirms")
 	var final_records:=CampaignSystem.chapter_task_records("shenzhen","sz-line15-build")
 	_check(str(final_records.get(task,{}).get("scopeFingerprint",""))==Story.task_scope_fingerprint(world,task),"chapter completion preserves the normalized task scope fingerprint, including a ring closure")
@@ -170,6 +178,28 @@ func _run() -> void:
 	_check(Story.scope_correction_preview(old_branch,str(branch_group.taskId)).changes.is_empty(),"the independent-branch correction is idempotent")
 	old_branch.routes[0].directions.append({"stationIds":old_branch_ids.slice(1),"edgePathsBySegment":[]})
 	_check(not Story.scope_correction_preview(old_branch,str(branch_group.taskId)).ok,"an edited old branch is a conflict, rather than a direction to delete by guesswork")
+	var suffix_world:=WorldData.new_world("shenzhen","campaign")
+	suffix_world.storyState.phase="future";suffix_world.storyState.chapterId="sz-line20-phase2-build"
+	var known_prefix:Array=["shenzhen-s306","shenzhen-s307__line20-17","shenzhen-s308__line20-17","shenzhen-s309","shenzhen-s194__line20-17"]
+	var obsolete_ids:Array=known_prefix+["shenzhen-f20-futianhuizhan"]
+	for instance in obsolete_ids:suffix_world.stations.append({"id":instance,"stationInstanceId":instance})
+	var obsolete_direction:Dictionary={"stationIds":obsolete_ids.duplicate(),"edgePathsBySegment":[[],[],[],[],[]],"serviceStatusBySegment":["open","open","open","open","built"]}
+	suffix_world.routes=[{"id":"old20","historicalLineId":"shenzhen-line20-17","open":true,"directions":[obsolete_direction]}]
+	var suffix_preview:=Story.scope_correction_preview(suffix_world,"project:sz-line20-phase2-build")
+	_check(suffix_preview.ok and suffix_preview.changes.size()==1 and suffix_preview.changes[0].retainedDirection.stationIds==known_prefix,"old erroneous extension correction explicitly retains its documented phase-1 prefix")
+	Story._apply_scope_corrections(suffix_world,suffix_preview)
+	_check(suffix_world.routes[0].directions[0].stationIds==known_prefix and suffix_world.routes[0].directions[0].serviceStatusBySegment==["open","open","open","open"],"trimming an obsolete suffix preserves the operating segment states and archives the original route")
+	_check(suffix_world.stations.size()==6 and suffix_world.routes[0].legacyDirections.size()==1 and Story.scope_correction_preview(suffix_world,"").changes.is_empty(),"the correction preserves physical stations and is idempotent")
+	suffix_world.routes[0].directions=[Story._reverse_service_direction(obsolete_direction)]
+	var reverse_suffix:=Story.scope_correction_preview(suffix_world,"")
+	_check(reverse_suffix.ok and reverse_suffix.changes[0].retainedDirection.stationIds==known_prefix,"reverse-authored obsolete extensions retain the same ordered prefix")
+	suffix_world.routes[0].directions[0].stationIds[1]="player-changed-body"
+	_check(not Story.scope_correction_preview(suffix_world,"").ok,"a player-edited obsolete service is not silently trimmed")
+	suffix_world.routes[0].directions=[obsolete_direction.duplicate(true),{"stationIds":[known_prefix.back(),"correct-extension"],"edgePathsBySegment":[[]],"serviceStatusBySegment":["built"]}]
+	var joint_preview:=Story.scope_correction_preview(suffix_world,"")
+	Story._apply_scope_corrections(suffix_world,joint_preview)
+	_check(suffix_world.routes[0].directions.size()==1 and suffix_world.routes[0].stationOrder==known_prefix+["correct-extension"],"trimming the wrong tail rejoins an already-built corrected extension at the actual shared endpoint")
+	_check(suffix_world.routes[0].directions[0].serviceStatusBySegment==["open","open","open","open","built"],"rejoining a corrected extension does not open its planning segment")
 	var missing_revision:Dictionary={"lineGroups":[{"stationIds":["A","B"]}]}
 	var first_revision:=SaveManager._chapter_scope_revision(missing_revision)
 	_check(not first_revision.is_empty(),"a missing optional scope revision cannot skip old-save content revalidation")
@@ -209,6 +239,112 @@ func _run() -> void:
 	dependent_plan.storyState.completedChapterIds=["gz-line13-phase2-west-build"]
 	Story._recheck_future_services_after_cutoff_correction(dependent_plan,{"historicalLineId":"guangzhou-line12-12"})
 	_check(not dependent_plan.storyState.completedChapterIds.has("gz-line13-phase2-west-build"),"a changed interchange dependency requires project reconfirmation even when its own track line is unchanged")
+	var operating:Dictionary={"open":true,"serviceStatus":"open","directions":[{"stationIds":["A","B"],"edgePathsBySegment":[[]],"serviceStatusBySegment":["open"]}]}
+	var planned:Dictionary={"open":false,"serviceStatus":"built","directions":[{"stationIds":["B","C"],"edgePathsBySegment":[[]],"serviceStatusBySegment":["built"]}]}
+	var mixed_path:=Story._merge_historical_route(operating,planned)
+	_check(mixed_path.open and mixed_path.serviceStatus=="mixed" and mixed_path.directions[0].serviceStatusBySegment==["open","built"],"adding a built-only extension preserves the actual operating segment")
+	var reopened:=Story._merge_historical_route(mixed_path,{"open":true,"serviceStatus":"trial","directions":[{"stationIds":["B","C"],"edgePathsBySegment":[[]],"serviceStatusBySegment":["trial"]}]})
+	_check(reopened.open and reopened.directions[0].serviceStatusBySegment==["open","trial"],"opening a later section changes only that section's service status")
+	var status_world:Dictionary={"routes":[mixed_path.duplicate(true)]}
+	status_world.routes[0]["historicalLineId"]="L"
+	var planned_status:=planned.duplicate(true);planned_status["historicalLineId"]="L"
+	_check(SaveManager._planning_statuses_match(status_world,[planned_status]),"old-save status check accepts a planned extension beside an open historical segment")
+	status_world.routes[0].directions[0].serviceStatusBySegment=["open","open"]
+	_check(not SaveManager._planning_statuses_match(status_world,[planned_status]),"geometry alone does not retain an incorrect future opening completion")
+	status_world.routes[0].directions[0].serviceStatusBySegment=[]
+	_check(not SaveManager._planning_statuses_match(status_world,[planned_status]),"missing old segment statuses require explicit reconfirmation")
+	var phase_fixture:=WorldData.new_world("chengdu","campaign")
+	for chapter_id in ["cd-line1-2010","cd-line1-2015"]:
+		phase_fixture.storyState.phase="history";phase_fixture.storyState.chapterId=chapter_id;phase_fixture.storyState.stage="build"
+		app._enter(phase_fixture)
+		var phase_draft:Dictionary=app._assist_candidate()
+		_check(bool(app._commit_assisted_construction(phase_draft,int(phase_fixture.revision)).get("ok",false)),"period fixture uses the formal station-and-track commit")
+		var phase_groups:=Story.groups(phase_fixture,true)
+		_check(bool(Story.confirm_task(phase_fixture,Story.task_id(Story.chapter(phase_fixture),phase_groups[0],0),int(phase_fixture.revision)).get("ok",false)),"period fixture uses formal task confirmation")
+	_check(not OfficialNetworkAudit.historical_chapter_errors(phase_fixture,"cd-line1-2010").is_empty(),"a fresh 2010 checkpoint rejects the later 2015 south extension")
+	_check(OfficialNetworkAudit.historical_chapter_errors(phase_fixture,"cd-line1-2010",true).is_empty(),"an explicitly separate compatibility scope check retains later construction without certifying 2010 chronology")
+	# Focused interface fixture: give the real two-line initial scope a split
+	# operation solely to exercise ordering, atomic validation and undo. This
+	# is not a new Shenzhen historical event or cumulative-city evidence.
+	var fixtures:Array=CampaignSystem._catalog.cities.shenzhen.chapters
+	var reorganization_index:=-1
+	for index in range(fixtures.size()):
+		if str(fixtures[index].id)=="sz-initial-cross-2004":reorganization_index=index;break
+	var original_definition:Dictionary=fixtures[reorganization_index].duplicate(true)
+	fixtures[reorganization_index]["requiresLineReorganization"]=true
+	var reorganization_world:=WorldData.new_world("shenzhen","campaign")
+	reorganization_world.storyState.phase="history";reorganization_world.storyState.chapterId="sz-initial-cross-2004";reorganization_world.storyState.stage="build"
+	app._enter(reorganization_world)
+	while not Story.plan_is_final(reorganization_world):
+		var revised:Dictionary=app._commit_plan_revision(int(reorganization_world.storyPlan.get("planIndex",0))+1,int(reorganization_world.revision))
+		_check(bool(revised.get("ok",false)),"reorganization fixture adopts each sourced plan through the formal revision command")
+	var before_reorganization:=JSON.stringify(reorganization_world.routes)
+	_check(not bool(app._commit_line_reorganization(int(reorganization_world.revision)).get("ok",false)) and JSON.stringify(reorganization_world.routes)==before_reorganization,"missing construction blocks reorganization without partially changing service")
+	var reorganization_draft:Dictionary=app._assist_candidate()
+	_check(bool(app._commit_assisted_construction(reorganization_draft,int(reorganization_world.revision)).get("ok",false)),"reorganization fixture uses formal construction")
+	var ready_reorganization:=Story.evaluate(reorganization_world)
+	_check(ready_reorganization.issues.any(func(issue:Dictionary):return bool(issue.get("pendingConfirmation",false))),"ready interchange confirmation is distinct from missing geometry")
+	var stale_reorganization:=JSON.stringify(reorganization_world.routes)
+	_check(not bool(app._commit_line_reorganization(int(reorganization_world.revision)-1).get("ok",false)) and JSON.stringify(reorganization_world.routes)==stale_reorganization,"stale reorganization does not change planning")
+	_check(bool(app._commit_line_reorganization(int(reorganization_world.revision)).get("ok",false)),"ready-but-unconfirmed interchange does not create a circular reorganization dependency")
+	var organized_routes:=JSON.stringify(reorganization_world.routes)
+	_check(reorganization_world.routes.size()==2 and SaveManager.validate(reorganization_world).is_empty() and reorganization_world.transferConnections.is_empty(),"reorganization validates actual service while keeping the new interchange explicitly unconfirmed")
+	_check(not app.history.undo().is_empty() and not bool(reorganization_world.storyPlan.get("reorganizationAccepted",false)) and reorganization_world.routes.is_empty(),"undo restores both service and reorganization acceptance")
+	_check(not app.history.redo().is_empty() and JSON.stringify(reorganization_world.routes)==organized_routes,"redo restores exactly the validated service transaction")
+	for required in Story.chapter(reorganization_world).get("requiredTransfers",[]):
+		var link:Dictionary={"id":required.id,"name":required.name,"complexId":required.complexId,"stationInstanceIds":required.stationInstanceIds.duplicate(),"lineIds":required.lineIds.duplicate(),"status":"active","source":required.get("source","")}
+		_check(bool(app._commit_transfer_connection(required,link,int(reorganization_world.revision)).get("ok",false)),"interchange is explicitly established after the service reorganization")
+	_check(Story.evaluate(reorganization_world).complete,"construction, actual reorganization and explicit interchange jointly satisfy the fixture")
+	fixtures[reorganization_index]=original_definition
+	var corrected_early:=WorldData.new_world("chengdu","campaign")
+	corrected_early.storyState.chapterId="chengdu-network-milestone-2020-12-18"
+	corrected_early.storyState.completedChapterIds=["chengdu-opening-line10-phase3-first-2025","cd-line1-2010"]
+	corrected_early.storyState.chapterTaskProgress={"chengdu-opening-line10-phase3-first-2025":{"tasks":{"previous":{"status":"confirmed"}}}}
+	var retained_geometry:=JSON.stringify(corrected_early.stations)
+	Story._recheck_later_historical_services(corrected_early,{"historicalLineId":"chengdu-line17-12","reconfirmLaterServices":true})
+	_check(not corrected_early.storyState.completedChapterIds.has("chengdu-opening-line10-phase3-first-2025") and corrected_early.storyState.completedChapterIds.has("cd-line1-2010"),"correcting an old modern snapshot reopens only later affected historical service")
+	_check(corrected_early.storyState.legacyTaskProgress.has("chengdu-opening-line10-phase3-first-2025") and JSON.stringify(corrected_early.stations)==retained_geometry,"later completion evidence and all construction survive a dated service correction")
+	var correction_history:=CommandHistory.new();correction_history.attach(corrected_early)
+	_check(not correction_history._capture_planning().has("storyState"),"default milestone snapshots cannot recursively capture story milestones")
+	var previous_story:=JSON.stringify(corrected_early.storyState)
+	correction_history.execute("reconfirm fixture",func(state:Dictionary):state.storyState.completedChapterIds.append("fixture-later"),["storyState"])
+	_check(not correction_history.undo().is_empty() and JSON.stringify(corrected_early.storyState)==previous_story,"explicit reorganization progress is restored with the same undo transaction")
+	_check(not correction_history.redo().is_empty() and corrected_early.storyState.completedChapterIds.has("fixture-later"),"explicit reorganization progress also survives redo")
+	var presentation_fixture:Dictionary={"valid":true,"directions":[{"id":"f","segments":[{"id":"A"},{"id":"B"},{"id":"C"},{"id":"D"}]}]}
+	var presentation_route:Dictionary={"open":true,"serviceStatus":"mixed","directions":[{"serviceStatusBySegment":["open","built","trial","suspended"]}]}
+	var shown:=RoutePath.presentation_directions(presentation_fixture,presentation_route)
+	_check(shown.size()==2 and shown[0].segments==[{"id":"A"}] and shown[1].segments==[{"id":"C"}],"presentation splits at every built-only or suspended gap rather than driving across it")
+	presentation_route.directions[0].serviceStatusBySegment=[]
+	_check(RoutePath.presentation_directions(presentation_fixture,presentation_route).is_empty(),"a mixed route without segment evidence is not displayed as fully open")
+	var closure_fixture:=WorldData.new_world("chengdu","campaign")
+	closure_fixture.storyState.chapterId="chengdu-line2-east-suspended";closure_fixture.storyState.phase="history";closure_fixture.storyState.stage="build"
+	app._enter(closure_fixture)
+	_check(bool(app._commit_assisted_construction(app._assist_candidate(),int(closure_fixture.revision)).get("ok",false)),"closure fixture obtains real physical geometry through the formal construction command")
+	var closure_transitions:Array=Story.evaluate(closure_fixture).serviceTransitions
+	for proposal in closure_transitions:
+		_check(bool(app._commit_service_transition(proposal,int(closure_fixture.revision)).get("ok",false)),"the source-backed open or suspended scope requires an explicit service transaction")
+	_check(closure_fixture.routes[0].directions[0].serviceStatusBySegment[-1]=="suspended","confirming the range immediately changes the actual service, before task confirmation")
+	_check(not app.history.undo().is_empty() and closure_fixture.routes[0].directions[0].serviceStatusBySegment[-1]!="suspended","undo restores the same range record and actual service atomically")
+	_check(not app.history.redo().is_empty() and closure_fixture.routes[0].directions[0].serviceStatusBySegment[-1]=="suspended","redo restores the confirmed suspended range")
+	var closure_task:=Story.task_id(Story.chapter(closure_fixture),Story.groups(closure_fixture,true)[0],0)
+	_check(bool(Story.confirm_task(closure_fixture,closure_task,int(closure_fixture.revision)).get("ok",false)),"mixed open/suspended line can be confirmed without closing the unaffected western line")
+	_check(OfficialNetworkAudit.historical_chapter_errors(closure_fixture,"chengdu-line2-east-suspended").is_empty(),"independent closure audit checks both the operating west and actual suspended east")
+	var closure_path:=RoutePath.for_route(closure_fixture.routes[0],closure_fixture,float(WorldData.city("chengdu").center[0]))
+	var closure_display:=RoutePath.presentation_directions(closure_path,closure_fixture.routes[0])
+	_check(closure_display.size()==1 and closure_display[0].segments.size()==25,"closure presentation ends at Chengdu University of Administration and does not enter the six suspended stations")
+	closure_fixture.routes[0].directions[0].serviceStatusBySegment[-1]="open"
+	_check(not OfficialNetworkAudit.historical_chapter_errors(closure_fixture,"chengdu-line2-east-suspended").is_empty(),"falsely reopening a suspended segment fails the independent dated audit")
+	var inserted_history:=WorldData.new_world("chengdu","campaign")
+	var cd_chapters:Array=CampaignSystem.city_config("chengdu").chapters
+	inserted_history.storyState.completedChapterIds=cd_chapters.filter(func(c:Dictionary):return str(c.id)!="chengdu-line2-east-suspended").map(func(c:Dictionary):return str(c.id))
+	inserted_history.storyState.phase="future";inserted_history.storyState.stage="build";inserted_history.storyState.chapterId="cd-line18-phase4-build"
+	Story.next_chapter(inserted_history)
+	_check(inserted_history.storyState.phase=="future" and inserted_history.storyState.stage=="build","new historical content does not discard an active planning draft")
+	inserted_history.storyState.stage="outcome";Story.next_chapter(inserted_history)
+	_check(inserted_history.storyState.phase=="history" and inserted_history.storyState.chapterId=="chengdu-line2-east-suspended","the saved final planning outcome resumes newly inserted historical construction")
+	inserted_history.storyState.phase="future_gap";inserted_history.storyState.chapterId="chengdu-network-reconciliation-2026-10-01"
+	SaveManager._resume_expanded_history(inserted_history.storyState,"chengdu","campaign")
+	_check(inserted_history.storyState.phase=="history" and inserted_history.storyState.chapterId=="chengdu-line2-east-suspended","a boundary save cannot let its retained valid historical ID hide new missing tasks")
 	app.queue_free();await process_frame
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())
 	for failure in failures:push_error(failure)

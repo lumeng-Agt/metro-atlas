@@ -184,7 +184,9 @@ func _rebuild_route_path_cache() -> void:
 	for route in world.get("routes", []):
 		route_cache_by_id[str(route.get("id", ""))] = route
 		if not bool(route.get("open", false)): continue
-		route_path_cache[str(route.get("id", ""))] = RoutePathScript.for_route(route, world, geometry_ref_lat)
+		var canonical:=RoutePathScript.for_route(route,world,geometry_ref_lat)
+		canonical["presentationDirections"]=RoutePathScript.presentation_directions(canonical,route)
+		route_path_cache[str(route.get("id", ""))] = canonical
 	for link in world.get("trackLinks", []):
 		var a_ref: Dictionary = link.get("a", {})
 		var b_ref: Dictionary = link.get("b", {})
@@ -874,7 +876,7 @@ func _draw_trains_on(target: CanvasItem) -> void:
 	for route_id in route_path_cache:
 		var route:Dictionary=route_cache_by_id.get(str(route_id),{})
 		var path:Dictionary=route_path_cache[route_id]
-		for direction in path.get("directions",[]).slice(0,2):
+		for direction in path.get("presentationDirections",[]).slice(0,2):
 			var geo_points:Array=[]
 			for segment in direction.get("segments",[]):
 				for point in segment.get("points",[]):geo_points.append(point)

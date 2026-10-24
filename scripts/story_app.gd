@@ -83,7 +83,7 @@ var tool_flow:HFlowContainer
 var feedback_enabled := true
 var feedback_volume := 0.35
 var feedback_player: AudioStreamPlayer
-var feedback_stream: AudioStreamGenerator
+var feedback_audio: Dictionary = {}
 var outcome_comparison := false
 
 func _ready() -> void:
@@ -165,24 +165,24 @@ func _build() -> void:
 	call_deferred("_layout")
 
 func _setup_feedback_audio() -> void:
-	feedback_stream=AudioStreamGenerator.new();feedback_stream.mix_rate=22050;feedback_stream.buffer_length=0.14
-	feedback_player=AudioStreamPlayer.new();feedback_player.stream=feedback_stream;add_child(feedback_player)
+	# Finite, cached cues end naturally; a generator would keep an audio
+	# playback alive after its last buffer (and leaked during quick teardown).
+	for kind in ["track","station","chapter"]:
+		var frequency:=720.0 if kind=="station" else 880.0 if kind=="chapter" else 620.0
+		var rate:=22050;var count:=roundi(rate*0.11)
+		var frames:=PackedByteArray();frames.resize(count*2)
+		for index in range(count):
+			var envelope:=minf(1.0,float(index)/220.0)*exp(-float(index)/900.0)
+			var sample:=sin(TAU*frequency*float(index)/rate)*envelope*0.16
+			frames.encode_s16(index*2,roundi(sample*32767.0))
+		var cue:=AudioStreamWAV.new();cue.format=AudioStreamWAV.FORMAT_16_BITS;cue.mix_rate=rate;cue.stereo=false;cue.data=frames
+		feedback_audio[kind]=cue
+	feedback_player=AudioStreamPlayer.new();add_child(feedback_player)
 
 func _play_feedback(kind:String) -> void:
 	if not feedback_enabled or feedback_volume<=0.001 or not is_instance_valid(feedback_player):return
-	var frequency:=620.0
-	if kind=="station":frequency=720.0
-	elif kind=="chapter":frequency=880.0
-	feedback_player.stop();feedback_player.volume_db=linear_to_db(feedback_volume);feedback_player.play()
-	var playback:=feedback_player.get_stream_playback() as AudioStreamGeneratorPlayback
-	if playback==null:return
-	var frames:=PackedVector2Array();var count:=roundi(feedback_stream.mix_rate*0.11)
-	for index in range(count):
-		var t:=float(index)/feedback_stream.mix_rate
-		var envelope:=minf(1.0,float(index)/220.0)*exp(-float(index)/900.0)
-		var sample:=sin(TAU*frequency*t)*envelope*0.16
-		frames.append(Vector2(sample,sample))
-	playback.push_buffer(frames)
+	feedback_player.stop();feedback_player.stream=feedback_audio.get(kind,feedback_audio.get("track"))
+	feedback_player.volume_db=linear_to_db(feedback_volume);feedback_player.play()
 
 func _layout() -> void:
 	if not is_instance_valid(map_area):return
@@ -720,9 +720,15 @@ func _commit_service_transition(proposal:Dictionary,expected_revision:int,checke
 	if Story._has_service_range(world,str(proposal.get("id",""))):return {"ok":false,"error":"本期历史范围已经确认。"}
 	var record:=proposal.duplicate(true);record.erase("displayStationNames");record.erase("focusLatlng")
 	var candidate:=world.duplicate(true);candidate.serviceRanges.append(record)
+	# The explicit scope action changes the actual presentation service now,
+	# rather than leaving it open until a later chapter/task confirmation.
+	for route in Story.evaluate(candidate).get("routes",[]):
+		if str(route.get("historicalLineId",""))==str(record.get("historicalLineId","")):Story._store_historical_route(candidate,route)
+	Story._refresh_route_memberships(candidate)
 	var invalid:=SaveManager.validate(candidate)
 	if not invalid.is_empty():return {"ok":false,"error":invalid}
-	_execute("确认历史服务范围",func(state:Dictionary):state.serviceRanges.append(record.duplicate(true)))
+	_execute("确认历史服务范围",func(state:Dictionary):
+		for key in ["serviceRanges","routes","stations","trackEdges","trackLinks"]:state[key]=candidate[key].duplicate(true))
 	_play_feedback("track")
 	return {"ok":true}
 
@@ -827,6 +833,7 @@ func _preview_transfer(transfer: Dictionary) -> void:
 
 func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expected_revision:int,checked:Dictionary={}) -> Dictionary:
 	if expected_revision!=int(world.get("revision",0)):return {"ok":false,"error":"规划已变化，请重新检查两侧线路。"}
+	if bool(Story.chapter(world).get("requiresLineReorganization",false)) and not bool(world.get("storyPlan",{}).get("reorganizationAccepted",false)):return {"ok":false,"error":"请使用下方「线路整理」核对并确认本期贯通站序。"}
 	# Recheck formal planning, not a caller's previously computed readiness.
 	checked=Story.evaluate(world)
 	var current_transfers:Array=Story.chapter(world).get("requiredTransfers",[])
@@ -1327,7 +1334,7 @@ func _execute(title:String,mutation:Callable) -> void:
 	if str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():problem="当前已到资料边界，后续故事与自由创作尚未解锁；已确认路网保持不变。";_instruction();_right();return
 	var fields:Array=["stations","stationComplexes","transferConnections","serviceRanges","trackNodes","trackEdges","trackLinks","routes"]
 	if title in ["采用历史修订方案","确认区间走向"]:fields=["storyPlan"]
-	elif title=="确认线路重组":fields=["storyPlan","routes"]
+	elif title=="确认线路重组":fields=["storyPlan","storyState","routes","stations","trackEdges","trackLinks","transferConnections"]
 	elif title=="修改站名":fields=["stations"]
 	elif title=="添加建设阶段":fields=["planningPhases","currentPlanningPhaseId"]
 	elif title=="辅助完成重复建设":fields=["stations","stationComplexes","transferConnections","trackNodes","trackEdges","storyPlan"]
@@ -1730,14 +1737,20 @@ func _commit_line_reorganization(expected_revision:int) -> Dictionary:
 	if not bool(Story.chapter(world).get("requiresLineReorganization",false)):return {"ok":false,"error":"当前章节不需要线路重组。"}
 	var probe:=world.duplicate(false);probe["storyPlan"]=world.storyPlan.duplicate(true);probe.storyPlan.reorganizationAccepted=true
 	var checked:=Story.evaluate(probe)
-	if not bool(checked.complete):return {"ok":false,"error":"请先完成本期站序、连接与换乘。","evaluation":checked}
-	var routes:Array=checked.routes
+	# Ready interchange pairs are a separate player confirmation after the
+	# service split. Their absence must not create a circular prerequisite.
+	if checked.get("issues",[]).any(func(issue:Dictionary):return not bool(issue.get("pendingConfirmation",false))):return {"ok":false,"error":"请先完成本期站序、连接与换乘。","evaluation":checked}
+	var correction:=Story.scope_correction_preview(world,"")
+	if not bool(correction.get("ok",false)):return correction
+	var candidate:=world.duplicate(true)
+	candidate.storyPlan["reorganizationAccepted"]=true
+	for route in checked.routes:Story._store_historical_route(candidate,route)
+	Story._apply_scope_corrections(candidate,correction)
+	Story._refresh_route_memberships(candidate)
+	var invalid:=SaveManager.validate(candidate)
+	if not invalid.is_empty():return {"ok":false,"error":invalid}
 	_execute("确认线路重组",func(state:Dictionary):
-		state.storyPlan["reorganizationAccepted"]=true
-		for route in routes:
-			route=route.duplicate(true);route["open"]=false
-			state.routes=state.routes.filter(func(old:Dictionary):return str(old.get("historicalLineId",""))!=str(route.get("historicalLineId","")))
-			state.routes.append(route))
+		for key in ["storyPlan","storyState","routes","stations","trackEdges","trackLinks","transferConnections"]:state[key]=candidate[key].duplicate(true))
 	return {"ok":true}
 
 func _new_phase() -> void:
