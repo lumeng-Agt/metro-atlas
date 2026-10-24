@@ -37,6 +37,7 @@ COORDINATE_SOURCES = {
     "official_chainage",
     "official_site_description",
     "local_road_geometry",
+    "local_osm_station_node",
     "official_project_statement_and_local_road_geometry",
 }
 

@@ -12,7 +12,7 @@ def read(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
 
 
-def check_project(target, plans, names):
+def check_project(target, plans, names, *, historical_construction=False):
     errors = []
     if target.get('optional', False):
         return errors
@@ -21,7 +21,10 @@ def check_project(target, plans, names):
         errors.append('official requirements not independently reviewed')
     if target.get('transferReviewStatus', 'verified') != 'verified':
         errors.append('independent transfer coverage incomplete')
-    if not target.get('source') or not target.get('sourcePublicationDate'):
+    bibliography = target.get('bibliographicCitation', {})
+    archival_evidence = (historical_construction and bibliography.get('kind') == 'official_yearbook'
+                         and bibliography.get('edition') and bibliography.get('locator'))
+    if not target.get('source') or (not target.get('sourcePublicationDate') and not archival_evidence):
         errors.append('dated official evidence missing')
     if not matched:
         return errors + ['required project has no playable task']
@@ -37,7 +40,15 @@ def check_project(target, plans, names):
             continue
         group = candidates[0]
         actual = [group.get('stationNames', {}).get(s, names.get(s, s)) for s in group.get('stationIds', [])]
-        wanted = expected.get('stationNames', [])
+        service_order = expected.get('stationNames', [])
+        wanted = expected.get('constructionStationNames', service_order) if historical_construction else service_order
+        if historical_construction and 'constructionStationNames' in expected:
+            # A task may add two stations to an existing 28-stop service. The
+            # runtime audit still checks all 28; static construction coverage
+            # checks the explicitly reviewed new subsection. It cannot refer
+            # to an unrelated stretch or waive a project station requirement.
+            if not expected.get('fullServiceOrder') or not station_order_matches(service_order, wanted, dict(matchScope='contiguous_subsequence', allowReverse=True)):
+                errors.append(f'{group_id}: construction scope is not part of the reviewed full service')
         if expected.get('scopeType') == 'corridor':
             if not expected.get('unpublishedStationOrderEvidence'):
                 errors.append(f'{group_id}: unsupported corridor exception')
@@ -112,8 +123,8 @@ def audit(campaigns=None, cities=None, targets=None):
             if entries[0].get('date') != milestone.get('date'):
                 errors.append(f"{milestone['chapterId']}: event date differs")
             for group in milestone.get('groups', []):
-                fake_target = dict(id='milestone', reviewStatus='verified', source=milestone.get('source'), sourcePublicationDate=milestone.get('sourcePublicationDate'), groups=[group])
-                errors.extend(check_project(fake_target, [dict(projectIds=['milestone'], lineGroups=entries[0].get('lineGroups', []))], names))
+                fake_target = dict(id='milestone', reviewStatus='verified', source=milestone.get('source'), sourcePublicationDate=milestone.get('sourcePublicationDate'), bibliographicCitation=milestone.get('bibliographicCitation', {}), groups=[group])
+                errors.extend(check_project(fake_target, [dict(projectIds=['milestone'], lineGroups=entries[0].get('lineGroups', []))], names, historical_construction=True))
         result['cities'][city_id] = {'ok': not errors, 'errors': errors, 'projects': projects}
         result['ok'] = result['ok'] and not errors
     return result

@@ -27,6 +27,7 @@ COORDINATE_SOURCES = {
     "official_chainage",
     "official_site_description",
     "local_road_geometry",
+    "local_osm_station_node",
     "official_project_statement_and_local_road_geometry",
 }
 
@@ -92,7 +93,7 @@ def validate(spec: dict, city: dict, existing_lines: set[str]) -> list[str]:
         if not isinstance(legacy, dict):
             errors.append("spec needs lineGroups[] or lineGroup")
             return errors
-        groups = [dict(legacy, stationIds=[str(entry.get("id") or entry["name"]) for entry in spec.get("stations", [])])]
+        groups = [dict(legacy, stationIds=legacy.get("stationIds", [str(entry.get("id") or entry["name"]) for entry in spec.get("stations", [])]))]
 
     for index, group in enumerate(groups):
         key = str(group.get("key") or index + 1)
@@ -166,11 +167,18 @@ def validate(spec: dict, city: dict, existing_lines: set[str]) -> list[str]:
         if len(line_ids) < 2:
             errors.append(f"transfer {transfer_id}: needs at least two line ids")
             continue
-        if sum(1 for line_id in line_ids if line_id in plan_lines) != 1:
-            errors.append(f"transfer {transfer_id}: exactly one line id must be this plan's line")
-        other_line = next(line_id for line_id in line_ids if line_id not in plan_lines)
-        if other_line not in existing_lines and not other_line.endswith("-future-line"):
-            errors.append(f"transfer {transfer_id}: unknown existing line {other_line}")
+        if len(set(line_ids)) != len(line_ids):
+            errors.append(f"transfer {transfer_id}: line ids must be distinct")
+        if not any(line_id in plan_lines for line_id in line_ids):
+            errors.append(f"transfer {transfer_id}: no line belongs to this plan")
+        body_ids=transfer.get("stationInstanceIds",[])
+        if len(body_ids)!=len(line_ids) or len(set(body_ids))!=len(body_ids):
+            errors.append(f"transfer {transfer_id}: each distinct line needs its own physical body")
+        # A single approved project can build two separate lines meeting at
+        # the same complex (Guangzhou's Jiangfu is such a sourced case).
+        for other_line in line_ids:
+            if other_line not in plan_lines and other_line not in existing_lines and not other_line.endswith("-future-line"):
+                errors.append(f"transfer {transfer_id}: unknown existing line {other_line}")
     return errors
 
 

@@ -18,7 +18,7 @@ def main():
     parser.add_argument('names', nargs='+')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    names = set(args.names)
+    names = {name.removesuffix('站') for name in args.names}
     rows = []
     processor = osmium.FileProcessor(str(ROOT / '.tools/osm-source' / f'{args.region}-latest.osm.pbf')).with_locations()
     for obj in processor.with_filter(osmium.filter.KeyFilter('name', 'old_name', 'construction:name')):

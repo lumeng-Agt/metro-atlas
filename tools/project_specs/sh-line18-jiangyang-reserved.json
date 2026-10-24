@@ -1,0 +1,72 @@
+{
+  "city": "shanghai",
+  "projectIds": [
+    "sh-line18-jiangyang-reserved"
+  ],
+  "stations": [
+    {
+      "id": "shanghai-s382",
+      "name": "长江西路",
+      "existing": true
+    },
+    {
+      "id": "shanghai-reserved18-jiangyangnanlu",
+      "name": "江杨南路",
+      "latlng": [
+        31.352043,
+        121.461732
+      ],
+      "coordinateSource": "local_osm_station_node",
+      "coordinateAccuracyM": 80,
+      "coordinateNote": "取本地OSM18号线停靠点12543176082/12543176083中心。与19号线物理站体分别建造，既有位置不移动；公开公告证明已建暂缓开放，不把地理节点当开通证据。"
+    },
+    {
+      "id": "shanghai-s383",
+      "name": "爱辉路",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "infill",
+      "mapRouteId": "shanghai-future-line18-reserved",
+      "coverageGroupId": "shanghai-line18-reserved",
+      "name": "18号线江杨南路已建未开放站",
+      "historicalLineId": "shanghai-line18-18",
+      "color": "#D6A461",
+      "stationIds": [
+        "shanghai-s382",
+        "shanghai-reserved18-jiangyangnanlu",
+        "shanghai-s383"
+      ],
+      "stationInstances": {
+        "shanghai-s382": "shanghai-s382",
+        "shanghai-reserved18-jiangyangnanlu": "shanghai-reserved18-jiangyangnanlu__line18-18",
+        "shanghai-s383": "shanghai-s383"
+      },
+      "constructionVariant": true,
+      "toleranceM": 250,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "官方已建暂缓站。完成实体站轨，不改变现有长江西路—爱辉路不停站服务；不开通、不虚构日期。",
+      "stationOrderSource": "https://jtw.sh.gov.cn/xwfb2/20251222/18dc74805200495eb362499c6c1f98d7.html"
+    }
+  ],
+  "transfers": [],
+  "plan": {
+    "id": "sh-line18-jiangyang-reserved-build",
+    "title": "18号线江杨南路：复现已建预留站",
+    "date": "2026-10-01",
+    "status": "built_unopened",
+    "projectType": "approved_project",
+    "sourceType": "municipal_opening_status_notice",
+    "required": true,
+    "source": "https://jtw.sh.gov.cn/xwfb2/20251222/18dc74805200495eb362499c6c1f98d7.html",
+    "sourceTitle": "上海交通：江杨南路站已建且通过安全评估，因周边配套暂不开放",
+    "sourcePublicationDate": "2025-12-22",
+    "sourceCheckedAt": "2026-10-24",
+    "description": "复现18号线已建但暂未开放的江杨南路站。当前列车仍不停站；随后19号线建设篇明确建立两线换乘。",
+    "contentRevision": "2026.10.24.23",
+    "scopeRevision": "2026.10.24.23",
+    "requiresScopeRecheck": true
+  }
+}

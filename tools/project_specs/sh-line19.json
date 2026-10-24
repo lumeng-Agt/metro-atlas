@@ -11,8 +11,9 @@
         31.08639,
         121.44051
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站；线路南端起点。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站；线路南端起点。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "联曹路",
@@ -21,8 +22,9 @@
         31.09909,
         121.438721
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "华泾西",
@@ -36,8 +38,9 @@
         31.122164,
         121.450755
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站；与规划23号线华泾路同站区，23号线未建暂不建立换乘。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站；与规划23号线华泾路同站区，23号线未建暂不建立换乘。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "三林南",
@@ -46,8 +49,9 @@
         31.128415,
         121.48378
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站；市域机场线三林南站同站区，非本游戏线路。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站；市域机场线三林南站同站区，非本游戏线路。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "凌兆新村",
@@ -66,8 +70,9 @@
         31.166338,
         121.473579
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "后滩",
@@ -86,8 +91,9 @@
         31.185659,
         121.491691
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "官方专项债券工可口径称“世博”，OSM 在建站名为“中华艺术宫南”；按同一点位建模。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "官方专项债券工可口径称“世博”，OSM 在建站名为“中华艺术宫南”；按同一点位建模。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "华丰路",
@@ -96,8 +102,9 @@
         31.193004,
         121.501537
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "南码头路",
@@ -106,8 +113,9 @@
         31.19869,
         121.505092
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "塘桥",
@@ -121,8 +129,9 @@
         31.224232,
         121.513713
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "商城路",
@@ -146,8 +155,9 @@
         31.260803,
         121.496391
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线在建站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "海伦路",
@@ -161,8 +171,9 @@
         31.265813,
         121.479255
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "上海外国语大学",
@@ -171,8 +182,9 @@
         31.278199,
         121.473229
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "按 OSM 19号线在建线位，在甜爱路—凉城路之间定位，邻近上海外国语大学。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "按 OSM 19号线在建线位，在甜爱路—凉城路之间定位，邻近上海外国语大学。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "凉城路",
@@ -181,8 +193,9 @@
         31.281164,
         121.466189
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线站；与在建20号线凉城路同站区，20号线未建暂不建立换乘。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线站；与在建20号线凉城路同站区，20号线未建暂不建立换乘。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "广灵四路",
@@ -191,8 +204,9 @@
         31.291736,
         121.46206
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "车站北路",
@@ -201,8 +215,9 @@
         31.305236,
         121.462641
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "虹湾路",
@@ -211,8 +226,9 @@
         31.31873,
         121.463761
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "一二八纪念路",
@@ -221,8 +237,9 @@
         31.332284,
         121.462935
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "呼玛路",
@@ -231,8 +248,9 @@
         31.34525,
         121.459169
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "江杨南路",
@@ -241,8 +259,9 @@
         31.351887,
         121.461808
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线站；与18号线江杨南路同站区，该站截至截止日未开通，暂不建立换乘。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线站；与18号线江杨南路同站区，该站截至截止日未开通，暂不建立换乘。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "泰和路",
@@ -251,8 +270,9 @@
         31.364278,
         121.463272
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "兰岗路",
@@ -261,8 +281,9 @@
         31.377897,
         121.457151
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "OSM 19号线站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "铁山路",
@@ -271,8 +292,9 @@
         31.386325,
         121.451303
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "铁通路",
@@ -281,8 +303,9 @@
         31.395589,
         121.447156
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     },
     {
       "name": "宝山站",
@@ -291,8 +314,9 @@
         31.404758,
         121.442003
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "上海宝山站（在建高铁站）站区，OSM 19号线在建站。"
+      "coordinateSource": "local_osm_station_node",
+      "coordinateNote": "上海宝山站（在建高铁站）站区，OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
+      "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
     }
   ],
   "lineGroups": [

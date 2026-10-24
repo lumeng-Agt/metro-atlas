@@ -1,6 +1,6 @@
 {
-  "contentRevision": "2026.10.24.22",
-  "scope": "本日三个隔离进度的已登记独立目标；不等于五城全量内容或实机验收",
+  "contentRevision": "2026.10.25.1",
+  "scope": "截至2026-10-25的隔离存档审核；各城市和重放使用的内容修订分别记录，不代表五城完整交付。",
   "reports": [
     {
       "checkedKnownProjects": [
@@ -147,22 +147,23 @@
           "截止日开放范围缺少独立日期证据，现行时刻表不能代替。"
         ]
       },
-      "contentRevision": "2026.10.24.22",
-      "gameId": "guangzhou_1792818018_c2f101b3af63",
+      "contentRevision": "2026.10.24.26",
+      "gameId": "guangzhou_1792838298_2835e34a108b",
       "knownProjectFailures": 0,
       "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery.",
       "replayLogs": [
         {
-          "path": ".tmp-remediation-20261024-gz-rev22-fresh.log",
-          "sha256": "f423424ed8b90607845cb3ec74cab02332655dc0775a2f847b23ceb50dae21a8",
+          "path": ".tmp-remediation-20261024-gz-rev26-fresh.log",
+          "sha256": "43c1543da94f1b412079f205cee1a1757e5bf191aed6a2b5a4fcb7bdfef7a669",
           "lastLines": [
             "REPLAY_CHECKPOINT_OK guangzhou gz-line11-railway-build milestone",
-            "REPLAY_CHAPTER_OK guangzhou gz-line11-railway-build stations=503 edges=488",
+            "REPLAY_CHAPTER_OK guangzhou gz-line11-railway-build stations=503 edges=489",
             "REPLAY_CITY_DONE guangzhou visited=35 phase=future_gap",
             "REPLAY_FAILURES 0 checkpoints=109"
           ]
         }
-      ]
+      ],
+      "scopeNote": "仅已登记独立目标检查；报告与重放内容修订分别保留，不代表当前所有源码变更已整城复测。"
     },
     {
       "checkedKnownProjects": [
@@ -223,6 +224,179 @@
           ]
         }
       ]
+    },
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line21"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line12-west"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line20-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line20-east"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line15-south"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line13-west-east"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line23-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line22-chongming"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line19"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sh-line18-jiangyang-reserved"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cutoff_network"
+        }
+      ],
+      "city": "shanghai",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "截止日开放范围缺少独立日期证据，现行时刻表不能代替。",
+          "项目sh-line19的完整换乘范围尚未核对。"
+        ]
+      },
+      "contentRevision": "2026.10.25.1",
+      "gameId": "shanghai_1792855992_b0635c910bcd",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery.",
+      "replayLogs": [
+        {
+          "path": ".tmp-remediation-20261024-sh-rev30b-fresh.log",
+          "sha256": "6a774b5a1655141ae1355761724fb7c65629020b1e41b153c68b4b8178de181d",
+          "lastLines": [
+            "REPLAY_CHECKPOINT_OK shanghai sh-line12-west-build milestone",
+            "REPLAY_CHAPTER_OK shanghai sh-line12-west-build stations=650 edges=644",
+            "REPLAY_CITY_DONE shanghai visited=45 phase=future_gap",
+            "REPLAY_FAILURES 0 checkpoints=136"
+          ]
+        }
+      ],
+      "scopeNote": "上海修订30b累计45节点136次保存；报告修订与构建修订分别保留，仍不是最新统一五城验收。"
+    },
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line15"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line27-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line20-phase2"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line32-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line22-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line25-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line29-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line13-phase2-south"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line17-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "sz-line19-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cutoff_network"
+        }
+      ],
+      "city": "shenzhen",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "截止日开放范围缺少独立日期证据，现行时刻表不能代替。",
+          "项目sz-line10-east-shenzhen缺少独立建设目标。",
+          "项目sz-line11-north-shenzhen缺少独立建设目标。"
+        ]
+      },
+      "contentRevision": "2026.10.24.34",
+      "gameId": "shenzhen_1792855515_1161e9429e2f",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery.",
+      "replayLogs": [
+        {
+          "path": ".tmp-remediation-20261024-sz-rev29-fresh.log",
+          "sha256": "dd79a46b77706d8a880405d62ab0d051cc3ecd14e347f91a0b751fc4a4a72a75",
+          "lastLines": [
+            "REPLAY_CHECKPOINT_OK shenzhen sz-line13-phase2-south-build milestone",
+            "REPLAY_CHAPTER_OK shenzhen sz-line13-phase2-south-build stations=570 edges=552",
+            "REPLAY_CITY_DONE shenzhen visited=37 phase=future_gap",
+            "REPLAY_FAILURES 0 checkpoints=106"
+          ]
+        }
+      ],
+      "scopeNote": "仅已登记独立目标检查；报告与重放内容修订分别保留，不代表当前所有源码变更已整城复测。"
     }
   ]
 }

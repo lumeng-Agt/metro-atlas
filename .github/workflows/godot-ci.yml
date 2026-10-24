@@ -43,6 +43,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Project plan coverage failed" }
           python tools/validate_project_spec.py --all
           if ($LASTEXITCODE -ne 0) { throw "Project spec validation failed" }
+          python tools/test_project_spec_rules.py
+          if ($LASTEXITCODE -ne 0) { throw "Project spec rule regressions failed" }
           python tools/test_network_baselines.py
           if ($LASTEXITCODE -ne 0) { throw "Network baseline checks failed" }
           python tools/test_network_coverage.py

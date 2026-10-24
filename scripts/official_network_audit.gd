@@ -106,18 +106,7 @@ static func historical_chapter_errors(world:Dictionary,chapter_id:String,scope_o
 	if scope_only_for_backfill:return errors
 	var reviewed_lines:Dictionary={}
 	for group in current.get("groups",[]):reviewed_lines[str(group.get("historicalLineId",group.id))]=true
-	var permitted:Dictionary={}
-	var chronological:=milestones.duplicate()
-	chronological.sort_custom(func(a:Dictionary,b:Dictionary):return str(a.get("date",""))<str(b.get("date","")))
-	for milestone in chronological:
-		if str(milestone.get("date",""))>str(current.get("date","")):continue
-		for group in milestone.get("groups",[]):
-			var line_id:=str(group.get("historicalLineId",group.id))
-			# A documented split replaces the former service scope. Unioning all
-			# historical names would let the old unsplit line survive indefinitely.
-			if not permitted.has(line_id) or bool(group.get("fullServiceOrder",false)):permitted[line_id]=[]
-			for name in group.get("stationNames",[]):
-				if not permitted[line_id].has(name):permitted[line_id].append(name)
+	var permitted:=permitted_historical_stops(milestones,str(current.get("date","")))
 	for route in world.get("routes",[]):
 		if bool(route.get("retired",false)) or not bool(route.get("open",true)):continue
 		var line_id:=str(route.get("historicalLineId",""))
@@ -127,6 +116,27 @@ static func historical_chapter_errors(world:Dictionary,chapter_id:String,scope_o
 				var name:=str(WorldData.find_station(world,str(id)).get("name",""))
 				if not permitted.get(line_id,[]).has(name):errors.append("%s: future or undocumented stop at %s: %s"%[line_id,str(current.get("date","")),name])
 	return errors
+
+static func permitted_historical_stops(milestones:Array,date:String) -> Dictionary:
+	var permitted:Dictionary={}
+	var chronological:=milestones.duplicate()
+	chronological.sort_custom(func(a:Dictionary,b:Dictionary):return str(a.get("date",""))<str(b.get("date","")))
+	for milestone in chronological:
+		if str(milestone.get("date",""))>date:continue
+		# All full patterns at a dated node describe the same snapshot. Clear
+		# the old scope once per line, then union its branches. Clearing for
+		# every branch incorrectly rejects the other branch's unique stations.
+		var reset_lines:Dictionary={}
+		for group in milestone.get("groups",[]):
+			var line_id:=str(group.get("historicalLineId",group.id))
+			if bool(group.get("fullServiceOrder",false)) and not reset_lines.has(line_id):
+				permitted[line_id]=[];reset_lines[line_id]=true
+		for group in milestone.get("groups",[]):
+			var line_id:=str(group.get("historicalLineId",group.id))
+			if not permitted.has(line_id):permitted[line_id]=[]
+			for name in group.get("stationNames",[]):
+				if not permitted[line_id].has(name):permitted[line_id].append(name)
+	return permitted
 
 static func cutoff_errors(world:Dictionary) -> Array[String]:
 	var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(TARGET_PATH))

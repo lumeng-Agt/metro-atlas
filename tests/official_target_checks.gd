@@ -14,6 +14,8 @@ func _check(ok:bool,message:String) -> void:
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():quit(2);return
 	WorldData.load_assets()
+	_check(CampaignSystem.validate_catalog(WorldData.cities()).is_empty(),"test fixtures require valid real catalogue references")
+	_check(CampaignSystem.validate_network_baseline(WorldData.cities()).is_empty(),"a stale timeline chapter reference fails the checks rather than only logging an error")
 	var app:=App.new();root.add_child(app);await process_frame
 	# A focused project fixture, not evidence of cumulative city completion.
 	var world:=WorldData.new_world("shenzhen","campaign")
@@ -381,7 +383,103 @@ func _run() -> void:
 	var variant_loaded:=SaveManager.load_file(str(variant_saved.get("path","")))
 	_check(bool(variant_saved.get("ok",false)) and bool(variant_loaded.get("ok",false)) and infill_world.routes==variant_loaded.get("world",{}).get("routes",[]),"planned variant and operating route survive actual disk save and reload")
 	CampaignSystem._catalog.cities.chengdu.chapters.pop_back()
+	# Focused extension fixture: real reviewed 6-line geometry and commands,
+	# with unrelated 2007 lines removed only from this labelled test chapter.
+	var six_first:Dictionary=CampaignSystem.city_config("shanghai").chapters.filter(func(c:Dictionary):return str(c.id)=="shanghai-network-milestone-2007-12-29")[0].duplicate(true)
+	six_first.id="fixture-sh6-first";six_first.requiredTransfers=[];six_first.scopeCorrections=[]
+	six_first.lineGroups=six_first.lineGroups.filter(func(g:Dictionary):return str(g.historicalLineId)=="shanghai-line6-6")
+	CampaignSystem._catalog.cities.shanghai.chapters.append(six_first)
+	var six_world:=WorldData.new_world("shanghai","campaign")
+	six_world.storyState.phase="history";six_world.storyState.chapterId=six_first.id;six_world.storyState.stage="build";app._enter(six_world)
+	_check(bool(app._commit_assisted_construction(app._assist_candidate(),int(six_world.revision)).get("ok",false)),"terminal fixture builds the real 2007 twenty-seven-stop section")
+	_check(bool(Story.confirm_task(six_world,"opening:sh6-first",int(six_world.revision)).get("ok",false)),"terminal fixture confirms the existing operating line")
+	six_world.storyState.chapterId="shanghai-network-milestone-2011-04-12";six_world.storyState.stage="build";app._enter(six_world)
+	var six_preview:Dictionary=app._assist_candidate()
+	_check(str(six_preview.get("issue","")).is_empty() and bool(app._commit_assisted_construction(six_preview,int(six_world.revision)).get("ok",false)),"the later one-stop extension has a valid preview and formal commit")
+	var six_evaluated:=Story.evaluate(six_world,"route:shanghai-r6")
+	var six_joined:=six_world.duplicate(true)
+	for six_new_service in six_evaluated.routes:Story._store_historical_route(six_joined,six_new_service)
+	_check(Story.changed_service_continuity_error(six_joined,six_evaluated.routes).is_empty(),"new track uses the unused terminal end in the joined twenty-eight-stop line")
+	# Reconnect the newly built section to the already used terminal port.
+	# The subsection remains a two-station path, but cannot extend the service.
+	var broken_join:=six_joined.duplicate(true)
+	var six_route:Dictionary=WorldData.find_route(broken_join,"historical_shanghai-line6-6")
+	var six_direction:Dictionary=six_route.directions[0]
+	var six_index:=TrackNetwork.build_path_index(broken_join,float(WorldData.city("shanghai").center[0]))
+	var incoming_path:=TrackNetwork.ordered_station_path(str(six_direction.stationIds[-3]),str(six_direction.stationIds[-2]),six_direction.edgePathsBySegment[-2],broken_join,float(WorldData.city("shanghai").center[0]),six_index)
+	var new_reference:Dictionary=six_direction.edgePathsBySegment[-1][0]
+	for edge in broken_join.trackEdges:
+		if str(edge.id)==str(new_reference.id):edge["aNodeId" if bool(new_reference.forward) else "bNodeId"]=str(incoming_path.toNodeId)
+	_check(not Story.changed_service_continuity_error(broken_join,six_evaluated.routes).is_empty(),"same-end hidden reversal fails the joined-service check")
+	_check(bool(Story.confirm_task(six_world,"route:shanghai-r6",int(six_world.revision)).get("ok",false)),"valid one-stop extension confirms without implicit reversal")
+	var six_expected:Dictionary=target_data.cities.shanghai.historicalMilestones.filter(func(m:Dictionary):return str(m.chapterId)=="shanghai-network-milestone-2011-04-12")[0].duplicate(true)
+	six_expected.groups=six_expected.groups.filter(func(g:Dictionary):return str(g.historicalLineId)=="shanghai-line6-6")
+	_check(OfficialNetworkAudit.project_errors(six_world,six_expected).is_empty(),"extended geometry matches the independently reviewed twenty-eight-stop service")
+	_check(bool(SaveManager.save_world(six_world).get("ok",false)),"joined terminal service is saveable")
+	CampaignSystem._catalog.cities.shanghai.chapters.pop_back()
+	# The catalogue's s353 and s56 are one historical complex, while each
+	# line keeps its own physical station body. Exercise the visible transfer
+	# command, not a direct append to transferConnections.
+	var alias_chapter:Dictionary=CampaignSystem.city_config("shanghai").futurePlans.filter(func(p:Dictionary):return str(p.id)=="sh-line23-phase1-build")[0].duplicate(true)
+	var alias_transfer:Dictionary=alias_chapter.requiredTransfers.filter(func(t:Dictionary):return str(t.id)=="sh-future-transfer-line23-longcao")[0].duplicate(true)
+	alias_chapter.id="fixture-sh23-alias-transfer";alias_chapter.requiredTransfers=[alias_transfer];alias_chapter.scopeCorrections=[]
+	var alias_line:Dictionary=alias_chapter.lineGroups[0].duplicate(true)
+	alias_line.stationIds=alias_line.stationIds.slice(-2);alias_line.taskId="fixture-sh23";alias_line.replaceExistingService=false
+	var alias_cutoff:Dictionary=CampaignSystem.city_config("shanghai").chapters.filter(func(c:Dictionary):return str(c.get("chapterScope",""))=="cutoff_reconciliation")[0]
+	var alias_existing:Dictionary=alias_cutoff.lineGroups.filter(func(g:Dictionary):return str(g.historicalLineId)=="shanghai-line12-12")[0].duplicate(true)
+	alias_existing.stationIds=["shanghai-s56","shanghai-s355"];alias_existing.taskId="fixture-sh12";alias_existing.replaceExistingService=false
+	# Resolve the adjacent 12-line Longhua stop from the geographic catalogue,
+	# without relying on an arbitrary first same-name physical station.
+	for geography in WorldData.city("shanghai").stations:
+		if str(geography.name)=="龙华" and alias_existing.get("stationInstances",{}).has(str(geography.id)):
+			alias_existing.stationIds=["shanghai-s56",str(geography.id)];break
+	alias_chapter.lineGroups=[alias_existing,alias_line]
+	CampaignSystem._catalog.cities.shanghai.chapters.append(alias_chapter)
+	var alias_world:=WorldData.new_world("shanghai","campaign")
+	alias_world.storyState.phase="history";alias_world.storyState.chapterId=alias_chapter.id;alias_world.storyState.stage="build";app._enter(alias_world)
+	var alias_preview:Dictionary=app._assist_candidate()
+	_check(str(alias_preview.get("issue","")).is_empty() and bool(app._commit_assisted_construction(alias_preview,int(alias_world.revision)).get("ok",false)),"alias fixture builds both line bodies with formal commands")
+	for alias_task in ["fixture-sh12","fixture-sh23"]:
+		_check(bool(Story.confirm_task(alias_world,alias_task,int(alias_world.revision)).get("ok",false)),"alias fixture confirms its physical line path: "+alias_task)
+	var alias_connection:=alias_transfer.duplicate(true);alias_connection.status="active"
+	var alias_linked:Dictionary=app._commit_transfer_connection(alias_transfer,alias_connection,int(alias_world.revision))
+	_check(bool(alias_linked.get("ok",false)),"a catalogue alias can explicitly establish the real transfer: "+str(alias_linked.get("error","")))
+	if bool(alias_linked.get("ok",false)):
+		_check(alias_world.transferConnections[0].complexId=="shanghai-s56" and alias_world.transferConnections[0].stationInstanceIds==alias_transfer.stationInstanceIds,"connection stores the canonical complex without merging its two physical bodies")
+		_check(not app.history.undo().is_empty() and alias_world.transferConnections.is_empty(),"canonical transfer can be undone as one operation")
+		_check(not app.history.redo().is_empty() and alias_world.transferConnections.size()==1,"canonical transfer can be restored without duplicating its complex")
+		_check(bool(SaveManager.save_world(alias_world).get("ok",false)),"the confirmed canonical relationship is valid on disk")
+		var before_scope:=JSON.stringify(alias_world)
+		# Synthetic earlier scope of the same sourced project: two real target
+		# stations, excluding its already-built later Longcao interchange.
+		alias_chapter.lineGroups[1].stationIds=CampaignSystem.city_config("shanghai").futurePlans.filter(func(p:Dictionary):return str(p.id)=="sh-line23-phase1-build")[0].lineGroups[0].stationIds.slice(0,2)
+		alias_chapter.lineGroups[1].replaceExistingService=true
+		var earlier_scope:=Story.scope_correction_preview(alias_world,"fixture-sh23")
+		_check(bool(earlier_scope.get("ok",false)) and earlier_scope.get("changes",[]).any(func(c:Dictionary):return str(c.get("id",""))==str(alias_transfer.id)),"backfill preview explicitly identifies an exact source-recorded later interchange")
+		var scope_copy:=alias_world.duplicate(true);Story._apply_scope_corrections(scope_copy,earlier_scope)
+		_check(scope_copy.transferConnections[0].status=="superseded" and scope_copy.stations==alias_world.stations and JSON.stringify(alias_world)==before_scope,"preview leaves the session unchanged; applying it preserves station bodies and the original connection record")
+		alias_world.transferConnections[0].id="player-custom-pair"
+		_check(not bool(Story.scope_correction_preview(alias_world,"fixture-sh23").get("ok",true)),"an unknown player pairing cannot be silently retired by historical backfill")
+		alias_world.transferConnections[0].id=alias_transfer.id
+		alias_chapter.lineGroups[1].replaceExistingService=false
+		_check(not Story.scope_correction_preview(alias_world,"fixture-sh23").get("changes",[]).any(func(c:Dictionary):return str(c.get("id",""))==str(alias_transfer.id)),"an append-only task cannot retire a later interchange")
+	CampaignSystem._catalog.cities.shanghai.chapters.pop_back()
 	app.queue_free();await process_frame
+	var branch_snapshots:Array=[
+		{"date":"2000-01-01","groups":[{"id":"y","stationNames":["obsolete","joint","trunk"],"fullServiceOrder":true}]},
+		{"date":"2010-01-01","groups":[{"id":"a","historicalLineId":"y","stationNames":["north","joint","trunk"],"fullServiceOrder":true},{"id":"b","historicalLineId":"y","stationNames":["west","joint","trunk"],"fullServiceOrder":true}]},
+		{"date":"2020-01-01","groups":[{"id":"future","historicalLineId":"y","stationNames":["north","joint","trunk","future"],"fullServiceOrder":true}]}]
+	var permitted:=OfficialNetworkAudit.permitted_historical_stops(branch_snapshots,"2010-01-01")
+	_check(permitted.y.has("north") and permitted.y.has("west"),"a dated Y-line snapshot retains both reviewed branches")
+	_check(not permitted.y.has("obsolete"),"a full branched snapshot still removes superseded earlier stops")
+	_check(not permitted.y.has("future"),"later extension cannot leak into a historical branched snapshot")
+	var branch_reversed:=branch_snapshots.duplicate(true);branch_reversed[1].groups.reverse()
+	_check(OfficialNetworkAudit.permitted_historical_stops(branch_reversed,"2010-01-01").y.size()==permitted.y.size(),"branch input order cannot change permitted historical station membership")
+	var old_built_arm:Dictionary={"stationIds":["apple","west","junction","old-depot"],"edgePathsBySegment":[[],[],[]],"serviceStatusBySegment":["built","built","built"]}
+	var full_trial:Dictionary={"stationIds":["city","junction","west","apple"],"edgePathsBySegment":[[],[],[]],"serviceStatusBySegment":["trial","trial","trial"]}
+	_check(Story._merge_route_directions(old_built_arm,full_trial).is_empty(),"an overlapping old built arm cannot be appended after the new trial terminus")
+	var through_extension:Dictionary={"stationIds":["apple","extension"],"edgePathsBySegment":[[]],"serviceStatusBySegment":["trial"]}
+	_check(Story._merge_route_directions(full_trial,through_extension).get("direction",{}).get("stationIds",[])==["city","junction","west","apple","extension"],"a genuine terminal extension still merges in travel order")
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())
 	for failure in failures:push_error(failure)
 	quit(0 if failures.is_empty() else 1)

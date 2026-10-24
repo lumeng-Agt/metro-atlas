@@ -722,8 +722,11 @@ func _commit_service_transition(proposal:Dictionary,expected_revision:int,checke
 	var candidate:=world.duplicate(true);candidate.serviceRanges.append(record)
 	# The explicit scope action changes the actual presentation service now,
 	# rather than leaving it open until a later chapter/task confirmation.
-	for route in Story.evaluate(candidate).get("routes",[]):
+	var transition_routes:Array=Story.evaluate(candidate).get("routes",[])
+	for route in transition_routes:
 		if str(route.get("historicalLineId",""))==str(record.get("historicalLineId","")):Story._store_historical_route(candidate,route)
+	var continuity_error:=Story.changed_service_continuity_error(candidate,transition_routes)
+	if not continuity_error.is_empty():return {"ok":false,"error":continuity_error}
 	Story._refresh_route_memberships(candidate)
 	var invalid:=SaveManager.validate(candidate)
 	if not invalid.is_empty():return {"ok":false,"error":invalid}
@@ -843,21 +846,28 @@ func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expec
 	if not _transfer_ready(transfer,checked):return {"ok":false,"error":"两侧独立站体、连续轨道和线路站序尚未全部就绪。"}
 	if _transfer_connected(transfer):return {"ok":false,"error":"这条换乘联系已经建立。"}
 	var candidate:=world.duplicate(true)
+	# A reviewed map duplicate can be an alias of the same historical complex.
+	# Persist the canonical identity already used by its independent bodies;
+	# never create a second complex just to satisfy a raw catalogue reference.
+	var canonical_connection:=connection.duplicate(true)
+	canonical_connection["complexId"]=CampaignSystem.canonical_station_complex(str(world.cityId),str(connection.complexId))
 	for route in checked.get("routes",[]):
 		var route_copy:Dictionary=route.duplicate(true)
 		var existing:=WorldData.find_route(candidate,str(route.get("id","")))
 		route_copy["open"]=bool(existing.get("open",false))
 		Story._store_historical_route(candidate,route_copy)
+	var continuity_error:=Story.changed_service_continuity_error(candidate,checked.get("routes",[]))
+	if not continuity_error.is_empty():return {"ok":false,"error":continuity_error}
 	var restored:=false
 	for index in range(candidate.transferConnections.size()):
 		var saved:Dictionary=candidate.transferConnections[index]
 		if str(saved.get("id",""))!=str(connection.id):continue
 		if str(saved.get("status","active"))=="active":return {"ok":false,"error":"同一换乘编号仍有不同的有效配对，请先核对变更；本次不会覆盖。"}
-		var restored_connection:=connection.duplicate(true)
+		var restored_connection:=canonical_connection.duplicate(true)
 		var previous:=saved.duplicate(true);previous.erase("previousConnection")
 		restored_connection["previousConnection"]=previous
 		candidate.transferConnections[index]=restored_connection;restored=true;break
-	if not restored:candidate.transferConnections.append(connection.duplicate(true))
+	if not restored:candidate.transferConnections.append(canonical_connection)
 	Story._refresh_route_memberships(candidate)
 	var validation:=SaveManager.validate(candidate)
 	if not validation.is_empty():return {"ok":false,"error":validation}
@@ -1602,6 +1612,59 @@ func _assist() -> void:
 		if not bool(committed.get("ok",false)):_message("辅助建设未应用",str(committed.get("error","请重新预览。")));return
 		_tool("select");show_left=true;show_right=false;_refresh(),func():map_view.assisted_preview={};map_view.requested_redraw())
 
+## A terminal extension uses the unused platform end. Nearest endpoints alone
+## may reconnect to the arrival end and introduce a hidden reversal.
+func _existing_terminal_port(state:Dictionary,station_id:String,line_id:String,path_index:Dictionary,ref_lat:float) -> String:
+	if line_id.is_empty():return ""
+	for route in state.get("routes",[]):
+		if str(route.get("historicalLineId",""))!=line_id or bool(route.get("retired",false)) or not str(route.get("constructionVariantId","")).is_empty():continue
+		for direction in route.get("directions",[]):
+			var ids:Array=direction.get("stationIds",[]);var paths:Array=direction.get("edgePathsBySegment",[])
+			if ids.size()<2 or paths.size()!=ids.size()-1:continue
+			if str(ids.front())==station_id:
+				var path:=TrackNetwork.ordered_station_path(str(ids[0]),str(ids[1]),paths[0],state,ref_lat,path_index)
+				if bool(path.get("valid",false)):return str(path.fromNodeId)
+			if str(ids.back())==station_id:
+				var path:=TrackNetwork.ordered_station_path(str(ids[-2]),str(ids[-1]),paths[-1],state,ref_lat,path_index)
+				if bool(path.get("valid",false)):return str(path.toNodeId)
+	return ""
+
+func _required_extension_port(state:Dictionary,station_id:String,other_id:String,line_id:String,path_index:Dictionary,ref_lat:float) -> String:
+	# Reconfirming an already served pair uses its existing path. A prebuilt
+	# but unopened pair is different: it must still join the unused terminal
+	# end, even when a shorter old edge is present in the physical graph.
+	for route in state.get("routes",[]):
+		if str(route.get("historicalLineId",""))!=line_id or bool(route.get("retired",false)) or not str(route.get("constructionVariantId","")).is_empty():continue
+		for direction in route.get("directions",[]):
+			var ids:Array=direction.get("stationIds",[])
+			for i in range(ids.size()-1):
+				if (str(ids[i])==station_id and str(ids[i+1])==other_id) or (str(ids[i])==other_id and str(ids[i+1])==station_id):return ""
+	var used:=_existing_terminal_port(state,station_id,line_id,path_index,ref_lat)
+	if used.is_empty():return ""
+	var station:=WorldData.find_station(state,station_id)
+	return TrackNetwork.station_node_id(station,"end" if used==TrackNetwork.station_node_id(station,"start") else "start")
+
+func _assist_required_ports(state:Dictionary,group:Dictionary,index:int,prior_arrival:String,path_index:Dictionary,ref_lat:float) -> Array:
+	var ids:Array=group.get("stationIds",[]);var line_id:=str(group.get("historicalLineId",""))
+	var a:=Story.bound_station(state,str(ids[index]),Story.station_instance_id(group,str(ids[index])),line_id)
+	var b:=Story.bound_station(state,str(ids[index+1]),Story.station_instance_id(group,str(ids[index+1])),line_id)
+	var departure:="";var arrival:=""
+	if not prior_arrival.is_empty():departure=TrackNetwork.station_node_id(a,"end" if prior_arrival==TrackNetwork.station_node_id(a,"start") else "start")
+	elif index==0:departure=_required_extension_port(state,str(a.id),str(b.id),line_id,path_index,ref_lat)
+	if index==ids.size()-2:arrival=_required_extension_port(state,str(b.id),str(a.id),line_id,path_index,ref_lat)
+	elif index+2<ids.size():
+		var next:=Story.bound_station(state,str(ids[index+2]),Story.station_instance_id(group,str(ids[index+2])),line_id)
+		if not next.is_empty():
+			var onward:=TrackNetwork.shortest_station_path_indexed(str(b.id),str(next.id),state,path_index,ref_lat)
+			if bool(onward.get("valid",false)) and not onward.get("edges",[]).is_empty() and not onward.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):
+				arrival=TrackNetwork.station_node_id(b,"end" if str(onward.edges[0].fromNodeId)==TrackNetwork.station_node_id(b,"start") else "start")
+	return [departure,arrival]
+
+func _assist_path_matches_ports(path:Dictionary,ports:Array) -> bool:
+	if not bool(path.get("valid",false)) or path.get("edges",[]).is_empty():return false
+	if path.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):return false
+	return (str(ports[0]).is_empty() or str(path.edges[0].get("fromNodeId",""))==str(ports[0])) and (str(ports[1]).is_empty() or str(path.edges[-1].get("toNodeId",""))==str(ports[1]))
+
 func _assist_candidate() -> Dictionary:
 	var candidate:=world.duplicate(true);var helper:=Rules.new();helper.world=candidate;helper.active_city_id=str(world.cityId);helper.map_view=map_view
 	for target in Story.targets(candidate,true):
@@ -1626,32 +1689,24 @@ func _assist_candidate() -> Dictionary:
 			var a_id:=str(ids[index]);var b_id:=str(ids[index+1]);var a_instance:=Story.station_instance_id(group,a_id);var b_instance:=Story.station_instance_id(group,b_id)
 			var a:=Story.bound_station(candidate,a_id,a_instance,str(group.get("historicalLineId", "")));var b:=Story.bound_station(candidate,b_id,b_instance,str(group.get("historicalLineId", "")))
 			var reusable:Dictionary={}
+			var required_ports:=_assist_required_ports(candidate,group,index,prior_arrival,path_index,construction_lat)
 			var primary:=TrackNetwork.shortest_station_path_indexed(str(a.id),str(b.id),candidate,path_index,construction_lat)
-			if bool(primary.get("valid",false)) and not primary.get("edges",[]).is_empty() and (prior_arrival.is_empty() or str(primary.edges[0].get("fromNodeId",""))!=prior_arrival) and not primary.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):
+			if _assist_path_matches_ports(primary,required_ports):
 				reusable=primary
 			else:
 				# Search alternate branches only when the cheapest path would use a
 				# station platform or force an immediate same-end reversal.
 				var options:=TrackNetwork.station_path_options_indexed(str(a.id),str(b.id),candidate,path_index,construction_lat,4)
 				for option in options:
-					if option.get("edges",[]).is_empty():continue
-					if not prior_arrival.is_empty() and str(option.edges[0].get("fromNodeId",""))==prior_arrival:continue
-					if option.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):continue
+					if not _assist_path_matches_ports(option,required_ports):continue
 					reusable=option;break
 			if not reusable.is_empty():
 				if first_departure.is_empty():first_departure=str(reusable.edges[0].get("fromNodeId",""))
 				prior_arrival=str(reusable.edges[-1].get("toNodeId",""));continue
 			var ends:=_facing(a,b)
-			if not prior_arrival.is_empty():ends[0]="end" if prior_arrival==TrackNetwork.station_node_id(a,"start") else "start"
+			if not str(required_ports[0]).is_empty():ends[0]="start" if required_ports[0]==TrackNetwork.station_node_id(a,"start") else "end"
+			if not str(required_ports[1]).is_empty():ends[1]="start" if required_ports[1]==TrackNetwork.station_node_id(b,"start") else "end"
 			if bool(group.get("loop",false)) and index==ids.size()-2 and not first_departure.is_empty():ends[1]="end" if first_departure==TrackNetwork.station_node_id(b,"start") else "start"
-			# An extension entering an already built section must use the other
-			# platform end; nearest geometry alone can imply a hidden reversal.
-			if index+2<ids.size():
-				var next_station:=Story.bound_station(candidate,str(ids[index+2]))
-				if not next_station.is_empty():
-					var onward:=TrackNetwork.shortest_station_path_indexed(str(b.id),str(next_station.id),candidate,path_index,construction_lat)
-					if bool(onward.get("valid",false)) and not onward.get("edges",[]).is_empty():
-						ends[1]="end" if str(onward.edges[0].fromNodeId)==TrackNetwork.station_node_id(b,"start") else "start"
 			var start:={"nodeId":TrackNetwork.station_node_id(a,str(ends[0])),"stationId":a.id,"side":str(ends[0]),"latlng":WorldData.station_endpoint(a,str(ends[0])),"depthM":a.get("depthM",-15)}
 			var finish:={"nodeId":TrackNetwork.station_node_id(b,str(ends[1])),"stationId":b.id,"side":str(ends[1]),"latlng":WorldData.station_endpoint(b,str(ends[1])),"depthM":b.get("depthM",-15)}
 			var alignment:=ReferenceAlignment.between(str(group.get("stationReferenceIds",{}).get(a_id,a_id)),str(group.get("stationReferenceIds",{}).get(b_id,b_id)))
@@ -1673,8 +1728,9 @@ func _assist_candidate() -> Dictionary:
 			var from_station:=Story.bound_station(candidate,str(station_ids[segment_index]),Story.station_instance_id(assisted_group,str(station_ids[segment_index])),str(assisted_group.get("historicalLineId","")))
 			var to_station:=Story.bound_station(candidate,str(station_ids[segment_index+1]),Story.station_instance_id(assisted_group,str(station_ids[segment_index+1])),str(assisted_group.get("historicalLineId","")))
 			if from_station.is_empty() or to_station.is_empty():continue
+			var required_ports:=_assist_required_ports(candidate,assisted_group,segment_index,prior_end,path_index,construction_lat)
 			var primary:=TrackNetwork.shortest_station_path_indexed(str(from_station.id),str(to_station.id),candidate,path_index,construction_lat)
-			if bool(primary.get("valid",false)) and not primary.get("edges",[]).is_empty() and not primary.edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))) and (prior_end.is_empty() or str(primary.edges[0].get("fromNodeId",""))!=prior_end):
+			if _assist_path_matches_ports(primary,required_ports):
 				prior_end=str(primary.edges[-1].get("toNodeId",""))
 				continue
 			var options:=TrackNetwork.station_path_options_indexed(str(from_station.id),str(to_station.id),candidate,path_index,construction_lat,4)
@@ -1682,8 +1738,7 @@ func _assist_candidate() -> Dictionary:
 			for option_index in range(options.size()):
 				var option:Dictionary=options[option_index]
 				var path_edges:Array=option.get("edges",[])
-				if path_edges.is_empty() or path_edges.any(func(ref:Dictionary):return bool(ref.edge.get("platform",false))):continue
-				if not prior_end.is_empty() and str(path_edges[0].get("fromNodeId",""))==prior_end:continue
+				if not _assist_path_matches_ports(option,required_ports):continue
 				selected_index=option_index
 				break
 			if selected_index<0:
@@ -1746,6 +1801,8 @@ func _commit_line_reorganization(expected_revision:int) -> Dictionary:
 	candidate.storyPlan["reorganizationAccepted"]=true
 	for route in checked.routes:Story._store_historical_route(candidate,route)
 	Story._apply_scope_corrections(candidate,correction)
+	var continuity_error:=Story.changed_service_continuity_error(candidate,checked.routes)
+	if not continuity_error.is_empty():return {"ok":false,"error":continuity_error}
 	Story._refresh_route_memberships(candidate)
 	var invalid:=SaveManager.validate(candidate)
 	if not invalid.is_empty():return {"ok":false,"error":invalid}

@@ -17,6 +17,25 @@ class CoverageRules(unittest.TestCase):
         self.plans[0]['lineGroups'][0]['stationIds'].remove('b')
         self.assertTrue(check_project(self.target, self.plans, self.names))
 
+    def test_historical_extension_checks_new_scope_separately_from_full_service(self):
+        self.target['groups'][0].update(fullServiceOrder=True, constructionStationNames=['B', 'C'])
+        self.plans[0]['lineGroups'][0]['stationIds']=['b','c']
+        self.assertEqual(check_project(self.target,self.plans,self.names,historical_construction=True),[])
+        self.assertTrue(check_project(self.target,self.plans,self.names))
+
+    def test_historical_construction_cannot_bypass_its_service_order(self):
+        self.target['groups'][0].update(fullServiceOrder=True, constructionStationNames=['A', 'C'])
+        self.plans[0]['lineGroups'][0]['stationIds']=['a','c']
+        self.assertTrue(check_project(self.target,self.plans,self.names,historical_construction=True))
+
+    def test_official_yearbook_needs_a_precise_bibliographic_locator(self):
+        self.target['sourcePublicationDate']=None
+        self.target['bibliographicCitation']=dict(kind='official_yearbook',edition='Official history',locator='Dated event, page 154')
+        self.assertEqual(check_project(self.target,self.plans,self.names,historical_construction=True),[])
+        self.assertTrue(check_project(self.target,self.plans,self.names))
+        self.target['bibliographicCitation'].pop('locator')
+        self.assertTrue(check_project(self.target,self.plans,self.names,historical_construction=True))
+
     def test_half_ring_cannot_pass(self):
         self.plans[0]['lineGroups'][0]['loop'] = False
         self.assertTrue(check_project(self.target, self.plans, self.names))

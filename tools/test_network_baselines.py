@@ -89,6 +89,7 @@ def main() -> int:
         valid_project_types = {
             "under_construction", "under_construction_or_planned", "approved_and_under_construction",
             "approved_project", "approved_plan", "public_consultation",
+            "approved_preparatory",
         }
         campaign_city = campaigns_doc.get("cities", {}).get(city_id, {})
         city_station_ids = {str(station.get("id", "")) for station in city.get("stations", [])}
@@ -253,7 +254,15 @@ def main() -> int:
                 # same line (for example, both ends of an existing corridor).
                 # Permit only explicitly split, individually identified ranges.
                 task_ids = [str(group.get("taskId", "")) for group in same_line_groups]
-                if any(group.get("constructionScope") != "new_contiguous_range" for group in same_line_groups) or len(task_ids) != len(set(task_ids)) or any(not task_id for task_id in task_ids):
+                independent = read("data/official_targets_2026-10-01.json")["cities"][city_id]
+                milestone = next((m for m in independent.get("historicalMilestones",[]) if m["chapterId"]==chapter["id"] and m["date"]==chapter["date"]),{})
+                names = {s["id"]:s["name"] for s in map_cities[city_id]["stations"]}
+                def reviewed_pattern(group):
+                    actual = [group.get("stationNames",{}).get(s,names.get(s,s)) for s in group["stationIds"]]
+                    return group.get("constructionScope")=="dated_service_patterns" and bool(milestone.get("source")) and any(
+                        expected.get("fullServiceOrder") and expected["id"]==group.get("coverageGroupId") and expected["stationNames"]==actual
+                        for expected in milestone.get("groups",[]))
+                if any(group.get("constructionScope") != "new_contiguous_range" and not reviewed_pattern(group) for group in same_line_groups) or len(task_ids) != len(set(task_ids)) or any(not task_id for task_id in task_ids):
                     failures.append(f"{city_id}/{chapter.get('id')}: duplicate construction task for {line_id} is not a set of explicit contiguous additions")
         missing_lines = sorted(cutoff_lines - earlier_lines)
         if missing_lines:
@@ -262,17 +271,30 @@ def main() -> int:
         # A complete current-map route may only be introduced at or after its
         # curated last-opening milestone. This catches modern line snapshots
         # accidentally copied into an unrelated earlier chapter.
-        cutoff_groups = {str(group.get("mapRouteId", "")): group for group in cutoff.get("lineGroups", [])}
+        cutoff_groups = cutoff.get("lineGroups", [])
+        independent = read("data/official_targets_2026-10-01.json")["cities"][city_id]
+        names = {s["id"]:s["name"] for s in map_cities[city_id]["stations"]}
         for chapter_row in chapters:
             if str(chapter_row.get("date", "")) >= "2026-10-01":
                 continue
             for group in chapter_row.get("lineGroups", []):
                 route_id = str(group.get("mapRouteId", ""))
-                target = cutoff_groups.get(route_id)
-                if target is None:
-                    continue
-                if set(str(x) for x in group.get("stationIds", [])) == set(str(x) for x in target.get("stationIds", [])):
+                for target in cutoff_groups:
+                    if route_id != str(target.get("mapRouteId","")) or set(group.get("stationIds",[])) != set(target.get("stationIds",[])):continue
                     last_open = ROUTE_DATES.get(city_id, {}).get(route_id, "")
+                    # One map relation can contain a 2006 branch and a main
+                    # line extended in 2024. A dict keyed only by relation ID
+                    # silently selected the last branch. Use an independently
+                    # sourced date for the exact reviewed station pattern.
+                    target_names=[target.get("stationNames",{}).get(s,names.get(s,s)) for s in target["stationIds"]]
+                    for expected_scope in independent.get("cutoffNetwork",{}).get("groups",[]):
+                        if expected_scope.get("historicalLineId",expected_scope["id"])!=target.get("historicalLineId"):continue
+                        if expected_scope.get("stationNames") not in [target_names,list(reversed(target_names))]:continue
+                        reviewed_date=expected_scope.get("lastPhysicalOpeningDate")
+                        if reviewed_date:
+                            if not expected_scope.get("lastPhysicalOpeningSource") or reviewed_date>"2026-10-01":
+                                failures.append(f"{city_id}/{expected_scope['id']}: invalid reviewed physical-opening evidence")
+                            else:last_open=reviewed_date
                     if last_open and str(chapter_row.get("date", "")) < last_open:
                         failures.append(f"{city_id}/{chapter_row.get('id')}/{route_id}: full cutoff route appears before its last-opening milestone {last_open}")
 
@@ -313,8 +335,11 @@ def main() -> int:
         failures.append("Shenzhen's 2023 Line 8 phase-II opening is not attached to a playable chapter")
 
     beijing = baseline["cities"]["beijing"]
-    if beijing.get("officialRouteCount") != 30 or beijing.get("mapRouteEntryCount") != 24:
-        failures.append("Beijing must preserve the published 30-route count vs 24 local relations discrepancy")
+    if beijing.get("officialRouteCount") != 30 or beijing.get("mapRouteEntryCount") != 25:
+        failures.append("Beijing: retain the distinct published 30-route counting basis; 25 local service maps must include Yanfang")
+    beijing_routes={r['mapRouteId']:r for r in beijing['routes']}
+    if len(beijing_routes.get('beijing-r25',{}).get('cutoffStationIds',[]))!=9 or len(beijing_routes.get('beijing-r4',{}).get('cutoffStationIds',[]))!=35:
+        failures.append('Beijing: independently documented Yanfang9 and through 4/Daxing35 must both be represented')
 
     minimum_project_counts = {"shanghai": 8, "beijing": 8, "guangzhou": 3, "shenzhen": 9, "chengdu": 1}
     for city_id, expected_count in minimum_project_counts.items():

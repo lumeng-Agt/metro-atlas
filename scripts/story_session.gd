@@ -647,6 +647,14 @@ static func _merge_route_directions(existing_direction: Dictionary, incoming_dir
 		merged_statuses.append_array(old_statuses.slice(0,start_index))
 		merged_statuses.append_array(new_statuses)
 		merged_statuses.append_array(old_statuses.slice(end_index))
+	# Sharing an endpoint does not license traversing an overlapping trunk
+	# twice (for example an old built west arm and a newer full trial route).
+	# Preserve them as separate directions instead of manufacturing a reversal.
+	var seen_stops:Dictionary={}
+	for index in range(merged_ids.size()):
+		var id:=str(merged_ids[index])
+		if seen_stops.has(id) and not (index==merged_ids.size()-1 and id==str(merged_ids.front())):return {}
+		seen_stops[id]=true
 	var merged := existing_direction.duplicate(true)
 	merged["stationIds"] = merged_ids
 	merged["edgePathsBySegment"] = merged_paths
@@ -838,7 +846,18 @@ static func _preserve_documented_service_section(world:Dictionary,old_route:Dict
 			retained.edgePathsBySegment=paths.slice(offset,offset+wanted.size()-1)
 			retained.serviceStatusBySegment=direction.get("serviceStatusBySegment",[]).slice(offset,offset+wanted.size()-1)
 			retained.id="retained_documented_extension"
-			return _merge_historical_route(replacement,{"chapterId":replacement.get("chapterId",""),"historicalLineId":replacement.get("historicalLineId",""),"directions":[retained]})
+			var merged:=_merge_historical_route(replacement,{"chapterId":replacement.get("chapterId",""),"historicalLineId":replacement.get("historicalLineId",""),"directions":[retained]})
+			var check_world:=world.duplicate(false);check_world.routes=[merged]
+			var issue:=changed_service_continuity_error(check_world,[merged])
+			if issue.is_empty():return merged
+			# An old extension can have been committed against the wrong terminal
+			# end by a former release. Keep its physical work and exact old path,
+			# but do not poison the corrected historical service with a reversal.
+			# The future task is already explicitly queued for reconfirmation.
+			var pending:Array=replacement.get("legacyUnjoinedDirections",[]).duplicate(true)
+			pending.append({"direction":retained,"reason":issue,"source":str(group.get("source",group.get("stationOrderSource",""))),"requiresReconnection":true})
+			replacement["legacyUnjoinedDirections"]=pending
+			return replacement
 	return replacement
 
 static func _recheck_future_services_after_cutoff_correction(world:Dictionary,route:Dictionary) -> void:
@@ -932,6 +951,37 @@ static func _direction_complexes(world:Dictionary,direction:Dictionary) -> Array
 static func scope_correction_preview(world:Dictionary, selected_task_id:String) -> Dictionary:
 	var ch:=chapter(world)
 	var changes:Array=[]
+	# Inserted old tasks can be replayed in a save that already contains later
+	# source-recorded interchanges. Retire the exact later pairing explicitly
+	# while the earlier service is restored, retaining its record and all works.
+	# Unknown/player-edited pairs are never silently changed.
+	var replaced_lines:Dictionary={};var allowed_bodies:Dictionary={}
+	for group in groups(world,true,selected_task_id):
+		if bool(group.get("replaceExistingService",false)):replaced_lines[str(group.get("historicalLineId",""))]=str(group.get("stationOrderSource",ch.get("source","")))
+	for group in groups(world,true):
+		var line_id:=str(group.get("historicalLineId",""))
+		if not allowed_bodies.has(line_id):allowed_bodies[line_id]=[]
+		for id in group.get("stationIds",[]):allowed_bodies[line_id].append(station_instance_id(group,str(id)))
+	var known_pairs:Dictionary={}
+	var config:=Catalog.city_config(str(world.cityId))
+	for node in config.get("chapters",[])+config.get("futurePlans",[]):
+		for pairing in node.get("requiredTransfers",[]):known_pairs[str(pairing.id)]=pairing
+	for connection in world.get("transferConnections",[]):
+		if str(connection.get("status","active"))!="active":continue
+		if connection.get("lineIds",[]).size()!=connection.get("stationInstanceIds",[]).size():return {"ok":false,"error":"换乘配对不完整，请先核对；本次不会改写。","changes":[]}
+		var explicit:=false
+		for correction in ch.get("scopeCorrections",[]):
+			if str(correction.get("transferId",""))==str(connection.get("id","")) and (selected_task_id.is_empty() or str(correction.get("taskId",""))==selected_task_id):explicit=true;break
+		if explicit:continue
+		var missing_line:=""
+		for index in range(connection.get("lineIds",[]).size()):
+			var line_id:=str(connection.lineIds[index])
+			if replaced_lines.has(line_id) and not allowed_bodies.get(line_id,[]).has(str(connection.get("stationInstanceIds",[])[index])):missing_line=line_id;break
+		if missing_line.is_empty():continue
+		var known:Dictionary=known_pairs.get(str(connection.get("id","")),{})
+		if known.is_empty() or known.get("lineIds",[])!=connection.get("lineIds",[]) or known.get("stationInstanceIds",[])!=connection.get("stationInstanceIds",[]):
+			return {"ok":false,"error":"换乘「%s」的配对已自定义；请先核对，本次不会自动删除或改配。"%str(connection.get("name","换乘")),"changes":[]}
+		changes.append({"id":str(connection.id),"text":"%s：本期尚未开放此线路站体，保留建设和原联系记录，在其对应的后续任务重新确认换乘。"%str(connection.get("name","换乘")),"source":str(replaced_lines[missing_line])})
 	if str(ch.get("chapterScope",""))=="cutoff_reconciliation" or groups(world,true,selected_task_id).any(func(group:Dictionary):return bool(group.get("reconfirmLaterServices",false))):
 		var lines:Array=[]
 		for group in groups(world,true,selected_task_id):
@@ -1068,6 +1118,28 @@ static func _refresh_route_memberships(world: Dictionary) -> void:
 						var edge: Dictionary = edges_by_id.get(str(reference.get("id", "")), {})
 						if not edge.is_empty() and not edge.routeIds.has(str(route.get("id", ""))): edge.routeIds.append(str(route.get("id", "")))
 
+## Check the joined service, not just each newly built subsection. A two-stop
+## extension can be valid in isolation but reverse at its existing terminus.
+static func changed_service_continuity_error(world:Dictionary,changed_routes:Array) -> String:
+	var line_ids:Array=[]
+	for route in changed_routes:line_ids.append(str(route.get("historicalLineId","")))
+	var ref_lat:=float(WorldData.city(str(world.cityId)).get("center",[0])[0])
+	var path_index:=TrackNetwork.build_path_index(world,ref_lat)
+	for route in world.get("routes",[]):
+		if bool(route.get("retired",false)) or not line_ids.has(str(route.get("historicalLineId",""))):continue
+		for direction in route.get("directions",[]):
+			var ids:Array=direction.get("stationIds",[]);var paths:Array=direction.get("edgePathsBySegment",[])
+			if ids.size()<2 or paths.size()!=ids.size()-1:return "线路站序与区间走向数量不一致，请重新检查。"
+			var prior_arrival:="";var first_departure:=""
+			for index in range(paths.size()):
+				var path:=TrackNetwork.ordered_station_path(str(ids[index]),str(ids[index+1]),paths[index],world,ref_lat,path_index)
+				if not bool(path.get("valid",false)):return "线路接续无效："+str(path.get("error","区间断开"))
+				if prior_arrival==str(path.fromNodeId):return "%s 的延伸接到了原进站端，形成隐含折返；请从另一站端接出并重新预览。"%str(WorldData.find_station(world,str(ids[index])).get("name","接续站"))
+				if first_departure.is_empty():first_departure=str(path.fromNodeId)
+				prior_arrival=str(path.toNodeId)
+			if ids.front()==ids.back() and first_departure==prior_arrival:return "环线在首站同端折返，请核对闭合区间。"
+	return ""
+
 static func confirm_task(world: Dictionary, selected_task_id: String, expected_revision: int, checked: Dictionary = {}) -> Dictionary:
 	if expected_revision != int(world.get("revision", 0)): return {"ok":false,"error":"规划已变化，请重新检查当前任务。"}
 	var ch := chapter(world)
@@ -1082,6 +1154,8 @@ static func confirm_task(world: Dictionary, selected_task_id: String, expected_r
 	if not bool(correction_preview.ok):return correction_preview
 	for route in result.get("routes", []): _store_historical_route(candidate, route)
 	_apply_scope_corrections(candidate,correction_preview)
+	var continuity_error:=changed_service_continuity_error(candidate,result.get("routes",[]))
+	if not continuity_error.is_empty():return {"ok":false,"error":continuity_error}
 	_refresh_route_memberships(candidate)
 	var validation := SaveManager.validate(candidate)
 	if not validation.is_empty(): return {"ok":false,"error":"任务线路暂时无法保存：%s" % validation}
@@ -1141,6 +1215,8 @@ static func commit_chapter(world: Dictionary, expected_revision: int, checked: D
 		if not old.is_empty():old["open"]=false;old["retired"]=true;old["retiredAt"]=str(ch.date)
 	for route in result.routes: _store_historical_route(candidate, route)
 	_apply_scope_corrections(candidate,correction_preview)
+	var continuity_error:=changed_service_continuity_error(candidate,result.routes)
+	if not continuity_error.is_empty():return {"ok":false,"error":continuity_error}
 	_refresh_route_memberships(candidate)
 	var candidate_error:=SaveManager.validate(candidate)
 	if not candidate_error.is_empty():return {"ok":false,"error":"历史节点尚未确认：%s" % candidate_error}

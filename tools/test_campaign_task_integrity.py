@@ -46,16 +46,29 @@ def check_group(city_id: str, chapter_id: str, group: dict, location: str) -> No
         route_ids = set(route_value.split())
     else:
         route_ids = set(str(value) for value in route_value)
+    for extra_route_id, evidence in group.get('additionalMapRouteSources', {}).items():
+        extra = next((line for line in city.get('lines', []) if line.get('id') == extra_route_id), None)
+        if extra is None or not str(evidence).startswith('https://'):
+            errors.append(f'{city_id}/{chapter_id}/{location}: extra geographic route needs a real city route and documented lineage')
+            continue
+        route_ids.update(extra.get('stationIds', []))
+    aliases = CAMPAIGNS['cities'][city_id].get('stationComplexAliases', {})
+    def canonical(value):
+        seen = set()
+        while value in aliases and value not in seen:
+            seen.add(value); value = aliases[value]
+        return value
+    reference_complexes = {canonical(value) for value in route_ids}
     for field in ("stationIds", "sourceStationIds"):
         values = [str(value) for value in group.get(field, [])]
         foreign = [value for value in values if not value.startswith(city_id + "-")]
-        missing = [value for value in values if value.startswith(city_id + "-") and value not in route_ids]
+        missing = [value for value in values if value.startswith(city_id + "-") and canonical(value) not in reference_complexes]
         if foreign:
             errors.append(f"{city_id}/{chapter_id}/{location}: {field} has foreign station IDs {foreign[:5]}")
         if missing:
             errors.append(f"{city_id}/{chapter_id}/{location}: {field} not on {map_route_id}: {missing[:8]}")
     for historical_id, instance_id in group.get("stationInstances", {}).items():
-        if historical_id not in route_ids:
+        if canonical(historical_id) not in reference_complexes:
             errors.append(f"{city_id}/{chapter_id}/{location}: station instance key {historical_id} not on {map_route_id}")
 
 
@@ -129,12 +142,9 @@ for date, task_id in [
 ]:
     historical_group = task_group("shanghai", date, task_id)
     target_station_ids = set(str(value) for value in historical_group.get("stationIds", []))
-    expected_instances = {
-        str(station_id): str(instance_id)
-        for station_id, instance_id in shanghai_cutoff_r3.get("stationInstances", {}).items()
-        if str(station_id) in target_station_ids
-    }
-    if historical_group.get("stationInstances", {}) != expected_instances:
+    expected_instances = {station_id: str(shanghai_cutoff_r3.get('stationInstances', {}).get(station_id, station_id)) for station_id in target_station_ids}
+    actual_instances = {station_id: str(historical_group.get('stationInstances', {}).get(station_id, station_id)) for station_id in target_station_ids}
+    if actual_instances != expected_instances:
         errors.append(
             f"shanghai/{date}/{task_id}: historical phase must preserve cutoff Line 3 body identities"
         )

@@ -6612,10 +6612,11 @@
             121.44051
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站；线路南端起点。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站；线路南端起点。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-liancaolu",
@@ -6625,10 +6626,11 @@
             121.438721
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-huajinglu",
@@ -6638,10 +6640,11 @@
             121.450755
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站；与规划23号线华泾路同站区，23号线未建暂不建立换乘。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站；与规划23号线华泾路同站区，23号线未建暂不建立换乘。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-sanlinnan",
@@ -6651,10 +6654,11 @@
             121.48378
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站；市域机场线三林南站同站区，非本游戏线路。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站；市域机场线三林南站同站区，非本游戏线路。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-dezhoulu",
@@ -6664,10 +6668,11 @@
             121.473579
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-shibo",
@@ -6677,10 +6682,11 @@
             121.491691
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "官方专项债券工可口径称“世博”，OSM 在建站名为“中华艺术宫南”；按同一点位建模。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "官方专项债券工可口径称“世博”，OSM 在建站名为“中华艺术宫南”；按同一点位建模。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-huafenglu",
@@ -6690,10 +6696,11 @@
             121.501537
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-nanmatoulu",
@@ -6703,10 +6710,11 @@
             121.505092
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-weifanglu",
@@ -6716,10 +6724,11 @@
             121.513713
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-zhoujiazhuilu",
@@ -6729,10 +6738,11 @@
             121.496391
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线在建站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-tianailu",
@@ -6742,10 +6752,11 @@
             121.479255
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-sisu",
@@ -6755,10 +6766,11 @@
             121.473229
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "按 OSM 19号线在建线位，在甜爱路—凉城路之间定位，邻近上海外国语大学。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "按 OSM 19号线在建线位，在甜爱路—凉城路之间定位，邻近上海外国语大学。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-liangchenglu",
@@ -6768,10 +6780,11 @@
             121.466189
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线站；与在建20号线凉城路同站区，20号线未建暂不建立换乘。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线站；与在建20号线凉城路同站区，20号线未建暂不建立换乘。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-guanglingsilu",
@@ -6781,10 +6794,11 @@
             121.46206
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-chezhannorth",
@@ -6794,10 +6808,11 @@
             121.462641
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-hongwanlu",
@@ -6807,10 +6822,11 @@
             121.463761
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-yierba",
@@ -6820,10 +6836,11 @@
             121.462935
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "按 OSM 19号线在建线位，在凉城路—呼玛路之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-humalu",
@@ -6833,10 +6850,11 @@
             121.459169
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-jiangyangnanlu",
@@ -6846,10 +6864,11 @@
             121.461808
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线站；与18号线江杨南路同站区，该站截至截止日未开通，暂不建立换乘。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线站；与18号线江杨南路同站区，该站截至截止日未开通，暂不建立换乘。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-taihelu",
@@ -6859,10 +6878,11 @@
             121.463272
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-langanglu",
@@ -6872,10 +6892,11 @@
             121.457151
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "OSM 19号线站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "OSM 19号线站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-tieshanlu",
@@ -6885,10 +6906,11 @@
             121.451303
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-tietonglu",
@@ -6898,10 +6920,11 @@
             121.447156
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "按 OSM 19号线在建线位，在兰岗路—宝山站之间按站序定位。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f19-baoshanstation",
@@ -6911,10 +6934,11 @@
             121.442003
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "上海宝山站（在建高铁站）站区，OSM 19号线在建站。",
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "上海宝山站（在建高铁站）站区，OSM 19号线在建站。 坐标来源说明：离线OSM地理点作近似站区参考；官方项目资料证明站名和建设范围，不证明本坐标为测绘中心。",
           "source": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyNote": "来源未给出可核实的测量误差；不把游戏容差作为资料精度。"
         },
         {
           "id": "shanghai-f22-jinjilu",
@@ -7435,6 +7459,20 @@
           "coordinateNote": "官方站位为真南路以东真金路以西交通路地下；采用交通路/水泉南路交叉口地理参考（本地way/696849469与way/769635735），不冒充测绘中心；11/15既有站体不搬动。",
           "source": "https://www.ndrc.gov.cn/fggz/zcssfz/dffz/202302/t20230228_1350098.html",
           "sourceCheckedAt": "2026-10-23"
+        },
+        {
+          "id": "shanghai-reserved18-jiangyangnanlu",
+          "name": "江杨南路",
+          "latlng": [
+            31.352043,
+            121.461732
+          ],
+          "schematic": true,
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "取本地OSM18号线停靠点12543176082/12543176083中心。与19号线物理站体分别建造，既有位置不移动；公开公告证明已建暂缓开放，不把地理节点当开通证据。",
+          "source": "https://jtw.sh.gov.cn/xwfb2/20251222/18dc74805200495eb362499c6c1f98d7.html",
+          "sourceCheckedAt": "2026-10-24",
+          "coordinateAccuracyM": 80
         }
       ],
       "lines": [
@@ -7726,7 +7764,43 @@
           "color": "#FFD100",
           "directions": [
             {
-              "id": "shanghai-r3-d1",
+              "id": "reviewed-shanghai-r3-1-out",
+              "name": "3号线：江杨北路 -> 上海南站",
+              "stationIds": [
+                "shanghai-s58",
+                "shanghai-s57",
+                "shanghai-s56",
+                "shanghai-s55",
+                "shanghai-s54",
+                "shanghai-s53",
+                "shanghai-s52",
+                "shanghai-s51",
+                "shanghai-s50",
+                "shanghai-s49",
+                "shanghai-s48",
+                "shanghai-s47",
+                "shanghai-s46",
+                "shanghai-s45",
+                "shanghai-s44",
+                "shanghai-s20",
+                "shanghai-s43",
+                "shanghai-s42",
+                "shanghai-s41",
+                "shanghai-s40",
+                "shanghai-s39",
+                "shanghai-s38",
+                "shanghai-s37",
+                "shanghai-s36",
+                "shanghai-s35",
+                "shanghai-s34",
+                "shanghai-s33",
+                "shanghai-s32",
+                "shanghai-s31"
+              ],
+              "osmRelationId": 196738
+            },
+            {
+              "id": "reviewed-shanghai-r3-1-in",
               "name": "3号线：江杨北路 -> 上海南站",
               "stationIds": [
                 "shanghai-s31",
@@ -7760,42 +7834,6 @@
                 "shanghai-s58"
               ],
               "osmRelationId": 196738
-            },
-            {
-              "id": "shanghai-r3-d2",
-              "name": "3号线：上海南站 -> 江杨北路",
-              "stationIds": [
-                "shanghai-s58",
-                "shanghai-s57",
-                "shanghai-s56",
-                "shanghai-s55",
-                "shanghai-s54",
-                "shanghai-s53",
-                "shanghai-s52",
-                "shanghai-s51",
-                "shanghai-s50",
-                "shanghai-s49",
-                "shanghai-s48",
-                "shanghai-s47",
-                "shanghai-s46",
-                "shanghai-s45",
-                "shanghai-s44",
-                "shanghai-s327",
-                "shanghai-s43",
-                "shanghai-s42",
-                "shanghai-s41",
-                "shanghai-s40",
-                "shanghai-s39",
-                "shanghai-s38",
-                "shanghai-s37",
-                "shanghai-s36",
-                "shanghai-s35",
-                "shanghai-s34",
-                "shanghai-s33",
-                "shanghai-s32",
-                "shanghai-s31"
-              ],
-              "osmRelationId": 6817178
             }
           ],
           "osmRelationIds": [
@@ -7803,37 +7841,77 @@
             6817178
           ],
           "stationIds": [
-            "shanghai-s31",
-            "shanghai-s32",
-            "shanghai-s33",
-            "shanghai-s34",
-            "shanghai-s35",
-            "shanghai-s36",
-            "shanghai-s37",
-            "shanghai-s38",
-            "shanghai-s39",
-            "shanghai-s40",
-            "shanghai-s41",
-            "shanghai-s42",
-            "shanghai-s43",
-            "shanghai-s20",
-            "shanghai-s44",
-            "shanghai-s45",
-            "shanghai-s46",
-            "shanghai-s47",
-            "shanghai-s48",
-            "shanghai-s49",
-            "shanghai-s50",
-            "shanghai-s51",
-            "shanghai-s52",
-            "shanghai-s53",
-            "shanghai-s54",
-            "shanghai-s55",
-            "shanghai-s56",
-            "shanghai-s57",
             "shanghai-s58",
-            "shanghai-s327"
-          ]
+            "shanghai-s57",
+            "shanghai-s56",
+            "shanghai-s55",
+            "shanghai-s54",
+            "shanghai-s53",
+            "shanghai-s52",
+            "shanghai-s51",
+            "shanghai-s50",
+            "shanghai-s49",
+            "shanghai-s48",
+            "shanghai-s47",
+            "shanghai-s46",
+            "shanghai-s45",
+            "shanghai-s44",
+            "shanghai-s20",
+            "shanghai-s43",
+            "shanghai-s42",
+            "shanghai-s41",
+            "shanghai-s40",
+            "shanghai-s39",
+            "shanghai-s38",
+            "shanghai-s37",
+            "shanghai-s36",
+            "shanghai-s35",
+            "shanghai-s34",
+            "shanghai-s33",
+            "shanghai-s32",
+            "shanghai-s31"
+          ],
+          "previousRouteMembership": [
+            {
+              "stationIds": [
+                "shanghai-s31",
+                "shanghai-s32",
+                "shanghai-s33",
+                "shanghai-s34",
+                "shanghai-s35",
+                "shanghai-s36",
+                "shanghai-s37",
+                "shanghai-s38",
+                "shanghai-s39",
+                "shanghai-s40",
+                "shanghai-s41",
+                "shanghai-s42",
+                "shanghai-s43",
+                "shanghai-s20",
+                "shanghai-s44",
+                "shanghai-s45",
+                "shanghai-s46",
+                "shanghai-s47",
+                "shanghai-s48",
+                "shanghai-s49",
+                "shanghai-s50",
+                "shanghai-s51",
+                "shanghai-s52",
+                "shanghai-s53",
+                "shanghai-s54",
+                "shanghai-s55",
+                "shanghai-s56",
+                "shanghai-s57",
+                "shanghai-s58",
+                "shanghai-s327"
+              ],
+              "reason": "公开运营方站序排除跨系统关系污染、同名重复及未开放站；原始地理点保留。",
+              "reviewedAt": "2026-10-24"
+            }
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://service.shmetro.com/hcskb/index.htm",
+          "orderPrecisionNote": "成员与运营方完整站序核对；地理轨迹仍为离线近似，不表示隧道测绘。上海11号线仅包含本线跨城花桥段，不含独立运营的苏州3/11号线。"
         },
         {
           "id": "shanghai-r4",
@@ -8457,6 +8535,7 @@
                 "shanghai-s154",
                 "shanghai-s155",
                 "shanghai-s156",
+                "shanghai-f22-jinjilu",
                 "shanghai-s157",
                 "shanghai-s158",
                 "shanghai-s159",
@@ -8472,6 +8551,7 @@
                 "shanghai-s159",
                 "shanghai-s158",
                 "shanghai-s157",
+                "shanghai-f22-jinjilu",
                 "shanghai-s156",
                 "shanghai-s155",
                 "shanghai-s154",
@@ -8541,11 +8621,15 @@
             "shanghai-s154",
             "shanghai-s155",
             "shanghai-s156",
+            "shanghai-f22-jinjilu",
             "shanghai-s157",
             "shanghai-s158",
             "shanghai-s159",
             "shanghai-s160"
-          ]
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9",
+          "orderPrecisionNote": "按独立运营方站序修复离线关系成员遗漏与未开放站；地理轨迹仍为近似参考，不是历史隧道测绘。"
         },
         {
           "id": "shanghai-r10",
@@ -8769,132 +8853,8 @@
           "color": "#76232F",
           "directions": [
             {
-              "id": "shanghai-r11-d1",
+              "id": "reviewed-shanghai-r11-1-out",
               "name": "11号线：迪士尼 -> 嘉定北",
-              "stationIds": [
-                "shanghai-s254",
-                "shanghai-s255",
-                "shanghai-s256",
-                "shanghai-s230",
-                "shanghai-s257",
-                "shanghai-s258",
-                "shanghai-s259",
-                "shanghai-s260",
-                "shanghai-s261",
-                "shanghai-s7",
-                "shanghai-s262",
-                "shanghai-s263",
-                "shanghai-s264",
-                "shanghai-s265",
-                "shanghai-s145",
-                "shanghai-s81",
-                "shanghai-s266",
-                "shanghai-s180",
-                "shanghai-s49",
-                "shanghai-s267",
-                "shanghai-s268",
-                "shanghai-s269",
-                "shanghai-s270",
-                "shanghai-s271",
-                "shanghai-s272",
-                "shanghai-s273",
-                "shanghai-s274",
-                "shanghai-s275",
-                "shanghai-s276",
-                "shanghai-s277",
-                "shanghai-s278",
-                "shanghai-s279",
-                "shanghai-s280"
-              ],
-              "osmRelationId": 5611108
-            },
-            {
-              "id": "shanghai-r11-d2",
-              "name": "11号线：嘉定北 -> 迪士尼",
-              "stationIds": [
-                "shanghai-s280",
-                "shanghai-s279",
-                "shanghai-s278",
-                "shanghai-s277",
-                "shanghai-s276",
-                "shanghai-s275",
-                "shanghai-s274",
-                "shanghai-s273",
-                "shanghai-s272",
-                "shanghai-s271",
-                "shanghai-s270",
-                "shanghai-s269",
-                "shanghai-s268",
-                "shanghai-s267",
-                "shanghai-s49",
-                "shanghai-s180",
-                "shanghai-s266",
-                "shanghai-s81",
-                "shanghai-s145",
-                "shanghai-s265",
-                "shanghai-s264",
-                "shanghai-s263",
-                "shanghai-s262",
-                "shanghai-s7",
-                "shanghai-s261",
-                "shanghai-s260",
-                "shanghai-s259",
-                "shanghai-s258",
-                "shanghai-s257",
-                "shanghai-s230",
-                "shanghai-s256",
-                "shanghai-s255",
-                "shanghai-s254"
-              ],
-              "osmRelationId": 5611109
-            },
-            {
-              "id": "shanghai-r11-d3",
-              "name": "11号线：迪士尼 -> 花桥",
-              "stationIds": [
-                "shanghai-s254",
-                "shanghai-s255",
-                "shanghai-s256",
-                "shanghai-s230",
-                "shanghai-s257",
-                "shanghai-s258",
-                "shanghai-s259",
-                "shanghai-s260",
-                "shanghai-s261",
-                "shanghai-s7",
-                "shanghai-s262",
-                "shanghai-s263",
-                "shanghai-s264",
-                "shanghai-s265",
-                "shanghai-s145",
-                "shanghai-s81",
-                "shanghai-s266",
-                "shanghai-s180",
-                "shanghai-s49",
-                "shanghai-s267",
-                "shanghai-s268",
-                "shanghai-s269",
-                "shanghai-s270",
-                "shanghai-s271",
-                "shanghai-s272",
-                "shanghai-s273",
-                "shanghai-s274",
-                "shanghai-s275",
-                "shanghai-s276",
-                "shanghai-s277",
-                "shanghai-s281",
-                "shanghai-s282",
-                "shanghai-s283",
-                "shanghai-s284",
-                "shanghai-s285",
-                "shanghai-s286",
-                "shanghai-s287"
-              ],
-              "osmRelationId": 5611110
-            },
-            {
-              "id": "shanghai-r11-d4",
-              "name": "11号线：花桥 -> 迪士尼",
               "stationIds": [
                 "shanghai-s287",
                 "shanghai-s286",
@@ -8934,12 +8894,228 @@
                 "shanghai-s255",
                 "shanghai-s254"
               ],
-              "osmRelationId": 5611111
+              "osmRelationId": 5611108
             },
             {
-              "id": "shanghai-r11-d5",
-              "name": "11号线：横山 -> 花桥",
+              "id": "reviewed-shanghai-r11-1-in",
+              "name": "11号线：迪士尼 -> 嘉定北",
               "stationIds": [
+                "shanghai-s254",
+                "shanghai-s255",
+                "shanghai-s256",
+                "shanghai-s230",
+                "shanghai-s257",
+                "shanghai-s258",
+                "shanghai-s259",
+                "shanghai-s260",
+                "shanghai-s261",
+                "shanghai-s7",
+                "shanghai-s262",
+                "shanghai-s263",
+                "shanghai-s264",
+                "shanghai-s265",
+                "shanghai-s145",
+                "shanghai-s81",
+                "shanghai-s266",
+                "shanghai-s180",
+                "shanghai-s49",
+                "shanghai-s267",
+                "shanghai-s268",
+                "shanghai-s269",
+                "shanghai-s270",
+                "shanghai-s271",
+                "shanghai-s272",
+                "shanghai-s273",
+                "shanghai-s274",
+                "shanghai-s275",
+                "shanghai-s276",
+                "shanghai-s277",
+                "shanghai-s281",
+                "shanghai-s282",
+                "shanghai-s283",
+                "shanghai-s284",
+                "shanghai-s285",
+                "shanghai-s286",
+                "shanghai-s287"
+              ],
+              "osmRelationId": 5611108
+            },
+            {
+              "id": "reviewed-shanghai-r11-2-out",
+              "name": "11号线：迪士尼 -> 嘉定北",
+              "stationIds": [
+                "shanghai-s280",
+                "shanghai-s279",
+                "shanghai-s278",
+                "shanghai-s277",
+                "shanghai-s276",
+                "shanghai-s275",
+                "shanghai-s274",
+                "shanghai-s273",
+                "shanghai-s272",
+                "shanghai-s271",
+                "shanghai-s270",
+                "shanghai-s269",
+                "shanghai-s268",
+                "shanghai-s267",
+                "shanghai-s49",
+                "shanghai-s180",
+                "shanghai-s266",
+                "shanghai-s81",
+                "shanghai-s145",
+                "shanghai-s265",
+                "shanghai-s264",
+                "shanghai-s263",
+                "shanghai-s262",
+                "shanghai-s7",
+                "shanghai-s261",
+                "shanghai-s260",
+                "shanghai-s259",
+                "shanghai-s258",
+                "shanghai-s257",
+                "shanghai-s230",
+                "shanghai-s256",
+                "shanghai-s255",
+                "shanghai-s254"
+              ],
+              "osmRelationId": 5611108
+            },
+            {
+              "id": "reviewed-shanghai-r11-2-in",
+              "name": "11号线：迪士尼 -> 嘉定北",
+              "stationIds": [
+                "shanghai-s254",
+                "shanghai-s255",
+                "shanghai-s256",
+                "shanghai-s230",
+                "shanghai-s257",
+                "shanghai-s258",
+                "shanghai-s259",
+                "shanghai-s260",
+                "shanghai-s261",
+                "shanghai-s7",
+                "shanghai-s262",
+                "shanghai-s263",
+                "shanghai-s264",
+                "shanghai-s265",
+                "shanghai-s145",
+                "shanghai-s81",
+                "shanghai-s266",
+                "shanghai-s180",
+                "shanghai-s49",
+                "shanghai-s267",
+                "shanghai-s268",
+                "shanghai-s269",
+                "shanghai-s270",
+                "shanghai-s271",
+                "shanghai-s272",
+                "shanghai-s273",
+                "shanghai-s274",
+                "shanghai-s275",
+                "shanghai-s276",
+                "shanghai-s277",
+                "shanghai-s278",
+                "shanghai-s279",
+                "shanghai-s280"
+              ],
+              "osmRelationId": 5611108
+            }
+          ],
+          "osmRelationIds": [
+            5611108,
+            5611109,
+            5611110,
+            5611111,
+            16025193,
+            16097172,
+            16879714,
+            16879715
+          ],
+          "stationIds": [
+            "shanghai-s287",
+            "shanghai-s286",
+            "shanghai-s285",
+            "shanghai-s284",
+            "shanghai-s283",
+            "shanghai-s282",
+            "shanghai-s281",
+            "shanghai-s277",
+            "shanghai-s276",
+            "shanghai-s275",
+            "shanghai-s274",
+            "shanghai-s273",
+            "shanghai-s272",
+            "shanghai-s271",
+            "shanghai-s270",
+            "shanghai-s269",
+            "shanghai-s268",
+            "shanghai-s267",
+            "shanghai-s49",
+            "shanghai-s180",
+            "shanghai-s266",
+            "shanghai-s81",
+            "shanghai-s145",
+            "shanghai-s265",
+            "shanghai-s264",
+            "shanghai-s263",
+            "shanghai-s262",
+            "shanghai-s7",
+            "shanghai-s261",
+            "shanghai-s260",
+            "shanghai-s259",
+            "shanghai-s258",
+            "shanghai-s257",
+            "shanghai-s230",
+            "shanghai-s256",
+            "shanghai-s255",
+            "shanghai-s254",
+            "shanghai-s280",
+            "shanghai-s279",
+            "shanghai-s278"
+          ],
+          "previousRouteMembership": [
+            {
+              "stationIds": [
+                "shanghai-s254",
+                "shanghai-s255",
+                "shanghai-s256",
+                "shanghai-s230",
+                "shanghai-s257",
+                "shanghai-s258",
+                "shanghai-s259",
+                "shanghai-s260",
+                "shanghai-s261",
+                "shanghai-s7",
+                "shanghai-s262",
+                "shanghai-s263",
+                "shanghai-s264",
+                "shanghai-s265",
+                "shanghai-s145",
+                "shanghai-s81",
+                "shanghai-s266",
+                "shanghai-s180",
+                "shanghai-s49",
+                "shanghai-s267",
+                "shanghai-s268",
+                "shanghai-s269",
+                "shanghai-s270",
+                "shanghai-s271",
+                "shanghai-s272",
+                "shanghai-s273",
+                "shanghai-s274",
+                "shanghai-s275",
+                "shanghai-s276",
+                "shanghai-s277",
+                "shanghai-s278",
+                "shanghai-s279",
+                "shanghai-s280",
+                "shanghai-s281",
+                "shanghai-s282",
+                "shanghai-s283",
+                "shanghai-s284",
+                "shanghai-s285",
+                "shanghai-s286",
+                "shanghai-s287",
                 "shanghai-s438",
                 "shanghai-s439",
                 "shanghai-s440",
@@ -8990,202 +9166,15 @@
                 "shanghai-s485",
                 "shanghai-s486",
                 "shanghai-s487",
-                "shanghai-s488",
-                "shanghai-s287"
+                "shanghai-s488"
               ],
-              "osmRelationId": 16025193
-            },
-            {
-              "id": "shanghai-r11-d6",
-              "name": "11号线：花桥 -> 横山",
-              "stationIds": [
-                "shanghai-s287",
-                "shanghai-s488",
-                "shanghai-s487",
-                "shanghai-s486",
-                "shanghai-s485",
-                "shanghai-s484",
-                "shanghai-s483",
-                "shanghai-s482",
-                "shanghai-s481",
-                "shanghai-s480",
-                "shanghai-s479",
-                "shanghai-s478",
-                "shanghai-s477",
-                "shanghai-s476",
-                "shanghai-s475",
-                "shanghai-s474",
-                "shanghai-s473",
-                "shanghai-s472",
-                "shanghai-s471",
-                "shanghai-s470",
-                "shanghai-s469",
-                "shanghai-s468",
-                "shanghai-s467",
-                "shanghai-s466",
-                "shanghai-s465",
-                "shanghai-s464",
-                "shanghai-s463",
-                "shanghai-s462",
-                "shanghai-s461",
-                "shanghai-s460",
-                "shanghai-s459",
-                "shanghai-s458",
-                "shanghai-s457",
-                "shanghai-s456",
-                "shanghai-s455",
-                "shanghai-s454",
-                "shanghai-s453",
-                "shanghai-s452",
-                "shanghai-s451",
-                "shanghai-s450",
-                "shanghai-s449",
-                "shanghai-s448",
-                "shanghai-s447",
-                "shanghai-s446",
-                "shanghai-s445",
-                "shanghai-s444",
-                "shanghai-s443",
-                "shanghai-s442",
-                "shanghai-s441",
-                "shanghai-s440",
-                "shanghai-s439",
-                "shanghai-s438"
-              ],
-              "osmRelationId": 16097172
-            },
-            {
-              "id": "shanghai-r11-d7",
-              "name": "11号线大站快车：花桥 -> 东方之门",
-              "stationIds": [
-                "shanghai-s287",
-                "shanghai-s484",
-                "shanghai-s474",
-                "shanghai-s470",
-                "shanghai-s467",
-                "shanghai-s462",
-                "shanghai-s451"
-              ],
-              "osmRelationId": 16879714
-            },
-            {
-              "id": "shanghai-r11-d8",
-              "name": "11号线大站快车：东方之门 -> 花桥",
-              "stationIds": [
-                "shanghai-s451",
-                "shanghai-s462",
-                "shanghai-s467",
-                "shanghai-s470",
-                "shanghai-s474",
-                "shanghai-s484",
-                "shanghai-s287"
-              ],
-              "osmRelationId": 16879715
+              "reason": "公开运营方站序排除跨系统关系污染、同名重复及未开放站；原始地理点保留。",
+              "reviewedAt": "2026-10-24"
             }
           ],
-          "osmRelationIds": [
-            5611108,
-            5611109,
-            5611110,
-            5611111,
-            16025193,
-            16097172,
-            16879714,
-            16879715
-          ],
-          "stationIds": [
-            "shanghai-s254",
-            "shanghai-s255",
-            "shanghai-s256",
-            "shanghai-s230",
-            "shanghai-s257",
-            "shanghai-s258",
-            "shanghai-s259",
-            "shanghai-s260",
-            "shanghai-s261",
-            "shanghai-s7",
-            "shanghai-s262",
-            "shanghai-s263",
-            "shanghai-s264",
-            "shanghai-s265",
-            "shanghai-s145",
-            "shanghai-s81",
-            "shanghai-s266",
-            "shanghai-s180",
-            "shanghai-s49",
-            "shanghai-s267",
-            "shanghai-s268",
-            "shanghai-s269",
-            "shanghai-s270",
-            "shanghai-s271",
-            "shanghai-s272",
-            "shanghai-s273",
-            "shanghai-s274",
-            "shanghai-s275",
-            "shanghai-s276",
-            "shanghai-s277",
-            "shanghai-s278",
-            "shanghai-s279",
-            "shanghai-s280",
-            "shanghai-s281",
-            "shanghai-s282",
-            "shanghai-s283",
-            "shanghai-s284",
-            "shanghai-s285",
-            "shanghai-s286",
-            "shanghai-s287",
-            "shanghai-s438",
-            "shanghai-s439",
-            "shanghai-s440",
-            "shanghai-s441",
-            "shanghai-s442",
-            "shanghai-s443",
-            "shanghai-s444",
-            "shanghai-s445",
-            "shanghai-s446",
-            "shanghai-s447",
-            "shanghai-s448",
-            "shanghai-s449",
-            "shanghai-s450",
-            "shanghai-s451",
-            "shanghai-s452",
-            "shanghai-s453",
-            "shanghai-s454",
-            "shanghai-s455",
-            "shanghai-s456",
-            "shanghai-s457",
-            "shanghai-s458",
-            "shanghai-s459",
-            "shanghai-s460",
-            "shanghai-s461",
-            "shanghai-s462",
-            "shanghai-s463",
-            "shanghai-s464",
-            "shanghai-s465",
-            "shanghai-s466",
-            "shanghai-s467",
-            "shanghai-s468",
-            "shanghai-s469",
-            "shanghai-s470",
-            "shanghai-s471",
-            "shanghai-s472",
-            "shanghai-s473",
-            "shanghai-s474",
-            "shanghai-s475",
-            "shanghai-s476",
-            "shanghai-s477",
-            "shanghai-s478",
-            "shanghai-s479",
-            "shanghai-s480",
-            "shanghai-s481",
-            "shanghai-s482",
-            "shanghai-s483",
-            "shanghai-s484",
-            "shanghai-s485",
-            "shanghai-s486",
-            "shanghai-s487",
-            "shanghai-s488"
-          ]
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://service.shmetro.com/hcskb/index.htm",
+          "orderPrecisionNote": "成员与运营方完整站序核对；地理轨迹仍为离线近似，不表示隧道测绘。上海11号线仅包含本线跨城花桥段，不含独立运营的苏州3/11号线。"
         },
         {
           "id": "shanghai-r12",
@@ -15846,6 +15835,272 @@
           "coordinateAccuracyM": 120,
           "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
           "coordinateNote": "WGS84车站节点，仅作地理参考；开通事实与站序由交通委公告及运营方资料独立核对。"
+        },
+        {
+          "id": "beijing-daxing-xingong",
+          "name": "新宫",
+          "latlng": [
+            39.8110444,
+            116.359749
+          ],
+          "osmIds": [
+            9706596471
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-xihongmen",
+          "name": "西红门",
+          "latlng": [
+            39.7883939,
+            116.322677
+          ],
+          "osmIds": [
+            7860703071
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-gaomidianbei",
+          "name": "高米店北",
+          "latlng": [
+            39.7730301,
+            116.3244805
+          ],
+          "osmIds": [
+            7860703072
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-gaomidiannan",
+          "name": "高米店南",
+          "latlng": [
+            39.7622885,
+            116.325694
+          ],
+          "osmIds": [
+            5441536634
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-zaoyuan",
+          "name": "枣园",
+          "latlng": [
+            39.7518055,
+            116.3260337
+          ],
+          "osmIds": [
+            5444440441
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-qingyuanlu",
+          "name": "清源路",
+          "latlng": [
+            39.7417561,
+            116.3263162
+          ],
+          "osmIds": [
+            7860703073
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-huangcunwest",
+          "name": "黄村西大街",
+          "latlng": [
+            39.730422,
+            116.3265186
+          ],
+          "osmIds": [
+            7860703074
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-huangcunrail",
+          "name": "黄村火车站",
+          "latlng": [
+            39.7215049,
+            116.3266541
+          ],
+          "osmIds": [
+            7860703075
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-yihezhuang",
+          "name": "义和庄",
+          "latlng": [
+            39.7111046,
+            116.3130186
+          ],
+          "osmIds": [
+            7860703076
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-biomedicine",
+          "name": "生物医药基地",
+          "latlng": [
+            39.6851077,
+            116.3156802
+          ],
+          "osmIds": [
+            5441516142
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-daxing-tiangongyuan",
+          "name": "天宫院",
+          "latlng": [
+            39.6689886,
+            116.3139055
+          ],
+          "osmIds": [
+            5428310397
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html"
+        },
+        {
+          "id": "beijing-yanfang-yanshan",
+          "name": "燕山",
+          "latlng": [
+            39.7184583,
+            115.9674631
+          ],
+          "osmIds": [
+            5402957177
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+        },
+        {
+          "id": "beijing-yanfang-fangshanchengguan",
+          "name": "房山城关",
+          "latlng": [
+            39.7046285,
+            115.9835976
+          ],
+          "osmIds": [
+            5402956432
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+        },
+        {
+          "id": "beijing-yanfang-raolefu",
+          "name": "饶乐府",
+          "latlng": [
+            39.7002557,
+            116.000048
+          ],
+          "osmIds": [
+            7796853448
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+        },
+        {
+          "id": "beijing-yanfang-magezhuang",
+          "name": "马各庄",
+          "latlng": [
+            39.7037753,
+            116.0105495
+          ],
+          "osmIds": [
+            7796839024
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+        },
+        {
+          "id": "beijing-yanfang-dashiheeast",
+          "name": "大石河东",
+          "latlng": [
+            39.7085836,
+            116.0339981
+          ],
+          "osmIds": [
+            9153343830
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+        },
+        {
+          "id": "beijing-yanfang-xingcheng",
+          "name": "星城",
+          "latlng": [
+            39.7122214,
+            116.0551386
+          ],
+          "osmIds": [
+            9153343831
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+        },
+        {
+          "id": "beijing-yanfang-yancun",
+          "name": "阎村",
+          "latlng": [
+            39.715288,
+            116.0739687
+          ],
+          "osmIds": [
+            5402953665
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+        },
+        {
+          "id": "beijing-yanfang-zicaowu",
+          "name": "紫草坞",
+          "latlng": [
+            39.723022,
+            116.0804553
+          ],
+          "osmIds": [
+            9153343832
+          ],
+          "coordinateSource": "local_osm_station_node",
+          "coordinateNote": "本地OSM地铁站节点，仅作近似地理参考；官方公告独立证明站序和开通。来源未给测量误差，不用游戏容差替代。",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
         }
       ],
       "lines": [
@@ -16135,13 +16390,66 @@
         {
           "id": "beijing-r4",
           "ref": "4号线",
-          "name": "4号线",
+          "name": "4号线—大兴线",
           "color": "#008994",
           "directions": [
             {
               "id": "beijing-r4-d1",
               "name": "地铁 4号线: 公益西桥 -> 安河桥北",
               "stationIds": [
+                "beijing-s238",
+                "beijing-s237",
+                "beijing-s236",
+                "beijing-s235",
+                "beijing-s234",
+                "beijing-s233",
+                "beijing-s181",
+                "beijing-s232",
+                "beijing-s231",
+                "beijing-s219",
+                "beijing-s230",
+                "beijing-s69",
+                "beijing-s229",
+                "beijing-s228",
+                "beijing-s227",
+                "beijing-s226",
+                "beijing-s225",
+                "beijing-s81",
+                "beijing-s224",
+                "beijing-s223",
+                "beijing-s222",
+                "beijing-s221",
+                "beijing-s159",
+                "beijing-s220",
+                "beijing-daxing-xingong",
+                "beijing-daxing-xihongmen",
+                "beijing-daxing-gaomidianbei",
+                "beijing-daxing-gaomidiannan",
+                "beijing-daxing-zaoyuan",
+                "beijing-daxing-qingyuanlu",
+                "beijing-daxing-huangcunwest",
+                "beijing-daxing-huangcunrail",
+                "beijing-daxing-yihezhuang",
+                "beijing-daxing-biomedicine",
+                "beijing-daxing-tiangongyuan"
+              ],
+              "osmRelationId": 2082917
+            },
+            {
+              "id": "beijing-r4-d2",
+              "name": "地铁 4号线: 安河桥北 -> 公益西桥",
+              "stationIds": [
+                "beijing-daxing-tiangongyuan",
+                "beijing-daxing-biomedicine",
+                "beijing-daxing-yihezhuang",
+                "beijing-daxing-huangcunrail",
+                "beijing-daxing-huangcunwest",
+                "beijing-daxing-qingyuanlu",
+                "beijing-daxing-zaoyuan",
+                "beijing-daxing-gaomidiannan",
+                "beijing-daxing-gaomidianbei",
+                "beijing-daxing-xihongmen",
+                "beijing-daxing-xingong",
                 "beijing-s220",
                 "beijing-s159",
                 "beijing-s221",
@@ -16167,37 +16475,6 @@
                 "beijing-s237",
                 "beijing-s238"
               ],
-              "osmRelationId": 2082917
-            },
-            {
-              "id": "beijing-r4-d2",
-              "name": "地铁 4号线: 安河桥北 -> 公益西桥",
-              "stationIds": [
-                "beijing-s238",
-                "beijing-s237",
-                "beijing-s236",
-                "beijing-s235",
-                "beijing-s234",
-                "beijing-s233",
-                "beijing-s181",
-                "beijing-s232",
-                "beijing-s231",
-                "beijing-s219",
-                "beijing-s230",
-                "beijing-s69",
-                "beijing-s229",
-                "beijing-s228",
-                "beijing-s227",
-                "beijing-s226",
-                "beijing-s225",
-                "beijing-s81",
-                "beijing-s224",
-                "beijing-s223",
-                "beijing-s222",
-                "beijing-s221",
-                "beijing-s159",
-                "beijing-s220"
-              ],
               "osmRelationId": 2082918
             }
           ],
@@ -16208,33 +16485,45 @@
             2083780
           ],
           "stationIds": [
-            "beijing-s220",
-            "beijing-s159",
-            "beijing-s221",
-            "beijing-s222",
-            "beijing-s223",
-            "beijing-s224",
-            "beijing-s81",
-            "beijing-s225",
-            "beijing-s226",
-            "beijing-s227",
-            "beijing-s228",
-            "beijing-s229",
-            "beijing-s69",
-            "beijing-s230",
-            "beijing-s219",
-            "beijing-s231",
-            "beijing-s232",
-            "beijing-s181",
-            "beijing-s233",
-            "beijing-s234",
-            "beijing-s235",
-            "beijing-s236",
+            "beijing-s238",
             "beijing-s237",
-            "beijing-s238"
+            "beijing-s236",
+            "beijing-s235",
+            "beijing-s234",
+            "beijing-s233",
+            "beijing-s181",
+            "beijing-s232",
+            "beijing-s231",
+            "beijing-s219",
+            "beijing-s230",
+            "beijing-s69",
+            "beijing-s229",
+            "beijing-s228",
+            "beijing-s227",
+            "beijing-s226",
+            "beijing-s225",
+            "beijing-s81",
+            "beijing-s224",
+            "beijing-s223",
+            "beijing-s222",
+            "beijing-s221",
+            "beijing-s159",
+            "beijing-s220",
+            "beijing-daxing-xingong",
+            "beijing-daxing-xihongmen",
+            "beijing-daxing-gaomidianbei",
+            "beijing-daxing-gaomidiannan",
+            "beijing-daxing-zaoyuan",
+            "beijing-daxing-qingyuanlu",
+            "beijing-daxing-huangcunwest",
+            "beijing-daxing-huangcunrail",
+            "beijing-daxing-yihezhuang",
+            "beijing-daxing-biomedicine",
+            "beijing-daxing-tiangongyuan"
           ],
-          "stationOrderSource": "https://www.mtr.bj.cn/service/line/line-4.html",
-          "stationOrderCheckedAt": "2026-10-20"
+          "stationOrderSource": "https://www.mtr.bj.cn/service/line/timetable/line-4",
+          "stationOrderCheckedAt": "2026-10-20",
+          "stationOrderReviewedAt": "2026-10-24"
         },
         {
           "id": "beijing-r5",
@@ -18017,6 +18306,63 @@
             "beijing-s264",
             "beijing-s265",
             "beijing-s266"
+          ]
+        },
+        {
+          "id": "beijing-r25",
+          "ref": "燕房线",
+          "name": "燕房线",
+          "color": "#D86018",
+          "stationIds": [
+            "beijing-yanfang-yanshan",
+            "beijing-yanfang-fangshanchengguan",
+            "beijing-yanfang-raolefu",
+            "beijing-yanfang-magezhuang",
+            "beijing-yanfang-dashiheeast",
+            "beijing-yanfang-xingcheng",
+            "beijing-yanfang-yancun",
+            "beijing-yanfang-zicaowu",
+            "beijing-s206"
+          ],
+          "osmRelationIds": [
+            12798054,
+            8469053
+          ],
+          "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html",
+          "stationOrderReviewedAt": "2026-10-24",
+          "directions": [
+            {
+              "id": "yanfang-out",
+              "name": "燕山→阎村东",
+              "stationIds": [
+                "beijing-yanfang-yanshan",
+                "beijing-yanfang-fangshanchengguan",
+                "beijing-yanfang-raolefu",
+                "beijing-yanfang-magezhuang",
+                "beijing-yanfang-dashiheeast",
+                "beijing-yanfang-xingcheng",
+                "beijing-yanfang-yancun",
+                "beijing-yanfang-zicaowu",
+                "beijing-s206"
+              ],
+              "osmRelationId": 12798054
+            },
+            {
+              "id": "yanfang-in",
+              "name": "阎村东→燕山",
+              "stationIds": [
+                "beijing-s206",
+                "beijing-yanfang-zicaowu",
+                "beijing-yanfang-yancun",
+                "beijing-yanfang-xingcheng",
+                "beijing-yanfang-dashiheeast",
+                "beijing-yanfang-magezhuang",
+                "beijing-yanfang-raolefu",
+                "beijing-yanfang-fangshanchengguan",
+                "beijing-yanfang-yanshan"
+              ],
+              "osmRelationId": 8469053
+            }
           ]
         }
       ],
@@ -33990,7 +34336,7 @@
                 "shenzhen-s273",
                 "shenzhen-s272",
                 "shenzhen-s37",
-                "shenzhen-s290",
+                "shenzhen-s103",
                 "shenzhen-s7",
                 "shenzhen-s271",
                 "shenzhen-s68"
@@ -34026,9 +34372,10 @@
             "shenzhen-s286",
             "shenzhen-s287",
             "shenzhen-s288",
-            "shenzhen-s289",
-            "shenzhen-s290"
-          ]
+            "shenzhen-s289"
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html"
         },
         {
           "id": "shenzhen-r12",
@@ -34037,7 +34384,7 @@
           "color": "#6A1D44",
           "directions": [
             {
-              "id": "shenzhen-r12-d1",
+              "id": "reviewed-shenzhen-r12-1-out",
               "name": "地铁 11号线: 红岭南 → 碧头",
               "stationIds": [
                 "shenzhen-s185",
@@ -34066,11 +34413,11 @@
               "osmRelationId": 6450277
             },
             {
-              "id": "shenzhen-r12-d2",
-              "name": "地铁 11号线: 碧头 → 红岭南",
+              "id": "reviewed-shenzhen-r12-1-in",
+              "name": "地铁 11号线: 红岭南 → 碧头",
               "stationIds": [
                 "shenzhen-s202",
-                "shenzhen-s224",
+                "shenzhen-s201",
                 "shenzhen-s200",
                 "shenzhen-s199",
                 "shenzhen-s198",
@@ -34092,31 +34439,7 @@
                 "shenzhen-s186",
                 "shenzhen-s185"
               ],
-              "osmRelationId": 9318441
-            },
-            {
-              "id": "shenzhen-r12-d3",
-              "name": "地铁 11号线: 碧头 → 红岭南",
-              "stationIds": [
-                "shenzhen-s202",
-                "shenzhen-s224",
-                "shenzhen-s200",
-                "shenzhen-s199",
-                "shenzhen-s198",
-                "shenzhen-s197",
-                "shenzhen-s196",
-                "shenzhen-s195",
-                "shenzhen-s194",
-                "shenzhen-s193",
-                "shenzhen-s22",
-                "shenzhen-s11",
-                "shenzhen-s35",
-                "shenzhen-s103",
-                "shenzhen-s187",
-                "shenzhen-s186",
-                "shenzhen-s185"
-              ],
-              "osmRelationId": 21395022
+              "osmRelationId": 6450277
             }
           ],
           "osmRelationIds": [
@@ -34146,9 +34469,42 @@
             "shenzhen-s199",
             "shenzhen-s200",
             "shenzhen-s201",
-            "shenzhen-s202",
-            "shenzhen-s224"
-          ]
+            "shenzhen-s202"
+          ],
+          "previousRouteMembership": [
+            {
+              "stationIds": [
+                "shenzhen-s185",
+                "shenzhen-s186",
+                "shenzhen-s187",
+                "shenzhen-s103",
+                "shenzhen-s35",
+                "shenzhen-s11",
+                "shenzhen-s188",
+                "shenzhen-s189",
+                "shenzhen-s190",
+                "shenzhen-s22",
+                "shenzhen-s191",
+                "shenzhen-s192",
+                "shenzhen-s193",
+                "shenzhen-s194",
+                "shenzhen-s195",
+                "shenzhen-s196",
+                "shenzhen-s197",
+                "shenzhen-s198",
+                "shenzhen-s199",
+                "shenzhen-s200",
+                "shenzhen-s201",
+                "shenzhen-s202",
+                "shenzhen-s224"
+              ],
+              "reason": "公开运营方站序排除跨系统关系污染、同名重复及未开放站；原始地理点保留。",
+              "reviewedAt": "2026-10-24"
+            }
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+          "orderPrecisionNote": "成员与运营方完整站序核对；地理轨迹仍为离线近似，不表示隧道测绘。上海11号线仅包含本线跨城花桥段，不含独立运营的苏州3/11号线。"
         },
         {
           "id": "shenzhen-r13",
@@ -40470,7 +40826,70 @@
           "color": "#B36924",
           "directions": [
             {
-              "id": "chengdu-r6-d1",
+              "id": "reviewed-chengdu-r6-1-out",
+              "name": "成都地铁6号线: 望丛祠 => 兰家沟",
+              "stationIds": [
+                "chengdu-s225",
+                "chengdu-s224",
+                "chengdu-s223",
+                "chengdu-s222",
+                "chengdu-s221",
+                "chengdu-s220",
+                "chengdu-s164",
+                "chengdu-s219",
+                "chengdu-s218",
+                "chengdu-s217",
+                "chengdu-s216",
+                "chengdu-s215",
+                "chengdu-s214",
+                "chengdu-s213",
+                "chengdu-s212",
+                "chengdu-s211",
+                "chengdu-s210",
+                "chengdu-s209",
+                "chengdu-s208",
+                "chengdu-s207",
+                "chengdu-s206",
+                "chengdu-s205",
+                "chengdu-s168",
+                "chengdu-s204",
+                "chengdu-s203",
+                "chengdu-s202",
+                "chengdu-s201",
+                "chengdu-s200",
+                "chengdu-s199",
+                "chengdu-s41",
+                "chengdu-s75",
+                "chengdu-s198",
+                "chengdu-s197",
+                "chengdu-s99",
+                "chengdu-s196",
+                "chengdu-s21",
+                "chengdu-s195",
+                "chengdu-s194",
+                "chengdu-s135",
+                "chengdu-s193",
+                "chengdu-s192",
+                "chengdu-s191",
+                "chengdu-s190",
+                "chengdu-s189",
+                "chengdu-s188",
+                "chengdu-s187",
+                "chengdu-s186",
+                "chengdu-s25",
+                "chengdu-s185",
+                "chengdu-s184",
+                "chengdu-s183",
+                "chengdu-s182",
+                "chengdu-s181",
+                "chengdu-s180",
+                "chengdu-s179",
+                "chengdu-s178"
+              ],
+              "osmRelationId": 9627850
+            },
+            {
+              "id": "reviewed-chengdu-r6-1-in",
               "name": "成都地铁6号线: 望丛祠 => 兰家沟",
               "stationIds": [
                 "chengdu-s178",
@@ -40531,69 +40950,6 @@
                 "chengdu-s225"
               ],
               "osmRelationId": 9627850
-            },
-            {
-              "id": "chengdu-r6-d2",
-              "name": "成都地铁6号线: 兰家沟 => 望丛祠",
-              "stationIds": [
-                "chengdu-s225",
-                "chengdu-s224",
-                "chengdu-s223",
-                "chengdu-s222",
-                "chengdu-s221",
-                "chengdu-s220",
-                "chengdu-s164",
-                "chengdu-s219",
-                "chengdu-s218",
-                "chengdu-s217",
-                "chengdu-s216",
-                "chengdu-s215",
-                "chengdu-s214",
-                "chengdu-s213",
-                "chengdu-s212",
-                "chengdu-s211",
-                "chengdu-s210",
-                "chengdu-s209",
-                "chengdu-s208",
-                "chengdu-s207",
-                "chengdu-s206",
-                "chengdu-s205",
-                "chengdu-s168",
-                "chengdu-s204",
-                "chengdu-s203",
-                "chengdu-s202",
-                "chengdu-s201",
-                "chengdu-s200",
-                "chengdu-s199",
-                "chengdu-s41",
-                "chengdu-s75",
-                "chengdu-s198",
-                "chengdu-s197",
-                "chengdu-s99",
-                "chengdu-s196",
-                "chengdu-s21",
-                "chengdu-s195",
-                "chengdu-s194",
-                "chengdu-s135",
-                "chengdu-s193",
-                "chengdu-s192",
-                "chengdu-s191",
-                "chengdu-s190",
-                "chengdu-s189",
-                "chengdu-s188",
-                "chengdu-s187",
-                "chengdu-s186",
-                "chengdu-s329",
-                "chengdu-s185",
-                "chengdu-s184",
-                "chengdu-s183",
-                "chengdu-s182",
-                "chengdu-s181",
-                "chengdu-s180",
-                "chengdu-s179",
-                "chengdu-s178"
-              ],
-              "osmRelationId": 12038668
             }
           ],
           "osmRelationIds": [
@@ -40601,64 +40957,131 @@
             12038668
           ],
           "stationIds": [
-            "chengdu-s178",
-            "chengdu-s179",
-            "chengdu-s180",
-            "chengdu-s181",
-            "chengdu-s182",
-            "chengdu-s183",
-            "chengdu-s184",
-            "chengdu-s185",
-            "chengdu-s25",
-            "chengdu-s186",
-            "chengdu-s187",
-            "chengdu-s188",
-            "chengdu-s189",
-            "chengdu-s190",
-            "chengdu-s191",
-            "chengdu-s192",
-            "chengdu-s193",
-            "chengdu-s135",
-            "chengdu-s194",
-            "chengdu-s195",
-            "chengdu-s21",
-            "chengdu-s196",
-            "chengdu-s99",
-            "chengdu-s197",
-            "chengdu-s198",
-            "chengdu-s75",
-            "chengdu-s41",
-            "chengdu-s199",
-            "chengdu-s200",
-            "chengdu-s201",
-            "chengdu-s202",
-            "chengdu-s203",
-            "chengdu-s204",
-            "chengdu-s168",
-            "chengdu-s205",
-            "chengdu-s206",
-            "chengdu-s207",
-            "chengdu-s208",
-            "chengdu-s209",
-            "chengdu-s210",
-            "chengdu-s211",
-            "chengdu-s212",
-            "chengdu-s213",
-            "chengdu-s214",
-            "chengdu-s215",
-            "chengdu-s216",
-            "chengdu-s217",
-            "chengdu-s218",
-            "chengdu-s219",
-            "chengdu-s164",
-            "chengdu-s220",
-            "chengdu-s221",
-            "chengdu-s222",
-            "chengdu-s223",
-            "chengdu-s224",
             "chengdu-s225",
-            "chengdu-s329"
-          ]
+            "chengdu-s224",
+            "chengdu-s223",
+            "chengdu-s222",
+            "chengdu-s221",
+            "chengdu-s220",
+            "chengdu-s164",
+            "chengdu-s219",
+            "chengdu-s218",
+            "chengdu-s217",
+            "chengdu-s216",
+            "chengdu-s215",
+            "chengdu-s214",
+            "chengdu-s213",
+            "chengdu-s212",
+            "chengdu-s211",
+            "chengdu-s210",
+            "chengdu-s209",
+            "chengdu-s208",
+            "chengdu-s207",
+            "chengdu-s206",
+            "chengdu-s205",
+            "chengdu-s168",
+            "chengdu-s204",
+            "chengdu-s203",
+            "chengdu-s202",
+            "chengdu-s201",
+            "chengdu-s200",
+            "chengdu-s199",
+            "chengdu-s41",
+            "chengdu-s75",
+            "chengdu-s198",
+            "chengdu-s197",
+            "chengdu-s99",
+            "chengdu-s196",
+            "chengdu-s21",
+            "chengdu-s195",
+            "chengdu-s194",
+            "chengdu-s135",
+            "chengdu-s193",
+            "chengdu-s192",
+            "chengdu-s191",
+            "chengdu-s190",
+            "chengdu-s189",
+            "chengdu-s188",
+            "chengdu-s187",
+            "chengdu-s186",
+            "chengdu-s25",
+            "chengdu-s185",
+            "chengdu-s184",
+            "chengdu-s183",
+            "chengdu-s182",
+            "chengdu-s181",
+            "chengdu-s180",
+            "chengdu-s179",
+            "chengdu-s178"
+          ],
+          "previousRouteMembership": [
+            {
+              "stationIds": [
+                "chengdu-s178",
+                "chengdu-s179",
+                "chengdu-s180",
+                "chengdu-s181",
+                "chengdu-s182",
+                "chengdu-s183",
+                "chengdu-s184",
+                "chengdu-s185",
+                "chengdu-s25",
+                "chengdu-s186",
+                "chengdu-s187",
+                "chengdu-s188",
+                "chengdu-s189",
+                "chengdu-s190",
+                "chengdu-s191",
+                "chengdu-s192",
+                "chengdu-s193",
+                "chengdu-s135",
+                "chengdu-s194",
+                "chengdu-s195",
+                "chengdu-s21",
+                "chengdu-s196",
+                "chengdu-s99",
+                "chengdu-s197",
+                "chengdu-s198",
+                "chengdu-s75",
+                "chengdu-s41",
+                "chengdu-s199",
+                "chengdu-s200",
+                "chengdu-s201",
+                "chengdu-s202",
+                "chengdu-s203",
+                "chengdu-s204",
+                "chengdu-s168",
+                "chengdu-s205",
+                "chengdu-s206",
+                "chengdu-s207",
+                "chengdu-s208",
+                "chengdu-s209",
+                "chengdu-s210",
+                "chengdu-s211",
+                "chengdu-s212",
+                "chengdu-s213",
+                "chengdu-s214",
+                "chengdu-s215",
+                "chengdu-s216",
+                "chengdu-s217",
+                "chengdu-s218",
+                "chengdu-s219",
+                "chengdu-s164",
+                "chengdu-s220",
+                "chengdu-s221",
+                "chengdu-s222",
+                "chengdu-s223",
+                "chengdu-s224",
+                "chengdu-s225",
+                "chengdu-s329"
+              ],
+              "reason": "公开运营方站序排除跨系统关系污染、同名重复及未开放站；原始地理点保留。",
+              "reviewedAt": "2026-10-24"
+            }
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
+          "orderPrecisionNote": "成员与运营方完整站序核对；地理轨迹仍为离线近似，不表示隧道测绘。上海11号线仅包含本线跨城花桥段，不含独立运营的苏州3/11号线。"
         },
         {
           "id": "chengdu-r7",
@@ -40914,7 +41337,7 @@
           "color": "#FFB81C",
           "directions": [
             {
-              "id": "chengdu-r9-d1",
+              "id": "reviewed-chengdu-r9-1-out",
               "name": "成都地铁9号线: 金融城东 → 黄田坝",
               "stationIds": [
                 "chengdu-s168",
@@ -40934,11 +41357,11 @@
               "osmRelationId": 9627519
             },
             {
-              "id": "chengdu-r9-d2",
-              "name": "成都地铁9号线: 黄田坝 → 金融城东",
+              "id": "reviewed-chengdu-r9-1-in",
+              "name": "成都地铁9号线: 金融城东 → 黄田坝",
               "stationIds": [
                 "chengdu-s177",
-                "chengdu-s330",
+                "chengdu-s67",
                 "chengdu-s176",
                 "chengdu-s175",
                 "chengdu-s109",
@@ -40951,7 +41374,7 @@
                 "chengdu-s169",
                 "chengdu-s168"
               ],
-              "osmRelationId": 12094622
+              "osmRelationId": 9627519
             }
           ],
           "osmRelationIds": [
@@ -40971,9 +41394,33 @@
             "chengdu-s175",
             "chengdu-s176",
             "chengdu-s67",
-            "chengdu-s177",
-            "chengdu-s330"
-          ]
+            "chengdu-s177"
+          ],
+          "previousRouteMembership": [
+            {
+              "stationIds": [
+                "chengdu-s168",
+                "chengdu-s169",
+                "chengdu-s170",
+                "chengdu-s171",
+                "chengdu-s172",
+                "chengdu-s173",
+                "chengdu-s144",
+                "chengdu-s174",
+                "chengdu-s109",
+                "chengdu-s175",
+                "chengdu-s176",
+                "chengdu-s67",
+                "chengdu-s177",
+                "chengdu-s330"
+              ],
+              "reason": "公开运营方站序排除跨系统关系污染、同名重复及未开放站；原始地理点保留。",
+              "reviewedAt": "2026-10-24"
+            }
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
+          "orderPrecisionNote": "成员与运营方完整站序核对；地理轨迹仍为离线近似，不表示隧道测绘。上海11号线仅包含本线跨城花桥段，不含独立运营的苏州3/11号线。"
         },
         {
           "id": "chengdu-r10",
@@ -41293,7 +41740,7 @@
           "color": "#006272",
           "directions": [
             {
-              "id": "chengdu-r13-d1",
+              "id": "reviewed-chengdu-r13-1-out",
               "name": "成都地铁18号线: 火车南站 => 天府机场北",
               "stationIds": [
                 "chengdu-s303",
@@ -41306,19 +41753,17 @@
                 "chengdu-s308",
                 "chengdu-s309",
                 "chengdu-s310",
-                "chengdu-s311",
                 "chengdu-s312",
                 "chengdu-s313"
               ],
               "osmRelationId": 9869750
             },
             {
-              "id": "chengdu-r13-d2",
-              "name": "成都地铁18号线: 天府机场北 => 火车南站",
+              "id": "reviewed-chengdu-r13-1-in",
+              "name": "成都地铁18号线: 火车南站 => 天府机场北",
               "stationIds": [
                 "chengdu-s313",
                 "chengdu-s312",
-                "chengdu-s311",
                 "chengdu-s310",
                 "chengdu-s309",
                 "chengdu-s308",
@@ -41330,29 +41775,7 @@
                 "chengdu-s304",
                 "chengdu-s303"
               ],
-              "osmRelationId": 11697794
-            },
-            {
-              "id": "chengdu-r13-d3",
-              "name": "成都地铁18号线快线: 天府机场北 => 火车南站",
-              "stationIds": [
-                "chengdu-s313",
-                "chengdu-s312",
-                "chengdu-s311",
-                "chengdu-s303"
-              ],
-              "osmRelationId": 13367599
-            },
-            {
-              "id": "chengdu-r13-d4",
-              "name": "成都地铁18号线快线: 火车南站 => 天府机场北",
-              "stationIds": [
-                "chengdu-s303",
-                "chengdu-s311",
-                "chengdu-s312",
-                "chengdu-s313"
-              ],
-              "osmRelationId": 13367600
+              "osmRelationId": 9869750
             }
           ],
           "osmRelationIds": [
@@ -41372,10 +41795,33 @@
             "chengdu-s308",
             "chengdu-s309",
             "chengdu-s310",
-            "chengdu-s311",
             "chengdu-s312",
             "chengdu-s313"
-          ]
+          ],
+          "previousRouteMembership": [
+            {
+              "stationIds": [
+                "chengdu-s303",
+                "chengdu-s304",
+                "chengdu-s305",
+                "chengdu-s7",
+                "chengdu-s158",
+                "chengdu-s306",
+                "chengdu-s307",
+                "chengdu-s308",
+                "chengdu-s309",
+                "chengdu-s310",
+                "chengdu-s311",
+                "chengdu-s312",
+                "chengdu-s313"
+              ],
+              "reason": "公开运营方站序排除跨系统关系污染、同名重复及未开放站；原始地理点保留。",
+              "reviewedAt": "2026-10-24"
+            }
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
+          "orderPrecisionNote": "成员与运营方完整站序核对；地理轨迹仍为离线近似，不表示隧道测绘。上海11号线仅包含本线跨城花桥段，不含独立运营的苏州3/11号线。"
         },
         {
           "id": "chengdu-r14",
@@ -41387,59 +41833,8 @@
               "id": "chengdu-r14-d1",
               "name": "成都地铁19号线: 天府站 => 金星",
               "stationIds": [
-                "chengdu-s349",
-                "chengdu-s350",
-                "chengdu-s351",
-                "chengdu-s352",
-                "chengdu-s353",
-                "chengdu-s354",
-                "chengdu-s287",
-                "chengdu-s355",
-                "chengdu-s356",
-                "chengdu-s286",
-                "chengdu-s357",
-                "chengdu-s358",
-                "chengdu-s258",
-                "chengdu-s359",
-                "chengdu-s360",
-                "chengdu-s219",
-                "chengdu-s361",
-                "chengdu-s308"
-              ],
-              "osmRelationId": 16494768
-            },
-            {
-              "id": "chengdu-r14-d2",
-              "name": "成都地铁19号线: 金星 => 天府站",
-              "stationIds": [
-                "chengdu-s308",
-                "chengdu-s361",
-                "chengdu-s219",
-                "chengdu-s360",
-                "chengdu-s359",
-                "chengdu-s258",
-                "chengdu-s358",
-                "chengdu-s357",
-                "chengdu-s286",
-                "chengdu-s356",
-                "chengdu-s355",
-                "chengdu-s287",
-                "chengdu-s354",
-                "chengdu-s353",
-                "chengdu-s352",
-                "chengdu-s351",
-                "chengdu-s350",
-                "chengdu-s349"
-              ],
-              "osmRelationId": 16494854
-            },
-            {
-              "id": "chengdu-r14-d3",
-              "name": "成都地铁19号线: 金星 => 天府机场北",
-              "stationIds": [
                 "chengdu-s313",
                 "chengdu-s312",
-                "chengdu-s311",
                 "chengdu-s310",
                 "chengdu-s309",
                 "chengdu-s308",
@@ -41460,6 +41855,64 @@
                 "chengdu-s351",
                 "chengdu-s350",
                 "chengdu-s349"
+              ],
+              "osmRelationId": 16494768
+            },
+            {
+              "id": "chengdu-r14-d2",
+              "name": "成都地铁19号线: 金星 => 天府站",
+              "stationIds": [
+                "chengdu-s349",
+                "chengdu-s350",
+                "chengdu-s351",
+                "chengdu-s352",
+                "chengdu-s353",
+                "chengdu-s354",
+                "chengdu-s287",
+                "chengdu-s355",
+                "chengdu-s356",
+                "chengdu-s286",
+                "chengdu-s357",
+                "chengdu-s358",
+                "chengdu-s258",
+                "chengdu-s359",
+                "chengdu-s360",
+                "chengdu-s219",
+                "chengdu-s361",
+                "chengdu-s308",
+                "chengdu-s309",
+                "chengdu-s310",
+                "chengdu-s312",
+                "chengdu-s313"
+              ],
+              "osmRelationId": 16494854
+            },
+            {
+              "id": "chengdu-r14-d3",
+              "name": "成都地铁19号线: 金星 => 天府机场北",
+              "stationIds": [
+                "chengdu-s349",
+                "chengdu-s350",
+                "chengdu-s351",
+                "chengdu-s352",
+                "chengdu-s353",
+                "chengdu-s354",
+                "chengdu-s287",
+                "chengdu-s355",
+                "chengdu-s356",
+                "chengdu-s286",
+                "chengdu-s357",
+                "chengdu-s358",
+                "chengdu-s258",
+                "chengdu-s359",
+                "chengdu-s360",
+                "chengdu-s219",
+                "chengdu-s361",
+                "chengdu-s308",
+                "chengdu-s309",
+                "chengdu-s310",
+                "chengdu-s312",
+                "chengdu-s313"
               ],
               "osmRelationId": 16764492
             },
@@ -41487,7 +41940,6 @@
                 "chengdu-s308",
                 "chengdu-s309",
                 "chengdu-s310",
-                "chengdu-s311",
                 "chengdu-s312",
                 "chengdu-s313"
               ],
@@ -41497,9 +41949,28 @@
               "id": "chengdu-r14-d5",
               "name": "双机场直达车: 天府机场1号2号航站楼 => 双流机场2航站楼东",
               "stationIds": [
+                "chengdu-s349",
+                "chengdu-s350",
+                "chengdu-s351",
+                "chengdu-s352",
+                "chengdu-s353",
+                "chengdu-s354",
+                "chengdu-s287",
+                "chengdu-s355",
+                "chengdu-s356",
+                "chengdu-s286",
+                "chengdu-s357",
+                "chengdu-s358",
+                "chengdu-s258",
+                "chengdu-s359",
+                "chengdu-s360",
+                "chengdu-s219",
+                "chengdu-s361",
+                "chengdu-s308",
+                "chengdu-s309",
+                "chengdu-s310",
                 "chengdu-s312",
-                "chengdu-s311",
-                "chengdu-s356"
+                "chengdu-s313"
               ],
               "osmRelationId": 16764494
             },
@@ -41507,9 +41978,28 @@
               "id": "chengdu-r14-d6",
               "name": "双机场直达车: 双流机场2航站楼东 => 天府机场1号2号航站楼",
               "stationIds": [
+                "chengdu-s349",
+                "chengdu-s350",
+                "chengdu-s351",
+                "chengdu-s352",
+                "chengdu-s353",
+                "chengdu-s354",
+                "chengdu-s287",
+                "chengdu-s355",
                 "chengdu-s356",
-                "chengdu-s311",
-                "chengdu-s312"
+                "chengdu-s286",
+                "chengdu-s357",
+                "chengdu-s358",
+                "chengdu-s258",
+                "chengdu-s359",
+                "chengdu-s360",
+                "chengdu-s219",
+                "chengdu-s361",
+                "chengdu-s308",
+                "chengdu-s309",
+                "chengdu-s310",
+                "chengdu-s312",
+                "chengdu-s313"
               ],
               "osmRelationId": 16764495
             }
@@ -41523,30 +42013,32 @@
             16764495
           ],
           "stationIds": [
-            "chengdu-s349",
-            "chengdu-s350",
-            "chengdu-s351",
-            "chengdu-s352",
-            "chengdu-s353",
-            "chengdu-s354",
-            "chengdu-s287",
-            "chengdu-s355",
-            "chengdu-s356",
-            "chengdu-s286",
-            "chengdu-s357",
-            "chengdu-s358",
-            "chengdu-s258",
-            "chengdu-s359",
-            "chengdu-s360",
-            "chengdu-s219",
-            "chengdu-s361",
-            "chengdu-s308",
             "chengdu-s313",
             "chengdu-s312",
-            "chengdu-s311",
             "chengdu-s310",
-            "chengdu-s309"
-          ]
+            "chengdu-s309",
+            "chengdu-s308",
+            "chengdu-s361",
+            "chengdu-s219",
+            "chengdu-s360",
+            "chengdu-s359",
+            "chengdu-s258",
+            "chengdu-s358",
+            "chengdu-s357",
+            "chengdu-s286",
+            "chengdu-s356",
+            "chengdu-s355",
+            "chengdu-s287",
+            "chengdu-s354",
+            "chengdu-s353",
+            "chengdu-s352",
+            "chengdu-s351",
+            "chengdu-s350",
+            "chengdu-s349"
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
+          "orderPrecisionNote": "按独立运营方站序修复离线关系成员遗漏与未开放站；地理轨迹仍为近似参考，不是历史隧道测绘。"
         },
         {
           "id": "chengdu-r15",
@@ -41653,8 +42145,6 @@
               "name": "成都地铁30号线: 龙泉驿火车站南 → 双流机场2航站楼东",
               "stationIds": [
                 "chengdu-s362",
-                "chengdu-s363",
-                "chengdu-s364",
                 "chengdu-s365",
                 "chengdu-s47",
                 "chengdu-s366",
@@ -41663,7 +42153,13 @@
                 "chengdu-s368",
                 "chengdu-s369",
                 "chengdu-s204",
+                "chengdu-official-l30-n13380485910",
+                "chengdu-official-l30-n13380485918",
+                "chengdu-official-l30-n13380485921",
                 "chengdu-s370",
+                "chengdu-official-l30-n13380485923",
+                "chengdu-official-l30-n13380485924",
+                "chengdu-official-l30-n13380485925",
                 "chengdu-s282",
                 "chengdu-s371",
                 "chengdu-s372",
@@ -41683,17 +42179,21 @@
                 "chengdu-s372",
                 "chengdu-s371",
                 "chengdu-s282",
+                "chengdu-official-l30-n13380485925",
+                "chengdu-official-l30-n13380485924",
+                "chengdu-official-l30-n13380485923",
                 "chengdu-s370",
+                "chengdu-official-l30-n13380485921",
+                "chengdu-official-l30-n13380485918",
+                "chengdu-official-l30-n13380485910",
                 "chengdu-s204",
                 "chengdu-s369",
                 "chengdu-s368",
-                "chengdu-s375",
+                "chengdu-s318",
                 "chengdu-s367",
                 "chengdu-s366",
                 "chengdu-s47",
                 "chengdu-s365",
-                "chengdu-s364",
-                "chengdu-s363",
                 "chengdu-s362"
               ],
               "osmRelationId": 19970754
@@ -41705,8 +42205,6 @@
           ],
           "stationIds": [
             "chengdu-s362",
-            "chengdu-s363",
-            "chengdu-s364",
             "chengdu-s365",
             "chengdu-s47",
             "chengdu-s366",
@@ -41715,15 +42213,23 @@
             "chengdu-s368",
             "chengdu-s369",
             "chengdu-s204",
+            "chengdu-official-l30-n13380485910",
+            "chengdu-official-l30-n13380485918",
+            "chengdu-official-l30-n13380485921",
             "chengdu-s370",
+            "chengdu-official-l30-n13380485923",
+            "chengdu-official-l30-n13380485924",
+            "chengdu-official-l30-n13380485925",
             "chengdu-s282",
             "chengdu-s371",
             "chengdu-s372",
             "chengdu-s373",
             "chengdu-s374",
-            "chengdu-s356",
-            "chengdu-s375"
-          ]
+            "chengdu-s356"
+          ],
+          "stationOrderReviewedAt": "2026-10-24",
+          "stationOrderSource": "https://www.chengdurail.com/op/station-time",
+          "orderPrecisionNote": "按独立运营方站序修复离线关系成员遗漏与未开放站；地理轨迹仍为近似参考，不是历史隧道测绘。"
         }
       ],
       "sources": {

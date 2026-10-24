@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.24.22",
+  "contentRevision": "2026.10.25.1",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -71,9 +71,7 @@
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
-        "independent milestone requirements missing",
         "cutoff opening status not independently reviewed",
-        "dated cutoff opening evidence missing",
         "sh-line19: independent transfer coverage incomplete"
       ],
       "projects": [
@@ -123,6 +121,11 @@
           "errors": [
             "independent transfer coverage incomplete"
           ]
+        },
+        {
+          "id": "sh-line18-jiangyang-reserved",
+          "ok": true,
+          "errors": []
         }
       ]
     },

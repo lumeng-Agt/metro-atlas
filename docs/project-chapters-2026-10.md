@@ -17,6 +17,7 @@
 | 13号线西延伸、东延伸 | 可玩建设章 | 1 | 9 | corridor_only | [浦东多个重大工程项目火热推进](https://www.shanghai.gov.cn/nw4411/20250724/478b3e2e1ac44d248d1b31022f234b5b.html) |
 | 12号线西延伸 | 可玩建设章 | 1 | 7 | corridor_only | [上海市国民经济和社会发展第十五个五年规划纲要](https://www.shanghai.gov.cn/nw12344/20260210/86c10a3ea525407e84d4d7354c8fcb4e.html) |
 | 22号线（崇明线） | 可玩建设章 | 1 | 8 | corridor_only | [浦东多个重大工程项目火热推进](https://www.shanghai.gov.cn/nw15343/20250724/478b3e2e1ac44d248d1b31022f234b5b.html) |
+| 18号线江杨南路已建暂缓站 | 可玩建设章 | 1 | 3 | station_areas_and_approximate_corridor | [上海交通：江杨南路站已建且通过安全评估，因周边配套暂不开放](https://jtw.sh.gov.cn/xwfb2/20251222/18dc74805200495eb362499c6c1f98d7.html) |
 
 ## 北京
 
@@ -78,7 +79,7 @@
 
 ## 合计
 
-- 可玩建设章：40
+- 可玩建设章：41
 - 政策条目：2
 - 工程条目：2
 - 待制作：3

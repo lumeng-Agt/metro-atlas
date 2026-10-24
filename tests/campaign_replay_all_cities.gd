@@ -108,6 +108,11 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():push_error("isolated --data-dir required");quit(2);return
 	WorldData.load_assets()
+	var catalog_errors:=Catalog.validate_catalog(WorldData.cities())
+	catalog_errors.append_array(Catalog.validate_network_baseline(WorldData.cities()))
+	if not catalog_errors.is_empty():
+		_fail("catalog","startup","references",JSON.stringify(catalog_errors));quit(1);return
+	print("REPLAY_CONTENT_VERSION ",Catalog.content_version()," REVISION ",Catalog.content_revision())
 	app=App.new();root.add_child(app);await process_frame
 	var city_ids:Array=["shenzhen","shanghai","beijing","guangzhou","chengdu"]
 	var selected:=OS.get_environment("METRO_REPLAY_CITY")
