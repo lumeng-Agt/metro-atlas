@@ -25775,10 +25775,15 @@
           "ref": "18号线",
           "name": "18号线",
           "cutoffStatus": "open_at_cutoff",
-          "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+          "stationOrderSource": "https://www.bjsubway.com/station/xltcx/line18/2025-12-28/645.html",
           "mapStationCount": 6,
           "cutoffStationIds": [
             "beijing-s411",
+            "beijing-open18-softwarepark",
+            "beijing-open18-dongbeiwang",
+            "beijing-open18-longzexi",
+            "beijing-open18-huilongguanwest",
+            "beijing-open18-wenhualu",
             "beijing-s149",
             "beijing-s412",
             "beijing-s413",
@@ -25789,7 +25794,18 @@
           "routeRelations": [
             20010805,
             20010820
-          ]
+          ],
+          "mapStationIds": [
+            "beijing-s411",
+            "beijing-s149",
+            "beijing-s412",
+            "beijing-s413",
+            "beijing-s414",
+            "beijing-s377"
+          ],
+          "cutoffStationCount": 11,
+          "cutoffTemporalReviewStatus": "verified",
+          "openingEvidence": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html"
         },
         {
           "mapRouteId": "beijing-r19",
@@ -26075,7 +26091,7 @@
           "sourceTitle": "广州地铁发行人资料：广州火车站与广州东站原暂缓开放工程",
           "note": "广州东站已于2025-09-29开放，广州火车站剩余工程不可遗漏；下一步核对截止日状态并制作独立站体、环线路径及换乘任务。",
           "sourceCheckedAt": "2026-10-24",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending"
+          "playabilityStatus": "playable_build_task"
         }
       ],
       "documentedMilestones": [
@@ -39272,8 +39288,8 @@
           "projectType": "approved_project",
           "statusAtCutoff": "第五期批准的深圳段",
           "source": "https://www.szmc.net/SMARTC/upload/file/20240619/1718790831457082212.pdf",
-          "sourceTitle": "深圳地铁10号线东延深圳段环境影响评价项目范围",
-          "note": "深圳段工程不得被东莞段审批情况替代；需制作公开站点及跨界接头，不虚构境外开通。",
+          "sourceTitle": "深圳地铁2023社会责任报告：五期已批准项目清单",
+          "note": "此PDF经下载核对为社会责任报告，并非10东专属环评；可证明纳入五期，不能证明逐站工程范围。深圳段工程不得被东莞段审批替代；需进一步使用专属工程资料制作边界接头。",
           "sourceCheckedAt": "2026-10-24",
           "playabilityStatus": "registered_geometry_and_playable_task_pending"
         },
@@ -39282,9 +39298,9 @@
           "name": "11号线北延深圳段",
           "projectType": "approved_project",
           "statusAtCutoff": "第五期批准的深圳段",
-          "source": "https://www.szmc.net/SMARTC/upload/file/20240202/1706841517912063272.pdf",
-          "sourceTitle": "深圳地铁11号线北延深圳段环评项目范围",
-          "note": "纯区间边界接头仍是实际工程，不能因深圳境内无新增车站就用工程分类免除可玩任务。",
+          "source": "https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf",
+          "sourceTitle": "深圳32号线环评中的五期已批准项目清单",
+          "note": "旧引用20240202文件经封面核对为20号线二期环评，不能充当11北专属报告。此32号线环评只佐证五期纳入；需专属范围资料。纯区间边界接头不能因无新增车站被免除。",
           "sourceCheckedAt": "2026-10-24",
           "playabilityStatus": "registered_geometry_and_playable_task_pending"
         }

@@ -1,0 +1,228 @@
+{
+  "contentRevision": "2026.10.24.22",
+  "scope": "本日三个隔离进度的已登记独立目标；不等于五城全量内容或实机验收",
+  "reports": [
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-m101-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-line22"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-line3-phase1"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-line12"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-new-airport"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-line1-branch"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "bj-line28"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cutoff_network"
+        }
+      ],
+      "city": "beijing",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "截止日开放范围缺少独立日期证据，现行时刻表不能代替。",
+          "项目bj-line13-capacity缺少独立建设目标。",
+          "项目bj-yizhuang-connector缺少独立建设目标。",
+          "项目bj-line22的完整换乘范围尚未核对。",
+          "项目bj-line28的完整换乘范围尚未核对。"
+        ]
+      },
+      "contentRevision": "2026.10.24.22",
+      "gameId": "beijing_1792817630_a8be7bbe4633",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery.",
+      "replayLogs": [
+        {
+          "path": ".tmp-remediation-20261024-bj-rev21-fresh.log",
+          "sha256": "c54d5d2fc1c8928e20f84dfcea2119e59b801ecbfecd9fc63bffb91f2f31895e",
+          "lastLines": [
+            "REPLAY_CHECKPOINT_OK beijing bj-new-airport-lize-build project:bj-new-airport-lize-build",
+            "REPLAY_FAIL city=beijing chapter=bj-new-airport-lize-build task=official_target error=[\"beijing-route-21: actual built line does not contain the official ordered scope\"]",
+            "REPLAY_CITY_DONE beijing visited=27 phase=future",
+            "REPLAY_FAILURES 1 checkpoints=87"
+          ]
+        },
+        {
+          "path": ".tmp-remediation-20261024-bj-rev22-resume.log",
+          "sha256": "8bd6cc366164a1b494dc9fb7f55cfa6d46994acc80467944207502d5a02908d9",
+          "lastLines": [
+            "REPLAY_CHECKPOINT_OK beijing bj-m101-phase1-build milestone",
+            "REPLAY_CHAPTER_OK beijing bj-m101-phase1-build stations=560 edges=535",
+            "REPLAY_CITY_DONE beijing visited=6 phase=future_gap",
+            "REPLAY_FAILURES 0 checkpoints=11"
+          ]
+        }
+      ]
+    },
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line8-north"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line8-east"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line8-north-branch"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line13-phase2-west"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line12-mid"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line18-remainder"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line14-remainder"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line10-remainder"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "gz-line11-railway-station"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cutoff_network"
+        }
+      ],
+      "city": "guangzhou",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "截止日开放范围缺少独立日期证据，现行时刻表不能代替。"
+        ]
+      },
+      "contentRevision": "2026.10.24.22",
+      "gameId": "guangzhou_1792818018_c2f101b3af63",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery.",
+      "replayLogs": [
+        {
+          "path": ".tmp-remediation-20261024-gz-rev22-fresh.log",
+          "sha256": "f423424ed8b90607845cb3ec74cab02332655dc0775a2f847b23ceb50dae21a8",
+          "lastLines": [
+            "REPLAY_CHECKPOINT_OK guangzhou gz-line11-railway-build milestone",
+            "REPLAY_CHAPTER_OK guangzhou gz-line11-railway-build stations=503 edges=488",
+            "REPLAY_CITY_DONE guangzhou visited=35 phase=future_gap",
+            "REPLAY_FAILURES 0 checkpoints=109"
+          ]
+        }
+      ]
+    },
+    {
+      "checkedKnownProjects": [
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cd-line18-phase3"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cd-line10-phase3-remainder"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cd-line27-phase2"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cd-line10-phase4"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cd-line18-phase4"
+        },
+        {
+          "errors": [],
+          "ok": true,
+          "project": "cutoff_network"
+        }
+      ],
+      "city": "chengdu",
+      "completeDeliveryEligibility": {
+        "ok": false,
+        "reasons": [
+          "截止日项目与路网清单尚未完成独立核对。",
+          "各历史里程碑的官方范围尚未全部核对。",
+          "截止日开放范围缺少独立日期证据，现行时刻表不能代替。",
+          "项目cd-line12-phase1缺少独立建设目标。"
+        ]
+      },
+      "contentRevision": "2026.10.24.22",
+      "gameId": "chengdu_1792816500_fb7bd3cb78c6",
+      "knownProjectFailures": 0,
+      "note": "Only independently authored project requirements are checked here. Empty or unreviewed city inventory is not complete delivery.",
+      "replayLogs": [
+        {
+          "path": ".tmp-remediation-20261024-cd-rev18-fresh.log",
+          "sha256": "b9f97e2361ad1652fe478cef2faf6984afcd75dfd9093d1c86c9a92b2cc728cb",
+          "lastLines": [
+            "REPLAY_CHECKPOINT_OK chengdu cd-line18-phase4-build milestone",
+            "REPLAY_CHAPTER_OK chengdu cd-line18-phase4-build stations=464 edges=457",
+            "REPLAY_CITY_DONE chengdu visited=44 phase=future_gap",
+            "REPLAY_FAILURES 0 checkpoints=111"
+          ]
+        }
+      ]
+    }
+  ]
+}

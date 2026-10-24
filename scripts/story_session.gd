@@ -393,7 +393,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		var default_status:="open" if bool(ch.get("requireOpen",true)) and ch.get("serviceTransitions",[]).is_empty() else "built"
 		var segment_statuses:Array=[]
 		for segment_index in range(paths.size()):
-			segment_statuses.append(_effective_service_status(world,str(group.get("historicalLineId","")),str(ids[segment_index]),str(ids[segment_index+1]),default_status))
+			segment_statuses.append("built" if bool(group.get("constructionVariant",false)) else _effective_service_status(world,str(group.get("historicalLineId","")),str(ids[segment_index]),str(ids[segment_index+1]),default_status))
 		var any_open:=segment_statuses.any(func(status:String):return status in ["trial","open"])
 		var service_status:="built"
 		if segment_statuses.all(func(status:String):return status=="open"):service_status="open"
@@ -402,6 +402,9 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		elif not segment_statuses.is_empty() and segment_statuses.all(func(status:String):return status=="suspended"):service_status="suspended"
 		var route := {"id":"historical_%s" % str(group.get("historicalLineId", group.get("name","line"))),"name":str(group.get("name","线路")),"color":str(group.get("color","#36769c")),"stationOrder":ids,"networkBased":true,"vehicleId":str(group.get("vehicleId",profile(world).get("vehicleId","historical-schematic"))),"open":any_open,"serviceStatus":service_status,"directions":[{"id":"forward","stationIds":ids,"edgePathsBySegment":paths,"serviceStatusBySegment":segment_statuses}],"historicalLineId":str(group.get("historicalLineId",group.get("name","line"))),"chapterId":str(ch.get("id",""))}
 		if bool(group.get("replaceExistingService",false)):route["replaceExistingService"]=true
+		if bool(group.get("constructionVariant",false)):
+			route["constructionVariantId"]=str(group.get("taskId",group.get("coverageGroupId","")))
+			route["id"]+="_construction_"+str(route.constructionVariantId).sha256_text().substr(0,12)
 		if bool(group.get("reconfirmLaterServices",false)):route["reconfirmLaterServices"]=true
 		if group.has("retainDocumentedFutureService"):route["retainDocumentedFutureService"]=bool(group.retainDocumentedFutureService)
 		if group_valid and paths.size()==maxi(0,ids.size()-1):
@@ -746,9 +749,17 @@ static func _fill_direction_statuses(direction:Dictionary,route:Dictionary) -> v
 	direction["serviceStatusBySegment"]=statuses
 
 static func _store_historical_route(world: Dictionary, route: Dictionary) -> void:
+	# An unopened infill or future realignment is physical construction, not
+	# permission to reroute the existing open service through the new station.
+	if not str(route.get("constructionVariantId","")).is_empty():
+		for index in range(world.get("routes",[]).size()):
+			if str(world.routes[index].get("constructionVariantId",""))==str(route.constructionVariantId):
+				world.routes[index]=route.duplicate(true);return
+		world.routes.append(route.duplicate(true));return
 	var route_index := -1
 	for index in range(world.get("routes", []).size()):
 		var saved: Dictionary = world.routes[index]
+		if not str(saved.get("constructionVariantId","")).is_empty():continue
 		if str(saved.get("id", "")) == str(route.get("id", "")) or (str(route.get("historicalLineId", "")) != "" and str(saved.get("historicalLineId", "")) == str(route.get("historicalLineId", ""))):
 			route_index = index; break
 	if route_index < 0: world.routes.append(route.duplicate(true))

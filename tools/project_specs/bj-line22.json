@@ -183,13 +183,23 @@
       ],
       "coordinateSource": "official_site_description",
       "coordinateNote": "OSM 平谷站（在建）标注；线路东端终点。"
+    },
+    {
+      "id": "beijing-s333",
+      "name": "东大桥",
+      "existing": true
+    },
+    {
+      "id": "beijing-s169",
+      "name": "金台夕照",
+      "existing": true
     }
   ],
   "lineGroups": [
     {
       "key": "line22",
       "mapRouteId": "beijing-future-line22",
-      "name": "22号线（平谷线）",
+      "name": "22号线首开建设段（红庙—平谷）",
       "historicalLineId": "beijing-line22-22",
       "color": "#B35C44",
       "stationIds": [
@@ -218,8 +228,38 @@
       "maxSpacingM": 12000,
       "officialLengthM": 79100,
       "alignmentPrecision": "corridor_only",
-      "precisionNote": "20座车站及站序取自北京市政府2026-09-24公布的22号线全部站名：北京段15座（红庙、慈云寺、甘露园、定福庄、管庄、永顺、运河商务区、芙蓉西路、北运河东、潞源、潞源东及平谷方向4站）、河北段5座（燕郊、神威大街、潮白大街、高楼、齐心庄），其中红庙、管庄、运河商务区、北运河东为既有换乘站。红庙—潞源东按OSM在建站与在建线位定位；永顺、芙蓉西路、潞源、神威大街、潮白大街、高楼按镇区/道路走廊定位；马昌营、国农港按官方站序在马坊—平谷走廊上定位。跨京冀段全长约79.1公里，区间为走廊近似。",
-      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html"
+      "precisionNote": "官方20站首开范围，不能代替东大桥—平谷22站全工程。站址及隧道采用近似走廊；建设成果不代表截止日已开放。",
+      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+      "coverageGroupId": "beijing-line22-first-opening",
+      "stationInstances": {
+        "beijing-s277": "beijing-s277__line22-22",
+        "beijing-s41": "beijing-s41__line22-22",
+        "beijing-s325": "beijing-s325__line22-22",
+        "beijing-s322": "beijing-s322__line22-22"
+      },
+      "taskId": "project:bj-line22-build"
+    },
+    {
+      "key": "west",
+      "mapRouteId": "beijing-future-line22-west",
+      "coverageGroupId": "beijing-line22-west",
+      "name": "22号线西段（东大桥—红庙）",
+      "historicalLineId": "beijing-line22-22",
+      "color": "#B35C44",
+      "stationIds": [
+        "beijing-s333",
+        "beijing-s169",
+        "beijing-s277"
+      ],
+      "stationInstances": {
+        "beijing-s333": "beijing-s333__line22-22",
+        "beijing-s169": "beijing-s169__line22-22",
+        "beijing-s277": "beijing-s277__line22-22"
+      },
+      "toleranceM": 450,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "官方全工程22站与20站首开范围分开：本任务补两座新站及两个区间；站位复用既有换乘站区，独立建设22号线站体，不共轨。",
+      "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gqrd/202504/t20250403_4055758.html"
     }
   ],
   "stationInstances": {
@@ -284,23 +324,73 @@
         "beijing-line22-22"
       ],
       "sourceNote": "北运河东站为6号线既有站，22号线在此换乘。"
+    },
+    {
+      "id": "future-transfer-bj22-dongdaqiao-6",
+      "name": "东大桥",
+      "complexId": "beijing-s333",
+      "stationInstanceIds": [
+        "beijing-s333__line6-6",
+        "beijing-s333__line22-22"
+      ],
+      "lineIds": [
+        "beijing-line6-6",
+        "beijing-line22-22"
+      ],
+      "source": "https://www.beijing.gov.cn/ywdt/gqrd/202504/t20250403_4055758.html",
+      "sourceNote": "东大桥6/22独立站体换乘；与17、28号线组成的枢纽关系分开确认。",
+      "precision": "schematic"
+    },
+    {
+      "id": "future-transfer-bj22-dongdaqiao-17",
+      "name": "东大桥",
+      "complexId": "beijing-s333",
+      "stationInstanceIds": [
+        "beijing-s333__line17-17",
+        "beijing-s333__line22-22"
+      ],
+      "lineIds": [
+        "beijing-line17-17",
+        "beijing-line22-22"
+      ],
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+      "sourceNote": "东大桥既有17号线与22号线各用本线站体，通道为示意。",
+      "precision": "schematic"
+    },
+    {
+      "id": "future-transfer-bj22-jintaixizhao-10",
+      "name": "金台夕照",
+      "complexId": "beijing-s169",
+      "stationInstanceIds": [
+        "beijing-s169",
+        "beijing-s169__line22-22"
+      ],
+      "lineIds": [
+        "beijing-line10-10",
+        "beijing-line22-22"
+      ],
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+      "sourceNote": "京广桥工程站区与金台夕照10号线衔接，不将两条线合成同一物理站体。",
+      "precision": "schematic"
     }
   ],
   "plan": {
     "id": "bj-line22-build",
-    "title": "北京22号线（平谷线）建设篇",
+    "title": "22号线全工程：首开段与西段接续",
     "date": "2026-10-01",
     "status": "under_construction",
     "sourceType": "municipal_station_naming_announcement",
     "projectType": "under_construction",
     "required": true,
     "exactAlignment": "corridor_only",
-    "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
-    "sourceTitle": "北京地铁22号线所有车站站名公布（北京市人民政府门户网站，2026-09-24）",
-    "sourceCheckedAt": "2026-10-21",
-    "sourcePublicationDate": "2026-09-24",
-    "description": "按北京市政府公布的22号线全部站名复现：红庙—平谷，共20座车站，全长约79.1公里，跨北京与河北三河。红庙、管庄、运河商务区、北运河东与既有线换乘。项目在截止日仍处于空载试运行、未计入已开通路网；完成本篇只表示规划建设完成。",
-    "contentRevision": "2026.10.21.9",
-    "contentRevisionNote": "增加北京22号线（平谷线）建设章。"
+    "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
+    "sourceTitle": "北京市政府：东大桥—平谷全工程22站，红庙—平谷首开20站",
+    "sourceCheckedAt": "2026-10-24",
+    "sourcePublicationDate": "2026-07-29",
+    "description": "分别建设红庙—平谷20站首开段和东大桥—红庙西段，合计22座独立站体。截止日尚未开放；不把年底开通计划写成已发生事实。",
+    "contentRevision": "2026.10.24.19",
+    "contentRevisionNote": "增加北京22号线（平谷线）建设章。",
+    "scopeRevision": "2026.10.24.19",
+    "requiresScopeRecheck": true
   }
 }

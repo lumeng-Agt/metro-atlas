@@ -322,6 +322,7 @@ static func _planning_statuses_match(world:Dictionary,expected_routes:Array) -> 
 			var found:=false
 			for route in world.get("routes",[]):
 				if bool(route.get("retired",false)) or str(route.get("historicalLineId",""))!=str(expected.get("historicalLineId","")):continue
+				if str(route.get("constructionVariantId",""))!=str(expected.get("constructionVariantId","")):continue
 				for direction in route.get("directions",[]):
 					var ids:Array=direction.get("stationIds",[])
 					var statuses:Array=direction.get("serviceStatusBySegment",[])

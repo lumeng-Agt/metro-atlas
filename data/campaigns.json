@@ -8492,7 +8492,8 @@
             "beats": []
           },
           "operationType": "historical_record",
-          "operationGuide": "查看来源资料并确认此历史节点。"
+          "operationGuide": "查看来源资料并确认此历史节点。",
+          "requiredTransfers": []
         },
         {
           "id": "beijing-historical-milestone-1965-07-01",
@@ -8540,7 +8541,8 @@
             "beats": []
           },
           "operationType": "historical_record",
-          "operationGuide": "查看来源资料并确认此历史节点。"
+          "operationGuide": "查看来源资料并确认此历史节点。",
+          "requiredTransfers": []
         },
         {
           "id": "bj-phase1-built-1969",
@@ -9245,7 +9247,8 @@
             "beats": []
           },
           "operationType": "historical_record",
-          "operationGuide": "查看来源资料并确认此历史节点。"
+          "operationGuide": "查看来源资料并确认此历史节点。",
+          "requiredTransfers": []
         },
         {
           "id": "beijing-network-milestone-1987-12-28",
@@ -11323,6 +11326,48 @@
                 "beijing-s74": "beijing-s74__line23",
                 "beijing-s174": "beijing-s174__line23"
               }
+            },
+            {
+              "taskId": "opening:bj17-south",
+              "mapRouteId": "beijing-r17",
+              "name": "17号线",
+              "stationIds": [
+                "beijing-s164",
+                "beijing-s384",
+                "beijing-s385",
+                "beijing-s386",
+                "beijing-s387",
+                "beijing-s265",
+                "beijing-s388"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按运营方分期开放范围建设；北段望京西2026-01-31才开放，广渠门外截至截止日仍未开放。隧道为近似走廊。",
+              "historicalLineId": "beijing-line17-17",
+              "color": "#00A9A9",
+              "stationOrderSource": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s164": "beijing-s164__line17-17",
+                "beijing-s384": "beijing-s384",
+                "beijing-s385": "beijing-s385",
+                "beijing-s386": "beijing-s386",
+                "beijing-s387": "beijing-s387",
+                "beijing-s265": "beijing-s265__line17-17",
+                "beijing-s388": "beijing-s388"
+              },
+              "coverageGroupId": "beijing-line17-south",
+              "stationNames": {
+                "beijing-s164": "十里河",
+                "beijing-s384": "周家庄",
+                "beijing-s385": "十八里店",
+                "beijing-s386": "北神树",
+                "beijing-s387": "次渠北",
+                "beijing-s265": "次渠",
+                "beijing-s388": "嘉会湖"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 4
             }
           ],
           "requireOpen": true,
@@ -11739,9 +11784,166 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s164-line10-10-line17-17",
+              "name": "十里河",
+              "complexId": "beijing-s164",
+              "stationInstanceIds": [
+                "beijing-s164__line10-10",
+                "beijing-s164__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s164-line14-14-line17-17",
+              "name": "十里河",
+              "complexId": "beijing-s164",
+              "stationInstanceIds": [
+                "beijing-s164__line14-14",
+                "beijing-s164__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s265-line24-line17-17",
+              "name": "次渠",
+              "complexId": "beijing-s265",
+              "stationInstanceIds": [
+                "beijing-s265__line24",
+                "beijing-s265__line17-17"
+              ],
+              "lineIds": [
+                "beijing-route-24",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.21",
+          "scopeCorrections": [
+            {
+              "id": "defer-bj17-historic-transfer-bj18-tiantongyuandong-17",
+              "taskId": "opening:bj17-south",
+              "transferId": "historic-transfer-bj18-tiantongyuandong-17",
+              "oldStationInstanceIds": [
+                "beijing-s377__line17-17",
+                "beijing-s377__line18-18"
+              ],
+              "oldLineIds": [
+                "beijing-line17-17",
+                "beijing-line18-18"
+              ],
+              "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "description": "此换乘不属于2021南段首开；保留物理站轨，在实际所属后续任务重新确认。"
+            },
+            {
+              "id": "defer-bj17-historic-transfer-beijing-s175-line10-10-line17-17",
+              "taskId": "opening:bj17-south",
+              "transferId": "historic-transfer-beijing-s175-line10-10-line17-17",
+              "oldStationInstanceIds": [
+                "beijing-s175__line10-10",
+                "beijing-s175__line17-17"
+              ],
+              "oldLineIds": [
+                "beijing-line10-10",
+                "beijing-line17-17"
+              ],
+              "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "description": "此换乘不属于2021南段首开；保留物理站轨，在实际所属后续任务重新确认。"
+            },
+            {
+              "id": "defer-bj17-historic-transfer-beijing-s333-line6-6-line17-17",
+              "taskId": "opening:bj17-south",
+              "transferId": "historic-transfer-beijing-s333-line6-6-line17-17",
+              "oldStationInstanceIds": [
+                "beijing-s333__line6-6",
+                "beijing-s333__line17-17"
+              ],
+              "oldLineIds": [
+                "beijing-line6-6",
+                "beijing-line17-17"
+              ],
+              "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "description": "此换乘不属于2021南段首开；保留物理站轨，在实际所属后续任务重新确认。"
+            },
+            {
+              "id": "defer-bj17-historic-transfer-beijing-s377-line18-18-line17-17",
+              "taskId": "opening:bj17-south",
+              "transferId": "historic-transfer-beijing-s377-line18-18-line17-17",
+              "oldStationInstanceIds": [
+                "beijing-s377__line18-18",
+                "beijing-s377__line17-17"
+              ],
+              "oldLineIds": [
+                "beijing-line18-18",
+                "beijing-line17-17"
+              ],
+              "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "description": "此换乘不属于2021南段首开；保留物理站轨，在实际所属后续任务重新确认。"
+            },
+            {
+              "id": "defer-bj17-historic-transfer-beijing-s382-line3-3-line17-17",
+              "taskId": "opening:bj17-south",
+              "transferId": "historic-transfer-beijing-s382-line3-3-line17-17",
+              "oldStationInstanceIds": [
+                "beijing-s382__line3-3",
+                "beijing-s382__line17-17"
+              ],
+              "oldLineIds": [
+                "beijing-line3-3",
+                "beijing-line17-17"
+              ],
+              "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "description": "此换乘不属于2021南段首开；保留物理站轨，在实际所属后续任务重新确认。"
+            },
+            {
+              "id": "defer-bj17-historic-transfer-beijing-s49-line0-line17-17",
+              "taskId": "opening:bj17-south",
+              "transferId": "historic-transfer-beijing-s49-line0-line17-17",
+              "oldStationInstanceIds": [
+                "beijing-s49__line0",
+                "beijing-s49__line17-17"
+              ],
+              "oldLineIds": [
+                "beijing-lineearly0",
+                "beijing-line17-17"
+              ],
+              "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "description": "此换乘不属于2021南段首开；保留物理站轨，在实际所属后续任务重新确认。"
+            },
+            {
+              "id": "defer-bj17-historic-transfer-beijing-s89-line13-13-line17-17",
+              "taskId": "opening:bj17-south",
+              "transferId": "historic-transfer-beijing-s89-line13-13-line17-17",
+              "oldStationInstanceIds": [
+                "beijing-s89__line13-13",
+                "beijing-s89__line17-17"
+              ],
+              "oldLineIds": [
+                "beijing-line13-13",
+                "beijing-line17-17"
+              ],
+              "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "description": "此换乘不属于2021南段首开；保留物理站轨，在实际所属后续任务重新确认。"
+            }
+          ]
         },
         {
           "id": "beijing-network-milestone-2022-12-31",
@@ -11949,6 +12151,54 @@
                 "beijing-s192": "beijing-s192__line16-16",
                 "beijing-s211": "beijing-s211__line16-16"
               }
+            },
+            {
+              "taskId": "opening:bj17-north",
+              "mapRouteId": "beijing-r17",
+              "name": "17号线",
+              "stationIds": [
+                "beijing-s375",
+                "beijing-s376",
+                "beijing-s377",
+                "beijing-s378",
+                "beijing-s379",
+                "beijing-s175",
+                "beijing-s380",
+                "beijing-s381",
+                "beijing-s382"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按运营方分期开放范围建设；北段望京西2026-01-31才开放，广渠门外截至截止日仍未开放。隧道为近似走廊。",
+              "historicalLineId": "beijing-line17-17",
+              "color": "#00A9A9",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s375": "beijing-s375",
+                "beijing-s376": "beijing-s376",
+                "beijing-s377": "beijing-s377__line17-17",
+                "beijing-s378": "beijing-s378",
+                "beijing-s379": "beijing-s379",
+                "beijing-s175": "beijing-s175__line17-17",
+                "beijing-s380": "beijing-s380",
+                "beijing-s381": "beijing-s381",
+                "beijing-s382": "beijing-s382__line17-17"
+              },
+              "coverageGroupId": "beijing-line17-north",
+              "stationNames": {
+                "beijing-s375": "未来科学城北",
+                "beijing-s376": "未来科学城",
+                "beijing-s377": "天通苑东",
+                "beijing-s378": "清河营",
+                "beijing-s379": "红军营",
+                "beijing-s175": "太阳宫",
+                "beijing-s380": "西坝河",
+                "beijing-s381": "左家庄",
+                "beijing-s382": "工人体育场"
+              },
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 4
             }
           ],
           "requireOpen": true,
@@ -12083,9 +12333,27 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s175-line10-10-line17-17",
+              "name": "太阳宫",
+              "complexId": "beijing-s175",
+              "stationInstanceIds": [
+                "beijing-s175__line10-10",
+                "beijing-s175__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.21"
         },
         {
           "id": "beijing-network-milestone-2024-12-15",
@@ -12464,6 +12732,22 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s382-line3-3-line17-17",
+              "name": "工人体育场",
+              "complexId": "beijing-s382",
+              "stationInstanceIds": [
+                "beijing-s382__line3-3",
+                "beijing-s382__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line3-3",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
             }
           ],
           "eventOnly": false
@@ -12545,6 +12829,11 @@
               "name": "18号线",
               "stationIds": [
                 "beijing-s411",
+                "beijing-open18-softwarepark",
+                "beijing-open18-dongbeiwang",
+                "beijing-open18-longzexi",
+                "beijing-open18-huilongguanwest",
+                "beijing-open18-wenhualu",
                 "beijing-s149",
                 "beijing-s412",
                 "beijing-s413",
@@ -12552,15 +12841,119 @@
                 "beijing-s377"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "2025-12-27首开11站。车站位置为公开地理节点，隧道为近似走廊；保留原6站体，不把缺失站点当作精度问题省略。",
               "historicalLineId": "beijing-line18-18",
               "color": "#5554a2",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.bjsubway.com/station/xltcx/line18/2025-12-28/645.html",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "beijing-s411": "beijing-s411",
+                "beijing-open18-softwarepark": "beijing-open18-softwarepark",
+                "beijing-open18-dongbeiwang": "beijing-open18-dongbeiwang",
+                "beijing-open18-longzexi": "beijing-open18-longzexi",
+                "beijing-open18-huilongguanwest": "beijing-open18-huilongguanwest",
+                "beijing-open18-wenhualu": "beijing-open18-wenhualu",
                 "beijing-s149": "beijing-s149__line18-18",
+                "beijing-s412": "beijing-s412",
+                "beijing-s413": "beijing-s413",
+                "beijing-s414": "beijing-s414",
                 "beijing-s377": "beijing-s377__line18-18"
-              }
+              },
+              "stationNames": {
+                "beijing-s411": "马连洼",
+                "beijing-open18-softwarepark": "上地软件园",
+                "beijing-open18-dongbeiwang": "东北旺",
+                "beijing-open18-longzexi": "龙泽西",
+                "beijing-open18-huilongguanwest": "回龙观西大街",
+                "beijing-open18-wenhualu": "文华路",
+                "beijing-s149": "回龙观东大街",
+                "beijing-s412": "霍营东",
+                "beijing-s413": "天通苑",
+                "beijing-s414": "太平庄",
+                "beijing-s377": "天通苑东"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "coverageGroupId": "beijing-line18-open-2025",
+              "servicePathRevision": 3
+            },
+            {
+              "taskId": "opening:bj17-through",
+              "mapRouteId": "beijing-r17",
+              "name": "17号线",
+              "stationIds": [
+                "beijing-s375",
+                "beijing-s376",
+                "beijing-s377",
+                "beijing-s378",
+                "beijing-s379",
+                "beijing-s175",
+                "beijing-s380",
+                "beijing-s381",
+                "beijing-s382",
+                "beijing-s333",
+                "beijing-s49",
+                "beijing-s383",
+                "beijing-s164",
+                "beijing-s384",
+                "beijing-s385",
+                "beijing-s386",
+                "beijing-s387",
+                "beijing-s265",
+                "beijing-s388"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按运营方分期开放范围建设；北段望京西2026-01-31才开放，广渠门外截至截止日仍未开放。隧道为近似走廊。",
+              "historicalLineId": "beijing-line17-17",
+              "color": "#00A9A9",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370895.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s375": "beijing-s375",
+                "beijing-s376": "beijing-s376",
+                "beijing-s377": "beijing-s377__line17-17",
+                "beijing-s378": "beijing-s378",
+                "beijing-s379": "beijing-s379",
+                "beijing-s175": "beijing-s175__line17-17",
+                "beijing-s380": "beijing-s380",
+                "beijing-s381": "beijing-s381",
+                "beijing-s382": "beijing-s382__line17-17",
+                "beijing-s333": "beijing-s333__line17-17",
+                "beijing-s49": "beijing-s49__line17-17",
+                "beijing-s383": "beijing-s383",
+                "beijing-s164": "beijing-s164__line17-17",
+                "beijing-s384": "beijing-s384",
+                "beijing-s385": "beijing-s385",
+                "beijing-s386": "beijing-s386",
+                "beijing-s387": "beijing-s387",
+                "beijing-s265": "beijing-s265__line17-17",
+                "beijing-s388": "beijing-s388"
+              },
+              "coverageGroupId": "beijing-line17-through",
+              "stationNames": {
+                "beijing-s375": "未来科学城北",
+                "beijing-s376": "未来科学城",
+                "beijing-s377": "天通苑东",
+                "beijing-s378": "清河营",
+                "beijing-s379": "红军营",
+                "beijing-s175": "太阳宫",
+                "beijing-s380": "西坝河",
+                "beijing-s381": "左家庄",
+                "beijing-s382": "工人体育场",
+                "beijing-s333": "东大桥",
+                "beijing-s49": "永安里",
+                "beijing-s383": "潘家园西",
+                "beijing-s164": "十里河",
+                "beijing-s384": "周家庄",
+                "beijing-s385": "十八里店",
+                "beijing-s386": "北神树",
+                "beijing-s387": "次渠北",
+                "beijing-s265": "次渠",
+                "beijing-s388": "嘉会湖"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 4
             }
           ],
           "requireOpen": true,
@@ -12662,8 +13055,8 @@
                 "beijing-line18-18"
               ],
               "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+              "sourceNote": "2025-12-27回龙观东大街8/18换乘形成，各用本线物理站体。"
             },
             {
               "id": "historic-transfer-beijing-s170-line10-10-line6-6",
@@ -12824,9 +13217,107 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-bj18-malianwa-16",
+              "name": "马连洼",
+              "complexId": "beijing-s352",
+              "stationInstanceIds": [
+                "beijing-s352",
+                "beijing-s411"
+              ],
+              "lineIds": [
+                "beijing-line16-16",
+                "beijing-line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+              "sourceNote": "交通委明确列出的首开换乘，独立站体、通道示意；不新增龙泽西与既有13号线的假换乘。"
+            },
+            {
+              "id": "historic-transfer-bj18-tiantongyuan-5",
+              "name": "天通苑",
+              "complexId": "beijing-s103",
+              "stationInstanceIds": [
+                "beijing-s103",
+                "beijing-s413"
+              ],
+              "lineIds": [
+                "beijing-line5-5",
+                "beijing-line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+              "sourceNote": "交通委明确列出的首开换乘，独立站体、通道示意；不新增龙泽西与既有13号线的假换乘。"
+            },
+            {
+              "id": "historic-transfer-bj18-tiantongyuandong-17",
+              "name": "天通苑东",
+              "complexId": "beijing-s377",
+              "stationInstanceIds": [
+                "beijing-s377__line17-17",
+                "beijing-s377__line18-18"
+              ],
+              "lineIds": [
+                "beijing-line17-17",
+                "beijing-line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s333-line6-6-line17-17",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "stationInstanceIds": [
+                "beijing-s333__line6-6",
+                "beijing-s333__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s377-line18-18-line17-17",
+              "name": "天通苑东",
+              "complexId": "beijing-s377",
+              "stationInstanceIds": [
+                "beijing-s377__line18-18",
+                "beijing-s377__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line18-18",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s49-line0-line17-17",
+              "name": "永安里",
+              "complexId": "beijing-s49",
+              "stationInstanceIds": [
+                "beijing-s49__line0",
+                "beijing-s49__line17-17"
+              ],
+              "lineIds": [
+                "beijing-lineearly0",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.21"
         },
         {
           "id": "beijing-network-milestone-2026-01-31",
@@ -12861,21 +13352,59 @@
                 "beijing-s388"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "按运营方分期开放范围建设；北段望京西2026-01-31才开放，广渠门外截至截止日仍未开放。隧道为近似走廊。",
               "historicalLineId": "beijing-line17-17",
               "color": "#00A9A9",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "beijing-s375": "beijing-s375",
+                "beijing-s376": "beijing-s376",
                 "beijing-s377": "beijing-s377__line17-17",
+                "beijing-s378": "beijing-s378",
+                "beijing-s379": "beijing-s379",
                 "beijing-s89": "beijing-s89__line17-17",
                 "beijing-s175": "beijing-s175__line17-17",
+                "beijing-s380": "beijing-s380",
+                "beijing-s381": "beijing-s381",
                 "beijing-s382": "beijing-s382__line17-17",
                 "beijing-s333": "beijing-s333__line17-17",
                 "beijing-s49": "beijing-s49__line17-17",
+                "beijing-s383": "beijing-s383",
                 "beijing-s164": "beijing-s164__line17-17",
-                "beijing-s265": "beijing-s265__line17-17"
-              }
+                "beijing-s384": "beijing-s384",
+                "beijing-s385": "beijing-s385",
+                "beijing-s386": "beijing-s386",
+                "beijing-s387": "beijing-s387",
+                "beijing-s265": "beijing-s265__line17-17",
+                "beijing-s388": "beijing-s388"
+              },
+              "coverageGroupId": "beijing-line17-wangjingxi",
+              "stationNames": {
+                "beijing-s375": "未来科学城北",
+                "beijing-s376": "未来科学城",
+                "beijing-s377": "天通苑东",
+                "beijing-s378": "清河营",
+                "beijing-s379": "红军营",
+                "beijing-s89": "望京西",
+                "beijing-s175": "太阳宫",
+                "beijing-s380": "西坝河",
+                "beijing-s381": "左家庄",
+                "beijing-s382": "工人体育场",
+                "beijing-s333": "东大桥",
+                "beijing-s49": "永安里",
+                "beijing-s383": "潘家园西",
+                "beijing-s164": "十里河",
+                "beijing-s384": "周家庄",
+                "beijing-s385": "十八里店",
+                "beijing-s386": "北神树",
+                "beijing-s387": "次渠北",
+                "beijing-s265": "次渠",
+                "beijing-s388": "嘉会湖"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 4
             }
           ],
           "requireOpen": true,
@@ -12932,134 +13461,6 @@
           "routeTargetCount": 1,
           "requiredTransfers": [
             {
-              "id": "historic-transfer-beijing-s164-line10-10-line17-17",
-              "name": "十里河",
-              "complexId": "beijing-s164",
-              "stationInstanceIds": [
-                "beijing-s164__line10-10",
-                "beijing-s164__line17-17"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s164-line14-14-line17-17",
-              "name": "十里河",
-              "complexId": "beijing-s164",
-              "stationInstanceIds": [
-                "beijing-s164__line14-14",
-                "beijing-s164__line17-17"
-              ],
-              "lineIds": [
-                "beijing-line14-14",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s175-line10-10-line17-17",
-              "name": "太阳宫",
-              "complexId": "beijing-s175",
-              "stationInstanceIds": [
-                "beijing-s175__line10-10",
-                "beijing-s175__line17-17"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s265-line24-line17-17",
-              "name": "次渠",
-              "complexId": "beijing-s265",
-              "stationInstanceIds": [
-                "beijing-s265__line24",
-                "beijing-s265__line17-17"
-              ],
-              "lineIds": [
-                "beijing-route-24",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s333-line6-6-line17-17",
-              "name": "东大桥",
-              "complexId": "beijing-s333",
-              "stationInstanceIds": [
-                "beijing-s333__line6-6",
-                "beijing-s333__line17-17"
-              ],
-              "lineIds": [
-                "beijing-line6-6",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s377-line18-18-line17-17",
-              "name": "天通苑东",
-              "complexId": "beijing-s377",
-              "stationInstanceIds": [
-                "beijing-s377__line18-18",
-                "beijing-s377__line17-17"
-              ],
-              "lineIds": [
-                "beijing-line18-18",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s382-line3-3-line17-17",
-              "name": "工人体育场",
-              "complexId": "beijing-s382",
-              "stationInstanceIds": [
-                "beijing-s382__line3-3",
-                "beijing-s382__line17-17"
-              ],
-              "lineIds": [
-                "beijing-line3-3",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s49-line0-line17-17",
-              "name": "永安里",
-              "complexId": "beijing-s49",
-              "stationInstanceIds": [
-                "beijing-s49__line0",
-                "beijing-s49__line17-17"
-              ],
-              "lineIds": [
-                "beijing-lineearly0",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s89-line13-13-line17-17",
               "name": "望京西",
               "complexId": "beijing-s89",
@@ -13072,11 +13473,13 @@
                 "beijing-line17-17"
               ],
               "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.21"
         },
         {
           "id": "beijing-network-reconciliation-2026-10-01",
@@ -13926,6 +14329,11 @@
               "name": "18号线",
               "stationIds": [
                 "beijing-s411",
+                "beijing-open18-softwarepark",
+                "beijing-open18-dongbeiwang",
+                "beijing-open18-longzexi",
+                "beijing-open18-huilongguanwest",
+                "beijing-open18-wenhualu",
                 "beijing-s149",
                 "beijing-s412",
                 "beijing-s413",
@@ -13933,15 +14341,41 @@
                 "beijing-s377"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "2025-12-27首开11站。车站位置为公开地理节点，隧道为近似走廊；保留原6站体，不把缺失站点当作精度问题省略。",
               "historicalLineId": "beijing-line18-18",
               "color": "#5554a2",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://www.bjsubway.com/station/xltcx/line18/2025-12-28/645.html",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "beijing-s411": "beijing-s411",
+                "beijing-open18-softwarepark": "beijing-open18-softwarepark",
+                "beijing-open18-dongbeiwang": "beijing-open18-dongbeiwang",
+                "beijing-open18-longzexi": "beijing-open18-longzexi",
+                "beijing-open18-huilongguanwest": "beijing-open18-huilongguanwest",
+                "beijing-open18-wenhualu": "beijing-open18-wenhualu",
                 "beijing-s149": "beijing-s149__line18-18",
+                "beijing-s412": "beijing-s412",
+                "beijing-s413": "beijing-s413",
+                "beijing-s414": "beijing-s414",
                 "beijing-s377": "beijing-s377__line18-18"
-              }
+              },
+              "stationNames": {
+                "beijing-s411": "马连洼",
+                "beijing-open18-softwarepark": "上地软件园",
+                "beijing-open18-dongbeiwang": "东北旺",
+                "beijing-open18-longzexi": "龙泽西",
+                "beijing-open18-huilongguanwest": "回龙观西大街",
+                "beijing-open18-wenhualu": "文华路",
+                "beijing-s149": "回龙观东大街",
+                "beijing-s412": "霍营东",
+                "beijing-s413": "天通苑",
+                "beijing-s414": "太平庄",
+                "beijing-s377": "天通苑东"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "coverageGroupId": "beijing-line18-open-2025",
+              "servicePathRevision": 3
             },
             {
               "taskId": "route:beijing-r19",
@@ -14190,8 +14624,43 @@
             "beijing-r23",
             "beijing-r24"
           ],
-          "requiredTransfers": [],
-          "eventOnly": false
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-bj18-malianwa-16",
+              "name": "马连洼",
+              "complexId": "beijing-s352",
+              "stationInstanceIds": [
+                "beijing-s352",
+                "beijing-s411"
+              ],
+              "lineIds": [
+                "beijing-line16-16",
+                "beijing-line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+              "sourceNote": "交通委明确列出的首开换乘，独立站体、通道示意；不新增龙泽西与既有13号线的假换乘。"
+            },
+            {
+              "id": "historic-transfer-bj18-tiantongyuan-5",
+              "name": "天通苑",
+              "complexId": "beijing-s103",
+              "stationInstanceIds": [
+                "beijing-s103",
+                "beijing-s413"
+              ],
+              "lineIds": [
+                "beijing-line5-5",
+                "beijing-line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+              "sourceNote": "交通委明确列出的首开换乘，独立站体、通道示意；不新增龙泽西与既有13号线的假换乘。"
+            }
+          ],
+          "eventOnly": false,
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.24.20"
         }
       ],
       "futurePlans": [
@@ -14217,24 +14686,26 @@
           "projectIds": [
             "bj-line22"
           ],
-          "title": "北京22号线（平谷线）建设篇",
+          "title": "22号线全工程：首开段与西段接续",
           "date": "2026-10-01",
           "status": "under_construction",
           "sourceType": "municipal_station_naming_announcement",
           "projectType": "under_construction",
           "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
           "dataStatus": "blueprint_ready",
           "exactAlignment": "corridor_only",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
-          "sourceTitle": "北京地铁22号线所有车站站名公布（北京市人民政府门户网站，2026-09-24）",
-          "sourceCheckedAt": "2026-10-21",
-          "description": "按北京市政府公布的22号线全部站名复现：红庙—平谷，共20座车站，全长约79.1公里，跨北京与河北三河。红庙、管庄、运河商务区、北运河东与既有线换乘。项目在截止日仍处于空载试运行、未计入已开通路网；完成本篇只表示规划建设完成。",
-          "sourcePublicationDate": "2026-09-24",
+          "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
+          "sourceTitle": "北京市政府：东大桥—平谷全工程22站，红庙—平谷首开20站",
+          "sourceCheckedAt": "2026-10-24",
+          "description": "分别建设红庙—平谷20站首开段和东大桥—红庙西段，合计22座独立站体。截止日尚未开放；不把年底开通计划写成已发生事实。",
+          "sourcePublicationDate": "2026-07-29",
           "lineGroups": [
             {
               "taskId": "project:bj-line22-build",
               "mapRouteId": "beijing-future-line22",
-              "name": "22号线（平谷线）",
+              "name": "22号线首开建设段（红庙—平谷）",
               "historicalLineId": "beijing-line22-22",
               "color": "#B35C44",
               "stationIds": [
@@ -14283,7 +14754,7 @@
               },
               "toleranceM": 800.0,
               "alignmentPrecision": "corridor_only",
-              "precisionNote": "20座车站及站序取自北京市政府2026-09-24公布的22号线全部站名：北京段15座（红庙、慈云寺、甘露园、定福庄、管庄、永顺、运河商务区、芙蓉西路、北运河东、潞源、潞源东及平谷方向4站）、河北段5座（燕郊、神威大街、潮白大街、高楼、齐心庄），其中红庙、管庄、运河商务区、北运河东为既有换乘站。红庙—潞源东按OSM在建站与在建线位定位；永顺、芙蓉西路、潞源、神威大街、潮白大街、高楼按镇区/道路走廊定位；马昌营、国农港按官方站序在马坊—平谷走廊上定位。跨京冀段全长约79.1公里，区间为走廊近似。",
+              "precisionNote": "官方20站首开范围，不能代替东大桥—平谷22站全工程。站址及隧道采用近似走廊；建设成果不代表截止日已开放。",
               "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
               "requireOpen": false,
               "stationInstances": {
@@ -14291,7 +14762,37 @@
                 "beijing-s41": "beijing-s41__line22-22",
                 "beijing-s325": "beijing-s325__line22-22",
                 "beijing-s322": "beijing-s322__line22-22"
-              }
+              },
+              "officialLengthM": 79100,
+              "coverageGroupId": "beijing-line22-first-opening"
+            },
+            {
+              "taskId": "project:bj-line22-build:west",
+              "mapRouteId": "beijing-future-line22-west",
+              "name": "22号线西段（东大桥—红庙）",
+              "historicalLineId": "beijing-line22-22",
+              "color": "#B35C44",
+              "stationIds": [
+                "beijing-s333",
+                "beijing-s169",
+                "beijing-s277"
+              ],
+              "stationNames": {
+                "beijing-s333": "东大桥",
+                "beijing-s169": "金台夕照",
+                "beijing-s277": "红庙"
+              },
+              "toleranceM": 450.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "官方全工程22站与20站首开范围分开：本任务补两座新站及两个区间；站位复用既有换乘站区，独立建设22号线站体，不共轨。",
+              "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gqrd/202504/t20250403_4055758.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s333": "beijing-s333__line22-22",
+                "beijing-s169": "beijing-s169__line22-22",
+                "beijing-s277": "beijing-s277__line22-22"
+              },
+              "coverageGroupId": "beijing-line22-west"
             }
           ],
           "requiredTransfers": [
@@ -14308,7 +14809,7 @@
                 "beijing-line22-22"
               ],
               "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
               "sourceNote": "官方公布红庙为22号线与14号线换乘站。"
             },
             {
@@ -14324,7 +14825,7 @@
                 "beijing-line22-22"
               ],
               "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
               "sourceNote": "官方公布管庄为22号线与八通线（本地按1号线既有线体建模）换乘站；两站相距较远，通道按示意处理。"
             },
             {
@@ -14340,7 +14841,7 @@
                 "beijing-line22-22"
               ],
               "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
               "sourceNote": "运河商务区站即6号线通州北关站同站区，换乘身份已随6号线命名。"
             },
             {
@@ -14356,14 +14857,61 @@
                 "beijing-line22-22"
               ],
               "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
               "sourceNote": "北运河东站为6号线既有站，22号线在此换乘。"
+            },
+            {
+              "id": "future-transfer-bj22-dongdaqiao-6",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "stationInstanceIds": [
+                "beijing-s333__line6-6",
+                "beijing-s333__line22-22"
+              ],
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/ywdt/gqrd/202504/t20250403_4055758.html",
+              "sourceNote": "东大桥6/22独立站体换乘；与17、28号线组成的枢纽关系分开确认。"
+            },
+            {
+              "id": "future-transfer-bj22-dongdaqiao-17",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "stationInstanceIds": [
+                "beijing-s333__line17-17",
+                "beijing-s333__line22-22"
+              ],
+              "lineIds": [
+                "beijing-line17-17",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+              "sourceNote": "东大桥既有17号线与22号线各用本线站体，通道为示意。"
+            },
+            {
+              "id": "future-transfer-bj22-jintaixizhao-10",
+              "name": "金台夕照",
+              "complexId": "beijing-s169",
+              "stationInstanceIds": [
+                "beijing-s169",
+                "beijing-s169__line22-22"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+              "sourceNote": "京广桥工程站区与金台夕照10号线衔接，不将两条线合成同一物理站体。"
             }
           ],
-          "requireOpen": false,
+          "scopeRevision": "2026.10.24.19",
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.8",
-          "serviceStatusSchema": 2
+          "scopeCorrections": []
         },
         {
           "id": "bj-new-airport-lize-build",
@@ -14656,7 +15204,7 @@
               ],
               "precision": "schematic",
               "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
-              "sourceNote": "东大桥为6/17号线既有换乘站，28号线为第三线；通道和层次仅作示意。"
+              "sourceNote": "东大桥既有6/17与在建22/28组成枢纽；本项确认6/17/28，22/28另行明确确认，各站体独立。"
             },
             {
               "id": "future-transfer-bj28-jingguangqiao-10",
@@ -14688,7 +15236,7 @@
               ],
               "precision": "schematic",
               "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
-              "sourceNote": "大望路为1号线既有站，28号线在此换乘；14号线同名站为独立站区记录，本换乘只连接1号线，14号线换乘待站区合并后再补。"
+              "sourceNote": "大望路1/28独立站体换乘；14/28另建联系，不能以已有1号线关系代替。"
             },
             {
               "id": "future-transfer-bj28-dajiaoting-7",
@@ -14705,12 +15253,61 @@
               "precision": "schematic",
               "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
               "sourceNote": "大郊亭为7号线既有站，28号线在此换乘。"
+            },
+            {
+              "id": "future-transfer-bj28-dongdaqiao-22",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "stationInstanceIds": [
+                "beijing-s333__line22-22",
+                "beijing-s333__line28-28"
+              ],
+              "lineIds": [
+                "beijing-line22-22",
+                "beijing-line28-28"
+              ],
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+              "sourceNote": "已公布东大桥22/28枢纽联系，各线轨道保持独立。",
+              "precision": "schematic"
+            },
+            {
+              "id": "future-transfer-bj28-jingguangqiao-22",
+              "name": "京广桥／金台夕照",
+              "complexId": "beijing-s169",
+              "stationInstanceIds": [
+                "beijing-s169__line22-22",
+                "beijing-s169__line28-28"
+              ],
+              "lineIds": [
+                "beijing-line22-22",
+                "beijing-line28-28"
+              ],
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+              "sourceNote": "官方施工报道明确10/22/28三线换乘；本关系补22/28独立站体。",
+              "precision": "schematic"
+            },
+            {
+              "id": "future-transfer-bj28-dawanglu-14",
+              "name": "大望路",
+              "complexId": "beijing-s47",
+              "stationInstanceIds": [
+                "beijing-s278",
+                "beijing-s47__line28-28"
+              ],
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-line28-28"
+              ],
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+              "sourceNote": "大望路既有1/14换乘站区；保留14号线独立坐标与站体，仅统一站区身份。",
+              "precision": "schematic"
             }
           ],
           "requireOpen": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.8",
-          "serviceStatusSchema": 2
+          "scopeRevision": "2026.10.24.19",
+          "serviceStatusSchema": 2,
+          "stationNamingNote": "使用工程站名；2025一体化公示图的景辉街、茂兴西路分别对应核心区、北京东站，不当作已生效正式命名。"
         },
         {
           "id": "bj-line3-east-build",
@@ -14902,7 +15499,11 @@
         "finalAuditChapterId": "beijing-network-reconciliation-2026-10-01",
         "geometryPolicy": "approximate_current_geography_not_surveyed_tunnel_alignment"
       },
-      "stationComplexAliases": {},
+      "stationComplexAliases": {
+        "beijing-s278": "beijing-s47",
+        "beijing-s411": "beijing-s352",
+        "beijing-s413": "beijing-s103"
+      },
       "stationInstanceAliases": {}
     },
     "guangzhou": {
@@ -15124,7 +15725,8 @@
             "beats": []
           },
           "operationType": "historical_record",
-          "operationGuide": "查看来源资料并确认此历史节点。"
+          "operationGuide": "查看来源资料并确认此历史节点。",
+          "requiredTransfers": []
         },
         {
           "id": "guangzhou-historical-milestone-1978",
@@ -15172,7 +15774,8 @@
             "beats": []
           },
           "operationType": "historical_record",
-          "operationGuide": "查看来源资料并确认此历史节点。"
+          "operationGuide": "查看来源资料并确认此历史节点。",
+          "requiredTransfers": []
         },
         {
           "id": "guangzhou-historical-milestone-1979",
@@ -15220,7 +15823,8 @@
             "beats": []
           },
           "operationType": "historical_record",
-          "operationGuide": "查看来源资料并确认此历史节点。"
+          "operationGuide": "查看来源资料并确认此历史节点。",
+          "requiredTransfers": []
         },
         {
           "id": "guangzhou-historical-milestone-1993-12-28",
@@ -15268,7 +15872,8 @@
             "beats": []
           },
           "operationType": "historical_record",
-          "operationGuide": "查看来源资料并确认此历史节点。"
+          "operationGuide": "查看来源资料并确认此历史节点。",
+          "requiredTransfers": []
         },
         {
           "id": "gz-line1-1997",
@@ -18722,6 +19327,183 @@
           "eventOnly": false
         },
         {
+          "id": "guangzhou-line11-ring-opening-2024",
+          "phase": "history",
+          "date": "2024-12-28",
+          "title": "首条市区环线：29站连成一环",
+          "lineGroups": [
+            {
+              "taskId": "opening:gz11-ring-2024",
+              "mapRouteId": "guangzhou-r11",
+              "name": "11号线",
+              "stationIds": [
+                "guangzhou-s337",
+                "guangzhou-s338",
+                "guangzhou-s339",
+                "guangzhou-s78",
+                "guangzhou-s340",
+                "guangzhou-s3",
+                "guangzhou-s341",
+                "guangzhou-s105",
+                "guangzhou-s343",
+                "guangzhou-s344",
+                "guangzhou-s345",
+                "guangzhou-s346",
+                "guangzhou-s347",
+                "guangzhou-s155",
+                "guangzhou-s179",
+                "guangzhou-s117",
+                "guangzhou-s348",
+                "guangzhou-s170",
+                "guangzhou-s349",
+                "guangzhou-s25",
+                "guangzhou-s350",
+                "guangzhou-s351",
+                "guangzhou-s23",
+                "guangzhou-s129",
+                "guangzhou-s352",
+                "guangzhou-s353",
+                "guangzhou-s354",
+                "guangzhou-s10",
+                "guangzhou-s280"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "依据运营方逐站手册及实际开放公告。环线必须补齐龙潭—赤沙闭合区间；广州火车站尚未开放，不能提前计入停站。",
+              "historicalLineId": "guangzhou-line11-11",
+              "color": "#fac525",
+              "stationOrderSource": "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s337": "guangzhou-s337__line11-11",
+                "guangzhou-s338": "guangzhou-s338",
+                "guangzhou-s339": "guangzhou-s339",
+                "guangzhou-s78": "guangzhou-s78__line11-11",
+                "guangzhou-s340": "guangzhou-s340",
+                "guangzhou-s3": "guangzhou-s3__line11-11",
+                "guangzhou-s341": "guangzhou-s341",
+                "guangzhou-s105": "guangzhou-s105__line11-11",
+                "guangzhou-s343": "guangzhou-s343",
+                "guangzhou-s344": "guangzhou-s344",
+                "guangzhou-s345": "guangzhou-s345",
+                "guangzhou-s346": "guangzhou-s346",
+                "guangzhou-s347": "guangzhou-s347",
+                "guangzhou-s155": "guangzhou-s155__line11-11",
+                "guangzhou-s179": "guangzhou-s179__line11-11",
+                "guangzhou-s117": "guangzhou-s117__line11-11",
+                "guangzhou-s348": "guangzhou-s348",
+                "guangzhou-s170": "guangzhou-s170__line11-11",
+                "guangzhou-s349": "guangzhou-s349",
+                "guangzhou-s25": "guangzhou-s25__line11-11",
+                "guangzhou-s350": "guangzhou-s350",
+                "guangzhou-s351": "guangzhou-s351",
+                "guangzhou-s23": "guangzhou-s23__line11-11",
+                "guangzhou-s129": "guangzhou-s129__line11-11",
+                "guangzhou-s352": "guangzhou-s352__line11-11",
+                "guangzhou-s353": "guangzhou-s353",
+                "guangzhou-s354": "guangzhou-s354",
+                "guangzhou-s10": "guangzhou-s10__line11-11",
+                "guangzhou-s280": "guangzhou-s280__line11-11"
+              },
+              "coverageGroupId": "opening:gz11-ring-2024",
+              "stationNames": {
+                "guangzhou-s337": "赤沙",
+                "guangzhou-s338": "琶洲",
+                "guangzhou-s339": "员村",
+                "guangzhou-s78": "天河公园",
+                "guangzhou-s340": "华景路",
+                "guangzhou-s3": "华师",
+                "guangzhou-s341": "龙口西",
+                "guangzhou-s105": "沙河",
+                "guangzhou-s343": "云台花园",
+                "guangzhou-s344": "大金钟路",
+                "guangzhou-s345": "中医药大学",
+                "guangzhou-s346": "梓元岗",
+                "guangzhou-s347": "流花",
+                "guangzhou-s155": "彩虹桥",
+                "guangzhou-s179": "中山八",
+                "guangzhou-s117": "如意坊",
+                "guangzhou-s348": "石围塘",
+                "guangzhou-s170": "芳村",
+                "guangzhou-s349": "大冲口",
+                "guangzhou-s25": "沙涌",
+                "guangzhou-s350": "鹤洞东",
+                "guangzhou-s351": "棣园",
+                "guangzhou-s23": "燕岗",
+                "guangzhou-s129": "江泰路",
+                "guangzhou-s352": "五凤",
+                "guangzhou-s353": "逸景路",
+                "guangzhou-s354": "上涌",
+                "guangzhou-s10": "大塘",
+                "guangzhou-s280": "龙潭"
+              },
+              "loop": true,
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 4
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2024年12月28日，11号线环线开放29座车站。广州东站及广州火车站暂缓开放，列车经过其所在区间而不停站。",
+          "precision": "station_areas",
+          "source": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf",
+          "sourceTitle": "广州市交通发展年度报告：11号线首开29站，两座铁路枢纽站暂缓",
+          "sourceCheckedAt": "2026-10-20",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
+          "sourcePublicationDate": "2025-04-29",
+          "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
+          "story": {
+            "opening": "2024年12月28日，11号线环线开放29座车站。广州东站及广州火车站暂缓开放，列车经过其所在区间而不停站。",
+            "purpose": "完成闭合环线，沿本期29个目标站区建设；两座暂缓站另行处理。",
+            "outcome": "环线形成，广州东站于后续节点开放，广州火车站保留为建设篇工程。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "guangzhou-line11-ring-opening-2024:opening"
+          ],
+          "routeMilestoneIds": [
+            "guangzhou-r11",
+            "guangzhou-r13",
+            "guangzhou-r14"
+          ],
+          "chapterScope": "dated_ring_opening",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "scopeRevision": "2026.10.24.22",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": [],
+          "serviceTransitions": []
+        },
+        {
           "id": "guangzhou-network-milestone-2025-06-29",
           "phase": "history",
           "date": "2025-06-29",
@@ -19061,6 +19843,38 @@
               "precision": "schematic",
               "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s337-line12-12-line11-11",
+              "name": "赤沙",
+              "complexId": "guangzhou-s337",
+              "stationInstanceIds": [
+                "guangzhou-s337__line12-12",
+                "guangzhou-s337__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line12-12",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s352-line10-10-line11-11",
+              "name": "五凤",
+              "complexId": "guangzhou-s352",
+              "stationInstanceIds": [
+                "guangzhou-s352__line10-10",
+                "guangzhou-s352__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line10-10",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false
@@ -19069,67 +19883,8 @@
           "id": "guangzhou-network-milestone-2025-09-29",
           "phase": "history",
           "date": "2025-09-29",
-          "title": "11号线开通及13、14号线延伸",
+          "title": "11号线广州东站开放及13、14号线延伸",
           "lineGroups": [
-            {
-              "taskId": "route:guangzhou-r11",
-              "mapRouteId": "guangzhou-r11",
-              "name": "11号线",
-              "stationIds": [
-                "guangzhou-s337",
-                "guangzhou-s338",
-                "guangzhou-s339",
-                "guangzhou-s78",
-                "guangzhou-s340",
-                "guangzhou-s3",
-                "guangzhou-s341",
-                "guangzhou-s342",
-                "guangzhou-s105",
-                "guangzhou-s343",
-                "guangzhou-s344",
-                "guangzhou-s345",
-                "guangzhou-s346",
-                "guangzhou-s347",
-                "guangzhou-s155",
-                "guangzhou-s179",
-                "guangzhou-s117",
-                "guangzhou-s348",
-                "guangzhou-s170",
-                "guangzhou-s349",
-                "guangzhou-s25",
-                "guangzhou-s350",
-                "guangzhou-s351",
-                "guangzhou-s23",
-                "guangzhou-s129",
-                "guangzhou-s352",
-                "guangzhou-s353",
-                "guangzhou-s354",
-                "guangzhou-s10",
-                "guangzhou-s280"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "guangzhou-line11-11",
-              "color": "#fac525",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "guangzhou-s337": "guangzhou-s337__line11-11",
-                "guangzhou-s78": "guangzhou-s78__line11-11",
-                "guangzhou-s3": "guangzhou-s3__line11-11",
-                "guangzhou-s105": "guangzhou-s105__line11-11",
-                "guangzhou-s155": "guangzhou-s155__line11-11",
-                "guangzhou-s179": "guangzhou-s179__line11-11",
-                "guangzhou-s117": "guangzhou-s117__line11-11",
-                "guangzhou-s170": "guangzhou-s170__line11-11",
-                "guangzhou-s25": "guangzhou-s25__line11-11",
-                "guangzhou-s23": "guangzhou-s23__line11-11",
-                "guangzhou-s129": "guangzhou-s129__line11-11",
-                "guangzhou-s352": "guangzhou-s352__line11-11",
-                "guangzhou-s10": "guangzhou-s10__line11-11",
-                "guangzhou-s280": "guangzhou-s280__line11-11"
-              }
-            },
             {
               "taskId": "route:guangzhou-r13:range-1",
               "mapRouteId": "guangzhou-r13",
@@ -19237,6 +19992,118 @@
               "constructionScopeNote": "建设乐嘉路至嘉禾望岗的本期新增区段；嘉禾望岗复用2018年已建14号线站体与区间。",
               "toleranceM": 180.0,
               "precisionNote": "站序和开通范围按线路资料；站间采用离线地图近似走廊，不代表隧道测绘。"
+            },
+            {
+              "taskId": "route:guangzhou-r11",
+              "mapRouteId": "guangzhou-r11",
+              "name": "11号线",
+              "stationIds": [
+                "guangzhou-s337",
+                "guangzhou-s338",
+                "guangzhou-s339",
+                "guangzhou-s78",
+                "guangzhou-s340",
+                "guangzhou-s3",
+                "guangzhou-s341",
+                "guangzhou-s342",
+                "guangzhou-s105",
+                "guangzhou-s343",
+                "guangzhou-s344",
+                "guangzhou-s345",
+                "guangzhou-s346",
+                "guangzhou-s347",
+                "guangzhou-s155",
+                "guangzhou-s179",
+                "guangzhou-s117",
+                "guangzhou-s348",
+                "guangzhou-s170",
+                "guangzhou-s349",
+                "guangzhou-s25",
+                "guangzhou-s350",
+                "guangzhou-s351",
+                "guangzhou-s23",
+                "guangzhou-s129",
+                "guangzhou-s352",
+                "guangzhou-s353",
+                "guangzhou-s354",
+                "guangzhou-s10",
+                "guangzhou-s280"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "依据运营方逐站手册及实际开放公告。环线必须补齐龙潭—赤沙闭合区间；广州火车站尚未开放，不能提前计入停站。",
+              "historicalLineId": "guangzhou-line11-11",
+              "color": "#fac525",
+              "stationOrderSource": "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s337": "guangzhou-s337__line11-11",
+                "guangzhou-s338": "guangzhou-s338",
+                "guangzhou-s339": "guangzhou-s339",
+                "guangzhou-s78": "guangzhou-s78__line11-11",
+                "guangzhou-s340": "guangzhou-s340",
+                "guangzhou-s3": "guangzhou-s3__line11-11",
+                "guangzhou-s341": "guangzhou-s341",
+                "guangzhou-s342": "guangzhou-s342",
+                "guangzhou-s105": "guangzhou-s105__line11-11",
+                "guangzhou-s343": "guangzhou-s343",
+                "guangzhou-s344": "guangzhou-s344",
+                "guangzhou-s345": "guangzhou-s345",
+                "guangzhou-s346": "guangzhou-s346",
+                "guangzhou-s347": "guangzhou-s347",
+                "guangzhou-s155": "guangzhou-s155__line11-11",
+                "guangzhou-s179": "guangzhou-s179__line11-11",
+                "guangzhou-s117": "guangzhou-s117__line11-11",
+                "guangzhou-s348": "guangzhou-s348",
+                "guangzhou-s170": "guangzhou-s170__line11-11",
+                "guangzhou-s349": "guangzhou-s349",
+                "guangzhou-s25": "guangzhou-s25__line11-11",
+                "guangzhou-s350": "guangzhou-s350",
+                "guangzhou-s351": "guangzhou-s351",
+                "guangzhou-s23": "guangzhou-s23__line11-11",
+                "guangzhou-s129": "guangzhou-s129__line11-11",
+                "guangzhou-s352": "guangzhou-s352__line11-11",
+                "guangzhou-s353": "guangzhou-s353",
+                "guangzhou-s354": "guangzhou-s354",
+                "guangzhou-s10": "guangzhou-s10__line11-11",
+                "guangzhou-s280": "guangzhou-s280__line11-11"
+              },
+              "coverageGroupId": "route:guangzhou-r11",
+              "stationNames": {
+                "guangzhou-s337": "赤沙",
+                "guangzhou-s338": "琶洲",
+                "guangzhou-s339": "员村",
+                "guangzhou-s78": "天河公园",
+                "guangzhou-s340": "华景路",
+                "guangzhou-s3": "华师",
+                "guangzhou-s341": "龙口西",
+                "guangzhou-s342": "广州东站",
+                "guangzhou-s105": "沙河",
+                "guangzhou-s343": "云台花园",
+                "guangzhou-s344": "大金钟路",
+                "guangzhou-s345": "中医药大学",
+                "guangzhou-s346": "梓元岗",
+                "guangzhou-s347": "流花",
+                "guangzhou-s155": "彩虹桥",
+                "guangzhou-s179": "中山八",
+                "guangzhou-s117": "如意坊",
+                "guangzhou-s348": "石围塘",
+                "guangzhou-s170": "芳村",
+                "guangzhou-s349": "大冲口",
+                "guangzhou-s25": "沙涌",
+                "guangzhou-s350": "鹤洞东",
+                "guangzhou-s351": "棣园",
+                "guangzhou-s23": "燕岗",
+                "guangzhou-s129": "江泰路",
+                "guangzhou-s352": "五凤",
+                "guangzhou-s353": "逸景路",
+                "guangzhou-s354": "上涌",
+                "guangzhou-s10": "大塘",
+                "guangzhou-s280": "龙潭"
+              },
+              "loop": true,
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 4
             }
           ],
           "requireOpen": true,
@@ -19295,150 +20162,6 @@
           "routeTargetCount": 3,
           "requiredTransfers": [
             {
-              "id": "historic-transfer-guangzhou-s10-line3-3-line11-11",
-              "name": "大塘",
-              "complexId": "guangzhou-s10",
-              "stationInstanceIds": [
-                "guangzhou-s10__line3-3",
-                "guangzhou-s10__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line3-3",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s105-line6-6-line11-11",
-              "name": "沙河",
-              "complexId": "guangzhou-s105",
-              "stationInstanceIds": [
-                "guangzhou-s105__line6-6",
-                "guangzhou-s105__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line6-6",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s117-line6-6-line11-11",
-              "name": "如意坊",
-              "complexId": "guangzhou-s117",
-              "stationInstanceIds": [
-                "guangzhou-s117__line6-6",
-                "guangzhou-s117__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line6-6",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s129-line2-2-line11-11",
-              "name": "江泰路",
-              "complexId": "guangzhou-s129",
-              "stationInstanceIds": [
-                "guangzhou-s129__line2-2",
-                "guangzhou-s129__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line2-2",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s155-line8-8-line11-11",
-              "name": "彩虹桥",
-              "complexId": "guangzhou-s155",
-              "stationInstanceIds": [
-                "guangzhou-s155__line8-8",
-                "guangzhou-s155__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line8-8",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s170-line1-line11-11",
-              "name": "芳村",
-              "complexId": "guangzhou-s170",
-              "stationInstanceIds": [
-                "guangzhou-s170",
-                "guangzhou-s170__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line1",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s170-line22-17-line11-11",
-              "name": "芳村",
-              "complexId": "guangzhou-s170",
-              "stationInstanceIds": [
-                "guangzhou-s170__line22-17",
-                "guangzhou-s170__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line22-17",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s179-line5-5-line11-11",
-              "name": "中山八",
-              "complexId": "guangzhou-s179",
-              "stationInstanceIds": [
-                "guangzhou-s179__line5-5",
-                "guangzhou-s179__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line5-5",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s23-line20-line11-11",
-              "name": "燕岗",
-              "complexId": "guangzhou-s23",
-              "stationInstanceIds": [
-                "guangzhou-s23__line20",
-                "guangzhou-s23__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-foshan-route-20",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-guangzhou-s233-line12-12-line14-14",
               "name": "新市墟",
               "complexId": "guangzhou-s233",
@@ -19455,86 +20178,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-guangzhou-s25-line20-line11-11",
-              "name": "沙涌",
-              "complexId": "guangzhou-s25",
-              "stationInstanceIds": [
-                "guangzhou-s25__line20",
-                "guangzhou-s25__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-foshan-route-20",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s280-line18-15-line11-11",
-              "name": "龙潭",
-              "complexId": "guangzhou-s280",
-              "stationInstanceIds": [
-                "guangzhou-s280__line18-15",
-                "guangzhou-s280__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line18-15",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s3-line3-3-line11-11",
-              "name": "华师",
-              "complexId": "guangzhou-s3",
-              "stationInstanceIds": [
-                "guangzhou-s3__line3-3",
-                "guangzhou-s3__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line3-3",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s337-line12-12-line11-11",
-              "name": "赤沙",
-              "complexId": "guangzhou-s337",
-              "stationInstanceIds": [
-                "guangzhou-s337__line12-12",
-                "guangzhou-s337__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line12-12",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s352-line10-10-line11-11",
-              "name": "五凤",
-              "complexId": "guangzhou-s352",
-              "stationInstanceIds": [
-                "guangzhou-s352__line10-10",
-                "guangzhou-s352__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line10-10",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-guangzhou-s66-line4-4-line13-13",
               "name": "车陂",
               "complexId": "guangzhou-s66",
@@ -19544,6 +20187,22 @@
               ],
               "lineIds": [
                 "guangzhou-line4-4",
+                "guangzhou-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s78-line21-16-line13-13",
+              "name": "天河公园",
+              "complexId": "guangzhou-s78",
+              "stationInstanceIds": [
+                "guangzhou-s78__line21-16",
+                "guangzhou-s78__line13-13"
+              ],
+              "lineIds": [
+                "guangzhou-line21-16",
                 "guangzhou-line13-13"
               ],
               "precision": "schematic",
@@ -19567,39 +20226,41 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-guangzhou-s78-line21-16-line11-11",
-              "name": "天河公园",
-              "complexId": "guangzhou-s78",
+              "id": "historic-transfer-gz11-east-guangzhou-line1",
+              "name": "广州东站",
+              "complexId": "guangzhou-s177",
               "stationInstanceIds": [
-                "guangzhou-s78__line21-16",
-                "guangzhou-s78__line11-11"
+                "guangzhou-s177__line1",
+                "guangzhou-s342"
               ],
               "lineIds": [
-                "guangzhou-line21-16",
+                "guangzhou-line1",
                 "guangzhou-line11-11"
               ],
               "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "source": "https://m.thepaper.cn/newsDetail_forward_31700679",
+              "sourceNote": "广州发布转述运营方2025-09-29开放；与既有1、3号线独立站体换乘。"
             },
             {
-              "id": "historic-transfer-guangzhou-s78-line21-16-line13-13",
-              "name": "天河公园",
-              "complexId": "guangzhou-s78",
+              "id": "historic-transfer-gz11-east-guangzhou-line3-3",
+              "name": "广州东站",
+              "complexId": "guangzhou-s177",
               "stationInstanceIds": [
-                "guangzhou-s78__line21-16",
-                "guangzhou-s78__line13-13"
+                "guangzhou-s177__line3-3",
+                "guangzhou-s342"
               ],
               "lineIds": [
-                "guangzhou-line21-16",
-                "guangzhou-line13-13"
+                "guangzhou-line3-3",
+                "guangzhou-line11-11"
               ],
               "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "source": "https://m.thepaper.cn/newsDetail_forward_31700679",
+              "sourceNote": "广州发布转述运营方2025-09-29开放；与既有1、3号线独立站体换乘。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "scopeRevision": "2026.10.24.22",
+          "requiresScopeRecheck": true
         },
         {
           "id": "guangzhou-network-reconciliation-2026-10-01",
@@ -20014,65 +20675,6 @@
                 "guangzhou-s128": "guangzhou-s128__line10-10",
                 "guangzhou-s352": "guangzhou-s352__line10-10",
                 "guangzhou-s110": "guangzhou-s110__line10-10"
-              }
-            },
-            {
-              "taskId": "route:guangzhou-r11",
-              "mapRouteId": "guangzhou-r11",
-              "name": "11号线",
-              "stationIds": [
-                "guangzhou-s337",
-                "guangzhou-s338",
-                "guangzhou-s339",
-                "guangzhou-s78",
-                "guangzhou-s340",
-                "guangzhou-s3",
-                "guangzhou-s341",
-                "guangzhou-s342",
-                "guangzhou-s105",
-                "guangzhou-s343",
-                "guangzhou-s344",
-                "guangzhou-s345",
-                "guangzhou-s346",
-                "guangzhou-s347",
-                "guangzhou-s155",
-                "guangzhou-s179",
-                "guangzhou-s117",
-                "guangzhou-s348",
-                "guangzhou-s170",
-                "guangzhou-s349",
-                "guangzhou-s25",
-                "guangzhou-s350",
-                "guangzhou-s351",
-                "guangzhou-s23",
-                "guangzhou-s129",
-                "guangzhou-s352",
-                "guangzhou-s353",
-                "guangzhou-s354",
-                "guangzhou-s10",
-                "guangzhou-s280"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "guangzhou-line11-11",
-              "color": "#fac525",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "guangzhou-s337": "guangzhou-s337__line11-11",
-                "guangzhou-s78": "guangzhou-s78__line11-11",
-                "guangzhou-s3": "guangzhou-s3__line11-11",
-                "guangzhou-s105": "guangzhou-s105__line11-11",
-                "guangzhou-s155": "guangzhou-s155__line11-11",
-                "guangzhou-s179": "guangzhou-s179__line11-11",
-                "guangzhou-s117": "guangzhou-s117__line11-11",
-                "guangzhou-s170": "guangzhou-s170__line11-11",
-                "guangzhou-s25": "guangzhou-s25__line11-11",
-                "guangzhou-s23": "guangzhou-s23__line11-11",
-                "guangzhou-s129": "guangzhou-s129__line11-11",
-                "guangzhou-s352": "guangzhou-s352__line11-11",
-                "guangzhou-s10": "guangzhou-s10__line11-11",
-                "guangzhou-s280": "guangzhou-s280__line11-11"
               }
             },
             {
@@ -20706,6 +21308,118 @@
               "coverageGroupId": "guangzhou-line14-14:service-2",
               "replaceExistingService": false,
               "servicePathRevision": 3
+            },
+            {
+              "taskId": "route:guangzhou-r11",
+              "mapRouteId": "guangzhou-r11",
+              "name": "11号线",
+              "stationIds": [
+                "guangzhou-s337",
+                "guangzhou-s338",
+                "guangzhou-s339",
+                "guangzhou-s78",
+                "guangzhou-s340",
+                "guangzhou-s3",
+                "guangzhou-s341",
+                "guangzhou-s342",
+                "guangzhou-s105",
+                "guangzhou-s343",
+                "guangzhou-s344",
+                "guangzhou-s345",
+                "guangzhou-s346",
+                "guangzhou-s347",
+                "guangzhou-s155",
+                "guangzhou-s179",
+                "guangzhou-s117",
+                "guangzhou-s348",
+                "guangzhou-s170",
+                "guangzhou-s349",
+                "guangzhou-s25",
+                "guangzhou-s350",
+                "guangzhou-s351",
+                "guangzhou-s23",
+                "guangzhou-s129",
+                "guangzhou-s352",
+                "guangzhou-s353",
+                "guangzhou-s354",
+                "guangzhou-s10",
+                "guangzhou-s280"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "依据运营方逐站手册及实际开放公告。环线必须补齐龙潭—赤沙闭合区间；广州火车站尚未开放，不能提前计入停站。",
+              "historicalLineId": "guangzhou-line11-11",
+              "color": "#fac525",
+              "stationOrderSource": "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s337": "guangzhou-s337__line11-11",
+                "guangzhou-s338": "guangzhou-s338",
+                "guangzhou-s339": "guangzhou-s339",
+                "guangzhou-s78": "guangzhou-s78__line11-11",
+                "guangzhou-s340": "guangzhou-s340",
+                "guangzhou-s3": "guangzhou-s3__line11-11",
+                "guangzhou-s341": "guangzhou-s341",
+                "guangzhou-s342": "guangzhou-s342",
+                "guangzhou-s105": "guangzhou-s105__line11-11",
+                "guangzhou-s343": "guangzhou-s343",
+                "guangzhou-s344": "guangzhou-s344",
+                "guangzhou-s345": "guangzhou-s345",
+                "guangzhou-s346": "guangzhou-s346",
+                "guangzhou-s347": "guangzhou-s347",
+                "guangzhou-s155": "guangzhou-s155__line11-11",
+                "guangzhou-s179": "guangzhou-s179__line11-11",
+                "guangzhou-s117": "guangzhou-s117__line11-11",
+                "guangzhou-s348": "guangzhou-s348",
+                "guangzhou-s170": "guangzhou-s170__line11-11",
+                "guangzhou-s349": "guangzhou-s349",
+                "guangzhou-s25": "guangzhou-s25__line11-11",
+                "guangzhou-s350": "guangzhou-s350",
+                "guangzhou-s351": "guangzhou-s351",
+                "guangzhou-s23": "guangzhou-s23__line11-11",
+                "guangzhou-s129": "guangzhou-s129__line11-11",
+                "guangzhou-s352": "guangzhou-s352__line11-11",
+                "guangzhou-s353": "guangzhou-s353",
+                "guangzhou-s354": "guangzhou-s354",
+                "guangzhou-s10": "guangzhou-s10__line11-11",
+                "guangzhou-s280": "guangzhou-s280__line11-11"
+              },
+              "coverageGroupId": "route:guangzhou-r11",
+              "stationNames": {
+                "guangzhou-s337": "赤沙",
+                "guangzhou-s338": "琶洲",
+                "guangzhou-s339": "员村",
+                "guangzhou-s78": "天河公园",
+                "guangzhou-s340": "华景路",
+                "guangzhou-s3": "华师",
+                "guangzhou-s341": "龙口西",
+                "guangzhou-s342": "广州东站",
+                "guangzhou-s105": "沙河",
+                "guangzhou-s343": "云台花园",
+                "guangzhou-s344": "大金钟路",
+                "guangzhou-s345": "中医药大学",
+                "guangzhou-s346": "梓元岗",
+                "guangzhou-s347": "流花",
+                "guangzhou-s155": "彩虹桥",
+                "guangzhou-s179": "中山八",
+                "guangzhou-s117": "如意坊",
+                "guangzhou-s348": "石围塘",
+                "guangzhou-s170": "芳村",
+                "guangzhou-s349": "大冲口",
+                "guangzhou-s25": "沙涌",
+                "guangzhou-s350": "鹤洞东",
+                "guangzhou-s351": "棣园",
+                "guangzhou-s23": "燕岗",
+                "guangzhou-s129": "江泰路",
+                "guangzhou-s352": "五凤",
+                "guangzhou-s353": "逸景路",
+                "guangzhou-s354": "上涌",
+                "guangzhou-s10": "大塘",
+                "guangzhou-s280": "龙潭"
+              },
+              "loop": true,
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 4
             }
           ],
           "requireOpen": true,
@@ -20792,22 +21506,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-guangzhou-s3-line3-3-line11-11",
-              "name": "华师",
-              "complexId": "guangzhou-s3",
-              "stationInstanceIds": [
-                "guangzhou-s3__line3-3",
-                "guangzhou-s3__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line3-3",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-guangzhou-s164-line8-8-line12-12",
               "name": "赤岗",
               "complexId": "guangzhou-s164",
@@ -20888,22 +21586,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-guangzhou-s337-line12-12-line11-11",
-              "name": "赤沙",
-              "complexId": "guangzhou-s337",
-              "stationInstanceIds": [
-                "guangzhou-s337__line12-12",
-                "guangzhou-s337__line11-11"
-              ],
-              "lineIds": [
-                "guangzhou-line12-12",
-                "guangzhou-line11-11"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-guangzhou-s68-line21-16-line14-14",
               "name": "镇龙",
               "complexId": "guangzhou-s68",
@@ -20922,7 +21604,7 @@
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.5",
+          "scopeRevision": "2026.10.24.22",
           "scopeCorrections": [
             {
               "taskId": "route:guangzhou-r12:service-1",
@@ -22231,6 +22913,111 @@
             }
           ],
           "scopeRevision": "2026.10.24.16",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": []
+        },
+        {
+          "id": "gz-line11-railway-build",
+          "projectIds": [
+            "gz-line11-railway-station"
+          ],
+          "title": "环线补站：广州火车站剩余工程",
+          "date": "2026-10-01",
+          "status": "under_construction",
+          "sourceType": "issuer_disclosure_and_approved_eia",
+          "projectType": "under_construction",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2026-05-29/139196_20260529_08YE.pdf",
+          "sourceTitle": "广州地铁2026跟踪评级及11号线环评已批准站序",
+          "sourceCheckedAt": "2026-10-24",
+          "description": "完成11号线广州火车站独立站体及相邻区间，并确认2/5/14线路联系。建成状态与真实开放分开，现状列车不提前停靠。",
+          "sourcePublicationDate": "2026-05-29",
+          "lineGroups": [
+            {
+              "taskId": "project:gz-line11-railway-build",
+              "mapRouteId": "guangzhou-future-line11-railway",
+              "name": "11号线广州火车站剩余工程",
+              "historicalLineId": "guangzhou-line11-11",
+              "color": "#FAC525",
+              "stationIds": [
+                "guangzhou-s346",
+                "guangzhou-s136",
+                "guangzhou-s347"
+              ],
+              "stationNames": {
+                "guangzhou-s346": "梓元岗",
+                "guangzhou-s136": "广州火车站",
+                "guangzhou-s347": "流花"
+              },
+              "toleranceM": 350.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "仅建设未开放站体及相邻两段，既有运营环线仍保留梓元岗—流花不停站路径；不虚构未来开通日期。",
+              "stationOrderSource": "https://gdee.gd.gov.cn/attachment/0/360/360962/2474598.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "guangzhou-s346": "guangzhou-s346",
+                "guangzhou-s136": "guangzhou-s136__line11-11",
+                "guangzhou-s347": "guangzhou-s347"
+              },
+              "coverageGroupId": "guangzhou-line11-railway",
+              "constructionVariant": true
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-gz11-railway-2",
+              "name": "广州火车站",
+              "complexId": "guangzhou-s136",
+              "stationInstanceIds": [
+                "guangzhou-s136__line2-2",
+                "guangzhou-s136__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2026-05-29/139196_20260529_08YE.pdf",
+              "sourceNote": "环评明确2/5/14与11号线换乘；各线站体独立。14号线须先完成已批准剩余工程，均不提前开放。"
+            },
+            {
+              "id": "future-transfer-gz11-railway-5",
+              "name": "广州火车站",
+              "complexId": "guangzhou-s136",
+              "stationInstanceIds": [
+                "guangzhou-s136__line5-5",
+                "guangzhou-s136__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line5-5",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2026-05-29/139196_20260529_08YE.pdf",
+              "sourceNote": "环评明确2/5/14与11号线换乘；各线站体独立。14号线须先完成已批准剩余工程，均不提前开放。"
+            },
+            {
+              "id": "future-transfer-gz11-railway-14",
+              "name": "广州火车站",
+              "complexId": "guangzhou-s136",
+              "stationInstanceIds": [
+                "guangzhou-s136__line14-14",
+                "guangzhou-s136__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line14-14",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2026-05-29/139196_20260529_08YE.pdf",
+              "sourceNote": "环评明确2/5/14与11号线换乘；各线站体独立。14号线须先完成已批准剩余工程，均不提前开放。"
+            }
+          ],
+          "scopeRevision": "2026.10.24.22",
           "requiresScopeRecheck": true,
           "scopeCorrections": []
         }
@@ -39104,6 +39891,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.24.18",
-  "contentRevisionNote": "更正2010成都1号线首开16站；2013海洋公园增站与锦城广场更名单列，工程17站不冒充首开全部开放。"
+  "contentRevision": "2026.10.24.22",
+  "contentRevisionNote": "补齐北京17/18分期、22西段及广州11号线闭环和剩余工程；历史运营与未开放建设分离。"
 }

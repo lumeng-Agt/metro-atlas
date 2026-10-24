@@ -188,7 +188,11 @@ def main() -> int:
             fail(f"group {key}: needs at least two stations")
         if len(set(resolved_ids)) != len(resolved_ids):
             fail(f"group {key}: duplicate station in station order")
-        task_id = f"project:{plan_spec['id']}" if not multi else f"project:{plan_spec['id']}:{key}"
+        default_task_id = f"project:{plan_spec['id']}" if not multi else f"project:{plan_spec['id']}:{key}"
+        task_id = str(group_spec.get("taskId") or default_task_id)
+        task_prefix = f"project:{plan_spec['id']}"
+        if task_id != task_prefix and not task_id.startswith(task_prefix + ":"):
+            fail(f"group {key}: taskId must belong to this project")
         if task_id in task_ids:
             fail(f"group {key}: duplicate taskId {task_id}")
         task_ids.add(task_id)
@@ -220,7 +224,7 @@ def main() -> int:
                 if identity not in resolved_ids or reference not in catalog:
                     fail(f'group {key}: invalid line-specific station reference {identity}: {reference}')
             group['stationReferenceIds'] = references
-        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId', 'servicePathRevision'):
+        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId', 'servicePathRevision', 'constructionVariant'):
             if field in group_spec:
                 group[field] = group_spec[field]
         if float(group["toleranceM"]) <= 0:

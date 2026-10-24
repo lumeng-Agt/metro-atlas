@@ -169,6 +169,7 @@ static func service_shape_errors(world:Dictionary,network:Dictionary,projects:Ar
 				if project_errors(world,project).is_empty():required_direction_count=1
 		for route in world.get("routes",[]):
 			if bool(route.get("retired",false)):continue
+			if not str(route.get("constructionVariantId","")).is_empty():continue
 			if str(route.get("historicalLineId",""))!=line_id:continue
 			if route.get("directions",[]).size()!=required_direction_count:errors.append("%s: cutoff service direction count differs from documented branches"%line_id)
 			for direction in route.get("directions",[]):

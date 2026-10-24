@@ -30,6 +30,7 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 		if bool(requirement.get("optional",false)):continue
 		var project_id:=str(requirement.get("id",""))
 		if str(requirement.get("reviewStatus",""))!="verified" or str(requirement.get("source",""))=="" or str(requirement.get("sourcePublicationDate",""))=="":reasons.append("项目%s的官方范围尚未核对。" % project_id)
+		if str(requirement.get("transferReviewStatus","verified"))!="verified":reasons.append("项目%s的完整换乘范围尚未核对。" % project_id)
 		var matching:Array=campaign.get("futurePlans",[]).filter(func(p:Dictionary):return p.get("projectIds",[]).has(project_id))
 		if matching.is_empty() or requirement.get("groups",[]).is_empty():reasons.append("项目%s缺少可玩建设目标。" % project_id)
 		var actual_groups:Array=[]

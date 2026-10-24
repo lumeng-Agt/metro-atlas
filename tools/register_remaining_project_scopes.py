@@ -22,13 +22,13 @@ ROWS={
         {'id':'sz-line10-east-shenzhen','name':'10号线东延深圳段',
          'projectType':'approved_project','statusAtCutoff':'第五期批准的深圳段',
          'source':'https://www.szmc.net/SMARTC/upload/file/20240619/1718790831457082212.pdf',
-         'sourceTitle':'深圳地铁10号线东延深圳段环境影响评价项目范围',
-         'note':'深圳段工程不得被东莞段审批情况替代；需制作公开站点及跨界接头，不虚构境外开通。'},
+         'sourceTitle':'深圳地铁2023社会责任报告：五期已批准项目清单',
+         'note':'此PDF经下载核对为社会责任报告，并非10东专属环评；可证明纳入五期，不能证明逐站工程范围。深圳段工程不得被东莞段审批替代；需进一步使用专属工程资料制作边界接头。'},
         {'id':'sz-line11-north-shenzhen','name':'11号线北延深圳段',
          'projectType':'approved_project','statusAtCutoff':'第五期批准的深圳段',
-         'source':'https://www.szmc.net/SMARTC/upload/file/20240202/1706841517912063272.pdf',
-         'sourceTitle':'深圳地铁11号线北延深圳段环评项目范围',
-         'note':'纯区间边界接头仍是实际工程，不能因深圳境内无新增车站就用工程分类免除可玩任务。'}]}
+         'source':'https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf',
+         'sourceTitle':'深圳32号线环评中的五期已批准项目清单',
+         'note':'旧引用20240202文件经封面核对为20号线二期环评，不能充当11北专属报告。此32号线环评只佐证五期纳入；需专属范围资料。纯区间边界接头不能因无新增车站被免除。'}]}
 
 
 def main():
@@ -37,8 +37,11 @@ def main():
         actual=baseline['cities'][cid]['projectsAtCutoff']
         required=official['cities'][cid]['requiredProjectIds']
         for row in rows:
-            if not any(p['id']==row['id'] for p in actual):
+            existing=next((p for p in actual if p['id']==row['id']),None)
+            if existing is None:
                 actual.append(dict(row,sourceCheckedAt='2026-10-24',playabilityStatus='registered_geometry_and_playable_task_pending'))
+            elif cid=='shenzhen':
+                existing.update(row,sourceCheckedAt='2026-10-24')
             if row['id'] not in required:required.append(row['id'])
     old=next(p for p in baseline['cities']['chengdu']['projectsAtCutoff'] if p['id']=='cd-fifth-phase-consultation')
     old['statusAtCutoff']='原始征求意见版本，非后续批准项目范围'

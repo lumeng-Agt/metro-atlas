@@ -345,6 +345,42 @@ func _run() -> void:
 	inserted_history.storyState.phase="future_gap";inserted_history.storyState.chapterId="chengdu-network-reconciliation-2026-10-01"
 	SaveManager._resume_expanded_history(inserted_history.storyState,"chengdu","campaign")
 	_check(inserted_history.storyState.phase=="history" and inserted_history.storyState.chapterId=="chengdu-line2-east-suspended","a boundary save cannot let its retained valid historical ID hide new missing tasks")
+	var transfer_gate:=CampaignSystem.delivery_eligibility("shanghai")
+	_check(transfer_gate.reasons.any(func(reason:String):return reason.contains("sh-line19") and reason.contains("完整换乘范围")),"in-game free-creation eligibility cannot certify a station-only review with missing interchange inventory")
+	var west_scope:Dictionary=CampaignSystem.city_config("beijing").futurePlans.filter(func(p:Dictionary):return str(p.id)=="bj-line22-build")[0]
+	_check(west_scope.lineGroups[0].taskId=="project:bj-line22-build" and west_scope.lineGroups[1].taskId=="project:bj-line22-build:west","adding the west extension preserves the existing twenty-stop task identity")
+	# A future infill must not replace the still-open stop-to-stop bypass.
+	# Only this focused fixture uses a synthetic chapter; both geometries are
+	# built with the actual construction command and task confirmation.
+	var infill_world:=WorldData.new_world("chengdu","campaign")
+	infill_world.storyState.phase="history";infill_world.storyState.chapterId="cd-line1-2010";infill_world.storyState.stage="build"
+	app._enter(infill_world)
+	_check(bool(app._commit_assisted_construction(app._assist_candidate(),int(infill_world.revision)).get("ok",false)),"infill fixture builds its existing operating line through the formal command")
+	var initial_task:=Story.task_id(Story.chapter(infill_world),Story.groups(infill_world,true)[0],0)
+	_check(bool(Story.confirm_task(infill_world,initial_task,int(infill_world.revision)).get("ok",false)),"infill fixture confirms the original sixteen-stop service")
+	var original_service:=JSON.stringify(infill_world.routes)
+	var future_infill:Dictionary=CampaignSystem.city_config("chengdu").chapters.filter(func(c:Dictionary):return str(c.id)=="chengdu-line1-ocean-2013")[0].duplicate(true)
+	future_infill.id="fixture-unopened-infill";future_infill.requireOpen=false;future_infill.requiredTransfers=[];future_infill.scopeCorrections=[]
+	future_infill.lineGroups[0].constructionVariant=true;future_infill.lineGroups[0].replaceExistingService=false
+	future_infill.lineGroups[0].taskId="fixture-infill";future_infill.lineGroups[0].reconfirmLaterServices=false
+	CampaignSystem._catalog.cities.chengdu.chapters.append(future_infill)
+	infill_world.storyState.chapterId=future_infill.id;infill_world.storyState.stage="build";app._enter(infill_world)
+	_check(bool(app._commit_assisted_construction(app._assist_candidate(),int(infill_world.revision)).get("ok",false)),"future infill physically builds its station and two adjacent sections")
+	var built_infill:=Story.confirm_task(infill_world,"fixture-infill",int(infill_world.revision))
+	_check(bool(built_infill.get("ok",false)),"unopened construction can be confirmed independently of historical operation")
+	_check(infill_world.routes.size()==2 and JSON.stringify(infill_world.routes.slice(0,1))==original_service,"confirming the future infill leaves the original open route byte-for-byte intact")
+	if infill_world.routes.size()==2:
+		_check(not infill_world.routes[1].open and infill_world.routes[1].directions[0].serviceStatusBySegment.all(func(status:String):return status=="built"),"all future variant segments remain built-only, including reused stations")
+		_check(bool(SaveManager._planning_statuses_match(infill_world,Story.evaluate(infill_world).routes)),"save validation matches construction to its explicit variant identity")
+		var broken_infill:=infill_world.duplicate(true);broken_infill.routes.remove_at(1)
+		_check(not SaveManager._planning_statuses_match(broken_infill,Story.evaluate(infill_world).routes),"an existing open route cannot substitute for the missing planned variant")
+		var prematurely_opened:=infill_world.duplicate(true)
+		prematurely_opened.routes[1].open=true;prematurely_opened.routes[1].directions[0].serviceStatusBySegment[0]="open"
+		_check(not SaveManager._planning_statuses_match(prematurely_opened,Story.evaluate(infill_world).routes),"construction completion does not authorize an early opening of the new infill")
+	var variant_saved:=SaveManager.save_world(infill_world)
+	var variant_loaded:=SaveManager.load_file(str(variant_saved.get("path","")))
+	_check(bool(variant_saved.get("ok",false)) and bool(variant_loaded.get("ok",false)) and infill_world.routes==variant_loaded.get("world",{}).get("routes",[]),"planned variant and operating route survive actual disk save and reload")
+	CampaignSystem._catalog.cities.chengdu.chapters.pop_back()
 	app.queue_free();await process_frame
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())
 	for failure in failures:push_error(failure)

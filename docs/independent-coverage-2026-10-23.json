@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.24.18",
+  "contentRevision": "2026.10.24.22",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -131,15 +131,10 @@
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
-        "independent milestone requirements missing",
-        "independent cutoff station orders missing",
-        "bj-line22: independent project requirements missing",
-        "bj-line3-phase1: independent project requirements missing",
-        "bj-line12: independent project requirements missing",
-        "bj-line28: independent project requirements missing",
+        "cutoff opening status not independently reviewed",
+        "bj-line22: independent transfer coverage incomplete",
+        "bj-line28: independent transfer coverage incomplete",
         "bj-line13-capacity: independent project requirements missing",
-        "bj-line1-branch: independent project requirements missing",
-        "bj-new-airport: independent project requirements missing",
         "bj-yizhuang-connector: independent project requirements missing"
       ],
       "projects": [
@@ -147,6 +142,40 @@
           "id": "bj-m101-phase1",
           "ok": true,
           "errors": []
+        },
+        {
+          "id": "bj-line22",
+          "ok": false,
+          "errors": [
+            "independent transfer coverage incomplete"
+          ]
+        },
+        {
+          "id": "bj-line3-phase1",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "bj-line12",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "bj-new-airport",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "bj-line1-branch",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "bj-line28",
+          "ok": false,
+          "errors": [
+            "independent transfer coverage incomplete"
+          ]
         }
       ]
     },
@@ -155,9 +184,7 @@
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
-        "cutoff opening status not independently reviewed",
-        "dated cutoff opening evidence missing",
-        "gz-line11-railway-station: independent project requirements missing"
+        "cutoff opening status not independently reviewed"
       ],
       "projects": [
         {
@@ -197,6 +224,11 @@
         },
         {
           "id": "gz-line10-remainder",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "gz-line11-railway-station",
           "ok": true,
           "errors": []
         }

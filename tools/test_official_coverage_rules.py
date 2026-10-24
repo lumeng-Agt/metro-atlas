@@ -1,7 +1,7 @@
 """Negative fixtures for coverage rules; not evidence of any city's completeness."""
 import copy
 import unittest
-from official_coverage import check_project, cutoff_evidence_errors
+from official_coverage import ROOT, read, check_project, cutoff_evidence_errors
 
 
 class CoverageRules(unittest.TestCase):
@@ -79,6 +79,20 @@ class CoverageRules(unittest.TestCase):
         network = dict(date='2026-10-01', groups=[self.target['groups'][0]], temporalReviewStatus='verified',
                        temporalEvidence=[dict(source='https://example.invalid/opening', effectiveDate='2026-09-28')])
         self.assertEqual(cutoff_evidence_errors(network, '2026-10-01'), [])
+
+    def test_beijing_first_opening_cannot_stand_for_the_approved_full_project(self):
+        targets=read(ROOT/'data/official_targets_2026-10-01.json')['cities']['beijing']['projects']
+        expected=next(p for p in targets if p['id']=='bj-line22')
+        plan=next(p for p in read(ROOT/'data/campaigns.json')['cities']['beijing']['futurePlans'] if p['id']=='bj-line22-build')
+        stations=next(c for c in read(ROOT/'data/cities.json')['cities'] if c['id']=='beijing')['stations']
+        names={s['id']:s['name'] for s in stations}
+        # Keep the independent pending-transfer warning in both comparisons;
+        # this test specifically requires an additional missing-west failure.
+        complete=check_project(expected,[plan],names)
+        self.assertFalse(any('beijing-line22-west:' in issue for issue in complete))
+        only_first=copy.deepcopy(plan)
+        only_first['lineGroups']=only_first['lineGroups'][:1]
+        self.assertTrue(any('beijing-line22-west:' in issue for issue in check_project(expected,[only_first],names)))
 
 
 if __name__ == '__main__':

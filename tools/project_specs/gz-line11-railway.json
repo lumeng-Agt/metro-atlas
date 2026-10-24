@@ -1,0 +1,110 @@
+{
+  "city": "guangzhou",
+  "projectIds": [
+    "gz-line11-railway-station"
+  ],
+  "stations": [
+    {
+      "id": "guangzhou-s346",
+      "name": "梓元岗",
+      "existing": true
+    },
+    {
+      "id": "guangzhou-s136",
+      "name": "广州火车站",
+      "existing": true
+    },
+    {
+      "id": "guangzhou-s347",
+      "name": "流花",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "infill",
+      "mapRouteId": "guangzhou-future-line11-railway",
+      "coverageGroupId": "guangzhou-line11-railway",
+      "name": "11号线广州火车站剩余工程",
+      "historicalLineId": "guangzhou-line11-11",
+      "color": "#FAC525",
+      "stationIds": [
+        "guangzhou-s346",
+        "guangzhou-s136",
+        "guangzhou-s347"
+      ],
+      "stationInstances": {
+        "guangzhou-s346": "guangzhou-s346",
+        "guangzhou-s136": "guangzhou-s136__line11-11",
+        "guangzhou-s347": "guangzhou-s347"
+      },
+      "constructionVariant": true,
+      "toleranceM": 350,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "仅建设未开放站体及相邻两段，既有运营环线仍保留梓元岗—流花不停站路径；不虚构未来开通日期。",
+      "stationOrderSource": "https://gdee.gd.gov.cn/attachment/0/360/360962/2474598.pdf"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-gz11-railway-2",
+      "name": "广州火车站",
+      "complexId": "guangzhou-s136",
+      "stationInstanceIds": [
+        "guangzhou-s136__line2-2",
+        "guangzhou-s136__line11-11"
+      ],
+      "lineIds": [
+        "guangzhou-line2-2",
+        "guangzhou-line11-11"
+      ],
+      "sourceNote": "环评明确2/5/14与11号线换乘；各线站体独立。14号线须先完成已批准剩余工程，均不提前开放。"
+    },
+    {
+      "id": "future-transfer-gz11-railway-5",
+      "name": "广州火车站",
+      "complexId": "guangzhou-s136",
+      "stationInstanceIds": [
+        "guangzhou-s136__line5-5",
+        "guangzhou-s136__line11-11"
+      ],
+      "lineIds": [
+        "guangzhou-line5-5",
+        "guangzhou-line11-11"
+      ],
+      "sourceNote": "环评明确2/5/14与11号线换乘；各线站体独立。14号线须先完成已批准剩余工程，均不提前开放。"
+    },
+    {
+      "id": "future-transfer-gz11-railway-14",
+      "name": "广州火车站",
+      "complexId": "guangzhou-s136",
+      "stationInstanceIds": [
+        "guangzhou-s136__line14-14",
+        "guangzhou-s136__line11-11"
+      ],
+      "lineIds": [
+        "guangzhou-line14-14",
+        "guangzhou-line11-11"
+      ],
+      "sourceNote": "环评明确2/5/14与11号线换乘；各线站体独立。14号线须先完成已批准剩余工程，均不提前开放。"
+    }
+  ],
+  "plan": {
+    "id": "gz-line11-railway-build",
+    "title": "环线补站：广州火车站剩余工程",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "projectType": "under_construction",
+    "required": true,
+    "source": "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2026-05-29/139196_20260529_08YE.pdf",
+    "sourceType": "issuer_disclosure_and_approved_eia",
+    "sourceTitle": "广州地铁2026跟踪评级及11号线环评已批准站序",
+    "sourcePublicationDate": "2026-05-29",
+    "sourceCheckedAt": "2026-10-24",
+    "description": "完成11号线广州火车站独立站体及相邻区间，并确认2/5/14线路联系。建成状态与真实开放分开，现状列车不提前停靠。",
+    "contentRevision": "2026.10.24.22",
+    "scopeRevision": "2026.10.24.22",
+    "requiresScopeRecheck": true,
+    "contentRevisionNote": "补齐北京17/18分期、22西段及广州11号线闭环和剩余工程；历史运营与未开放建设分离。"
+  }
+}

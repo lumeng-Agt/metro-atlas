@@ -2718,7 +2718,162 @@
         "bj-new-airport",
         "bj-yizhuang-connector"
       ],
-      "historicalMilestones": [],
+      "historicalMilestones": [
+        {
+          "chapterId": "beijing-network-milestone-2021-12-31",
+          "date": "2021-12-31",
+          "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+          "sourcePublicationDate": "2021-12-31",
+          "groups": [
+            {
+              "id": "beijing-line17-south",
+              "historicalLineId": "beijing-line17-17",
+              "scopeType": "stations",
+              "stationNames": [
+                "十里河",
+                "周家庄",
+                "十八里店",
+                "北神树",
+                "次渠北",
+                "次渠",
+                "嘉会湖"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true
+            }
+          ]
+        },
+        {
+          "chapterId": "beijing-network-milestone-2023-12-30",
+          "date": "2023-12-30",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
+          "sourcePublicationDate": "2023-12-29",
+          "groups": [
+            {
+              "id": "beijing-line17-north",
+              "historicalLineId": "beijing-line17-17",
+              "scopeType": "stations",
+              "stationNames": [
+                "未来科学城北",
+                "未来科学城",
+                "天通苑东",
+                "清河营",
+                "红军营",
+                "太阳宫",
+                "西坝河",
+                "左家庄",
+                "工人体育场"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": false
+            }
+          ]
+        },
+        {
+          "chapterId": "beijing-network-milestone-2025-12-27",
+          "date": "2025-12-27",
+          "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+          "sourcePublicationDate": "2025-12-24",
+          "additionalSources": [
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370895.html",
+            "https://www.bjsubway.com/station/xltcx/line18/2025-12-28/645.html",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370895.html"
+          ],
+          "groups": [
+            {
+              "id": "beijing-line18-open-2025",
+              "historicalLineId": "beijing-line18-18",
+              "scopeType": "stations",
+              "stationNames": [
+                "马连洼",
+                "上地软件园",
+                "东北旺",
+                "龙泽西",
+                "回龙观西大街",
+                "文华路",
+                "回龙观东大街",
+                "霍营东",
+                "天通苑",
+                "太平庄",
+                "天通苑东"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true
+            },
+            {
+              "id": "beijing-line17-through",
+              "historicalLineId": "beijing-line17-17",
+              "scopeType": "stations",
+              "stationNames": [
+                "未来科学城北",
+                "未来科学城",
+                "天通苑东",
+                "清河营",
+                "红军营",
+                "太阳宫",
+                "西坝河",
+                "左家庄",
+                "工人体育场",
+                "东大桥",
+                "永安里",
+                "潘家园西",
+                "十里河",
+                "周家庄",
+                "十八里店",
+                "北神树",
+                "次渠北",
+                "次渠",
+                "嘉会湖"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true
+            }
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s149-line8-8-line18-18",
+            "historic-transfer-bj18-malianwa-16",
+            "historic-transfer-bj18-tiantongyuan-5",
+            "historic-transfer-bj18-tiantongyuandong-17"
+          ]
+        },
+        {
+          "chapterId": "beijing-network-milestone-2026-01-31",
+          "date": "2026-01-31",
+          "source": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
+          "sourcePublicationDate": "2026-01-29",
+          "groups": [
+            {
+              "id": "beijing-line17-wangjingxi",
+              "historicalLineId": "beijing-line17-17",
+              "scopeType": "stations",
+              "stationNames": [
+                "未来科学城北",
+                "未来科学城",
+                "天通苑东",
+                "清河营",
+                "红军营",
+                "望京西",
+                "太阳宫",
+                "西坝河",
+                "左家庄",
+                "工人体育场",
+                "东大桥",
+                "永安里",
+                "潘家园西",
+                "十里河",
+                "周家庄",
+                "十八里店",
+                "北神树",
+                "次渠北",
+                "次渠",
+                "嘉会湖"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true
+            }
+          ]
+        }
+      ],
       "projects": [
         {
           "id": "bj-m101-phase1",
@@ -2750,8 +2905,286 @@
           ],
           "note": "2023环评官方报道14站、18.1公里；不使用2022旧版19公里。",
           "constructionOnly": true
+        },
+        {
+          "id": "bj-line22",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "transferReviewStatus": "pending",
+          "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
+          "sourcePublicationDate": "2026-07-29",
+          "additionalSources": [
+            "https://www.beijing.gov.cn/ywdt/gqrd/202504/t20250403_4055758.html",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+            "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html"
+          ],
+          "scopeNote": "22站全部已公布范围；已实现与已收录线路的7项换乘，官方12项包含其他规划线路，完整换乘分期核查仍独立失败。",
+          "groups": [
+            {
+              "id": "beijing-line22-first-opening",
+              "historicalLineId": "beijing-line22-22",
+              "scopeType": "stations",
+              "stationNames": [
+                "红庙",
+                "慈云寺",
+                "甘露园",
+                "定福庄",
+                "管庄",
+                "永顺",
+                "运河商务区",
+                "芙蓉西路",
+                "北运河东",
+                "潞源",
+                "潞源东",
+                "燕郊",
+                "神威大街",
+                "潮白大街",
+                "高楼",
+                "齐心庄",
+                "马坊物流港",
+                "马昌营",
+                "国农港",
+                "平谷"
+              ],
+              "allowReverse": true
+            },
+            {
+              "id": "beijing-line22-west",
+              "historicalLineId": "beijing-line22-22",
+              "scopeType": "stations",
+              "stationNames": [
+                "东大桥",
+                "金台夕照",
+                "红庙"
+              ],
+              "allowReverse": true
+            }
+          ],
+          "transfers": [
+            "future-transfer-bj22-hongmiao-14",
+            "future-transfer-bj22-guanzhuang-batong",
+            "future-transfer-bj22-yunhe-6",
+            "future-transfer-bj22-beiyunhedong-6",
+            "future-transfer-bj22-dongdaqiao-6",
+            "future-transfer-bj22-dongdaqiao-17",
+            "future-transfer-bj22-jintaixizhao-10"
+          ]
+        },
+        {
+          "id": "bj-line3-phase1",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
+          "sourcePublicationDate": "2025-12-19",
+          "groups": [
+            {
+              "id": "beijing-line3-3",
+              "scopeType": "stations",
+              "stationNames": [
+                "东坝北",
+                "管庄路西口",
+                "楼梓庄桥西",
+                "楼梓庄",
+                "高辛庄",
+                "曹各庄北"
+              ],
+              "allowReverse": true
+            }
+          ],
+          "transfers": [],
+          "scopeNote": "既有东坝北加5座续建目标，曹各庄北远期预留。R4与M101远期衔接不冒充既有换乘。"
+        },
+        {
+          "id": "bj-line12",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+          "sourcePublicationDate": "2026-02-03",
+          "groups": [
+            {
+              "id": "beijing-line12-12",
+              "scopeType": "stations",
+              "stationNames": [
+                "东坝北",
+                "东坝北街"
+              ],
+              "allowReverse": true
+            }
+          ],
+          "transfers": []
+        },
+        {
+          "id": "bj-new-airport",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+          "sourcePublicationDate": "2026-02-03",
+          "groups": [
+            {
+              "id": "beijing-route-21",
+              "scopeType": "stations",
+              "stationNames": [
+                "草桥",
+                "丽泽商务区"
+              ],
+              "allowReverse": true
+            }
+          ],
+          "transfers": [
+            "future-transfer-bj-lize-14",
+            "future-transfer-bj-lize-16"
+          ]
+        },
+        {
+          "id": "bj-line1-branch",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202310/t20231009_3272556.html",
+          "sourcePublicationDate": "2023-10-09",
+          "additionalSources": [
+            "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202401/t20240118_3538824.htm"
+          ],
+          "groups": [
+            {
+              "id": "beijing-lineearly0",
+              "scopeType": "stations",
+              "allowReverse": true,
+              "stationNames": [
+                "八角游乐园",
+                "体育场南街",
+                "园博园西门",
+                "张郭庄",
+                "西二区",
+                "后吕村",
+                "云岗",
+                "王佐",
+                "民族大学",
+                "青龙湖东"
+              ]
+            }
+          ],
+          "transfers": [
+            "future-transfer-bj1b-zhangguozhuang-14"
+          ],
+          "scopeNote": "工程版本9座新站与1座既有改造站。命名公示与正式命名区分，11号线体育场南仅预留，不冒充已建设换乘。"
+        },
+        {
+          "id": "bj-line28",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "transferReviewStatus": "pending",
+          "source": "https://xinwen.bjd.com.cn/content/s688c78d3e4b0aabe0a046da1.html",
+          "sourcePublicationDate": "2025-08-01",
+          "additionalSources": [
+            "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html"
+          ],
+          "groups": [
+            {
+              "id": "beijing-line28-28",
+              "scopeType": "stations",
+              "allowReverse": true,
+              "stationNames": [
+                "东大桥",
+                "京广桥",
+                "光华路",
+                "核心区",
+                "大望路",
+                "北京东站",
+                "大郊亭",
+                "广渠路",
+                "广渠东路"
+              ]
+            }
+          ],
+          "stationNamingAliases": {
+            "核心区": "景辉街",
+            "北京东站": "茂兴西路"
+          },
+          "scopeNote": "独立转录2025一体化图的9站物理顺序，工程名保持原身份；图上景辉街和茂兴西路为别称，不自动改名。国铁北京东衔接不伪装成地铁换乘；光华路R4远期关系未制作，完整换乘审核保留失败。",
+          "transfers": [
+            "future-transfer-bj28-dongdaqiao",
+            "future-transfer-bj28-jingguangqiao-10",
+            "future-transfer-bj28-dawanglu",
+            "future-transfer-bj28-dajiaoting-7",
+            "future-transfer-bj28-dongdaqiao-22",
+            "future-transfer-bj28-jingguangqiao-22",
+            "future-transfer-bj28-dawanglu-14"
+          ]
         }
-      ]
+      ],
+      "cutoffNetwork": {
+        "date": "2026-10-01",
+        "temporalReviewStatus": "pending",
+        "groups": [
+          {
+            "id": "beijing-line18-open-2025",
+            "historicalLineId": "beijing-line18-18",
+            "scopeType": "stations",
+            "stationNames": [
+              "马连洼",
+              "上地软件园",
+              "东北旺",
+              "龙泽西",
+              "回龙观西大街",
+              "文华路",
+              "回龙观东大街",
+              "霍营东",
+              "天通苑",
+              "太平庄",
+              "天通苑东"
+            ],
+            "allowReverse": true,
+            "fullServiceOrder": true
+          },
+          {
+            "id": "beijing-line17-cutoff",
+            "historicalLineId": "beijing-line17-17",
+            "scopeType": "stations",
+            "stationNames": [
+              "未来科学城北",
+              "未来科学城",
+              "天通苑东",
+              "清河营",
+              "红军营",
+              "望京西",
+              "太阳宫",
+              "西坝河",
+              "左家庄",
+              "工人体育场",
+              "东大桥",
+              "永安里",
+              "潘家园西",
+              "十里河",
+              "周家庄",
+              "十八里店",
+              "北神树",
+              "次渠北",
+              "次渠",
+              "嘉会湖"
+            ],
+            "allowReverse": true,
+            "fullServiceOrder": true
+          }
+        ],
+        "temporalEvidence": [
+          {
+            "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+            "effectiveDate": "2025-12-27",
+            "scope": "18号线11站，其他线路开放状态另行核对"
+          },
+          {
+            "source": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
+            "effectiveDate": "2026-01-31",
+            "scope": "17号线望京西开放；广渠门外仍未开放"
+          }
+        ],
+        "transfers": [
+          "historic-transfer-beijing-s149-line8-8-line18-18",
+          "historic-transfer-bj18-malianwa-16",
+          "historic-transfer-bj18-tiantongyuan-5",
+          "historic-transfer-bj18-tiantongyuandong-17"
+        ]
+      }
     },
     "guangzhou": {
       "inventoryReviewStatus": "pending",
@@ -2790,6 +3223,117 @@
               ],
               "allowReverse": true
             }
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line11-ring-opening-2024",
+          "date": "2024-12-28",
+          "source": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf",
+          "sourcePublicationDate": "2025-04-29",
+          "groups": [
+            {
+              "id": "opening:gz11-ring-2024",
+              "historicalLineId": "guangzhou-line11-11",
+              "scopeType": "stations",
+              "stationNames": [
+                "赤沙",
+                "琶洲",
+                "员村",
+                "天河公园",
+                "华景路",
+                "华师",
+                "龙口西",
+                "沙河",
+                "云台花园",
+                "大金钟路",
+                "中医药大学",
+                "梓元岗",
+                "流花",
+                "彩虹桥",
+                "中山八",
+                "如意坊",
+                "石围塘",
+                "芳村",
+                "大冲口",
+                "沙涌",
+                "鹤洞东",
+                "棣园",
+                "燕岗",
+                "江泰路",
+                "五凤",
+                "逸景路",
+                "上涌",
+                "大塘",
+                "龙潭"
+              ],
+              "loop": true,
+              "fullServiceOrder": true,
+              "allowReverse": true
+            }
+          ],
+          "additionalSources": [
+            "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
+            "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf",
+            "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
+            "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-network-milestone-2025-09-29",
+          "date": "2025-09-29",
+          "source": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
+          "sourcePublicationDate": "2025-10-09",
+          "groups": [
+            {
+              "id": "route:guangzhou-r11",
+              "historicalLineId": "guangzhou-line11-11",
+              "scopeType": "stations",
+              "stationNames": [
+                "赤沙",
+                "琶洲",
+                "员村",
+                "天河公园",
+                "华景路",
+                "华师",
+                "龙口西",
+                "广州东站",
+                "沙河",
+                "云台花园",
+                "大金钟路",
+                "中医药大学",
+                "梓元岗",
+                "流花",
+                "彩虹桥",
+                "中山八",
+                "如意坊",
+                "石围塘",
+                "芳村",
+                "大冲口",
+                "沙涌",
+                "鹤洞东",
+                "棣园",
+                "燕岗",
+                "江泰路",
+                "五凤",
+                "逸景路",
+                "上涌",
+                "大塘",
+                "龙潭"
+              ],
+              "loop": true,
+              "fullServiceOrder": true,
+              "allowReverse": true
+            }
+          ],
+          "additionalSources": [
+            "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
+            "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
+            "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
+            "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html"
+          ],
+          "transfers": [
+            "historic-transfer-gz11-east-guangzhou-line1",
+            "historic-transfer-gz11-east-guangzhou-line3-3"
           ]
         }
       ],
@@ -3099,6 +3643,48 @@
             "future-transfer-gz10-tianhe-1",
             "future-transfer-gz10-tianhe-3"
           ]
+        },
+        {
+          "id": "gz-line11-railway-station",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "source": "https://gdee.gd.gov.cn/attachment/0/360/360962/2474598.pdf",
+          "sourcePublicationDate": "2014-12-31",
+          "additionalSources": [
+            "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2026-05-29/139196_20260529_08YE.pdf",
+            "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html"
+          ],
+          "groups": [
+            {
+              "id": "guangzhou-line11-railway",
+              "historicalLineId": "guangzhou-line11-11",
+              "scopeType": "stations",
+              "stationNames": [
+                "梓元岗",
+                "广州火车站",
+                "流花"
+              ],
+              "allowReverse": true,
+              "requiredServiceStatus": "built"
+            }
+          ],
+          "existingScopes": [
+            {
+              "id": "guangzhou-line11-operating-bypass",
+              "historicalLineId": "guangzhou-line11-11",
+              "stationNames": [
+                "梓元岗",
+                "流花"
+              ],
+              "allowReverse": true,
+              "requireServiceOpen": true
+            }
+          ],
+          "transfers": [
+            "future-transfer-gz11-railway-2",
+            "future-transfer-gz11-railway-5",
+            "future-transfer-gz11-railway-14"
+          ]
         }
       ],
       "cutoffNetwork": {
@@ -3250,6 +3836,46 @@
             ],
             "scopeType": "stations",
             "allowReverse": true
+          },
+          {
+            "id": "route:guangzhou-r11",
+            "historicalLineId": "guangzhou-line11-11",
+            "scopeType": "stations",
+            "stationNames": [
+              "赤沙",
+              "琶洲",
+              "员村",
+              "天河公园",
+              "华景路",
+              "华师",
+              "龙口西",
+              "广州东站",
+              "沙河",
+              "云台花园",
+              "大金钟路",
+              "中医药大学",
+              "梓元岗",
+              "流花",
+              "彩虹桥",
+              "中山八",
+              "如意坊",
+              "石围塘",
+              "芳村",
+              "大冲口",
+              "沙涌",
+              "鹤洞东",
+              "棣园",
+              "燕岗",
+              "江泰路",
+              "五凤",
+              "逸景路",
+              "上涌",
+              "大塘",
+              "龙潭"
+            ],
+            "loop": true,
+            "fullServiceOrder": true,
+            "allowReverse": true
           }
         ],
         "futureTopologyChanges": [
@@ -3260,6 +3886,18 @@
             "cutoffBranchCount": 2,
             "resultBranchCount": 1,
             "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html"
+          }
+        ],
+        "temporalEvidence": [
+          {
+            "source": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
+            "effectiveDate": "2025-09-29",
+            "scope": "11号线广州东站开放，广州火车站不计入开放停站"
+          },
+          {
+            "source": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
+            "effectiveDate": "2025-09-29",
+            "scope": "11号线广州东站开放，广州火车站不计入开放停站"
           }
         ]
       }
