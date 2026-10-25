@@ -1,4 +1,5 @@
 extends SceneTree
+const Flow=preload("res://tests/story_test_flow.gd")
 var checks:=0
 var failures:Array[String]=[]
 func _initialize():call_deferred("run")
@@ -9,11 +10,11 @@ func run():
 	if not SaveManager.using_explicit_data_dir():quit(2);return
 	WorldData.load_assets()
 	var app=preload("res://scripts/main.gd").new();root.add_child(app);await process_frame
-	app._new_game("shanghai",false);app._begin_chapter()
+	app._new_game("shanghai",false);check(await Flow.reach_first_construction(app),"历史交叉规则夹具正常经过序章");app._begin_chapter()
 	var complete:Dictionary=app._assist_candidate()
 	check(complete.has("state"),"首章辅助夹具可创建")
 	if not complete.has("state"):quit(1);return
-	for key in ["stations","stationComplexes","transferConnections","trackNodes","trackEdges"]:app.world[key]=complete.state[key]
+	check(bool(app._commit_assisted_construction(complete,int(app.world.revision)).get("ok",false)),"规则夹具通过正常建设事务创建")
 	var a:Dictionary={};var b:Dictionary={}
 	for st in app.world.stations:
 		if st.name=="漕宝路":a=st

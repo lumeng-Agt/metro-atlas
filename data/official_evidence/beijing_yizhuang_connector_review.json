@@ -1,0 +1,24 @@
+{
+  "source": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf",
+  "projectApproval": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202510/t20251020_4232624.htm",
+  "constructionStart": "https://xinwen.bjd.com.cn/content/s6a1f9897d5de97bd745f150c.html",
+  "retrievedAt": "2026-10-25",
+  "sha256": "d65428ebe02fb5123069e9a42906593a0409929413ade12d49567d5a7d0743e1",
+  "bytes": 4188372,
+  "locators": [
+    "最终环评19—20页线路及既有线变化",
+    "PDF27页走向说明",
+    "PDF30页10号线跨线预留"
+  ],
+  "scopeNote": "按已批准的肖村—宋家庄改造范围，复现两端改造接头、中间新建和折返区间走廊，不新增客运站。线路沿宋家庄车辆基地东侧及郭家庄路附近；坐标仅为许可地理参照的近似走廊，不是施工中心线，折返配线和埋深为示意。原亦庄线宋家庄段和现状服务保留，未来贯通仅生成未开放的线路关系。10号线跨线预留不计为已建直连；同台换乘结构仍需单独核对。",
+  "licensedReference": {
+    "license": "OpenStreetMap ODbL",
+    "crs": "WGS84",
+    "ways": [
+      127022171,
+      152595432,
+      814609386
+    ],
+    "purpose": "既有5号线接头、基地东边界与郭家庄路走廊核对；不宣称测绘精度"
+  }
+}

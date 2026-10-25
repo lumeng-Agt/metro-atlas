@@ -8,6 +8,8 @@ if (-not $DataDir) { $DataDir = Join-Path $projectRoot ("test-artifacts/story-re
 if (-not [System.IO.Path]::IsPathRooted($DataDir)) { throw "DataDir must be absolute" }
 Write-Host "Isolated data directory: $DataDir"
 for ($round=0; $round -lt 5; $round++) {
-  & $Godot --headless --path $projectRoot --script res://tests/story_restart_process.gd -- "--data-dir=$DataDir" "--round=$round"
-  if ($LASTEXITCODE -ne 0) { throw "Independent restart round failed: $round" }
+  $output = & $Godot --headless --path $projectRoot --script res://tests/story_restart_process.gd -- "--data-dir=$DataDir" "--round=$round" 2>&1
+  $code = $LASTEXITCODE
+  $output | Write-Output
+  if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Independent restart round failed: $round" }
 }

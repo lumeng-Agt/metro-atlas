@@ -37,8 +37,12 @@ def apply(spec):
     anchors = {e['stationId'] for e in group['engineeringEndpoints'] if 'stationId' in e}
     if set(group.get('stationIds', [])) != anchors:
         raise ValueError('Passenger station targets may only be existing engineering anchors')
+    services = copy.deepcopy(spec.get('plannedServices', []))
+    for service in services:
+        if not service.get('constructionVariant') or len(service.get('stationIds', [])) < 2 or not service.get('source'):
+            raise ValueError('Engineering service previews must be sourced, non-operating construction variants')
     plan = copy.deepcopy(spec['chapter'])
-    plan.update(lineGroups=[group], requiredTransfers=[], requireOpen=False,
+    plan.update(lineGroups=[group] + services, requiredTransfers=[], requireOpen=False,
                 dataStatus='blueprint_ready', requiresScopeRecheck=True,
                 scopeRevision=spec['contentRevision'])
     expected = copy.deepcopy(spec['officialTarget'])
@@ -56,8 +60,13 @@ def apply(spec):
     project.update(playabilityStatus='playable_build_task', source=plan['source'], sourceTitle=plan['sourceTitle'],
                    sourceCheckedAt=plan['sourceCheckedAt'], note=plan['description'],
                    playabilityNote='明确站端至工程接口的实体轨道任务；新站体仅限已公布站点，不虚构边界车站或运营线路。')
-    campaigns['contentRevision'] = spec['contentRevision']
-    baseline['contentRevision'] = spec['contentRevision']
+    # Rebuilding a previously reviewed engineering task must not downgrade
+    # the package revision or conceal newer scope changes from old saves.
+    revision_key = lambda value: tuple(int(part) for part in value.split('.'))
+    for document in (campaigns, baseline):
+        current = str(document.get('contentRevision', ''))
+        if not current or revision_key(spec['contentRevision']) >= revision_key(current):
+            document['contentRevision'] = spec['contentRevision']
     # Do not copy construction groups into the answer. Both were authored
     # separately in the reviewed spec, including endpoint and corridor checks.
     for name, value in [('campaigns.json', campaigns), ('network_baselines_2026-10-01.json', baseline),

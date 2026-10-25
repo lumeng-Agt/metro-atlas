@@ -2,6 +2,7 @@ extends SceneTree
 
 const App=preload("res://scripts/main.gd")
 const Ui=preload("res://scripts/ui_theme.gd")
+const Story=preload("res://scripts/story_session.gd")
 var failures:Array[String]=[]
 var checks:=0
 
@@ -24,13 +25,16 @@ func _run() -> void:
 			app._new_game("shanghai",true)
 			await process_frame
 			await process_frame
+			if not await _advance_introductions(app):app.queue_free();quit(1);return
 			app._begin_chapter()
 			await process_frame
 			_check(app.map_area.size.y>=360,"%s/%s地图高度>=360: %s" % [resolution,scale,app.map_area.size.y])
 			_check(app.station_button.get_global_rect().end.y<=resolution.y,"站点工具未被裁切")
 			_check(app.track_button.get_global_rect().end.x<=resolution.x,"轨道工具未被裁切")
 			app._tool("station")
-			var target:Dictionary=preload("res://scripts/story_session.gd").targets(app.world)[0]
+			var targets:=Story.targets(app.world)
+			if targets.is_empty():push_error("First construction chapter has no actual layout target");app.queue_free();quit(1);return
+			var target:Dictionary=targets[0]
 			app._focus_tutorial()
 			var focus_point:Vector2=app.map_view._to_screen(target.latlng)
 			_check(app.usable_map_rect().has_point(focus_point),"首章目标避开详情抽屉")
@@ -111,3 +115,17 @@ func _run() -> void:
 func _check(ok:bool,message:String) -> void:
 	checks+=1
 	if not ok:failures.append(message)
+
+func _advance_introductions(app:Control) -> bool:
+	# New games now start with sourced historical prefaces. Confirm those via
+	# the real flow instead of treating an empty narrative node as a station.
+	for _event in range(20):
+		var chapter:=Story.chapter(app.world)
+		if not bool(chapter.get("eventOnly",false)):return not chapter.is_empty()
+		app._begin_chapter();app._check();app._commit_chapter()
+		if str(app.world.storyState.stage)!="outcome":push_error("Introductory historical event did not confirm normally");return false
+		while app.saves_in_flight>0:await process_frame
+		app._next()
+		while app.saves_in_flight>0:await process_frame
+	push_error("Introductory event navigation did not reach construction")
+	return false

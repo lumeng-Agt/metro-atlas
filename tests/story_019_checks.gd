@@ -2,6 +2,7 @@ extends SceneTree
 
 const App=preload("res://scripts/main.gd")
 const Story=preload("res://scripts/story_session.gd")
+const Flow=preload("res://tests/story_test_flow.gd")
 var checks:=0
 var failures:Array[String]=[]
 
@@ -16,14 +17,13 @@ func _run() -> void:
 	WorldData.load_assets()
 	UiPreferences.save_onboarding_completed(false)
 	var app:=App.new();root.add_child(app);await process_frame
-	app._new_game("shanghai",true);app._begin_chapter();await process_frame
+	app._new_game("shanghai",true);check(await Flow.reach_first_construction(app),"正常确认历史序章后进入首次建设");app._begin_chapter();await process_frame
 	check(StoryTutorial.active(app.world),"首局首章操作教学开启")
 	var fresh:=app.world.duplicate(true)
 	app.world.storyState.learnedTools=true
 	var all:=app._assist_candidate()
 	check(str(all.get("issue",""))=="","首章可完整建设")
-	if all.has("state"):
-		for key in ["stations","trackNodes","trackEdges"]:app.world[key]=all.state[key]
+	check(bool(app._commit_assisted_construction(all,int(app.world.revision)).get("ok",false)),"首章辅助通过正式建设事务提交")
 	app._check();app._commit_chapter()
 	check(str(app.world.storyState.tutorialStatus)=="completed" and not StoryTutorial.active(app.world),"首章确认后明确结束教学")
 	check(UiPreferences.load_onboarding_completed(),"学会记录独立保存")
@@ -42,7 +42,8 @@ func _run() -> void:
 			var beat:Dictionary=chapter_beats[0]
 			var untouched:=JSON.stringify(app.world.storyState)
 			check(StoryBeats.eligible(app.world,"select",["unknown"]).is_empty(),"无关点击不触发故事")
-			check(not StoryBeats.eligible(app.world,"select",beat.stationIds).is_empty(),"相关地点触发故事")
+			var already_read:bool=app.world.storyState.get("beatRead",{}).has(str(beat.id))
+			check(StoryBeats.eligible(app.world,"select",beat.stationIds).is_empty()==already_read,"相关地点仅触发未读故事，后续节点复用的已读资料不重复弹出："+str(chapter.id))
 			check(JSON.stringify(app.world.storyState)==untouched,"查询触发条件不修改章节")
 			StoryBeats.mark_read(app.world,str(beat.id))
 			check(StoryBeats.eligible(app.world,"build_station",beat.stationIds).is_empty(),"建设和撤销后不重复弹出已读故事")
@@ -55,11 +56,15 @@ func _run() -> void:
 	StoryTutorial.skip(app.world)
 	check(not StoryTutorial.active(app.world) and str(app.world.storyState.tutorialStatus)=="skipped","跳过与完成分开")
 	UiPreferences.save_onboarding_completed(false);app._new_game("beijing",true)
+	check(await Flow.reach_first_construction(app),"北京序章保持待学习状态并正常进入建设")
+	app._begin_chapter()
 	check(StoryTutorial.active(app.world),"跳过不冒充全局学会")
 	var replay:=WorldData.new_world("shanghai","campaign");replay["replayOf"]="original"
 	StoryTutorial.configure(replay,false)
 	check(not StoryTutorial.active(replay),"复盘默认不教学")
 	var sz:=WorldData.new_world("shenzhen","campaign")
+	# Explicit scheme/date unit fixture, not full-city navigation evidence.
+	sz.storyState.chapterId="sz-initial-cross-2004";sz.storyState.stage="build"
 	check(Story.node_date(sz)=="1998-05","初始方案显示1998而不是最终开通日期")
 	sz.storyPlan.planIndex=1
 	check(Story.node_date(sz)=="2000-05","节点年代跟随当前方案")
@@ -109,14 +114,14 @@ func _run() -> void:
 	var target_id:=str(base.lineGroups[0].stationIds[0])
 	CampaignSystem._catalog.cities.shanghai.chapters[base_index]["stationProfiles"]={target_id:{"lengthM":150.0,"heading":37.2,"depthM":-14.5,"parameterStatus":{"depthM":"public_reference"},"note":"隔离验收配置，不发布为史实"}}
 	var profile_world:=WorldData.new_world("shanghai","campaign");StoryTutorial.configure(profile_world,false)
-	app._enter(profile_world);app._begin_chapter();app._tool("station")
+	app._enter(profile_world);check(await Flow.reach_first_construction(app),"独立参数夹具正常进入建设");app._begin_chapter();app._tool("station")
 	var target:Dictionary=Story.targets(app.world)[0]
 	app._click(target.latlng,"blueprint",target_id,"")
 	check(is_equal_approx(float(app.map_view.draft_station.lengthM),150.0) and is_equal_approx(float(app.map_view.draft_station.heading),37.2),"站点核验配置优先于统一站体与蓝图估算朝向")
 	check(is_equal_approx(float(app.map_view.draft_station.depthM),-14.5),"已有核验埋深可用于对应目标")
 	check(Story.profile(app.world,target_id).parameterStatus.has("lengthM"),"站点覆盖不丢失其他参数来源状态")
 	CampaignSystem._catalog.cities.shanghai.chapters[base_index]=base
-	app._new_game("shenzhen",false);app._begin_chapter()
+	app._new_game("shenzhen",false);check(await Flow.reach_first_construction(app),"深圳方案测试通过真实序章进入建设");app._begin_chapter()
 	var before_plan:=JSON.stringify(app.world.storyPlan)
 	app._view_plan(2)
 	check(JSON.stringify(app.world.storyPlan)==before_plan and app.world.routes.is_empty(),"只读历史方案不修改目标或生成开通线路")

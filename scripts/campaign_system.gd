@@ -101,6 +101,35 @@ static func city_config(city_id: String) -> Dictionary:
 	if _catalog.is_empty(): load_catalog()
 	return _catalog.get("cities", {}).get(city_id, {}).duplicate(true)
 
+## A tool/label query needs one chapter, not a copy of every historical and
+## future construction object in the city. Still return an isolated definition:
+## callers and preview candidates must never mutate the source catalogue.
+static func story_chapter_definition(city_id:String,state:Dictionary) -> Dictionary:
+	if _catalog.is_empty():load_catalog()
+	var phase:=str(state.get("phase","history"))
+	if phase in ["future_gap","published_content_complete","free"]:return {}
+	var city:Dictionary=_catalog.get("cities",{}).get(city_id,{})
+	var rows:Array=city.get("futurePlans",[]) if phase=="future" else city.get("chapters",[])
+	var stable_id:=str(state.get("chapterId",""))
+	var completed:Array=state.get("completedChapterIds",[])
+	var is_gap:=phase in ["history_gap","history_content_gap"]
+	if not stable_id.is_empty():
+		for entry in rows:
+			if str(entry.get("id",""))!=stable_id:continue
+			if phase=="future" and (not bool(entry.get("required",false)) or not future_data_ready(entry,WorldData.city(city_id))):continue
+			if not is_gap or not completed.has(stable_id):return entry.duplicate(true)
+		if not is_gap:return {}
+	if phase=="future":
+		var eligible:Array=[]
+		for entry in rows:
+			if bool(entry.get("required",false)) and future_data_ready(entry,WorldData.city(city_id)):eligible.append(entry)
+		rows=eligible
+	var index:=int(state.get("chapterIndex",0))
+	if is_gap or index<0 or index>=rows.size():
+		for entry in rows:
+			if not completed.has(str(entry.get("id",""))):return entry.duplicate(true)
+	return rows[index].duplicate(true) if index>=0 and index<rows.size() else {}
+
 ## Several source map extracts represent the same interchange/renamed station
 ## with different OSM IDs. These explicit content aliases preserve one stable
 ## station-complex identity while keeping each line's physical station body.
@@ -309,6 +338,10 @@ static func future_data_ready(plan: Dictionary, city_data: Dictionary = {}) -> b
 		known_stations = _known_station_ids_by_city.get(str(plan.get("cityId", "")), {})
 	for group_value in groups:
 		if not group_value is Dictionary: return false
+		if group_value.has("stationNamingSource"):
+			var naming_source:Variant=group_value.stationNamingSource
+			if not naming_source is String or not (str(naming_source).begins_with("https://") or str(naming_source).begins_with("http://")):return false
+			if not bool(group_value.get("constructionVariant",false)) or bool(plan.get("requireOpen",false)):return false
 		if Engineering.is_group(group_value):
 			if not Engineering.definition_errors(group_value,known_stations.keys()).is_empty():return false
 			continue

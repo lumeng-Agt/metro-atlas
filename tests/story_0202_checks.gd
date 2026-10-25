@@ -2,7 +2,7 @@ extends SceneTree
 
 const Story = preload("res://scripts/story_session.gd")
 const App = preload("res://scripts/main.gd")
-const ALLOWED_OPERATIONS := ["first_build", "extension", "phased_opening", "interchange", "reorganization", "plan_revision", "network_opening", "milestone_network_build", "network_reconciliation", "historical_record", "dated_station_segment"]
+const ALLOWED_OPERATIONS := ["first_build", "extension", "phased_opening", "interchange", "reorganization", "plan_revision", "network_opening", "milestone_network_build", "network_reconciliation", "historical_record", "dated_station_segment", "rename", "infill", "infill_station"]
 
 var checks := 0
 var failures: Array[String] = []
@@ -87,6 +87,8 @@ func _run() -> void:
 		for _iteration in range(20):Story.chapter_baseline_world(result_app.world)
 		var baseline_average_ms:=(Time.get_ticks_usec()-baseline_started)/20000.0
 		var microbench:Dictionary={"version":"0.20.2","date":Time.get_datetime_string_from_system(),"kind":"chapter-preview-microbenchmark","execution":"headless" if DisplayServer.get_name()=="headless" else "native-rendering","iterations":{"two-section_preview":10,"chapter_changes":100,"baseline_reconstruction":20},"averageMs":{"two-section_preview":preview_average_ms,"chapter_changes":changes_average_ms,"baseline_reconstruction":baseline_average_ms},"fixture":{"city":"Shanghai","stations":result_app.world.stations.size(),"trackEdges":TrackNetwork.all_physical_edges(result_app.world).size(),"routes":result_app.world.routes.size()},"scope":"Method timing only; not per-frame renderer time, export mouse test, or maximum-network performance."}
+		microbench["version"]=CampaignSystem.content_version();microbench["contentRevision"]=CampaignSystem.content_revision()
+		microbench["sourceSha256"]={"storySession":FileAccess.get_sha256("res://scripts/story_session.gd"),"campaignSystem":FileAccess.get_sha256("res://scripts/campaign_system.gd"),"storyApp":FileAccess.get_sha256("res://scripts/story_app.gd")}
 		SaveManager._write_atomic(SaveManager.root_path().path_join("chapter-microbench.json"),JSON.stringify(microbench,"  "))
 		print(JSON.stringify(microbench))
 		if OS.get_cmdline_user_args().has("--capture") and DisplayServer.get_name()!="headless":

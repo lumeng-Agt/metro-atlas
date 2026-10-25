@@ -23,12 +23,12 @@ def apply_phases(campaign, geography, target, baseline, *, line_id, route_id, st
     for chapter in original:
         if chapter is not cutoff:
             chapter['lineGroups'] = [g for g in chapter['lineGroups'] if g['historicalLineId'] != line_id]
-    sample = next(c for c in campaign['chapters'] if c.get('chapterScope') == 'dated_opening_ranges')
     for stage in stages:
         cid = stage['chapterId']; order = stage['stationNames']; construction = stage.get('constructionStationNames', order)
         source = stage['source']; date = stage['date']; task = stage['taskId']; title = stage['title']
         chapter = chapters.get(cid)
         if chapter is None:
+            sample = next((c for c in campaign['chapters'] if c.get('chapterScope') == 'dated_opening_ranges'), original[0])
             chapter = deepcopy(sample)
             chapter.update(id=cid, date=date, title=title, lineGroups=[], requiredTransfers=[], scopeCorrections=[],
                 serviceTransitions=[], historicalEventIds=[], eventOnly=False, operationType=stage.get('operationType', 'extension'),
@@ -46,6 +46,8 @@ def apply_phases(campaign, geography, target, baseline, *, line_id, route_id, st
                 chapter.update(title=title, source=source, sourcePublicationDate=stage['sourcePublicationDate'], eventText=title)
                 chapter['story'].update(opening=title+'。', purpose=stage.get('purpose', '复用既有建设，确认本期范围。'),
                     outcome=stage.get('outcome', '本期线路建设完成。'))
+        if not str(chapter.get('operationGuide','')).strip():
+            chapter['operationGuide']=stage.get('operationGuide', f'复用既有站轨，按蓝图完成{construction[0]}至{construction[-1]}的本期范围，检查连续路径，再确认本期历史节点。')
         ids = [lookup[n] for n in construction]; group = deepcopy(template)
         # Original generated snapshot metadata cannot masquerade as the newly
         # reviewed contiguous range. Do not inherit stale sourceStationIds.

@@ -81,6 +81,7 @@ def main():
             reconfirmLaterServices=True, servicePathRevision=20, defaultServiceStatus='trial',
             precisionNote='按公开分期站序建设；朱房北仅在2024-12-15开放，站位及地下走向为近似参考。')
         chapter['lineGroups'] = [g for g in chapter.get('lineGroups', []) if g['historicalLineId'] != LINE] + [group]
+        if not str(chapter.get('operationGuide','')).strip():chapter['operationGuide']=f'复用既有站轨，补齐{construction[0]}至{construction[-1]}的本期建设范围，检查与既有段连接后确认本期开放；不提前开放后期站。'
         chapter.update(scopeRevision=REVISION, requiresScopeRecheck=True)
         milestone = next((m for m in target['historicalMilestones'] if m['chapterId'] == cid), None)
         if milestone is None:

@@ -54,7 +54,7 @@ CITY_SOURCES: dict[str, dict[str, Any]] = {
             {"id": "beijing-2025-12-27-openings", "date": "2025-12-27", "title": "17号线中段、18号线、6号线南延开通", "routeIds": ["beijing-r17", "beijing-r18", "beijing-r6"], "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370895.html"},
             {"id": "beijing-2026-01-31-wangjingxi", "date": "2026-01-31", "title": "17号线望京西站开通，形成三线换乘", "routeIds": ["beijing-r17"], "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202601/t20260130_4477003.html"},
         ],
-        "excludedStations": {},
+        "excludedStations": {"beijing-r1": [{"name": "八角游乐园", "reason": "2026年5月16日恢复西段时仍通过不停车；保留实体站体，不计入截止日开放停站", "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202605/t20260516_4653696.html"}]},
         "projects": [
             {"id": "bj-line22", "name": "轨道交通22号线（平谷线）", "projectType": "under_construction", "status": "在建", "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202608/t20260825_4836149.html", "sourceTitle": "京冀首条跨省地铁进入空载试运行", "note": "2026年8月仍在空载试运行，按截止日不计入已开通路网；线路跨北京与河北三河。"},
             {"id": "bj-m101-phase1", "name": "M101线一期", "projectType": "under_construction", "status": "在建", "source": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202606/t20260611_4696243.html", "sourceTitle": "北京市重大项目办2026年一季度重点任务进展", "note": "2026年一季度车站、区间和停车场均已开始施工。"},

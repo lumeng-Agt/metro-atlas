@@ -48,5 +48,17 @@ class ProjectSpecRules(unittest.TestCase):
         spec = self.multi_line(); spec['transfers'][0]['lineIds'] = ['old-a','old-b']
         self.assertTrue(any('no line belongs' in e for e in validate(spec,self.city,{'old-a','old-b'})))
 
+    def test_planning_names_need_explicit_source(self):
+        self.spec['lineGroup'].update(constructionVariant=True, stationNamingSource='')
+        self.assertTrue(any('public source URL' in e for e in validate(self.spec,self.city,set())))
+
+    def test_planning_names_cannot_rename_existing_service(self):
+        self.spec['lineGroup']['stationNamingSource']='https://example.org/planned-names'
+        self.assertTrue(any('separate constructionVariant' in e for e in validate(self.spec,self.city,set())))
+
+    def test_sourced_planning_variant_is_valid(self):
+        self.spec['lineGroup'].update(constructionVariant=True, stationNamingSource='https://example.org/planned-names')
+        self.assertEqual(validate(self.spec,self.city,set()), [])
+
 
 if __name__ == '__main__': unittest.main()

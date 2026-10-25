@@ -26567,13 +26567,13 @@
           "name": "13号线扩能提升工程",
           "projectType": "approved_and_under_construction",
           "status": "建设计划项目",
-          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
-          "sourceTitle": "2026年北京市轨道交通建设计划",
-          "note": "属于既有线扩能改造工程，不作为一条新运营线路重复计数。",
-          "playabilityStatus": "engineering_works_only",
-          "sourceCheckedAt": "2026-10-20",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "sourceTitle": "13号线扩能提升完整环评及2025定名",
+          "note": "19站13A与15站13B实际建设目标；保留当前开放路网，规划线路及名称另存。整体换乘核对仍单列失败。",
+          "playabilityStatus": "playable_build_task",
+          "sourceCheckedAt": "2026-10-25",
           "statusAtCutoff": "建设计划项目",
-          "playabilityNote": "13号线扩能提升工程为既有线拆分改造（13A/13B），不是一条有独立站序的新线；本地不重建既有13号线，按扩能工程条目单列。"
+          "sourceArchive": "https://web.archive.org/web/20211023062003id_/https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf"
         },
         {
           "id": "bj-line1-branch",
@@ -26604,13 +26604,13 @@
           "name": "亦庄线至5号线、10号线联络工程",
           "projectType": "approved_and_under_construction",
           "status": "建设计划项目",
-          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
-          "sourceTitle": "2026年北京市轨道交通建设计划",
-          "note": "为联络工程，不单独计作新线路；目前没有可供逐站复现的公开地图目标。",
-          "playabilityStatus": "engineering_works_only",
-          "sourceCheckedAt": "2026-10-20",
+          "source": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf",
+          "sourceTitle": "亦庄线至5号线、10号线联络工程最终环评及可研批复",
+          "note": "按已批准的肖村—宋家庄改造范围，复现两端改造接头、中间新建和折返区间走廊，不新增客运站。线路沿宋家庄车辆基地东侧及郭家庄路附近；坐标仅为许可地理参照的近似走廊，不是施工中心线，折返配线和埋深为示意。原亦庄线宋家庄段和现状服务保留，未来贯通仅生成未开放的线路关系。10号线跨线预留不计为已建直连；同台换乘结构仍需单独核对。",
+          "playabilityStatus": "playable_build_task",
+          "sourceCheckedAt": "2026-10-25",
           "statusAtCutoff": "建设计划项目",
-          "playabilityNote": "亦庄线至5号线、10号线的联络工程，不新增运营车站，按工程条目单列。"
+          "playabilityNote": "明确站端至工程接口的实体轨道任务；新站体仅限已公布站点，不虚构边界车站或运营线路。"
         }
       ],
       "documentedMilestones": [
@@ -41778,8 +41778,8 @@
       ],
       "milestoneChapterCount": 31,
       "mapRouteEntryCount": 25,
-      "mapRouteStopOccurrenceCount": 518,
-      "mapUniqueStationCount": 426,
+      "mapRouteStopOccurrenceCount": 517,
+      "mapUniqueStationCount": 424,
       "routes": [
         {
           "mapRouteId": "beijing-r1",
@@ -41787,47 +41787,52 @@
           "name": "1号线",
           "cutoffStatus": "open_at_cutoff",
           "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-          "mapStationCount": 37,
+          "mapStationCount": 36,
           "cutoffStationIds": [
-            "beijing-s32",
-            "beijing-s33",
-            "beijing-s34",
-            "beijing-s35",
-            "beijing-s36",
-            "beijing-s37",
-            "beijing-s38",
-            "beijing-s39",
-            "beijing-s40",
-            "beijing-s41",
-            "beijing-s42",
-            "beijing-s43",
-            "beijing-s44",
-            "beijing-s45",
-            "beijing-s46",
-            "beijing-s47",
-            "beijing-s48",
-            "beijing-s49",
-            "beijing-s50",
-            "beijing-s51",
-            "beijing-s52",
-            "beijing-s53",
-            "beijing-s54",
-            "beijing-s55",
-            "beijing-s56",
-            "beijing-s57",
-            "beijing-s58",
-            "beijing-s59",
-            "beijing-s60",
-            "beijing-s61",
-            "beijing-s62",
-            "beijing-s63",
-            "beijing-s64",
-            "beijing-s65",
             "beijing-s66",
-            "beijing-s67",
-            "beijing-s68"
+            "beijing-s65",
+            "beijing-s64",
+            "beijing-s63",
+            "beijing-s62",
+            "beijing-s61",
+            "beijing-s60",
+            "beijing-s59",
+            "beijing-s58",
+            "beijing-s57",
+            "beijing-s56",
+            "beijing-s55",
+            "beijing-s54",
+            "beijing-s53",
+            "beijing-s52",
+            "beijing-s51",
+            "beijing-s50",
+            "beijing-s49",
+            "beijing-s48",
+            "beijing-s47",
+            "beijing-s46",
+            "beijing-s45",
+            "beijing-s44",
+            "beijing-s43",
+            "beijing-s42",
+            "beijing-s41",
+            "beijing-s40",
+            "beijing-s39",
+            "beijing-s38",
+            "beijing-s37",
+            "beijing-s36",
+            "beijing-s35",
+            "beijing-s34",
+            "beijing-s33",
+            "beijing-s32"
           ],
-          "excludedStations": [],
+          "excludedStations": [
+            {
+              "stationId": "beijing-s68",
+              "name": "八角游乐园",
+              "reason": "2026年5月16日恢复西段时仍通过不停车；保留实体站体，不计入截止日开放停站",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202605/t20260516_4653696.html"
+            }
+          ],
           "routeRelations": [
             1667139,
             1667140,
@@ -60332,94 +60337,6 @@
           "chapterScope": "dated_opening_segment"
         },
         {
-          "id": "shenzhen-2026-06-28-line13-north",
-          "date": "2026-06-28",
-          "title": "13号线二期北延段开通并与一期贯通",
-          "routeIds": [
-            "shenzhen-r14"
-          ],
-          "source": "https://jtys.sz.gov.cn/ydmh/jtzx/zyhy_1510/content/post_12867344.html",
-          "chapterId": "shenzhen-network-milestone-2026-06-28",
-          "status": "opened_or_completed",
-          "targetLineGroups": [
-            {
-              "taskId": "dated:shenzhen-2026-06-28-line13-north:shenzhen-line13-14:range-1",
-              "mapRouteId": "shenzhen-r14",
-              "name": "13号线二期北延至李松蓢",
-              "stationIds": [
-                "shenzhen-s262",
-                "shenzhen-s400",
-                "shenzhen-s359",
-                "shenzhen-s401",
-                "shenzhen-s260",
-                "shenzhen-s402",
-                "shenzhen-s403",
-                "shenzhen-s404",
-                "shenzhen-s405",
-                "shenzhen-s406",
-                "shenzhen-s407",
-                "shenzhen-s408"
-              ],
-              "toleranceM": 220.0,
-              "precisionNote": "站序按官方开通历史资料；站点锚点取离线地图，隧道中心线未作为精测数据。",
-              "historicalLineId": "shenzhen-line13-14",
-              "color": "#DE7C00",
-              "stationOrderSource": "官方逐站站序：https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
-              "alignmentPrecision": "station_area_approximation",
-              "stationInstances": {
-                "shenzhen-s262": "shenzhen-s262__line13-14",
-                "shenzhen-s359": "shenzhen-s359__line13-14",
-                "shenzhen-s260": "shenzhen-s260__line13-14",
-                "shenzhen-s400": "shenzhen-s400",
-                "shenzhen-s401": "shenzhen-s401",
-                "shenzhen-s402": "shenzhen-s402",
-                "shenzhen-s403": "shenzhen-s403",
-                "shenzhen-s404": "shenzhen-s404",
-                "shenzhen-s405": "shenzhen-s405",
-                "shenzhen-s406": "shenzhen-s406",
-                "shenzhen-s407": "shenzhen-s407",
-                "shenzhen-s408": "shenzhen-s408"
-              },
-              "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
-              "sourceStationIds": [
-                "shenzhen-s262",
-                "shenzhen-s400",
-                "shenzhen-s359",
-                "shenzhen-s401",
-                "shenzhen-s260",
-                "shenzhen-s402",
-                "shenzhen-s403",
-                "shenzhen-s404",
-                "shenzhen-s405",
-                "shenzhen-s406",
-                "shenzhen-s407",
-                "shenzhen-s408"
-              ],
-              "sourceStationInstances": {
-                "shenzhen-s189": "shenzhen-s189",
-                "shenzhen-s93": "shenzhen-s93",
-                "shenzhen-s232": "shenzhen-s232",
-                "shenzhen-s125": "shenzhen-s125",
-                "shenzhen-s262": "shenzhen-s262__line13-14",
-                "shenzhen-s359": "shenzhen-s359__line13-14",
-                "shenzhen-s260": "shenzhen-s260__line13-14",
-                "shenzhen-s400": "shenzhen-s400",
-                "shenzhen-s401": "shenzhen-s401",
-                "shenzhen-s402": "shenzhen-s402",
-                "shenzhen-s403": "shenzhen-s403",
-                "shenzhen-s404": "shenzhen-s404",
-                "shenzhen-s405": "shenzhen-s405",
-                "shenzhen-s406": "shenzhen-s406",
-                "shenzhen-s407": "shenzhen-s407",
-                "shenzhen-s408": "shenzhen-s408"
-              },
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
-            }
-          ],
-          "chapterScope": "dated_opening_segment"
-        },
-        {
           "id": "shenzhen-network-reconciliation-2026-10-01-event",
           "date": "2026-10-01",
           "title": "核对截至2026年10月1日的已开通地铁路网",
@@ -61352,6 +61269,94 @@
               }
             }
           ]
+        },
+        {
+          "id": "shenzhen-2026-06-28-line13-north",
+          "date": "2026-06-28",
+          "title": "13号线二期北延段开通并与一期贯通",
+          "routeIds": [
+            "shenzhen-r14"
+          ],
+          "source": "https://jtys.sz.gov.cn/ydmh/jtzx/zyhy_1510/content/post_12867344.html",
+          "chapterId": "shenzhen-network-milestone-2026-06-28",
+          "status": "opened_or_completed",
+          "targetLineGroups": [
+            {
+              "taskId": "dated:shenzhen-2026-06-28-line13-north:shenzhen-line13-14:range-1",
+              "mapRouteId": "shenzhen-r14",
+              "name": "13号线二期北延至李松蓢",
+              "stationIds": [
+                "shenzhen-s262",
+                "shenzhen-s400",
+                "shenzhen-s359",
+                "shenzhen-s401",
+                "shenzhen-s260",
+                "shenzhen-s402",
+                "shenzhen-s403",
+                "shenzhen-s404",
+                "shenzhen-s405",
+                "shenzhen-s406",
+                "shenzhen-s407",
+                "shenzhen-s408"
+              ],
+              "toleranceM": 220.0,
+              "precisionNote": "站序按官方开通历史资料；站点锚点取离线地图，隧道中心线未作为精测数据。",
+              "historicalLineId": "shenzhen-line13-14",
+              "color": "#DE7C00",
+              "stationOrderSource": "官方逐站站序：https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
+              "alignmentPrecision": "station_area_approximation",
+              "stationInstances": {
+                "shenzhen-s262": "shenzhen-s262__line13-14",
+                "shenzhen-s359": "shenzhen-s359__line13-14",
+                "shenzhen-s260": "shenzhen-s260__line13-14",
+                "shenzhen-s400": "shenzhen-s400",
+                "shenzhen-s401": "shenzhen-s401",
+                "shenzhen-s402": "shenzhen-s402",
+                "shenzhen-s403": "shenzhen-s403",
+                "shenzhen-s404": "shenzhen-s404",
+                "shenzhen-s405": "shenzhen-s405",
+                "shenzhen-s406": "shenzhen-s406",
+                "shenzhen-s407": "shenzhen-s407",
+                "shenzhen-s408": "shenzhen-s408"
+              },
+              "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
+              "sourceStationIds": [
+                "shenzhen-s262",
+                "shenzhen-s400",
+                "shenzhen-s359",
+                "shenzhen-s401",
+                "shenzhen-s260",
+                "shenzhen-s402",
+                "shenzhen-s403",
+                "shenzhen-s404",
+                "shenzhen-s405",
+                "shenzhen-s406",
+                "shenzhen-s407",
+                "shenzhen-s408"
+              ],
+              "sourceStationInstances": {
+                "shenzhen-s189": "shenzhen-s189",
+                "shenzhen-s93": "shenzhen-s93",
+                "shenzhen-s232": "shenzhen-s232",
+                "shenzhen-s125": "shenzhen-s125",
+                "shenzhen-s262": "shenzhen-s262__line13-14",
+                "shenzhen-s359": "shenzhen-s359__line13-14",
+                "shenzhen-s260": "shenzhen-s260__line13-14",
+                "shenzhen-s400": "shenzhen-s400",
+                "shenzhen-s401": "shenzhen-s401",
+                "shenzhen-s402": "shenzhen-s402",
+                "shenzhen-s403": "shenzhen-s403",
+                "shenzhen-s404": "shenzhen-s404",
+                "shenzhen-s405": "shenzhen-s405",
+                "shenzhen-s406": "shenzhen-s406",
+                "shenzhen-s407": "shenzhen-s407",
+                "shenzhen-s408": "shenzhen-s408"
+              },
+              "constructionScope": "new_contiguous_range",
+              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
+            }
+          ],
+          "chapterScope": "dated_opening_segment"
         }
       ],
       "documentedMilestoneCount": 32,
@@ -66359,7 +66364,7 @@
             {
               "taskId": "dated:shenzhen-2024-12-28-five-openings:shenzhen-line13-14",
               "mapRouteId": "shenzhen-r14",
-              "name": "13号线一期南段至高新中",
+              "name": "13号线南段：深圳湾口岸至高新中",
               "stationIds": [
                 "shenzhen-s390",
                 "shenzhen-s391",
@@ -66369,12 +66374,12 @@
                 "shenzhen-s392",
                 "shenzhen-s393"
               ],
-              "toleranceM": 220.0,
-              "precisionNote": "站序按官方开通历史资料；站点锚点取离线地图，隧道中心线未作为精测数据。",
+              "toleranceM": 220,
+              "precisionNote": "口岸办公室逐站南段范围与运营方已开通日期回顾相互核对：7站6区间；线路几何为近似地理参考。",
               "historicalLineId": "shenzhen-line13-14",
               "color": "#DE7C00",
-              "stationOrderSource": "官方逐站站序：https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_11930882.html",
-              "alignmentPrecision": "station_area_approximation",
+              "stationOrderSource": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202512/105561.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "shenzhen-s390": "shenzhen-s390",
                 "shenzhen-s391": "shenzhen-s391",
@@ -66384,7 +66389,21 @@
                 "shenzhen-s392": "shenzhen-s392",
                 "shenzhen-s393": "shenzhen-s393"
               },
-              "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_11930882.html"
+              "coverageGroupId": "dated:shenzhen-2024-12-28-five-openings:shenzhen-line13-14",
+              "stationNames": {
+                "shenzhen-s390": "深圳湾口岸",
+                "shenzhen-s391": "人才公园",
+                "shenzhen-s189": "后海",
+                "shenzhen-s93": "科苑",
+                "shenzhen-s232": "粤海门",
+                "shenzhen-s392": "深大",
+                "shenzhen-s393": "高新中"
+              },
+              "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202512/105561.html",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
             }
           ],
           "chapterTargetStationIds": [
@@ -67008,7 +67027,7 @@
             {
               "taskId": "dated:shenzhen-2025-12-28-lines5-8-11-13:shenzhen-line13-14:range-1",
               "mapRouteId": "shenzhen-r14",
-              "name": "13号线一期北段贯通至上屋",
+              "name": "13号线一期贯通至上屋",
               "stationIds": [
                 "shenzhen-s393",
                 "shenzhen-s394",
@@ -67020,12 +67039,12 @@
                 "shenzhen-s399",
                 "shenzhen-s262"
               ],
-              "toleranceM": 220.0,
-              "precisionNote": "站序按官方开通历史资料；站点锚点取离线地图，隧道中心线未作为精测数据。",
+              "toleranceM": 220,
+              "precisionNote": "交通运输局开通公告和港铁逐站表核对；西丽高铁站因枢纽施工越站，不计开放停站。",
               "historicalLineId": "shenzhen-line13-14",
               "color": "#DE7C00",
-              "stationOrderSource": "官方逐站站序：https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12576035.html",
-              "alignmentPrecision": "station_area_approximation",
+              "stationOrderSource": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "shenzhen-s393": "shenzhen-s393",
                 "shenzhen-s394": "shenzhen-s394",
@@ -67037,31 +67056,23 @@
                 "shenzhen-s399": "shenzhen-s399",
                 "shenzhen-s262": "shenzhen-s262__line13-14"
               },
-              "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12576035.html",
-              "sourceStationIds": [
-                "shenzhen-s393",
-                "shenzhen-s394",
-                "shenzhen-s395",
-                "shenzhen-s125",
-                "shenzhen-s396",
-                "shenzhen-s397",
-                "shenzhen-s398",
-                "shenzhen-s399",
-                "shenzhen-s262"
-              ],
-              "sourceStationInstances": {
-                "shenzhen-s393": "shenzhen-s393",
-                "shenzhen-s394": "shenzhen-s394",
-                "shenzhen-s395": "shenzhen-s395",
-                "shenzhen-s125": "shenzhen-s125",
-                "shenzhen-s396": "shenzhen-s396",
-                "shenzhen-s397": "shenzhen-s397",
-                "shenzhen-s398": "shenzhen-s398",
-                "shenzhen-s399": "shenzhen-s399",
-                "shenzhen-s262": "shenzhen-s262__line13-14"
+              "coverageGroupId": "dated:shenzhen-2025-12-28-lines5-8-11-13:shenzhen-line13-14:range-1",
+              "stationNames": {
+                "shenzhen-s393": "高新中",
+                "shenzhen-s394": "高新北",
+                "shenzhen-s395": "石鼓",
+                "shenzhen-s125": "留仙洞",
+                "shenzhen-s396": "百旺",
+                "shenzhen-s397": "应人石",
+                "shenzhen-s398": "罗租",
+                "shenzhen-s399": "石岩",
+                "shenzhen-s262": "上屋"
               },
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
+              "source": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
             }
           ],
           "chapterTargetStationIds": [
@@ -67212,18 +67223,18 @@
                 "shenzhen-s407",
                 "shenzhen-s408"
               ],
-              "toleranceM": 220.0,
-              "precisionNote": "站序按官方开通历史资料；站点锚点取离线地图，隧道中心线未作为精测数据。",
+              "toleranceM": 220,
+              "precisionNote": "市国资委开通回顾确认2026年6月28日、上屋不含至李松蓢11座新增站；站序由港铁逐站表独立核对。",
               "historicalLineId": "shenzhen-line13-14",
               "color": "#DE7C00",
-              "stationOrderSource": "官方逐站站序：https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
-              "alignmentPrecision": "station_area_approximation",
+              "stationOrderSource": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "shenzhen-s262": "shenzhen-s262__line13-14",
-                "shenzhen-s359": "shenzhen-s359__line13-14",
-                "shenzhen-s260": "shenzhen-s260__line13-14",
                 "shenzhen-s400": "shenzhen-s400",
+                "shenzhen-s359": "shenzhen-s359__line13-14",
                 "shenzhen-s401": "shenzhen-s401",
+                "shenzhen-s260": "shenzhen-s260__line13-14",
                 "shenzhen-s402": "shenzhen-s402",
                 "shenzhen-s403": "shenzhen-s403",
                 "shenzhen-s404": "shenzhen-s404",
@@ -67232,41 +67243,26 @@
                 "shenzhen-s407": "shenzhen-s407",
                 "shenzhen-s408": "shenzhen-s408"
               },
-              "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
-              "sourceStationIds": [
-                "shenzhen-s262",
-                "shenzhen-s400",
-                "shenzhen-s359",
-                "shenzhen-s401",
-                "shenzhen-s260",
-                "shenzhen-s402",
-                "shenzhen-s403",
-                "shenzhen-s404",
-                "shenzhen-s405",
-                "shenzhen-s406",
-                "shenzhen-s407",
-                "shenzhen-s408"
-              ],
-              "sourceStationInstances": {
-                "shenzhen-s189": "shenzhen-s189",
-                "shenzhen-s93": "shenzhen-s93",
-                "shenzhen-s232": "shenzhen-s232",
-                "shenzhen-s125": "shenzhen-s125",
-                "shenzhen-s262": "shenzhen-s262__line13-14",
-                "shenzhen-s359": "shenzhen-s359__line13-14",
-                "shenzhen-s260": "shenzhen-s260__line13-14",
-                "shenzhen-s400": "shenzhen-s400",
-                "shenzhen-s401": "shenzhen-s401",
-                "shenzhen-s402": "shenzhen-s402",
-                "shenzhen-s403": "shenzhen-s403",
-                "shenzhen-s404": "shenzhen-s404",
-                "shenzhen-s405": "shenzhen-s405",
-                "shenzhen-s406": "shenzhen-s406",
-                "shenzhen-s407": "shenzhen-s407",
-                "shenzhen-s408": "shenzhen-s408"
+              "coverageGroupId": "dated:shenzhen-2026-06-28-line13-north:shenzhen-line13-14:range-1",
+              "stationNames": {
+                "shenzhen-s262": "上屋",
+                "shenzhen-s400": "红坳公园",
+                "shenzhen-s359": "光明城",
+                "shenzhen-s401": "德雅路",
+                "shenzhen-s260": "凤凰城",
+                "shenzhen-s402": "月亮路",
+                "shenzhen-s403": "将围",
+                "shenzhen-s404": "新庄",
+                "shenzhen-s405": "公明广场",
+                "shenzhen-s406": "上村",
+                "shenzhen-s407": "下村",
+                "shenzhen-s408": "李松蓢"
               },
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
+              "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
             }
           ],
           "chapterTargetStationIds": [
@@ -69602,14 +69598,64 @@
               "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "shenzhen-s390": "shenzhen-s390",
+                "shenzhen-s391": "shenzhen-s391",
                 "shenzhen-s189": "shenzhen-s189",
                 "shenzhen-s93": "shenzhen-s93",
                 "shenzhen-s232": "shenzhen-s232",
+                "shenzhen-s392": "shenzhen-s392",
+                "shenzhen-s393": "shenzhen-s393",
+                "shenzhen-s394": "shenzhen-s394",
+                "shenzhen-s395": "shenzhen-s395",
                 "shenzhen-s125": "shenzhen-s125",
+                "shenzhen-s396": "shenzhen-s396",
+                "shenzhen-s397": "shenzhen-s397",
+                "shenzhen-s398": "shenzhen-s398",
+                "shenzhen-s399": "shenzhen-s399",
                 "shenzhen-s262": "shenzhen-s262__line13-14",
+                "shenzhen-s400": "shenzhen-s400",
                 "shenzhen-s359": "shenzhen-s359__line13-14",
-                "shenzhen-s260": "shenzhen-s260__line13-14"
-              }
+                "shenzhen-s401": "shenzhen-s401",
+                "shenzhen-s260": "shenzhen-s260__line13-14",
+                "shenzhen-s402": "shenzhen-s402",
+                "shenzhen-s403": "shenzhen-s403",
+                "shenzhen-s404": "shenzhen-s404",
+                "shenzhen-s405": "shenzhen-s405",
+                "shenzhen-s406": "shenzhen-s406",
+                "shenzhen-s407": "shenzhen-s407",
+                "shenzhen-s408": "shenzhen-s408"
+              },
+              "stationNames": {
+                "shenzhen-s390": "深圳湾口岸",
+                "shenzhen-s391": "人才公园",
+                "shenzhen-s189": "后海",
+                "shenzhen-s93": "科苑",
+                "shenzhen-s232": "粤海门",
+                "shenzhen-s392": "深大",
+                "shenzhen-s393": "高新中",
+                "shenzhen-s394": "高新北",
+                "shenzhen-s395": "石鼓",
+                "shenzhen-s125": "留仙洞",
+                "shenzhen-s396": "百旺",
+                "shenzhen-s397": "应人石",
+                "shenzhen-s398": "罗租",
+                "shenzhen-s399": "石岩",
+                "shenzhen-s262": "上屋",
+                "shenzhen-s400": "红坳公园",
+                "shenzhen-s359": "光明城",
+                "shenzhen-s401": "德雅路",
+                "shenzhen-s260": "凤凰城",
+                "shenzhen-s402": "月亮路",
+                "shenzhen-s403": "将围",
+                "shenzhen-s404": "新庄",
+                "shenzhen-s405": "公明广场",
+                "shenzhen-s406": "上村",
+                "shenzhen-s407": "下村",
+                "shenzhen-s408": "李松蓢"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30
             },
             {
               "taskId": "route:shenzhen-r15",
@@ -70940,7 +70986,97 @@
       "playableRouteTaskCount": 17,
       "unassignedRouteIds": [],
       "routeTaskSource": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/cxtx/",
-      "supersededDocumentedMilestones": []
+      "supersededDocumentedMilestones": [
+        {
+          "id": "shenzhen-2026-06-28-line13-north",
+          "date": "2026-06-28",
+          "title": "13号线二期北延段开通并与一期贯通",
+          "routeIds": [
+            "shenzhen-r14"
+          ],
+          "source": "https://jtys.sz.gov.cn/ydmh/jtzx/zyhy_1510/content/post_12867344.html",
+          "chapterId": "shenzhen-network-milestone-2026-06-28",
+          "status": "opened_or_completed",
+          "targetLineGroups": [
+            {
+              "taskId": "dated:shenzhen-2026-06-28-line13-north:shenzhen-line13-14:range-1",
+              "mapRouteId": "shenzhen-r14",
+              "name": "13号线二期北延至李松蓢",
+              "stationIds": [
+                "shenzhen-s262",
+                "shenzhen-s400",
+                "shenzhen-s359",
+                "shenzhen-s401",
+                "shenzhen-s260",
+                "shenzhen-s402",
+                "shenzhen-s403",
+                "shenzhen-s404",
+                "shenzhen-s405",
+                "shenzhen-s406",
+                "shenzhen-s407",
+                "shenzhen-s408"
+              ],
+              "toleranceM": 220.0,
+              "precisionNote": "站序按官方开通历史资料；站点锚点取离线地图，隧道中心线未作为精测数据。",
+              "historicalLineId": "shenzhen-line13-14",
+              "color": "#DE7C00",
+              "stationOrderSource": "官方逐站站序：https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
+              "alignmentPrecision": "station_area_approximation",
+              "stationInstances": {
+                "shenzhen-s262": "shenzhen-s262__line13-14",
+                "shenzhen-s359": "shenzhen-s359__line13-14",
+                "shenzhen-s260": "shenzhen-s260__line13-14",
+                "shenzhen-s400": "shenzhen-s400",
+                "shenzhen-s401": "shenzhen-s401",
+                "shenzhen-s402": "shenzhen-s402",
+                "shenzhen-s403": "shenzhen-s403",
+                "shenzhen-s404": "shenzhen-s404",
+                "shenzhen-s405": "shenzhen-s405",
+                "shenzhen-s406": "shenzhen-s406",
+                "shenzhen-s407": "shenzhen-s407",
+                "shenzhen-s408": "shenzhen-s408"
+              },
+              "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
+              "sourceStationIds": [
+                "shenzhen-s262",
+                "shenzhen-s400",
+                "shenzhen-s359",
+                "shenzhen-s401",
+                "shenzhen-s260",
+                "shenzhen-s402",
+                "shenzhen-s403",
+                "shenzhen-s404",
+                "shenzhen-s405",
+                "shenzhen-s406",
+                "shenzhen-s407",
+                "shenzhen-s408"
+              ],
+              "sourceStationInstances": {
+                "shenzhen-s189": "shenzhen-s189",
+                "shenzhen-s93": "shenzhen-s93",
+                "shenzhen-s232": "shenzhen-s232",
+                "shenzhen-s125": "shenzhen-s125",
+                "shenzhen-s262": "shenzhen-s262__line13-14",
+                "shenzhen-s359": "shenzhen-s359__line13-14",
+                "shenzhen-s260": "shenzhen-s260__line13-14",
+                "shenzhen-s400": "shenzhen-s400",
+                "shenzhen-s401": "shenzhen-s401",
+                "shenzhen-s402": "shenzhen-s402",
+                "shenzhen-s403": "shenzhen-s403",
+                "shenzhen-s404": "shenzhen-s404",
+                "shenzhen-s405": "shenzhen-s405",
+                "shenzhen-s406": "shenzhen-s406",
+                "shenzhen-s407": "shenzhen-s407",
+                "shenzhen-s408": "shenzhen-s408"
+              },
+              "constructionScope": "new_contiguous_range",
+              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
+            }
+          ],
+          "chapterScope": "dated_opening_segment",
+          "supersededReason": "整线现代快照改为经来源核对的逐期开通范围。"
+        }
+      ]
     },
     "chengdu": {
       "name": "成都",
@@ -85096,5 +85232,5 @@
     }
   },
   "contentStatus": "playable_cutoff_route_inventories",
-  "contentRevision": "2026.10.25.9"
+  "contentRevision": "2026.10.25.14"
 }

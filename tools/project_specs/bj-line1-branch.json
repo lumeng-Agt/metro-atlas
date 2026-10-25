@@ -118,7 +118,8 @@
       "officialLengthM": 21000,
       "alignmentPrecision": "corridor_only",
       "precisionNote": "10座车站及站序取自京投公司1号线支线环评二次公示（9座新建、1座改造，约21公里；站名为暂定名）。八角游乐园为1号线既有站并按贯通运营复用站体，张郭庄与14号线换乘；体育场南街、园博园西门、西二区、青龙湖东按站序在走廊上定位，云岗、王佐、民族大学按道路/校区位置定位，均属走廊级参考。",
-      "stationOrderSource": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm"
+      "stationOrderSource": "https://m.gmw.cn/toutiao/2023-10/09/content_1303535495.htm",
+      "constructionVariant": true
     }
   ],
   "stationInstances": {
@@ -154,7 +155,8 @@
     "sourceCheckedAt": "2026-10-21",
     "sourcePublicationDate": "2023-10-09",
     "description": "按京投公司1号线支线环评二次公示复现：八角游乐园—青龙湖东10座车站、约21公里，与1号线贯通运营，张郭庄与14号线换乘。站名为暂定名；完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.12",
-    "contentRevisionNote": "增加北京1号线支线建设章。"
+    "contentRevision": "2026.10.25.14",
+    "contentRevisionNote": "增加北京1号线支线建设章。",
+    "requiresScopeRecheck": true
   }
 }

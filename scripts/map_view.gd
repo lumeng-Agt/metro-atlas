@@ -645,9 +645,9 @@ func _draw_campaign_targets() -> void:
 			if separate_instance:title="%s线站体 · %s" % [str(target.get("historicalLineName",target.get("historicalLineId","本线"))),str(target.get("name","换乘站"))]
 			var offset_y:=9.0
 			if separate_instance:
-				var siblings:Array=[];var complex_id:=str(target.get("stationComplexId",""))
+				var siblings:Array=[];var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(target.get("stationComplexId","")))
 				for sibling in campaign_blueprint.get("stations",[]):
-					if str(sibling.get("stationComplexId",""))==complex_id:
+					if CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(sibling.get("stationComplexId","")))==complex_id:
 						var sibling_id:=str(sibling.get("stationInstanceId",""))
 						if not siblings.has(sibling_id):siblings.append(sibling_id)
 				siblings.sort();offset_y+=float(siblings.find(str(target.get("stationInstanceId",""))))*27.0
@@ -945,10 +945,10 @@ func _draw_stations() -> void:
 			draw_circle(pos,4.0,Color.WHITE)
 			draw_arc(pos,10.0,0,TAU,24,marker_color,2,true)
 		if (current_zoom >= 14 or selected or station.get("existing", false) == false):
-			var siblings:Array=[];var complex_id:=str(station.get("stationComplexId",""));var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
+			var siblings:Array=[];var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(station.get("stationComplexId","")));var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
 			if not complex_id.is_empty():
 				for sibling in world.get("stations",[]):
-					if str(sibling.get("stationComplexId",""))!=complex_id:continue
+					if CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(sibling.get("stationComplexId","")))!=complex_id:continue
 					var sibling_instance:=str(sibling.get("stationInstanceId",sibling.get("id","")))
 					if sibling_instance!=instance_id and not siblings.has(sibling_instance):siblings.append(sibling_instance)
 			if siblings.size()>0 and current_zoom>=14:

@@ -14,32 +14,7 @@ static func network_coverage(city_id: String) -> Dictionary:
 	return Catalog.network_coverage(city_id)
 
 static func chapter(world: Dictionary) -> Dictionary:
-	var phase:=str(world.get("storyState",{}).get("phase","history"))
-	if phase in ["future_gap","published_content_complete","free"]:return {}
-	var chapters: Array = config(world).get("chapters", [])
-	var index := int(world.get("storyState", {}).get("chapterIndex", 0))
-	if phase == "future":
-		chapters = Catalog.playable_future_plans(str(world.get("cityId", "")))
-	var completed:Array=world.get("storyState",{}).get("completedChapterIds",[])
-	var is_gap:=phase in ["history_gap","history_content_gap"]
-	var stable_id:=str(world.get("storyState",{}).get("chapterId",""))
-	if not stable_id.is_empty():
-		for entry in chapters:
-			if str(entry.get("id",""))==stable_id:
-				# Gap saves resume at the first unconfirmed stable chapter. Pure
-				# historical milestones are actionable too: the player must be able
-				# to review and confirm them instead of silently skipping them.
-				if not is_gap or not completed.has(stable_id):return entry
-		# A save from the old content-gap build can point at a chapter that no
-		# longer exists. Resume the first incomplete stable chapter instead of
-		# leaving the player on an empty boundary page.
-		if not is_gap:return {}
-	if is_gap or index<0 or index>=chapters.size():
-		for entry in chapters:
-			var entry_id:=str(entry.get("id",""))
-			if completed.has(entry_id):continue
-			return entry
-	return chapters[index] if index >= 0 and index < chapters.size() else {}
+	return Catalog.story_chapter_definition(str(world.get("cityId","")),world.get("storyState",{}))
 
 static func task_id(chapter_row:Dictionary, group:Dictionary, index:int) -> String:
 	return str(group.get("taskId", "line:%s:%d" % [str(chapter_row.get("id", "")), index]))
@@ -109,7 +84,7 @@ static func targets(world: Dictionary, final_plan: bool = false, selected_task_i
 			if not coordinate_reference.is_empty() and plan_is_final(world):
 				item["rawLatlng"]=item.latlng;item["latlng"]=coordinate_reference.latlng;item["coordinateSource"]=coordinate_reference
 			item["name"] = str(group.get("stationNames", {}).get(id, item.get("name", "车站")))
-			item["historicalNameRequired"]=group.get("stationNames",{}).has(id)
+			item["historicalNameRequired"]=group.get("stationNames",{}).has(id) and not _uses_planned_names(world,group)
 			item["toleranceM"] = float(group.get("toleranceM", 100.0))
 			# A same-line station at this complex is not proof that the requested
 			# physical body exists. Interchange stations must have their own stable
@@ -118,6 +93,9 @@ static func targets(world: Dictionary, final_plan: bool = false, selected_task_i
 			item["referenceHeading"]=ReferenceAlignment.heading(reference_id,[group],float(WorldData.city(str(world.cityId)).center[0]),str(group.get("historicalLineId","")))
 			result.append(item)
 	return result
+
+static func _uses_planned_names(world:Dictionary,group:Dictionary) -> bool:
+	return str(world.get("storyState",{}).get("phase","history"))=="future" and not bool(chapter(world).get("requireOpen",true)) and bool(group.get("constructionVariant",false)) and not str(group.get("stationNamingSource","")).is_empty()
 
 static func station_instance_id(group:Dictionary,historical_id:String) -> String:
 	var alias := Catalog.station_instance_alias(group, historical_id)
@@ -340,7 +318,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 			var distance := Geo.local_m(station.latlng, reference_lat).distance_to(Geo.local_m(target.get("latlng", station.latlng), reference_lat))
 			if distance > float(target.get("toleranceM",100)):
 				issues.append({"text":"%s 超出目标站区 %.0f 米容差。" % [str(target.get("name","车站")),float(target.get("toleranceM",100))],"kind":"station","objectId":str(station.id),"latlng":station.latlng}); group_valid = false
-			if group.get("stationNames",{}).has(target_id) and str(station.get("name",""))!=str(target.get("name","")):
+			if group.get("stationNames",{}).has(target_id) and str(station.get("name",""))!=str(target.get("name","")) and not _uses_planned_names(world,group):
 				issues.append({"text":"请在车站详情将「%s」更名为本章名称「%s」。" % [str(station.get("name","车站")),str(target.name)],"kind":"station","objectId":str(station.id),"latlng":station.latlng});group_valid=false
 			ids.append(str(station.id))
 		if not group_valid: continue
@@ -404,7 +382,10 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 			paths.append(ordered)
 		if bool(group.get("loop",false)) and not prior_end.is_empty() and prior_end==first_departure:
 			issues.append({"text":"环线首站的闭合区间与出发区间接在同一站端，尚未形成连续环线。","kind":"station","objectId":str(ids[0])});group_valid=false
-		var default_status:="open" if bool(ch.get("requireOpen",true)) and ch.get("serviceTransitions",[]).is_empty() else "built"
+		# A status action belongs to its named line. A chapter can reconcile
+		# many other open lines at the same time; do not reset them to built.
+		var has_status_action:bool=ch.get("serviceTransitions",[]).any(func(t:Dictionary):return str(t.get("historicalLineId",""))==str(group.get("historicalLineId","")))
+		var default_status:="open" if bool(ch.get("requireOpen",true)) and not has_status_action else "built"
 		default_status=str(group.get("defaultServiceStatus",default_status))
 		var segment_statuses:Array=[]
 		for segment_index in range(paths.size()):
@@ -420,6 +401,11 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		if bool(group.get("constructionVariant",false)):
 			route["constructionVariantId"]=str(group.get("taskId",group.get("coverageGroupId","")))
 			route["id"]+="_construction_"+str(route.constructionVariantId).sha256_text().substr(0,12)
+		if _uses_planned_names(world,group):
+			var planned_names:Dictionary={}
+			for index in range(ids.size()):planned_names[str(ids[index])]=str(reference_map.get(station_instance_id(group,str(group.stationIds[index])),{}).get("name",""))
+			route["plannedStationNames"]=planned_names
+			route["plannedNameSource"]=str(group.stationNamingSource)
 		if bool(group.get("reconfirmLaterServices",false)):route["reconfirmLaterServices"]=true
 		if group.has("retainDocumentedFutureService"):route["retainDocumentedFutureService"]=bool(group.retainDocumentedFutureService)
 		if group_valid and paths.size()==maxi(0,ids.size()-1):
@@ -842,6 +828,10 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 		world.routes[route_index] = _merge_historical_route(existing, route)
 
 static func _preserve_documented_service_section(world:Dictionary,old_route:Dictionary,replacement:Dictionary,group:Dictionary) -> Dictionary:
+	# An earlier release may have merged a future construction variant into
+	# the live service. Preserve its geometry, not that erroneous open branch.
+	# Its normal future task will explicitly restore the separate variant.
+	if bool(group.get("constructionVariant",false)):return replacement
 	var wanted:Array=[]
 	for id in group.get("stationIds",[]):
 		var station:=_station_for_instance(world,station_instance_id(group,str(id)))

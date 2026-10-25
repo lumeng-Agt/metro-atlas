@@ -225,7 +225,7 @@ def main() -> int:
                 if identity not in resolved_ids or reference not in catalog:
                     fail(f'group {key}: invalid line-specific station reference {identity}: {reference}')
             group['stationReferenceIds'] = references
-        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId', 'servicePathRevision', 'constructionVariant'):
+        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId', 'servicePathRevision', 'constructionVariant', 'stationNamingSource', 'stationNamingSources'):
             if field in group_spec:
                 group[field] = group_spec[field]
         if float(group["toleranceM"]) <= 0:
@@ -308,6 +308,9 @@ def main() -> int:
     }
     if plan["sourcePublicationDate"] is None:
         plan["publicationDateNote"] = str(plan_spec["publicationDateNote"])
+    for field in ('requiresLineReorganization', 'constructionProfile', 'stationProfiles', 'operationType', 'operationGuide', 'additionalSources', 'sourceArchive'):
+        if field in plan_spec:
+            plan[field] = plan_spec[field]
 
     summary = {
         "plan": plan["id"],
@@ -369,6 +372,9 @@ def main() -> int:
         if not current or revision_key(incoming) >= revision_key(current):
             campaigns["contentRevision"] = incoming
             campaigns["contentRevisionNote"] = str(plan_spec.get("contentRevisionNote", ""))
+        baseline_revision = str(baseline.get("contentRevision", ""))
+        if not baseline_revision or revision_key(incoming) >= revision_key(baseline_revision):
+            baseline["contentRevision"] = incoming
 
     write(CITY_PATH, cities)
     write(CAMPAIGN_PATH, campaigns)

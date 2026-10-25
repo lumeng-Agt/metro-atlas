@@ -1,4 +1,5 @@
 extends SceneTree
+const Flow=preload("res://tests/story_test_flow.gd")
 var checks:=0
 var failures:Array[String]=[]
 func _initialize():call_deferred("run")
@@ -46,14 +47,14 @@ func run():
 	var bad:=WorldData.new_world("shanghai","campaign");bad.schemaVersion=WorldData.SAVE_VERSION+1
 	check(not SaveManager.validate(bad).is_empty(),"未知新版本拒绝")
 	var app:=preload("res://scripts/main.gd").new();root.add_child(app);await process_frame
-	app._new_game("shanghai",false);app._begin_chapter();app._tool("track")
+	app._new_game("shanghai",false);check(await Flow.reach_first_construction(app),"检查流程正常经过历史序章");app._begin_chapter();app._tool("track")
 	app.map_view.track_start_ref={"latlng":[31,121]};app._check()
 	check(app.tool=="select" and app.map_view.track_start_ref.is_empty(),"铺轨状态检查章节会退出草稿，展示结果不被工具页覆盖")
 	check(not app.evaluation.is_empty(),"真实检查结果保持在详情中")
-	app._new_game("shanghai",false);app._begin_chapter()
+	app._new_game("shanghai",false);check(await Flow.reach_first_construction(app),"移站夹具正常经过历史序章");app._begin_chapter()
 	var completed:Dictionary=app._assist_candidate()
 	if completed.has("state"):
-		for key in ["stations","trackNodes","trackEdges"]:app.world[key]=completed.state[key]
+		check(bool(app._commit_assisted_construction(completed,int(app.world.revision)).get("ok",false)),"移站前的辅助建设通过正常提交")
 		var original:Dictionary=app.world.stations[0]
 		var changed:=original.duplicate(true);changed.latlng=Geo.offset(original.latlng,3,270)
 		app.rules.world=app.world

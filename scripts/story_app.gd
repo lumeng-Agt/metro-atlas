@@ -1029,8 +1029,12 @@ func _right() -> void:
 			right.add_child(button("保存站名",func():_rename_station(name_input.text)))
 		else:
 			for target in Story.targets(world,true):
-				if str(target.id)==str(st.get("historicalId","")) and str(target.name)!=str(st.name):
+				if str(target.get("stationInstanceId",""))!=str(st.get("stationInstanceId",st.id)) or str(target.name)==str(st.name):continue
+				if bool(target.get("historicalNameRequired",false)):
 					var value:=str(target.name);right.add_child(button("确认历史更名："+value,_rename_station.bind(value)))
+				else:
+					right.add_child(label("本期规划名称："+str(target.name),16,true))
+					right.add_child(label("用于核对本期方案；当前开放站名保留。",15))
 		right.add_child(button("移动车站",func():tool="move_station";map_view.tool=tool;_instruction()))
 		var advanced:=CheckButton.new();advanced.text="高级几何编辑";advanced.button_pressed=advanced_edit;advanced.toggled.connect(func(value:bool):advanced_edit=value;_right());right.add_child(advanced)
 		if advanced_edit:_angle(st,false)
@@ -1038,12 +1042,12 @@ func _right() -> void:
 		right.add_child(label("建设形式："+str(st.get("constructionForm","待核验")),15))
 		right.add_child(label(str(st.get("constructionNote","车型、站体及埋深为游戏示意，历史参数待核验。")),15))
 		right.add_child(label("历史身份：%s" % str(st.get("historicalId","自定车站")),15))
-		var complex_id:=str(st.get("stationComplexId",""))
+		var complex_id:=Catalog.canonical_station_complex(str(world.cityId),str(st.get("stationComplexId","")))
 		if not complex_id.is_empty():
 			right.add_child(label("所属换乘站区：%s" % complex_id,16,true))
 			for member in world.get("stations",[]):
-				if str(member.get("stationComplexId",""))!=complex_id or str(member.get("id",""))==str(st.get("id","")):continue
-				right.add_child(button("切换到另一线路站体 · %s" % str(member.get("stationLineId",member.get("name","站体"))),func():selected_id=str(member.id);selected_kind="station";map_view.selected_id=selected_id;_right();_layout()))
+				if Catalog.canonical_station_complex(str(world.cityId),str(member.get("stationComplexId","")))!=complex_id or str(member.get("id",""))==str(st.get("id","")):continue
+				right.add_child(button("切换到另一线路站体 · %s" % _station_line_name(member),func():selected_id=str(member.id);selected_kind="station";map_view.selected_id=selected_id;_right();_layout()))
 		actions.add_child(button("删除车站",_delete))
 	elif selected_kind=="link":
 		right.add_child(label("轨道区间",24,true))

@@ -106,6 +106,12 @@ def validate(spec: dict, city: dict, existing_lines: set[str]) -> list[str]:
             errors.append(f"group {key}: duplicate station in order")
         if not str(group.get("precisionNote", "")).strip():
             errors.append(f"group {key}: precisionNote is required")
+        if "stationNamingSource" in group:
+            naming_source = group["stationNamingSource"]
+            if not isinstance(naming_source, str) or not naming_source.startswith(("https://", "http://")):
+                errors.append(f"group {key}: stationNamingSource needs a public source URL")
+            if not group.get("constructionVariant"):
+                errors.append(f"group {key}: planning names require a separate constructionVariant")
         points: list[list[float]] = []
         for station_id in ids:
             entry = stations.get(station_id)

@@ -130,6 +130,14 @@ static func validate(data: Dictionary) -> String:
 				if not ref is Dictionary or not edge_ids.has(str(ref.get("id",""))):return "历史服务范围引用了不存在的实体轨道。"
 	for route in data.get("routes",[]):
 		if not route.get("stationOrder",[]) is Array or not route.get("directions",[]) is Array:return "线路站序或方向格式错误。"
+		if route.has("plannedStationNames"):
+			if str(route.get("constructionVariantId","")).is_empty() or bool(route.get("open",false)) or str(route.get("plannedNameSource","")).is_empty():return "规划名称只能用于有来源的未开放建设方案。"
+			if not route.plannedStationNames is Dictionary:return "规划站名容器错误。"
+			for station_id in route.plannedStationNames:
+				if not route.stationOrder.has(str(station_id)) or not route.plannedStationNames[station_id] is String or str(route.plannedStationNames[station_id]).is_empty():return "规划站名引用了本方案之外的站体或无效名称。"
+			for direction in route.directions:
+				if not direction is Dictionary or not direction.get("serviceStatusBySegment",[]) is Array:return "规划线路状态格式错误。"
+				if direction.get("serviceStatusBySegment",[]).any(func(status:Variant):return str(status)!="built"):return "规划名称不能用来改写已开放线路的停站。"
 		for id in route.get("stationOrder",[]):
 			if not indexes.stations.has(str(id)):return "线路引用了不存在的车站。"
 		for direction in route.get("directions",[]):

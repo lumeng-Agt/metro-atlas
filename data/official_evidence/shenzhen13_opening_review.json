@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-25",
+  "historicalLineId": "shenzhen-line13-14",
+  "sourceSnapshots": [
+    {
+      "id": "operatorOrder",
+      "url": "https://www.mtrsz.com.cn/frontend/default/src/channel/line_introduce_13Line.html",
+      "httpStatus": 200,
+      "captured": true,
+      "sha256": "86326bd0a2a48e7811b6e4d075b69c54f39d9cb6b33e99d05db5e2e77b9ec78a",
+      "bytes": 7727
+    },
+    {
+      "id": "southScope",
+      "url": "https://ka.sz.gov.cn/gkmlpt/content/11/11673/mpost_11673022.html",
+      "captured": false,
+      "error": "SSLError"
+    },
+    {
+      "id": "southOpeningRetrospective",
+      "url": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202512/105561.html",
+      "httpStatus": 200,
+      "captured": true,
+      "sha256": "52438f71720af3d71ecadc46b4685c85e84f201b9f6f81acc630d34e2183e613",
+      "bytes": 14678
+    },
+    {
+      "id": "phaseOneOpening",
+      "url": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+      "captured": false,
+      "error": "SSLError"
+    },
+    {
+      "id": "northExtensionOpening",
+      "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+      "captured": false,
+      "error": "SSLError"
+    },
+    {
+      "id": "unopenedXili",
+      "url": "https://hmo.sz.gov.cn/zx/wqzc/content/post_1642610.html",
+      "captured": false,
+      "error": "SSLError"
+    }
+  ],
+  "openings": [
+    {
+      "effectiveDate": "2024-12-28",
+      "stationNames": [
+        "深圳湾口岸",
+        "人才公园",
+        "后海",
+        "科苑",
+        "粤海门",
+        "深大",
+        "高新中"
+      ],
+      "dateSource": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202512/105561.html",
+      "orderSource": "https://ka.sz.gov.cn/gkmlpt/content/11/11673/mpost_11673022.html"
+    },
+    {
+      "effectiveDate": "2025-12-28",
+      "stationNames": [
+        "深圳湾口岸",
+        "人才公园",
+        "后海",
+        "科苑",
+        "粤海门",
+        "深大",
+        "高新中",
+        "高新北",
+        "石鼓",
+        "留仙洞",
+        "百旺",
+        "应人石",
+        "罗租",
+        "石岩",
+        "上屋"
+      ],
+      "dateSource": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+      "orderSource": "https://www.mtrsz.com.cn/frontend/default/src/channel/line_introduce_13Line.html"
+    },
+    {
+      "effectiveDate": "2026-06-28",
+      "stationNames": [
+        "深圳湾口岸",
+        "人才公园",
+        "后海",
+        "科苑",
+        "粤海门",
+        "深大",
+        "高新中",
+        "高新北",
+        "石鼓",
+        "留仙洞",
+        "百旺",
+        "应人石",
+        "罗租",
+        "石岩",
+        "上屋",
+        "红坳公园",
+        "光明城",
+        "德雅路",
+        "凤凰城",
+        "月亮路",
+        "将围",
+        "新庄",
+        "公明广场",
+        "上村",
+        "下村",
+        "李松蓢"
+      ],
+      "dateSource": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+      "orderSource": "https://www.mtrsz.com.cn/frontend/default/src/channel/line_introduce_13Line.html"
+    }
+  ],
+  "excludedStops": [
+    {
+      "name": "西丽高铁",
+      "status": "not_open",
+      "source": "https://hmo.sz.gov.cn/zx/wqzc/content/post_1642610.html",
+      "note": "为配合西丽枢纽建设越站；26站运营序列不将其计为开放停站。"
+    }
+  ],
+  "limits": "公开站序与日期的独立核对，不是隧道测绘；不审核其余16条路径或五城完整性。"
+}

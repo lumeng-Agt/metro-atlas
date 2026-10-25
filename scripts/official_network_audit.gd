@@ -50,7 +50,13 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 			for direction in route.get("directions",[]):
 				var ids:Array=direction.get("stationIds",[])
 				var names:Array=[]
-				for id in ids:names.append(str(WorldData.find_station(world,str(id)).get("name","")))
+				for id in ids:
+					var name:=str(WorldData.find_station(world,str(id)).get("name",""))
+					# Future scheme labels must not rename an existing open station.
+					# Only an independently sourced construction variant may supply
+					# contextual names; historical/cutoff checks keep the real name.
+					if construction_only and not str(route.get("constructionVariantId","")).is_empty() and not str(expected.get("stationNamingSource","")).is_empty() and str(route.get("plannedNameSource",""))==str(expected.stationNamingSource):name=str(route.get("plannedStationNames",{}).get(str(id),name))
+					names.append(name)
 				for forbidden in expected.get("forbiddenStationNames",[]):
 					if names.has(forbidden):errors.append("%s: superseded scope still serves %s" % [str(expected.id),str(forbidden)])
 				for offset in range(maxi(0,names.size()-wanted.size()+1)):
@@ -63,6 +69,8 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 					var previous_end:="";var first_start:=""
 					for i in range(offset,offset+wanted.size()):
 						var body:=WorldData.find_station(world,str(ids[i]))
+						var required_instance:=str(expected.get("requiredStationInstances",{}).get(str(names[i]),""))
+						if not required_instance.is_empty() and str(body.get("stationInstanceId",body.get("id","")))!=required_instance:errors.append("%s: documented physical body differs at %s"%[str(expected.id),str(names[i])])
 						var body_line:=str(body.get("stationLineId",line_id))
 						var shared:Array=expected.get("sharedBodyLines",{}).get(str(names[i]),[])
 						var permitted_shared:bool=(i==offset or i==offset+wanted.size()-1) and shared.has(body_line) and not str(expected.get("sharedBodyEvidence","")).is_empty()

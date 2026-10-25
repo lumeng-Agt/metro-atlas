@@ -28,6 +28,7 @@ def main():
                 purpose='复用首开六站，补齐四座暂缓站，并分别确认新增换乘。',outcome='19号线10站全部投入试运营，平安里与景风门新增换乘。',
                 eventKind='network_expansion',steps=deepcopy(first['story']['steps']),beats=[],planVersions=[]))
         chapters[id_]=infill
+    infill['operationGuide']='复用首开六站，补齐北太平庄、平安里、太平桥和景风门的站体及连续轨道，再确认新增换乘与十站试运营范围。'
     for chapter,order,task,source,publication in [(first,FIRST,'route:beijing-r19',OPEN,'2022-01-03'),
             (infill,FULL,'opening:bj19-infill',INFILL,'2022-07-29')]:
         ids=[lookup[n] for n in order];group=deepcopy(template)

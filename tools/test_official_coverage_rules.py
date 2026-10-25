@@ -11,6 +11,16 @@ class CoverageRules(unittest.TestCase):
         self.plans = [dict(projectIds=['fixture'], lineGroups=[dict(historicalLineId='line', stationIds=['a', 'b', 'c'], loop=True)])]
         self.names = dict(a='A', b='B', c='C')
 
+    def test_rebuilt_body_cannot_be_replaced_by_same_name_old_body(self):
+        self.target['groups'][0]['requiredStationInstances']={'B':'rebuilt-b'}
+        self.assertTrue(any('physical body differs' in e for e in check_project(self.target,self.plans,self.names)))
+        self.plans[0]['lineGroups'][0]['stationInstances']={'b':'rebuilt-b'}
+        self.assertEqual(check_project(self.target,self.plans,self.names), [])
+
+    def test_required_rebuilt_body_without_matching_station_name_fails(self):
+        self.target['groups'][0]['requiredStationInstances']={'D':'rebuilt-d'}
+        self.assertTrue(any('physical body differs' in e for e in check_project(self.target,self.plans,self.names)))
+
     def engineering_fixture(self):
         return dict(taskKind='engineering_track', source='https://example.invalid/engineering-fixture', stationIds=['existing'],
                     engineeringEndpoints=[dict(id='anchor', name='Existing station end', stationId='existing', stationInstanceId='existing-body'),

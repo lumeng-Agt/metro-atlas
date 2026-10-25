@@ -1,0 +1,77 @@
+{
+  "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+  "archive": "https://web.archive.org/web/20211023062003id_/https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+  "retrievedAt": "2026-10-25",
+  "sha256": "6a52bdd82484c0bada941d95b041a5c8cb18acbca6cefebf85a95a5437ce0c82",
+  "bytes": 29683376,
+  "locators": [
+    "76页2.3.2工程内容",
+    "77页表2-3-1及2-3-2",
+    "80—82页表2-3-7及表2-3-8"
+  ],
+  "originalOrders": {
+    "13A": [
+      "车公庄",
+      "西直门",
+      "学院南路",
+      "大钟寺",
+      "知春路",
+      "保福寺",
+      "五道口",
+      "清华东路西口",
+      "上地",
+      "清河",
+      "西二旗",
+      "新龙泽",
+      "回龙观西",
+      "文华路",
+      "回龙观东大街",
+      "回龙观东",
+      "天通苑",
+      "东三路",
+      "天通苑东"
+    ],
+    "13B": [
+      "马连洼",
+      "软件园",
+      "后厂村",
+      "新龙泽",
+      "还建龙泽",
+      "回龙观",
+      "霍营",
+      "建材城东",
+      "立水桥",
+      "北苑",
+      "望京西",
+      "芍药居",
+      "光熙门",
+      "柳芳",
+      "东直门"
+    ]
+  },
+  "namingSource": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
+  "publicConsultationMap": "https://beijing.tianditu.gov.cn/gzwonemap/dtgs0.html?lb=dmgs&id=30BD3AACE34A01A8E063C0A3010CDF61",
+  "coordinatePolicy": "公示地图点仅用于核对站区，不当作测绘中心。四道口采用本地道路交叉点，保福寺与东小口采用既有13号线轨道参考点；保留全部既有站体位置。龙泽重建参考点仅按官方旧站东侧约110米说明近似。未给未知精度填数值。",
+  "licensedReferenceNodes": [
+    1748306003,
+    3060379046,
+    1090671700
+  ],
+  "importantScopeDifference": "2024概要写13A18站，2021详细环评明确19站且2024保福寺施工许可证明未取消；不能取概要删站。",
+  "namingRevision": {
+    "source": "https://yewu.ghzrzyw.beijing.gov.cn/zkdncms/cxghphgsdmgg/esSearchDetail/31f464cd7a73878d2e5efed190a8559e",
+    "record": {
+      "zsmc": "龙泽西站",
+      "wh": "2025（昌）地名命字0016号",
+      "wz": "昌平区回龙观街道，沿规划回创路敷设",
+      "publishTime": "1766592000000",
+      "createDateTime": "1767504939000",
+      "mapUrl": "https://beijing.tianditu.gov.cn/gzwonemap/dtgs0.html?lb=dmgg&id=46D169AEC7280208E063C0A3010C510B"
+    },
+    "effectiveDate": "2025-12-25",
+    "retrievedAt": "2026-10-25",
+    "sha256": "d26935542a1d1436a872a0df2bc7732d5e55f43a453d049c59e352af2347d1f4",
+    "previousName": "北郊农场桥",
+    "note": "8月定名后12月正式更名；以当前批准名称复现后续扩能，保留早期资料名称，不搬动既有站体。"
+  }
+}

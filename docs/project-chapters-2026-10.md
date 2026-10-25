@@ -28,10 +28,10 @@
 | 3号线一期（管庄路西口—曹各庄北） | 可玩建设章 | 1 | 6 | corridor_only | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
 | 12号线东坝北—东坝北街段 | 可玩建设章 | 1 | 2 | corridor_only | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
 | 28号线 | 可玩建设章 | 1 | 9 | corridor_only | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
-| 13号线扩能提升工程 | 工程条目 | 0 | — | — | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
+| 13号线扩能提升工程 | 可玩建设章 | 1 | 34 | corridor_only | [13号线扩能提升完整环评及2025定名](https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf) |
 | 1号线支线 | 可玩建设章 | 1 | 10 | corridor_only | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
 | 新机场线（草桥—丽泽商务区） | 可玩建设章 | 1 | 2 | corridor_only | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
-| 亦庄线至5号线、10号线联络工程 | 工程条目 | 0 | — | — | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
+| 亦庄线至5号线、10号线联络工程 | 可玩建设章 | 1 | 38 | corridor_only | [亦庄线至5号线、10号线联络工程最终环评及可研批复](https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf) |
 
 ## 广州
 
@@ -79,9 +79,9 @@
 
 ## 合计
 
-- 可玩建设章：43
+- 可玩建设章：45
 - 政策条目：2
-- 工程条目：2
+- 工程条目：0
 - 待制作：1
 
 走廊复现章（`corridor_only`）只表示按官方公开资料可核对的端点／换乘站与走廊，未公开的逐站站位不虚构坐标；判定依据见各章 `precisionNote`。

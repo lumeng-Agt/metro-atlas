@@ -1,0 +1,661 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-line13-capacity"
+  ],
+  "stations": [
+    {
+      "id": "beijing-s100",
+      "name": "大钟寺",
+      "existing": true
+    },
+    {
+      "id": "beijing-s99",
+      "name": "知春路",
+      "existing": true
+    },
+    {
+      "id": "beijing-s98",
+      "name": "五道口",
+      "existing": true
+    },
+    {
+      "id": "beijing-s97",
+      "name": "上地",
+      "existing": true
+    },
+    {
+      "id": "beijing-s96",
+      "name": "清河",
+      "existing": true
+    },
+    {
+      "id": "beijing-s95",
+      "name": "西二旗",
+      "existing": true
+    },
+    {
+      "id": "beijing-open18-huilongguanwest",
+      "name": "回龙观西大街",
+      "existing": true
+    },
+    {
+      "id": "beijing-open18-wenhualu",
+      "name": "文华路",
+      "existing": true
+    },
+    {
+      "id": "beijing-s149",
+      "name": "回龙观东大街",
+      "existing": true
+    },
+    {
+      "id": "beijing-s412",
+      "name": "霍营东",
+      "existing": true
+    },
+    {
+      "id": "beijing-s413",
+      "name": "天通苑",
+      "existing": true
+    },
+    {
+      "id": "beijing-s414",
+      "name": "太平庄",
+      "existing": true
+    },
+    {
+      "id": "beijing-s377",
+      "name": "天通苑东",
+      "existing": true
+    },
+    {
+      "id": "beijing-s411",
+      "name": "马连洼",
+      "existing": true
+    },
+    {
+      "id": "beijing-open18-softwarepark",
+      "name": "上地软件园",
+      "existing": true
+    },
+    {
+      "id": "beijing-open18-dongbeiwang",
+      "name": "东北旺",
+      "existing": true
+    },
+    {
+      "id": "beijing-open18-longzexi",
+      "name": "龙泽西",
+      "existing": true
+    },
+    {
+      "id": "beijing-s93",
+      "name": "回龙观",
+      "existing": true
+    },
+    {
+      "id": "beijing-s92",
+      "name": "霍营",
+      "existing": true
+    },
+    {
+      "id": "beijing-s91",
+      "name": "立水桥",
+      "existing": true
+    },
+    {
+      "id": "beijing-s90",
+      "name": "北苑",
+      "existing": true
+    },
+    {
+      "id": "beijing-s89",
+      "name": "望京西",
+      "existing": true
+    },
+    {
+      "id": "beijing-s88",
+      "name": "芍药居",
+      "existing": true
+    },
+    {
+      "id": "beijing-s87",
+      "name": "光熙门",
+      "existing": true
+    },
+    {
+      "id": "beijing-s86",
+      "name": "柳芳",
+      "existing": true
+    },
+    {
+      "id": "beijing-s85",
+      "name": "东直门",
+      "existing": true
+    },
+    {
+      "id": "beijing-s84",
+      "name": "车公庄",
+      "existing": true
+    },
+    {
+      "id": "beijing-s69",
+      "name": "西直门",
+      "existing": true
+    },
+    {
+      "id": "beijing-s1",
+      "name": "清华东路西口",
+      "existing": true
+    },
+    {
+      "id": "beijing-cap13-sidaokou",
+      "name": "四道口",
+      "latlng": [
+        39.9567418,
+        116.3418538
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "学院南路与四道口片区，参考本地OSM旧道口节点1748306003及2025公示道路关系；站体中心近似。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html"
+    },
+    {
+      "id": "beijing-cap13-baofusi",
+      "name": "保福寺",
+      "latlng": [
+        39.9847699,
+        116.3321537
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "北四环南侧既有13号线高架走廊，本地OSM节点3060379046／way122090412；不是公示地图标签中心或工程测绘。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html"
+    },
+    {
+      "id": "beijing-cap13-dongxiaokou",
+      "name": "东小口",
+      "latlng": [
+        40.0619197,
+        116.38003
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "建材城东路北侧既有13号线走廊，本地OSM节点1090671700／way1485871543；位置近似，不采用同名村落或公交站中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html"
+    },
+    {
+      "id": "beijing-s94",
+      "name": "龙泽",
+      "existing": true
+    },
+    {
+      "id": "beijing-cap13-longze-rebuild-reference",
+      "name": "龙泽重建站参考点",
+      "latlng": [
+        40.0695935,
+        116.31448274514125
+      ],
+      "coordinateSource": "official_site_description",
+      "coordinateNote": "依据2025定名说明的旧站东侧约110米构造近似站区参考点；不是工程坐标，不移动旧龙泽站。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "A",
+      "mapRouteId": "beijing-future-capacity13A",
+      "name": "13A线扩能最终建设关系",
+      "historicalLineId": "beijing-capacity13A",
+      "color": "#F6D547",
+      "stationIds": [
+        "beijing-s84",
+        "beijing-s69",
+        "beijing-cap13-sidaokou",
+        "beijing-s100",
+        "beijing-s99",
+        "beijing-cap13-baofusi",
+        "beijing-s98",
+        "beijing-s1",
+        "beijing-s97",
+        "beijing-s96",
+        "beijing-s95",
+        "beijing-open18-longzexi",
+        "beijing-open18-huilongguanwest",
+        "beijing-open18-wenhualu",
+        "beijing-s149",
+        "beijing-s412",
+        "beijing-s413",
+        "beijing-s414",
+        "beijing-s377"
+      ],
+      "stationInstances": {
+        "beijing-s84": "beijing-s84__capacity13A",
+        "beijing-s69": "beijing-s69__capacity13A",
+        "beijing-cap13-sidaokou": "beijing-cap13-sidaokou__capacity13A",
+        "beijing-s100": "beijing-s100__line13-13",
+        "beijing-s99": "beijing-s99__line13-13",
+        "beijing-cap13-baofusi": "beijing-cap13-baofusi__capacity13A",
+        "beijing-s98": "beijing-s98",
+        "beijing-s1": "beijing-s1__capacity13A",
+        "beijing-s97": "beijing-s97",
+        "beijing-s96": "beijing-s96__line13-13",
+        "beijing-s95": "beijing-s95__line13-13",
+        "beijing-open18-longzexi": "beijing-open18-longzexi",
+        "beijing-open18-huilongguanwest": "beijing-open18-huilongguanwest",
+        "beijing-open18-wenhualu": "beijing-open18-wenhualu",
+        "beijing-s149": "beijing-s149__line18-18",
+        "beijing-s412": "beijing-s412",
+        "beijing-s413": "beijing-s413",
+        "beijing-s414": "beijing-s414",
+        "beijing-s377": "beijing-s377__line18-18"
+      },
+      "toleranceM": 250,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "2021环评19站13A及15站13B完整范围，2025定名并采用12月龙泽西更名公告；复用已有站轨，南部与重建站体单独建设。高程、站体尺寸与站外连接为游戏示意；不宣称施工线位精度。规划名称另存，当前开放站名和服务保留。",
+      "stationOrderSource": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "stationNamingSource": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
+      "stationNamingSources": [
+        "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
+        "https://yewu.ghzrzyw.beijing.gov.cn/zkdncms/cxghphgsdmgg/esSearchDetail/31f464cd7a73878d2e5efed190a8559e"
+      ],
+      "constructionVariant": true,
+      "officialLengthM": 31200
+    },
+    {
+      "key": "B",
+      "mapRouteId": "beijing-future-capacity13B",
+      "name": "13B线扩能最终建设关系",
+      "historicalLineId": "beijing-capacity13B",
+      "color": "#DFB133",
+      "stationIds": [
+        "beijing-s411",
+        "beijing-open18-softwarepark",
+        "beijing-open18-dongbeiwang",
+        "beijing-open18-longzexi",
+        "beijing-s94",
+        "beijing-s93",
+        "beijing-s92",
+        "beijing-cap13-dongxiaokou",
+        "beijing-s91",
+        "beijing-s90",
+        "beijing-s89",
+        "beijing-s88",
+        "beijing-s87",
+        "beijing-s86",
+        "beijing-s85"
+      ],
+      "stationInstances": {
+        "beijing-s411": "beijing-s411",
+        "beijing-open18-softwarepark": "beijing-open18-softwarepark",
+        "beijing-open18-dongbeiwang": "beijing-open18-dongbeiwang",
+        "beijing-open18-longzexi": "beijing-open18-longzexi__capacity13B",
+        "beijing-s94": "beijing-s94__capacity13B-rebuilt",
+        "beijing-s93": "beijing-s93",
+        "beijing-s92": "beijing-s92__line13-13",
+        "beijing-cap13-dongxiaokou": "beijing-cap13-dongxiaokou__capacity13B",
+        "beijing-s91": "beijing-s91__line13-13",
+        "beijing-s90": "beijing-s90",
+        "beijing-s89": "beijing-s89__line13-13",
+        "beijing-s88": "beijing-s88__line13-13",
+        "beijing-s87": "beijing-s87__line13-13",
+        "beijing-s86": "beijing-s86",
+        "beijing-s85": "beijing-s85"
+      },
+      "toleranceM": 250,
+      "alignmentPrecision": "corridor_only",
+      "precisionNote": "2021环评19站13A及15站13B完整范围，2025定名并采用12月龙泽西更名公告；复用已有站轨，南部与重建站体单独建设。高程、站体尺寸与站外连接为游戏示意；不宣称施工线位精度。规划名称另存，当前开放站名和服务保留。",
+      "stationOrderSource": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "stationNamingSource": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
+      "stationNamingSources": [
+        "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
+        "https://yewu.ghzrzyw.beijing.gov.cn/zkdncms/cxghphgsdmgg/esSearchDetail/31f464cd7a73878d2e5efed190a8559e"
+      ],
+      "constructionVariant": true,
+      "officialLengthM": 32200,
+      "stationReferenceIds": {
+        "beijing-s94": "beijing-cap13-longze-rebuild-reference"
+      }
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-bj13A-车公庄-beijing-lineearly1",
+      "name": "车公庄",
+      "complexId": "beijing-s84",
+      "stationInstanceIds": [
+        "beijing-s84__capacity13A",
+        "beijing-s84__line1"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-lineearly1"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-车公庄-beijing-line6-6",
+      "name": "车公庄",
+      "complexId": "beijing-s84",
+      "stationInstanceIds": [
+        "beijing-s84__capacity13A",
+        "beijing-s84__line6-6"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line6-6"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-西直门-beijing-lineearly1",
+      "name": "西直门",
+      "complexId": "beijing-s69",
+      "stationInstanceIds": [
+        "beijing-s69__capacity13A",
+        "beijing-s69__line1"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-lineearly1"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-西直门-beijing-line4-4",
+      "name": "西直门",
+      "complexId": "beijing-s69",
+      "stationInstanceIds": [
+        "beijing-s69__capacity13A",
+        "beijing-s69__line4-4"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line4-4"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-大钟寺-beijing-line12-12",
+      "name": "大钟寺",
+      "complexId": "beijing-s100",
+      "stationInstanceIds": [
+        "beijing-s100__line13-13",
+        "beijing-s100__line12-12"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line12-12"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-知春路-beijing-line10-10",
+      "name": "知春路",
+      "complexId": "beijing-s99",
+      "stationInstanceIds": [
+        "beijing-s99__line13-13",
+        "beijing-s99__line10-10"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line10-10"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-清华东路西口-beijing-line15-15",
+      "name": "清华东路西口",
+      "complexId": "beijing-s1",
+      "stationInstanceIds": [
+        "beijing-s1__capacity13A",
+        "beijing-s1"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line15-15"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-清河-beijing-route-20",
+      "name": "清河",
+      "complexId": "beijing-s96",
+      "stationInstanceIds": [
+        "beijing-s96__line13-13",
+        "beijing-s96__line20"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-route-20"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-西二旗-beijing-route-20",
+      "name": "西二旗",
+      "complexId": "beijing-s95",
+      "stationInstanceIds": [
+        "beijing-s95__line13-13",
+        "beijing-s95__line20"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-route-20"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-回龙观东大街-beijing-line8-8",
+      "name": "回龙观东大街",
+      "complexId": "beijing-s149",
+      "stationInstanceIds": [
+        "beijing-s149__line18-18",
+        "beijing-s149__line8-8"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line8-8"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-天通苑-beijing-line5-5",
+      "name": "天通苑",
+      "complexId": "beijing-s413",
+      "stationInstanceIds": [
+        "beijing-s413",
+        "beijing-s103"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line5-5"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13A-天通苑东-beijing-line17-17",
+      "name": "天通苑东",
+      "complexId": "beijing-s377",
+      "stationInstanceIds": [
+        "beijing-s377__line18-18",
+        "beijing-s377__line17-17"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-line17-17"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-马连洼-beijing-line16-16",
+      "name": "马连洼",
+      "complexId": "beijing-s411",
+      "stationInstanceIds": [
+        "beijing-s411",
+        "beijing-s352"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-line16-16"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-霍营-beijing-line8-8",
+      "name": "霍营",
+      "complexId": "beijing-s92",
+      "stationInstanceIds": [
+        "beijing-s92__line13-13",
+        "beijing-s92__line8-8"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-line8-8"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-立水桥-beijing-line5-5",
+      "name": "立水桥",
+      "complexId": "beijing-s91",
+      "stationInstanceIds": [
+        "beijing-s91__line13-13",
+        "beijing-s91__line5-5"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-line5-5"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-望京西-beijing-line15-15",
+      "name": "望京西",
+      "complexId": "beijing-s89",
+      "stationInstanceIds": [
+        "beijing-s89__line13-13",
+        "beijing-s8"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-line15-15"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-望京西-beijing-line17-17",
+      "name": "望京西",
+      "complexId": "beijing-s89",
+      "stationInstanceIds": [
+        "beijing-s89__line13-13",
+        "beijing-s89__line17-17"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-line17-17"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-芍药居-beijing-line10-10",
+      "name": "芍药居",
+      "complexId": "beijing-s88",
+      "stationInstanceIds": [
+        "beijing-s88__line13-13",
+        "beijing-s88__line10-10"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-line10-10"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-东直门-beijing-lineearly1",
+      "name": "东直门",
+      "complexId": "beijing-s85",
+      "stationInstanceIds": [
+        "beijing-s85",
+        "beijing-s74__line1"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-lineearly1"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13B-东直门-beijing-route-23",
+      "name": "东直门",
+      "complexId": "beijing-s85",
+      "stationInstanceIds": [
+        "beijing-s85",
+        "beijing-s74__line23"
+      ],
+      "lineIds": [
+        "beijing-capacity13B",
+        "beijing-route-23"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评逐站换乘关系与现有线路身份对照；规划线路未开放，站体独立，换乘联系不进入轨道图。"
+    },
+    {
+      "id": "future-transfer-bj13capacity-newlongze",
+      "name": "龙泽西（环评新龙泽）",
+      "complexId": "beijing-open18-longzexi",
+      "stationInstanceIds": [
+        "beijing-open18-longzexi",
+        "beijing-open18-longzexi__capacity13B"
+      ],
+      "lineIds": [
+        "beijing-capacity13A",
+        "beijing-capacity13B"
+      ],
+      "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+      "sourceNote": "环评76、80—81页双岛四线结构，两线各绑定站体；同台换乘不等于共轨。"
+    }
+  ],
+  "plan": {
+    "id": "bj-line13-capacity-build",
+    "title": "13号线扩能提升 · 两条L形线路",
+    "date": "2026-10-01",
+    "status": "under_construction",
+    "projectType": "under_construction",
+    "sourceType": "operator_environmental_impact_report",
+    "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+    "sourceArchive": "https://web.archive.org/web/20211023062003id_/https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+    "sourceTitle": "北京轨道交通13号线扩能提升工程环境影响报告书（2021全文）及2025定名",
+    "sourcePublicationDate": "2021-10-21",
+    "sourceCheckedAt": "2026-10-25",
+    "description": "2021环评19站13A及15站13B完整范围，2025定名并采用12月龙泽西更名公告；复用已有站轨，南部与重建站体单独建设。高程、站体尺寸与站外连接为游戏示意；不宣称施工线位精度。规划名称另存，当前开放站名和服务保留。",
+    "contentRevision": "2026.10.25.12",
+    "requiresScopeRecheck": true,
+    "requiresLineReorganization": true,
+    "operationType": "reorganization",
+    "operationGuide": "复用既有站轨，补齐新增段和独立站体，再在「线路整理」核对两条L形路径；当前运营范围保留，成果为规划建设完成。",
+    "additionalSources": [
+      "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202105/t20210528_2401129.htm",
+      "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
+      "https://yewu.ghzrzyw.beijing.gov.cn/zkdncms/cxghphgsdmgg/esSearchDetail/31f464cd7a73878d2e5efed190a8559e"
+    ],
+    "required": true
+  }
+}

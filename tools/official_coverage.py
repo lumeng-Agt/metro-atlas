@@ -60,6 +60,11 @@ def check_project(target, plans, names, *, historical_construction=False):
                 errors.append(f'{group_id}: required corridor places missing')
         elif not wanted or not station_order_matches(actual, wanted, expected):
             errors.append(f'{group_id}: station order differs; missing={[n for n in wanted if n not in actual]}, unexpected={[n for n in actual if n not in wanted]}, expected={len(wanted)}, actual={len(actual)}')
+        for required_name, required_body in expected.get('requiredStationInstances', {}).items():
+            positions=[i for i,n in enumerate(actual) if n==required_name]
+            ids=group.get('stationIds',[])
+            if len(positions)!=1 or group.get('stationInstances',{}).get(ids[positions[0]],ids[positions[0]])!=required_body:
+                errors.append(f'{group_id}: documented physical body differs at {required_name}')
         if bool(group.get('loop', False)) != bool(expected.get('loop', False)):
             errors.append(f'{group_id}: loop closure requirement differs')
     for transfer in target.get('transfers', []):
