@@ -27,7 +27,7 @@ jobs:
       - name: Story, construction, saves and offline maps
         shell: pwsh
         run: |
-          $tests = @('story_checks.gd', 'story_019_checks.gd', 'story_020_checks.gd', 'story_0201_checks.gd', 'story_0202_checks.gd', 'story_022_transfer_checks.gd', 'story_save_checks.gd', 'save_queue_checks.gd', 'official_target_checks.gd', 'engineering_construction_checks.gd', 'sibling_scope_reconfirmation_checks.gd', 'planned_station_name_checks.gd', 'chapter_lookup_checks.gd', 'beijing13_capacity_checks.gd', 'yizhuang_connector_checks.gd', 'shenzhen13_opening_checks.gd', 'beijing1_cutoff_checks.gd', 'guangzhou_xilang_body_checks.gd', 'chengdu_infill_extension_checks.gd', 'guangzhou22_opening_checks.gd', 'story_geometry_checks.gd', 'story_layout_checks.gd', 'map_hit_checks.gd', 'basemap_async_smoke.gd', 'tile_cache_smoke.gd')
+          $tests = @('story_checks.gd', 'story_019_checks.gd', 'story_020_checks.gd', 'story_0201_checks.gd', 'story_0202_checks.gd', 'story_022_transfer_checks.gd', 'story_save_checks.gd', 'save_queue_checks.gd', 'official_target_checks.gd', 'engineering_construction_checks.gd', 'sibling_scope_reconfirmation_checks.gd', 'planned_station_name_checks.gd', 'chapter_lookup_checks.gd', 'beijing13_capacity_checks.gd', 'yizhuang_connector_checks.gd', 'shenzhen13_opening_checks.gd', 'beijing1_cutoff_checks.gd', 'guangzhou_xilang_body_checks.gd', 'chengdu_infill_extension_checks.gd', 'guangzhou22_opening_checks.gd', 'story_geometry_checks.gd', 'story_layout_checks.gd', 'map_hit_checks.gd', 'presentation_geometry_checks.gd', 'basemap_async_smoke.gd', 'tile_cache_smoke.gd')
           foreach ($test in $tests) {
             $data = Join-Path $env:RUNNER_TEMP ("metro-atlas-" + [guid]::NewGuid().ToString("N"))
             $output = godot --headless --path . --script "res://tests/$test" -- "--data-dir=$data" 2>&1
@@ -51,6 +51,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Project spec validation failed" }
           python tools/test_project_spec_rules.py
           if ($LASTEXITCODE -ne 0) { throw "Project spec rule regressions failed" }
+          python tools/test_operator_transfer_audit.py
+          if ($LASTEXITCODE -ne 0) { throw "Operator transfer diagnostic regressions failed" }
           python tools/test_gzmtr_operator_orders.py
           if ($LASTEXITCODE -ne 0) { throw "Operator station-order extraction failed" }
           python tools/validate_engineering_specs.py

@@ -46,6 +46,39 @@ func _run() -> void:
 	var station_hit: Dictionary = map._pick(map._to_screen([31.2304,121.4737]))
 	_check(str(station_hit.get("type",""))=="station_choice","overlapping physical station bodies request an explicit choice")
 	if failures.is_empty():
+		# Label grouping must follow the same independent bodies after a world
+		# replacement (including undo/reload), without retaining stale siblings.
+		map.world["cityId"]="shanghai"
+		for station in map.world.stations:
+			station["stationComplexId"]="fixture-complex"
+			station["stationInstanceId"]=str(station.id)
+		map.set_world(map.world)
+		_check(map.station_complex_bodies.get("fixture-complex",[])==["body-a","body-b"],"formal independent bodies have stable label order")
+		map.set_blueprint({"visible":true,"stations":[map.world.stations[1],map.world.stations[0]]})
+		_check(map.blueprint_complex_bodies.get("fixture-complex",[])==["body-a","body-b"],"blueprint input order does not change interchange label positions")
+		map._track_meshes[12]=ArrayMesh.new()
+		map.world.stations.pop_back();map.set_world(map.world)
+		_check(map.station_complex_bodies.get("fixture-complex",[])==["body-a"],"removing a body invalidates its cached sibling label")
+		_check(map._track_meshes.is_empty(),"world replacement invalidates retained track drawing meshes")
+		map.set_blueprint({"visible":false,"stations":[]})
+		_check(map.blueprint_complex_bodies.is_empty(),"clearing a blueprint releases its old sibling label groups")
+		var occupied:=Rect2(Vector2(-20,120),Vector2(300,20))
+		map._reserve_label(occupied)
+		_check(map._label_overlaps(Rect2(Vector2(270,125),Vector2(20,10))),"label index finds collisions beyond the origin cell")
+		_check(map._label_overlaps(Rect2(Vector2(-25,125),Vector2(10,10))),"label index includes negative screen coordinates")
+		_check(not map._label_overlaps(Rect2(Vector2(280,120),Vector2(10,20))),"touching label edges keep the original non-overlap rule")
+		_check(not map._label_overlaps(Rect2(Vector2(0,150),Vector2(300,20))),"nearby cells do not create false collisions")
+		var original:=PackedVector2Array([Vector2(0,0),Vector2(50,0.1),Vector2(100,0)])
+		var geometry:Dictionary={"packedPoints":original}
+		map.current_zoom=12
+		var rendered:Dictionary=map._render_geometry(geometry)
+		_check(geometry.packedPoints==original and rendered.packedPoints.size()==2,"display reduction preserves authoritative geometry")
+		var screen_points:=PackedVector2Array()
+		for point in rendered.packedPoints:screen_points.append(map._local_to_screen(point))
+		var expected:PackedVector2Array=map._offset_screen_polyline(screen_points,2.6)
+		var shifted:PackedVector2Array=map._offset_cached_local(rendered,2.6*map._camera_mpp)
+		_check(map._local_to_screen(shifted[0]).distance_to(expected[0])<0.05,"renderer transform preserves the signed shared-track lane offset")
+	if failures.is_empty():
 		print("PASS: %d map hit checks" % checks)
 		quit(0)
 	else:

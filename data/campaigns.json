@@ -21512,8 +21512,41 @@
               "officialLengthM": 18100
             }
           ],
-          "requiredTransfers": [],
-          "scopeRevision": "2026.10.24.8",
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-bj-m101-hub-line6",
+              "name": "城市副中心枢纽",
+              "complexId": "beijing-s322",
+              "stationInstanceIds": [
+                "beijing-f101-fuzhongxin",
+                "beijing-s322"
+              ],
+              "lineIds": [
+                "beijing-line-m101",
+                "beijing-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+              "sourceNote": "同一交通枢纽的独立站体联系，通道为示意；不移动北运河东或M101站体，不共用站厅或轨道。"
+            },
+            {
+              "id": "future-transfer-bj-m101-hub-line22",
+              "name": "城市副中心枢纽",
+              "complexId": "beijing-s322",
+              "stationInstanceIds": [
+                "beijing-f101-fuzhongxin",
+                "beijing-s322__line22-22"
+              ],
+              "lineIds": [
+                "beijing-line-m101",
+                "beijing-line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+              "sourceNote": "同一交通枢纽的独立站体联系，通道为示意；不移动北运河东或M101站体，不共用站厅或轨道。"
+            }
+          ],
+          "scopeRevision": "2026.10.25.20",
           "requiresScopeRecheck": true,
           "requireOpen": false,
           "serviceStatusSchema": 2
@@ -22411,7 +22444,8 @@
         "beijing-s168": "beijing-s48",
         "beijing-s191": "beijing-s127",
         "beijing-s8": "beijing-s89",
-        "beijing-s85": "beijing-s74"
+        "beijing-s85": "beijing-s74",
+        "beijing-f101-fuzhongxin": "beijing-s322"
       },
       "stationInstanceAliases": {},
       "stationComplexAliasSources": {
@@ -22424,6 +22458,12 @@
           "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
           "sourceCheckedAt": "2026-10-25",
           "note": "13B沿用13号线东段，在东直门与2号线、首都机场线换乘。仅统一站区，不移动或合并各线路物理站体。"
+        },
+        "beijing-f101-fuzhongxin": {
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+          "additionalSource": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2023052616063981.pdf",
+          "sourceCheckedAt": "2026-10-25",
+          "note": "同一副中心交通枢纽的逻辑身份；各线物理站体、工程名称、位置与站端全部独立保留。"
         }
       }
     },
@@ -47817,6 +47857,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.25.19",
-  "contentRevisionNote": "广州22号线恢复2022首通4站及2025后通4站，新增真实换乘并保留旧站轨，不提前开放现代全线。"
+  "contentRevision": "2026.10.25.20",
+  "contentRevisionNote": "M101城市副中心枢纽补6／22独立换乘，保留各线物理站体；其余远期预留仍保留审核失败。"
 }

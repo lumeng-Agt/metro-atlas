@@ -8,6 +8,7 @@ class TrainOverlay extends Control:
 
 const Style = preload("res://scripts/map_style.gd")
 const RoutePathScript = preload("res://scripts/route_path.gd")
+const DisplayGeometry = preload("res://scripts/presentation_geometry.gd")
 const BASEMAP_CACHE_BUDGET_BYTES := 256 * 1024 * 1024
 
 signal map_clicked(latlng: Array, hit_type: String, hit_id: String, side: String, hit_t: float)
@@ -25,6 +26,8 @@ var world: Dictionary = {}
 var route_path_cache: Dictionary = {}
 var presentation_seconds := 0.0
 var show_train_display := true
+var render_profile_enabled := false
+var render_phase_metrics:Dictionary={}
 var draft_track_points: Array = []
 var draft_track_segments: Array[Dictionary] = []
 var highlight_path_points: Array = []
@@ -32,7 +35,10 @@ var assisted_preview: Dictionary = {}
 var chapter_baseline_overlay: Dictionary = {}
 var route_path_cache_revision := -1
 var link_geometry_cache: Dictionary = {}
+var _track_meshes:Dictionary={}
 var station_local_cache: Dictionary = {}
+var station_complex_bodies: Dictionary = {}
+var blueprint_complex_bodies: Dictionary = {}
 var route_cache_by_id: Dictionary = {}
 var geometry_ref_lat := 31.23
 var _camera_cache_center: Array = []
@@ -104,6 +110,9 @@ var curve_preview_issue := ""
 var draft_conflict := false
 var _drag_draft_station := false
 var _label_rects: Array[Rect2] = []
+var _label_cells: Dictionary = {}
+var _label_measurements: Dictionary = {}
+var _symbol_textures: Dictionary = {}
 var _train_overlay: TrainOverlay
 
 func _ready() -> void:
@@ -139,7 +148,19 @@ func set_world(state: Dictionary) -> void:
 
 func set_blueprint(value: Dictionary) -> void:
 	campaign_blueprint = value.duplicate(true)
+	blueprint_complex_bodies = _complex_body_index(campaign_blueprint.get("stations",[]))
 	requested_redraw()
+
+func _complex_body_index(stations:Array) -> Dictionary:
+	var result:Dictionary={}
+	for station in stations:
+		var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(station.get("stationComplexId","")))
+		if complex_id.is_empty():continue
+		var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
+		if not result.has(complex_id):result[complex_id]=[]
+		if not result[complex_id].has(instance_id):result[complex_id].append(instance_id)
+	for instances in result.values():instances.sort()
+	return result
 
 func snap_blueprint_station(latlng: Array, radius_px: float = 20.0) -> Dictionary:
 	if not bool(campaign_blueprint.get("visible", false)) or latlng.size() < 2: return {}
@@ -173,7 +194,9 @@ func blueprint_heading_for(target_id: String) -> float:
 func _rebuild_route_path_cache() -> void:
 	route_path_cache.clear()
 	link_geometry_cache.clear()
+	_track_meshes.clear()
 	station_local_cache.clear()
+	station_complex_bodies = _complex_body_index(world.get("stations",[]))
 	route_cache_by_id.clear()
 	geometry_ref_lat = float(city_data.get("center", [31.23, 121.47])[0])
 	var station_by_id: Dictionary = {}
@@ -186,6 +209,9 @@ func _rebuild_route_path_cache() -> void:
 		if not bool(route.get("open", false)): continue
 		var canonical:=RoutePathScript.for_route(route,world,geometry_ref_lat)
 		canonical["presentationDirections"]=RoutePathScript.presentation_directions(canonical,route)
+		var display_paths:Array=[]
+		for direction in canonical.presentationDirections.slice(0,2):display_paths.append(DisplayGeometry.prepare(direction,geometry_ref_lat))
+		canonical["displayPaths"]=display_paths
 		route_path_cache[str(route.get("id", ""))] = canonical
 	for link in world.get("trackLinks", []):
 		var a_ref: Dictionary = link.get("a", {})
@@ -219,7 +245,14 @@ func _rebuild_route_path_cache() -> void:
 		for point in local_points:
 			minimum.x = minf(minimum.x, point.x); minimum.y = minf(minimum.y, point.y)
 			maximum.x = maxf(maximum.x, point.x); maximum.y = maxf(maximum.y, point.y)
-		link_geometry_cache[str(edge.get("id", ""))] = {"points": local_points, "bounds": Rect2(minimum, maximum - minimum).grow(1.0)}
+		var packed:=PackedVector2Array(local_points)
+		var normals:=PackedVector2Array()
+		for index in range(packed.size()):
+			var direction:Vector2=(packed[mini(packed.size()-1,index+1)]-packed[maxi(0,index-1)]).normalized()
+			# Screen y is inverted. This is the local-space vector whose
+			# transformed normal matches the former screen-space lane offset.
+			normals.append(Vector2(direction.y,-direction.x))
+		link_geometry_cache[str(edge.get("id", ""))] = {"points": local_points, "packedPoints":packed,"screenNormalsLocal":normals,"bounds": Rect2(minimum, maximum - minimum).grow(1.0)}
 	route_path_cache_revision = int(world.get("revision", 0))
 	_camera_cache_zoom = -1
 
@@ -588,24 +621,44 @@ static func _simplify_local_points(points: Array[Vector2], tolerance_m: float) -
 	return result
 
 func _draw() -> void:
+	var stamp:=Time.get_ticks_usec() if render_profile_enabled else 0
 	_refresh_camera_cache()
 	_label_rects.clear()
+	_label_cells.clear()
 	_basemap_labels.clear()
 	draw_rect(Rect2(Vector2.ZERO, size), Style.CANVAS)
 	_draw_local_basemap()
+	stamp=_record_render_phase("basemap",stamp)
 	_draw_campaign_corridors()
+	stamp=_record_render_phase("blueprint_corridors",stamp)
 	_draw_built_links()
+	stamp=_record_render_phase("built_tracks",stamp)
 	if highlight_path_points.size()>=2:
 		var highlight:=PackedVector2Array()
 		for point in highlight_path_points:highlight.append(_to_screen(point))
 		draw_polyline(highlight,Color("#cf9737"),6.0,true)
 	_draw_station_preview_links()
+	stamp=_record_render_phase("selected_geometry",stamp)
 	_draw_campaign_targets()
+	stamp=_record_render_phase("blueprint_targets",stamp)
 	_draw_stations()
+	stamp=_record_render_phase("stations",stamp)
 	_draw_queued_basemap_labels()
+	stamp=_record_render_phase("road_labels",stamp)
 	_draw_story_markers()
+	stamp=_record_render_phase("story_markers",stamp)
 	_draw_draft()
+	stamp=_record_render_phase("draft",stamp)
 	_draw_view_hints()
+	_record_render_phase("hints",stamp)
+
+func _record_render_phase(key:String,started:int) -> int:
+	if not render_profile_enabled:return 0
+	var finished:=Time.get_ticks_usec();var elapsed:=(finished-started)/1000.0
+	var entry:Dictionary=render_phase_metrics.get(key,{"count":0,"totalMs":0.0,"maxMs":0.0})
+	entry.count+=1;entry.totalMs+=elapsed;entry.maxMs=maxf(float(entry.maxMs),elapsed)
+	render_phase_metrics[key]=entry
+	return finished
 
 func _draw_campaign_corridors() -> void:
 	if not bool(campaign_blueprint.get("visible", false)): return
@@ -635,22 +688,16 @@ func _draw_campaign_targets() -> void:
 		if not Rect2(Vector2(-60, -60), size + Vector2(120, 120)).has_point(point): continue
 		var radius := _blueprint_target_radius(target)
 		var color := Color("#278568") if bool(target.get("built", false)) else Color("#b18032")
-		draw_circle(point, radius, Color(color.r, color.g, color.b, 0.055))
-		draw_arc(point, radius, 0.0, TAU, 48, Color(color.r, color.g, color.b, 0.62), 1.6, true)
-		draw_circle(point, 4.5, Color("#fffdf7"))
-		draw_circle(point, 3.0, color)
+		_draw_cached_symbol(point,color,radius,"target")
 		var separate_instance:=str(target.get("stationInstanceId",""))!=str(target.get("stationComplexId",""))
 		if current_zoom >= 14 and (not bool(target.get("built",false)) or separate_instance):
 			var title:="目标站区 · %s" % str(target.get("name", ""))
-			if separate_instance:title="%s线站体 · %s" % [str(target.get("historicalLineName",target.get("historicalLineId","本线"))),str(target.get("name","换乘站"))]
+			if separate_instance:title="%s站体 · %s" % [str(target.get("historicalLineName",target.get("historicalLineId","本线"))),str(target.get("name","换乘站"))]
 			var offset_y:=9.0
 			if separate_instance:
-				var siblings:Array=[];var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(target.get("stationComplexId","")))
-				for sibling in campaign_blueprint.get("stations",[]):
-					if CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(sibling.get("stationComplexId","")))==complex_id:
-						var sibling_id:=str(sibling.get("stationInstanceId",""))
-						if not siblings.has(sibling_id):siblings.append(sibling_id)
-				siblings.sort();offset_y+=float(siblings.find(str(target.get("stationInstanceId",""))))*27.0
+				var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(target.get("stationComplexId","")))
+				var siblings:Array=blueprint_complex_bodies.get(complex_id,[])
+				offset_y+=float(maxi(0,siblings.find(str(target.get("stationInstanceId","")))))*27.0
 			_draw_label(point + Vector2(9, offset_y), title, color.darkened(0.15), get_theme_default_font(), 15, false)
 
 func _blueprint_target_radius(target: Dictionary) -> float:
@@ -805,39 +852,46 @@ func _draw_built_links() -> void:
 					draw_line(p3, cb, Color(0.08, 0.35, 0.53, 0.65), 1.5, true)
 					draw_circle(ca, 10.0, Color("#ffffff")); draw_circle(ca, 7.0, Color("#297ab7"))
 					draw_circle(cb, 10.0, Color("#ffffff")); draw_circle(cb, 7.0, Color("#297ab7"))
+	if tool=="select" and selected_type!="link" and _curve_preview.is_empty():
+		_draw_cached_track_mesh()
+		return
+	var pixel_scale:=1.0/_camera_mpp
+	var origin:=Vector2(size.x*0.5-_camera_local_center.x*pixel_scale,size.y*0.5+_camera_local_center.y*pixel_scale)
+	draw_set_transform(origin,0.0,Vector2(pixel_scale,-pixel_scale))
 	for edge in world.get("trackEdges", []):
 		var geometry: Dictionary = link_geometry_cache.get(str(edge.get("id", "")), {})
-		var local_points: Array[Vector2] = []
-		for raw_point in geometry.get("points", []):
-			if raw_point is Vector2: local_points.append(raw_point)
-		if local_points.size() < 2 or not visible_local.intersects(geometry.get("bounds", Rect2())): continue
-		var points := PackedVector2Array()
-		for local_point in local_points: points.append(_local_to_screen(local_point))
+		if not visible_local.intersects(geometry.get("bounds", Rect2())): continue
+		geometry=_render_geometry(geometry)
+		var local_points: PackedVector2Array = geometry.get("packedPoints", PackedVector2Array())
+		if local_points.size() < 2: continue
 		var depth := float(edge.get("depthM", -15.0))
 		var faded := not show_all_depths and absf(depth - current_depth_m) > 2.5 and tool in ["track", "track_curve", "station"]
 		var base_color := Color("#98a5ac") if faded else Color("#ffffff")
 		var selected_link := selected_type == "link" and str(selected_id) == str(edge.get("id", ""))
-		draw_polyline(points, base_color, 9.0 if selected_link else 7.0, true)
+		# Submit confirmed local geometry directly to the renderer. Camera
+		# translation/scale belongs in its transform, not a GDScript loop over
+		# every vertex on every pan frame.
+		draw_polyline(local_points, base_color, (9.0 if selected_link else 7.0)*_camera_mpp, true)
 		var route_ids: Array = edge.get("routeIds", [])
 		if route_ids.is_empty():
 			var rail_color := Color("#7a8790") if faded else Color("#566b78")
-			draw_polyline(_offset_screen_polyline(points, -2.3), rail_color, 2.2 if selected_link else 1.8, true)
-			draw_polyline(_offset_screen_polyline(points, 2.3), rail_color, 2.2 if selected_link else 1.8, true)
+			draw_polyline(_offset_cached_local(geometry,-2.3*_camera_mpp), rail_color, (2.2 if selected_link else 1.8)*_camera_mpp, true)
+			draw_polyline(_offset_cached_local(geometry,2.3*_camera_mpp), rail_color, (2.2 if selected_link else 1.8)*_camera_mpp, true)
 		else:
 			var lane_width := 2.2 if route_ids.size() > 1 else 3.2
 			for lane_index in range(mini(3, route_ids.size())):
 				var route: Dictionary = route_cache_by_id.get(str(route_ids[lane_index]), {})
 				var color := Color.from_string(str(route.get("color", "#4a91e8")), Color("#4a91e8"))
-				var lane_points := points
+				var lane_points := local_points
 				if route_ids.size() > 1:
-					lane_points = PackedVector2Array()
 					var lane_offset := (float(lane_index) - float(mini(3, route_ids.size()) - 1) * 0.5) * 2.6
-					for point_index in range(points.size()):
-						var before: Vector2 = points[maxi(0, point_index - 1)]
-						var after: Vector2 = points[mini(points.size() - 1, point_index + 1)]
-						var direction := (after - before).normalized()
-						lane_points.append(points[point_index] + Vector2(-direction.y, direction.x) * lane_offset)
-				draw_polyline(lane_points, color.darkened(0.25) if faded else color, lane_width, true)
+					lane_points=_offset_cached_local(geometry,lane_offset*_camera_mpp)
+				draw_polyline(lane_points, color.darkened(0.25) if faded else color, lane_width*_camera_mpp, true)
+		var points:=PackedVector2Array()
+		var screen_overlay:=selected_link or (faded and current_zoom>=14) or tool=="curve" or (not _curve_preview.is_empty() and str(_curve_preview.get("linkId",""))==str(edge.id))
+		if screen_overlay:
+			draw_set_transform(Vector2.ZERO)
+			for local_point in local_points:points.append(_local_to_screen_cached(local_point))
 		var is_preview_edge := not _curve_preview.is_empty() and str(_curve_preview.get("linkId", "")) == str(edge.get("id", ""))
 		if is_preview_edge:
 			var preview_edge: Dictionary = edge.duplicate(true)
@@ -866,6 +920,57 @@ func _draw_built_links() -> void:
 		if selected_link: _draw_label(points[points.size() / 2] + Vector2(7, -8), "地下轨道 · %.0f 米" % TrackNetwork.edge_length_m(edge, world, geometry_ref_lat), Color("#243847"), get_theme_default_font(), 13, true, true)
 		elif faded and current_zoom >= 14:
 			_draw_label(points[points.size() / 2] + Vector2(4, -5), "深 %.0f m" % depth, Color("#52636d"), get_theme_default_font(), 10)
+		if screen_overlay:draw_set_transform(origin,0.0,Vector2(pixel_scale,-pixel_scale))
+	draw_set_transform(Vector2.ZERO)
+
+func _offset_cached_local(geometry:Dictionary,amount:float) -> PackedVector2Array:
+	var points:PackedVector2Array=geometry.get("packedPoints",PackedVector2Array())
+	var normals:PackedVector2Array=geometry.get("screenNormalsLocal",PackedVector2Array())
+	var result:=points.duplicate()
+	for index in range(result.size()):result[index]+=normals[index]*amount
+	return result
+
+func _draw_cached_track_mesh() -> void:
+	var anchor:=Geo.local_m(city_data.get("center",[31.23,121.47]),geometry_ref_lat)
+	var mpp:=Geo.meters_per_pixel(geometry_ref_lat,current_zoom)
+	if not _track_meshes.has(current_zoom):
+		var batch:=DisplayGeometry.StrokeBatch.new()
+		for edge in world.get("trackEdges",[]):
+			var source:Dictionary=link_geometry_cache.get(str(edge.get("id","")),{})
+			var geometry:=_render_geometry(source)
+			var points:PackedVector2Array=geometry.packedPoints
+			batch.line(points,7.0*mpp,Color.WHITE,anchor,mpp*0.75)
+			var route_ids:Array=edge.get("routeIds",[])
+			if route_ids.is_empty():
+				batch.line(_offset_cached_local(geometry,-2.3*mpp),1.8*mpp,Color("#566b78"),anchor,mpp*0.75)
+				batch.line(_offset_cached_local(geometry,2.3*mpp),1.8*mpp,Color("#566b78"),anchor,mpp*0.75)
+			else:
+				for lane in range(mini(3,route_ids.size())):
+					var route:Dictionary=route_cache_by_id.get(str(route_ids[lane]),{})
+					var color:=Color.from_string(str(route.get("color","#4a91e8")),Color("#4a91e8"))
+					var lane_points:=points
+					if route_ids.size()>1:lane_points=_offset_cached_local(geometry,(float(lane)-float(mini(3,route_ids.size())-1)*0.5)*2.6*mpp)
+					batch.line(lane_points,(2.2 if route_ids.size()>1 else 3.2)*mpp,color,anchor,mpp*0.75)
+		_track_meshes[current_zoom]=batch.mesh()
+	var mesh:ArrayMesh=_track_meshes[current_zoom]
+	if mesh.get_surface_count()==0:return
+	var scale:=1.0/_camera_mpp
+	draw_set_transform(Vector2(size.x*0.5-( _camera_local_center.x-anchor.x)*scale,size.y*0.5+(_camera_local_center.y-anchor.y)*scale),0,Vector2(scale,-scale))
+	draw_mesh(mesh,null)
+	draw_set_transform(Vector2.ZERO)
+
+func _render_geometry(geometry:Dictionary) -> Dictionary:
+	if not geometry.has("renderLods"):geometry["renderLods"]={}
+	var lods:Dictionary=geometry.renderLods
+	if not lods.has(current_zoom):
+		var tolerance:=Geo.meters_per_pixel(geometry_ref_lat,current_zoom)*0.35
+		var points:=DisplayGeometry.simplify(geometry.get("packedPoints",PackedVector2Array()),tolerance)
+		var normals:=PackedVector2Array()
+		for index in range(points.size()):
+			var direction:Vector2=(points[mini(points.size()-1,index+1)]-points[maxi(0,index-1)]).normalized()
+			normals.append(Vector2(direction.y,-direction.x))
+		lods[current_zoom]={"packedPoints":points,"screenNormalsLocal":normals}
+	return lods[current_zoom]
 
 func _offset_screen_polyline(points: PackedVector2Array, amount: float) -> PackedVector2Array:
 	var result := PackedVector2Array()
@@ -878,25 +983,24 @@ func _offset_screen_polyline(points: PackedVector2Array, amount: float) -> Packe
 
 func _draw_trains_on(target: CanvasItem) -> void:
 	if not show_train_display or not show_network:return
+	var stamp:=Time.get_ticks_usec() if render_profile_enabled else 0
+	_refresh_camera_cache()
 	for route_id in route_path_cache:
 		var route:Dictionary=route_cache_by_id.get(str(route_id),{})
 		var path:Dictionary=route_path_cache[route_id]
-		for direction in path.get("presentationDirections",[]).slice(0,2):
-			var geo_points:Array=[]
-			for segment in direction.get("segments",[]):
-				for point in segment.get("points",[]):geo_points.append(point)
-			if geo_points.size()<2:continue
-			var lengths:Array[float]=[];var total:=0.0
-			for index in range(geo_points.size()-1):
-				var piece:=Geo.local_m(geo_points[index],geometry_ref_lat).distance_to(Geo.local_m(geo_points[index+1],geometry_ref_lat));lengths.append(piece);total+=piece
+		for display_path in path.get("displayPaths",[]):
+			var total:=float(display_path.get("lengthM",0))
+			if total<=0:continue
 			var remaining:=fposmod(presentation_seconds/maxf(18.0,total/120.0),1.0)*total
-			for index in range(lengths.size()):
-				if remaining>lengths[index]:remaining-=lengths[index];continue
-				var a:=_to_screen(geo_points[index]);var b:=_to_screen(geo_points[index+1])
-				var point:=a.lerp(b,remaining/maxf(0.01,lengths[index]));var axis:=(b-a).normalized()*8.0
-				target.draw_line(point-axis,point+axis,Color.WHITE,9.0,true)
-				target.draw_line(point-axis,point+axis,Color.from_string(str(route.get("color","#24745e")),Color("#24745e")),5.0,true)
-				break
+			var sample:=DisplayGeometry.sample(display_path,remaining)
+			if sample.is_empty():continue
+			var point:=_local_to_screen_cached(sample.point)
+			if not Rect2(Vector2(-16,-16),size+Vector2(32,32)).has_point(point):continue
+			var a:=_local_to_screen_cached(sample.from);var b:=_local_to_screen_cached(sample.to)
+			var axis:=(b-a).normalized()*8.0
+			target.draw_line(point-axis,point+axis,Color.WHITE,9.0,true)
+			target.draw_line(point-axis,point+axis,Color.from_string(str(route.get("color","#24745e")),Color("#24745e")),5.0,true)
+	_record_render_phase("train_display",stamp)
 
 func _draw_station_preview_links() -> void:
 	if station_preview_edges.is_empty(): return
@@ -939,24 +1043,15 @@ func _draw_stations() -> void:
 		if bool(station.get("plannedTransfer", false)):
 			draw_arc(pos, 16.0, 0.0, TAU, 32, Color("#e2a747"), 2.0, true)
 			draw_dashed_line(pos + Vector2(-12.0, 13.0), pos + Vector2(12.0, -13.0), Color("#e2a747"), 2.0, 3.0, true)
-		draw_circle(pos, 10.5 if selected else 8.0, Color("#ffffff"))
-		draw_circle(pos, 7.5 if selected else 5.5, marker_color)
-		if station.get("routeIds",[]).size()>1:
-			draw_circle(pos,4.0,Color.WHITE)
-			draw_arc(pos,10.0,0,TAU,24,marker_color,2,true)
+		_draw_cached_symbol(pos,marker_color,10.5 if selected else 8.0,"transfer" if station.get("routeIds",[]).size()>1 else "station",selected)
 		if (current_zoom >= 14 or selected or station.get("existing", false) == false):
-			var siblings:Array=[];var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(station.get("stationComplexId","")));var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
-			if not complex_id.is_empty():
-				for sibling in world.get("stations",[]):
-					if CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(sibling.get("stationComplexId","")))!=complex_id:continue
-					var sibling_instance:=str(sibling.get("stationInstanceId",sibling.get("id","")))
-					if sibling_instance!=instance_id and not siblings.has(sibling_instance):siblings.append(sibling_instance)
-			if siblings.size()>0 and current_zoom>=14:
-				var ordered_instances:Array=[instance_id];ordered_instances.append_array(siblings);ordered_instances.sort()
+			var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(station.get("stationComplexId","")));var instance_id:=str(station.get("stationInstanceId",station.get("id","")))
+			var ordered_instances:Array=station_complex_bodies.get(complex_id,[])
+			if ordered_instances.size()>1 and current_zoom>=14:
 				var body_index:=ordered_instances.find(instance_id)
 				var body_offset:=Vector2(14.0,-19.0+float(body_index)*22.0)
 				draw_line(pos+Vector2(4,0),pos+body_offset+Vector2(1,3),Color("#314b5a",0.72),1.2,true)
-				_draw_label(pos+body_offset,"%s线 · %s站体" % [_station_line_label(station),str(station.get("name","车站"))],Color("#1b2d3b"),get_theme_default_font(),13,selected,selected)
+				_draw_label(pos+body_offset,"%s · %s站体" % [_station_line_label(station),str(station.get("name","车站"))],Color("#1b2d3b"),get_theme_default_font(),13,selected,selected)
 			else:
 				_draw_label(pos + Vector2(10, -9), str(station.get("name", "车站")), Color("#1b2d3b"), get_theme_default_font(), 14 if selected else 12, selected, selected)
 		if bool(station.get("plannedTransfer", false)) and (selected or current_zoom >= 14):
@@ -999,11 +1094,17 @@ func _draw_draft() -> void:
 			if old_points.size() > 1:
 				for index in range(old_points.size() - 1): draw_dashed_line(old_points[index], old_points[index + 1], Color(0.24, 0.31, 0.38, 0.78), 3.0, 7.0, true)
 	if not assisted_preview.is_empty():
+		# A full assisted draft contains the retained network as well as the new
+		# objects. Build membership once per redraw instead of linearly searching
+		# the whole world for every station and edge (quadratic at city scale).
+		var existing_station_ids:Dictionary={};var existing_edge_ids:Dictionary={}
+		for existing_station in world.get("stations",[]):existing_station_ids[str(existing_station.id)]=true
+		for existing_edge in world.get("trackEdges",[]):existing_edge_ids[str(existing_edge.id)]=true
 		for station in assisted_preview.get("stations",[]):
-			if not WorldData.find_station(world,str(station.id)).is_empty():continue
+			if existing_station_ids.has(str(station.id)):continue
 			var point:=_to_screen(station.latlng);draw_circle(point,9,Color("#d3a351"));draw_arc(point,12,0,TAU,24,Color("#835e21"),2,true)
 		for edge in assisted_preview.get("trackEdges",[]):
-			if world.get("trackEdges",[]).any(func(item:Dictionary):return str(item.id)==str(edge.id)):continue
+			if existing_edge_ids.has(str(edge.id)):continue
 			var points:=PackedVector2Array()
 			for ll in TrackNetwork.edge_points(edge,assisted_preview,geometry_ref_lat,32):points.append(_to_screen(ll))
 			if points.size()>1:draw_polyline(points,Color("#c89034"),4,true)
@@ -1427,11 +1528,11 @@ func _draw_queued_basemap_labels() -> void:
 		var font := get_theme_default_font()
 		var pixels := maxi(12,roundi(12*ui_scale))
 		var text := str(entry.name)
-		var measured := font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,pixels)
+		var measured := _measure_label(font,text,pixels)
 		var angle := float(entry.get("angle",0))
 		var rect := Rect2(pos-Vector2(measured.x*absf(cos(angle))+pixels*absf(sin(angle)),measured.x*absf(sin(angle))+pixels*absf(cos(angle)))*0.5-Vector2(3,3),Vector2(measured.x*absf(cos(angle))+pixels*absf(sin(angle)),measured.x*absf(sin(angle))+pixels*absf(cos(angle)))+Vector2(6,6))
-		if _label_rects.any(func(occupied:Rect2):return occupied.intersects(rect)): continue
-		_label_rects.append(rect)
+		if _label_overlaps(rect): continue
+		_reserve_label(rect)
 		draw_set_transform(pos,angle)
 		var origin := Vector2(-measured.x/2,pixels*0.35)
 		draw_string_outline(font,origin,text,HORIZONTAL_ALIGNMENT_LEFT,-1,pixels,3,Color.WHITE)
@@ -1484,15 +1585,60 @@ static func _road_label_priority(kind: String) -> int:
 func _draw_label(position: Vector2, text: String, color: Color, font: Font, font_size: int, force: bool = false, bold: bool = false) -> bool:
 	var display_font: Font = bold_font if bold and is_instance_valid(bold_font) else font
 	var size := maxi(14, roundi(float(font_size) * ui_scale))
-	var measured := display_font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, size)
+	var measured := _measure_label(display_font,text,size)
 	var rect := Rect2(position + Vector2(-5, -size - 4), Vector2(measured.x + 10, size + 9))
-	if not force:
-		for occupied in _label_rects:
-			if rect.intersects(occupied): return false
-	_label_rects.append(rect)
+	if not force and _label_overlaps(rect):return false
+	_reserve_label(rect)
 	draw_rect(rect, Color(1, 1, 1, 0.94 if force else 0.88))
 	draw_string(display_font, position, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
 	return true
+
+func _measure_label(font:Font,text:String,pixels:int) -> Vector2:
+	var key:="%s|%d|%s"%[font.get_instance_id(),pixels,text]
+	if not _label_measurements.has(key):
+		if _label_measurements.size()>=4096:_label_measurements.clear()
+		_label_measurements[key]=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,pixels)
+	return _label_measurements[key]
+
+func _draw_cached_symbol(center:Vector2,color:Color,radius:float,kind:String,selected:bool=false) -> void:
+	# Reusable vector-rasterized symbols avoid thousands of antialiased arc
+	# submissions when a whole city and its blueprint are visible. Geography,
+	# ring hit radii and the authoritative station footprints stay untouched.
+	var rounded_radius:=roundf(radius*4.0)/4.0
+	var key:="%s|%s|%.2f|%s"%[kind,color.to_html(),rounded_radius,selected]
+	if not _symbol_textures.has(key):
+		if _symbol_textures.size()>=512:_symbol_textures.clear()
+		var extent:=maxf(rounded_radius,11.0 if kind=="transfer" else rounded_radius)+2.0
+		var diameter:=ceili(extent*2)
+		var middle:=float(diameter)*0.5
+		var hex:="#"+color.to_html(false)
+		var svg:='<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d"><g transform="translate(%.2f %.2f)">'%[diameter,diameter,middle,middle]
+		if kind=="target":
+			svg+='<circle r="%.2f" fill="%s" fill-opacity="0.055" stroke="%s" stroke-opacity="0.62" stroke-width="1.6"/><circle r="4.5" fill="#fffdf7"/><circle r="3" fill="%s"/>'%[rounded_radius,hex,hex,hex]
+		else:
+			svg+='<circle r="%.2f" fill="white"/><circle r="%.2f" fill="%s"/>'%[rounded_radius,7.5 if selected else 5.5,hex]
+			if kind=="transfer":svg+='<circle r="4" fill="white"/><circle r="10" fill="none" stroke="%s" stroke-width="2"/>'%hex
+		var image:=Image.new()
+		var error:=image.load_svg_from_string(svg+"</g></svg>")
+		if error!=OK:return
+		_symbol_textures[key]=ImageTexture.create_from_image(image)
+	var texture:Texture2D=_symbol_textures[key]
+	draw_texture(texture,center-texture.get_size()*0.5)
+
+func _label_overlaps(rect:Rect2) -> bool:
+	for x in range(floori(rect.position.x/128.0),floori(rect.end.x/128.0)+1):
+		for y in range(floori(rect.position.y/128.0),floori(rect.end.y/128.0)+1):
+			for occupied in _label_cells.get(Vector2i(x,y),[]):
+				if rect.intersects(occupied):return true
+	return false
+
+func _reserve_label(rect:Rect2) -> void:
+	_label_rects.append(rect)
+	for x in range(floori(rect.position.x/128.0),floori(rect.end.x/128.0)+1):
+		for y in range(floori(rect.position.y/128.0),floori(rect.end.y/128.0)+1):
+			var key:=Vector2i(x,y)
+			if not _label_cells.has(key):_label_cells[key]=[]
+			_label_cells[key].append(rect)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED: requested_redraw()

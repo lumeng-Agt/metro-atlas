@@ -1,0 +1,220 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "guangzhou",
+  "operatorRetrievedAt": "2026-10-25",
+  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+  "expectedPairs": 97,
+  "matchedPairs": 72,
+  "missingPairs": [
+    {
+      "station": "中山八",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line5-5"
+      ]
+    },
+    {
+      "station": "五羊邨",
+      "lineIds": [
+        "guangzhou-line10-10",
+        "guangzhou-line5-5"
+      ]
+    },
+    {
+      "station": "华师",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line3-3"
+      ]
+    },
+    {
+      "station": "南村万博",
+      "lineIds": [
+        "guangzhou-line18-15",
+        "guangzhou-line7-7"
+      ]
+    },
+    {
+      "station": "员村",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line5-5"
+      ]
+    },
+    {
+      "station": "大塘",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line3-3"
+      ]
+    },
+    {
+      "station": "大沙东",
+      "lineIds": [
+        "guangzhou-line5-5",
+        "guangzhou-line7-7"
+      ]
+    },
+    {
+      "station": "如意坊",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line6-6"
+      ]
+    },
+    {
+      "station": "广州南站",
+      "lineIds": [
+        "guangzhou-foshan-line2-18",
+        "guangzhou-line2-2"
+      ]
+    },
+    {
+      "station": "广州南站",
+      "lineIds": [
+        "guangzhou-foshan-line2-18",
+        "guangzhou-line7-7"
+      ]
+    },
+    {
+      "station": "彩虹桥",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line8-8"
+      ]
+    },
+    {
+      "station": "江泰路",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line2-2"
+      ]
+    },
+    {
+      "station": "沙河",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line6-6"
+      ]
+    },
+    {
+      "station": "沙涌",
+      "lineIds": [
+        "guangzhou-foshan-route-20",
+        "guangzhou-line11-11"
+      ]
+    },
+    {
+      "station": "浔峰岗",
+      "lineIds": [
+        "guangzhou-line12-12",
+        "guangzhou-line6-6"
+      ]
+    },
+    {
+      "station": "海傍",
+      "lineIds": [
+        "guangzhou-line3-3",
+        "guangzhou-line4-4"
+      ]
+    },
+    {
+      "station": "燕岗",
+      "lineIds": [
+        "guangzhou-foshan-route-20",
+        "guangzhou-line11-11"
+      ]
+    },
+    {
+      "station": "琶洲",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line8-8"
+      ]
+    },
+    {
+      "station": "番禺广场",
+      "lineIds": [
+        "guangzhou-line18-15",
+        "guangzhou-line3-3"
+      ]
+    },
+    {
+      "station": "白云文化广场",
+      "lineIds": [
+        "guangzhou-line12-12",
+        "guangzhou-line2-2"
+      ]
+    },
+    {
+      "station": "磨碟沙",
+      "lineIds": [
+        "guangzhou-line18-15",
+        "guangzhou-line8-8"
+      ]
+    },
+    {
+      "station": "芳村",
+      "lineIds": [
+        "guangzhou-line1",
+        "guangzhou-line11-11"
+      ]
+    },
+    {
+      "station": "赤沙",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line12-12"
+      ]
+    },
+    {
+      "station": "黄村",
+      "lineIds": [
+        "guangzhou-line21-16",
+        "guangzhou-line4-4"
+      ]
+    },
+    {
+      "station": "龙潭",
+      "lineIds": [
+        "guangzhou-line11-11",
+        "guangzhou-line18-15"
+      ]
+    }
+  ],
+  "invalidConnections": [],
+  "nonOpenConnections": [
+    {
+      "id": "future-transfer-gz8b-jiniantang-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz8b-ziyuangang-11",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz-jiangfu-8-24",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz-north-9-24",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz11-railway-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz11-railway-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz11-railway-14",
+      "reason": "construction relationship has no current open service"
+    }
+  ],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "5b312f2a88b77ef8153117fdd6834ea4e52040625703bd8b33424bb0019d9afc",
+  "evidenceSha256": "27184be4476ae6dfdd9b95a3848322fbd1efd48fdeb73e9d760b389782a97c9b"
+}

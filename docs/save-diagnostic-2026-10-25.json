@@ -1,0 +1,42 @@
+{
+  "city": "beijing",
+  "concurrencyNote": "Other formal city replays may be running. These are diagnostic request/worker times, not final EXE frame-rate or isolated performance acceptance.",
+  "contentRevision": "2026.10.25.19",
+  "date": "2026-10-25T16:53:38",
+  "edges": 578,
+  "kind": "actual-replay-save-diagnostic",
+  "milestones": 71,
+  "requestThresholdPassed": true,
+  "samples": [
+    {
+      "mainRequestMs": 77.298,
+      "ok": true,
+      "run": 0,
+      "snapshotMs": 77.215,
+      "totalMs": 617.98,
+      "workerMs": 501.161
+    },
+    {
+      "mainRequestMs": 66.509,
+      "ok": true,
+      "run": 1,
+      "snapshotMs": 66.44,
+      "totalMs": 1931.84,
+      "workerMs": 1821.591
+    },
+    {
+      "mainRequestMs": 72.425,
+      "ok": true,
+      "run": 2,
+      "snapshotMs": 72.354,
+      "totalMs": 1942.986,
+      "workerMs": 1827.785
+    }
+  ],
+  "saveCoordinatorSha256": "a3094905db1f79da98ee5d6ec20dc389689b95a4467fc65506a374e223fb47c7",
+  "saveManagerSha256": "169d6771d9f5ca9ab5769ae04b40c7610864357c2ffa7da9c5abfc729b8f2f40",
+  "sourceSha256": "21d47d67d0a2f7be9f0eacd36984ba0a94d833c528f1eacd98c7992139f4441b",
+  "stations": 587,
+  "undoSteps": 200,
+  "note": "实际已建设北京旧档的隔离副本，加200步明确命名历史；不是最终EXE帧率或一小时验收。采样同时有其他重放进程。"
+}

@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.25.19",
+  "contentRevision": "2026.10.25.20",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -145,6 +145,7 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
+        "bj-m101-phase1: independent transfer coverage incomplete",
         "bj-line22: independent transfer coverage incomplete",
         "bj-line28: independent transfer coverage incomplete",
         "bj-line13-capacity: independent transfer coverage incomplete",
@@ -153,8 +154,10 @@
       "projects": [
         {
           "id": "bj-m101-phase1",
-          "ok": true,
-          "errors": []
+          "ok": false,
+          "errors": [
+            "independent transfer coverage incomplete"
+          ]
         },
         {
           "id": "bj-line22",

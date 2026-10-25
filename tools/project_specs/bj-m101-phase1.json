@@ -205,7 +205,40 @@
     }
   ],
   "stationInstances": {},
-  "transfers": [],
+  "transfers": [
+    {
+      "id": "future-transfer-bj-m101-hub-line6",
+      "name": "城市副中心枢纽",
+      "complexId": "beijing-s322",
+      "stationInstanceIds": [
+        "beijing-f101-fuzhongxin",
+        "beijing-s322"
+      ],
+      "lineIds": [
+        "beijing-line-m101",
+        "beijing-line6-6"
+      ],
+      "precision": "schematic",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+      "sourceNote": "同一交通枢纽的独立站体联系，通道为示意；不移动北运河东或M101站体，不共用站厅或轨道。"
+    },
+    {
+      "id": "future-transfer-bj-m101-hub-line22",
+      "name": "城市副中心枢纽",
+      "complexId": "beijing-s322",
+      "stationInstanceIds": [
+        "beijing-f101-fuzhongxin",
+        "beijing-s322__line22-22"
+      ],
+      "lineIds": [
+        "beijing-line-m101",
+        "beijing-line22-22"
+      ],
+      "precision": "schematic",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+      "sourceNote": "同一交通枢纽的独立站体联系，通道为示意；不移动北运河东或M101站体，不共用站厅或轨道。"
+    }
+  ],
   "plan": {
     "id": "bj-m101-phase1-build",
     "title": "北京M101线一期建设篇",
@@ -220,8 +253,9 @@
     "sourceCheckedAt": "2026-10-22",
     "sourcePublicationDate": "2023-05-26",
     "description": "完整复现商务园至张家湾东14站及13个相邻区间。站序依据2023环评，站址结合用地批复及离线地理资料；部分规划站区为明确标注的近似位置。线路全长约18.1公里，建设篇完成不代表真实开通。",
-    "contentRevision": "2026.10.22.26",
+    "contentRevision": "2026.10.25.20",
     "contentRevisionNote": "补齐M101缺失10站，纠正旧通州西和副中心整枢纽标签代替独立站体的位置；逐站保留近似范围。",
-    "requiresScopeRecheck": true
+    "requiresScopeRecheck": true,
+    "scopeRevision": "2026.10.25.20"
   }
 }

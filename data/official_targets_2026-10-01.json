@@ -6039,7 +6039,16 @@
             }
           ],
           "note": "2023环评官方报道14站、18.1公里；不使用2022旧版19公里。",
-          "constructionOnly": true
+          "constructionOnly": true,
+          "transfers": [
+            "future-transfer-bj-m101-hub-line6",
+            "future-transfer-bj-m101-hub-line22"
+          ],
+          "transferReviewStatus": "pending",
+          "transferReviewNote": "已补城市副中心6／22独立联系；环评6处换乘站还涉及M102、M103、M104、R1、区域快线及铁路预留，全量分层审查尚未完成，不能仅凭14站通过视为项目完整。",
+          "additionalSources": [
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html"
+          ]
         },
         {
           "id": "bj-line22",
