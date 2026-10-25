@@ -10,6 +10,7 @@ from pathlib import Path
 from build_network_baseline import build
 from engineering_scope import definition_errors as engineering_definition_errors
 from expand_playable_milestones import ROUTE_DATES
+from transfer_scope import is_transfer_task
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -179,7 +180,9 @@ def main() -> int:
             status = milestone_chapter.get("contentStatus")
             if status in {"playable_sample", "playable_milestone"} and not milestone_chapter.get("playableChapterId"):
                 failures.append(f"{city_id}/{milestone_chapter.get('id')}: playable interval lacks a stable chapter id")
-            if status in {"playable_sample", "playable_milestone"} and not milestone_chapter.get("chapterTargetGroups") and not milestone_chapter.get("eventOnly"):
+            scoped_chapters=[c for c in campaign_city.get('chapters',[]) if c.get('id') in milestone_chapter.get('chapterIds',[])]
+            transfer_action=bool(scoped_chapters) and all(is_transfer_task(c,city_id) for c in scoped_chapters)
+            if status in {"playable_sample", "playable_milestone"} and not milestone_chapter.get("chapterTargetGroups") and not milestone_chapter.get("eventOnly") and not transfer_action:
                 failures.append(f"{city_id}/{milestone_chapter.get('id')}: construction milestone lacks target groups and is not marked as a source-only node")
             if status == "content_missing" and milestone_chapter.get("playableChapterId"):
                 failures.append(f"{city_id}/{milestone_chapter.get('id')}: missing interval is incorrectly playable")
@@ -234,7 +237,7 @@ def main() -> int:
                 continue
             groups = chapter.get("lineGroups", [])
             if not groups:
-                if not chapter.get("eventOnly") or not chapter.get("source"):
+                if (not chapter.get("eventOnly") or not chapter.get("source")) and not is_transfer_task(chapter,city_id):
                     failures.append(f"{city_id}/{chapter.get('id')}: empty chapter must be explicitly source-only")
                 continue
             for group in groups:

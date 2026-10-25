@@ -474,6 +474,10 @@ func _run() -> void:
 	_check(not permitted.y.has("future"),"later extension cannot leak into a historical branched snapshot")
 	var branch_reversed:=branch_snapshots.duplicate(true);branch_reversed[1].groups.reverse()
 	_check(OfficialNetworkAudit.permitted_historical_stops(branch_reversed,"2010-01-01").y.size()==permitted.y.size(),"branch input order cannot change permitted historical station membership")
+	var extension_scope:Array=[{"date":"2010-10-30","groups":[{"id":"airport-extension","historicalLineId":"airport","stationNames":["junction","airport-south"]}],"existingScopes":[{"id":"existing-trunk","historicalLineId":"airport","stationNames":["old-city","junction"]}]},{"date":"2018-04-26","groups":[{"id":"terminal-two","historicalLineId":"airport","stationNames":["airport-south","airport-north"]}]}]
+	var extension_permitted:=OfficialNetworkAudit.permitted_historical_stops(extension_scope,"2010-10-30")
+	_check(extension_permitted.airport.has("old-city") and extension_permitted.airport.has("airport-south"),"an independently checked existing trunk survives a partial extension audit")
+	_check(not extension_permitted.airport.has("airport-north"),"existing-scope support cannot admit a later terminal")
 	var old_built_arm:Dictionary={"stationIds":["apple","west","junction","old-depot"],"edgePathsBySegment":[[],[],[]],"serviceStatusBySegment":["built","built","built"]}
 	var full_trial:Dictionary={"stationIds":["city","junction","west","apple"],"edgePathsBySegment":[[],[],[]],"serviceStatusBySegment":["trial","trial","trial"]}
 	_check(Story._merge_route_directions(old_built_arm,full_trial).is_empty(),"an overlapping old built arm cannot be appended after the new trial terminus")

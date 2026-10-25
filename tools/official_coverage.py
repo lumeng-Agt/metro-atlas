@@ -90,6 +90,8 @@ def cutoff_evidence_errors(network, cutoff_date):
         errors.append('independent network has a different cutoff date')
     if network.get('temporalReviewStatus') != 'verified':
         errors.append('cutoff opening status not independently reviewed')
+    if network.get('transferReviewStatus') != 'verified':
+        errors.append('cutoff interchange inventory not independently reviewed')
     evidence = network.get('temporalEvidence', [])
     if not evidence:
         errors.append('dated cutoff opening evidence missing')

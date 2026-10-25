@@ -57783,7 +57783,7 @@
         {
           "id": "guangzhou-opening-guangzhou-r20-2018-12-28",
           "date": "2018-12-28",
-          "title": "广佛线截止日线路范围纳入历史建设任务",
+          "title": "广佛线南延、14号线一期及21号线首通段开通",
           "status": "opened_or_completed",
           "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
           "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
@@ -57796,93 +57796,6 @@
           ],
           "chapterId": "guangzhou-network-milestone-2018-12-28",
           "targetLineGroups": [
-            {
-              "taskId": "route:guangzhou-r3:range-1",
-              "mapRouteId": "guangzhou-r3",
-              "name": "3号线",
-              "stationIds": [
-                "guangzhou-s16",
-                "guangzhou-s17",
-                "guangzhou-s18",
-                "guangzhou-s19",
-                "guangzhou-s20",
-                "guangzhou-s265",
-                "guangzhou-s230",
-                "guangzhou-s266",
-                "guangzhou-s267",
-                "guangzhou-s144",
-                "guangzhou-s268",
-                "guangzhou-s269",
-                "guangzhou-s270",
-                "guangzhou-s271",
-                "guangzhou-s272",
-                "guangzhou-s103",
-                "guangzhou-s177"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "guangzhou-line3-3",
-              "color": "#ECA154",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "guangzhou-s230": "guangzhou-s230__line3-3",
-                "guangzhou-s144": "guangzhou-s144__line3-3",
-                "guangzhou-s103": "guangzhou-s103__line3-3",
-                "guangzhou-s177": "guangzhou-s177__line3-3"
-              },
-              "sourceStationIds": [
-                "guangzhou-s1",
-                "guangzhou-s2",
-                "guangzhou-s3",
-                "guangzhou-s4",
-                "guangzhou-s5",
-                "guangzhou-s6",
-                "guangzhou-s7",
-                "guangzhou-s8",
-                "guangzhou-s9",
-                "guangzhou-s10",
-                "guangzhou-s11",
-                "guangzhou-s12",
-                "guangzhou-s13",
-                "guangzhou-s14",
-                "guangzhou-s15",
-                "guangzhou-s16",
-                "guangzhou-s17",
-                "guangzhou-s18",
-                "guangzhou-s19",
-                "guangzhou-s20",
-                "guangzhou-s265",
-                "guangzhou-s230",
-                "guangzhou-s266",
-                "guangzhou-s267",
-                "guangzhou-s144",
-                "guangzhou-s268",
-                "guangzhou-s269",
-                "guangzhou-s270",
-                "guangzhou-s271",
-                "guangzhou-s272",
-                "guangzhou-s103",
-                "guangzhou-s177",
-                "guangzhou-s273"
-              ],
-              "sourceStationInstances": {
-                "guangzhou-s1": "guangzhou-s1__line3-3",
-                "guangzhou-s3": "guangzhou-s3__line3-3",
-                "guangzhou-s6": "guangzhou-s6__line3-3",
-                "guangzhou-s7": "guangzhou-s7__line3-3",
-                "guangzhou-s9": "guangzhou-s9__line3-3",
-                "guangzhou-s10": "guangzhou-s10__line3-3",
-                "guangzhou-s11": "guangzhou-s11__line3-3",
-                "guangzhou-s14": "guangzhou-s14__line3-3",
-                "guangzhou-s230": "guangzhou-s230__line3-3",
-                "guangzhou-s144": "guangzhou-s144__line3-3",
-                "guangzhou-s103": "guangzhou-s103__line3-3",
-                "guangzhou-s177": "guangzhou-s177__line3-3"
-              },
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
-            },
             {
               "taskId": "route:guangzhou-r20",
               "mapRouteId": "guangzhou-r20",
@@ -58047,7 +57960,7 @@
         {
           "id": "guangzhou-opening-guangzhou-r3-2018-12-28",
           "date": "2018-12-28",
-          "title": "3号线截止日线路范围纳入历史建设任务",
+          "title": "广佛线南延、14号线一期及21号线首通段开通",
           "status": "opened_or_completed",
           "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
           "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
@@ -58055,98 +57968,9 @@
           "sourceType": "official_route_inventory_cross_checked_with_opening_records",
           "sourcePublicationDate": null,
           "scope": "按公开运营线路清单和对应开通事件建立可玩线路任务；逐站开放批次以本章目标和历史事件记录为准。",
-          "routeIds": [
-            "guangzhou-r3"
-          ],
+          "routeIds": [],
           "chapterId": "guangzhou-network-milestone-2018-12-28",
           "targetLineGroups": [
-            {
-              "taskId": "route:guangzhou-r3:range-1",
-              "mapRouteId": "guangzhou-r3",
-              "name": "3号线",
-              "stationIds": [
-                "guangzhou-s16",
-                "guangzhou-s17",
-                "guangzhou-s18",
-                "guangzhou-s19",
-                "guangzhou-s20",
-                "guangzhou-s265",
-                "guangzhou-s230",
-                "guangzhou-s266",
-                "guangzhou-s267",
-                "guangzhou-s144",
-                "guangzhou-s268",
-                "guangzhou-s269",
-                "guangzhou-s270",
-                "guangzhou-s271",
-                "guangzhou-s272",
-                "guangzhou-s103",
-                "guangzhou-s177"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "guangzhou-line3-3",
-              "color": "#ECA154",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "guangzhou-s230": "guangzhou-s230__line3-3",
-                "guangzhou-s144": "guangzhou-s144__line3-3",
-                "guangzhou-s103": "guangzhou-s103__line3-3",
-                "guangzhou-s177": "guangzhou-s177__line3-3"
-              },
-              "sourceStationIds": [
-                "guangzhou-s1",
-                "guangzhou-s2",
-                "guangzhou-s3",
-                "guangzhou-s4",
-                "guangzhou-s5",
-                "guangzhou-s6",
-                "guangzhou-s7",
-                "guangzhou-s8",
-                "guangzhou-s9",
-                "guangzhou-s10",
-                "guangzhou-s11",
-                "guangzhou-s12",
-                "guangzhou-s13",
-                "guangzhou-s14",
-                "guangzhou-s15",
-                "guangzhou-s16",
-                "guangzhou-s17",
-                "guangzhou-s18",
-                "guangzhou-s19",
-                "guangzhou-s20",
-                "guangzhou-s265",
-                "guangzhou-s230",
-                "guangzhou-s266",
-                "guangzhou-s267",
-                "guangzhou-s144",
-                "guangzhou-s268",
-                "guangzhou-s269",
-                "guangzhou-s270",
-                "guangzhou-s271",
-                "guangzhou-s272",
-                "guangzhou-s103",
-                "guangzhou-s177",
-                "guangzhou-s273"
-              ],
-              "sourceStationInstances": {
-                "guangzhou-s1": "guangzhou-s1__line3-3",
-                "guangzhou-s3": "guangzhou-s3__line3-3",
-                "guangzhou-s6": "guangzhou-s6__line3-3",
-                "guangzhou-s7": "guangzhou-s7__line3-3",
-                "guangzhou-s9": "guangzhou-s9__line3-3",
-                "guangzhou-s10": "guangzhou-s10__line3-3",
-                "guangzhou-s11": "guangzhou-s11__line3-3",
-                "guangzhou-s14": "guangzhou-s14__line3-3",
-                "guangzhou-s230": "guangzhou-s230__line3-3",
-                "guangzhou-s144": "guangzhou-s144__line3-3",
-                "guangzhou-s103": "guangzhou-s103__line3-3",
-                "guangzhou-s177": "guangzhou-s177__line3-3"
-              },
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
-            },
             {
               "taskId": "route:guangzhou-r20",
               "mapRouteId": "guangzhou-r20",
@@ -58385,7 +58209,43 @@
               "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
             }
           ],
-          "dateBasis": "official_opening_milestone_curated"
+          "dateBasis": "official_opening_milestone_curated",
+          "targetTransfers": [
+            {
+              "id": "historic-transfer-guangzhou-s94-line6-6-line21-16",
+              "name": "苏元",
+              "complexId": "guangzhou-s94",
+              "stationInstanceIds": [
+                "guangzhou-s94__line6-6",
+                "guangzhou-s94__line21-16"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line21-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s250-4-21",
+              "name": "黄村",
+              "complexId": "guangzhou-s67",
+              "lineIds": [
+                "guangzhou-line4-4",
+                "guangzhou-line21-16"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s67",
+                "guangzhou-s250"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://gzw.gz.gov.cn/qy/qydt/content/post_5464442.html",
+              "effectiveDate": "2019-12-20",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            }
+          ]
         },
         {
           "id": "guangzhou-opening-guangzhou-r8-2019-12-28",
@@ -58504,7 +58364,63 @@
               "source": "https://www.cnr.cn/gd/guangdongyaowen/20210928/t20210928_525617567.shtml"
             }
           ],
-          "dateBasis": "official_opening_milestone_curated"
+          "dateBasis": "official_opening_milestone_curated",
+          "targetTransfers": [
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s277-7-18",
+              "name": "南村万博",
+              "complexId": "guangzhou-s209",
+              "lineIds": [
+                "guangzhou-line7-7",
+                "guangzhou-line18-15"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s209",
+                "guangzhou-s277"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://huacheng.gz-cmc.com/pages/2021/09/28/e19c773c32a14bccb3b5cb0db5a15d8e.html",
+              "effectiveDate": "2021-09-28",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s276-3-18",
+              "name": "番禺广场",
+              "complexId": "guangzhou-s16",
+              "lineIds": [
+                "guangzhou-line3-3",
+                "guangzhou-line18-15"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s16",
+                "guangzhou-s276__line18-15"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://huacheng.gz-cmc.com/pages/2021/09/28/e19c773c32a14bccb3b5cb0db5a15d8e.html",
+              "effectiveDate": "2021-09-28",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s278-8-18",
+              "name": "磨碟沙",
+              "complexId": "guangzhou-s165",
+              "lineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line18-15"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s165",
+                "guangzhou-s278"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://huacheng.gz-cmc.com/pages/2021/09/28/e19c773c32a14bccb3b5cb0db5a15d8e.html",
+              "effectiveDate": "2021-09-28",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            }
+          ]
         },
         {
           "id": "guangzhou-opening-guangzhou-r18-2021-12-28",
@@ -58859,7 +58775,187 @@
               "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
             }
           ],
-          "dateBasis": "official_opening_milestone_curated"
+          "dateBasis": "official_opening_milestone_curated",
+          "targetTransfers": [
+            {
+              "id": "historic-transfer-guangzhou-s108-line6-6-line5-5",
+              "name": "区庄",
+              "complexId": "guangzhou-s108",
+              "stationInstanceIds": [
+                "guangzhou-s108__line6-6",
+                "guangzhou-s108__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s118-line6-6-line5-5",
+              "name": "坦尾",
+              "complexId": "guangzhou-s118",
+              "stationInstanceIds": [
+                "guangzhou-s118__line6-6",
+                "guangzhou-s118__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s136-line2-2-line5-5",
+              "name": "广州火车站",
+              "complexId": "guangzhou-s136",
+              "stationInstanceIds": [
+                "guangzhou-s136__line2-2",
+                "guangzhou-s136__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s154-line8-8-line5-5",
+              "name": "西村",
+              "complexId": "guangzhou-s154",
+              "stationInstanceIds": [
+                "guangzhou-s154__line8-8",
+                "guangzhou-s154__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s175-line1-line5-5",
+              "name": "杨箕",
+              "complexId": "guangzhou-s175",
+              "stationInstanceIds": [
+                "guangzhou-s175__line1",
+                "guangzhou-s175__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line1",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s218-line21-16-line7-7",
+              "name": "水西",
+              "complexId": "guangzhou-s218",
+              "stationInstanceIds": [
+                "guangzhou-s218__line21-16",
+                "guangzhou-s218__line7-7"
+              ],
+              "lineIds": [
+                "guangzhou-line21-16",
+                "guangzhou-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s7-line3-3-line5-5",
+              "name": "珠江新城",
+              "complexId": "guangzhou-s7",
+              "stationInstanceIds": [
+                "guangzhou-s7__line3-3",
+                "guangzhou-s7__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line3-3",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s93-line6-6-line7-7",
+              "name": "萝岗",
+              "complexId": "guangzhou-s93",
+              "stationInstanceIds": [
+                "guangzhou-s93__line6-6",
+                "guangzhou-s93__line7-7"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s82-line7-7-line13-13",
+              "name": "裕丰围",
+              "complexId": "guangzhou-s82",
+              "stationInstanceIds": [
+                "guangzhou-s82__line7-7",
+                "guangzhou-s82__line13-13"
+              ],
+              "lineIds": [
+                "guangzhou-line7-7",
+                "guangzhou-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s85-line5-5-line13-13",
+              "name": "夏园",
+              "complexId": "guangzhou-s85",
+              "stationInstanceIds": [
+                "guangzhou-s85__line5-5",
+                "guangzhou-s85__line13-13"
+              ],
+              "lineIds": [
+                "guangzhou-line5-5",
+                "guangzhou-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s214-5-7",
+              "name": "大沙东",
+              "complexId": "guangzhou-s192",
+              "lineIds": [
+                "guangzhou-line5-5",
+                "guangzhou-line7-7"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s192",
+                "guangzhou-s214"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "effectiveDate": "2023-12-28",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            }
+          ]
         },
         {
           "id": "guangzhou-opening-guangzhou-r7-2023-12-28",
@@ -59050,7 +59146,187 @@
               "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
             }
           ],
-          "dateBasis": "official_opening_milestone_curated"
+          "dateBasis": "official_opening_milestone_curated",
+          "targetTransfers": [
+            {
+              "id": "historic-transfer-guangzhou-s108-line6-6-line5-5",
+              "name": "区庄",
+              "complexId": "guangzhou-s108",
+              "stationInstanceIds": [
+                "guangzhou-s108__line6-6",
+                "guangzhou-s108__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s118-line6-6-line5-5",
+              "name": "坦尾",
+              "complexId": "guangzhou-s118",
+              "stationInstanceIds": [
+                "guangzhou-s118__line6-6",
+                "guangzhou-s118__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s136-line2-2-line5-5",
+              "name": "广州火车站",
+              "complexId": "guangzhou-s136",
+              "stationInstanceIds": [
+                "guangzhou-s136__line2-2",
+                "guangzhou-s136__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s154-line8-8-line5-5",
+              "name": "西村",
+              "complexId": "guangzhou-s154",
+              "stationInstanceIds": [
+                "guangzhou-s154__line8-8",
+                "guangzhou-s154__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s175-line1-line5-5",
+              "name": "杨箕",
+              "complexId": "guangzhou-s175",
+              "stationInstanceIds": [
+                "guangzhou-s175__line1",
+                "guangzhou-s175__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line1",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s218-line21-16-line7-7",
+              "name": "水西",
+              "complexId": "guangzhou-s218",
+              "stationInstanceIds": [
+                "guangzhou-s218__line21-16",
+                "guangzhou-s218__line7-7"
+              ],
+              "lineIds": [
+                "guangzhou-line21-16",
+                "guangzhou-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s7-line3-3-line5-5",
+              "name": "珠江新城",
+              "complexId": "guangzhou-s7",
+              "stationInstanceIds": [
+                "guangzhou-s7__line3-3",
+                "guangzhou-s7__line5-5"
+              ],
+              "lineIds": [
+                "guangzhou-line3-3",
+                "guangzhou-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s93-line6-6-line7-7",
+              "name": "萝岗",
+              "complexId": "guangzhou-s93",
+              "stationInstanceIds": [
+                "guangzhou-s93__line6-6",
+                "guangzhou-s93__line7-7"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s82-line7-7-line13-13",
+              "name": "裕丰围",
+              "complexId": "guangzhou-s82",
+              "stationInstanceIds": [
+                "guangzhou-s82__line7-7",
+                "guangzhou-s82__line13-13"
+              ],
+              "lineIds": [
+                "guangzhou-line7-7",
+                "guangzhou-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s85-line5-5-line13-13",
+              "name": "夏园",
+              "complexId": "guangzhou-s85",
+              "stationInstanceIds": [
+                "guangzhou-s85__line5-5",
+                "guangzhou-s85__line13-13"
+              ],
+              "lineIds": [
+                "guangzhou-line5-5",
+                "guangzhou-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s214-5-7",
+              "name": "大沙东",
+              "complexId": "guangzhou-s192",
+              "lineIds": [
+                "guangzhou-line5-5",
+                "guangzhou-line7-7"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s192",
+                "guangzhou-s214"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "effectiveDate": "2023-12-28",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            }
+          ]
         },
         {
           "id": "guangzhou-opening-guangzhou-r19-2024-08-23",
@@ -59258,6 +59534,272 @@
                 "guangzhou-s150": "guangzhou-s150__line12-12",
                 "guangzhou-s371": "guangzhou-s371__line12-12"
               }
+            }
+          ],
+          "targetTransfers": [
+            {
+              "id": "historic-transfer-guangzhou-s110-line6-6-line10-10",
+              "name": "东湖",
+              "complexId": "guangzhou-s110",
+              "stationInstanceIds": [
+                "guangzhou-s110__line6-6",
+                "guangzhou-s110__line10-10"
+              ],
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s128-line2-2-line10-10",
+              "name": "东晓南",
+              "complexId": "guangzhou-s128",
+              "stationInstanceIds": [
+                "guangzhou-s128__line2-2",
+                "guangzhou-s128__line10-10"
+              ],
+              "lineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s150-line8-8-line12-12",
+              "name": "聚龙",
+              "complexId": "guangzhou-s150",
+              "stationInstanceIds": [
+                "guangzhou-s150__line8-8",
+                "guangzhou-s150__line12-12"
+              ],
+              "lineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s164-line8-8-line12-12",
+              "name": "赤岗",
+              "complexId": "guangzhou-s164",
+              "stationInstanceIds": [
+                "guangzhou-s164__line8-8",
+                "guangzhou-s164__line12-12"
+              ],
+              "lineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s27-line1-line10-10",
+              "name": "西塱",
+              "complexId": "guangzhou-s27",
+              "stationInstanceIds": [
+                "guangzhou-s298",
+                "guangzhou-s27__line10-10"
+              ],
+              "lineIds": [
+                "guangzhou-line1",
+                "guangzhou-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s27-line20-line10-10",
+              "name": "西塱",
+              "complexId": "guangzhou-s27",
+              "stationInstanceIds": [
+                "guangzhou-s27__line20",
+                "guangzhou-s27__line10-10"
+              ],
+              "lineIds": [
+                "guangzhou-foshan-route-20",
+                "guangzhou-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s61-line4-4-line12-12",
+              "name": "大学城南",
+              "complexId": "guangzhou-s61",
+              "stationInstanceIds": [
+                "guangzhou-s61__line4-4",
+                "guangzhou-s61__line12-12"
+              ],
+              "lineIds": [
+                "guangzhou-line4-4",
+                "guangzhou-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s61-line7-7-line12-12",
+              "name": "大学城南",
+              "complexId": "guangzhou-s61",
+              "stationInstanceIds": [
+                "guangzhou-s61__line7-7",
+                "guangzhou-s61__line12-12"
+              ],
+              "lineIds": [
+                "guangzhou-line7-7",
+                "guangzhou-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s62-line4-4-line12-12",
+              "name": "大学城北",
+              "complexId": "guangzhou-s62",
+              "stationInstanceIds": [
+                "guangzhou-s62__line4-4",
+                "guangzhou-s62__line12-12"
+              ],
+              "lineIds": [
+                "guangzhou-line4-4",
+                "guangzhou-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s63-line4-4-line12-12",
+              "name": "官洲",
+              "complexId": "guangzhou-s63",
+              "stationInstanceIds": [
+                "guangzhou-s63__line4-4",
+                "guangzhou-s63__line12-12"
+              ],
+              "lineIds": [
+                "guangzhou-line4-4",
+                "guangzhou-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s337-line12-12-line11-11",
+              "name": "赤沙",
+              "complexId": "guangzhou-s337",
+              "stationInstanceIds": [
+                "guangzhou-s337__line12-12",
+                "guangzhou-s337__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line12-12",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-guangzhou-s352-line10-10-line11-11",
+              "name": "五凤",
+              "complexId": "guangzhou-s352",
+              "stationInstanceIds": [
+                "guangzhou-s352__line10-10",
+                "guangzhou-s352__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line10-10",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s361-5-10",
+              "name": "五羊邨",
+              "complexId": "guangzhou-s184",
+              "lineIds": [
+                "guangzhou-line5-5",
+                "guangzhou-line10-10"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s184",
+                "guangzhou-s361"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+              "effectiveDate": "2025-06-29",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s373-6-12",
+              "name": "浔峰岗",
+              "complexId": "guangzhou-s122",
+              "lineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line12-12"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s122",
+                "guangzhou-s373"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+              "effectiveDate": "2025-06-29",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s368-2-12",
+              "name": "白云文化广场",
+              "complexId": "guangzhou-s140",
+              "lineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line12-12"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s140",
+                "guangzhou-s368"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+              "effectiveDate": "2025-06-29",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+            },
+            {
+              "id": "historic-transfer-gz-reviewed-guangzhou-s337-11-12",
+              "name": "赤沙",
+              "complexId": "guangzhou-s337",
+              "lineIds": [
+                "guangzhou-line11-11",
+                "guangzhou-line12-12"
+              ],
+              "stationInstanceIds": [
+                "guangzhou-s337__line11-11",
+                "guangzhou-s337__line12-12"
+              ],
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+              "effectiveDate": "2025-06-29",
+              "precision": "schematic",
+              "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
             }
           ]
         },
@@ -60447,9 +60989,186 @@
           ],
           "scope": "2025年12月29日，南浦西、南漖、西塱和芳村开放，22号线与原首通段贯通运营。",
           "dateBasis": "independently_reviewed_operator_opening"
+        },
+        {
+          "id": "guangzhou-line3-airport-opening-2010-event",
+          "date": "2010-10-30",
+          "title": "亚运机场联系：广州东站至机场南",
+          "status": "opened_or_completed",
+          "source": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+          "sourcePublicationDate": "2015-01-16",
+          "routeIds": [
+            "guangzhou-r3"
+          ],
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line3-airport-opening-2010",
+              "mapRouteId": "guangzhou-r3",
+              "name": "亚运机场联系：广州东站至机场南",
+              "stationIds": [
+                "guangzhou-s177",
+                "guangzhou-s103",
+                "guangzhou-s272",
+                "guangzhou-s271",
+                "guangzhou-s270",
+                "guangzhou-s269",
+                "guangzhou-s268",
+                "guangzhou-s144",
+                "guangzhou-s267",
+                "guangzhou-s266",
+                "guangzhou-h3-airport-south"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+              "historicalLineId": "guangzhou-line3-3",
+              "color": "#ECA154",
+              "stationOrderSource": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s177": "guangzhou-s177__line3-3",
+                "guangzhou-s103": "guangzhou-s103__line3-3",
+                "guangzhou-s272": "guangzhou-s272",
+                "guangzhou-s271": "guangzhou-s271",
+                "guangzhou-s270": "guangzhou-s270",
+                "guangzhou-s269": "guangzhou-s269",
+                "guangzhou-s268": "guangzhou-s268",
+                "guangzhou-s144": "guangzhou-s144__line3-3",
+                "guangzhou-s267": "guangzhou-s267",
+                "guangzhou-s266": "guangzhou-s266",
+                "guangzhou-h3-airport-south": "guangzhou-h3-airport-south"
+              },
+              "stationNames": {
+                "guangzhou-s177": "广州东站",
+                "guangzhou-s103": "燕塘",
+                "guangzhou-s272": "梅花园",
+                "guangzhou-s271": "京溪南方医院",
+                "guangzhou-s270": "同和",
+                "guangzhou-s269": "永泰",
+                "guangzhou-s268": "白云大道北",
+                "guangzhou-s144": "嘉禾望岗",
+                "guangzhou-s267": "龙归",
+                "guangzhou-s266": "人和",
+                "guangzhou-h3-airport-south": "机场南"
+              },
+              "coverageGroupId": "opening:guangzhou-line3-airport-opening-2010",
+              "replaceExistingService": false,
+              "servicePathRevision": 36,
+              "historicalStationSources": {
+                "guangzhou-h3-airport-south": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
+              }
+            }
+          ],
+          "chapterId": "guangzhou-line3-airport-opening-2010",
+          "scope": "本期开放站序：广州东站—燕塘—梅花园—京溪南方医院—同和—永泰—白云大道北—嘉禾望岗—龙归—人和—机场南",
+          "additionalSources": [
+            "https://news.sina.com.cn/o/2010-10-30/160518308188s.shtml?from=wap"
+          ]
+        },
+        {
+          "id": "guangzhou-line3-airport-north-2018-event",
+          "date": "2018-04-26",
+          "title": "T2启用：机场南接至机场北",
+          "status": "opened_or_completed",
+          "source": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+          "sourcePublicationDate": "2018-05-14",
+          "routeIds": [
+            "guangzhou-r3"
+          ],
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line3-airport-north-2018",
+              "mapRouteId": "guangzhou-r3",
+              "name": "T2启用：机场南接至机场北",
+              "stationIds": [
+                "guangzhou-h3-airport-south",
+                "guangzhou-s265"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+              "historicalLineId": "guangzhou-line3-3",
+              "color": "#ECA154",
+              "stationOrderSource": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-h3-airport-south": "guangzhou-h3-airport-south",
+                "guangzhou-s265": "guangzhou-s265"
+              },
+              "stationNames": {
+                "guangzhou-h3-airport-south": "机场南",
+                "guangzhou-s265": "机场北"
+              },
+              "coverageGroupId": "opening:guangzhou-line3-airport-north-2018",
+              "replaceExistingService": false,
+              "servicePathRevision": 36,
+              "historicalStationSources": {
+                "guangzhou-h3-airport-south": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
+              }
+            }
+          ],
+          "chapterId": "guangzhou-line3-airport-north-2018",
+          "scope": "本期开放站序：机场南—机场北"
+        },
+        {
+          "id": "guangzhou-line3-east-opening-2024-event",
+          "date": "2024-11-01",
+          "title": "3号线东延：番禺广场至海傍",
+          "status": "opened_or_completed",
+          "source": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+          "sourcePublicationDate": null,
+          "routeIds": [
+            "guangzhou-r3"
+          ],
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line3-east-opening-2024",
+              "mapRouteId": "guangzhou-r3",
+              "name": "3号线东延：番禺广场至海傍",
+              "stationIds": [
+                "guangzhou-s16",
+                "guangzhou-s17",
+                "guangzhou-s18",
+                "guangzhou-s19",
+                "guangzhou-s20"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+              "historicalLineId": "guangzhou-line3-3",
+              "color": "#ECA154",
+              "stationOrderSource": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s16": "guangzhou-s16",
+                "guangzhou-s17": "guangzhou-s17",
+                "guangzhou-s18": "guangzhou-s18",
+                "guangzhou-s19": "guangzhou-s19",
+                "guangzhou-s20": "guangzhou-s20"
+              },
+              "stationNames": {
+                "guangzhou-s16": "番禺广场",
+                "guangzhou-s17": "傍江",
+                "guangzhou-s18": "石碁南",
+                "guangzhou-s19": "海涌路",
+                "guangzhou-s20": "海傍"
+              },
+              "coverageGroupId": "opening:guangzhou-line3-east-opening-2024",
+              "replaceExistingService": false,
+              "servicePathRevision": 36
+            }
+          ],
+          "chapterId": "guangzhou-line3-east-opening-2024",
+          "scope": "本期开放站序：番禺广场—傍江—石碁南—海涌路—海傍"
+        },
+        {
+          "id": "guangzhou-south-paid-passage-2024-event",
+          "date": "2024-01-21",
+          "title": "广州南站：跨城换乘通道启用",
+          "status": "opened_or_completed",
+          "source": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+          "chapterId": "guangzhou-south-paid-passage-2024",
+          "scope": "佛山2号线与广州2、7、22号线实现站内付费区换乘；各线路站体及实体轨道保留独立。"
         }
       ],
-      "documentedMilestoneCount": 31,
+      "documentedMilestoneCount": 35,
       "milestoneChapters": [
         {
           "id": "guangzhou-milestone-1962-01-01",
@@ -62166,8 +62885,174 @@
           ]
         },
         {
-          "id": "guangzhou-milestone-2016-12-28",
+          "id": "guangzhou-milestone-2010-10-30",
           "periodStartExclusive": "2010-09-25",
+          "periodEndInclusive": "2010-10-30",
+          "title": "亚运机场联系：广州东站至机场南",
+          "eventIds": [
+            "guangzhou-line3-airport-opening-2010-event"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line3-airport-opening-2010-event",
+              "date": "2010-10-30",
+              "title": "亚运机场联系：广州东站至机场南",
+              "status": "opened_or_completed",
+              "source": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+              "sourcePublicationDate": "2015-01-16",
+              "routeIds": [
+                "guangzhou-r3"
+              ],
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line3-airport-opening-2010",
+                  "mapRouteId": "guangzhou-r3",
+                  "name": "亚运机场联系：广州东站至机场南",
+                  "stationIds": [
+                    "guangzhou-s177",
+                    "guangzhou-s103",
+                    "guangzhou-s272",
+                    "guangzhou-s271",
+                    "guangzhou-s270",
+                    "guangzhou-s269",
+                    "guangzhou-s268",
+                    "guangzhou-s144",
+                    "guangzhou-s267",
+                    "guangzhou-s266",
+                    "guangzhou-h3-airport-south"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+                  "historicalLineId": "guangzhou-line3-3",
+                  "color": "#ECA154",
+                  "stationOrderSource": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-s177": "guangzhou-s177__line3-3",
+                    "guangzhou-s103": "guangzhou-s103__line3-3",
+                    "guangzhou-s272": "guangzhou-s272",
+                    "guangzhou-s271": "guangzhou-s271",
+                    "guangzhou-s270": "guangzhou-s270",
+                    "guangzhou-s269": "guangzhou-s269",
+                    "guangzhou-s268": "guangzhou-s268",
+                    "guangzhou-s144": "guangzhou-s144__line3-3",
+                    "guangzhou-s267": "guangzhou-s267",
+                    "guangzhou-s266": "guangzhou-s266",
+                    "guangzhou-h3-airport-south": "guangzhou-h3-airport-south"
+                  },
+                  "stationNames": {
+                    "guangzhou-s177": "广州东站",
+                    "guangzhou-s103": "燕塘",
+                    "guangzhou-s272": "梅花园",
+                    "guangzhou-s271": "京溪南方医院",
+                    "guangzhou-s270": "同和",
+                    "guangzhou-s269": "永泰",
+                    "guangzhou-s268": "白云大道北",
+                    "guangzhou-s144": "嘉禾望岗",
+                    "guangzhou-s267": "龙归",
+                    "guangzhou-s266": "人和",
+                    "guangzhou-h3-airport-south": "机场南"
+                  },
+                  "coverageGroupId": "opening:guangzhou-line3-airport-opening-2010",
+                  "replaceExistingService": false,
+                  "servicePathRevision": 36,
+                  "historicalStationSources": {
+                    "guangzhou-h3-airport-south": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
+                  }
+                }
+              ],
+              "chapterId": "guangzhou-line3-airport-opening-2010",
+              "scope": "本期开放站序：广州东站—燕塘—梅花园—京溪南方医院—同和—永泰—白云大道北—嘉禾望岗—龙归—人和—机场南",
+              "additionalSources": [
+                "https://news.sina.com.cn/o/2010-10-30/160518308188s.shtml?from=wap"
+              ]
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-line3-airport-opening-2010"
+          ],
+          "playableChapterId": "guangzhou-line3-airport-opening-2010",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [
+            "guangzhou-r3"
+          ],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [
+            {
+              "taskId": "opening:guangzhou-line3-airport-opening-2010",
+              "mapRouteId": "guangzhou-r3",
+              "name": "亚运机场联系：广州东站至机场南",
+              "stationIds": [
+                "guangzhou-s177",
+                "guangzhou-s103",
+                "guangzhou-s272",
+                "guangzhou-s271",
+                "guangzhou-s270",
+                "guangzhou-s269",
+                "guangzhou-s268",
+                "guangzhou-s144",
+                "guangzhou-s267",
+                "guangzhou-s266",
+                "guangzhou-h3-airport-south"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+              "historicalLineId": "guangzhou-line3-3",
+              "color": "#ECA154",
+              "stationOrderSource": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s177": "guangzhou-s177__line3-3",
+                "guangzhou-s103": "guangzhou-s103__line3-3",
+                "guangzhou-s272": "guangzhou-s272",
+                "guangzhou-s271": "guangzhou-s271",
+                "guangzhou-s270": "guangzhou-s270",
+                "guangzhou-s269": "guangzhou-s269",
+                "guangzhou-s268": "guangzhou-s268",
+                "guangzhou-s144": "guangzhou-s144__line3-3",
+                "guangzhou-s267": "guangzhou-s267",
+                "guangzhou-s266": "guangzhou-s266",
+                "guangzhou-h3-airport-south": "guangzhou-h3-airport-south"
+              },
+              "stationNames": {
+                "guangzhou-s177": "广州东站",
+                "guangzhou-s103": "燕塘",
+                "guangzhou-s272": "梅花园",
+                "guangzhou-s271": "京溪南方医院",
+                "guangzhou-s270": "同和",
+                "guangzhou-s269": "永泰",
+                "guangzhou-s268": "白云大道北",
+                "guangzhou-s144": "嘉禾望岗",
+                "guangzhou-s267": "龙归",
+                "guangzhou-s266": "人和",
+                "guangzhou-h3-airport-south": "机场南"
+              },
+              "coverageGroupId": "opening:guangzhou-line3-airport-opening-2010",
+              "replaceExistingService": false,
+              "servicePathRevision": 36,
+              "historicalStationSources": {
+                "guangzhou-h3-airport-south": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
+              }
+            }
+          ],
+          "chapterTargetStationIds": [
+            "guangzhou-h3-airport-south",
+            "guangzhou-s103",
+            "guangzhou-s144",
+            "guangzhou-s177",
+            "guangzhou-s266",
+            "guangzhou-s267",
+            "guangzhou-s268",
+            "guangzhou-s269",
+            "guangzhou-s270",
+            "guangzhou-s271",
+            "guangzhou-s272"
+          ]
+        },
+        {
+          "id": "guangzhou-milestone-2016-12-28",
+          "periodStartExclusive": "2010-10-30",
           "periodEndInclusive": "2016-12-28",
           "title": "6号线二期与7号线首期开通",
           "eventIds": [
@@ -63111,9 +63996,42 @@
               "stationInstances": {
                 "guangzhou-s68": "guangzhou-s68__line14-14"
               }
+            },
+            {
+              "taskId": "opening:guangzhou-line3-gaozeng-2017",
+              "mapRouteId": "guangzhou-r3",
+              "name": "3号线高增站开放",
+              "stationIds": [
+                "guangzhou-s266",
+                "guangzhou-s230",
+                "guangzhou-h3-airport-south"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+              "historicalLineId": "guangzhou-line3-3",
+              "color": "#ECA154",
+              "stationOrderSource": "https://kgw.gz.gov.cn/xxgk/rddbjyhzxta/content/post_3108006.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s266": "guangzhou-s266",
+                "guangzhou-s230": "guangzhou-s230__line3-3",
+                "guangzhou-h3-airport-south": "guangzhou-h3-airport-south"
+              },
+              "stationNames": {
+                "guangzhou-s266": "人和",
+                "guangzhou-s230": "高增",
+                "guangzhou-h3-airport-south": "机场南"
+              },
+              "coverageGroupId": "opening:guangzhou-line3-gaozeng-2017",
+              "replaceExistingService": false,
+              "servicePathRevision": 36,
+              "historicalStationSources": {
+                "guangzhou-h3-airport-south": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
+              }
             }
           ],
           "chapterTargetStationIds": [
+            "guangzhou-h3-airport-south",
             "guangzhou-s220",
             "guangzhou-s221",
             "guangzhou-s222",
@@ -63125,6 +64043,7 @@
             "guangzhou-s228",
             "guangzhou-s229",
             "guangzhou-s230",
+            "guangzhou-s266",
             "guangzhou-s45",
             "guangzhou-s46",
             "guangzhou-s47",
@@ -63159,10 +64078,110 @@
           ]
         },
         {
-          "id": "guangzhou-milestone-2018-12-28",
+          "id": "guangzhou-milestone-2018-04-26",
           "periodStartExclusive": "2017-12-28",
+          "periodEndInclusive": "2018-04-26",
+          "title": "T2启用：机场南接至机场北",
+          "eventIds": [
+            "guangzhou-line3-airport-north-2018-event"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line3-airport-north-2018-event",
+              "date": "2018-04-26",
+              "title": "T2启用：机场南接至机场北",
+              "status": "opened_or_completed",
+              "source": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+              "sourcePublicationDate": "2018-05-14",
+              "routeIds": [
+                "guangzhou-r3"
+              ],
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line3-airport-north-2018",
+                  "mapRouteId": "guangzhou-r3",
+                  "name": "T2启用：机场南接至机场北",
+                  "stationIds": [
+                    "guangzhou-h3-airport-south",
+                    "guangzhou-s265"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+                  "historicalLineId": "guangzhou-line3-3",
+                  "color": "#ECA154",
+                  "stationOrderSource": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-h3-airport-south": "guangzhou-h3-airport-south",
+                    "guangzhou-s265": "guangzhou-s265"
+                  },
+                  "stationNames": {
+                    "guangzhou-h3-airport-south": "机场南",
+                    "guangzhou-s265": "机场北"
+                  },
+                  "coverageGroupId": "opening:guangzhou-line3-airport-north-2018",
+                  "replaceExistingService": false,
+                  "servicePathRevision": 36,
+                  "historicalStationSources": {
+                    "guangzhou-h3-airport-south": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
+                  }
+                }
+              ],
+              "chapterId": "guangzhou-line3-airport-north-2018",
+              "scope": "本期开放站序：机场南—机场北"
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-line3-airport-north-2018"
+          ],
+          "playableChapterId": "guangzhou-line3-airport-north-2018",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [
+            "guangzhou-r3"
+          ],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [
+            {
+              "taskId": "opening:guangzhou-line3-airport-north-2018",
+              "mapRouteId": "guangzhou-r3",
+              "name": "T2启用：机场南接至机场北",
+              "stationIds": [
+                "guangzhou-h3-airport-south",
+                "guangzhou-s265"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+              "historicalLineId": "guangzhou-line3-3",
+              "color": "#ECA154",
+              "stationOrderSource": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-h3-airport-south": "guangzhou-h3-airport-south",
+                "guangzhou-s265": "guangzhou-s265"
+              },
+              "stationNames": {
+                "guangzhou-h3-airport-south": "机场南",
+                "guangzhou-s265": "机场北"
+              },
+              "coverageGroupId": "opening:guangzhou-line3-airport-north-2018",
+              "replaceExistingService": false,
+              "servicePathRevision": 36,
+              "historicalStationSources": {
+                "guangzhou-h3-airport-south": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
+              }
+            }
+          ],
+          "chapterTargetStationIds": [
+            "guangzhou-h3-airport-south",
+            "guangzhou-s265"
+          ]
+        },
+        {
+          "id": "guangzhou-milestone-2018-12-28",
+          "periodStartExclusive": "2018-04-26",
           "periodEndInclusive": "2018-12-28",
-          "title": "3号线北延、广佛线南延、14号线一期及21号线首通段开通",
+          "title": "广佛线南延、14号线一期及21号线首通段开通",
           "eventIds": [
             "guangzhou-opening-guangzhou-r20-2018-12-28",
             "guangzhou-opening-guangzhou-r3-2018-12-28"
@@ -63171,7 +64190,7 @@
             {
               "id": "guangzhou-opening-guangzhou-r20-2018-12-28",
               "date": "2018-12-28",
-              "title": "广佛线截止日线路范围纳入历史建设任务",
+              "title": "广佛线南延、14号线一期及21号线首通段开通",
               "status": "opened_or_completed",
               "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
               "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
@@ -63184,93 +64203,6 @@
               ],
               "chapterId": "guangzhou-network-milestone-2018-12-28",
               "targetLineGroups": [
-                {
-                  "taskId": "route:guangzhou-r3:range-1",
-                  "mapRouteId": "guangzhou-r3",
-                  "name": "3号线",
-                  "stationIds": [
-                    "guangzhou-s16",
-                    "guangzhou-s17",
-                    "guangzhou-s18",
-                    "guangzhou-s19",
-                    "guangzhou-s20",
-                    "guangzhou-s265",
-                    "guangzhou-s230",
-                    "guangzhou-s266",
-                    "guangzhou-s267",
-                    "guangzhou-s144",
-                    "guangzhou-s268",
-                    "guangzhou-s269",
-                    "guangzhou-s270",
-                    "guangzhou-s271",
-                    "guangzhou-s272",
-                    "guangzhou-s103",
-                    "guangzhou-s177"
-                  ],
-                  "toleranceM": 220,
-                  "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-                  "historicalLineId": "guangzhou-line3-3",
-                  "color": "#ECA154",
-                  "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-                  "alignmentPrecision": "station_areas_and_approximate_corridor",
-                  "stationInstances": {
-                    "guangzhou-s230": "guangzhou-s230__line3-3",
-                    "guangzhou-s144": "guangzhou-s144__line3-3",
-                    "guangzhou-s103": "guangzhou-s103__line3-3",
-                    "guangzhou-s177": "guangzhou-s177__line3-3"
-                  },
-                  "sourceStationIds": [
-                    "guangzhou-s1",
-                    "guangzhou-s2",
-                    "guangzhou-s3",
-                    "guangzhou-s4",
-                    "guangzhou-s5",
-                    "guangzhou-s6",
-                    "guangzhou-s7",
-                    "guangzhou-s8",
-                    "guangzhou-s9",
-                    "guangzhou-s10",
-                    "guangzhou-s11",
-                    "guangzhou-s12",
-                    "guangzhou-s13",
-                    "guangzhou-s14",
-                    "guangzhou-s15",
-                    "guangzhou-s16",
-                    "guangzhou-s17",
-                    "guangzhou-s18",
-                    "guangzhou-s19",
-                    "guangzhou-s20",
-                    "guangzhou-s265",
-                    "guangzhou-s230",
-                    "guangzhou-s266",
-                    "guangzhou-s267",
-                    "guangzhou-s144",
-                    "guangzhou-s268",
-                    "guangzhou-s269",
-                    "guangzhou-s270",
-                    "guangzhou-s271",
-                    "guangzhou-s272",
-                    "guangzhou-s103",
-                    "guangzhou-s177",
-                    "guangzhou-s273"
-                  ],
-                  "sourceStationInstances": {
-                    "guangzhou-s1": "guangzhou-s1__line3-3",
-                    "guangzhou-s3": "guangzhou-s3__line3-3",
-                    "guangzhou-s6": "guangzhou-s6__line3-3",
-                    "guangzhou-s7": "guangzhou-s7__line3-3",
-                    "guangzhou-s9": "guangzhou-s9__line3-3",
-                    "guangzhou-s10": "guangzhou-s10__line3-3",
-                    "guangzhou-s11": "guangzhou-s11__line3-3",
-                    "guangzhou-s14": "guangzhou-s14__line3-3",
-                    "guangzhou-s230": "guangzhou-s230__line3-3",
-                    "guangzhou-s144": "guangzhou-s144__line3-3",
-                    "guangzhou-s103": "guangzhou-s103__line3-3",
-                    "guangzhou-s177": "guangzhou-s177__line3-3"
-                  },
-                  "constructionScope": "new_contiguous_range",
-                  "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
-                },
                 {
                   "taskId": "route:guangzhou-r20",
                   "mapRouteId": "guangzhou-r20",
@@ -63435,7 +64367,7 @@
             {
               "id": "guangzhou-opening-guangzhou-r3-2018-12-28",
               "date": "2018-12-28",
-              "title": "3号线截止日线路范围纳入历史建设任务",
+              "title": "广佛线南延、14号线一期及21号线首通段开通",
               "status": "opened_or_completed",
               "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
               "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
@@ -63443,98 +64375,9 @@
               "sourceType": "official_route_inventory_cross_checked_with_opening_records",
               "sourcePublicationDate": null,
               "scope": "按公开运营线路清单和对应开通事件建立可玩线路任务；逐站开放批次以本章目标和历史事件记录为准。",
-              "routeIds": [
-                "guangzhou-r3"
-              ],
+              "routeIds": [],
               "chapterId": "guangzhou-network-milestone-2018-12-28",
               "targetLineGroups": [
-                {
-                  "taskId": "route:guangzhou-r3:range-1",
-                  "mapRouteId": "guangzhou-r3",
-                  "name": "3号线",
-                  "stationIds": [
-                    "guangzhou-s16",
-                    "guangzhou-s17",
-                    "guangzhou-s18",
-                    "guangzhou-s19",
-                    "guangzhou-s20",
-                    "guangzhou-s265",
-                    "guangzhou-s230",
-                    "guangzhou-s266",
-                    "guangzhou-s267",
-                    "guangzhou-s144",
-                    "guangzhou-s268",
-                    "guangzhou-s269",
-                    "guangzhou-s270",
-                    "guangzhou-s271",
-                    "guangzhou-s272",
-                    "guangzhou-s103",
-                    "guangzhou-s177"
-                  ],
-                  "toleranceM": 220,
-                  "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-                  "historicalLineId": "guangzhou-line3-3",
-                  "color": "#ECA154",
-                  "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-                  "alignmentPrecision": "station_areas_and_approximate_corridor",
-                  "stationInstances": {
-                    "guangzhou-s230": "guangzhou-s230__line3-3",
-                    "guangzhou-s144": "guangzhou-s144__line3-3",
-                    "guangzhou-s103": "guangzhou-s103__line3-3",
-                    "guangzhou-s177": "guangzhou-s177__line3-3"
-                  },
-                  "sourceStationIds": [
-                    "guangzhou-s1",
-                    "guangzhou-s2",
-                    "guangzhou-s3",
-                    "guangzhou-s4",
-                    "guangzhou-s5",
-                    "guangzhou-s6",
-                    "guangzhou-s7",
-                    "guangzhou-s8",
-                    "guangzhou-s9",
-                    "guangzhou-s10",
-                    "guangzhou-s11",
-                    "guangzhou-s12",
-                    "guangzhou-s13",
-                    "guangzhou-s14",
-                    "guangzhou-s15",
-                    "guangzhou-s16",
-                    "guangzhou-s17",
-                    "guangzhou-s18",
-                    "guangzhou-s19",
-                    "guangzhou-s20",
-                    "guangzhou-s265",
-                    "guangzhou-s230",
-                    "guangzhou-s266",
-                    "guangzhou-s267",
-                    "guangzhou-s144",
-                    "guangzhou-s268",
-                    "guangzhou-s269",
-                    "guangzhou-s270",
-                    "guangzhou-s271",
-                    "guangzhou-s272",
-                    "guangzhou-s103",
-                    "guangzhou-s177",
-                    "guangzhou-s273"
-                  ],
-                  "sourceStationInstances": {
-                    "guangzhou-s1": "guangzhou-s1__line3-3",
-                    "guangzhou-s3": "guangzhou-s3__line3-3",
-                    "guangzhou-s6": "guangzhou-s6__line3-3",
-                    "guangzhou-s7": "guangzhou-s7__line3-3",
-                    "guangzhou-s9": "guangzhou-s9__line3-3",
-                    "guangzhou-s10": "guangzhou-s10__line3-3",
-                    "guangzhou-s11": "guangzhou-s11__line3-3",
-                    "guangzhou-s14": "guangzhou-s14__line3-3",
-                    "guangzhou-s230": "guangzhou-s230__line3-3",
-                    "guangzhou-s144": "guangzhou-s144__line3-3",
-                    "guangzhou-s103": "guangzhou-s103__line3-3",
-                    "guangzhou-s177": "guangzhou-s177__line3-3"
-                  },
-                  "constructionScope": "new_contiguous_range",
-                  "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
-                },
                 {
                   "taskId": "route:guangzhou-r20",
                   "mapRouteId": "guangzhou-r20",
@@ -63704,98 +64547,10 @@
           "contentStatus": "playable_milestone",
           "eventOnly": false,
           "routeIds": [
-            "guangzhou-r20",
-            "guangzhou-r3"
+            "guangzhou-r20"
           ],
           "targetMapRouteIds": [],
           "chapterTargetGroups": [
-            {
-              "taskId": "route:guangzhou-r3:range-1",
-              "mapRouteId": "guangzhou-r3",
-              "name": "3号线",
-              "stationIds": [
-                "guangzhou-s16",
-                "guangzhou-s17",
-                "guangzhou-s18",
-                "guangzhou-s19",
-                "guangzhou-s20",
-                "guangzhou-s265",
-                "guangzhou-s230",
-                "guangzhou-s266",
-                "guangzhou-s267",
-                "guangzhou-s144",
-                "guangzhou-s268",
-                "guangzhou-s269",
-                "guangzhou-s270",
-                "guangzhou-s271",
-                "guangzhou-s272",
-                "guangzhou-s103",
-                "guangzhou-s177"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "guangzhou-line3-3",
-              "color": "#ECA154",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "guangzhou-s230": "guangzhou-s230__line3-3",
-                "guangzhou-s144": "guangzhou-s144__line3-3",
-                "guangzhou-s103": "guangzhou-s103__line3-3",
-                "guangzhou-s177": "guangzhou-s177__line3-3"
-              },
-              "sourceStationIds": [
-                "guangzhou-s1",
-                "guangzhou-s2",
-                "guangzhou-s3",
-                "guangzhou-s4",
-                "guangzhou-s5",
-                "guangzhou-s6",
-                "guangzhou-s7",
-                "guangzhou-s8",
-                "guangzhou-s9",
-                "guangzhou-s10",
-                "guangzhou-s11",
-                "guangzhou-s12",
-                "guangzhou-s13",
-                "guangzhou-s14",
-                "guangzhou-s15",
-                "guangzhou-s16",
-                "guangzhou-s17",
-                "guangzhou-s18",
-                "guangzhou-s19",
-                "guangzhou-s20",
-                "guangzhou-s265",
-                "guangzhou-s230",
-                "guangzhou-s266",
-                "guangzhou-s267",
-                "guangzhou-s144",
-                "guangzhou-s268",
-                "guangzhou-s269",
-                "guangzhou-s270",
-                "guangzhou-s271",
-                "guangzhou-s272",
-                "guangzhou-s103",
-                "guangzhou-s177",
-                "guangzhou-s273"
-              ],
-              "sourceStationInstances": {
-                "guangzhou-s1": "guangzhou-s1__line3-3",
-                "guangzhou-s3": "guangzhou-s3__line3-3",
-                "guangzhou-s6": "guangzhou-s6__line3-3",
-                "guangzhou-s7": "guangzhou-s7__line3-3",
-                "guangzhou-s9": "guangzhou-s9__line3-3",
-                "guangzhou-s10": "guangzhou-s10__line3-3",
-                "guangzhou-s11": "guangzhou-s11__line3-3",
-                "guangzhou-s14": "guangzhou-s14__line3-3",
-                "guangzhou-s230": "guangzhou-s230__line3-3",
-                "guangzhou-s144": "guangzhou-s144__line3-3",
-                "guangzhou-s103": "guangzhou-s103__line3-3",
-                "guangzhou-s177": "guangzhou-s177__line3-3"
-              },
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
-            },
             {
               "taskId": "route:guangzhou-r20",
               "mapRouteId": "guangzhou-r20",
@@ -63956,19 +64711,11 @@
             }
           ],
           "chapterTargetStationIds": [
-            "guangzhou-s103",
             "guangzhou-s11",
             "guangzhou-s144",
-            "guangzhou-s16",
-            "guangzhou-s17",
-            "guangzhou-s177",
-            "guangzhou-s18",
-            "guangzhou-s19",
-            "guangzhou-s20",
             "guangzhou-s21",
             "guangzhou-s22",
             "guangzhou-s23",
-            "guangzhou-s230",
             "guangzhou-s238",
             "guangzhou-s239",
             "guangzhou-s24",
@@ -63991,15 +64738,7 @@
             "guangzhou-s262",
             "guangzhou-s263",
             "guangzhou-s264",
-            "guangzhou-s265",
-            "guangzhou-s266",
-            "guangzhou-s267",
-            "guangzhou-s268",
-            "guangzhou-s269",
             "guangzhou-s27",
-            "guangzhou-s270",
-            "guangzhou-s271",
-            "guangzhou-s272",
             "guangzhou-s28",
             "guangzhou-s29",
             "guangzhou-s30",
@@ -64107,7 +64846,43 @@
                   "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
                 }
               ],
-              "dateBasis": "official_opening_milestone_curated"
+              "dateBasis": "official_opening_milestone_curated",
+              "targetTransfers": [
+                {
+                  "id": "historic-transfer-guangzhou-s94-line6-6-line21-16",
+                  "name": "苏元",
+                  "complexId": "guangzhou-s94",
+                  "stationInstanceIds": [
+                    "guangzhou-s94__line6-6",
+                    "guangzhou-s94__line21-16"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line21-16"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s250-4-21",
+                  "name": "黄村",
+                  "complexId": "guangzhou-s67",
+                  "lineIds": [
+                    "guangzhou-line4-4",
+                    "guangzhou-line21-16"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s67",
+                    "guangzhou-s250"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://gzw.gz.gov.cn/qy/qydt/content/post_5464442.html",
+                  "effectiveDate": "2019-12-20",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                }
+              ]
             }
           ],
           "chapterIds": [
@@ -64429,7 +65204,63 @@
                   "source": "https://www.cnr.cn/gd/guangdongyaowen/20210928/t20210928_525617567.shtml"
                 }
               ],
-              "dateBasis": "official_opening_milestone_curated"
+              "dateBasis": "official_opening_milestone_curated",
+              "targetTransfers": [
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s277-7-18",
+                  "name": "南村万博",
+                  "complexId": "guangzhou-s209",
+                  "lineIds": [
+                    "guangzhou-line7-7",
+                    "guangzhou-line18-15"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s209",
+                    "guangzhou-s277"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://huacheng.gz-cmc.com/pages/2021/09/28/e19c773c32a14bccb3b5cb0db5a15d8e.html",
+                  "effectiveDate": "2021-09-28",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s276-3-18",
+                  "name": "番禺广场",
+                  "complexId": "guangzhou-s16",
+                  "lineIds": [
+                    "guangzhou-line3-3",
+                    "guangzhou-line18-15"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s16",
+                    "guangzhou-s276__line18-15"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://huacheng.gz-cmc.com/pages/2021/09/28/e19c773c32a14bccb3b5cb0db5a15d8e.html",
+                  "effectiveDate": "2021-09-28",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s278-8-18",
+                  "name": "磨碟沙",
+                  "complexId": "guangzhou-s165",
+                  "lineIds": [
+                    "guangzhou-line8-8",
+                    "guangzhou-line18-15"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s165",
+                    "guangzhou-s278"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://huacheng.gz-cmc.com/pages/2021/09/28/e19c773c32a14bccb3b5cb0db5a15d8e.html",
+                  "effectiveDate": "2021-09-28",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                }
+              ]
             }
           ],
           "chapterIds": [
@@ -65063,7 +65894,187 @@
                   "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
                 }
               ],
-              "dateBasis": "official_opening_milestone_curated"
+              "dateBasis": "official_opening_milestone_curated",
+              "targetTransfers": [
+                {
+                  "id": "historic-transfer-guangzhou-s108-line6-6-line5-5",
+                  "name": "区庄",
+                  "complexId": "guangzhou-s108",
+                  "stationInstanceIds": [
+                    "guangzhou-s108__line6-6",
+                    "guangzhou-s108__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s118-line6-6-line5-5",
+                  "name": "坦尾",
+                  "complexId": "guangzhou-s118",
+                  "stationInstanceIds": [
+                    "guangzhou-s118__line6-6",
+                    "guangzhou-s118__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s136-line2-2-line5-5",
+                  "name": "广州火车站",
+                  "complexId": "guangzhou-s136",
+                  "stationInstanceIds": [
+                    "guangzhou-s136__line2-2",
+                    "guangzhou-s136__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line2-2",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s154-line8-8-line5-5",
+                  "name": "西村",
+                  "complexId": "guangzhou-s154",
+                  "stationInstanceIds": [
+                    "guangzhou-s154__line8-8",
+                    "guangzhou-s154__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line8-8",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s175-line1-line5-5",
+                  "name": "杨箕",
+                  "complexId": "guangzhou-s175",
+                  "stationInstanceIds": [
+                    "guangzhou-s175__line1",
+                    "guangzhou-s175__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line1",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s218-line21-16-line7-7",
+                  "name": "水西",
+                  "complexId": "guangzhou-s218",
+                  "stationInstanceIds": [
+                    "guangzhou-s218__line21-16",
+                    "guangzhou-s218__line7-7"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line21-16",
+                    "guangzhou-line7-7"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s7-line3-3-line5-5",
+                  "name": "珠江新城",
+                  "complexId": "guangzhou-s7",
+                  "stationInstanceIds": [
+                    "guangzhou-s7__line3-3",
+                    "guangzhou-s7__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line3-3",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s93-line6-6-line7-7",
+                  "name": "萝岗",
+                  "complexId": "guangzhou-s93",
+                  "stationInstanceIds": [
+                    "guangzhou-s93__line6-6",
+                    "guangzhou-s93__line7-7"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line7-7"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s82-line7-7-line13-13",
+                  "name": "裕丰围",
+                  "complexId": "guangzhou-s82",
+                  "stationInstanceIds": [
+                    "guangzhou-s82__line7-7",
+                    "guangzhou-s82__line13-13"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line7-7",
+                    "guangzhou-line13-13"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s85-line5-5-line13-13",
+                  "name": "夏园",
+                  "complexId": "guangzhou-s85",
+                  "stationInstanceIds": [
+                    "guangzhou-s85__line5-5",
+                    "guangzhou-s85__line13-13"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line5-5",
+                    "guangzhou-line13-13"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s214-5-7",
+                  "name": "大沙东",
+                  "complexId": "guangzhou-s192",
+                  "lineIds": [
+                    "guangzhou-line5-5",
+                    "guangzhou-line7-7"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s192",
+                    "guangzhou-s214"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "effectiveDate": "2023-12-28",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                }
+              ]
             },
             {
               "id": "guangzhou-opening-guangzhou-r7-2023-12-28",
@@ -65254,7 +66265,187 @@
                   "constructionScopeNote": "仅建设本期新增连续区段；与已建线路共用的端站作为接头复用。"
                 }
               ],
-              "dateBasis": "official_opening_milestone_curated"
+              "dateBasis": "official_opening_milestone_curated",
+              "targetTransfers": [
+                {
+                  "id": "historic-transfer-guangzhou-s108-line6-6-line5-5",
+                  "name": "区庄",
+                  "complexId": "guangzhou-s108",
+                  "stationInstanceIds": [
+                    "guangzhou-s108__line6-6",
+                    "guangzhou-s108__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s118-line6-6-line5-5",
+                  "name": "坦尾",
+                  "complexId": "guangzhou-s118",
+                  "stationInstanceIds": [
+                    "guangzhou-s118__line6-6",
+                    "guangzhou-s118__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s136-line2-2-line5-5",
+                  "name": "广州火车站",
+                  "complexId": "guangzhou-s136",
+                  "stationInstanceIds": [
+                    "guangzhou-s136__line2-2",
+                    "guangzhou-s136__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line2-2",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s154-line8-8-line5-5",
+                  "name": "西村",
+                  "complexId": "guangzhou-s154",
+                  "stationInstanceIds": [
+                    "guangzhou-s154__line8-8",
+                    "guangzhou-s154__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line8-8",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s175-line1-line5-5",
+                  "name": "杨箕",
+                  "complexId": "guangzhou-s175",
+                  "stationInstanceIds": [
+                    "guangzhou-s175__line1",
+                    "guangzhou-s175__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line1",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s218-line21-16-line7-7",
+                  "name": "水西",
+                  "complexId": "guangzhou-s218",
+                  "stationInstanceIds": [
+                    "guangzhou-s218__line21-16",
+                    "guangzhou-s218__line7-7"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line21-16",
+                    "guangzhou-line7-7"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s7-line3-3-line5-5",
+                  "name": "珠江新城",
+                  "complexId": "guangzhou-s7",
+                  "stationInstanceIds": [
+                    "guangzhou-s7__line3-3",
+                    "guangzhou-s7__line5-5"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line3-3",
+                    "guangzhou-line5-5"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s93-line6-6-line7-7",
+                  "name": "萝岗",
+                  "complexId": "guangzhou-s93",
+                  "stationInstanceIds": [
+                    "guangzhou-s93__line6-6",
+                    "guangzhou-s93__line7-7"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line7-7"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s82-line7-7-line13-13",
+                  "name": "裕丰围",
+                  "complexId": "guangzhou-s82",
+                  "stationInstanceIds": [
+                    "guangzhou-s82__line7-7",
+                    "guangzhou-s82__line13-13"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line7-7",
+                    "guangzhou-line13-13"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s85-line5-5-line13-13",
+                  "name": "夏园",
+                  "complexId": "guangzhou-s85",
+                  "stationInstanceIds": [
+                    "guangzhou-s85__line5-5",
+                    "guangzhou-s85__line13-13"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line5-5",
+                    "guangzhou-line13-13"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s214-5-7",
+                  "name": "大沙东",
+                  "complexId": "guangzhou-s192",
+                  "lineIds": [
+                    "guangzhou-line5-5",
+                    "guangzhou-line7-7"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s192",
+                    "guangzhou-s214"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "effectiveDate": "2023-12-28",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                }
+              ]
             }
           ],
           "chapterIds": [
@@ -65487,8 +66678,38 @@
           ]
         },
         {
-          "id": "guangzhou-milestone-2024-08-23",
+          "id": "guangzhou-milestone-2024-01-21",
           "periodStartExclusive": "2023-12-28",
+          "periodEndInclusive": "2024-01-21",
+          "title": "广州南站：跨城换乘通道启用",
+          "eventIds": [
+            "guangzhou-south-paid-passage-2024-event"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-south-paid-passage-2024-event",
+              "date": "2024-01-21",
+              "title": "广州南站：跨城换乘通道启用",
+              "status": "opened_or_completed",
+              "source": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+              "chapterId": "guangzhou-south-paid-passage-2024",
+              "scope": "佛山2号线与广州2、7、22号线实现站内付费区换乘；各线路站体及实体轨道保留独立。"
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-south-paid-passage-2024"
+          ],
+          "playableChapterId": "guangzhou-south-paid-passage-2024",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [],
+          "chapterTargetStationIds": []
+        },
+        {
+          "id": "guangzhou-milestone-2024-08-23",
+          "periodStartExclusive": "2024-01-21",
           "periodEndInclusive": "2024-08-23",
           "title": "佛山3号线建设阶段",
           "eventIds": [
@@ -65680,8 +66901,123 @@
           ]
         },
         {
-          "id": "guangzhou-milestone-2024-12-28",
+          "id": "guangzhou-milestone-2024-11-01",
           "periodStartExclusive": "2024-08-23",
+          "periodEndInclusive": "2024-11-01",
+          "title": "3号线东延：番禺广场至海傍",
+          "eventIds": [
+            "guangzhou-line3-east-opening-2024-event"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line3-east-opening-2024-event",
+              "date": "2024-11-01",
+              "title": "3号线东延：番禺广场至海傍",
+              "status": "opened_or_completed",
+              "source": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+              "sourcePublicationDate": null,
+              "routeIds": [
+                "guangzhou-r3"
+              ],
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line3-east-opening-2024",
+                  "mapRouteId": "guangzhou-r3",
+                  "name": "3号线东延：番禺广场至海傍",
+                  "stationIds": [
+                    "guangzhou-s16",
+                    "guangzhou-s17",
+                    "guangzhou-s18",
+                    "guangzhou-s19",
+                    "guangzhou-s20"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+                  "historicalLineId": "guangzhou-line3-3",
+                  "color": "#ECA154",
+                  "stationOrderSource": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-s16": "guangzhou-s16",
+                    "guangzhou-s17": "guangzhou-s17",
+                    "guangzhou-s18": "guangzhou-s18",
+                    "guangzhou-s19": "guangzhou-s19",
+                    "guangzhou-s20": "guangzhou-s20"
+                  },
+                  "stationNames": {
+                    "guangzhou-s16": "番禺广场",
+                    "guangzhou-s17": "傍江",
+                    "guangzhou-s18": "石碁南",
+                    "guangzhou-s19": "海涌路",
+                    "guangzhou-s20": "海傍"
+                  },
+                  "coverageGroupId": "opening:guangzhou-line3-east-opening-2024",
+                  "replaceExistingService": false,
+                  "servicePathRevision": 36
+                }
+              ],
+              "chapterId": "guangzhou-line3-east-opening-2024",
+              "scope": "本期开放站序：番禺广场—傍江—石碁南—海涌路—海傍"
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-line3-east-opening-2024"
+          ],
+          "playableChapterId": "guangzhou-line3-east-opening-2024",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [
+            "guangzhou-r3"
+          ],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [
+            {
+              "taskId": "opening:guangzhou-line3-east-opening-2024",
+              "mapRouteId": "guangzhou-r3",
+              "name": "3号线东延：番禺广场至海傍",
+              "stationIds": [
+                "guangzhou-s16",
+                "guangzhou-s17",
+                "guangzhou-s18",
+                "guangzhou-s19",
+                "guangzhou-s20"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按本期开放站序复现；现代站址及近似走廊作地理参考，不是历史隧道测绘。",
+              "historicalLineId": "guangzhou-line3-3",
+              "color": "#ECA154",
+              "stationOrderSource": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s16": "guangzhou-s16",
+                "guangzhou-s17": "guangzhou-s17",
+                "guangzhou-s18": "guangzhou-s18",
+                "guangzhou-s19": "guangzhou-s19",
+                "guangzhou-s20": "guangzhou-s20"
+              },
+              "stationNames": {
+                "guangzhou-s16": "番禺广场",
+                "guangzhou-s17": "傍江",
+                "guangzhou-s18": "石碁南",
+                "guangzhou-s19": "海涌路",
+                "guangzhou-s20": "海傍"
+              },
+              "coverageGroupId": "opening:guangzhou-line3-east-opening-2024",
+              "replaceExistingService": false,
+              "servicePathRevision": 36
+            }
+          ],
+          "chapterTargetStationIds": [
+            "guangzhou-s16",
+            "guangzhou-s17",
+            "guangzhou-s18",
+            "guangzhou-s19",
+            "guangzhou-s20"
+          ]
+        },
+        {
+          "id": "guangzhou-milestone-2024-12-28",
+          "periodStartExclusive": "2024-11-01",
           "periodEndInclusive": "2024-12-28",
           "title": "首条市区环线：29站连成一环",
           "eventIds": [],
@@ -65981,6 +67317,272 @@
                     "guangzhou-s150": "guangzhou-s150__line12-12",
                     "guangzhou-s371": "guangzhou-s371__line12-12"
                   }
+                }
+              ],
+              "targetTransfers": [
+                {
+                  "id": "historic-transfer-guangzhou-s110-line6-6-line10-10",
+                  "name": "东湖",
+                  "complexId": "guangzhou-s110",
+                  "stationInstanceIds": [
+                    "guangzhou-s110__line6-6",
+                    "guangzhou-s110__line10-10"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line10-10"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s128-line2-2-line10-10",
+                  "name": "东晓南",
+                  "complexId": "guangzhou-s128",
+                  "stationInstanceIds": [
+                    "guangzhou-s128__line2-2",
+                    "guangzhou-s128__line10-10"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line2-2",
+                    "guangzhou-line10-10"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s150-line8-8-line12-12",
+                  "name": "聚龙",
+                  "complexId": "guangzhou-s150",
+                  "stationInstanceIds": [
+                    "guangzhou-s150__line8-8",
+                    "guangzhou-s150__line12-12"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line8-8",
+                    "guangzhou-line12-12"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s164-line8-8-line12-12",
+                  "name": "赤岗",
+                  "complexId": "guangzhou-s164",
+                  "stationInstanceIds": [
+                    "guangzhou-s164__line8-8",
+                    "guangzhou-s164__line12-12"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line8-8",
+                    "guangzhou-line12-12"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s27-line1-line10-10",
+                  "name": "西塱",
+                  "complexId": "guangzhou-s27",
+                  "stationInstanceIds": [
+                    "guangzhou-s298",
+                    "guangzhou-s27__line10-10"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line1",
+                    "guangzhou-line10-10"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s27-line20-line10-10",
+                  "name": "西塱",
+                  "complexId": "guangzhou-s27",
+                  "stationInstanceIds": [
+                    "guangzhou-s27__line20",
+                    "guangzhou-s27__line10-10"
+                  ],
+                  "lineIds": [
+                    "guangzhou-foshan-route-20",
+                    "guangzhou-line10-10"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s61-line4-4-line12-12",
+                  "name": "大学城南",
+                  "complexId": "guangzhou-s61",
+                  "stationInstanceIds": [
+                    "guangzhou-s61__line4-4",
+                    "guangzhou-s61__line12-12"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line4-4",
+                    "guangzhou-line12-12"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s61-line7-7-line12-12",
+                  "name": "大学城南",
+                  "complexId": "guangzhou-s61",
+                  "stationInstanceIds": [
+                    "guangzhou-s61__line7-7",
+                    "guangzhou-s61__line12-12"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line7-7",
+                    "guangzhou-line12-12"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s62-line4-4-line12-12",
+                  "name": "大学城北",
+                  "complexId": "guangzhou-s62",
+                  "stationInstanceIds": [
+                    "guangzhou-s62__line4-4",
+                    "guangzhou-s62__line12-12"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line4-4",
+                    "guangzhou-line12-12"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s63-line4-4-line12-12",
+                  "name": "官洲",
+                  "complexId": "guangzhou-s63",
+                  "stationInstanceIds": [
+                    "guangzhou-s63__line4-4",
+                    "guangzhou-s63__line12-12"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line4-4",
+                    "guangzhou-line12-12"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s337-line12-12-line11-11",
+                  "name": "赤沙",
+                  "complexId": "guangzhou-s337",
+                  "stationInstanceIds": [
+                    "guangzhou-s337__line12-12",
+                    "guangzhou-s337__line11-11"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line12-12",
+                    "guangzhou-line11-11"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-guangzhou-s352-line10-10-line11-11",
+                  "name": "五凤",
+                  "complexId": "guangzhou-s352",
+                  "stationInstanceIds": [
+                    "guangzhou-s352__line10-10",
+                    "guangzhou-s352__line11-11"
+                  ],
+                  "lineIds": [
+                    "guangzhou-line10-10",
+                    "guangzhou-line11-11"
+                  ],
+                  "precision": "schematic",
+                  "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+                  "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s361-5-10",
+                  "name": "五羊邨",
+                  "complexId": "guangzhou-s184",
+                  "lineIds": [
+                    "guangzhou-line5-5",
+                    "guangzhou-line10-10"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s184",
+                    "guangzhou-s361"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+                  "effectiveDate": "2025-06-29",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s373-6-12",
+                  "name": "浔峰岗",
+                  "complexId": "guangzhou-s122",
+                  "lineIds": [
+                    "guangzhou-line6-6",
+                    "guangzhou-line12-12"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s122",
+                    "guangzhou-s373"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+                  "effectiveDate": "2025-06-29",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s368-2-12",
+                  "name": "白云文化广场",
+                  "complexId": "guangzhou-s140",
+                  "lineIds": [
+                    "guangzhou-line2-2",
+                    "guangzhou-line12-12"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s140",
+                    "guangzhou-s368"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+                  "effectiveDate": "2025-06-29",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
+                },
+                {
+                  "id": "historic-transfer-gz-reviewed-guangzhou-s337-11-12",
+                  "name": "赤沙",
+                  "complexId": "guangzhou-s337",
+                  "lineIds": [
+                    "guangzhou-line11-11",
+                    "guangzhou-line12-12"
+                  ],
+                  "stationInstanceIds": [
+                    "guangzhou-s337__line11-11",
+                    "guangzhou-s337__line12-12"
+                  ],
+                  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+                  "openingSource": "https://huacheng.gz-cmc.com/pages/2025/06/29/87f0668b98b345f3bf47f4cf3c11062d.html",
+                  "effectiveDate": "2025-06-29",
+                  "precision": "schematic",
+                  "note": "站体身份按运营方换乘查询核对；通道结构为示意，不表示共用站厅或共轨。"
                 }
               ]
             }
@@ -69320,13 +70922,13 @@
         }
       ],
       "documentedMilestonesWithoutPlayableChapter": [],
-      "playableChapterCount": 27,
-      "buildChapterCount": 23,
+      "playableChapterCount": 31,
+      "buildChapterCount": 26,
       "eventOnlyChapterCount": 4,
       "routeSnapshotChapterCount": 14,
-      "playableChapterLineGroupCount": 65,
-      "uniqueChapterTargetCount": 373,
-      "chapterTargetsPresentInMapPackage": 373,
+      "playableChapterLineGroupCount": 68,
+      "uniqueChapterTargetCount": 374,
+      "chapterTargetsPresentInMapPackage": 374,
       "currentMapStationsNeverTargetedByAnyPlayableChapter": [],
       "sharedMapStationIdsAcrossRoutes": [
         "guangzhou-s1",
@@ -69812,6 +71414,43 @@
           "hasSource": true
         },
         {
+          "chapterId": "guangzhou-line3-airport-opening-2010",
+          "chapterTitle": "亚运机场联系：广州东站至机场南",
+          "chapterDate": "2010-10-30",
+          "lineId": "guangzhou-line3-3",
+          "lineName": "亚运机场联系：广州东站至机场南",
+          "targetStationCount": 11,
+          "targetStationIds": [
+            "guangzhou-s177",
+            "guangzhou-s103",
+            "guangzhou-s272",
+            "guangzhou-s271",
+            "guangzhou-s270",
+            "guangzhou-s269",
+            "guangzhou-s268",
+            "guangzhou-s144",
+            "guangzhou-s267",
+            "guangzhou-s266",
+            "guangzhou-h3-airport-south"
+          ],
+          "targetIdsInMapPackage": [
+            "guangzhou-s177",
+            "guangzhou-s103",
+            "guangzhou-s272",
+            "guangzhou-s271",
+            "guangzhou-s270",
+            "guangzhou-s269",
+            "guangzhou-s268",
+            "guangzhou-s144",
+            "guangzhou-s267",
+            "guangzhou-s266",
+            "guangzhou-h3-airport-south"
+          ],
+          "missingTargetIds": [],
+          "alignmentPrecision": "station_areas_and_approximate_corridor",
+          "hasSource": true
+        },
+        {
           "chapterId": "guangzhou-network-milestone-2016-12-28",
           "chapterTitle": "6号线二期与7号线首期开通",
           "chapterDate": "2016-12-28",
@@ -70083,49 +71722,40 @@
           "hasSource": true
         },
         {
-          "chapterId": "guangzhou-network-milestone-2018-12-28",
-          "chapterTitle": "3号线北延、广佛线南延、14号线一期及21号线首通段开通",
-          "chapterDate": "2018-12-28",
+          "chapterId": "guangzhou-network-milestone-2017-12-28",
+          "chapterTitle": "4号线南延、9号线一期、13号线首期及14号线知识城支线开通",
+          "chapterDate": "2017-12-28",
           "lineId": "guangzhou-line3-3",
-          "lineName": "3号线",
-          "targetStationCount": 17,
+          "lineName": "3号线高增站开放",
+          "targetStationCount": 3,
           "targetStationIds": [
-            "guangzhou-s16",
-            "guangzhou-s17",
-            "guangzhou-s18",
-            "guangzhou-s19",
-            "guangzhou-s20",
-            "guangzhou-s265",
-            "guangzhou-s230",
             "guangzhou-s266",
-            "guangzhou-s267",
-            "guangzhou-s144",
-            "guangzhou-s268",
-            "guangzhou-s269",
-            "guangzhou-s270",
-            "guangzhou-s271",
-            "guangzhou-s272",
-            "guangzhou-s103",
-            "guangzhou-s177"
+            "guangzhou-s230",
+            "guangzhou-h3-airport-south"
           ],
           "targetIdsInMapPackage": [
-            "guangzhou-s16",
-            "guangzhou-s17",
-            "guangzhou-s18",
-            "guangzhou-s19",
-            "guangzhou-s20",
-            "guangzhou-s265",
-            "guangzhou-s230",
             "guangzhou-s266",
-            "guangzhou-s267",
-            "guangzhou-s144",
-            "guangzhou-s268",
-            "guangzhou-s269",
-            "guangzhou-s270",
-            "guangzhou-s271",
-            "guangzhou-s272",
-            "guangzhou-s103",
-            "guangzhou-s177"
+            "guangzhou-s230",
+            "guangzhou-h3-airport-south"
+          ],
+          "missingTargetIds": [],
+          "alignmentPrecision": "station_areas_and_approximate_corridor",
+          "hasSource": true
+        },
+        {
+          "chapterId": "guangzhou-line3-airport-north-2018",
+          "chapterTitle": "T2启用：机场南接至机场北",
+          "chapterDate": "2018-04-26",
+          "lineId": "guangzhou-line3-3",
+          "lineName": "T2启用：机场南接至机场北",
+          "targetStationCount": 2,
+          "targetStationIds": [
+            "guangzhou-h3-airport-south",
+            "guangzhou-s265"
+          ],
+          "targetIdsInMapPackage": [
+            "guangzhou-h3-airport-south",
+            "guangzhou-s265"
           ],
           "missingTargetIds": [],
           "alignmentPrecision": "station_areas_and_approximate_corridor",
@@ -70133,7 +71763,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2018-12-28",
-          "chapterTitle": "3号线北延、广佛线南延、14号线一期及21号线首通段开通",
+          "chapterTitle": "广佛线南延、14号线一期及21号线首通段开通",
           "chapterDate": "2018-12-28",
           "lineId": "guangzhou-foshan-route-20",
           "lineName": "广佛线",
@@ -70198,7 +71828,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2018-12-28",
-          "chapterTitle": "3号线北延、广佛线南延、14号线一期及21号线首通段开通",
+          "chapterTitle": "广佛线南延、14号线一期及21号线首通段开通",
           "chapterDate": "2018-12-28",
           "lineId": "guangzhou-line14-14",
           "lineName": "14号线一期 · 嘉禾望岗—东风 · 本期新增段1",
@@ -70229,7 +71859,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2018-12-28",
-          "chapterTitle": "3号线北延、广佛线南延、14号线一期及21号线首通段开通",
+          "chapterTitle": "广佛线南延、14号线一期及21号线首通段开通",
           "chapterDate": "2018-12-28",
           "lineId": "guangzhou-line14-14",
           "lineName": "14号线一期 · 嘉禾望岗—东风 · 本期新增段2",
@@ -70256,7 +71886,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2018-12-28",
-          "chapterTitle": "3号线北延、广佛线南延、14号线一期及21号线首通段开通",
+          "chapterTitle": "广佛线南延、14号线一期及21号线首通段开通",
           "chapterDate": "2018-12-28",
           "lineId": "guangzhou-line21-16",
           "lineName": "21号线首通段 · 镇龙西—增城广场",
@@ -70729,6 +72359,31 @@
             "guangzhou-s334",
             "guangzhou-s335",
             "guangzhou-s336"
+          ],
+          "missingTargetIds": [],
+          "alignmentPrecision": "station_areas_and_approximate_corridor",
+          "hasSource": true
+        },
+        {
+          "chapterId": "guangzhou-line3-east-opening-2024",
+          "chapterTitle": "3号线东延：番禺广场至海傍",
+          "chapterDate": "2024-11-01",
+          "lineId": "guangzhou-line3-3",
+          "lineName": "3号线东延：番禺广场至海傍",
+          "targetStationCount": 5,
+          "targetStationIds": [
+            "guangzhou-s16",
+            "guangzhou-s17",
+            "guangzhou-s18",
+            "guangzhou-s19",
+            "guangzhou-s20"
+          ],
+          "targetIdsInMapPackage": [
+            "guangzhou-s16",
+            "guangzhou-s17",
+            "guangzhou-s18",
+            "guangzhou-s19",
+            "guangzhou-s20"
           ],
           "missingTargetIds": [],
           "alignmentPrecision": "station_areas_and_approximate_corridor",
@@ -72421,6 +74076,12 @@
               "overlapStationCount": 1
             },
             {
+              "chapterId": "guangzhou-line3-airport-opening-2010",
+              "historicalLineId": "guangzhou-line3-3",
+              "targetLineName": "亚运机场联系：广州东站至机场南",
+              "overlapStationCount": 1
+            },
+            {
               "chapterId": "guangzhou-network-milestone-2006-12-30",
               "historicalLineId": "guangzhou-line3-3",
               "targetLineName": "3号线支线：天河客运站—体育西路",
@@ -72436,12 +74097,6 @@
               "chapterId": "guangzhou-network-milestone-2010-09-25",
               "historicalLineId": "guangzhou-line2-2",
               "targetLineName": "2号线",
-              "overlapStationCount": 1
-            },
-            {
-              "chapterId": "guangzhou-network-milestone-2018-12-28",
-              "historicalLineId": "guangzhou-line3-3",
-              "targetLineName": "3号线",
               "overlapStationCount": 1
             },
             {
@@ -72627,6 +74282,12 @@
               "overlapStationCount": 1
             },
             {
+              "chapterId": "guangzhou-line3-airport-opening-2010",
+              "historicalLineId": "guangzhou-line3-3",
+              "targetLineName": "亚运机场联系：广州东站至机场南",
+              "overlapStationCount": 1
+            },
+            {
               "chapterId": "guangzhou-network-milestone-1999-06-28",
               "historicalLineId": "guangzhou-line1",
               "targetLineName": "1号线 · 本期新增段2",
@@ -72642,12 +74303,6 @@
               "chapterId": "guangzhou-network-milestone-2016-12-28",
               "historicalLineId": "guangzhou-line6-6",
               "targetLineName": "6号线",
-              "overlapStationCount": 1
-            },
-            {
-              "chapterId": "guangzhou-network-milestone-2018-12-28",
-              "historicalLineId": "guangzhou-line3-3",
-              "targetLineName": "3号线",
               "overlapStationCount": 1
             },
             {
@@ -72876,10 +74531,10 @@
               "overlapStationCount": 28
             },
             {
-              "chapterId": "guangzhou-network-milestone-2018-12-28",
+              "chapterId": "guangzhou-line3-airport-opening-2010",
               "historicalLineId": "guangzhou-line3-3",
-              "targetLineName": "3号线",
-              "overlapStationCount": 17
+              "targetLineName": "亚运机场联系：广州东站至机场南",
+              "overlapStationCount": 10
             },
             {
               "chapterId": "guangzhou-network-milestone-2006-12-30",
@@ -72906,6 +74561,12 @@
               "overlapStationCount": 6
             },
             {
+              "chapterId": "guangzhou-line3-east-opening-2024",
+              "historicalLineId": "guangzhou-line3-3",
+              "targetLineName": "3号线东延：番禺广场至海傍",
+              "overlapStationCount": 5
+            },
+            {
               "chapterId": "guangzhou-line11-ring-opening-2024",
               "historicalLineId": "guangzhou-line11-11",
               "targetLineName": "11号线",
@@ -72921,6 +74582,12 @@
               "chapterId": "guangzhou-network-milestone-2016-12-28",
               "historicalLineId": "guangzhou-line6-6",
               "targetLineName": "6号线",
+              "overlapStationCount": 2
+            },
+            {
+              "chapterId": "guangzhou-network-milestone-2017-12-28",
+              "historicalLineId": "guangzhou-line3-3",
+              "targetLineName": "3号线高增站开放",
               "overlapStationCount": 2
             },
             {
@@ -72946,6 +74613,12 @@
               "historicalLineId": "guangzhou-line11-11",
               "targetLineName": "11号线",
               "overlapStationCount": 2
+            },
+            {
+              "chapterId": "guangzhou-line3-airport-north-2018",
+              "historicalLineId": "guangzhou-line3-3",
+              "targetLineName": "T2启用：机场南接至机场北",
+              "overlapStationCount": 1
             },
             {
               "chapterId": "guangzhou-network-milestone-2009-12-28",
@@ -73600,6 +75273,12 @@
               "overlapStationCount": 2
             },
             {
+              "chapterId": "guangzhou-line3-airport-opening-2010",
+              "historicalLineId": "guangzhou-line3-3",
+              "targetLineName": "亚运机场联系：广州东站至机场南",
+              "overlapStationCount": 1
+            },
+            {
               "chapterId": "guangzhou-network-milestone-2006-12-30",
               "historicalLineId": "guangzhou-line3-3",
               "targetLineName": "3号线支线：天河客运站—体育西路",
@@ -73609,12 +75288,6 @@
               "chapterId": "guangzhou-network-milestone-2010-09-25",
               "historicalLineId": "guangzhou-line2-2",
               "targetLineName": "2号线",
-              "overlapStationCount": 1
-            },
-            {
-              "chapterId": "guangzhou-network-milestone-2018-12-28",
-              "historicalLineId": "guangzhou-line3-3",
-              "targetLineName": "3号线",
               "overlapStationCount": 1
             },
             {
@@ -74184,9 +75857,9 @@
               "overlapStationCount": 11
             },
             {
-              "chapterId": "guangzhou-network-milestone-2018-12-28",
+              "chapterId": "guangzhou-network-milestone-2017-12-28",
               "historicalLineId": "guangzhou-line3-3",
-              "targetLineName": "3号线",
+              "targetLineName": "3号线高增站开放",
               "overlapStationCount": 1
             },
             {
@@ -75022,15 +76695,15 @@
               "overlapStationCount": 6
             },
             {
-              "chapterId": "guangzhou-network-milestone-2010-09-25",
-              "historicalLineId": "guangzhou-line2-2",
-              "targetLineName": "2号线",
+              "chapterId": "guangzhou-line3-airport-opening-2010",
+              "historicalLineId": "guangzhou-line3-3",
+              "targetLineName": "亚运机场联系：广州东站至机场南",
               "overlapStationCount": 1
             },
             {
-              "chapterId": "guangzhou-network-milestone-2018-12-28",
-              "historicalLineId": "guangzhou-line3-3",
-              "targetLineName": "3号线",
+              "chapterId": "guangzhou-network-milestone-2010-09-25",
+              "historicalLineId": "guangzhou-line2-2",
+              "targetLineName": "2号线",
               "overlapStationCount": 1
             },
             {

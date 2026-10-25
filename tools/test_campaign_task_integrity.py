@@ -59,6 +59,18 @@ def check_group(city_id: str, chapter_id: str, group: dict, location: str) -> No
             seen.add(value); value = aliases[value]
         return value
     reference_complexes = {canonical(value) for value in route_ids}
+    # A closed historical stop may legitimately be absent from the modern
+    # OSM service relation. Require its separately sourced physical object,
+    # matching historical line and identical opening evidence; a free-form
+    # exception or an arbitrary extra station is not sufficient.
+    for historical_id,evidence in group.get('historicalStationSources',{}).items():
+        station=next((s for s in city.get('stations',[]) if s['id']==historical_id),{})
+        if (station.get('historicalOnly') is True and station.get('historicalLineId')==group.get('historicalLineId')
+                and isinstance(evidence,str) and evidence.startswith('https://')
+                and evidence==station.get('historicalOpeningSource')):
+            reference_complexes.add(canonical(historical_id))
+        else:
+            errors.append(f'{city_id}/{chapter_id}/{location}: historical station {historical_id} lacks matching line and opening evidence')
     for field in ("stationIds", "sourceStationIds"):
         values = [str(value) for value in group.get(field, [])]
         foreign = [value for value in values if not value.startswith(city_id + "-")]

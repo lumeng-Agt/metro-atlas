@@ -93,6 +93,8 @@ func _run() -> void:
 			var event_only:=bool(selected_chapter.get("eventOnly",false))
 			if event_only:
 				_check(groups.is_empty() and targets.is_empty() and not str(selected_chapter.get("source","")).is_empty(),"%s只读历史节点明确标记资料来源且不伪装成铺轨任务" % str(selected_chapter.get("id","")))
+			elif str(selected_chapter.get("operationType",""))=="transfer_connection":
+				_check(not str(selected_chapter.get("id","")).is_empty() and groups.is_empty() and not targets.is_empty() and targets.all(func(target:Dictionary):return bool(target.get("existingTransferAnchor",false))) and not selected_chapter.get("requiredTransfers",[]).is_empty(),"%s换乘通道章节定位既有独立站体，不伪造新建轨道" % str(city.id))
 			else:
 				_check(not str(selected_chapter.get("id","" )).is_empty() and not groups.is_empty() and not targets.is_empty(),"%s章节有稳定编号、任务和可定位目标" % str(city.id))
 			_check(str(selected_chapter.get("date",""))<="2026-10-01","%s不提前出现截止日后的历史章节" % str(selected_chapter.get("id","")))

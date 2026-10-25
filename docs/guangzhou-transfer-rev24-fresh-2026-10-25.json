@@ -1,0 +1,44 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "guangzhou",
+  "operatorRetrievedAt": "2026-10-25",
+  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+  "expectedPairs": 97,
+  "matchedPairs": 97,
+  "missingPairs": [],
+  "invalidConnections": [],
+  "nonOpenConnections": [
+    {
+      "id": "future-transfer-gz8b-jiniantang-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz8b-ziyuangang-11",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz-jiangfu-8-24",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz-north-9-24",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz11-railway-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz11-railway-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-gz11-railway-14",
+      "reason": "construction relationship has no current open service"
+    }
+  ],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "c1787ef284e768c4a7531e52accb99c7a0b94a9e0a47d04e469d0ae745484542",
+  "evidenceSha256": "27184be4476ae6dfdd9b95a3848322fbd1efd48fdeb73e9d760b389782a97c9b"
+}

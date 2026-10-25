@@ -21,6 +21,7 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 	var cutoff:Dictionary=target.get("cutoffNetwork",{})
 	if cutoff.get("groups",[]).is_empty() or str(cutoff.get("date",""))!=str(parsed.get("cutoffDate","2026-10-01")):reasons.append("缺少对应截止日的独立站序目标。")
 	if str(cutoff.get("temporalReviewStatus",""))!="verified" or cutoff.get("temporalEvidence",[]).is_empty():reasons.append("截止日开放范围缺少独立日期证据，现行时刻表不能代替。")
+	if str(cutoff.get("transferReviewStatus",""))!="verified":reasons.append("截止日全量换乘联系尚未完成独立核对。")
 	for evidence in cutoff.get("temporalEvidence",[]):
 		if str(evidence.get("source","")).is_empty() or str(evidence.get("effectiveDate","")).is_empty() or str(evidence.get("effectiveDate",""))>str(parsed.get("cutoffDate","2026-10-01")):reasons.append("截止日证据缺失或包含后期开通。")
 	var campaign:=city_config(city_id)
@@ -394,6 +395,20 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 			if not last_chapter_date.is_empty() and chapter_date < last_chapter_date: errors.append("%s 历史章节未按日期排序" % chapter_id)
 			last_chapter_date = chapter_date
 			if str(chapter.get("source", "")).is_empty(): errors.append("%s 缺少来源" % chapter_id)
+			if chapter.get("lineGroups",[]).is_empty() and not bool(chapter.get("eventOnly",false)):
+				if str(chapter.get("operationType",""))!="transfer_connection" or chapter.get("requiredTransfers",[]).is_empty():errors.append("%s 没有建设范围或明确换乘操作"%chapter_id)
+				var pairing_ids:Dictionary={}
+				for pairing in chapter.get("requiredTransfers",[]):
+					var pair_id:=str(pairing.get("id",""));var lines:Array=pairing.get("lineIds",[]);var bodies:Array=pairing.get("stationInstanceIds",[])
+					if pair_id.is_empty() or pairing_ids.has(pair_id) or lines.size()<2 or lines.size()!=bodies.size() or not str(pairing.get("source","")).begins_with("https://"):errors.append("%s 换乘任务配对或来源无效"%chapter_id)
+					pairing_ids[pair_id]=true
+					var unique_lines:Dictionary={};var unique_bodies:Dictionary={}
+					for identity in lines:
+						if not str(identity).begins_with(str(city_id)+"-") or unique_lines.has(str(identity)):errors.append("%s 换乘任务引用重复或其他城市线路"%chapter_id)
+						unique_lines[str(identity)]=true
+					for identity in bodies:
+						if not station_ids.has(str(identity).get_slice("__",0)) or unique_bodies.has(str(identity)):errors.append("%s 换乘任务引用未知或共用站体"%chapter_id)
+						unique_bodies[str(identity)]=true
 			if str(chapter.get("sourceTitle", "")).is_empty(): errors.append("%s 缺少来源标题" % chapter_id)
 			if str(chapter.get("sourceCheckedAt", "")).is_empty(): errors.append("%s 缺少来源核验日期" % chapter_id)
 			if str(chapter.get("sourceType", "")).is_empty(): errors.append("%s 缺少来源类型" % chapter_id)

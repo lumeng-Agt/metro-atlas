@@ -160,8 +160,14 @@ class CoverageRules(unittest.TestCase):
 
     def test_explicit_dated_cutoff_evidence(self):
         network = dict(date='2026-10-01', groups=[self.target['groups'][0]], temporalReviewStatus='verified',
+                       transferReviewStatus='verified',
                        temporalEvidence=[dict(source='https://example.invalid/opening', effectiveDate='2026-09-28')])
         self.assertEqual(cutoff_evidence_errors(network, '2026-10-01'), [])
+
+    def test_station_order_and_dates_do_not_prove_interchange_completeness(self):
+        network=dict(date='2026-10-01',groups=[self.target['groups'][0]],temporalReviewStatus='verified',
+                     temporalEvidence=[dict(source='https://example.invalid/opening',effectiveDate='2026-09-28')])
+        self.assertIn('cutoff interchange inventory not independently reviewed',cutoff_evidence_errors(network,'2026-10-01'))
 
     def test_beijing_first_opening_cannot_stand_for_the_approved_full_project(self):
         targets=read(ROOT/'data/official_targets_2026-10-01.json')['cities']['beijing']['projects']

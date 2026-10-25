@@ -158,11 +158,16 @@ static func permitted_historical_stops(milestones:Array,date:String) -> Dictiona
 		# the old scope once per line, then union its branches. Clearing for
 		# every branch incorrectly rejects the other branch's unique stations.
 		var reset_lines:Dictionary={}
-		for group in milestone.get("groups",[]):
+		var scopes:Array=milestone.get("groups",[]).duplicate()
+		# Previously opened scopes are independent requirements too: they are
+		# checked by project_errors, and must not be mistaken for future stops
+		# when a later chapter adds only one end of the same line.
+		scopes.append_array(milestone.get("existingScopes",[]))
+		for group in scopes:
 			var line_id:=str(group.get("historicalLineId",group.id))
 			if bool(group.get("fullServiceOrder",false)) and not reset_lines.has(line_id):
 				permitted[line_id]=[];reset_lines[line_id]=true
-		for group in milestone.get("groups",[]):
+		for group in scopes:
 			var line_id:=str(group.get("historicalLineId",group.id))
 			if not permitted.has(line_id):permitted[line_id]=[]
 			for name in group.get("stationNames",[]):

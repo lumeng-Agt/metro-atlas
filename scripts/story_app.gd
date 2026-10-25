@@ -371,7 +371,7 @@ func _save(_rotate:bool=false) -> bool:
 	return true
 
 func _operation_label(chapter:Dictionary) -> String:
-	var labels:Dictionary={"first_build":"首次建设","extension":"线路延伸","phased_opening":"分期建设","interchange":"形成换乘","reorganization":"贯通与线路重组","plan_revision":"方案调整","network_opening":"线路开通"}
+	var labels:Dictionary={"first_build":"首次建设","extension":"线路延伸","phased_opening":"分期建设","interchange":"形成换乘","transfer_connection":"换乘通道启用","reorganization":"贯通与线路重组","plan_revision":"方案调整","network_opening":"线路开通"}
 	return str(labels.get(str(chapter.get("operationType", "")), "历史线路建设"))
 
 func _save_commemorative_image() -> void:
@@ -441,8 +441,12 @@ func _refresh() -> void:
 	line_button.visible=str(world.mode)!="campaign" or bool(ch.get("requiresLineReorganization",false))
 	end_button.visible=tool!="select"
 	var waiting_for_plan:=str(world.mode)=="campaign" and str(world.storyState.get("stage",""))=="build" and not Story.plan_is_final(world)
-	station_button.disabled=waiting_for_plan;track_button.disabled=waiting_for_plan
-	if waiting_for_plan:
+	var transfer_only:=str(world.mode)=="campaign" and str(ch.get("operationType",""))=="transfer_connection"
+	station_button.disabled=waiting_for_plan or transfer_only;track_button.disabled=waiting_for_plan or transfer_only
+	if transfer_only:
+		station_button.tooltip_text="本期连接既有线路的独立站体，无需新建车站。请在故事页预览并建立换乘。"
+		track_button.tooltip_text=station_button.tooltip_text
+	elif waiting_for_plan:
 		station_button.tooltip_text="当前是尚未实施的历史草案。先在故事页采用本期方案，再建设。"
 		track_button.tooltip_text=station_button.tooltip_text
 	else:
@@ -658,7 +662,11 @@ func _left() -> void:
 		var active_groups:=Story.groups(world,true,_active_task_id())
 		var engineering_only:=not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group))
 		var built:=active_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
-		if engineering_only:
+		var transfer_only:=str(chapter.get("operationType",""))=="transfer_connection" and active_groups.is_empty()
+		if transfer_only:
+			var linked:int=chapter.get("requiredTransfers",[]).filter(func(t:Dictionary):return _transfer_connected(t)).size()
+			left.add_child(label("本期换乘联系 %d / %d"%[linked,chapter.get("requiredTransfers",[]).size()],20,true))
+		elif engineering_only:
 			var new_station_count:=0
 			for group in active_groups:new_station_count+=group.get("newStationIds",[]).size()
 			left.add_child(label("轨道接口工程 · 本任务不新增车站" if new_station_count==0 else "工程轨道与 %d 座本线新站体"%new_station_count,18,true))
@@ -670,6 +678,7 @@ func _left() -> void:
 				left.add_child(label("· %s · %s线站体" % [str(missing_target.get("name","目标站")),str(missing_target.get("historicalLineName",missing_target.get("historicalLineId","本期")))],15))
 			if missing_targets.size()>4:left.add_child(label("另有 %d 座目标站体" % (missing_targets.size()-4),15))
 		elif engineering_only:left.add_child(label("沿本期走廊连接目标站端与工程接口；方形接口不是车站。未纳入本期的界外区间不会自动补齐，完成工程不会生成运营线路。",15))
+		elif transfer_only:left.add_child(label("既有线路和轨道保持原样；通过下面的换乘预览确认联系。",15))
 		elif not bool(chapter.get("eventOnly",false)):left.add_child(label("目标站体已建齐；还需核对连续轨道、本期站序和线路关系。",15))
 		if bool(chapter.get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):left.add_child(label("原有站轨保留：请点击下方「线路整理」，核对分段记录的贯通站序。",18))
 		var transfer_evaluation:Dictionary=Story.evaluate(world) if not chapter.get("requiredTransfers",[]).is_empty() else {}
@@ -1085,6 +1094,8 @@ func _rename_station(value:String) -> void:
 	_execute("修改站名",func(state:Dictionary):WorldData.find_station(state,selected_id).name=value.strip_edges())
 
 func _tool(value:String) -> void:
+	if value in ["station","track","line"] and str(world.get("mode",""))=="campaign" and str(Story.chapter(world).get("operationType",""))=="transfer_connection":
+		page="story";show_left=true;show_right=false;problem="本期只需连接既有站体。请点击左侧“预览并建立换乘”，无需重新建站或铺轨。";_refresh();return
 	if value!="select" and str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():
 		problem="当前资料已到边界。后续历史与远期蓝图核验完成后继续，自由创作尚未解锁。";_instruction();return
 	# A construction tool must leave read-only comparison first. Otherwise the

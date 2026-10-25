@@ -24402,6 +24402,24 @@
           "source": "https://www.by.gov.cn/gzjg/qtdkfzx/jcss/content/post_10790614.html",
           "sourceCheckedAt": "2026-10-24",
           "coordinateAccuracyM": 450
+        },
+        {
+          "id": "guangzhou-h3-airport-south",
+          "name": "机场南",
+          "latlng": [
+            23.3887083,
+            113.297575
+          ],
+          "osmIds": [
+            5444544490
+          ],
+          "historicalOnly": true,
+          "source": "https://www.openstreetmap.org/node/5444544490",
+          "positionPrecision": "approximate_station_area",
+          "sourceCheckedAt": "2026-10-25",
+          "note": "现代地理站址参考；2010开放事实另据生态环境部验收，2026暂停服务后仍保留实体。",
+          "historicalLineId": "guangzhou-line3-3",
+          "historicalOpeningSource": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm"
         }
       ],
       "lines": [

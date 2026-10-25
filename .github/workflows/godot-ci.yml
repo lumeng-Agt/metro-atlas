@@ -35,6 +35,11 @@ jobs:
             $output | Write-Output
             if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Regression failed: $test" }
           }
+          $passageData = Join-Path $env:RUNNER_TEMP ("metro-atlas-passage-" + [guid]::NewGuid().ToString("N"))
+          $output = godot --headless --path . --script res://tests/guangzhou_passage_checks.gd -- "--data-dir=$passageData" 2>&1
+          $code = $LASTEXITCODE
+          $output | Write-Output
+          if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Guangzhou pedestrian passage regression failed" }
       - name: Audit city route inventory against playable history
         shell: pwsh
         run: |
@@ -43,6 +48,10 @@ jobs:
           # therefore validates the committed data instead of re-running them.
           python tools/test_campaign_task_integrity.py
           if ($LASTEXITCODE -ne 0) { throw "Campaign task route integrity failed" }
+          python tools/test_historical_station_references.py
+          if ($LASTEXITCODE -ne 0) { throw "Historical station reference safeguards failed" }
+          python tools/test_transfer_scope.py
+          if ($LASTEXITCODE -ne 0) { throw "Pedestrian-only construction scope checks failed" }
           python tools/test_official_coverage_rules.py
           if ($LASTEXITCODE -ne 0) { throw "Independent coverage rule regressions failed" }
           python tools/test_project_plans.py

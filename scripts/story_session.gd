@@ -92,6 +92,18 @@ static func targets(world: Dictionary, final_plan: bool = false, selected_task_i
 			item["built"] = not bound_station(world, id,instance_id).is_empty()
 			item["referenceHeading"]=ReferenceAlignment.heading(reference_id,[group],float(WorldData.city(str(world.cityId)).center[0]),str(group.get("historicalLineId","")))
 			result.append(item)
+	if str(chapter(world).get("operationType",""))=="transfer_connection" and selected_task_id.is_empty():
+		for pairing in chapter(world).get("requiredTransfers",[]):
+			for index in range(pairing.get("stationInstanceIds",[]).size()):
+				var instance_id:=str(pairing.stationInstanceIds[index])
+				var reference_id:=instance_id.get_slice("__",0)
+				if seen.has(instance_id) or not refs.has(reference_id):continue
+				seen[instance_id]=true
+				var physical:=bound_station(world,reference_id,instance_id)
+				var item:Dictionary=refs[reference_id].duplicate(true)
+				item.merge({"id":instance_id,"referenceId":reference_id,"stationInstanceId":instance_id,"stationComplexId":str(pairing.complexId),"historicalId":str(pairing.complexId),"historicalLineId":str(pairing.lineIds[index]),"historicalLineName":str(physical.get("stationLineName",pairing.lineIds[index])),"built":not physical.is_empty(),"existingTransferAnchor":true,"engineeringExistingAnchor":true,"toleranceM":100.0,"referenceHeading":float(physical.get("heading",90))},true)
+				if not physical.is_empty():item.latlng=physical.latlng
+				result.append(item)
 	return result
 
 static func _uses_planned_names(world:Dictionary,group:Dictionary) -> bool:
@@ -209,6 +221,7 @@ static func nearest_target(world: Dictionary, latlng: Array, selected_task_id:St
 	var best := INF
 	var ref_lat := float(WorldData.city(str(world.get("cityId", ""))).get("center", [31.23])[0])
 	for target in targets(world, false, selected_task_id):
+		if bool(target.get("existingTransferAnchor",false)):continue
 		if bool(target.get("built", false)): continue
 		var distance := Geo.local_m(latlng, ref_lat).distance_to(Geo.local_m(target.latlng, ref_lat))
 		if distance <= float(target.toleranceM) and distance < best:
@@ -1636,6 +1649,7 @@ static func plan_status(world:Dictionary) -> String:
 
 static func current_action(world:Dictionary) -> String:
 	if bool(chapter(world).get("eventOnly",false)):return "查看来源并确认这个历史节点；本节点没有新增铺轨范围。"
+	if str(chapter(world).get("operationType",""))=="transfer_connection":return "查看两侧独立站体，预览并建立本期换乘联系；无需新铺轨道。"
 	if not plan_is_final(world):return "对比新旧方案，再采用下一版调整。"
 	var active_groups:=groups(world,true,str(world.get("storyState",{}).get("activeTaskId","")))
 	if not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group)):return "预览并连接工程轨道，再检查确认；接口不是车站。"

@@ -6956,6 +6956,11 @@
               ],
               "allowReverse": true
             }
+          ],
+          "transfers": [
+            "historic-transfer-gz-reviewed-guangzhou-s277-7-18",
+            "historic-transfer-gz-reviewed-guangzhou-s276-3-18",
+            "historic-transfer-gz-reviewed-guangzhou-s278-8-18"
           ]
         },
         {
@@ -7009,6 +7014,21 @@
             "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf",
             "https://www.gz.gov.cn/attachment/7/7792/7792257/10198995.pdf",
             "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf"
+          ],
+          "transfers": [
+            "historic-transfer-gz-reviewed-guangzhou-s179-5-11",
+            "historic-transfer-gz-reviewed-guangzhou-s3-3-11",
+            "historic-transfer-gz-reviewed-guangzhou-s339-5-11",
+            "historic-transfer-gz-reviewed-guangzhou-s10-3-11",
+            "historic-transfer-gz-reviewed-guangzhou-s117-6-11",
+            "historic-transfer-gz-reviewed-guangzhou-s155-8-11",
+            "historic-transfer-gz-reviewed-guangzhou-s129-2-11",
+            "historic-transfer-gz-reviewed-guangzhou-s105-6-11",
+            "historic-transfer-gz-reviewed-guangzhou-s25-GF-11",
+            "historic-transfer-gz-reviewed-guangzhou-s23-GF-11",
+            "historic-transfer-gz-reviewed-guangzhou-s338-8-11",
+            "historic-transfer-gz-reviewed-guangzhou-s170-1-11",
+            "historic-transfer-gz-reviewed-guangzhou-s280-18-11"
           ]
         },
         {
@@ -7135,6 +7155,170 @@
             "historic-transfer-gz22-west-xilang-line10",
             "historic-transfer-gz22-west-xilang-guangfo",
             "historic-transfer-gz22-west-fangcun-line11"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line3-airport-opening-2010",
+          "date": "2010-10-30",
+          "source": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+          "sourcePublicationDate": "2015-01-16",
+          "groups": [
+            {
+              "id": "opening:guangzhou-line3-airport-opening-2010",
+              "historicalLineId": "guangzhou-line3-3",
+              "stationNames": [
+                "广州东站",
+                "燕塘",
+                "梅花园",
+                "京溪南方医院",
+                "同和",
+                "永泰",
+                "白云大道北",
+                "嘉禾望岗",
+                "龙归",
+                "人和",
+                "机场南"
+              ],
+              "scopeType": "stations",
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence"
+            }
+          ],
+          "existingScopes": [
+            {
+              "id": "gz3-existing-main-before-airport",
+              "historicalLineId": "guangzhou-line3-3",
+              "stationNames": [
+                "广州东站",
+                "林和西",
+                "体育西路",
+                "珠江新城",
+                "广州塔",
+                "客村",
+                "大塘",
+                "沥滘",
+                "厦滘",
+                "大石",
+                "汉溪长隆",
+                "市桥",
+                "番禺广场"
+              ],
+              "scopeType": "stations",
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence"
+            },
+            {
+              "id": "gz3-existing-branch-before-airport",
+              "historicalLineId": "guangzhou-line3-3",
+              "stationNames": [
+                "天河客运站",
+                "五山",
+                "华师",
+                "岗顶",
+                "石牌桥",
+                "体育西路"
+              ],
+              "scopeType": "stations",
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence"
+            }
+          ],
+          "additionalSources": [
+            "https://news.sina.com.cn/o/2010-10-30/160518308188s.shtml?from=wap",
+            "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          ],
+          "transfers": [
+            "historic-transfer-guangzhou-s144-line2-2-line3-3"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line3-airport-north-2018",
+          "date": "2018-04-26",
+          "source": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+          "sourcePublicationDate": "2018-05-14",
+          "groups": [
+            {
+              "id": "opening:guangzhou-line3-airport-north-2018",
+              "historicalLineId": "guangzhou-line3-3",
+              "stationNames": [
+                "机场南",
+                "机场北"
+              ],
+              "scopeType": "stations",
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence"
+            }
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line3-east-opening-2024",
+          "date": "2024-11-01",
+          "source": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+          "sourcePublicationDate": null,
+          "groups": [
+            {
+              "id": "opening:guangzhou-line3-east-opening-2024",
+              "historicalLineId": "guangzhou-line3-3",
+              "stationNames": [
+                "番禺广场",
+                "傍江",
+                "石碁南",
+                "海涌路",
+                "海傍"
+              ],
+              "scopeType": "stations",
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence"
+            }
+          ],
+          "bibliographicCitation": {
+            "kind": "official_yearbook",
+            "edition": "2024年广州市交通发展年度报告",
+            "locator": "附录，第34页：11月1日三号线东延段开通"
+          },
+          "transfers": [
+            "historic-transfer-gz3-east-haibang-4"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-network-milestone-2017-12-28",
+          "date": "2017-12-28",
+          "source": "https://kgw.gz.gov.cn/xxgk/rddbjyhzxta/content/post_3108006.html",
+          "sourcePublicationDate": "2019-09-10",
+          "additionalSources": [
+            "https://www.xinhuanet.com/politics/2017-12/30/c_129779216.htm"
+          ],
+          "groups": [
+            {
+              "id": "opening:guangzhou-line3-gaozeng-2017",
+              "historicalLineId": "guangzhou-line3-3",
+              "stationNames": [
+                "人和",
+                "高增",
+                "机场南"
+              ],
+              "scopeType": "stations",
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence"
+            }
+          ],
+          "transfers": [
+            "historic-transfer-guangzhou-s230-line9-9-line3-3"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-south-paid-passage-2024",
+          "date": "2024-01-21",
+          "source": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+          "bibliographicCitation": {
+            "kind": "official_yearbook",
+            "edition": "2024年广州市交通发展年度报告",
+            "locator": "附录第30页：1月21日广州南站换乘通道正式启用"
+          },
+          "groups": [],
+          "transfers": [
+            "historic-transfer-gz-south-passage-foshan2-to-line2",
+            "historic-transfer-gz-south-passage-foshan2-to-line7"
           ]
         }
       ],
@@ -8268,7 +8452,35 @@
             "scope": "芳村至南浦西4站，接续陈头岗贯通8站"
           }
         ],
-        "sourceRetrievedAt": "2026-10-25"
+        "sourceRetrievedAt": "2026-10-25",
+        "transfers": [
+          "historic-transfer-gz-reviewed-guangzhou-s250-4-21",
+          "historic-transfer-gz-reviewed-guangzhou-s277-7-18",
+          "historic-transfer-gz-reviewed-guangzhou-s276-3-18",
+          "historic-transfer-gz-reviewed-guangzhou-s278-8-18",
+          "historic-transfer-gz-reviewed-guangzhou-s214-5-7",
+          "historic-transfer-gz-reviewed-guangzhou-s179-5-11",
+          "historic-transfer-gz-reviewed-guangzhou-s3-3-11",
+          "historic-transfer-gz-reviewed-guangzhou-s339-5-11",
+          "historic-transfer-gz-reviewed-guangzhou-s10-3-11",
+          "historic-transfer-gz-reviewed-guangzhou-s117-6-11",
+          "historic-transfer-gz-reviewed-guangzhou-s155-8-11",
+          "historic-transfer-gz-reviewed-guangzhou-s129-2-11",
+          "historic-transfer-gz-reviewed-guangzhou-s105-6-11",
+          "historic-transfer-gz-reviewed-guangzhou-s25-GF-11",
+          "historic-transfer-gz-reviewed-guangzhou-s23-GF-11",
+          "historic-transfer-gz-reviewed-guangzhou-s338-8-11",
+          "historic-transfer-gz-reviewed-guangzhou-s170-1-11",
+          "historic-transfer-gz-reviewed-guangzhou-s280-18-11",
+          "historic-transfer-gz-reviewed-guangzhou-s361-5-10",
+          "historic-transfer-gz-reviewed-guangzhou-s373-6-12",
+          "historic-transfer-gz-reviewed-guangzhou-s368-2-12",
+          "historic-transfer-gz-reviewed-guangzhou-s337-11-12",
+          "historic-transfer-gz3-east-haibang-4",
+          "historic-transfer-gz-south-passage-foshan2-to-line2",
+          "historic-transfer-gz-south-passage-foshan2-to-line7"
+        ],
+        "transferReviewStatus": "partial_operator_pairs_dated_actions_added"
       }
     },
     "chengdu": {

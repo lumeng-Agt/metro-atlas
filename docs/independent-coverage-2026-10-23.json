@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.25.20",
+  "contentRevision": "2026.10.25.24",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -9,6 +9,7 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
+        "cutoff interchange inventory not independently reviewed",
         "sz-line10-east-shenzhen: independent transfer coverage incomplete"
       ],
       "projects": [
@@ -82,6 +83,7 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
+        "cutoff interchange inventory not independently reviewed",
         "sh-line19: independent transfer coverage incomplete"
       ],
       "projects": [
@@ -145,6 +147,7 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
+        "cutoff interchange inventory not independently reviewed",
         "bj-m101-phase1: independent transfer coverage incomplete",
         "bj-line22: independent transfer coverage incomplete",
         "bj-line28: independent transfer coverage incomplete",
@@ -214,7 +217,8 @@
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
-        "cutoff opening status not independently reviewed"
+        "cutoff opening status not independently reviewed",
+        "cutoff interchange inventory not independently reviewed"
       ],
       "projects": [
         {
@@ -270,6 +274,7 @@
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
+        "cutoff interchange inventory not independently reviewed",
         "dated cutoff opening evidence missing",
         "cd-line12-phase1: independent project requirements missing"
       ],
