@@ -1531,6 +1531,22 @@ static func next_chapter(world: Dictionary) -> void:
 	if next_index<0:
 		for candidate_index in range(mini(index+1,chapters.size())):
 			if not completed.has(str(chapters[candidate_index].get("id",""))):next_index=candidate_index;break
+	# Backfilling an earlier opening can introduce a former service pattern
+	# alongside the later saved network. A prior cutoff completion flag cannot
+	# certify that changed network: offer its real reconciliation task again.
+	if next_index<0 and str(st.get("phase","history"))!="future":
+		for candidate_index in range(chapters.size()):
+			var cutoff:Dictionary=chapters[candidate_index]
+			if str(cutoff.get("chapterScope",""))!="cutoff_reconciliation" or not completed.has(str(cutoff.id)):continue
+			if str(current.get("date",""))>=str(cutoff.get("date","")):continue
+			var errors:=OfficialNetworkAudit.cutoff_errors(world)
+			if errors.is_empty():continue
+			var previous:Dictionary=st.get("chapterTaskProgress",{}).get(str(cutoff.id),{}).duplicate(true)
+			st.get_or_add("legacyTaskProgress",{})[str(cutoff.id)]=previous
+			st.get_or_add("chapterTaskProgress",{})[str(cutoff.id)]={"status":"needs_scope_recheck","tasks":{},"previousScopeRetained":true,"reason":"post_backfill_network_changed","auditErrors":errors}
+			completed.erase(str(cutoff.id));next_index=candidate_index
+			world["contentUpgradeNotice"]="补充历史建设后，当前线路关系需要重新核对。原站轨及里程碑保留，请完成截止日路网核对。"
+			break
 	st["chapterIndex"]=next_index if next_index>=0 else chapters.size()
 	st["chapterId"]=str(chapters[next_index].get("id","")) if next_index>=0 else ""
 	st["stage"]="intro";world["storyPlan"]={"planIndex":0,"pathChoices":{}}

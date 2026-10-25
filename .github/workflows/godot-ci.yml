@@ -35,11 +35,13 @@ jobs:
             $output | Write-Output
             if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Regression failed: $test" }
           }
-          $passageData = Join-Path $env:RUNNER_TEMP ("metro-atlas-passage-" + [guid]::NewGuid().ToString("N"))
-          $output = godot --headless --path . --script res://tests/guangzhou_passage_checks.gd -- "--data-dir=$passageData" 2>&1
-          $code = $LASTEXITCODE
-          $output | Write-Output
-          if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Guangzhou pedestrian passage regression failed" }
+          foreach ($test in @('guangzhou_passage_checks.gd', 'guangzhou6_opening_checks.gd')) {
+            $data = Join-Path $env:RUNNER_TEMP ("metro-atlas-opening-" + [guid]::NewGuid().ToString("N"))
+            $output = godot --headless --path . --script "res://tests/$test" -- "--data-dir=$data" 2>&1
+            $code = $LASTEXITCODE
+            $output | Write-Output
+            if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Dated opening regression failed: $test" }
+          }
       - name: Audit city route inventory against playable history
         shell: pwsh
         run: |

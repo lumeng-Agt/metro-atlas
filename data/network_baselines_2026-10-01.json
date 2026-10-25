@@ -44787,14 +44787,14 @@
         {
           "id": "guangzhou-opening-guangzhou-r6-2016-12-28",
           "date": "2016-12-28",
-          "title": "6号线截止日线路范围纳入历史建设任务",
+          "title": "六号线东延、七号线首开与广佛线二期",
           "status": "opened_or_completed",
-          "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+          "source": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
           "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
           "sourceCheckedAt": "2026-10-20",
           "sourceType": "official_route_inventory_cross_checked_with_opening_records",
-          "sourcePublicationDate": null,
-          "scope": "按公开运营线路清单和对应开通事件建立可玩线路任务；逐站开放批次以本章目标和历史事件记录为准。",
+          "sourcePublicationDate": "2016-12-27",
+          "scope": "本期站序：长湴—龙洞—高塘石—黄陂—金峰—暹岗—苏元—萝岗—香雪",
           "routeIds": [
             "guangzhou-r6"
           ],
@@ -44803,93 +44803,53 @@
             {
               "taskId": "route:guangzhou-r6",
               "mapRouteId": "guangzhou-r6",
-              "name": "6号线",
+              "name": "六号线本期开放范围",
               "stationIds": [
-                "guangzhou-s92",
-                "guangzhou-s93",
-                "guangzhou-s94",
-                "guangzhou-s95",
-                "guangzhou-s96",
-                "guangzhou-s97",
-                "guangzhou-s98",
-                "guangzhou-s99",
-                "guangzhou-s100",
-                "guangzhou-s101",
                 "guangzhou-s102",
-                "guangzhou-s1",
-                "guangzhou-s103",
-                "guangzhou-s104",
-                "guangzhou-s105",
-                "guangzhou-s106",
-                "guangzhou-s107",
-                "guangzhou-s108",
-                "guangzhou-s109",
-                "guangzhou-s110",
-                "guangzhou-s111",
-                "guangzhou-s112",
-                "guangzhou-s113",
-                "guangzhou-s114",
-                "guangzhou-s115",
-                "guangzhou-s116",
-                "guangzhou-s117",
-                "guangzhou-s118",
-                "guangzhou-s119",
-                "guangzhou-s120",
-                "guangzhou-s121",
-                "guangzhou-s122"
+                "guangzhou-s100",
+                "guangzhou-s98",
+                "guangzhou-s97",
+                "guangzhou-s96",
+                "guangzhou-s95",
+                "guangzhou-s94",
+                "guangzhou-s93",
+                "guangzhou-s92"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
               "historicalLineId": "guangzhou-line6-6",
               "color": "#80225F",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "guangzhou-s93": "guangzhou-s93__line6-6",
+                "guangzhou-s102": "guangzhou-s102",
+                "guangzhou-s100": "guangzhou-s100",
+                "guangzhou-s98": "guangzhou-s98",
+                "guangzhou-s97": "guangzhou-s97",
+                "guangzhou-s96": "guangzhou-s96",
+                "guangzhou-s95": "guangzhou-s95",
                 "guangzhou-s94": "guangzhou-s94__line6-6",
-                "guangzhou-s1": "guangzhou-s1__line6-6",
-                "guangzhou-s103": "guangzhou-s103__line6-6",
-                "guangzhou-s105": "guangzhou-s105__line6-6",
-                "guangzhou-s108": "guangzhou-s108__line6-6",
-                "guangzhou-s109": "guangzhou-s109__line6-6",
-                "guangzhou-s110": "guangzhou-s110__line6-6",
-                "guangzhou-s113": "guangzhou-s113__line6-6",
-                "guangzhou-s115": "guangzhou-s115__line6-6",
-                "guangzhou-s116": "guangzhou-s116__line6-6",
-                "guangzhou-s117": "guangzhou-s117__line6-6",
-                "guangzhou-s118": "guangzhou-s118__line6-6"
-              }
-            },
-            {
-              "taskId": "route:guangzhou-r7-initial-2016",
-              "mapRouteId": "guangzhou-r7",
-              "name": "7号线首期：广州南站—大学城南",
-              "stationIds": [
-                "guangzhou-s123",
-                "guangzhou-s124",
-                "guangzhou-s207",
-                "guangzhou-s208",
-                "guangzhou-s14",
-                "guangzhou-s209",
-                "guangzhou-s210",
-                "guangzhou-s211",
-                "guangzhou-s61"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "guangzhou-line7-7",
-              "color": "#97D700",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "guangzhou-s123": "guangzhou-s123__line7-7",
-                "guangzhou-s124": "guangzhou-s124__line7-7",
-                "guangzhou-s14": "guangzhou-s14__line7-7",
-                "guangzhou-s61": "guangzhou-s61__line7-7"
+                "guangzhou-s93": "guangzhou-s93__line6-6",
+                "guangzhou-s92": "guangzhou-s92"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "route:guangzhou-r6",
+              "stationNames": {
+                "guangzhou-s102": "长湴",
+                "guangzhou-s100": "龙洞",
+                "guangzhou-s98": "高塘石",
+                "guangzhou-s97": "黄陂",
+                "guangzhou-s96": "金峰",
+                "guangzhou-s95": "暹岗",
+                "guangzhou-s94": "苏元",
+                "guangzhou-s93": "萝岗",
+                "guangzhou-s92": "香雪"
               }
             }
           ],
-          "dateBasis": "official_opening_milestone_curated"
+          "dateBasis": "official_opening_milestone_curated",
+          "sourceDateNote": "省交通运输厅公开的运营方线路介绍回顾2013／2016开通；页面发布日期未在附件正文声明。"
         },
         {
           "id": "guangzhou-opening-line7-initial-2016-12-28",
@@ -48765,9 +48725,242 @@
           "source": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
           "chapterId": "guangzhou-south-paid-passage-2024",
           "scope": "佛山2号线与广州2、7、22号线实现站内付费区换乘；各线路站体及实体轨道保留独立。"
+        },
+        {
+          "id": "guangzhou-line6-first-2013:line6-opening",
+          "date": "2013-12-28",
+          "title": "六号线首开：浔峰岗至长湴",
+          "routeIds": [
+            "guangzhou-r6"
+          ],
+          "source": "https://gd.people.com.cn/GB/123947/357429/index.html",
+          "status": "opened_or_completed",
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line6-first-2013:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s122",
+                "guangzhou-s121",
+                "guangzhou-s120",
+                "guangzhou-s119",
+                "guangzhou-s118",
+                "guangzhou-s117",
+                "guangzhou-s116",
+                "guangzhou-s115",
+                "guangzhou-s113",
+                "guangzhou-s112",
+                "guangzhou-s111",
+                "guangzhou-s110",
+                "guangzhou-s109",
+                "guangzhou-s108",
+                "guangzhou-s107",
+                "guangzhou-s106",
+                "guangzhou-s104",
+                "guangzhou-s103",
+                "guangzhou-s1",
+                "guangzhou-s102"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://gd.people.com.cn/GB/123947/357429/index.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s122": "guangzhou-s122",
+                "guangzhou-s121": "guangzhou-s121",
+                "guangzhou-s120": "guangzhou-s120",
+                "guangzhou-s119": "guangzhou-s119",
+                "guangzhou-s118": "guangzhou-s118__line6-6",
+                "guangzhou-s117": "guangzhou-s117__line6-6",
+                "guangzhou-s116": "guangzhou-s116__line6-6",
+                "guangzhou-s115": "guangzhou-s115__line6-6",
+                "guangzhou-s113": "guangzhou-s113__line6-6",
+                "guangzhou-s112": "guangzhou-s112",
+                "guangzhou-s111": "guangzhou-s111",
+                "guangzhou-s110": "guangzhou-s110__line6-6",
+                "guangzhou-s109": "guangzhou-s109__line6-6",
+                "guangzhou-s108": "guangzhou-s108__line6-6",
+                "guangzhou-s107": "guangzhou-s107",
+                "guangzhou-s106": "guangzhou-s106",
+                "guangzhou-s104": "guangzhou-s104",
+                "guangzhou-s103": "guangzhou-s103__line6-6",
+                "guangzhou-s1": "guangzhou-s1__line6-6",
+                "guangzhou-s102": "guangzhou-s102"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line6-first-2013:line6",
+              "stationNames": {
+                "guangzhou-s122": "浔峰岗",
+                "guangzhou-s121": "横沙",
+                "guangzhou-s120": "沙贝",
+                "guangzhou-s119": "河沙",
+                "guangzhou-s118": "坦尾",
+                "guangzhou-s117": "如意坊",
+                "guangzhou-s116": "黄沙",
+                "guangzhou-s115": "文化公园",
+                "guangzhou-s113": "海珠广场",
+                "guangzhou-s112": "北京路",
+                "guangzhou-s111": "团一大广场",
+                "guangzhou-s110": "东湖",
+                "guangzhou-s109": "东山口",
+                "guangzhou-s108": "区庄",
+                "guangzhou-s107": "黄花岗",
+                "guangzhou-s106": "沙河顶",
+                "guangzhou-s104": "天平架",
+                "guangzhou-s103": "燕塘",
+                "guangzhou-s1": "天河客运站",
+                "guangzhou-s102": "长湴"
+              }
+            }
+          ],
+          "chapterId": "guangzhou-line6-first-2013",
+          "scope": "本期站序：浔峰岗—横沙—沙贝—河沙—坦尾—如意坊—黄沙—文化公园—海珠广场—北京路—团一大广场—东湖—东山口—区庄—黄花岗—沙河顶—天平架—燕塘—天河客运站—长湴",
+          "sourcePublicationDate": "2013-12-25"
+        },
+        {
+          "id": "guangzhou-line6-yide-2015:line6-opening",
+          "date": "2015-01-28",
+          "title": "一德路开放：补入老城中间站",
+          "routeIds": [
+            "guangzhou-r6"
+          ],
+          "source": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+          "status": "opened_or_completed",
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line6-yide-2015:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s115",
+                "guangzhou-s114",
+                "guangzhou-s113"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s115": "guangzhou-s115__line6-6",
+                "guangzhou-s114": "guangzhou-s114",
+                "guangzhou-s113": "guangzhou-s113__line6-6"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line6-yide-2015:line6",
+              "stationNames": {
+                "guangzhou-s115": "文化公园",
+                "guangzhou-s114": "一德路",
+                "guangzhou-s113": "海珠广场"
+              }
+            }
+          ],
+          "chapterId": "guangzhou-line6-yide-2015",
+          "scope": "本期站序：文化公园—一德路—海珠广场",
+          "sourcePublicationDate": "2015-01-28"
+        },
+        {
+          "id": "guangzhou-line6-gardens-2017:line6-opening",
+          "date": "2017-06-28",
+          "title": "植物园、柯木塱两站开放",
+          "routeIds": [
+            "guangzhou-r6"
+          ],
+          "source": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+          "status": "opened_or_completed",
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line6-gardens-2017:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s102",
+                "guangzhou-s101",
+                "guangzhou-s100",
+                "guangzhou-s99",
+                "guangzhou-s98"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s102": "guangzhou-s102",
+                "guangzhou-s101": "guangzhou-s101",
+                "guangzhou-s100": "guangzhou-s100",
+                "guangzhou-s99": "guangzhou-s99",
+                "guangzhou-s98": "guangzhou-s98"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line6-gardens-2017:line6",
+              "stationNames": {
+                "guangzhou-s102": "长湴",
+                "guangzhou-s101": "植物园",
+                "guangzhou-s100": "龙洞",
+                "guangzhou-s99": "柯木塱",
+                "guangzhou-s98": "高塘石"
+              }
+            }
+          ],
+          "chapterId": "guangzhou-line6-gardens-2017",
+          "scope": "本期站序：长湴—植物园—龙洞—柯木塱—高塘石",
+          "sourcePublicationDate": "2017-06-22"
+        },
+        {
+          "id": "guangzhou-line11-ring-opening-2024:line6-opening",
+          "date": "2024-12-28",
+          "title": "环线开通与六号线沙河开放",
+          "routeIds": [
+            "guangzhou-r6"
+          ],
+          "source": "https://ep.ycwb.com/epaper/ycwb/html/2024-12/26/content_3_683272.htm",
+          "status": "opened_or_completed",
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line11-ring-opening-2024:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s106",
+                "guangzhou-s105",
+                "guangzhou-s104"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://ep.ycwb.com/epaper/ycwb/html/2024-12/26/content_3_683272.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s106": "guangzhou-s106",
+                "guangzhou-s105": "guangzhou-s105__line6-6",
+                "guangzhou-s104": "guangzhou-s104"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line11-ring-opening-2024:line6",
+              "stationNames": {
+                "guangzhou-s106": "沙河顶",
+                "guangzhou-s105": "沙河",
+                "guangzhou-s104": "天平架"
+              }
+            }
+          ],
+          "chapterId": "guangzhou-line11-ring-opening-2024",
+          "scope": "本期站序：沙河顶—沙河—天平架",
+          "sourcePublicationDate": "2024-12-26"
         }
       ],
-      "documentedMilestoneCount": 35,
+      "documentedMilestoneCount": 39,
       "milestoneChapters": [
         {
           "id": "guangzhou-milestone-1962-01-01",
@@ -50650,10 +50843,331 @@
           ]
         },
         {
-          "id": "guangzhou-milestone-2016-12-28",
+          "id": "guangzhou-milestone-2013-12-28",
           "periodStartExclusive": "2010-10-30",
+          "periodEndInclusive": "2013-12-28",
+          "title": "六号线首开：浔峰岗至长湴",
+          "eventIds": [
+            "guangzhou-line6-first-2013:line6-opening"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line6-first-2013:line6-opening",
+              "date": "2013-12-28",
+              "title": "六号线首开：浔峰岗至长湴",
+              "routeIds": [
+                "guangzhou-r6"
+              ],
+              "source": "https://gd.people.com.cn/GB/123947/357429/index.html",
+              "status": "opened_or_completed",
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line6-first-2013:line6",
+                  "mapRouteId": "guangzhou-r6",
+                  "name": "六号线本期开放范围",
+                  "stationIds": [
+                    "guangzhou-s122",
+                    "guangzhou-s121",
+                    "guangzhou-s120",
+                    "guangzhou-s119",
+                    "guangzhou-s118",
+                    "guangzhou-s117",
+                    "guangzhou-s116",
+                    "guangzhou-s115",
+                    "guangzhou-s113",
+                    "guangzhou-s112",
+                    "guangzhou-s111",
+                    "guangzhou-s110",
+                    "guangzhou-s109",
+                    "guangzhou-s108",
+                    "guangzhou-s107",
+                    "guangzhou-s106",
+                    "guangzhou-s104",
+                    "guangzhou-s103",
+                    "guangzhou-s1",
+                    "guangzhou-s102"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+                  "historicalLineId": "guangzhou-line6-6",
+                  "color": "#80225F",
+                  "stationOrderSource": "https://gd.people.com.cn/GB/123947/357429/index.html",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-s122": "guangzhou-s122",
+                    "guangzhou-s121": "guangzhou-s121",
+                    "guangzhou-s120": "guangzhou-s120",
+                    "guangzhou-s119": "guangzhou-s119",
+                    "guangzhou-s118": "guangzhou-s118__line6-6",
+                    "guangzhou-s117": "guangzhou-s117__line6-6",
+                    "guangzhou-s116": "guangzhou-s116__line6-6",
+                    "guangzhou-s115": "guangzhou-s115__line6-6",
+                    "guangzhou-s113": "guangzhou-s113__line6-6",
+                    "guangzhou-s112": "guangzhou-s112",
+                    "guangzhou-s111": "guangzhou-s111",
+                    "guangzhou-s110": "guangzhou-s110__line6-6",
+                    "guangzhou-s109": "guangzhou-s109__line6-6",
+                    "guangzhou-s108": "guangzhou-s108__line6-6",
+                    "guangzhou-s107": "guangzhou-s107",
+                    "guangzhou-s106": "guangzhou-s106",
+                    "guangzhou-s104": "guangzhou-s104",
+                    "guangzhou-s103": "guangzhou-s103__line6-6",
+                    "guangzhou-s1": "guangzhou-s1__line6-6",
+                    "guangzhou-s102": "guangzhou-s102"
+                  },
+                  "replaceExistingService": false,
+                  "servicePathRevision": 37,
+                  "coverageGroupId": "opening:guangzhou-line6-first-2013:line6",
+                  "stationNames": {
+                    "guangzhou-s122": "浔峰岗",
+                    "guangzhou-s121": "横沙",
+                    "guangzhou-s120": "沙贝",
+                    "guangzhou-s119": "河沙",
+                    "guangzhou-s118": "坦尾",
+                    "guangzhou-s117": "如意坊",
+                    "guangzhou-s116": "黄沙",
+                    "guangzhou-s115": "文化公园",
+                    "guangzhou-s113": "海珠广场",
+                    "guangzhou-s112": "北京路",
+                    "guangzhou-s111": "团一大广场",
+                    "guangzhou-s110": "东湖",
+                    "guangzhou-s109": "东山口",
+                    "guangzhou-s108": "区庄",
+                    "guangzhou-s107": "黄花岗",
+                    "guangzhou-s106": "沙河顶",
+                    "guangzhou-s104": "天平架",
+                    "guangzhou-s103": "燕塘",
+                    "guangzhou-s1": "天河客运站",
+                    "guangzhou-s102": "长湴"
+                  }
+                }
+              ],
+              "chapterId": "guangzhou-line6-first-2013",
+              "scope": "本期站序：浔峰岗—横沙—沙贝—河沙—坦尾—如意坊—黄沙—文化公园—海珠广场—北京路—团一大广场—东湖—东山口—区庄—黄花岗—沙河顶—天平架—燕塘—天河客运站—长湴",
+              "sourcePublicationDate": "2013-12-25"
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-line6-first-2013"
+          ],
+          "playableChapterId": "guangzhou-line6-first-2013",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [
+            "guangzhou-r6"
+          ],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [
+            {
+              "taskId": "opening:guangzhou-line6-first-2013:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s122",
+                "guangzhou-s121",
+                "guangzhou-s120",
+                "guangzhou-s119",
+                "guangzhou-s118",
+                "guangzhou-s117",
+                "guangzhou-s116",
+                "guangzhou-s115",
+                "guangzhou-s113",
+                "guangzhou-s112",
+                "guangzhou-s111",
+                "guangzhou-s110",
+                "guangzhou-s109",
+                "guangzhou-s108",
+                "guangzhou-s107",
+                "guangzhou-s106",
+                "guangzhou-s104",
+                "guangzhou-s103",
+                "guangzhou-s1",
+                "guangzhou-s102"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://gd.people.com.cn/GB/123947/357429/index.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s122": "guangzhou-s122",
+                "guangzhou-s121": "guangzhou-s121",
+                "guangzhou-s120": "guangzhou-s120",
+                "guangzhou-s119": "guangzhou-s119",
+                "guangzhou-s118": "guangzhou-s118__line6-6",
+                "guangzhou-s117": "guangzhou-s117__line6-6",
+                "guangzhou-s116": "guangzhou-s116__line6-6",
+                "guangzhou-s115": "guangzhou-s115__line6-6",
+                "guangzhou-s113": "guangzhou-s113__line6-6",
+                "guangzhou-s112": "guangzhou-s112",
+                "guangzhou-s111": "guangzhou-s111",
+                "guangzhou-s110": "guangzhou-s110__line6-6",
+                "guangzhou-s109": "guangzhou-s109__line6-6",
+                "guangzhou-s108": "guangzhou-s108__line6-6",
+                "guangzhou-s107": "guangzhou-s107",
+                "guangzhou-s106": "guangzhou-s106",
+                "guangzhou-s104": "guangzhou-s104",
+                "guangzhou-s103": "guangzhou-s103__line6-6",
+                "guangzhou-s1": "guangzhou-s1__line6-6",
+                "guangzhou-s102": "guangzhou-s102"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line6-first-2013:line6",
+              "stationNames": {
+                "guangzhou-s122": "浔峰岗",
+                "guangzhou-s121": "横沙",
+                "guangzhou-s120": "沙贝",
+                "guangzhou-s119": "河沙",
+                "guangzhou-s118": "坦尾",
+                "guangzhou-s117": "如意坊",
+                "guangzhou-s116": "黄沙",
+                "guangzhou-s115": "文化公园",
+                "guangzhou-s113": "海珠广场",
+                "guangzhou-s112": "北京路",
+                "guangzhou-s111": "团一大广场",
+                "guangzhou-s110": "东湖",
+                "guangzhou-s109": "东山口",
+                "guangzhou-s108": "区庄",
+                "guangzhou-s107": "黄花岗",
+                "guangzhou-s106": "沙河顶",
+                "guangzhou-s104": "天平架",
+                "guangzhou-s103": "燕塘",
+                "guangzhou-s1": "天河客运站",
+                "guangzhou-s102": "长湴"
+              }
+            }
+          ],
+          "chapterTargetStationIds": [
+            "guangzhou-s1",
+            "guangzhou-s102",
+            "guangzhou-s103",
+            "guangzhou-s104",
+            "guangzhou-s106",
+            "guangzhou-s107",
+            "guangzhou-s108",
+            "guangzhou-s109",
+            "guangzhou-s110",
+            "guangzhou-s111",
+            "guangzhou-s112",
+            "guangzhou-s113",
+            "guangzhou-s115",
+            "guangzhou-s116",
+            "guangzhou-s117",
+            "guangzhou-s118",
+            "guangzhou-s119",
+            "guangzhou-s120",
+            "guangzhou-s121",
+            "guangzhou-s122"
+          ]
+        },
+        {
+          "id": "guangzhou-milestone-2015-01-28",
+          "periodStartExclusive": "2013-12-28",
+          "periodEndInclusive": "2015-01-28",
+          "title": "一德路开放：补入老城中间站",
+          "eventIds": [
+            "guangzhou-line6-yide-2015:line6-opening"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line6-yide-2015:line6-opening",
+              "date": "2015-01-28",
+              "title": "一德路开放：补入老城中间站",
+              "routeIds": [
+                "guangzhou-r6"
+              ],
+              "source": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+              "status": "opened_or_completed",
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line6-yide-2015:line6",
+                  "mapRouteId": "guangzhou-r6",
+                  "name": "六号线本期开放范围",
+                  "stationIds": [
+                    "guangzhou-s115",
+                    "guangzhou-s114",
+                    "guangzhou-s113"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+                  "historicalLineId": "guangzhou-line6-6",
+                  "color": "#80225F",
+                  "stationOrderSource": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-s115": "guangzhou-s115__line6-6",
+                    "guangzhou-s114": "guangzhou-s114",
+                    "guangzhou-s113": "guangzhou-s113__line6-6"
+                  },
+                  "replaceExistingService": false,
+                  "servicePathRevision": 37,
+                  "coverageGroupId": "opening:guangzhou-line6-yide-2015:line6",
+                  "stationNames": {
+                    "guangzhou-s115": "文化公园",
+                    "guangzhou-s114": "一德路",
+                    "guangzhou-s113": "海珠广场"
+                  }
+                }
+              ],
+              "chapterId": "guangzhou-line6-yide-2015",
+              "scope": "本期站序：文化公园—一德路—海珠广场",
+              "sourcePublicationDate": "2015-01-28"
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-line6-yide-2015"
+          ],
+          "playableChapterId": "guangzhou-line6-yide-2015",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [
+            "guangzhou-r6"
+          ],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [
+            {
+              "taskId": "opening:guangzhou-line6-yide-2015:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s115",
+                "guangzhou-s114",
+                "guangzhou-s113"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s115": "guangzhou-s115__line6-6",
+                "guangzhou-s114": "guangzhou-s114",
+                "guangzhou-s113": "guangzhou-s113__line6-6"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line6-yide-2015:line6",
+              "stationNames": {
+                "guangzhou-s115": "文化公园",
+                "guangzhou-s114": "一德路",
+                "guangzhou-s113": "海珠广场"
+              }
+            }
+          ],
+          "chapterTargetStationIds": [
+            "guangzhou-s113",
+            "guangzhou-s114",
+            "guangzhou-s115"
+          ]
+        },
+        {
+          "id": "guangzhou-milestone-2016-12-28",
+          "periodStartExclusive": "2015-01-28",
           "periodEndInclusive": "2016-12-28",
-          "title": "6号线二期与7号线首期开通",
+          "title": "六号线东延、七号线首开与广佛线二期",
           "eventIds": [
             "guangzhou-opening-guangzhou-r6-2016-12-28",
             "guangzhou-opening-line7-initial-2016-12-28"
@@ -50662,14 +51176,14 @@
             {
               "id": "guangzhou-opening-guangzhou-r6-2016-12-28",
               "date": "2016-12-28",
-              "title": "6号线截止日线路范围纳入历史建设任务",
+              "title": "六号线东延、七号线首开与广佛线二期",
               "status": "opened_or_completed",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "source": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
               "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
               "sourceCheckedAt": "2026-10-20",
               "sourceType": "official_route_inventory_cross_checked_with_opening_records",
-              "sourcePublicationDate": null,
-              "scope": "按公开运营线路清单和对应开通事件建立可玩线路任务；逐站开放批次以本章目标和历史事件记录为准。",
+              "sourcePublicationDate": "2016-12-27",
+              "scope": "本期站序：长湴—龙洞—高塘石—黄陂—金峰—暹岗—苏元—萝岗—香雪",
               "routeIds": [
                 "guangzhou-r6"
               ],
@@ -50678,93 +51192,53 @@
                 {
                   "taskId": "route:guangzhou-r6",
                   "mapRouteId": "guangzhou-r6",
-                  "name": "6号线",
+                  "name": "六号线本期开放范围",
                   "stationIds": [
-                    "guangzhou-s92",
-                    "guangzhou-s93",
-                    "guangzhou-s94",
-                    "guangzhou-s95",
-                    "guangzhou-s96",
-                    "guangzhou-s97",
-                    "guangzhou-s98",
-                    "guangzhou-s99",
-                    "guangzhou-s100",
-                    "guangzhou-s101",
                     "guangzhou-s102",
-                    "guangzhou-s1",
-                    "guangzhou-s103",
-                    "guangzhou-s104",
-                    "guangzhou-s105",
-                    "guangzhou-s106",
-                    "guangzhou-s107",
-                    "guangzhou-s108",
-                    "guangzhou-s109",
-                    "guangzhou-s110",
-                    "guangzhou-s111",
-                    "guangzhou-s112",
-                    "guangzhou-s113",
-                    "guangzhou-s114",
-                    "guangzhou-s115",
-                    "guangzhou-s116",
-                    "guangzhou-s117",
-                    "guangzhou-s118",
-                    "guangzhou-s119",
-                    "guangzhou-s120",
-                    "guangzhou-s121",
-                    "guangzhou-s122"
+                    "guangzhou-s100",
+                    "guangzhou-s98",
+                    "guangzhou-s97",
+                    "guangzhou-s96",
+                    "guangzhou-s95",
+                    "guangzhou-s94",
+                    "guangzhou-s93",
+                    "guangzhou-s92"
                   ],
                   "toleranceM": 220,
-                  "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+                  "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
                   "historicalLineId": "guangzhou-line6-6",
                   "color": "#80225F",
-                  "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+                  "stationOrderSource": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
                   "alignmentPrecision": "station_areas_and_approximate_corridor",
                   "stationInstances": {
-                    "guangzhou-s93": "guangzhou-s93__line6-6",
+                    "guangzhou-s102": "guangzhou-s102",
+                    "guangzhou-s100": "guangzhou-s100",
+                    "guangzhou-s98": "guangzhou-s98",
+                    "guangzhou-s97": "guangzhou-s97",
+                    "guangzhou-s96": "guangzhou-s96",
+                    "guangzhou-s95": "guangzhou-s95",
                     "guangzhou-s94": "guangzhou-s94__line6-6",
-                    "guangzhou-s1": "guangzhou-s1__line6-6",
-                    "guangzhou-s103": "guangzhou-s103__line6-6",
-                    "guangzhou-s105": "guangzhou-s105__line6-6",
-                    "guangzhou-s108": "guangzhou-s108__line6-6",
-                    "guangzhou-s109": "guangzhou-s109__line6-6",
-                    "guangzhou-s110": "guangzhou-s110__line6-6",
-                    "guangzhou-s113": "guangzhou-s113__line6-6",
-                    "guangzhou-s115": "guangzhou-s115__line6-6",
-                    "guangzhou-s116": "guangzhou-s116__line6-6",
-                    "guangzhou-s117": "guangzhou-s117__line6-6",
-                    "guangzhou-s118": "guangzhou-s118__line6-6"
-                  }
-                },
-                {
-                  "taskId": "route:guangzhou-r7-initial-2016",
-                  "mapRouteId": "guangzhou-r7",
-                  "name": "7号线首期：广州南站—大学城南",
-                  "stationIds": [
-                    "guangzhou-s123",
-                    "guangzhou-s124",
-                    "guangzhou-s207",
-                    "guangzhou-s208",
-                    "guangzhou-s14",
-                    "guangzhou-s209",
-                    "guangzhou-s210",
-                    "guangzhou-s211",
-                    "guangzhou-s61"
-                  ],
-                  "toleranceM": 220,
-                  "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-                  "historicalLineId": "guangzhou-line7-7",
-                  "color": "#97D700",
-                  "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-                  "alignmentPrecision": "station_areas_and_approximate_corridor",
-                  "stationInstances": {
-                    "guangzhou-s123": "guangzhou-s123__line7-7",
-                    "guangzhou-s124": "guangzhou-s124__line7-7",
-                    "guangzhou-s14": "guangzhou-s14__line7-7",
-                    "guangzhou-s61": "guangzhou-s61__line7-7"
+                    "guangzhou-s93": "guangzhou-s93__line6-6",
+                    "guangzhou-s92": "guangzhou-s92"
+                  },
+                  "replaceExistingService": false,
+                  "servicePathRevision": 37,
+                  "coverageGroupId": "route:guangzhou-r6",
+                  "stationNames": {
+                    "guangzhou-s102": "长湴",
+                    "guangzhou-s100": "龙洞",
+                    "guangzhou-s98": "高塘石",
+                    "guangzhou-s97": "黄陂",
+                    "guangzhou-s96": "金峰",
+                    "guangzhou-s95": "暹岗",
+                    "guangzhou-s94": "苏元",
+                    "guangzhou-s93": "萝岗",
+                    "guangzhou-s92": "香雪"
                   }
                 }
               ],
-              "dateBasis": "official_opening_milestone_curated"
+              "dateBasis": "official_opening_milestone_curated",
+              "sourceDateNote": "省交通运输厅公开的运营方线路介绍回顾2013／2016开通；页面发布日期未在附件正文声明。"
             },
             {
               "id": "guangzhou-opening-line7-initial-2016-12-28",
@@ -50881,66 +51355,6 @@
           "targetMapRouteIds": [],
           "chapterTargetGroups": [
             {
-              "taskId": "route:guangzhou-r6",
-              "mapRouteId": "guangzhou-r6",
-              "name": "6号线",
-              "stationIds": [
-                "guangzhou-s92",
-                "guangzhou-s93",
-                "guangzhou-s94",
-                "guangzhou-s95",
-                "guangzhou-s96",
-                "guangzhou-s97",
-                "guangzhou-s98",
-                "guangzhou-s99",
-                "guangzhou-s100",
-                "guangzhou-s101",
-                "guangzhou-s102",
-                "guangzhou-s1",
-                "guangzhou-s103",
-                "guangzhou-s104",
-                "guangzhou-s105",
-                "guangzhou-s106",
-                "guangzhou-s107",
-                "guangzhou-s108",
-                "guangzhou-s109",
-                "guangzhou-s110",
-                "guangzhou-s111",
-                "guangzhou-s112",
-                "guangzhou-s113",
-                "guangzhou-s114",
-                "guangzhou-s115",
-                "guangzhou-s116",
-                "guangzhou-s117",
-                "guangzhou-s118",
-                "guangzhou-s119",
-                "guangzhou-s120",
-                "guangzhou-s121",
-                "guangzhou-s122"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "guangzhou-line6-6",
-              "color": "#80225F",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "guangzhou-s93": "guangzhou-s93__line6-6",
-                "guangzhou-s94": "guangzhou-s94__line6-6",
-                "guangzhou-s1": "guangzhou-s1__line6-6",
-                "guangzhou-s103": "guangzhou-s103__line6-6",
-                "guangzhou-s105": "guangzhou-s105__line6-6",
-                "guangzhou-s108": "guangzhou-s108__line6-6",
-                "guangzhou-s109": "guangzhou-s109__line6-6",
-                "guangzhou-s110": "guangzhou-s110__line6-6",
-                "guangzhou-s113": "guangzhou-s113__line6-6",
-                "guangzhou-s115": "guangzhou-s115__line6-6",
-                "guangzhou-s116": "guangzhou-s116__line6-6",
-                "guangzhou-s117": "guangzhou-s117__line6-6",
-                "guangzhou-s118": "guangzhou-s118__line6-6"
-              }
-            },
-            {
               "taskId": "route:guangzhou-r7-initial-2016",
               "mapRouteId": "guangzhou-r7",
               "name": "7号线首期：广州南站—大学城南",
@@ -50967,33 +51381,58 @@
                 "guangzhou-s14": "guangzhou-s14__line7-7",
                 "guangzhou-s61": "guangzhou-s61__line7-7"
               }
+            },
+            {
+              "taskId": "route:guangzhou-r6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s102",
+                "guangzhou-s100",
+                "guangzhou-s98",
+                "guangzhou-s97",
+                "guangzhou-s96",
+                "guangzhou-s95",
+                "guangzhou-s94",
+                "guangzhou-s93",
+                "guangzhou-s92"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s102": "guangzhou-s102",
+                "guangzhou-s100": "guangzhou-s100",
+                "guangzhou-s98": "guangzhou-s98",
+                "guangzhou-s97": "guangzhou-s97",
+                "guangzhou-s96": "guangzhou-s96",
+                "guangzhou-s95": "guangzhou-s95",
+                "guangzhou-s94": "guangzhou-s94__line6-6",
+                "guangzhou-s93": "guangzhou-s93__line6-6",
+                "guangzhou-s92": "guangzhou-s92"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "route:guangzhou-r6",
+              "stationNames": {
+                "guangzhou-s102": "长湴",
+                "guangzhou-s100": "龙洞",
+                "guangzhou-s98": "高塘石",
+                "guangzhou-s97": "黄陂",
+                "guangzhou-s96": "金峰",
+                "guangzhou-s95": "暹岗",
+                "guangzhou-s94": "苏元",
+                "guangzhou-s93": "萝岗",
+                "guangzhou-s92": "香雪"
+              }
             }
           ],
           "chapterTargetStationIds": [
-            "guangzhou-s1",
             "guangzhou-s100",
-            "guangzhou-s101",
             "guangzhou-s102",
-            "guangzhou-s103",
-            "guangzhou-s104",
-            "guangzhou-s105",
-            "guangzhou-s106",
-            "guangzhou-s107",
-            "guangzhou-s108",
-            "guangzhou-s109",
-            "guangzhou-s110",
-            "guangzhou-s111",
-            "guangzhou-s112",
-            "guangzhou-s113",
-            "guangzhou-s114",
-            "guangzhou-s115",
-            "guangzhou-s116",
-            "guangzhou-s117",
-            "guangzhou-s118",
-            "guangzhou-s119",
-            "guangzhou-s120",
-            "guangzhou-s121",
-            "guangzhou-s122",
             "guangzhou-s123",
             "guangzhou-s124",
             "guangzhou-s14",
@@ -51009,13 +51448,127 @@
             "guangzhou-s95",
             "guangzhou-s96",
             "guangzhou-s97",
+            "guangzhou-s98"
+          ]
+        },
+        {
+          "id": "guangzhou-milestone-2017-06-28",
+          "periodStartExclusive": "2016-12-28",
+          "periodEndInclusive": "2017-06-28",
+          "title": "植物园、柯木塱两站开放",
+          "eventIds": [
+            "guangzhou-line6-gardens-2017:line6-opening"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line6-gardens-2017:line6-opening",
+              "date": "2017-06-28",
+              "title": "植物园、柯木塱两站开放",
+              "routeIds": [
+                "guangzhou-r6"
+              ],
+              "source": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+              "status": "opened_or_completed",
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line6-gardens-2017:line6",
+                  "mapRouteId": "guangzhou-r6",
+                  "name": "六号线本期开放范围",
+                  "stationIds": [
+                    "guangzhou-s102",
+                    "guangzhou-s101",
+                    "guangzhou-s100",
+                    "guangzhou-s99",
+                    "guangzhou-s98"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+                  "historicalLineId": "guangzhou-line6-6",
+                  "color": "#80225F",
+                  "stationOrderSource": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-s102": "guangzhou-s102",
+                    "guangzhou-s101": "guangzhou-s101",
+                    "guangzhou-s100": "guangzhou-s100",
+                    "guangzhou-s99": "guangzhou-s99",
+                    "guangzhou-s98": "guangzhou-s98"
+                  },
+                  "replaceExistingService": false,
+                  "servicePathRevision": 37,
+                  "coverageGroupId": "opening:guangzhou-line6-gardens-2017:line6",
+                  "stationNames": {
+                    "guangzhou-s102": "长湴",
+                    "guangzhou-s101": "植物园",
+                    "guangzhou-s100": "龙洞",
+                    "guangzhou-s99": "柯木塱",
+                    "guangzhou-s98": "高塘石"
+                  }
+                }
+              ],
+              "chapterId": "guangzhou-line6-gardens-2017",
+              "scope": "本期站序：长湴—植物园—龙洞—柯木塱—高塘石",
+              "sourcePublicationDate": "2017-06-22"
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-line6-gardens-2017"
+          ],
+          "playableChapterId": "guangzhou-line6-gardens-2017",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [
+            "guangzhou-r6"
+          ],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [
+            {
+              "taskId": "opening:guangzhou-line6-gardens-2017:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s102",
+                "guangzhou-s101",
+                "guangzhou-s100",
+                "guangzhou-s99",
+                "guangzhou-s98"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s102": "guangzhou-s102",
+                "guangzhou-s101": "guangzhou-s101",
+                "guangzhou-s100": "guangzhou-s100",
+                "guangzhou-s99": "guangzhou-s99",
+                "guangzhou-s98": "guangzhou-s98"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line6-gardens-2017:line6",
+              "stationNames": {
+                "guangzhou-s102": "长湴",
+                "guangzhou-s101": "植物园",
+                "guangzhou-s100": "龙洞",
+                "guangzhou-s99": "柯木塱",
+                "guangzhou-s98": "高塘石"
+              }
+            }
+          ],
+          "chapterTargetStationIds": [
+            "guangzhou-s100",
+            "guangzhou-s101",
+            "guangzhou-s102",
             "guangzhou-s98",
             "guangzhou-s99"
           ]
         },
         {
           "id": "guangzhou-milestone-2017-12-28",
-          "periodStartExclusive": "2016-12-28",
+          "periodStartExclusive": "2017-06-28",
           "periodEndInclusive": "2017-12-28",
           "title": "4号线南延、9号线一期、13号线首期及14号线知识城支线开通",
           "eventIds": [
@@ -54619,8 +55172,55 @@
           "periodStartExclusive": "2024-11-01",
           "periodEndInclusive": "2024-12-28",
           "title": "首条市区环线：29站连成一环",
-          "eventIds": [],
-          "events": [],
+          "eventIds": [
+            "guangzhou-line11-ring-opening-2024:line6-opening"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line11-ring-opening-2024:line6-opening",
+              "date": "2024-12-28",
+              "title": "环线开通与六号线沙河开放",
+              "routeIds": [
+                "guangzhou-r6"
+              ],
+              "source": "https://ep.ycwb.com/epaper/ycwb/html/2024-12/26/content_3_683272.htm",
+              "status": "opened_or_completed",
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line11-ring-opening-2024:line6",
+                  "mapRouteId": "guangzhou-r6",
+                  "name": "六号线本期开放范围",
+                  "stationIds": [
+                    "guangzhou-s106",
+                    "guangzhou-s105",
+                    "guangzhou-s104"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+                  "historicalLineId": "guangzhou-line6-6",
+                  "color": "#80225F",
+                  "stationOrderSource": "https://ep.ycwb.com/epaper/ycwb/html/2024-12/26/content_3_683272.htm",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-s106": "guangzhou-s106",
+                    "guangzhou-s105": "guangzhou-s105__line6-6",
+                    "guangzhou-s104": "guangzhou-s104"
+                  },
+                  "replaceExistingService": false,
+                  "servicePathRevision": 37,
+                  "coverageGroupId": "opening:guangzhou-line11-ring-opening-2024:line6",
+                  "stationNames": {
+                    "guangzhou-s106": "沙河顶",
+                    "guangzhou-s105": "沙河",
+                    "guangzhou-s104": "天平架"
+                  }
+                }
+              ],
+              "chapterId": "guangzhou-line11-ring-opening-2024",
+              "scope": "本期站序：沙河顶—沙河—天平架",
+              "sourcePublicationDate": "2024-12-26"
+            }
+          ],
           "chapterIds": [
             "guangzhou-line11-ring-opening-2024"
           ],
@@ -54628,9 +55228,7 @@
           "contentStatus": "playable_milestone",
           "eventOnly": false,
           "routeIds": [
-            "guangzhou-r11",
-            "guangzhou-r13",
-            "guangzhou-r14"
+            "guangzhou-r6"
           ],
           "targetMapRouteIds": [],
           "chapterTargetGroups": [
@@ -54742,11 +55340,42 @@
               "replaceExistingService": true,
               "reconfirmLaterServices": true,
               "servicePathRevision": 4
+            },
+            {
+              "taskId": "opening:guangzhou-line11-ring-opening-2024:line6",
+              "mapRouteId": "guangzhou-r6",
+              "name": "六号线本期开放范围",
+              "stationIds": [
+                "guangzhou-s106",
+                "guangzhou-s105",
+                "guangzhou-s104"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序按本期实际开放范围；未开放站不进入停站，线位为现代地理参考近似走廊。",
+              "historicalLineId": "guangzhou-line6-6",
+              "color": "#80225F",
+              "stationOrderSource": "https://ep.ycwb.com/epaper/ycwb/html/2024-12/26/content_3_683272.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s106": "guangzhou-s106",
+                "guangzhou-s105": "guangzhou-s105__line6-6",
+                "guangzhou-s104": "guangzhou-s104"
+              },
+              "replaceExistingService": false,
+              "servicePathRevision": 37,
+              "coverageGroupId": "opening:guangzhou-line11-ring-opening-2024:line6",
+              "stationNames": {
+                "guangzhou-s106": "沙河顶",
+                "guangzhou-s105": "沙河",
+                "guangzhou-s104": "天平架"
+              }
             }
           ],
           "chapterTargetStationIds": [
             "guangzhou-s10",
+            "guangzhou-s104",
             "guangzhou-s105",
+            "guangzhou-s106",
             "guangzhou-s117",
             "guangzhou-s129",
             "guangzhou-s155",
@@ -57219,7 +57848,9 @@
                 "guangzhou-s116": "guangzhou-s116__line6-6",
                 "guangzhou-s117": "guangzhou-s117__line6-6",
                 "guangzhou-s118": "guangzhou-s118__line6-6"
-              }
+              },
+              "replaceExistingService": true,
+              "servicePathRevision": 37
             },
             {
               "taskId": "route:guangzhou-r7",
@@ -58520,7 +59151,7 @@
           ]
         }
       ],
-      "milestoneChapterCount": 31,
+      "milestoneChapterCount": 34,
       "mapRouteEntryCount": 20,
       "mapRouteStopOccurrenceCount": 443,
       "mapUniqueStationCount": 373,
@@ -87086,5 +87717,5 @@
     }
   },
   "contentStatus": "playable_cutoff_route_inventories",
-  "contentRevision": "2026.10.25.24"
+  "contentRevision": "2026.10.25.25"
 }

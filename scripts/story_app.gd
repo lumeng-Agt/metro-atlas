@@ -1664,7 +1664,7 @@ func _existing_terminal_port(state:Dictionary,station_id:String,line_id:String,p
 				if bool(path.get("valid",false)):return str(path.toNodeId)
 	return ""
 
-func _required_extension_port(state:Dictionary,station_id:String,other_id:String,line_id:String,path_index:Dictionary,ref_lat:float) -> String:
+func _required_extension_port(state:Dictionary,station_id:String,other_id:String,line_id:String,path_index:Dictionary,ref_lat:float,scope_instances:Array=[]) -> String:
 	# Reconfirming an already served pair uses its existing path. A prebuilt
 	# but unopened pair is different: it must still join the unused terminal
 	# end, even when a shorter old edge is present in the physical graph.
@@ -1674,6 +1674,29 @@ func _required_extension_port(state:Dictionary,station_id:String,other_id:String
 			var ids:Array=direction.get("stationIds",[])
 			for i in range(ids.size()-1):
 				if (str(ids[i])==station_id and str(ids[i+1])==other_id) or (str(ids[i])==other_id and str(ids[i+1])==station_id):return ""
+	# Inserting a delayed station replaces the old section between two existing
+	# anchors. At either boundary preserve the port toward the in-scope old
+	# neighbour, so the untouched section outside the draft stays continuous.
+	# Geographic proximity alone can choose that outside section's occupied end.
+	var replacement_ports:Dictionary={}
+	if not scope_instances.is_empty():
+		for route in state.get("routes",[]):
+			if str(route.get("historicalLineId",""))!=line_id or bool(route.get("retired",false)) or not str(route.get("constructionVariantId","")).is_empty():continue
+			for direction in route.get("directions",[]):
+				var ids:Array=direction.get("stationIds",[]);var paths:Array=direction.get("edgePathsBySegment",[])
+				var at:=int(ids.find(station_id))
+				if at<0 or paths.size()!=ids.size()-1:continue
+				var neighbours:Array=[]
+				if at>0:neighbours.append(at-1)
+				if at+1<ids.size():neighbours.append(at+1)
+				var inside:Array=neighbours.filter(func(i:int):
+					var neighbour:=WorldData.find_station(state,str(ids[i]))
+					return scope_instances.has(str(neighbour.get("stationInstanceId",neighbour.get("id","")))))
+				if inside.size()!=1:continue
+				var neighbour_index:=int(inside[0]);var segment_index:=mini(at,neighbour_index)
+				var old_path:=TrackNetwork.ordered_station_path(str(ids[segment_index]),str(ids[segment_index+1]),paths[segment_index],state,ref_lat,path_index)
+				if bool(old_path.get("valid",false)):replacement_ports[str(old_path.toNodeId if neighbour_index<at else old_path.fromNodeId)]=true
+	if replacement_ports.size()==1:return str(replacement_ports.keys()[0])
 	var used:=_existing_terminal_port(state,station_id,line_id,path_index,ref_lat)
 	if used.is_empty():return ""
 	var station:=WorldData.find_station(state,station_id)
@@ -1691,9 +1714,12 @@ func _assist_required_ports(state:Dictionary,group:Dictionary,index:int,prior_ar
 	# to its reference-facing ends, preserving all old physical construction.
 	var replacing:=bool(group.get("replaceExistingService",false))
 	var facing:=_facing(a,b) if replacing else []
+	var scope_instances:Array=[]
+	if not replacing and (index==0 or index==ids.size()-2):
+		for id in ids:scope_instances.append(Story.station_instance_id(group,str(id)))
 	if not prior_arrival.is_empty():departure=TrackNetwork.station_node_id(a,"end" if prior_arrival==TrackNetwork.station_node_id(a,"start") else "start")
-	elif index==0:departure=TrackNetwork.station_node_id(a,str(facing[0])) if replacing else _required_extension_port(state,str(a.id),str(b.id),line_id,path_index,ref_lat)
-	if index==ids.size()-2:arrival=TrackNetwork.station_node_id(b,str(facing[1])) if replacing else _required_extension_port(state,str(b.id),str(a.id),line_id,path_index,ref_lat)
+	elif index==0:departure=TrackNetwork.station_node_id(a,str(facing[0])) if replacing else _required_extension_port(state,str(a.id),str(b.id),line_id,path_index,ref_lat,scope_instances)
+	if index==ids.size()-2:arrival=TrackNetwork.station_node_id(b,str(facing[1])) if replacing else _required_extension_port(state,str(b.id),str(a.id),line_id,path_index,ref_lat,scope_instances)
 	elif index+2<ids.size():
 		var next:=Story.bound_station(state,str(ids[index+2]),Story.station_instance_id(group,str(ids[index+2])),line_id)
 		if not next.is_empty():

@@ -130,7 +130,12 @@ static func historical_chapter_errors(world:Dictionary,chapter_id:String,scope_o
 	for milestone in milestones:
 		if str(milestone.get("chapterId",""))==chapter_id:current=milestone;break
 	if current.is_empty():return []
-	var errors:=project_errors(world,current)
+	var checked_target:=current
+	if scope_only_for_backfill:
+		var backfill:=backfill_requirements(current)
+		if not bool(backfill.ok):return [str(backfill.error)]
+		checked_target=backfill.target
+	var errors:=project_errors(world,checked_target)
 	# Compatibility backfills check the missing old task against construction
 	# that legitimately already contains later milestones. They are not evidence
 	# that a fresh chronological playthrough had no premature later stops.
@@ -147,6 +152,24 @@ static func historical_chapter_errors(world:Dictionary,chapter_id:String,scope_o
 				var name:=str(WorldData.find_station(world,str(id)).get("name",""))
 				if not permitted.get(line_id,[]).has(name):errors.append("%s: future or undocumented stop at %s: %s"%[line_id,str(current.get("date","")),name])
 	return errors
+
+## A late save already contains subsequent infill. Recheck the independently
+## specified missing construction, rather than demand the whole former service
+## pattern without its legitimately later stops. Fresh-period audits still use
+## the complete dated pattern and reject those stops.
+static func backfill_requirements(milestone:Dictionary) -> Dictionary:
+	var target:=milestone.duplicate(true)
+	for group in target.get("groups",[]):
+		if not group.has("constructionStationNames"):continue
+		var complete:Array=group.get("stationNames",[]);var section:Array=group.constructionStationNames
+		var contained:=false
+		if section.size()>=2:
+			for offset in range(maxi(0,complete.size()-section.size()+1)):
+				if complete.slice(offset,offset+section.size())==section:contained=true;break
+		if not bool(group.get("fullServiceOrder",false)) or not contained:return {"ok":false,"error":"%s: invalid independently defined backfill construction range"%str(group.get("id",""))}
+		group.stationNames=section.duplicate()
+		if section!=complete:group["loop"]=false
+	return {"ok":true,"target":target}
 
 static func permitted_historical_stops(milestones:Array,date:String) -> Dictionary:
 	var permitted:Dictionary={}

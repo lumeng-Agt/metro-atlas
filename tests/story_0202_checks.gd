@@ -21,7 +21,8 @@ func _run() -> void:
 	for city in WorldData.cities():
 		var config := Story.config({"cityId": str(city.id)})
 		for chapter in config.get("chapters", []):
-			_check(ALLOWED_OPERATIONS.has(str(chapter.get("operationType", ""))), "%s has a gameplay operation type" % str(chapter.get("id", "")))
+			var pedestrian_action:bool=str(chapter.get("operationType",""))=="transfer_connection" and chapter.get("lineGroups",[]).is_empty() and not chapter.get("requiredTransfers",[]).is_empty() and not bool(chapter.get("eventOnly",false))
+			_check(ALLOWED_OPERATIONS.has(str(chapter.get("operationType", ""))) or pedestrian_action, "%s has a gameplay operation type" % str(chapter.get("id", "")))
 			_check(not str(chapter.get("operationGuide", "")).is_empty(), "%s has a construction instruction" % str(chapter.get("id", "")))
 
 	var app = App.new(); root.add_child(app); await process_frame

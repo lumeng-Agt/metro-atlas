@@ -36,6 +36,8 @@ var chapter_baseline_overlay: Dictionary = {}
 var route_path_cache_revision := -1
 var link_geometry_cache: Dictionary = {}
 var _track_meshes:Dictionary={}
+var _blueprint_corridor_paths:Array[Dictionary]=[]
+var _blueprint_corridor_ref_lat:=INF
 var station_local_cache: Dictionary = {}
 var station_complex_bodies: Dictionary = {}
 var blueprint_complex_bodies: Dictionary = {}
@@ -148,6 +150,8 @@ func set_world(state: Dictionary) -> void:
 
 func set_blueprint(value: Dictionary) -> void:
 	campaign_blueprint = value.duplicate(true)
+	_blueprint_corridor_ref_lat=INF
+	_blueprint_corridor_paths.clear()
 	blueprint_complex_bodies = _complex_body_index(campaign_blueprint.get("stations",[]))
 	requested_redraw()
 
@@ -662,17 +666,39 @@ func _record_render_phase(key:String,started:int) -> int:
 
 func _draw_campaign_corridors() -> void:
 	if not bool(campaign_blueprint.get("visible", false)): return
-	for scheme in campaign_blueprint.get("previous",[]):
-		for index in range(scheme.size()-1):draw_dashed_line(_to_screen(scheme[index]),_to_screen(scheme[index+1]),Style.PREVIOUS_PLAN,5.0,10.0,true)
-	for corridor in campaign_blueprint.get("corridors", []):
-		var points: Array = corridor.get("points", [])
-		if points.size() < 2: continue
-		for index in range(1, points.size()):
-			var a := _to_screen(points[index - 1])
-			var b := _to_screen(points[index])
-			var schematic:=str(corridor.get("precision","schematic"))=="schematic"
-			if not schematic:draw_line(a,b,Color(0.22,0.39,0.66,0.10),11.0,true)
-			draw_dashed_line(a,b,Color("#8a929c") if schematic else Style.BLUEPRINT,1.6 if schematic else 2.4,12.0 if schematic else 8.0,true)
+	_prepare_blueprint_corridors()
+	var half:=size*0.5*_camera_mpp
+	var visible:=Rect2(_camera_local_center-half,half*2).grow(16*_camera_mpp)
+	var anchor:=Geo.local_m(city_data.get("center",[31.23,121.47]),geometry_ref_lat)
+	var scale:=1.0/_camera_mpp
+	draw_set_transform(Vector2(size.x*0.5-(_camera_local_center.x-anchor.x)*scale,size.y*0.5+(_camera_local_center.y-anchor.y)*scale),0,Vector2(scale,-scale))
+	for corridor in _blueprint_corridor_paths:
+		if not visible.intersects(corridor.bounds):continue
+		var points:PackedVector2Array=corridor.points
+		for index in range(1,points.size()):
+			var a:=points[index-1]-anchor;var b:=points[index]-anchor
+			if bool(corridor.previous):
+				draw_dashed_line(a,b,Style.PREVIOUS_PLAN,5*_camera_mpp,10*_camera_mpp,true)
+			else:
+				var schematic:=bool(corridor.schematic)
+				if not schematic:draw_line(a,b,Color(0.22,0.39,0.66,0.10),11*_camera_mpp,true)
+				draw_dashed_line(a,b,Color("#8a929c") if schematic else Style.BLUEPRINT,(1.6 if schematic else 2.4)*_camera_mpp,(12.0 if schematic else 8.0)*_camera_mpp,true)
+	draw_set_transform(Vector2.ZERO)
+
+func _prepare_blueprint_corridors() -> void:
+	if _blueprint_corridor_ref_lat==geometry_ref_lat:return
+	_blueprint_corridor_paths.clear();_blueprint_corridor_ref_lat=geometry_ref_lat
+	var sources:Array=[]
+	for scheme in campaign_blueprint.get("previous",[]):sources.append({"points":scheme,"previous":true})
+	for corridor in campaign_blueprint.get("corridors",[]):sources.append(corridor)
+	for source in sources:
+		var points:=PackedVector2Array()
+		for latlng in source.get("points",[]):
+			if latlng.size()>=2:points.append(Geo.local_m(latlng,geometry_ref_lat))
+		if points.size()<2:continue
+		var bounds:=Rect2(points[0],Vector2.ZERO)
+		for point in points:bounds=bounds.expand(point)
+		_blueprint_corridor_paths.append({"points":points,"bounds":bounds.grow(0.01),"previous":bool(source.get("previous",false)),"schematic":str(source.get("precision","schematic"))=="schematic"})
 
 func _draw_campaign_targets() -> void:
 	if not bool(campaign_blueprint.get("visible", false)): return

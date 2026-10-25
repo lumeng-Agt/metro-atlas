@@ -7007,6 +7007,52 @@
               "loop": true,
               "fullServiceOrder": true,
               "allowReverse": true
+            },
+            {
+              "id": "opening:guangzhou-line11-ring-opening-2024:line6",
+              "historicalLineId": "guangzhou-line6-6",
+              "scopeType": "stations",
+              "stationNames": [
+                "浔峰岗",
+                "横沙",
+                "沙贝",
+                "河沙",
+                "坦尾",
+                "如意坊",
+                "黄沙",
+                "文化公园",
+                "一德路",
+                "海珠广场",
+                "北京路",
+                "团一大广场",
+                "东湖",
+                "东山口",
+                "区庄",
+                "黄花岗",
+                "沙河顶",
+                "沙河",
+                "天平架",
+                "燕塘",
+                "天河客运站",
+                "长湴",
+                "植物园",
+                "龙洞",
+                "柯木塱",
+                "高塘石",
+                "黄陂",
+                "金峰",
+                "暹岗",
+                "苏元",
+                "萝岗",
+                "香雪"
+              ],
+              "fullServiceOrder": true,
+              "constructionStationNames": [
+                "沙河顶",
+                "沙河",
+                "天平架"
+              ],
+              "allowReverse": true
             }
           ],
           "additionalSources": [
@@ -7319,6 +7365,232 @@
           "transfers": [
             "historic-transfer-gz-south-passage-foshan2-to-line2",
             "historic-transfer-gz-south-passage-foshan2-to-line7"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line6-first-2013",
+          "date": "2013-12-28",
+          "source": "https://gd.people.com.cn/GB/123947/357429/index.html",
+          "sourcePublicationDate": "2013-12-25",
+          "groups": [
+            {
+              "id": "opening:guangzhou-line6-first-2013:line6",
+              "historicalLineId": "guangzhou-line6-6",
+              "scopeType": "stations",
+              "stationNames": [
+                "浔峰岗",
+                "横沙",
+                "沙贝",
+                "河沙",
+                "坦尾",
+                "如意坊",
+                "黄沙",
+                "文化公园",
+                "海珠广场",
+                "北京路",
+                "团一大广场",
+                "东湖",
+                "东山口",
+                "区庄",
+                "黄花岗",
+                "沙河顶",
+                "天平架",
+                "燕塘",
+                "天河客运站",
+                "长湴"
+              ],
+              "fullServiceOrder": true,
+              "constructionStationNames": [
+                "浔峰岗",
+                "横沙",
+                "沙贝",
+                "河沙",
+                "坦尾",
+                "如意坊",
+                "黄沙",
+                "文化公园",
+                "海珠广场",
+                "北京路",
+                "团一大广场",
+                "东湖",
+                "东山口",
+                "区庄",
+                "黄花岗",
+                "沙河顶",
+                "天平架",
+                "燕塘",
+                "天河客运站",
+                "长湴"
+              ],
+              "allowReverse": true
+            }
+          ],
+          "transfers": [
+            "historic-transfer-guangzhou-s1-line6-6-line3-3",
+            "historic-transfer-guangzhou-s109-line1-line6-6",
+            "historic-transfer-guangzhou-s113-line2-2-line6-6",
+            "historic-transfer-guangzhou-s116-line1-line6-6",
+            "historic-transfer-guangzhou-s103-line6-6-line3-3",
+            "historic-transfer-guangzhou-s108-line6-6-line5-5",
+            "historic-transfer-guangzhou-s118-line6-6-line5-5"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line6-yide-2015",
+          "date": "2015-01-28",
+          "source": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+          "sourcePublicationDate": "2015-01-28",
+          "groups": [
+            {
+              "id": "opening:guangzhou-line6-yide-2015:line6",
+              "historicalLineId": "guangzhou-line6-6",
+              "scopeType": "stations",
+              "stationNames": [
+                "浔峰岗",
+                "横沙",
+                "沙贝",
+                "河沙",
+                "坦尾",
+                "如意坊",
+                "黄沙",
+                "文化公园",
+                "一德路",
+                "海珠广场",
+                "北京路",
+                "团一大广场",
+                "东湖",
+                "东山口",
+                "区庄",
+                "黄花岗",
+                "沙河顶",
+                "天平架",
+                "燕塘",
+                "天河客运站",
+                "长湴"
+              ],
+              "fullServiceOrder": true,
+              "constructionStationNames": [
+                "文化公园",
+                "一德路",
+                "海珠广场"
+              ],
+              "allowReverse": true
+            }
+          ]
+        },
+        {
+          "chapterId": "guangzhou-network-milestone-2016-12-28",
+          "date": "2016-12-28",
+          "source": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
+          "sourcePublicationDate": "2016-12-27",
+          "groups": [
+            {
+              "id": "route:guangzhou-r6",
+              "historicalLineId": "guangzhou-line6-6",
+              "scopeType": "stations",
+              "stationNames": [
+                "浔峰岗",
+                "横沙",
+                "沙贝",
+                "河沙",
+                "坦尾",
+                "如意坊",
+                "黄沙",
+                "文化公园",
+                "一德路",
+                "海珠广场",
+                "北京路",
+                "团一大广场",
+                "东湖",
+                "东山口",
+                "区庄",
+                "黄花岗",
+                "沙河顶",
+                "天平架",
+                "燕塘",
+                "天河客运站",
+                "长湴",
+                "龙洞",
+                "高塘石",
+                "黄陂",
+                "金峰",
+                "暹岗",
+                "苏元",
+                "萝岗",
+                "香雪"
+              ],
+              "fullServiceOrder": true,
+              "constructionStationNames": [
+                "长湴",
+                "龙洞",
+                "高塘石",
+                "黄陂",
+                "金峰",
+                "暹岗",
+                "苏元",
+                "萝岗",
+                "香雪"
+              ],
+              "allowReverse": true
+            }
+          ],
+          "additionalSources": [
+            "https://td.gd.gov.cn/attachment/0/549/549734/4425054.pdf"
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line6-gardens-2017",
+          "date": "2017-06-28",
+          "source": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+          "sourcePublicationDate": "2017-06-22",
+          "groups": [
+            {
+              "id": "opening:guangzhou-line6-gardens-2017:line6",
+              "historicalLineId": "guangzhou-line6-6",
+              "scopeType": "stations",
+              "stationNames": [
+                "浔峰岗",
+                "横沙",
+                "沙贝",
+                "河沙",
+                "坦尾",
+                "如意坊",
+                "黄沙",
+                "文化公园",
+                "一德路",
+                "海珠广场",
+                "北京路",
+                "团一大广场",
+                "东湖",
+                "东山口",
+                "区庄",
+                "黄花岗",
+                "沙河顶",
+                "天平架",
+                "燕塘",
+                "天河客运站",
+                "长湴",
+                "植物园",
+                "龙洞",
+                "柯木塱",
+                "高塘石",
+                "黄陂",
+                "金峰",
+                "暹岗",
+                "苏元",
+                "萝岗",
+                "香雪"
+              ],
+              "fullServiceOrder": true,
+              "constructionStationNames": [
+                "长湴",
+                "植物园",
+                "龙洞",
+                "柯木塱",
+                "高塘石"
+              ],
+              "allowReverse": true
+            }
           ]
         }
       ],

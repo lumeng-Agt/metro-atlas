@@ -14,6 +14,14 @@ func _check(ok:bool,message:String) -> void:
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():quit(2);return
 	WorldData.load_assets()
+	var dated:Dictionary={"groups":[{"id":"infill","fullServiceOrder":true,"stationNames":["A","B","C","D"],"constructionStationNames":["B","C"],"requiredStationInstances":{"B":"independent-body"}}],"transfers":["explicit-pair"]}
+	var backfill:=OfficialNetworkAudit.backfill_requirements(dated)
+	_check(bool(backfill.ok) and backfill.target.groups[0].stationNames==["B","C"] and backfill.target.groups[0].requiredStationInstances.B=="independent-body" and backfill.target.transfers==["explicit-pair"],"old-save backfill checks explicit construction and retains physical body and transfer requirements")
+	_check(dated.groups[0].stationNames==["A","B","C","D"],"backfill does not mutate the fresh-period full-service answer")
+	dated.groups[0].constructionStationNames=["A","D"]
+	_check(not bool(OfficialNetworkAudit.backfill_requirements(dated).ok),"backfill cannot waive an intermediate independently required stop")
+	dated.groups[0].constructionStationNames=["B","C"];dated.groups[0].fullServiceOrder=false
+	_check(not bool(OfficialNetworkAudit.backfill_requirements(dated).ok),"backfill needs a reviewed full-service scope")
 	_check(CampaignSystem.validate_catalog(WorldData.cities()).is_empty(),"test fixtures require valid real catalogue references")
 	_check(CampaignSystem.validate_network_baseline(WorldData.cities()).is_empty(),"a stale timeline chapter reference fails the checks rather than only logging an error")
 	var app:=App.new();root.add_child(app);await process_frame
