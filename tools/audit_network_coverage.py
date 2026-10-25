@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from engineering_scope import definition_errors as engineering_definition_errors
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -30,7 +31,7 @@ def unique_route_stations(line: dict[str, Any]) -> list[str]:
 
 
 def playable_future_project_ids(campaign: dict[str, Any], city: dict[str, Any]) -> set[str]:
-    """Return only projects backed by selectable, validated station targets."""
+    """Return only projects backed by validated station or engineering scope."""
     known_stations = {str(station.get("id", "")) for station in city.get("stations", [])}
     playable: set[str] = set()
     for plan in campaign.get("futurePlans", []):
@@ -47,6 +48,11 @@ def playable_future_project_ids(campaign: dict[str, Any], city: dict[str, Any]) 
             if not isinstance(group, dict):
                 ready = False
                 break
+            if group.get('taskKind') == 'engineering_track':
+                if engineering_definition_errors(group, known_stations):
+                    ready = False
+                    break
+                continue
             station_ids = [str(value) for value in group.get("stationIds", [])]
             if len(station_ids) < 2 or float(group.get("toleranceM", 0)) <= 0 or not set(station_ids).issubset(known_stations):
                 ready = False

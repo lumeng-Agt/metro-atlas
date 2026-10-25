@@ -464,7 +464,6 @@ func _run() -> void:
 		alias_chapter.lineGroups[1].replaceExistingService=false
 		_check(not Story.scope_correction_preview(alias_world,"fixture-sh23").get("changes",[]).any(func(c:Dictionary):return str(c.get("id",""))==str(alias_transfer.id)),"an append-only task cannot retire a later interchange")
 	CampaignSystem._catalog.cities.shanghai.chapters.pop_back()
-	app.queue_free();await process_frame
 	var branch_snapshots:Array=[
 		{"date":"2000-01-01","groups":[{"id":"y","stationNames":["obsolete","joint","trunk"],"fullServiceOrder":true}]},
 		{"date":"2010-01-01","groups":[{"id":"a","historicalLineId":"y","stationNames":["north","joint","trunk"],"fullServiceOrder":true},{"id":"b","historicalLineId":"y","stationNames":["west","joint","trunk"],"fullServiceOrder":true}]},
@@ -480,6 +479,29 @@ func _run() -> void:
 	_check(Story._merge_route_directions(old_built_arm,full_trial).is_empty(),"an overlapping old built arm cannot be appended after the new trial terminus")
 	var through_extension:Dictionary={"stationIds":["apple","extension"],"edgePathsBySegment":[[]],"serviceStatusBySegment":["trial"]}
 	_check(Story._merge_route_directions(full_trial,through_extension).get("direction",{}).get("stationIds",[])==["city","junction","west","apple","extension"],"a genuine terminal extension still merges in travel order")
+	# A real six-stop opening must stay trial service; a requireOpen flag must
+	# not silently promote it to public/open or include four delayed stations.
+	var nineteen_first:Dictionary=CampaignSystem.city_config("beijing").chapters.filter(func(c:Dictionary):return str(c.id)=="beijing-network-milestone-2021-12-31")[0].duplicate(true)
+	nineteen_first.id="fixture-bj19-six-trial";nineteen_first.requiredTransfers=[];nineteen_first.scopeCorrections=[];nineteen_first.serviceTransitions=[]
+	nineteen_first.lineGroups=nineteen_first.lineGroups.filter(func(g:Dictionary):return str(g.historicalLineId)=="beijing-line19-19")
+	CampaignSystem._catalog.cities.beijing.chapters.append(nineteen_first)
+	var nineteen_world:=WorldData.new_world("beijing","campaign")
+	nineteen_world.storyState.phase="history";nineteen_world.storyState.chapterId=nineteen_first.id;nineteen_world.storyState.stage="build";app._enter(nineteen_world)
+	var nineteen_preview:Dictionary=app._assist_candidate()
+	_check(str(nineteen_preview.get("issue","")).is_empty() and bool(app._commit_assisted_construction(nineteen_preview,int(nineteen_world.revision)).get("ok",false)),"six-stop 19-line opening uses formal construction")
+	var nineteen_evaluated:=Story.evaluate(nineteen_world)
+	_check(bool(nineteen_evaluated.get("complete",false)) and nineteen_evaluated.routes.size()==1 and nineteen_evaluated.routes[0].serviceStatus=="trial","explicit trial status survives requireOpen evaluation")
+	_check(bool(Story.confirm_task(nineteen_world,"route:beijing-r19",int(nineteen_world.revision)).get("ok",false)),"six-stop trial task confirms through the real command")
+	var nineteen_expected:Dictionary={"groups":[{"id":"six-stop-independent","historicalLineId":"beijing-line19-19","stationNames":["牡丹园","积水潭","牛街","草桥","新发地","新宫"],"requiredServiceStatus":"trial","allowReverse":true}]}
+	_check(OfficialNetworkAudit.project_errors(nineteen_world,nineteen_expected).is_empty(),"actual 2021 geometry serves exactly the six independently named trial stops")
+	var nineteen_wrong:=nineteen_world.duplicate(true)
+	for direction in nineteen_wrong.routes[0].directions:direction.serviceStatusBySegment.fill("open")
+	_check(not OfficialNetworkAudit.project_errors(nineteen_wrong,nineteen_expected).is_empty(),"public/open status cannot substitute for the required trial stage")
+	_check(bool(SaveManager.save_world(nineteen_world).get("ok",false)),"trial service survives saved-world validation")
+	nineteen_first.lineGroups[0].defaultServiceStatus="not-a-service-state"
+	_check(not CampaignSystem.validate_catalog(WorldData.cities()).is_empty(),"catalogue rejects an unknown explicit service status")
+	CampaignSystem._catalog.cities.beijing.chapters.pop_back()
+	app.queue_free();await process_frame
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())
 	for failure in failures:push_error(failure)
 	quit(0 if failures.is_empty() else 1)

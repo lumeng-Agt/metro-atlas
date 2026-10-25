@@ -12,6 +12,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from engineering_scope import definition_errors as engineering_definition_errors
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = ROOT / "data/network_baselines_2026-10-01.json"
@@ -35,6 +36,9 @@ def plan_ready(plan: dict, city_station_ids: set[str]) -> list[str]:
     if not groups:
         errors.append(f"{plan.get('id')}: no line groups")
     for index, group in enumerate(groups):
+        if group.get('taskKind') == 'engineering_track':
+            errors.extend(f"{plan.get('id')}/group{index}: {error}" for error in engineering_definition_errors(group, city_station_ids))
+            continue
         ids = [str(value) for value in group.get("stationIds", [])]
         if len(ids) < 2:
             errors.append(f"{plan.get('id')}/group{index}: fewer than two stations")

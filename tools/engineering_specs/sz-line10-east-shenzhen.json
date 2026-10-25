@@ -1,0 +1,240 @@
+{
+  "cityId": "shenzhen",
+  "contentRevision": "2026.10.25.8",
+  "chapter": {
+    "id": "sz-line10-east-build",
+    "projectIds": [
+      "sz-line10-east-shenzhen"
+    ],
+    "title": "10号线东延深圳段 · 两端工程",
+    "date": "2026-10-01",
+    "status": "approved_project",
+    "projectType": "approved_project",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "sourceType": "operator_published_approved_construction_plan",
+    "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+    "sourceTitle": "深圳市城市轨道交通第五期建设规划：10号线东延深圳段",
+    "sourcePublicationDate": "2026-04",
+    "publicationDateNote": "页面目录为2026年4月，图像上传日期4月15日；未单列精确发布日期。",
+    "sourceCheckedAt": "2026-10-25",
+    "description": "按官方五期规划的双拥街—黄阁坑深圳段2.9公里，分西、东两段建设。西段从双拥街到深莞边界；东段从深莞边界到黄阁坑10号线独立站体。中间东莞段不属于本期批复，不能跨界补线或生成贯通运营。黄阁坑预留16号线衔接，整线未成前不冒充已形成运营换乘。站址沿既有站区，边界及区间为现代地理参考的近似走廊，非隧道测绘。"
+  },
+  "construction": {
+    "taskId": "project:sz-line10-east-build",
+    "taskKind": "engineering_track",
+    "coverageGroupId": "sz10-east-engineering",
+    "name": "10号线东延深圳段 · 两个独立区段",
+    "historicalLineId": "shenzhen-line10-11",
+    "color": "#F79BB4",
+    "stationIds": [
+      "shenzhen-s289",
+      "shenzhen-s379"
+    ],
+    "newStationIds": [
+      "shenzhen-s379"
+    ],
+    "stationInstances": {
+      "shenzhen-s289": "shenzhen-s289",
+      "shenzhen-s379": "shenzhen-s379__line10-11"
+    },
+    "stationNames": {
+      "shenzhen-s289": "双拥街",
+      "shenzhen-s379": "黄阁坑"
+    },
+    "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+    "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+    "toleranceM": 100,
+    "alignmentPrecision": "corridor_only",
+    "precisionNote": "按官方五期规划的双拥街—黄阁坑深圳段2.9公里，分西、东两段建设。西段从双拥街到深莞边界；东段从深莞边界到黄阁坑10号线独立站体。中间东莞段不属于本期批复，不能跨界补线或生成贯通运营。黄阁坑预留16号线衔接，整线未成前不冒充已形成运营换乘。站址沿既有站区，边界及区间为现代地理参考的近似走廊，非隧道测绘。",
+    "officialLengthM": 2900,
+    "engineeringEndpoints": [
+      {
+        "id": "sz10-shuangyong-existing",
+        "name": "双拥街既有端",
+        "stationId": "shenzhen-s289",
+        "stationInstanceId": "shenzhen-s289",
+        "side": "outward"
+      },
+      {
+        "id": "sz10-west-boundary",
+        "name": "平湖侧深莞边界接口（非车站）",
+        "latlng": [
+          22.7090465,
+          114.140775
+        ],
+        "toleranceM": 100,
+        "depthM": -15
+      },
+      {
+        "id": "sz10-east-boundary",
+        "name": "龙岗侧深莞边界接口（非车站）",
+        "latlng": [
+          22.7218649,
+          114.2043542
+        ],
+        "toleranceM": 100,
+        "depthM": -15
+      },
+      {
+        "id": "sz10-huanggekeng-new-body",
+        "name": "黄阁坑10号线站体",
+        "stationId": "shenzhen-s379",
+        "stationInstanceId": "shenzhen-s379__line10-11",
+        "side": "outward"
+      }
+    ],
+    "engineeringSegments": [
+      {
+        "fromId": "sz10-shuangyong-existing",
+        "toId": "sz10-west-boundary",
+        "points": [
+          [
+            22.7011507,
+            114.1277233
+          ],
+          [
+            22.703,
+            114.1298
+          ],
+          [
+            22.706,
+            114.1358
+          ],
+          [
+            22.7090465,
+            114.140775
+          ]
+        ],
+        "corridorToleranceM": 180
+      },
+      {
+        "fromId": "sz10-east-boundary",
+        "toId": "sz10-huanggekeng-new-body",
+        "points": [
+          [
+            22.7218649,
+            114.2043542
+          ],
+          [
+            22.7219,
+            114.2082
+          ],
+          [
+            22.7220585,
+            114.2132827
+          ]
+        ],
+        "corridorToleranceM": 180
+      }
+    ]
+  },
+  "officialTarget": {
+    "id": "sz-line10-east-shenzhen",
+    "reviewStatus": "verified",
+    "transferReviewStatus": "pending",
+    "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+    "sourcePublicationDate": "2026-04",
+    "sourceCheckedAt": "2026-10-25",
+    "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+    "additionalSources": [
+      "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html"
+    ],
+    "constructionOnly": true,
+    "evidenceNote": "五期规划图项目表第1行2.9公里深圳段；图中两端分离，中间东莞段未作为本期建设。2019政府说明仅佐证终点对接16号线，不以其9.8公里旧全线方案替代2026深圳段。黄阁坑独立站体1座，界外无新增乘客站。预留16号线关系尚待专门规划联系状态，不能计为有效运营换乘。",
+    "groups": [
+      {
+        "id": "sz10-east-engineering",
+        "scopeType": "engineering",
+        "taskKind": "engineering_track",
+        "stationIds": [
+          "shenzhen-s289",
+          "shenzhen-s379"
+        ],
+        "newStationIds": [
+          "shenzhen-s379"
+        ],
+        "engineeringEndpoints": [
+          {
+            "id": "sz10-shuangyong-existing",
+            "name": "双拥街既有端",
+            "stationId": "shenzhen-s289",
+            "stationInstanceId": "shenzhen-s289",
+            "side": "outward"
+          },
+          {
+            "id": "sz10-west-boundary",
+            "name": "平湖侧深莞边界接口（非车站）",
+            "latlng": [
+              22.7090465,
+              114.140775
+            ],
+            "toleranceM": 100,
+            "depthM": -15
+          },
+          {
+            "id": "sz10-east-boundary",
+            "name": "龙岗侧深莞边界接口（非车站）",
+            "latlng": [
+              22.7218649,
+              114.2043542
+            ],
+            "toleranceM": 100,
+            "depthM": -15
+          },
+          {
+            "id": "sz10-huanggekeng-new-body",
+            "name": "黄阁坑10号线站体",
+            "stationId": "shenzhen-s379",
+            "stationInstanceId": "shenzhen-s379__line10-11",
+            "side": "outward"
+          }
+        ],
+        "engineeringSegments": [
+          {
+            "fromId": "sz10-shuangyong-existing",
+            "toId": "sz10-west-boundary",
+            "points": [
+              [
+                22.7011507,
+                114.1277233
+              ],
+              [
+                22.703,
+                114.1298
+              ],
+              [
+                22.706,
+                114.1358
+              ],
+              [
+                22.7090465,
+                114.140775
+              ]
+            ],
+            "corridorToleranceM": 180
+          },
+          {
+            "fromId": "sz10-east-boundary",
+            "toId": "sz10-huanggekeng-new-body",
+            "points": [
+              [
+                22.7218649,
+                114.2043542
+              ],
+              [
+                22.7219,
+                114.2082
+              ],
+              [
+                22.7220585,
+                114.2132827
+              ]
+            ],
+            "corridorToleranceM": 180
+          }
+        ]
+      }
+    ]
+  }
+}

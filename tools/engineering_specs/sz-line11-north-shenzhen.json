@@ -1,0 +1,159 @@
+{
+  "cityId": "shenzhen",
+  "contentRevision": "2026.10.25.7",
+  "chapter": {
+    "id": "sz-line11-north-build",
+    "projectIds": [
+      "sz-line11-north-shenzhen"
+    ],
+    "title": "11号线北延深圳段 · 碧头至深莞边界",
+    "date": "2026-10-01",
+    "status": "approved_project",
+    "projectType": "approved_project",
+    "required": true,
+    "exactAlignment": "corridor_only",
+    "sourceType": "operator_published_approved_construction_plan",
+    "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+    "sourceTitle": "深圳市城市轨道交通第五期建设规划：示意图及项目表",
+    "sourcePublicationDate": "2026-04",
+    "publicationDateNote": "页面目录为2026年4月，图像上传日期2026-04-15；页面未单列精确发布日期。",
+    "sourceCheckedAt": "2026-10-25",
+    "description": "官方五期规划图列明碧头—深莞边界、0.8公里；深圳段不把东莞后续工程算入本期。按现有碧头站端沿朗碧路向北至茅洲河边界复现近似走廊，不新增客运站、不生成运营服务。工程接口不是车站。公开图为规划示意，不是施工中心线；深度示意。"
+  },
+  "construction": {
+    "taskId": "project:sz-line11-north-build",
+    "taskKind": "engineering_track",
+    "coverageGroupId": "sz11-north-engineering",
+    "name": "11号线北延深圳段工程轨道",
+    "historicalLineId": "shenzhen-line11-12",
+    "color": "#8B243E",
+    "stationIds": [
+      "shenzhen-s202"
+    ],
+    "stationInstances": {
+      "shenzhen-s202": "shenzhen-s202__line11-12"
+    },
+    "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+    "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+    "toleranceM": 100,
+    "alignmentPrecision": "corridor_only",
+    "precisionNote": "官方五期规划图列明碧头—深莞边界、0.8公里；深圳段不把东莞后续工程算入本期。按现有碧头站端沿朗碧路向北至茅洲河边界复现近似走廊，不新增客运站、不生成运营服务。工程接口不是车站。公开图为规划示意，不是施工中心线；深度示意。",
+    "officialLengthM": 800,
+    "engineeringEndpoints": [
+      {
+        "id": "sz11-bitou-existing",
+        "name": "碧头既有北端",
+        "stationId": "shenzhen-s202",
+        "stationInstanceId": "shenzhen-s202__line11-12",
+        "side": "outward"
+      },
+      {
+        "id": "sz11-shenzhen-dongguan-boundary",
+        "name": "深莞边界工程接口（非车站）",
+        "latlng": [
+          22.795032,
+          113.81495
+        ],
+        "toleranceM": 100,
+        "depthM": -15
+      }
+    ],
+    "engineeringSegments": [
+      {
+        "fromId": "sz11-bitou-existing",
+        "toId": "sz11-shenzhen-dongguan-boundary",
+        "points": [
+          [
+            22.7862305,
+            113.8150171
+          ],
+          [
+            22.7879279,
+            113.8150279
+          ],
+          [
+            22.7889943,
+            113.8148981
+          ],
+          [
+            22.7912198,
+            113.8148696
+          ],
+          [
+            22.795032,
+            113.81495
+          ]
+        ],
+        "corridorToleranceM": 120
+      }
+    ]
+  },
+  "officialTarget": {
+    "id": "sz-line11-north-shenzhen",
+    "reviewStatus": "verified",
+    "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+    "sourcePublicationDate": "2026-04",
+    "sourceCheckedAt": "2026-10-25",
+    "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+    "constructionOnly": true,
+    "evidenceNote": "独立录入官方图项目表第2行：11号线北延碧头—深莞边界，0.8公里地下线。现状碧头站体为接头，图中深圳段未设新增站点；不将界外延伸或工程接口伪装成车站。坐标仅按许可地理数据参考沿北向走廊，不代表工程测绘。",
+    "groups": [
+      {
+        "id": "sz11-north-engineering",
+        "scopeType": "engineering",
+        "taskKind": "engineering_track",
+        "stationIds": [
+          "shenzhen-s202"
+        ],
+        "engineeringEndpoints": [
+          {
+            "id": "sz11-bitou-existing",
+            "name": "碧头既有北端",
+            "stationId": "shenzhen-s202",
+            "stationInstanceId": "shenzhen-s202__line11-12",
+            "side": "outward"
+          },
+          {
+            "id": "sz11-shenzhen-dongguan-boundary",
+            "name": "深莞边界工程接口（非车站）",
+            "latlng": [
+              22.795032,
+              113.81495
+            ],
+            "toleranceM": 100,
+            "depthM": -15
+          }
+        ],
+        "engineeringSegments": [
+          {
+            "fromId": "sz11-bitou-existing",
+            "toId": "sz11-shenzhen-dongguan-boundary",
+            "points": [
+              [
+                22.7862305,
+                113.8150171
+              ],
+              [
+                22.7879279,
+                113.8150279
+              ],
+              [
+                22.7889943,
+                113.8148981
+              ],
+              [
+                22.7912198,
+                113.8148696
+              ],
+              [
+                22.795032,
+                113.81495
+              ]
+            ],
+            "corridorToleranceM": 120
+          }
+        ]
+      }
+    ]
+  }
+}

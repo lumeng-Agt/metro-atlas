@@ -13808,6 +13808,225 @@
           "eventOnly": false
         },
         {
+          "id": "beijing-line13-west-2002",
+          "phase": "history",
+          "date": "2002-09-28",
+          "title": "城市铁路西段：西直门至霍营",
+          "lineGroups": [
+            {
+              "taskId": "opening:bj13-west",
+              "mapRouteId": "beijing-r13",
+              "name": "城市铁路西段：西直门至霍营",
+              "stationIds": [
+                "beijing-s101",
+                "beijing-s100",
+                "beijing-s99",
+                "beijing-s98",
+                "beijing-s97",
+                "beijing-s95",
+                "beijing-s94",
+                "beijing-s93",
+                "beijing-s92"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "新华社现场报道及运营方纪念票记录证明西段9站开放；现代近似站位不代表当年工程测绘。",
+              "historicalLineId": "beijing-line13-13",
+              "color": "#F9E700",
+              "stationOrderSource": "https://news.sohu.com/35/91/news203429135.shtml",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s101": "beijing-s101",
+                "beijing-s100": "beijing-s100__line13-13",
+                "beijing-s99": "beijing-s99__line13-13",
+                "beijing-s98": "beijing-s98",
+                "beijing-s97": "beijing-s97",
+                "beijing-s95": "beijing-s95__line13-13",
+                "beijing-s94": "beijing-s94",
+                "beijing-s93": "beijing-s93",
+                "beijing-s92": "beijing-s92__line13-13"
+              },
+              "coverageGroupId": "opening:bj13-west",
+              "stationNames": {
+                "beijing-s101": "西直门",
+                "beijing-s100": "大钟寺",
+                "beijing-s99": "知春路",
+                "beijing-s98": "五道口",
+                "beijing-s97": "上地",
+                "beijing-s95": "西二旗",
+                "beijing-s94": "龙泽",
+                "beijing-s93": "回龙观",
+                "beijing-s92": "霍营"
+              },
+              "source": "https://news.sohu.com/35/91/news203429135.shtml",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
+            }
+          ],
+          "requiredTransfers": [],
+          "scopeCorrections": [],
+          "requireOpen": true,
+          "eventOnly": false,
+          "precision": "station_areas",
+          "geometryStatus": "station_area_approximation",
+          "operationType": "extension",
+          "chapterScope": "dated_opening_ranges",
+          "historicalEventIds": [
+            "reviewed-phases:beijing-r13:opening:bj13-west"
+          ],
+          "routeTargetCount": 1,
+          "story": {
+            "opening": "2002年9月28日，西直门至霍营西段试运营，北京地铁路网开始向北部地面与高架走廊拓展。",
+            "purpose": "复用既有站轨，完成本期新增范围。",
+            "outcome": "核对本期线路与换乘，不提前开放后期范围。",
+            "eventKind": "network_expansion",
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [],
+            "planVersions": []
+          },
+          "scopeRevision": "2026.10.25.4",
+          "requiresScopeRecheck": true,
+          "source": "https://news.sohu.com/35/91/news203429135.shtml",
+          "sourcePublicationDate": "2002-09-28",
+          "sourceTitle": "城市铁路西段：西直门至霍营",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "contemporary_news_agency_report",
+          "status": "trial_operation",
+          "eventText": "城市铁路西段：西直门至霍营",
+          "alignmentNote": "站序与分期开通有公开来源；现代地理参考及隧道走向为近似，不是工程测绘。",
+          "serviceTransitions": []
+        },
+        {
+          "id": "beijing-line13-east-2003",
+          "phase": "history",
+          "date": "2003-01-28",
+          "title": "城市铁路东西贯通",
+          "lineGroups": [
+            {
+              "taskId": "opening:bj13-east",
+              "mapRouteId": "beijing-r13",
+              "name": "城市铁路东西贯通",
+              "stationIds": [
+                "beijing-s92",
+                "beijing-s91",
+                "beijing-s90",
+                "beijing-s89",
+                "beijing-s88",
+                "beijing-s87",
+                "beijing-s86",
+                "beijing-s85"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "官方分期开通站序；近似地理参考，不以现代全线快照代替历史范围。",
+              "historicalLineId": "beijing-line13-13",
+              "color": "#F9E700",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s92": "beijing-s92__line13-13",
+                "beijing-s91": "beijing-s91__line13-13",
+                "beijing-s90": "beijing-s90",
+                "beijing-s89": "beijing-s89__line13-13",
+                "beijing-s88": "beijing-s88__line13-13",
+                "beijing-s87": "beijing-s87__line13-13",
+                "beijing-s86": "beijing-s86",
+                "beijing-s85": "beijing-s85"
+              },
+              "coverageGroupId": "opening:bj13-east",
+              "stationNames": {
+                "beijing-s92": "霍营",
+                "beijing-s91": "立水桥",
+                "beijing-s90": "北苑",
+                "beijing-s89": "望京西",
+                "beijing-s88": "芍药居",
+                "beijing-s87": "光熙门",
+                "beijing-s86": "柳芳",
+                "beijing-s85": "东直门"
+              },
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
+            }
+          ],
+          "requiredTransfers": [],
+          "scopeCorrections": [],
+          "requireOpen": true,
+          "eventOnly": false,
+          "precision": "station_areas",
+          "geometryStatus": "station_area_approximation",
+          "operationType": "extension",
+          "chapterScope": "dated_opening_ranges",
+          "historicalEventIds": [
+            "reviewed-phases:beijing-r13:opening:bj13-east"
+          ],
+          "routeTargetCount": 1,
+          "story": {
+            "opening": "城市铁路东西贯通。",
+            "purpose": "复用既有站轨，完成本期新增范围。",
+            "outcome": "核对本期线路与换乘，不提前开放后期范围。",
+            "eventKind": "network_expansion",
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [],
+            "planVersions": []
+          },
+          "scopeRevision": "2026.10.25.4",
+          "requiresScopeRecheck": true,
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
+          "sourcePublicationDate": "2016-09-08",
+          "sourceTitle": "城市铁路东西贯通",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "government_dated_opening_notice",
+          "status": "trial_operation",
+          "eventText": "城市铁路东西贯通",
+          "alignmentNote": "站序与分期开通有公开来源；现代地理参考及隧道走向为近似，不是工程测绘。",
+          "serviceTransitions": []
+        },
+        {
           "id": "beijing-network-milestone-2007-10-07",
           "phase": "history",
           "date": "2007-10-07",
@@ -13948,9 +14167,243 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s91-line5-5-line13-13",
+              "name": "立水桥",
+              "complexId": "beijing-s91",
+              "stationInstanceIds": [
+                "beijing-s91__line5-5",
+                "beijing-s91__line13-13"
+              ],
+              "lineIds": [
+                "beijing-line5-5",
+                "beijing-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false
+        },
+        {
+          "id": "beijing-line10-first-2008",
+          "phase": "history",
+          "date": "2008-07-19",
+          "title": "10号线一期：巴沟至劲松",
+          "lineGroups": [
+            {
+              "taskId": "opening:bj10-first",
+              "mapRouteId": "beijing-r10",
+              "name": "10号线一期：巴沟至劲松",
+              "stationIds": [
+                "beijing-s183",
+                "beijing-s182",
+                "beijing-s181",
+                "beijing-s180",
+                "beijing-s99",
+                "beijing-s179",
+                "beijing-s178",
+                "beijing-s177",
+                "beijing-s141",
+                "beijing-s176",
+                "beijing-s108",
+                "beijing-s88",
+                "beijing-s175",
+                "beijing-s174",
+                "beijing-s173",
+                "beijing-s172",
+                "beijing-s171",
+                "beijing-s170",
+                "beijing-s169",
+                "beijing-s168",
+                "beijing-s167",
+                "beijing-s166"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "官方分期开通站序；近似地理参考，不以现代全线快照代替历史范围。",
+              "historicalLineId": "beijing-line10-10",
+              "color": "#178ABB",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s183": "beijing-s183",
+                "beijing-s182": "beijing-s182__line10-10",
+                "beijing-s181": "beijing-s181__line10-10",
+                "beijing-s180": "beijing-s180",
+                "beijing-s99": "beijing-s99__line10-10",
+                "beijing-s179": "beijing-s179__line10-10",
+                "beijing-s178": "beijing-s178__line10-10",
+                "beijing-s177": "beijing-s177",
+                "beijing-s141": "beijing-s141__line10-10",
+                "beijing-s176": "beijing-s176",
+                "beijing-s108": "beijing-s108__line10-10",
+                "beijing-s88": "beijing-s88__line10-10",
+                "beijing-s175": "beijing-s175__line10-10",
+                "beijing-s174": "beijing-s174__line10-10",
+                "beijing-s173": "beijing-s173",
+                "beijing-s172": "beijing-s172",
+                "beijing-s171": "beijing-s171__line10-10",
+                "beijing-s170": "beijing-s170__line10-10",
+                "beijing-s169": "beijing-s169",
+                "beijing-s168": "beijing-s168",
+                "beijing-s167": "beijing-s167__line10-10",
+                "beijing-s166": "beijing-s166"
+              },
+              "coverageGroupId": "opening:bj10-first",
+              "stationNames": {
+                "beijing-s183": "巴沟",
+                "beijing-s182": "苏州街",
+                "beijing-s181": "海淀黄庄",
+                "beijing-s180": "知春里",
+                "beijing-s99": "知春路",
+                "beijing-s179": "西土城",
+                "beijing-s178": "牡丹园",
+                "beijing-s177": "健德门",
+                "beijing-s141": "北土城",
+                "beijing-s176": "安贞门",
+                "beijing-s108": "惠新西街南口",
+                "beijing-s88": "芍药居",
+                "beijing-s175": "太阳宫",
+                "beijing-s174": "三元桥",
+                "beijing-s173": "亮马桥",
+                "beijing-s172": "农业展览馆",
+                "beijing-s171": "团结湖",
+                "beijing-s170": "呼家楼",
+                "beijing-s169": "金台夕照",
+                "beijing-s168": "国贸",
+                "beijing-s167": "双井",
+                "beijing-s166": "劲松"
+              },
+              "source": "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-beijing-s108-line5-5-line10-10",
+              "name": "惠新西街南口",
+              "complexId": "beijing-s108",
+              "stationInstanceIds": [
+                "beijing-s108__line5-5",
+                "beijing-s108__line10-10"
+              ],
+              "lineIds": [
+                "beijing-line5-5",
+                "beijing-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s88-line10-10-line13-13",
+              "name": "芍药居",
+              "complexId": "beijing-s88",
+              "stationInstanceIds": [
+                "beijing-s88__line10-10",
+                "beijing-s88__line13-13"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s99-line10-10-line13-13",
+              "name": "知春路",
+              "complexId": "beijing-s99",
+              "stationInstanceIds": [
+                "beijing-s99__line10-10",
+                "beijing-s99__line13-13"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            }
+          ],
+          "scopeCorrections": [
+            {
+              "taskId": "opening:bj10-first",
+              "transferId": "historic-transfer-beijing-s48-line10-10-line0",
+              "oldLineIds": [
+                "beijing-line10-10",
+                "beijing-lineearly0"
+              ],
+              "oldStationInstanceIds": [
+                "beijing-s48__line10-10",
+                "beijing-s48__line0"
+              ],
+              "newStationInstanceIds": [
+                "beijing-s168",
+                "beijing-s48__line0"
+              ],
+              "description": "10号线关系含重复站区成员；保留全部实体建设，将既有换乘明确指向本线正确站体。",
+              "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240117/4298740.html"
+            }
+          ],
+          "requireOpen": true,
+          "eventOnly": false,
+          "precision": "station_areas",
+          "geometryStatus": "station_area_approximation",
+          "operationType": "extension",
+          "chapterScope": "dated_opening_ranges",
+          "historicalEventIds": [
+            "reviewed-phases:beijing-r10:opening:bj10-first"
+          ],
+          "routeTargetCount": 1,
+          "story": {
+            "opening": "10号线一期：巴沟至劲松。",
+            "purpose": "复用既有站轨，完成本期新增范围。",
+            "outcome": "核对本期线路与换乘，不提前开放后期范围。",
+            "eventKind": "network_expansion",
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [],
+            "planVersions": []
+          },
+          "scopeRevision": "2026.10.25.5",
+          "requiresScopeRecheck": true,
+          "source": "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
+          "sourcePublicationDate": "2008-07-28",
+          "sourceTitle": "10号线一期：巴沟至劲松",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "government_dated_opening_notice",
+          "status": "trial_operation",
+          "eventText": "10号线一期：巴沟至劲松",
+          "alignmentNote": "站序与分期开通有公开来源；现代地理参考及隧道走向为近似，不是工程测绘。",
+          "serviceTransitions": []
         },
         {
           "id": "beijing-network-milestone-2009-09-28",
@@ -14092,6 +14545,22 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s181-line4-4-line10-10",
+              "name": "海淀黄庄",
+              "complexId": "beijing-s181",
+              "stationInstanceIds": [
+                "beijing-s181__line4-4",
+                "beijing-s181__line10-10"
+              ],
+              "lineIds": [
+                "beijing-line4-4",
+                "beijing-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false
@@ -14206,6 +14675,50 @@
               "replaceExistingService": false,
               "reconfirmLaterServices": true,
               "servicePathRevision": 4
+            },
+            {
+              "taskId": "opening:bj-changping-first",
+              "mapRouteId": "beijing-r20",
+              "name": "昌平线一期七站试运营",
+              "stationIds": [
+                "beijing-s245",
+                "beijing-s246",
+                "beijing-s247",
+                "beijing-s248",
+                "beijing-s152",
+                "beijing-s249",
+                "beijing-s95"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按公开分期站序建设；朱房北仅在2024-12-15开放，站位及地下走向为近似参考。",
+              "historicalLineId": "beijing-route-20",
+              "color": "#D47DAA",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s245": "beijing-s245",
+                "beijing-s246": "beijing-s246",
+                "beijing-s247": "beijing-s247",
+                "beijing-s248": "beijing-s248",
+                "beijing-s152": "beijing-s152__line20",
+                "beijing-s249": "beijing-s249",
+                "beijing-s95": "beijing-s95__line20"
+              },
+              "stationNames": {
+                "beijing-s245": "南邵",
+                "beijing-s246": "沙河高教园",
+                "beijing-s247": "沙河",
+                "beijing-s248": "巩华城",
+                "beijing-s152": "朱辛庄",
+                "beijing-s249": "生命科学园",
+                "beijing-s95": "西二旗"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 20,
+              "coverageGroupId": "opening:bj-changping-first",
+              "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+              "defaultServiceStatus": "trial"
             }
           ],
           "requireOpen": true,
@@ -14254,7 +14767,8 @@
           "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
           "historicalEventIds": [
             "beijing-opening-beijing-r24-2010-12-30",
-            "reviewed:opening:beijing-daxing-2010"
+            "reviewed:opening:beijing-daxing-2010",
+            "reviewed-changping:opening:bj-changping-first"
           ],
           "routeMilestoneIds": [
             "beijing-r24"
@@ -14277,10 +14791,26 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s95-line13-13-line20",
+              "name": "西二旗",
+              "complexId": "beijing-s95",
+              "stationInstanceIds": [
+                "beijing-s95__line13-13",
+                "beijing-s95__line20"
+              ],
+              "lineIds": [
+                "beijing-line13-13",
+                "beijing-route-20"
+              ],
+              "precision": "schematic",
+              "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.24.35",
+          "scopeRevision": "2026.10.25.3",
           "requiresScopeRecheck": true
         },
         {
@@ -14322,6 +14852,155 @@
                 "beijing-s218": "beijing-s218__line9-9",
                 "beijing-s219": "beijing-s219__line9-9"
               }
+            },
+            {
+              "taskId": "opening:bj10-c",
+              "mapRouteId": "beijing-r10",
+              "name": "10号线二期先行段：大C形运行",
+              "stationIds": [
+                "beijing-s153",
+                "beijing-s190",
+                "beijing-s189",
+                "beijing-s60",
+                "beijing-s188",
+                "beijing-s187",
+                "beijing-s186",
+                "beijing-s185",
+                "beijing-s184",
+                "beijing-s183",
+                "beijing-s182",
+                "beijing-s181",
+                "beijing-s180",
+                "beijing-s99",
+                "beijing-s179",
+                "beijing-s178",
+                "beijing-s177",
+                "beijing-s141",
+                "beijing-s176",
+                "beijing-s108",
+                "beijing-s88",
+                "beijing-s175",
+                "beijing-s174",
+                "beijing-s173",
+                "beijing-s172",
+                "beijing-s171",
+                "beijing-s170",
+                "beijing-s169",
+                "beijing-s168",
+                "beijing-s167",
+                "beijing-s166",
+                "beijing-s165",
+                "beijing-s164",
+                "beijing-s163",
+                "beijing-s162",
+                "beijing-s119",
+                "beijing-s161",
+                "beijing-s127",
+                "beijing-s159",
+                "beijing-s158",
+                "beijing-s157",
+                "beijing-s156"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "官方分期开通站序；近似地理参考，不以现代全线快照代替历史范围。",
+              "historicalLineId": "beijing-line10-10",
+              "color": "#178ABB",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/dtxx/201211/t20121122_337170.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s153": "beijing-s153__line10-10",
+                "beijing-s190": "beijing-s190__line10-10",
+                "beijing-s189": "beijing-s189",
+                "beijing-s60": "beijing-s60__line10-10",
+                "beijing-s188": "beijing-s188",
+                "beijing-s187": "beijing-s187__line10-10",
+                "beijing-s186": "beijing-s186",
+                "beijing-s185": "beijing-s185__line10-10",
+                "beijing-s184": "beijing-s184",
+                "beijing-s183": "beijing-s183",
+                "beijing-s182": "beijing-s182__line10-10",
+                "beijing-s181": "beijing-s181__line10-10",
+                "beijing-s180": "beijing-s180",
+                "beijing-s99": "beijing-s99__line10-10",
+                "beijing-s179": "beijing-s179__line10-10",
+                "beijing-s178": "beijing-s178__line10-10",
+                "beijing-s177": "beijing-s177",
+                "beijing-s141": "beijing-s141__line10-10",
+                "beijing-s176": "beijing-s176",
+                "beijing-s108": "beijing-s108__line10-10",
+                "beijing-s88": "beijing-s88__line10-10",
+                "beijing-s175": "beijing-s175__line10-10",
+                "beijing-s174": "beijing-s174__line10-10",
+                "beijing-s173": "beijing-s173",
+                "beijing-s172": "beijing-s172",
+                "beijing-s171": "beijing-s171__line10-10",
+                "beijing-s170": "beijing-s170__line10-10",
+                "beijing-s169": "beijing-s169",
+                "beijing-s168": "beijing-s168",
+                "beijing-s167": "beijing-s167__line10-10",
+                "beijing-s166": "beijing-s166",
+                "beijing-s165": "beijing-s165",
+                "beijing-s164": "beijing-s164__line10-10",
+                "beijing-s163": "beijing-s163",
+                "beijing-s162": "beijing-s162",
+                "beijing-s119": "beijing-s119__line10-10",
+                "beijing-s161": "beijing-s161",
+                "beijing-s127": "beijing-s127__line10-10",
+                "beijing-s159": "beijing-s159__line10-10",
+                "beijing-s158": "beijing-s158",
+                "beijing-s157": "beijing-s157",
+                "beijing-s156": "beijing-s156__line10-10"
+              },
+              "coverageGroupId": "opening:bj10-c",
+              "stationNames": {
+                "beijing-s153": "西局",
+                "beijing-s190": "六里桥",
+                "beijing-s189": "莲花桥",
+                "beijing-s60": "公主坟",
+                "beijing-s188": "西钓鱼台",
+                "beijing-s187": "慈寿寺",
+                "beijing-s186": "车道沟",
+                "beijing-s185": "长春桥",
+                "beijing-s184": "火器营",
+                "beijing-s183": "巴沟",
+                "beijing-s182": "苏州街",
+                "beijing-s181": "海淀黄庄",
+                "beijing-s180": "知春里",
+                "beijing-s99": "知春路",
+                "beijing-s179": "西土城",
+                "beijing-s178": "牡丹园",
+                "beijing-s177": "健德门",
+                "beijing-s141": "北土城",
+                "beijing-s176": "安贞门",
+                "beijing-s108": "惠新西街南口",
+                "beijing-s88": "芍药居",
+                "beijing-s175": "太阳宫",
+                "beijing-s174": "三元桥",
+                "beijing-s173": "亮马桥",
+                "beijing-s172": "农业展览馆",
+                "beijing-s171": "团结湖",
+                "beijing-s170": "呼家楼",
+                "beijing-s169": "金台夕照",
+                "beijing-s168": "国贸",
+                "beijing-s167": "双井",
+                "beijing-s166": "劲松",
+                "beijing-s165": "潘家园",
+                "beijing-s164": "十里河",
+                "beijing-s163": "分钟寺",
+                "beijing-s162": "成寿寺",
+                "beijing-s119": "宋家庄",
+                "beijing-s161": "石榴庄",
+                "beijing-s127": "大红门",
+                "beijing-s159": "角门西",
+                "beijing-s158": "草桥",
+                "beijing-s157": "纪家庙",
+                "beijing-s156": "首经贸"
+              },
+              "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201211/t20121122_337170.html",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
             }
           ],
           "requireOpen": true,
@@ -14369,7 +15048,8 @@
           "operationType": "milestone_network_build",
           "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
           "historicalEventIds": [
-            "beijing-opening-beijing-r9-2012-12-30"
+            "beijing-opening-beijing-r9-2012-12-30",
+            "reviewed-phases:beijing-r10:opening:bj10-c"
           ],
           "routeMilestoneIds": [
             "beijing-r9"
@@ -14388,171 +15068,6 @@
               "lineIds": [
                 "beijing-line4-4",
                 "beijing-line9-9"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            }
-          ],
-          "eventOnly": false
-        },
-        {
-          "id": "beijing-network-milestone-2013-05-05",
-          "phase": "history",
-          "date": "2013-05-05",
-          "title": "10号线建设阶段",
-          "lineGroups": [
-            {
-              "taskId": "route:beijing-r10",
-              "mapRouteId": "beijing-r10",
-              "name": "10号线",
-              "stationIds": [
-                "beijing-s153",
-                "beijing-s154",
-                "beijing-s155",
-                "beijing-s156",
-                "beijing-s157",
-                "beijing-s158",
-                "beijing-s159",
-                "beijing-s160",
-                "beijing-s127",
-                "beijing-s161",
-                "beijing-s119",
-                "beijing-s162",
-                "beijing-s163",
-                "beijing-s164",
-                "beijing-s165",
-                "beijing-s166",
-                "beijing-s167",
-                "beijing-s168",
-                "beijing-s169",
-                "beijing-s170",
-                "beijing-s171",
-                "beijing-s172",
-                "beijing-s173",
-                "beijing-s174",
-                "beijing-s175",
-                "beijing-s88",
-                "beijing-s108",
-                "beijing-s176",
-                "beijing-s141",
-                "beijing-s177",
-                "beijing-s178",
-                "beijing-s179",
-                "beijing-s99",
-                "beijing-s180",
-                "beijing-s181",
-                "beijing-s182",
-                "beijing-s183",
-                "beijing-s184",
-                "beijing-s185",
-                "beijing-s186",
-                "beijing-s187",
-                "beijing-s188",
-                "beijing-s60",
-                "beijing-s189",
-                "beijing-s190",
-                "beijing-s48",
-                "beijing-s191"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "beijing-line10-10",
-              "color": "#178ABB",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "beijing-s153": "beijing-s153__line10-10",
-                "beijing-s156": "beijing-s156__line10-10",
-                "beijing-s159": "beijing-s159__line10-10",
-                "beijing-s127": "beijing-s127__line10-10",
-                "beijing-s119": "beijing-s119__line10-10",
-                "beijing-s164": "beijing-s164__line10-10",
-                "beijing-s167": "beijing-s167__line10-10",
-                "beijing-s170": "beijing-s170__line10-10",
-                "beijing-s171": "beijing-s171__line10-10",
-                "beijing-s174": "beijing-s174__line10-10",
-                "beijing-s175": "beijing-s175__line10-10",
-                "beijing-s88": "beijing-s88__line10-10",
-                "beijing-s108": "beijing-s108__line10-10",
-                "beijing-s141": "beijing-s141__line10-10",
-                "beijing-s178": "beijing-s178__line10-10",
-                "beijing-s179": "beijing-s179__line10-10",
-                "beijing-s99": "beijing-s99__line10-10",
-                "beijing-s181": "beijing-s181__line10-10",
-                "beijing-s182": "beijing-s182__line10-10",
-                "beijing-s185": "beijing-s185__line10-10",
-                "beijing-s187": "beijing-s187__line10-10",
-                "beijing-s60": "beijing-s60__line10-10",
-                "beijing-s190": "beijing-s190__line10-10",
-                "beijing-s48": "beijing-s48__line10-10"
-              }
-            }
-          ],
-          "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
-          "precision": "station_areas",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-          "sourceTitle": "北京地铁线路图与运营线路信息；开通分期另见北京交通部门公告",
-          "sourceCheckedAt": "2026-10-20",
-          "sourceType": "government_or_operator_route_inventory_and_opening_records",
-          "status": "operated",
-          "geometryStatus": "station_area_approximation",
-          "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
-          "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
-          "story": {
-            "opening": "2013年前后，10号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
-            "eventKind": "network_expansion",
-            "planVersions": [],
-            "steps": [
-              {
-                "id": "intro",
-                "action": "read_context"
-              },
-              {
-                "id": "build",
-                "action": "use_construction_tools"
-              },
-              {
-                "id": "check",
-                "action": "validate_official_scope"
-              },
-              {
-                "id": "opening",
-                "action": "confirm_historical_event"
-              },
-              {
-                "id": "outcome",
-                "action": "continue_story"
-              }
-            ],
-            "beats": []
-          },
-          "operationType": "milestone_network_build",
-          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
-          "historicalEventIds": [
-            "beijing-opening-beijing-r10-2013-05-05"
-          ],
-          "routeMilestoneIds": [
-            "beijing-r10"
-          ],
-          "chapterScope": "cutoff_route_completion",
-          "routeTargetCount": 1,
-          "requiredTransfers": [
-            {
-              "id": "historic-transfer-beijing-s108-line5-5-line10-10",
-              "name": "惠新西街南口",
-              "complexId": "beijing-s108",
-              "stationInstanceIds": [
-                "beijing-s108__line5-5",
-                "beijing-s108__line10-10"
-              ],
-              "lineIds": [
-                "beijing-line5-5",
-                "beijing-line10-10"
               ],
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
@@ -14607,22 +15122,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s181-line4-4-line10-10",
-              "name": "海淀黄庄",
-              "complexId": "beijing-s181",
-              "stationInstanceIds": [
-                "beijing-s181__line4-4",
-                "beijing-s181__line10-10"
-              ],
-              "lineIds": [
-                "beijing-line4-4",
-                "beijing-line10-10"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s190-line9-9-line10-10",
               "name": "六里桥",
               "complexId": "beijing-s190",
@@ -14637,9 +15136,352 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s60-line10-10-line0",
+              "name": "公主坟",
+              "complexId": "beijing-s60",
+              "stationInstanceIds": [
+                "beijing-s60__line10-10",
+                "beijing-s60"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-lineearly0"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "scopeRevision": "2026.10.25.5",
+          "requiresScopeRecheck": true
+        },
+        {
+          "id": "beijing-network-milestone-2013-05-05",
+          "phase": "history",
+          "date": "2013-05-05",
+          "title": "10号线建设阶段",
+          "lineGroups": [
+            {
+              "taskId": "route:beijing-r10",
+              "mapRouteId": "beijing-r10",
+              "name": "10号线45站成环",
+              "stationIds": [
+                "beijing-s183",
+                "beijing-s182",
+                "beijing-s181",
+                "beijing-s180",
+                "beijing-s99",
+                "beijing-s179",
+                "beijing-s178",
+                "beijing-s177",
+                "beijing-s141",
+                "beijing-s176",
+                "beijing-s108",
+                "beijing-s88",
+                "beijing-s175",
+                "beijing-s174",
+                "beijing-s173",
+                "beijing-s172",
+                "beijing-s171",
+                "beijing-s170",
+                "beijing-s169",
+                "beijing-s168",
+                "beijing-s167",
+                "beijing-s166",
+                "beijing-s165",
+                "beijing-s164",
+                "beijing-s163",
+                "beijing-s162",
+                "beijing-s119",
+                "beijing-s161",
+                "beijing-s127",
+                "beijing-s160",
+                "beijing-s159",
+                "beijing-s158",
+                "beijing-s157",
+                "beijing-s156",
+                "beijing-s155",
+                "beijing-s154",
+                "beijing-s153",
+                "beijing-s190",
+                "beijing-s189",
+                "beijing-s60",
+                "beijing-s188",
+                "beijing-s187",
+                "beijing-s186",
+                "beijing-s185",
+                "beijing-s184"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "官方分期开通站序；近似地理参考，不以现代全线快照代替历史范围。",
+              "historicalLineId": "beijing-line10-10",
+              "color": "#178ABB",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s183": "beijing-s183",
+                "beijing-s182": "beijing-s182__line10-10",
+                "beijing-s181": "beijing-s181__line10-10",
+                "beijing-s180": "beijing-s180",
+                "beijing-s99": "beijing-s99__line10-10",
+                "beijing-s179": "beijing-s179__line10-10",
+                "beijing-s178": "beijing-s178__line10-10",
+                "beijing-s177": "beijing-s177",
+                "beijing-s141": "beijing-s141__line10-10",
+                "beijing-s176": "beijing-s176",
+                "beijing-s108": "beijing-s108__line10-10",
+                "beijing-s88": "beijing-s88__line10-10",
+                "beijing-s175": "beijing-s175__line10-10",
+                "beijing-s174": "beijing-s174__line10-10",
+                "beijing-s173": "beijing-s173",
+                "beijing-s172": "beijing-s172",
+                "beijing-s171": "beijing-s171__line10-10",
+                "beijing-s170": "beijing-s170__line10-10",
+                "beijing-s169": "beijing-s169",
+                "beijing-s168": "beijing-s168",
+                "beijing-s167": "beijing-s167__line10-10",
+                "beijing-s166": "beijing-s166",
+                "beijing-s165": "beijing-s165",
+                "beijing-s164": "beijing-s164__line10-10",
+                "beijing-s163": "beijing-s163",
+                "beijing-s162": "beijing-s162",
+                "beijing-s119": "beijing-s119__line10-10",
+                "beijing-s161": "beijing-s161",
+                "beijing-s127": "beijing-s127__line10-10",
+                "beijing-s160": "beijing-s160",
+                "beijing-s159": "beijing-s159__line10-10",
+                "beijing-s158": "beijing-s158",
+                "beijing-s157": "beijing-s157",
+                "beijing-s156": "beijing-s156__line10-10",
+                "beijing-s155": "beijing-s155",
+                "beijing-s154": "beijing-s154",
+                "beijing-s153": "beijing-s153__line10-10",
+                "beijing-s190": "beijing-s190__line10-10",
+                "beijing-s189": "beijing-s189",
+                "beijing-s60": "beijing-s60__line10-10",
+                "beijing-s188": "beijing-s188",
+                "beijing-s187": "beijing-s187__line10-10",
+                "beijing-s186": "beijing-s186",
+                "beijing-s185": "beijing-s185__line10-10",
+                "beijing-s184": "beijing-s184"
+              },
+              "coverageGroupId": "route:beijing-r10",
+              "stationNames": {
+                "beijing-s183": "巴沟",
+                "beijing-s182": "苏州街",
+                "beijing-s181": "海淀黄庄",
+                "beijing-s180": "知春里",
+                "beijing-s99": "知春路",
+                "beijing-s179": "西土城",
+                "beijing-s178": "牡丹园",
+                "beijing-s177": "健德门",
+                "beijing-s141": "北土城",
+                "beijing-s176": "安贞门",
+                "beijing-s108": "惠新西街南口",
+                "beijing-s88": "芍药居",
+                "beijing-s175": "太阳宫",
+                "beijing-s174": "三元桥",
+                "beijing-s173": "亮马桥",
+                "beijing-s172": "农业展览馆",
+                "beijing-s171": "团结湖",
+                "beijing-s170": "呼家楼",
+                "beijing-s169": "金台夕照",
+                "beijing-s168": "国贸",
+                "beijing-s167": "双井",
+                "beijing-s166": "劲松",
+                "beijing-s165": "潘家园",
+                "beijing-s164": "十里河",
+                "beijing-s163": "分钟寺",
+                "beijing-s162": "成寿寺",
+                "beijing-s119": "宋家庄",
+                "beijing-s161": "石榴庄",
+                "beijing-s127": "大红门",
+                "beijing-s160": "角门东",
+                "beijing-s159": "角门西",
+                "beijing-s158": "草桥",
+                "beijing-s157": "纪家庙",
+                "beijing-s156": "首经贸",
+                "beijing-s155": "丰台站",
+                "beijing-s154": "泥洼",
+                "beijing-s153": "西局",
+                "beijing-s190": "六里桥",
+                "beijing-s189": "莲花桥",
+                "beijing-s60": "公主坟",
+                "beijing-s188": "西钓鱼台",
+                "beijing-s187": "慈寿寺",
+                "beijing-s186": "车道沟",
+                "beijing-s185": "长春桥",
+                "beijing-s184": "火器营"
+              },
+              "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial",
+              "loop": true
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
+          "precision": "station_areas",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+          "sourceTitle": "北京地铁线路图与运营线路信息；开通分期另见北京交通部门公告",
+          "sourceCheckedAt": "2026-10-20",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
+          "sourcePublicationDate": null,
+          "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
+          "story": {
+            "opening": "2013年前后，10号线建设阶段进入网络建设阶段。",
+            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
+            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "reviewed-phases:beijing-r10:route:beijing-r10"
+          ],
+          "routeMilestoneIds": [
+            "beijing-r10"
+          ],
+          "chapterScope": "cutoff_route_completion",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "scopeRevision": "2026.10.25.5",
+          "requiresScopeRecheck": true
+        },
+        {
+          "id": "beijing-changping-north-2015",
+          "phase": "history",
+          "date": "2015-12-26",
+          "title": "昌平线二期进入昌平城区",
+          "lineGroups": [
+            {
+              "taskId": "opening:bj-changping-north",
+              "mapRouteId": "beijing-r20",
+              "name": "昌平线二期进入昌平城区",
+              "stationIds": [
+                "beijing-s240",
+                "beijing-s241",
+                "beijing-s242",
+                "beijing-s243",
+                "beijing-s244",
+                "beijing-s245"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按公开分期站序建设；朱房北仅在2024-12-15开放，站位及地下走向为近似参考。",
+              "historicalLineId": "beijing-route-20",
+              "color": "#D47DAA",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s240": "beijing-s240",
+                "beijing-s241": "beijing-s241",
+                "beijing-s242": "beijing-s242",
+                "beijing-s243": "beijing-s243",
+                "beijing-s244": "beijing-s244",
+                "beijing-s245": "beijing-s245"
+              },
+              "stationNames": {
+                "beijing-s240": "昌平西山口",
+                "beijing-s241": "十三陵景区",
+                "beijing-s242": "昌平",
+                "beijing-s243": "昌平东关",
+                "beijing-s244": "北邵洼",
+                "beijing-s245": "南邵"
+              },
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 20,
+              "coverageGroupId": "opening:bj-changping-north",
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
+              "defaultServiceStatus": "trial"
+            }
+          ],
+          "requiredTransfers": [],
+          "scopeCorrections": [],
+          "requireOpen": true,
+          "eventOnly": false,
+          "precision": "station_areas",
+          "geometryStatus": "station_area_approximation",
+          "operationType": "extension",
+          "chapterScope": "dated_opening_ranges",
+          "historicalEventIds": [
+            "reviewed-changping:opening:bj-changping-north"
+          ],
+          "routeTargetCount": 1,
+          "story": {
+            "opening": "昌平线二期进入昌平城区。",
+            "purpose": "复用既有线路，仅建设并确认本期新增范围。",
+            "outcome": "保留下一阶段蓝图，不提前开放后期站点。",
+            "eventKind": "network_expansion",
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [],
+            "planVersions": []
+          },
+          "scopeRevision": "2026.10.25.3",
+          "requiresScopeRecheck": true,
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
+          "sourcePublicationDate": "2015-12-28",
+          "sourceTitle": "昌平线二期进入昌平城区",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "government_dated_opening_notice",
+          "status": "trial_operation",
+          "eventText": "昌平线二期进入昌平城区",
+          "alignmentNote": "官方分期开通范围，近似地理参考，不宣称精确隧道中心线。",
+          "serviceTransitions": []
         },
         {
           "id": "beijing-network-milestone-2017-12-30",
@@ -14782,22 +15624,6 @@
           "routeTargetCount": 1,
           "requiredTransfers": [
             {
-              "id": "historic-transfer-beijing-s156-line10-10-line22",
-              "name": "首经贸",
-              "complexId": "beijing-s156",
-              "stationInstanceIds": [
-                "beijing-s156__line10-10",
-                "beijing-s156__line22"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-route-22"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s195-line9-9-line22",
               "name": "郭公庄",
               "complexId": "beijing-s195",
@@ -14828,163 +15654,27 @@
               "precision": "schematic",
               "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html",
               "sourceNote": "交通委明确同台换乘；两条线路各自有独立轨道与站体身份，不把换乘边当列车线路。"
+            },
+            {
+              "id": "historic-transfer-beijing-s156-line10-10-line22",
+              "name": "首经贸",
+              "complexId": "beijing-s156",
+              "stationInstanceIds": [
+                "beijing-s156__line10-10",
+                "beijing-s156__line22"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-route-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false,
           "scopeRevision": "2026.10.24.35",
           "requiresScopeRecheck": true
-        },
-        {
-          "id": "beijing-network-milestone-2019-07-26",
-          "phase": "history",
-          "date": "2019-07-26",
-          "title": "13号线建设阶段",
-          "lineGroups": [
-            {
-              "taskId": "route:beijing-r13",
-              "mapRouteId": "beijing-r13",
-              "name": "13号线",
-              "stationIds": [
-                "beijing-s85",
-                "beijing-s86",
-                "beijing-s87",
-                "beijing-s88",
-                "beijing-s89",
-                "beijing-s90",
-                "beijing-s91",
-                "beijing-s92",
-                "beijing-s93",
-                "beijing-s94",
-                "beijing-s95",
-                "beijing-s96",
-                "beijing-s97",
-                "beijing-s98",
-                "beijing-s99",
-                "beijing-s100",
-                "beijing-s101"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "beijing-line13-13",
-              "color": "#F9E700",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "beijing-s87": "beijing-s87__line13-13",
-                "beijing-s88": "beijing-s88__line13-13",
-                "beijing-s89": "beijing-s89__line13-13",
-                "beijing-s91": "beijing-s91__line13-13",
-                "beijing-s92": "beijing-s92__line13-13",
-                "beijing-s95": "beijing-s95__line13-13",
-                "beijing-s96": "beijing-s96__line13-13",
-                "beijing-s99": "beijing-s99__line13-13",
-                "beijing-s100": "beijing-s100__line13-13"
-              }
-            }
-          ],
-          "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
-          "precision": "station_areas",
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-          "sourceTitle": "北京地铁线路图与运营线路信息；开通分期另见北京交通部门公告",
-          "sourceCheckedAt": "2026-10-20",
-          "sourceType": "government_or_operator_route_inventory_and_opening_records",
-          "status": "operated",
-          "geometryStatus": "station_area_approximation",
-          "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
-          "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
-          "story": {
-            "opening": "2019年前后，13号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
-            "eventKind": "network_expansion",
-            "planVersions": [],
-            "steps": [
-              {
-                "id": "intro",
-                "action": "read_context"
-              },
-              {
-                "id": "build",
-                "action": "use_construction_tools"
-              },
-              {
-                "id": "check",
-                "action": "validate_official_scope"
-              },
-              {
-                "id": "opening",
-                "action": "confirm_historical_event"
-              },
-              {
-                "id": "outcome",
-                "action": "continue_story"
-              }
-            ],
-            "beats": []
-          },
-          "operationType": "milestone_network_build",
-          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
-          "historicalEventIds": [
-            "beijing-opening-beijing-r13-2019-07-26"
-          ],
-          "routeMilestoneIds": [
-            "beijing-r13"
-          ],
-          "chapterScope": "cutoff_route_completion",
-          "routeTargetCount": 1,
-          "requiredTransfers": [
-            {
-              "id": "historic-transfer-beijing-s88-line10-10-line13-13",
-              "name": "芍药居",
-              "complexId": "beijing-s88",
-              "stationInstanceIds": [
-                "beijing-s88__line10-10",
-                "beijing-s88__line13-13"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line13-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s91-line5-5-line13-13",
-              "name": "立水桥",
-              "complexId": "beijing-s91",
-              "stationInstanceIds": [
-                "beijing-s91__line5-5",
-                "beijing-s91__line13-13"
-              ],
-              "lineIds": [
-                "beijing-line5-5",
-                "beijing-line13-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s99-line10-10-line13-13",
-              "name": "知春路",
-              "complexId": "beijing-s99",
-              "stationInstanceIds": [
-                "beijing-s99__line10-10",
-                "beijing-s99__line13-13"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line13-13"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            }
-          ],
-          "eventOnly": false
         },
         {
           "id": "beijing-network-milestone-2019-09-26",
@@ -15197,22 +15887,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s167-line10-10-line7-7",
-              "name": "双井",
-              "complexId": "beijing-s167",
-              "stationInstanceIds": [
-                "beijing-s167__line10-10",
-                "beijing-s167__line7-7"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line7-7"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s215-line9-9-line7-7",
               "name": "北京西站",
               "complexId": "beijing-s215",
@@ -15243,9 +15917,163 @@
               "precision": "schematic",
               "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s167-line10-10-line7-7",
+              "name": "双井",
+              "complexId": "beijing-s167",
+              "stationInstanceIds": [
+                "beijing-s167__line10-10",
+                "beijing-s167__line7-7"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false
+        },
+        {
+          "id": "beijing-network-milestone-2019-07-26",
+          "phase": "history",
+          "date": "2019-12-30",
+          "title": "13号线清河站投入使用",
+          "lineGroups": [
+            {
+              "taskId": "route:beijing-r13",
+              "mapRouteId": "beijing-r13",
+              "name": "13号线清河站投入使用",
+              "stationIds": [
+                "beijing-s101",
+                "beijing-s100",
+                "beijing-s99",
+                "beijing-s98",
+                "beijing-s97",
+                "beijing-s96",
+                "beijing-s95",
+                "beijing-s94",
+                "beijing-s93",
+                "beijing-s92",
+                "beijing-s91",
+                "beijing-s90",
+                "beijing-s89",
+                "beijing-s88",
+                "beijing-s87",
+                "beijing-s86",
+                "beijing-s85"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "官方分期开通站序；近似地理参考，不以现代全线快照代替历史范围。",
+              "historicalLineId": "beijing-line13-13",
+              "color": "#F9E700",
+              "stationOrderSource": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s101": "beijing-s101",
+                "beijing-s100": "beijing-s100__line13-13",
+                "beijing-s99": "beijing-s99__line13-13",
+                "beijing-s98": "beijing-s98",
+                "beijing-s97": "beijing-s97",
+                "beijing-s96": "beijing-s96__line13-13",
+                "beijing-s95": "beijing-s95__line13-13",
+                "beijing-s94": "beijing-s94",
+                "beijing-s93": "beijing-s93",
+                "beijing-s92": "beijing-s92__line13-13",
+                "beijing-s91": "beijing-s91__line13-13",
+                "beijing-s90": "beijing-s90",
+                "beijing-s89": "beijing-s89__line13-13",
+                "beijing-s88": "beijing-s88__line13-13",
+                "beijing-s87": "beijing-s87__line13-13",
+                "beijing-s86": "beijing-s86",
+                "beijing-s85": "beijing-s85"
+              },
+              "coverageGroupId": "route:beijing-r13",
+              "stationNames": {
+                "beijing-s101": "西直门",
+                "beijing-s100": "大钟寺",
+                "beijing-s99": "知春路",
+                "beijing-s98": "五道口",
+                "beijing-s97": "上地",
+                "beijing-s96": "清河站",
+                "beijing-s95": "西二旗",
+                "beijing-s94": "龙泽",
+                "beijing-s93": "回龙观",
+                "beijing-s92": "霍营",
+                "beijing-s91": "立水桥",
+                "beijing-s90": "北苑",
+                "beijing-s89": "望京西",
+                "beijing-s88": "芍药居",
+                "beijing-s87": "光熙门",
+                "beijing-s86": "柳芳",
+                "beijing-s85": "东直门"
+              },
+              "source": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "defaultServiceStatus": "trial"
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "13号线清河站投入使用",
+          "precision": "station_areas",
+          "source": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
+          "sourceTitle": "北京地铁线路图与运营线路信息；开通分期另见北京交通部门公告",
+          "sourceCheckedAt": "2026-10-20",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
+          "sourcePublicationDate": "2025-08-20",
+          "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
+          "story": {
+            "opening": "13号线清河站投入使用。",
+            "purpose": "在上地与西二旗之间补建清河站，保留其余16座既有车站和线路。",
+            "outcome": "本期线路建设完成。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "milestone_network_build",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "reviewed-phases:beijing-r13:route:beijing-r13"
+          ],
+          "routeMilestoneIds": [
+            "beijing-r13"
+          ],
+          "chapterScope": "cutoff_route_completion",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "scopeRevision": "2026.10.25.4",
+          "requiresScopeRecheck": true
         },
         {
           "id": "beijing-network-milestone-2021-08-26",
@@ -15513,22 +16341,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s48-line10-10-line0",
-              "name": "国贸",
-              "complexId": "beijing-s48",
-              "stationInstanceIds": [
-                "beijing-s48__line10-10",
-                "beijing-s48__line0"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-lineearly0"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s50-line1-line0",
               "name": "建国门",
               "complexId": "beijing-s50",
@@ -15577,12 +16389,12 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s60-line10-10-line0",
-              "name": "公主坟",
-              "complexId": "beijing-s60",
+              "id": "historic-transfer-beijing-s48-line10-10-line0",
+              "name": "国贸",
+              "complexId": "beijing-s48",
               "stationInstanceIds": [
-                "beijing-s60__line10-10",
-                "beijing-s60"
+                "beijing-s168",
+                "beijing-s48__line0"
               ],
               "lineIds": [
                 "beijing-line10-10",
@@ -15664,26 +16476,6 @@
               }
             },
             {
-              "taskId": "route:beijing-r11",
-              "mapRouteId": "beijing-r11",
-              "name": "11号线",
-              "stationIds": [
-                "beijing-s372",
-                "beijing-s344",
-                "beijing-s373",
-                "beijing-s374"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "beijing-line11-11",
-              "color": "#ED796A",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "beijing-s344": "beijing-s344__line11-11"
-              }
-            },
-            {
               "taskId": "route:beijing-r14",
               "mapRouteId": "beijing-r14",
               "name": "14号线",
@@ -15741,75 +16533,6 @@
                 "beijing-s222": "beijing-s222__line14-14",
                 "beijing-s287": "beijing-s287__line14-14",
                 "beijing-s153": "beijing-s153__line14-14"
-              }
-            },
-            {
-              "taskId": "route:beijing-r19",
-              "mapRouteId": "beijing-r19",
-              "name": "19号线",
-              "stationIds": [
-                "beijing-s178",
-                "beijing-s389",
-                "beijing-s70",
-                "beijing-s390",
-                "beijing-s391",
-                "beijing-s392",
-                "beijing-s393",
-                "beijing-s371",
-                "beijing-s394",
-                "beijing-s395"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "beijing-line19-19",
-              "color": "#D6AAC1",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "beijing-s178": "beijing-s178__line19-19",
-                "beijing-s389": "beijing-s389__line19-19",
-                "beijing-s70": "beijing-s70__line19-19",
-                "beijing-s371": "beijing-s371__line19-19"
-              }
-            },
-            {
-              "taskId": "route:beijing-r20",
-              "mapRouteId": "beijing-r20",
-              "name": "昌平线",
-              "stationIds": [
-                "beijing-s240",
-                "beijing-s241",
-                "beijing-s242",
-                "beijing-s243",
-                "beijing-s244",
-                "beijing-s245",
-                "beijing-s246",
-                "beijing-s247",
-                "beijing-s248",
-                "beijing-s152",
-                "beijing-s249",
-                "beijing-s95",
-                "beijing-s96",
-                "beijing-s250",
-                "beijing-s251",
-                "beijing-s2",
-                "beijing-s252",
-                "beijing-s179",
-                "beijing-s253"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "beijing-route-20",
-              "color": "#D47DAA",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "beijing-s152": "beijing-s152__line20",
-                "beijing-s95": "beijing-s95__line20",
-                "beijing-s96": "beijing-s96__line20",
-                "beijing-s2": "beijing-s2__line20",
-                "beijing-s179": "beijing-s179__line20",
-                "beijing-s253": "beijing-s253__line20"
               }
             },
             {
@@ -15876,6 +16599,108 @@
               "replaceExistingService": true,
               "reconfirmLaterServices": true,
               "servicePathRevision": 4
+            },
+            {
+              "taskId": "route:beijing-r19",
+              "mapRouteId": "beijing-r19",
+              "name": "19号线",
+              "stationIds": [
+                "beijing-s178",
+                "beijing-s70",
+                "beijing-s392",
+                "beijing-s371",
+                "beijing-s394",
+                "beijing-s395"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "2021年首开六站，北太平庄／平安里／太平桥／景风门于2022-07-30才开放；站区为近似参考，未开放不算停站。",
+              "historicalLineId": "beijing-line19-19",
+              "color": "#D6AAC1",
+              "stationOrderSource": "https://www.bjmoa.cn/metroLineList.html?sline=16",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s178": "beijing-s178__line19-19",
+                "beijing-s70": "beijing-s70__line19-19",
+                "beijing-s392": "beijing-s392",
+                "beijing-s371": "beijing-s371__line19-19",
+                "beijing-s394": "beijing-s394",
+                "beijing-s395": "beijing-s395"
+              },
+              "coverageGroupId": "route:beijing-r19",
+              "stationNames": {
+                "beijing-s178": "牡丹园",
+                "beijing-s70": "积水潭",
+                "beijing-s392": "牛街",
+                "beijing-s371": "草桥",
+                "beijing-s394": "新发地",
+                "beijing-s395": "新宫"
+              },
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220103_2581472.html",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 19,
+              "defaultServiceStatus": "trial"
+            },
+            {
+              "taskId": "route:beijing-r20",
+              "mapRouteId": "beijing-r20",
+              "name": "昌平线南延至清河",
+              "stationIds": [
+                "beijing-s95",
+                "beijing-s96"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按公开分期站序建设；朱房北仅在2024-12-15开放，站位及地下走向为近似参考。",
+              "historicalLineId": "beijing-route-20",
+              "color": "#D47DAA",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s95": "beijing-s95__line20",
+                "beijing-s96": "beijing-s96__line20"
+              },
+              "stationNames": {
+                "beijing-s95": "西二旗",
+                "beijing-s96": "清河"
+              },
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 20,
+              "coverageGroupId": "route:beijing-r20",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "defaultServiceStatus": "trial"
+            },
+            {
+              "taskId": "route:beijing-r11",
+              "mapRouteId": "beijing-r11",
+              "name": "11号线西段首开三站",
+              "stationIds": [
+                "beijing-s344",
+                "beijing-s373",
+                "beijing-s374"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "官方分期开通站序；近似地理参考，不以现代全线快照代替历史范围。",
+              "historicalLineId": "beijing-line11-11",
+              "color": "#ED796A",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s344": "beijing-s344__line11-11",
+                "beijing-s373": "beijing-s373",
+                "beijing-s374": "beijing-s374"
+              },
+              "stationNames": {
+                "beijing-s344": "金安桥",
+                "beijing-s373": "北辛安",
+                "beijing-s374": "新首钢"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "coverageGroupId": "route:beijing-r11",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "defaultServiceStatus": "trial"
             }
           ],
           "requireOpen": true,
@@ -15923,12 +16748,12 @@
           "operationType": "milestone_network_build",
           "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
           "historicalEventIds": [
-            "beijing-opening-beijing-r11-2021-12-31",
             "beijing-opening-beijing-r14-2021-12-31",
-            "beijing-opening-beijing-r19-2021-12-31",
-            "beijing-opening-beijing-r20-2021-12-31",
             "beijing-opening-beijing-r23-2021-12-31",
-            "beijing-opening-beijing-r8-2021-12-31"
+            "beijing-opening-beijing-r8-2021-12-31",
+            "reviewed-bj19:first",
+            "reviewed-changping:route:beijing-r20",
+            "reviewed-phases:beijing-r11:route:beijing-r11"
           ],
           "routeMilestoneIds": [
             "beijing-r11",
@@ -15974,22 +16799,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s127-line10-10-line8-8",
-              "name": "大红门",
-              "complexId": "beijing-s127",
-              "stationInstanceIds": [
-                "beijing-s127__line10-10",
-                "beijing-s127__line8-8"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line8-8"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s130-line14-14-line8-8",
               "name": "永定门外",
               "complexId": "beijing-s130",
@@ -16022,15 +16831,175 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s141-line10-10-line8-8",
-              "name": "北土城",
-              "complexId": "beijing-s141",
+              "id": "historic-transfer-beijing-s222-line4-4-line14-14",
+              "name": "北京南站",
+              "complexId": "beijing-s222",
               "stationInstanceIds": [
-                "beijing-s141__line10-10",
-                "beijing-s141__line8-8"
+                "beijing-s222__line4-4",
+                "beijing-s222__line14-14"
               ],
               "lineIds": [
-                "beijing-line10-10",
+                "beijing-line4-4",
+                "beijing-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s279-line7-7-line14-14",
+              "name": "九龙山",
+              "complexId": "beijing-s279",
+              "stationInstanceIds": [
+                "beijing-s279__line7-7",
+                "beijing-s279__line14-14"
+              ],
+              "lineIds": [
+                "beijing-line7-7",
+                "beijing-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s52-line0-line8-8",
+              "name": "王府井",
+              "complexId": "beijing-s52",
+              "stationInstanceIds": [
+                "beijing-s52__line0",
+                "beijing-s52__line8-8"
+              ],
+              "lineIds": [
+                "beijing-lineearly0",
+                "beijing-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s71-line1-line8-8",
+              "name": "鼓楼大街",
+              "complexId": "beijing-s71",
+              "stationInstanceIds": [
+                "beijing-s71__line1",
+                "beijing-s71__line8-8"
+              ],
+              "lineIds": [
+                "beijing-lineearly1",
+                "beijing-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s74-line1-line23",
+              "name": "东直门",
+              "complexId": "beijing-s74",
+              "stationInstanceIds": [
+                "beijing-s74__line1",
+                "beijing-s74__line23"
+              ],
+              "lineIds": [
+                "beijing-lineearly1",
+                "beijing-route-23"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s164-line14-14-line17-17",
+              "name": "十里河",
+              "complexId": "beijing-s164",
+              "stationInstanceIds": [
+                "beijing-s164__line14-14",
+                "beijing-s164__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s265-line24-line17-17",
+              "name": "次渠",
+              "complexId": "beijing-s265",
+              "stationInstanceIds": [
+                "beijing-s265__line24",
+                "beijing-s265__line17-17"
+              ],
+              "lineIds": [
+                "beijing-route-24",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s371-line21-line19-19",
+              "name": "草桥",
+              "complexId": "beijing-s371",
+              "stationInstanceIds": [
+                "beijing-s371__line21",
+                "beijing-s371__line19-19"
+              ],
+              "lineIds": [
+                "beijing-route-21",
+                "beijing-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s70-line1-line19-19",
+              "name": "积水潭",
+              "complexId": "beijing-s70",
+              "stationInstanceIds": [
+                "beijing-s70__line1",
+                "beijing-s70__line19-19"
+              ],
+              "lineIds": [
+                "beijing-lineearly1",
+                "beijing-line19-19"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-xingong-4-19",
+              "name": "新宫",
+              "complexId": "beijing-s395",
+              "lineIds": [
+                "beijing-line4-4",
+                "beijing-line19-19"
+              ],
+              "stationInstanceIds": [
+                "beijing-daxing-xingong__line4-4",
+                "beijing-s395"
+              ],
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
+              "precision": "schematic",
+              "sourceNote": "4—大兴线新宫与19号线换乘；分别引用线路站体，不合并轨道。"
+            },
+            {
+              "id": "historic-transfer-beijing-s92-line13-13-line8-8",
+              "name": "霍营",
+              "complexId": "beijing-s92",
+              "stationInstanceIds": [
+                "beijing-s92__line13-13",
+                "beijing-s92__line8-8"
+              ],
+              "lineIds": [
+                "beijing-line13-13",
                 "beijing-line8-8"
               ],
               "precision": "schematic",
@@ -16047,6 +17016,54 @@
               ],
               "lineIds": [
                 "beijing-route-20",
+                "beijing-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s96-line13-13-line20",
+              "name": "清河站",
+              "complexId": "beijing-s96",
+              "stationInstanceIds": [
+                "beijing-s96__line13-13",
+                "beijing-s96__line20"
+              ],
+              "lineIds": [
+                "beijing-line13-13",
+                "beijing-route-20"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s127-line10-10-line8-8",
+              "name": "大红门",
+              "complexId": "beijing-s127",
+              "stationInstanceIds": [
+                "beijing-s127__line10-10",
+                "beijing-s127__line8-8"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s141-line10-10-line8-8",
+              "name": "北土城",
+              "complexId": "beijing-s141",
+              "stationInstanceIds": [
+                "beijing-s141__line10-10",
+                "beijing-s141__line8-8"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
                 "beijing-line8-8"
               ],
               "precision": "schematic",
@@ -16102,198 +17119,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s178-line10-10-line19-19",
-              "name": "牡丹园",
-              "complexId": "beijing-s178",
-              "stationInstanceIds": [
-                "beijing-s178__line10-10",
-                "beijing-s178__line19-19"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line19-19"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s179-line10-10-line20",
-              "name": "西土城",
-              "complexId": "beijing-s179",
-              "stationInstanceIds": [
-                "beijing-s179__line10-10",
-                "beijing-s179__line20"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-route-20"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s222-line4-4-line14-14",
-              "name": "北京南站",
-              "complexId": "beijing-s222",
-              "stationInstanceIds": [
-                "beijing-s222__line4-4",
-                "beijing-s222__line14-14"
-              ],
-              "lineIds": [
-                "beijing-line4-4",
-                "beijing-line14-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s279-line7-7-line14-14",
-              "name": "九龙山",
-              "complexId": "beijing-s279",
-              "stationInstanceIds": [
-                "beijing-s279__line7-7",
-                "beijing-s279__line14-14"
-              ],
-              "lineIds": [
-                "beijing-line7-7",
-                "beijing-line14-14"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s371-line21-line19-19",
-              "name": "草桥",
-              "complexId": "beijing-s371",
-              "stationInstanceIds": [
-                "beijing-s371__line21",
-                "beijing-s371__line19-19"
-              ],
-              "lineIds": [
-                "beijing-route-21",
-                "beijing-line19-19"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s52-line0-line8-8",
-              "name": "王府井",
-              "complexId": "beijing-s52",
-              "stationInstanceIds": [
-                "beijing-s52__line0",
-                "beijing-s52__line8-8"
-              ],
-              "lineIds": [
-                "beijing-lineearly0",
-                "beijing-line8-8"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s70-line1-line19-19",
-              "name": "积水潭",
-              "complexId": "beijing-s70",
-              "stationInstanceIds": [
-                "beijing-s70__line1",
-                "beijing-s70__line19-19"
-              ],
-              "lineIds": [
-                "beijing-lineearly1",
-                "beijing-line19-19"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s71-line1-line8-8",
-              "name": "鼓楼大街",
-              "complexId": "beijing-s71",
-              "stationInstanceIds": [
-                "beijing-s71__line1",
-                "beijing-s71__line8-8"
-              ],
-              "lineIds": [
-                "beijing-lineearly1",
-                "beijing-line8-8"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s74-line1-line23",
-              "name": "东直门",
-              "complexId": "beijing-s74",
-              "stationInstanceIds": [
-                "beijing-s74__line1",
-                "beijing-s74__line23"
-              ],
-              "lineIds": [
-                "beijing-lineearly1",
-                "beijing-route-23"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s92-line13-13-line8-8",
-              "name": "霍营",
-              "complexId": "beijing-s92",
-              "stationInstanceIds": [
-                "beijing-s92__line13-13",
-                "beijing-s92__line8-8"
-              ],
-              "lineIds": [
-                "beijing-line13-13",
-                "beijing-line8-8"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s95-line13-13-line20",
-              "name": "西二旗",
-              "complexId": "beijing-s95",
-              "stationInstanceIds": [
-                "beijing-s95__line13-13",
-                "beijing-s95__line20"
-              ],
-              "lineIds": [
-                "beijing-line13-13",
-                "beijing-route-20"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s96-line13-13-line20",
-              "name": "清河站",
-              "complexId": "beijing-s96",
-              "stationInstanceIds": [
-                "beijing-s96__line13-13",
-                "beijing-s96__line20"
-              ],
-              "lineIds": [
-                "beijing-line13-13",
-                "beijing-route-20"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s164-line10-10-line17-17",
               "name": "十里河",
               "complexId": "beijing-s164",
@@ -16310,57 +17135,25 @@
               "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
             },
             {
-              "id": "historic-transfer-beijing-s164-line14-14-line17-17",
-              "name": "十里河",
-              "complexId": "beijing-s164",
+              "id": "historic-transfer-beijing-s178-line10-10-line19-19",
+              "name": "牡丹园",
+              "complexId": "beijing-s178",
               "stationInstanceIds": [
-                "beijing-s164__line14-14",
-                "beijing-s164__line17-17"
+                "beijing-s178__line10-10",
+                "beijing-s178__line19-19"
               ],
               "lineIds": [
-                "beijing-line14-14",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
-              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
-            },
-            {
-              "id": "historic-transfer-beijing-s265-line24-line17-17",
-              "name": "次渠",
-              "complexId": "beijing-s265",
-              "stationInstanceIds": [
-                "beijing-s265__line24",
-                "beijing-s265__line17-17"
-              ],
-              "lineIds": [
-                "beijing-route-24",
-                "beijing-line17-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
-              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
-            },
-            {
-              "id": "historic-transfer-beijing-xingong-4-19",
-              "name": "新宫",
-              "complexId": "beijing-s395",
-              "lineIds": [
-                "beijing-line4-4",
+                "beijing-line10-10",
                 "beijing-line19-19"
               ],
-              "stationInstanceIds": [
-                "beijing-daxing-xingong__line4-4",
-                "beijing-s395"
-              ],
-              "source": "https://www.mtr.bj.cn/service/line/line-4",
               "precision": "schematic",
-              "sourceNote": "4—大兴线新宫与19号线换乘；分别引用线路站体，不合并轨道。"
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.35",
+          "scopeRevision": "2026.10.25.6",
           "scopeCorrections": [
             {
               "id": "defer-bj17-historic-transfer-bj18-tiantongyuandong-17",
@@ -16470,6 +17263,120 @@
           ]
         },
         {
+          "id": "beijing-line19-infill-2022",
+          "phase": "history",
+          "date": "2022-07-30",
+          "title": "19号线四座暂缓站开放",
+          "lineGroups": [
+            {
+              "taskId": "opening:bj19-infill",
+              "mapRouteId": "beijing-r19",
+              "name": "19号线",
+              "stationIds": [
+                "beijing-s178",
+                "beijing-s389",
+                "beijing-s70",
+                "beijing-s390",
+                "beijing-s391",
+                "beijing-s392",
+                "beijing-s393",
+                "beijing-s371",
+                "beijing-s394",
+                "beijing-s395"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "2021年首开六站，北太平庄／平安里／太平桥／景风门于2022-07-30才开放；站区为近似参考，未开放不算停站。",
+              "historicalLineId": "beijing-line19-19",
+              "color": "#D6AAC1",
+              "stationOrderSource": "https://www.bjmoa.cn/metroLineList.html?sline=16",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s178": "beijing-s178__line19-19",
+                "beijing-s389": "beijing-s389__line19-19",
+                "beijing-s70": "beijing-s70__line19-19",
+                "beijing-s390": "beijing-s390",
+                "beijing-s391": "beijing-s391",
+                "beijing-s392": "beijing-s392",
+                "beijing-s393": "beijing-s393",
+                "beijing-s371": "beijing-s371__line19-19",
+                "beijing-s394": "beijing-s394",
+                "beijing-s395": "beijing-s395"
+              },
+              "coverageGroupId": "opening:bj19-infill",
+              "stationNames": {
+                "beijing-s178": "牡丹园",
+                "beijing-s389": "北太平庄",
+                "beijing-s70": "积水潭",
+                "beijing-s390": "平安里",
+                "beijing-s391": "太平桥",
+                "beijing-s392": "牛街",
+                "beijing-s393": "景风门",
+                "beijing-s371": "草桥",
+                "beijing-s394": "新发地",
+                "beijing-s395": "新宫"
+              },
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 19,
+              "defaultServiceStatus": "trial"
+            }
+          ],
+          "requiredTransfers": [],
+          "scopeCorrections": [],
+          "requireOpen": true,
+          "eventOnly": false,
+          "precision": "station_areas",
+          "geometryStatus": "station_area_approximation",
+          "operationType": "infill",
+          "chapterScope": "dated_opening_ranges",
+          "historicalEventIds": [
+            "beijing-line19-infill-2022:event",
+            "reviewed-bj19:infill"
+          ],
+          "routeTargetCount": 1,
+          "story": {
+            "opening": "2022年7月30日，19号线北太平庄、平安里、太平桥、景风门四站开放。",
+            "purpose": "复用首开六站，补齐四座暂缓站，并分别确认新增换乘。",
+            "outcome": "19号线10站全部投入试运营，平安里与景风门新增换乘。",
+            "eventKind": "network_expansion",
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [],
+            "planVersions": []
+          },
+          "scopeRevision": "2026.10.25.2",
+          "requiresScopeRecheck": true,
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
+          "sourcePublicationDate": "2022-07-29",
+          "sourceTitle": "交通委：19号线剩余四站7月30日起试运营",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "government_dated_opening_notice",
+          "status": "trial_operation",
+          "eventText": "2022年7月30日，19号线北太平庄、平安里、太平桥、景风门四站开放。",
+          "alignmentNote": "运营方逐站站序独立核对；地理位置及隧道为近似参考，不冒充工程测绘。"
+        },
+        {
           "id": "beijing-network-milestone-2022-12-31",
           "phase": "history",
           "date": "2022-12-31",
@@ -16568,22 +17475,6 @@
           "routeTargetCount": 1,
           "requiredTransfers": [
             {
-              "id": "historic-transfer-beijing-s2-line20-line15-15",
-              "name": "六道口",
-              "complexId": "beijing-s2",
-              "stationInstanceIds": [
-                "beijing-s2__line20",
-                "beijing-s2__line15-15"
-              ],
-              "lineIds": [
-                "beijing-route-20",
-                "beijing-line15-15"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s6-line5-5-line15-15",
               "name": "大屯路东",
               "complexId": "beijing-s6",
@@ -16617,6 +17508,141 @@
             }
           ],
           "eventOnly": false
+        },
+        {
+          "id": "beijing-changping-south-2023",
+          "phase": "history",
+          "date": "2023-02-04",
+          "title": "昌平线南延一期首开五站",
+          "lineGroups": [
+            {
+              "taskId": "opening:bj-changping-south",
+              "mapRouteId": "beijing-r20",
+              "name": "昌平线南延一期首开五站",
+              "stationIds": [
+                "beijing-s96",
+                "beijing-s250",
+                "beijing-s251",
+                "beijing-s2",
+                "beijing-s252",
+                "beijing-s179"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按公开分期站序建设；朱房北仅在2024-12-15开放，站位及地下走向为近似参考。",
+              "historicalLineId": "beijing-route-20",
+              "color": "#D47DAA",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s96": "beijing-s96__line20",
+                "beijing-s250": "beijing-s250",
+                "beijing-s251": "beijing-s251",
+                "beijing-s2": "beijing-s2__line20",
+                "beijing-s252": "beijing-s252",
+                "beijing-s179": "beijing-s179__line20"
+              },
+              "stationNames": {
+                "beijing-s96": "清河",
+                "beijing-s250": "清河小营桥",
+                "beijing-s251": "学知园",
+                "beijing-s2": "六道口",
+                "beijing-s252": "学院桥",
+                "beijing-s179": "西土城"
+              },
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 20,
+              "coverageGroupId": "opening:bj-changping-south",
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+              "defaultServiceStatus": "trial"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-beijing-s2-line20-line15-15",
+              "name": "六道口",
+              "complexId": "beijing-s2",
+              "stationInstanceIds": [
+                "beijing-s2__line20",
+                "beijing-s2__line15-15"
+              ],
+              "lineIds": [
+                "beijing-route-20",
+                "beijing-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s179-line10-10-line20",
+              "name": "西土城",
+              "complexId": "beijing-s179",
+              "stationInstanceIds": [
+                "beijing-s179__line10-10",
+                "beijing-s179__line20"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-route-20"
+              ],
+              "precision": "schematic",
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            }
+          ],
+          "scopeCorrections": [],
+          "requireOpen": true,
+          "eventOnly": false,
+          "precision": "station_areas",
+          "geometryStatus": "station_area_approximation",
+          "operationType": "extension",
+          "chapterScope": "dated_opening_ranges",
+          "historicalEventIds": [
+            "reviewed-changping:opening:bj-changping-south"
+          ],
+          "routeTargetCount": 1,
+          "story": {
+            "opening": "昌平线南延一期首开五站。",
+            "purpose": "复用既有线路，仅建设并确认本期新增范围。",
+            "outcome": "保留下一阶段蓝图，不提前开放后期站点。",
+            "eventKind": "network_expansion",
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [],
+            "planVersions": []
+          },
+          "scopeRevision": "2026.10.25.3",
+          "requiresScopeRecheck": true,
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+          "sourcePublicationDate": "2023-02-02",
+          "sourceTitle": "昌平线南延一期首开五站",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "government_dated_opening_notice",
+          "status": "trial_operation",
+          "eventText": "昌平线南延一期首开五站",
+          "alignmentNote": "官方分期开通范围，近似地理参考，不宣称精确隧道中心线。",
+          "serviceTransitions": []
         },
         {
           "id": "beijing-network-milestone-2023-12-30",
@@ -16723,6 +17749,35 @@
               "replaceExistingService": false,
               "reconfirmLaterServices": true,
               "servicePathRevision": 4
+            },
+            {
+              "taskId": "opening:bj11-modekou",
+              "mapRouteId": "beijing-r11",
+              "name": "11号线模式口站开放",
+              "stationIds": [
+                "beijing-s372",
+                "beijing-s344"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "官方分期开通站序；近似地理参考，不以现代全线快照代替历史范围。",
+              "historicalLineId": "beijing-line11-11",
+              "color": "#ED796A",
+              "stationOrderSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s372": "beijing-s372",
+                "beijing-s344": "beijing-s344__line11-11"
+              },
+              "stationNames": {
+                "beijing-s372": "模式口",
+                "beijing-s344": "金安桥"
+              },
+              "replaceExistingService": false,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "coverageGroupId": "opening:bj11-modekou",
+              "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
+              "defaultServiceStatus": "trial"
             }
           ],
           "requireOpen": true,
@@ -16770,7 +17825,8 @@
           "operationType": "milestone_network_build",
           "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
           "historicalEventIds": [
-            "beijing-opening-beijing-r16-2023-12-30"
+            "beijing-opening-beijing-r16-2023-12-30",
+            "reviewed-phases:beijing-r11:opening:bj11-modekou"
           ],
           "routeMilestoneIds": [
             "beijing-r16"
@@ -16778,22 +17834,6 @@
           "chapterScope": "cutoff_route_completion",
           "routeTargetCount": 1,
           "requiredTransfers": [
-            {
-              "id": "historic-transfer-beijing-s182-line10-10-line16-16",
-              "name": "苏州街",
-              "complexId": "beijing-s182",
-              "stationInstanceIds": [
-                "beijing-s182__line10-10",
-                "beijing-s182__line16-16"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line16-16"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
             {
               "id": "historic-transfer-beijing-s192-line22-line16-16",
               "name": "东管头南",
@@ -16859,6 +17899,22 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
+              "id": "historic-transfer-beijing-s182-line10-10-line16-16",
+              "name": "苏州街",
+              "complexId": "beijing-s182",
+              "stationInstanceIds": [
+                "beijing-s182__line10-10",
+                "beijing-s182__line16-16"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line16-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
               "id": "historic-transfer-beijing-s175-line10-10-line17-17",
               "name": "太阳宫",
               "complexId": "beijing-s175",
@@ -16877,7 +17933,7 @@
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.21"
+          "scopeRevision": "2026.10.25.6"
         },
         {
           "id": "beijing-network-milestone-2024-12-15",
@@ -16960,6 +18016,89 @@
                 "beijing-s355": "beijing-s355__line12-12",
                 "beijing-s185": "beijing-s185__line12-12"
               }
+            },
+            {
+              "taskId": "opening:bj-changping-infill",
+              "mapRouteId": "beijing-r20",
+              "name": "朱房北与蓟门桥开放",
+              "stationIds": [
+                "beijing-s240",
+                "beijing-s241",
+                "beijing-s242",
+                "beijing-s243",
+                "beijing-s244",
+                "beijing-s245",
+                "beijing-s246",
+                "beijing-s247",
+                "beijing-s248",
+                "beijing-s152",
+                "beijing-s249",
+                "beijing-s95",
+                "beijing-s96",
+                "beijing-changping-zhufangbei",
+                "beijing-s250",
+                "beijing-s251",
+                "beijing-s2",
+                "beijing-s252",
+                "beijing-s179",
+                "beijing-s253"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "按公开分期站序建设；朱房北仅在2024-12-15开放，站位及地下走向为近似参考。",
+              "historicalLineId": "beijing-route-20",
+              "color": "#D47DAA",
+              "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "beijing-s240": "beijing-s240",
+                "beijing-s241": "beijing-s241",
+                "beijing-s242": "beijing-s242",
+                "beijing-s243": "beijing-s243",
+                "beijing-s244": "beijing-s244",
+                "beijing-s245": "beijing-s245",
+                "beijing-s246": "beijing-s246",
+                "beijing-s247": "beijing-s247",
+                "beijing-s248": "beijing-s248",
+                "beijing-s152": "beijing-s152__line20",
+                "beijing-s249": "beijing-s249",
+                "beijing-s95": "beijing-s95__line20",
+                "beijing-s96": "beijing-s96__line20",
+                "beijing-changping-zhufangbei": "beijing-changping-zhufangbei__line20",
+                "beijing-s250": "beijing-s250",
+                "beijing-s251": "beijing-s251",
+                "beijing-s2": "beijing-s2__line20",
+                "beijing-s252": "beijing-s252",
+                "beijing-s179": "beijing-s179__line20",
+                "beijing-s253": "beijing-s253__line20"
+              },
+              "stationNames": {
+                "beijing-s240": "昌平西山口",
+                "beijing-s241": "十三陵景区",
+                "beijing-s242": "昌平",
+                "beijing-s243": "昌平东关",
+                "beijing-s244": "北邵洼",
+                "beijing-s245": "南邵",
+                "beijing-s246": "沙河高教园",
+                "beijing-s247": "沙河",
+                "beijing-s248": "巩华城",
+                "beijing-s152": "朱辛庄",
+                "beijing-s249": "生命科学园",
+                "beijing-s95": "西二旗",
+                "beijing-s96": "清河",
+                "beijing-changping-zhufangbei": "朱房北",
+                "beijing-s250": "清河小营桥",
+                "beijing-s251": "学知园",
+                "beijing-s2": "六道口",
+                "beijing-s252": "学院桥",
+                "beijing-s179": "西土城",
+                "beijing-s253": "蓟门桥"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 20,
+              "coverageGroupId": "opening:bj-changping-infill",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+              "defaultServiceStatus": "trial"
             }
           ],
           "requireOpen": true,
@@ -17008,7 +18147,8 @@
           "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
           "historicalEventIds": [
             "beijing-opening-beijing-r12-2024-12-15",
-            "beijing-opening-beijing-r3-2024-12-15"
+            "beijing-opening-beijing-r3-2024-12-15",
+            "reviewed-changping:opening:bj-changping-infill"
           ],
           "routeMilestoneIds": [
             "beijing-r12",
@@ -17017,22 +18157,6 @@
           "chapterScope": "cutoff_route_completion",
           "routeTargetCount": 2,
           "requiredTransfers": [
-            {
-              "id": "historic-transfer-beijing-s100-line13-13-line12-12",
-              "name": "大钟寺",
-              "complexId": "beijing-s100",
-              "stationInstanceIds": [
-                "beijing-s100__line13-13",
-                "beijing-s100__line12-12"
-              ],
-              "lineIds": [
-                "beijing-line13-13",
-                "beijing-line12-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
             {
               "id": "historic-transfer-beijing-s109-line5-5-line12-12",
               "name": "和平西桥",
@@ -17066,38 +18190,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s171-line10-10-line3-3",
-              "name": "团结湖",
-              "complexId": "beijing-s171",
-              "stationInstanceIds": [
-                "beijing-s171__line10-10",
-                "beijing-s171__line3-3"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line3-3"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s174-line10-10-line12-12",
-              "name": "三元桥",
-              "complexId": "beijing-s174",
-              "stationInstanceIds": [
-                "beijing-s174__line10-10",
-                "beijing-s174__line12-12"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line12-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s174-line23-line12-12",
               "name": "三元桥",
               "complexId": "beijing-s174",
@@ -17114,22 +18206,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s185-line10-10-line12-12",
-              "name": "长春桥",
-              "complexId": "beijing-s185",
-              "stationInstanceIds": [
-                "beijing-s185__line10-10",
-                "beijing-s185__line12-12"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line12-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s232-line4-4-line12-12",
               "name": "人民大学",
               "complexId": "beijing-s232",
@@ -17139,22 +18215,6 @@
               ],
               "lineIds": [
                 "beijing-line4-4",
-                "beijing-line12-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s253-line20-line12-12",
-              "name": "蓟门桥",
-              "complexId": "beijing-s253",
-              "stationInstanceIds": [
-                "beijing-s253__line20",
-                "beijing-s253__line12-12"
-              ],
-              "lineIds": [
-                "beijing-route-20",
                 "beijing-line12-12"
               ],
               "precision": "schematic",
@@ -17194,22 +18254,6 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s389-line19-19-line12-12",
-              "name": "北太平庄",
-              "complexId": "beijing-s389",
-              "stationInstanceIds": [
-                "beijing-s389__line19-19",
-                "beijing-s389__line12-12"
-              ],
-              "lineIds": [
-                "beijing-line19-19",
-                "beijing-line12-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s396-line12-12-line3-3",
               "name": "东坝北",
               "complexId": "beijing-s396",
@@ -17242,6 +18286,54 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
+              "id": "historic-transfer-beijing-s382-line3-3-line17-17",
+              "name": "工人体育场",
+              "complexId": "beijing-s382",
+              "stationInstanceIds": [
+                "beijing-s382__line3-3",
+                "beijing-s382__line17-17"
+              ],
+              "lineIds": [
+                "beijing-line3-3",
+                "beijing-line17-17"
+              ],
+              "precision": "schematic",
+              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
+              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s389-line19-19-line12-12",
+              "name": "北太平庄",
+              "complexId": "beijing-s389",
+              "stationInstanceIds": [
+                "beijing-s389__line19-19",
+                "beijing-s389__line12-12"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s100-line13-13-line12-12",
+              "name": "大钟寺",
+              "complexId": "beijing-s100",
+              "stationInstanceIds": [
+                "beijing-s100__line13-13",
+                "beijing-s100__line12-12"
+              ],
+              "lineIds": [
+                "beijing-line13-13",
+                "beijing-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
               "id": "historic-transfer-beijing-s87-line13-13-line12-12",
               "name": "光熙门",
               "complexId": "beijing-s87",
@@ -17258,23 +18350,73 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             },
             {
-              "id": "historic-transfer-beijing-s382-line3-3-line17-17",
-              "name": "工人体育场",
-              "complexId": "beijing-s382",
+              "id": "historic-transfer-beijing-s253-line20-line12-12",
+              "name": "蓟门桥",
+              "complexId": "beijing-s253",
               "stationInstanceIds": [
-                "beijing-s382__line3-3",
-                "beijing-s382__line17-17"
+                "beijing-s253__line20",
+                "beijing-s253__line12-12"
               ],
               "lineIds": [
-                "beijing-line3-3",
-                "beijing-line17-17"
+                "beijing-route-20",
+                "beijing-line12-12"
               ],
               "precision": "schematic",
-              "source": "https://www.mtr.bj.cn/service/line/line-17.html",
-              "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s171-line10-10-line3-3",
+              "name": "团结湖",
+              "complexId": "beijing-s171",
+              "stationInstanceIds": [
+                "beijing-s171__line10-10",
+                "beijing-s171__line3-3"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s174-line10-10-line12-12",
+              "name": "三元桥",
+              "complexId": "beijing-s174",
+              "stationInstanceIds": [
+                "beijing-s174__line10-10",
+                "beijing-s174__line12-12"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s185-line10-10-line12-12",
+              "name": "长春桥",
+              "complexId": "beijing-s185",
+              "stationInstanceIds": [
+                "beijing-s185__line10-10",
+                "beijing-s185__line12-12"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "scopeRevision": "2026.10.25.3",
+          "requiresScopeRecheck": true
         },
         {
           "id": "beijing-network-milestone-2025-12-27",
@@ -17583,38 +18725,6 @@
               "sourceNote": "2025-12-27回龙观东大街8/18换乘形成，各用本线物理站体。"
             },
             {
-              "id": "historic-transfer-beijing-s170-line10-10-line6-6",
-              "name": "呼家楼",
-              "complexId": "beijing-s170",
-              "stationInstanceIds": [
-                "beijing-s170__line10-10",
-                "beijing-s170__line6-6"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line6-6"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s187-line10-10-line6-6",
-              "name": "慈寿寺",
-              "complexId": "beijing-s187",
-              "stationInstanceIds": [
-                "beijing-s187__line10-10",
-                "beijing-s187__line6-6"
-              ],
-              "lineIds": [
-                "beijing-line10-10",
-                "beijing-line6-6"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-beijing-s218-line9-9-line6-6",
               "name": "白石桥南",
               "complexId": "beijing-s218",
@@ -17672,22 +18782,6 @@
               ],
               "lineIds": [
                 "beijing-line16-16",
-                "beijing-line6-6"
-              ],
-              "precision": "schematic",
-              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-beijing-s344-line11-11-line6-6",
-              "name": "金安桥",
-              "complexId": "beijing-s344",
-              "stationInstanceIds": [
-                "beijing-s344__line11-11",
-                "beijing-s344__line6-6"
-              ],
-              "lineIds": [
-                "beijing-line11-11",
                 "beijing-line6-6"
               ],
               "precision": "schematic",
@@ -17837,6 +18931,54 @@
               "precision": "schematic",
               "source": "https://www.mtr.bj.cn/service/line/line-17.html",
               "sourceNote": "根据实际分期开站及两侧线路站体可用时期安排，换乘联系不进入列车轨道图。"
+            },
+            {
+              "id": "historic-transfer-beijing-s170-line10-10-line6-6",
+              "name": "呼家楼",
+              "complexId": "beijing-s170",
+              "stationInstanceIds": [
+                "beijing-s170__line10-10",
+                "beijing-s170__line6-6"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s187-line10-10-line6-6",
+              "name": "慈寿寺",
+              "complexId": "beijing-s187",
+              "stationInstanceIds": [
+                "beijing-s187__line10-10",
+                "beijing-s187__line6-6"
+              ],
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+            },
+            {
+              "id": "historic-transfer-beijing-s344-line11-11-line6-6",
+              "name": "金安桥",
+              "complexId": "beijing-s344",
+              "stationInstanceIds": [
+                "beijing-s344__line11-11",
+                "beijing-s344__line6-6"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
           "eventOnly": false,
@@ -18542,53 +19684,51 @@
               "mapRouteId": "beijing-r10",
               "name": "10号线",
               "stationIds": [
-                "beijing-s153",
-                "beijing-s154",
-                "beijing-s155",
-                "beijing-s156",
-                "beijing-s157",
-                "beijing-s158",
-                "beijing-s159",
-                "beijing-s160",
-                "beijing-s127",
-                "beijing-s161",
-                "beijing-s119",
-                "beijing-s162",
-                "beijing-s163",
-                "beijing-s164",
-                "beijing-s165",
-                "beijing-s166",
-                "beijing-s167",
-                "beijing-s168",
-                "beijing-s169",
-                "beijing-s170",
-                "beijing-s171",
-                "beijing-s172",
-                "beijing-s173",
-                "beijing-s174",
-                "beijing-s175",
-                "beijing-s88",
-                "beijing-s108",
-                "beijing-s176",
-                "beijing-s141",
-                "beijing-s177",
-                "beijing-s178",
-                "beijing-s179",
-                "beijing-s99",
-                "beijing-s180",
-                "beijing-s181",
-                "beijing-s182",
                 "beijing-s183",
-                "beijing-s184",
-                "beijing-s185",
-                "beijing-s186",
-                "beijing-s187",
-                "beijing-s188",
-                "beijing-s60",
-                "beijing-s189",
+                "beijing-s182",
+                "beijing-s181",
+                "beijing-s180",
+                "beijing-s99",
+                "beijing-s179",
+                "beijing-s178",
+                "beijing-s177",
+                "beijing-s141",
+                "beijing-s176",
+                "beijing-s108",
+                "beijing-s88",
+                "beijing-s175",
+                "beijing-s174",
+                "beijing-s173",
+                "beijing-s172",
+                "beijing-s171",
+                "beijing-s170",
+                "beijing-s169",
+                "beijing-s168",
+                "beijing-s167",
+                "beijing-s166",
+                "beijing-s165",
+                "beijing-s164",
+                "beijing-s163",
+                "beijing-s162",
+                "beijing-s119",
+                "beijing-s161",
+                "beijing-s127",
+                "beijing-s160",
+                "beijing-s159",
+                "beijing-s158",
+                "beijing-s157",
+                "beijing-s156",
+                "beijing-s155",
+                "beijing-s154",
+                "beijing-s153",
                 "beijing-s190",
-                "beijing-s48",
-                "beijing-s191"
+                "beijing-s189",
+                "beijing-s60",
+                "beijing-s188",
+                "beijing-s187",
+                "beijing-s186",
+                "beijing-s185",
+                "beijing-s184"
               ],
               "toleranceM": 220,
               "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
@@ -18597,31 +19737,103 @@
               "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "beijing-s153": "beijing-s153__line10-10",
-                "beijing-s156": "beijing-s156__line10-10",
-                "beijing-s159": "beijing-s159__line10-10",
-                "beijing-s127": "beijing-s127__line10-10",
-                "beijing-s119": "beijing-s119__line10-10",
-                "beijing-s164": "beijing-s164__line10-10",
-                "beijing-s167": "beijing-s167__line10-10",
-                "beijing-s170": "beijing-s170__line10-10",
-                "beijing-s171": "beijing-s171__line10-10",
-                "beijing-s174": "beijing-s174__line10-10",
-                "beijing-s175": "beijing-s175__line10-10",
-                "beijing-s88": "beijing-s88__line10-10",
-                "beijing-s108": "beijing-s108__line10-10",
-                "beijing-s141": "beijing-s141__line10-10",
-                "beijing-s178": "beijing-s178__line10-10",
-                "beijing-s179": "beijing-s179__line10-10",
-                "beijing-s99": "beijing-s99__line10-10",
-                "beijing-s181": "beijing-s181__line10-10",
+                "beijing-s183": "beijing-s183",
                 "beijing-s182": "beijing-s182__line10-10",
-                "beijing-s185": "beijing-s185__line10-10",
-                "beijing-s187": "beijing-s187__line10-10",
-                "beijing-s60": "beijing-s60__line10-10",
+                "beijing-s181": "beijing-s181__line10-10",
+                "beijing-s180": "beijing-s180",
+                "beijing-s99": "beijing-s99__line10-10",
+                "beijing-s179": "beijing-s179__line10-10",
+                "beijing-s178": "beijing-s178__line10-10",
+                "beijing-s177": "beijing-s177",
+                "beijing-s141": "beijing-s141__line10-10",
+                "beijing-s176": "beijing-s176",
+                "beijing-s108": "beijing-s108__line10-10",
+                "beijing-s88": "beijing-s88__line10-10",
+                "beijing-s175": "beijing-s175__line10-10",
+                "beijing-s174": "beijing-s174__line10-10",
+                "beijing-s173": "beijing-s173",
+                "beijing-s172": "beijing-s172",
+                "beijing-s171": "beijing-s171__line10-10",
+                "beijing-s170": "beijing-s170__line10-10",
+                "beijing-s169": "beijing-s169",
+                "beijing-s168": "beijing-s168",
+                "beijing-s167": "beijing-s167__line10-10",
+                "beijing-s166": "beijing-s166",
+                "beijing-s165": "beijing-s165",
+                "beijing-s164": "beijing-s164__line10-10",
+                "beijing-s163": "beijing-s163",
+                "beijing-s162": "beijing-s162",
+                "beijing-s119": "beijing-s119__line10-10",
+                "beijing-s161": "beijing-s161",
+                "beijing-s127": "beijing-s127__line10-10",
+                "beijing-s160": "beijing-s160",
+                "beijing-s159": "beijing-s159__line10-10",
+                "beijing-s158": "beijing-s158",
+                "beijing-s157": "beijing-s157",
+                "beijing-s156": "beijing-s156__line10-10",
+                "beijing-s155": "beijing-s155",
+                "beijing-s154": "beijing-s154",
+                "beijing-s153": "beijing-s153__line10-10",
                 "beijing-s190": "beijing-s190__line10-10",
-                "beijing-s48": "beijing-s48__line10-10"
-              }
+                "beijing-s189": "beijing-s189",
+                "beijing-s60": "beijing-s60__line10-10",
+                "beijing-s188": "beijing-s188",
+                "beijing-s187": "beijing-s187__line10-10",
+                "beijing-s186": "beijing-s186",
+                "beijing-s185": "beijing-s185__line10-10",
+                "beijing-s184": "beijing-s184"
+              },
+              "stationNames": {
+                "beijing-s183": "巴沟",
+                "beijing-s182": "苏州街",
+                "beijing-s181": "海淀黄庄",
+                "beijing-s180": "知春里",
+                "beijing-s99": "知春路",
+                "beijing-s179": "西土城",
+                "beijing-s178": "牡丹园",
+                "beijing-s177": "健德门",
+                "beijing-s141": "北土城",
+                "beijing-s176": "安贞门",
+                "beijing-s108": "惠新西街南口",
+                "beijing-s88": "芍药居",
+                "beijing-s175": "太阳宫",
+                "beijing-s174": "三元桥",
+                "beijing-s173": "亮马桥",
+                "beijing-s172": "农业展览馆",
+                "beijing-s171": "团结湖",
+                "beijing-s170": "呼家楼",
+                "beijing-s169": "金台夕照",
+                "beijing-s168": "国贸",
+                "beijing-s167": "双井",
+                "beijing-s166": "劲松",
+                "beijing-s165": "潘家园",
+                "beijing-s164": "十里河",
+                "beijing-s163": "分钟寺",
+                "beijing-s162": "成寿寺",
+                "beijing-s119": "宋家庄",
+                "beijing-s161": "石榴庄",
+                "beijing-s127": "大红门",
+                "beijing-s160": "角门东",
+                "beijing-s159": "角门西",
+                "beijing-s158": "草桥",
+                "beijing-s157": "纪家庙",
+                "beijing-s156": "首经贸",
+                "beijing-s155": "丰台站",
+                "beijing-s154": "泥洼",
+                "beijing-s153": "西局",
+                "beijing-s190": "六里桥",
+                "beijing-s189": "莲花桥",
+                "beijing-s60": "公主坟",
+                "beijing-s188": "西钓鱼台",
+                "beijing-s187": "慈寿寺",
+                "beijing-s186": "车道沟",
+                "beijing-s185": "长春桥",
+                "beijing-s184": "火器营"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30,
+              "loop": true
             },
             {
               "taskId": "route:beijing-r11",
@@ -18640,8 +19852,20 @@
               "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "beijing-s344": "beijing-s344__line11-11"
-              }
+                "beijing-s372": "beijing-s372",
+                "beijing-s344": "beijing-s344__line11-11",
+                "beijing-s373": "beijing-s373",
+                "beijing-s374": "beijing-s374"
+              },
+              "stationNames": {
+                "beijing-s372": "模式口",
+                "beijing-s344": "金安桥",
+                "beijing-s373": "北辛安",
+                "beijing-s374": "新首钢"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30
             },
             {
               "taskId": "route:beijing-r12",
@@ -18694,23 +19918,23 @@
               "mapRouteId": "beijing-r13",
               "name": "13号线",
               "stationIds": [
-                "beijing-s85",
-                "beijing-s86",
-                "beijing-s87",
-                "beijing-s88",
-                "beijing-s89",
-                "beijing-s90",
-                "beijing-s91",
-                "beijing-s92",
-                "beijing-s93",
-                "beijing-s94",
-                "beijing-s95",
-                "beijing-s96",
-                "beijing-s97",
-                "beijing-s98",
-                "beijing-s99",
+                "beijing-s101",
                 "beijing-s100",
-                "beijing-s101"
+                "beijing-s99",
+                "beijing-s98",
+                "beijing-s97",
+                "beijing-s96",
+                "beijing-s95",
+                "beijing-s94",
+                "beijing-s93",
+                "beijing-s92",
+                "beijing-s91",
+                "beijing-s90",
+                "beijing-s89",
+                "beijing-s88",
+                "beijing-s87",
+                "beijing-s86",
+                "beijing-s85"
               ],
               "toleranceM": 220,
               "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
@@ -18719,16 +19943,46 @@
               "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "beijing-s87": "beijing-s87__line13-13",
-                "beijing-s88": "beijing-s88__line13-13",
-                "beijing-s89": "beijing-s89__line13-13",
-                "beijing-s91": "beijing-s91__line13-13",
-                "beijing-s92": "beijing-s92__line13-13",
-                "beijing-s95": "beijing-s95__line13-13",
-                "beijing-s96": "beijing-s96__line13-13",
+                "beijing-s101": "beijing-s101",
+                "beijing-s100": "beijing-s100__line13-13",
                 "beijing-s99": "beijing-s99__line13-13",
-                "beijing-s100": "beijing-s100__line13-13"
-              }
+                "beijing-s98": "beijing-s98",
+                "beijing-s97": "beijing-s97",
+                "beijing-s96": "beijing-s96__line13-13",
+                "beijing-s95": "beijing-s95__line13-13",
+                "beijing-s94": "beijing-s94",
+                "beijing-s93": "beijing-s93",
+                "beijing-s92": "beijing-s92__line13-13",
+                "beijing-s91": "beijing-s91__line13-13",
+                "beijing-s90": "beijing-s90",
+                "beijing-s89": "beijing-s89__line13-13",
+                "beijing-s88": "beijing-s88__line13-13",
+                "beijing-s87": "beijing-s87__line13-13",
+                "beijing-s86": "beijing-s86",
+                "beijing-s85": "beijing-s85"
+              },
+              "stationNames": {
+                "beijing-s101": "西直门",
+                "beijing-s100": "大钟寺",
+                "beijing-s99": "知春路",
+                "beijing-s98": "五道口",
+                "beijing-s97": "上地",
+                "beijing-s96": "清河站",
+                "beijing-s95": "西二旗",
+                "beijing-s94": "龙泽",
+                "beijing-s93": "回龙观",
+                "beijing-s92": "霍营",
+                "beijing-s91": "立水桥",
+                "beijing-s90": "北苑",
+                "beijing-s89": "望京西",
+                "beijing-s88": "芍药居",
+                "beijing-s87": "光熙门",
+                "beijing-s86": "柳芳",
+                "beijing-s85": "东直门"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 30
             },
             {
               "taskId": "route:beijing-r14",
@@ -19024,6 +20278,7 @@
                 "beijing-s249",
                 "beijing-s95",
                 "beijing-s96",
+                "beijing-changping-zhufangbei",
                 "beijing-s250",
                 "beijing-s251",
                 "beijing-s2",
@@ -19038,13 +20293,52 @@
               "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
+                "beijing-s240": "beijing-s240",
+                "beijing-s241": "beijing-s241",
+                "beijing-s242": "beijing-s242",
+                "beijing-s243": "beijing-s243",
+                "beijing-s244": "beijing-s244",
+                "beijing-s245": "beijing-s245",
+                "beijing-s246": "beijing-s246",
+                "beijing-s247": "beijing-s247",
+                "beijing-s248": "beijing-s248",
                 "beijing-s152": "beijing-s152__line20",
+                "beijing-s249": "beijing-s249",
                 "beijing-s95": "beijing-s95__line20",
                 "beijing-s96": "beijing-s96__line20",
+                "beijing-s250": "beijing-s250",
+                "beijing-s251": "beijing-s251",
                 "beijing-s2": "beijing-s2__line20",
+                "beijing-s252": "beijing-s252",
                 "beijing-s179": "beijing-s179__line20",
-                "beijing-s253": "beijing-s253__line20"
-              }
+                "beijing-s253": "beijing-s253__line20",
+                "beijing-changping-zhufangbei": "beijing-changping-zhufangbei__line20"
+              },
+              "stationNames": {
+                "beijing-s240": "昌平西山口",
+                "beijing-s241": "十三陵景区",
+                "beijing-s242": "昌平",
+                "beijing-s243": "昌平东关",
+                "beijing-s244": "北邵洼",
+                "beijing-s245": "南邵",
+                "beijing-s246": "沙河高教园",
+                "beijing-s247": "沙河",
+                "beijing-s248": "巩华城",
+                "beijing-s152": "朱辛庄",
+                "beijing-s249": "生命科学园",
+                "beijing-s95": "西二旗",
+                "beijing-s96": "清河",
+                "beijing-changping-zhufangbei": "朱房北",
+                "beijing-s250": "清河小营桥",
+                "beijing-s251": "学知园",
+                "beijing-s2": "六道口",
+                "beijing-s252": "学院桥",
+                "beijing-s179": "西土城",
+                "beijing-s253": "蓟门桥"
+              },
+              "replaceExistingService": true,
+              "reconfirmLaterServices": true,
+              "servicePathRevision": 20
             },
             {
               "taskId": "route:beijing-r21",
@@ -19306,7 +20600,7 @@
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.35"
+          "scopeRevision": "2026.10.25.6"
         }
       ],
       "futurePlans": [
@@ -20151,7 +21445,9 @@
         "beijing-s278": "beijing-s47",
         "beijing-s411": "beijing-s352",
         "beijing-s413": "beijing-s103",
-        "beijing-daxing-xingong": "beijing-s395"
+        "beijing-daxing-xingong": "beijing-s395",
+        "beijing-s168": "beijing-s48",
+        "beijing-s191": "beijing-s127"
       },
       "stationInstanceAliases": {}
     },
@@ -35208,6 +36504,235 @@
           "scopeCorrections": [],
           "requireOpen": false,
           "serviceStatusSchema": 2
+        },
+        {
+          "id": "sz-line11-north-build",
+          "projectIds": [
+            "sz-line11-north-shenzhen"
+          ],
+          "title": "11号线北延深圳段 · 碧头至深莞边界",
+          "date": "2026-10-01",
+          "status": "approved_project",
+          "projectType": "approved_project",
+          "required": true,
+          "exactAlignment": "corridor_only",
+          "sourceType": "operator_published_approved_construction_plan",
+          "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划：示意图及项目表",
+          "sourcePublicationDate": "2026-04",
+          "publicationDateNote": "页面目录为2026年4月，图像上传日期2026-04-15；页面未单列精确发布日期。",
+          "sourceCheckedAt": "2026-10-25",
+          "description": "官方五期规划图列明碧头—深莞边界、0.8公里；深圳段不把东莞后续工程算入本期。按现有碧头站端沿朗碧路向北至茅洲河边界复现近似走廊，不新增客运站、不生成运营服务。工程接口不是车站。公开图为规划示意，不是施工中心线；深度示意。",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line11-north-build",
+              "taskKind": "engineering_track",
+              "coverageGroupId": "sz11-north-engineering",
+              "name": "11号线北延深圳段工程轨道",
+              "historicalLineId": "shenzhen-line11-12",
+              "color": "#8B243E",
+              "stationIds": [
+                "shenzhen-s202"
+              ],
+              "stationInstances": {
+                "shenzhen-s202": "shenzhen-s202__line11-12"
+              },
+              "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+              "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+              "toleranceM": 100,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "官方五期规划图列明碧头—深莞边界、0.8公里；深圳段不把东莞后续工程算入本期。按现有碧头站端沿朗碧路向北至茅洲河边界复现近似走廊，不新增客运站、不生成运营服务。工程接口不是车站。公开图为规划示意，不是施工中心线；深度示意。",
+              "officialLengthM": 800,
+              "engineeringEndpoints": [
+                {
+                  "id": "sz11-bitou-existing",
+                  "name": "碧头既有北端",
+                  "stationId": "shenzhen-s202",
+                  "stationInstanceId": "shenzhen-s202__line11-12",
+                  "side": "outward"
+                },
+                {
+                  "id": "sz11-shenzhen-dongguan-boundary",
+                  "name": "深莞边界工程接口（非车站）",
+                  "latlng": [
+                    22.795032,
+                    113.81495
+                  ],
+                  "toleranceM": 100,
+                  "depthM": -15
+                }
+              ],
+              "engineeringSegments": [
+                {
+                  "fromId": "sz11-bitou-existing",
+                  "toId": "sz11-shenzhen-dongguan-boundary",
+                  "points": [
+                    [
+                      22.7862305,
+                      113.8150171
+                    ],
+                    [
+                      22.7879279,
+                      113.8150279
+                    ],
+                    [
+                      22.7889943,
+                      113.8148981
+                    ],
+                    [
+                      22.7912198,
+                      113.8148696
+                    ],
+                    [
+                      22.795032,
+                      113.81495
+                    ]
+                  ],
+                  "corridorToleranceM": 120
+                }
+              ]
+            }
+          ],
+          "requiredTransfers": [],
+          "requireOpen": false,
+          "dataStatus": "blueprint_ready",
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.25.7"
+        },
+        {
+          "id": "sz-line10-east-build",
+          "projectIds": [
+            "sz-line10-east-shenzhen"
+          ],
+          "title": "10号线东延深圳段 · 两端工程",
+          "date": "2026-10-01",
+          "status": "approved_project",
+          "projectType": "approved_project",
+          "required": true,
+          "exactAlignment": "corridor_only",
+          "sourceType": "operator_published_approved_construction_plan",
+          "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+          "sourceTitle": "深圳市城市轨道交通第五期建设规划：10号线东延深圳段",
+          "sourcePublicationDate": "2026-04",
+          "publicationDateNote": "页面目录为2026年4月，图像上传日期4月15日；未单列精确发布日期。",
+          "sourceCheckedAt": "2026-10-25",
+          "description": "按官方五期规划的双拥街—黄阁坑深圳段2.9公里，分西、东两段建设。西段从双拥街到深莞边界；东段从深莞边界到黄阁坑10号线独立站体。中间东莞段不属于本期批复，不能跨界补线或生成贯通运营。黄阁坑预留16号线衔接，整线未成前不冒充已形成运营换乘。站址沿既有站区，边界及区间为现代地理参考的近似走廊，非隧道测绘。",
+          "lineGroups": [
+            {
+              "taskId": "project:sz-line10-east-build",
+              "taskKind": "engineering_track",
+              "coverageGroupId": "sz10-east-engineering",
+              "name": "10号线东延深圳段 · 两个独立区段",
+              "historicalLineId": "shenzhen-line10-11",
+              "color": "#F79BB4",
+              "stationIds": [
+                "shenzhen-s289",
+                "shenzhen-s379"
+              ],
+              "newStationIds": [
+                "shenzhen-s379"
+              ],
+              "stationInstances": {
+                "shenzhen-s289": "shenzhen-s289",
+                "shenzhen-s379": "shenzhen-s379__line10-11"
+              },
+              "stationNames": {
+                "shenzhen-s289": "双拥街",
+                "shenzhen-s379": "黄阁坑"
+              },
+              "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+              "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+              "toleranceM": 100,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "按官方五期规划的双拥街—黄阁坑深圳段2.9公里，分西、东两段建设。西段从双拥街到深莞边界；东段从深莞边界到黄阁坑10号线独立站体。中间东莞段不属于本期批复，不能跨界补线或生成贯通运营。黄阁坑预留16号线衔接，整线未成前不冒充已形成运营换乘。站址沿既有站区，边界及区间为现代地理参考的近似走廊，非隧道测绘。",
+              "officialLengthM": 2900,
+              "engineeringEndpoints": [
+                {
+                  "id": "sz10-shuangyong-existing",
+                  "name": "双拥街既有端",
+                  "stationId": "shenzhen-s289",
+                  "stationInstanceId": "shenzhen-s289",
+                  "side": "outward"
+                },
+                {
+                  "id": "sz10-west-boundary",
+                  "name": "平湖侧深莞边界接口（非车站）",
+                  "latlng": [
+                    22.7090465,
+                    114.140775
+                  ],
+                  "toleranceM": 100,
+                  "depthM": -15
+                },
+                {
+                  "id": "sz10-east-boundary",
+                  "name": "龙岗侧深莞边界接口（非车站）",
+                  "latlng": [
+                    22.7218649,
+                    114.2043542
+                  ],
+                  "toleranceM": 100,
+                  "depthM": -15
+                },
+                {
+                  "id": "sz10-huanggekeng-new-body",
+                  "name": "黄阁坑10号线站体",
+                  "stationId": "shenzhen-s379",
+                  "stationInstanceId": "shenzhen-s379__line10-11",
+                  "side": "outward"
+                }
+              ],
+              "engineeringSegments": [
+                {
+                  "fromId": "sz10-shuangyong-existing",
+                  "toId": "sz10-west-boundary",
+                  "points": [
+                    [
+                      22.7011507,
+                      114.1277233
+                    ],
+                    [
+                      22.703,
+                      114.1298
+                    ],
+                    [
+                      22.706,
+                      114.1358
+                    ],
+                    [
+                      22.7090465,
+                      114.140775
+                    ]
+                  ],
+                  "corridorToleranceM": 180
+                },
+                {
+                  "fromId": "sz10-east-boundary",
+                  "toId": "sz10-huanggekeng-new-body",
+                  "points": [
+                    [
+                      22.7218649,
+                      114.2043542
+                    ],
+                    [
+                      22.7219,
+                      114.2082
+                    ],
+                    [
+                      22.7220585,
+                      114.2132827
+                    ]
+                  ],
+                  "corridorToleranceM": 180
+                }
+              ]
+            }
+          ],
+          "requiredTransfers": [],
+          "requireOpen": false,
+          "dataStatus": "blueprint_ready",
+          "requiresScopeRecheck": true,
+          "scopeRevision": "2026.10.25.8"
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -44975,6 +46500,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.25.1",
-  "contentRevisionNote": "补齐上海11号线真实分期、深圳10号线晚开站、北京大兴与燕房线；修复已建未开放接续、历史补章换乘及未来旧路径保护。五城完整交付资格仍未通过。"
+  "contentRevision": "2026.10.25.9",
+  "contentRevisionNote": "11号线按2021年三站首开、2023年模式口延伸建设；同步保留13、10、19号线及昌平线已核对分期。"
 }

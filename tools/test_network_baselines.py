@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from build_network_baseline import build
+from engineering_scope import definition_errors as engineering_definition_errors
 from expand_playable_milestones import ROUTE_DATES
 
 
@@ -104,6 +105,9 @@ def main() -> int:
                 continue
             groups_ready = True
             for group in groups:
+                if group.get('taskKind') == 'engineering_track':
+                    if engineering_definition_errors(group, city_station_ids):groups_ready = False;break
+                    continue
                 station_ids = [str(value) for value in group.get("stationIds", [])]
                 if len(station_ids) < 2 or float(group.get("toleranceM", 0)) <= 0 or not set(station_ids).issubset(city_station_ids):
                     groups_ready = False

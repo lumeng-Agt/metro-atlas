@@ -338,18 +338,7 @@ static func _planning_statuses_match(world:Dictionary,expected_routes:Array) -> 
 	return true
 
 static func _chapter_scope_revision(plan:Dictionary) -> String:
-	var explicit_revision:=str(plan.get("scopeRevision",""))
-	if not explicit_revision.is_empty():
-		# Older geometry-only approvals can hide an entire historical service
-		# marked built after a later planning merge. Re-audit cutoff operation
-		# when that validator changes, even if the station list is unchanged.
-		return explicit_revision+":historical-status-v2" if str(plan.get("chapterScope",""))=="cutoff_reconciliation" else explicit_revision
-	# A missing optional revision must not equal an old missing revision and
-	# silently skip an expanded task. Hash the actual authoritative scope.
-	var scope:Dictionary={}
-	for key in ["lineGroups","requiredTransfers","requiredConnections","serviceTransitions","scopeCorrections"]:
-		scope[key]=plan.get(key,[])
-	return JSON.stringify(scope).sha256_text()
+	return CampaignSystem.chapter_scope_revision(plan)
 
 static func _preserve_original(text: String, prefix: String) -> Dictionary:
 	var path:=root_path().path_join("originals").path_join("%s_%s.json" % [prefix,text.sha256_text()])

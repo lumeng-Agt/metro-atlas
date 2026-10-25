@@ -2,6 +2,7 @@
 from __future__ import annotations
 import json
 from pathlib import Path
+from engineering_scope import coverage_errors as engineering_coverage_errors
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET_PATH = ROOT / 'data/official_targets_2026-10-01.json'
@@ -39,6 +40,9 @@ def check_project(target, plans, names, *, historical_construction=False):
             errors.append(f'{group_id}: expected one group, got {len(candidates)}')
             continue
         group = candidates[0]
+        if expected.get('scopeType') == 'engineering':
+            errors.extend(engineering_coverage_errors(group, expected))
+            continue
         actual = [group.get('stationNames', {}).get(s, names.get(s, s)) for s in group.get('stationIds', [])]
         service_order = expected.get('stationNames', [])
         wanted = expected.get('constructionStationNames', service_order) if historical_construction else service_order

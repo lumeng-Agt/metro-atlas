@@ -62,8 +62,8 @@
 | 32号线一期 | 可玩建设章 | 1 | 5 | corridor_only | [织密地铁网络 赋能城市高质量发展](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) |
 | 13号线二期南延段 | 可玩建设章 | 1 | 4 | corridor_only | [深圳市国民经济和社会发展第十五个五年规划纲要](https://www.sz.gov.cn/zfgb/2026/gb1420/content/post_12894205.html) |
 | 城市轨道交通第五期建设规划（项目库） | 政策条目 | 0 | — | — | [地铁五期13条线路规划公布](https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_10089296.html) |
-| 10号线东延深圳段 | 待制作 | 0 | — | — | [深圳地铁2023社会责任报告：五期已批准项目清单](https://www.szmc.net/SMARTC/upload/file/20240619/1718790831457082212.pdf) |
-| 11号线北延深圳段 | 待制作 | 0 | — | — | [深圳32号线环评中的五期已批准项目清单](https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf) |
+| 10号线东延深圳段 | 可玩建设章 | 1 | 2 | corridor_only | [深圳市城市轨道交通第五期建设规划：10号线东延深圳段](https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html) |
+| 11号线北延深圳段 | 可玩建设章 | 1 | 1 | corridor_only | [深圳市城市轨道交通第五期建设规划：示意图及项目表](https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html) |
 
 ## 成都
 
@@ -79,9 +79,9 @@
 
 ## 合计
 
-- 可玩建设章：41
+- 可玩建设章：43
 - 政策条目：2
 - 工程条目：2
-- 待制作：3
+- 待制作：1
 
 走廊复现章（`corridor_only`）只表示按官方公开资料可核对的端点／换乘站与走廊，未公开的逐站站位不虚构坐标；判定依据见各章 `precisionNote`。

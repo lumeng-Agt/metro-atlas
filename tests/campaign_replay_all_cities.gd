@@ -98,7 +98,7 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 		if backfill:print("REPLAY_BACKFILL_SCOPE_ONLY ",city," ",id," later saved construction retained; not a fresh period-exclusive check")
 		official_errors.append_array(OfficialNetworkAudit.historical_chapter_errors(app.world,id,backfill))
 	if str(chapter.get("chapterScope",""))=="cutoff_reconciliation":
-		var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(OfficialNetworkAudit.TARGET_PATH))
+		var targets:Dictionary=OfficialNetworkAudit.target_data()
 		if not targets.get("cities",{}).get(city,{}).get("cutoffNetwork",{}).is_empty():official_errors.append_array(OfficialNetworkAudit.cutoff_errors(app.world))
 	if not official_errors.is_empty():return _fail(city,id,"official_target",JSON.stringify(official_errors))
 	if not _checkpoint(city,id,"milestone"):return false
@@ -108,6 +108,7 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():push_error("isolated --data-dir required");quit(2);return
 	WorldData.load_assets()
+	print("REPLAY_OFFICIAL_TARGET_SHA256 ",OfficialNetworkAudit.target_snapshot_sha256())
 	var catalog_errors:=Catalog.validate_catalog(WorldData.cities())
 	catalog_errors.append_array(Catalog.validate_network_baseline(WorldData.cities()))
 	if not catalog_errors.is_empty():

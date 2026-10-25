@@ -2,6 +2,23 @@ class_name OfficialNetworkAudit
 extends RefCounted
 
 const TARGET_PATH="res://data/official_targets_2026-10-01.json"
+const Engineering=preload("res://scripts/engineering_construction.gd")
+static var _target_snapshot:Dictionary={}
+static var _target_snapshot_sha256:=""
+
+## Freeze one published content package for this session. A long replay must
+## not compare its cached chapter data with a newer answer edited mid-run.
+static func target_data() -> Dictionary:
+	if _target_snapshot.is_empty():
+		var source:=FileAccess.get_file_as_string(TARGET_PATH)
+		var parsed:Variant=JSON.parse_string(source)
+		if parsed is Dictionary:_target_snapshot=parsed
+		_target_snapshot_sha256=source.sha256_text()
+	return _target_snapshot
+
+static func target_snapshot_sha256() -> String:
+	target_data()
+	return _target_snapshot_sha256
 
 ## Reads independent official station orders, then checks the built world.
 ## It never reads chapter groups to generate the expected answer.
@@ -13,6 +30,12 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 	requirements.append_array(project.get("existingScopes",[]))
 	requirements.append_array(project.get("closedScopes",[]))
 	for expected in requirements:
+		if str(expected.get("scopeType",""))=="engineering":
+			var definition:Dictionary=expected.duplicate(true)
+			definition["source"]=str(project.get("source",""))
+			var checked:=Engineering.evaluate(world,definition,path_index)
+			for issue in checked.issues:errors.append("%s: %s"%[str(expected.id),str(issue.get("text","工程未接通"))])
+			continue
 		var required_status:=str(expected.get("requiredServiceStatus",""))
 		var construction_only:=bool(project.get("constructionOnly",false)) and not bool(expected.get("requireServiceOpen",false))
 		var wanted:Array=expected.get("stationNames",[]).duplicate()
@@ -84,7 +107,7 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 	return errors
 
 static func current_project_errors(world:Dictionary,project_ids:Array) -> Array[String]:
-	var targets:Variant=JSON.parse_string(FileAccess.get_file_as_string(TARGET_PATH))
+	var targets:Dictionary=target_data()
 	var errors:Array[String]=[]
 	for project in targets.get("cities",{}).get(str(world.cityId),{}).get("projects",[]):
 		if project_ids.has(str(project.id)):errors.append_array(project_errors(world,project))
@@ -93,7 +116,7 @@ static func current_project_errors(world:Dictionary,project_ids:Array) -> Array[
 ## Check the real committed path at each independently documented opening,
 ## including extra future stops on a line whose period is already reviewed.
 static func historical_chapter_errors(world:Dictionary,chapter_id:String,scope_only_for_backfill:bool=false) -> Array[String]:
-	var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(TARGET_PATH))
+	var targets:Dictionary=target_data()
 	var milestones:Array=targets.get("cities",{}).get(str(world.cityId),{}).get("historicalMilestones",[])
 	var current:Dictionary={}
 	for milestone in milestones:
@@ -139,7 +162,7 @@ static func permitted_historical_stops(milestones:Array,date:String) -> Dictiona
 	return permitted
 
 static func cutoff_errors(world:Dictionary) -> Array[String]:
-	var targets:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(TARGET_PATH))
+	var targets:Dictionary=target_data()
 	var city:Dictionary=targets.get("cities",{}).get(str(world.cityId),{})
 	var network:Dictionary=city.get("cutoffNetwork",{})
 	if network.is_empty():return ["independent cutoff network not yet available"]

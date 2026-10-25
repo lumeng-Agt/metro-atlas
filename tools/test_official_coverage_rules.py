@@ -2,6 +2,7 @@
 import copy
 import unittest
 from official_coverage import ROOT, read, check_project, cutoff_evidence_errors
+from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
@@ -9,6 +10,59 @@ class CoverageRules(unittest.TestCase):
         self.target = dict(id='fixture', reviewStatus='verified', source='https://example.invalid/fixture', sourcePublicationDate='2026-01-01', groups=[dict(id='line', stationNames=['A', 'B', 'C'], loop=True)])
         self.plans = [dict(projectIds=['fixture'], lineGroups=[dict(historicalLineId='line', stationIds=['a', 'b', 'c'], loop=True)])]
         self.names = dict(a='A', b='B', c='C')
+
+    def engineering_fixture(self):
+        return dict(taskKind='engineering_track', source='https://example.invalid/engineering-fixture', stationIds=['existing'],
+                    engineeringEndpoints=[dict(id='anchor', name='Existing station end', stationId='existing', stationInstanceId='existing-body'),
+                                          dict(id='boundary', name='Boundary, not a station', latlng=[22.8, 113.8], toleranceM=40)],
+                    engineeringSegments=[dict(fromId='anchor', toId='boundary', points=[[22.79, 113.8], [22.8, 113.8]], corridorToleranceM=80)])
+
+    def test_engineering_scope_needs_no_invented_passenger_stop(self):
+        expected = self.engineering_fixture()
+        self.assertEqual(engineering_errors(copy.deepcopy(expected), expected), [])
+
+    def test_engineering_interfaces_cannot_be_replaced_by_passenger_stops(self):
+        expected = self.engineering_fixture(); actual = copy.deepcopy(expected)
+        actual['stationIds'].append('fake-boundary-station')
+        self.assertTrue(engineering_errors(actual, expected))
+
+    def test_engineering_scope_cannot_omit_physical_track(self):
+        expected = self.engineering_fixture(); actual = copy.deepcopy(expected)
+        actual['engineeringSegments'] = []
+        self.assertTrue(engineering_errors(actual, expected))
+
+    def test_engineering_scope_cannot_widen_tolerance_to_pass(self):
+        expected = self.engineering_fixture()
+        for section, key in [('engineeringEndpoints', 'toleranceM'), ('engineeringSegments', 'corridorToleranceM')]:
+            actual = copy.deepcopy(expected); actual[section][-1][key] = 100000
+            self.assertTrue(engineering_errors(actual, expected))
+
+    def test_engineering_scope_cannot_add_or_remove_a_real_station_body(self):
+        expected = self.engineering_fixture(); actual = copy.deepcopy(expected)
+        actual['newStationIds'] = ['existing']
+        self.assertTrue(engineering_errors(actual, expected))
+
+    def test_engineering_scope_rejects_nonfinite_tolerances(self):
+        expected = self.engineering_fixture()
+        for value in [float('nan'), float('inf'), True, '100']:
+            actual = copy.deepcopy(expected); actual['engineeringSegments'][0]['corridorToleranceM'] = value
+            self.assertTrue(engineering_errors(actual, expected))
+
+    def test_engineering_scope_rejects_duplicate_or_nonfinite_geometry(self):
+        expected = self.engineering_fixture()
+        actual = copy.deepcopy(expected); actual['engineeringEndpoints'].append(copy.deepcopy(actual['engineeringEndpoints'][0]))
+        self.assertTrue(engineering_errors(actual, expected))
+        actual = copy.deepcopy(expected); actual['engineeringSegments'][0]['points'][0] = [float('nan'), 113.8]
+        self.assertTrue(engineering_errors(actual, expected))
+
+    def test_engineering_coverage_uses_the_independent_definition(self):
+        expected = self.engineering_fixture(); expected.update(id='line', scopeType='engineering')
+        self.target['groups'] = [expected]
+        actual = copy.deepcopy(expected); actual['coverageGroupId'] = 'line'
+        self.plans[0]['lineGroups'] = [actual]
+        self.assertEqual(check_project(self.target, self.plans, self.names), [])
+        actual['engineeringSegments'][0]['points'][-1][0] += 0.01
+        self.assertTrue(check_project(self.target, self.plans, self.names))
 
     def test_full_fixture_passes(self):
         self.assertEqual(check_project(self.target, self.plans, self.names), [])

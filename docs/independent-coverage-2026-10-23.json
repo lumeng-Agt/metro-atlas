@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.25.1",
+  "contentRevision": "2026.10.25.9",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -10,8 +10,7 @@
         "historyReviewStatus: independent review incomplete",
         "cutoff opening status not independently reviewed",
         "dated cutoff opening evidence missing",
-        "sz-line10-east-shenzhen: independent project requirements missing",
-        "sz-line11-north-shenzhen: independent project requirements missing"
+        "sz-line10-east-shenzhen: independent transfer coverage incomplete"
       ],
       "projects": [
         {
@@ -63,6 +62,18 @@
           "id": "sz-line19-phase1",
           "ok": true,
           "errors": []
+        },
+        {
+          "id": "sz-line11-north-shenzhen",
+          "ok": true,
+          "errors": []
+        },
+        {
+          "id": "sz-line10-east-shenzhen",
+          "ok": false,
+          "errors": [
+            "independent transfer coverage incomplete"
+          ]
         }
       ]
     },

@@ -1053,6 +1053,182 @@
             "future-transfer-sz19-pingshanzhongxin-14"
           ],
           "constructionOnly": true
+        },
+        {
+          "id": "sz-line11-north-shenzhen",
+          "reviewStatus": "verified",
+          "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+          "sourcePublicationDate": "2026-04",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+          "constructionOnly": true,
+          "evidenceNote": "独立录入官方图项目表第2行：11号线北延碧头—深莞边界，0.8公里地下线。现状碧头站体为接头，图中深圳段未设新增站点；不将界外延伸或工程接口伪装成车站。坐标仅按许可地理数据参考沿北向走廊，不代表工程测绘。",
+          "groups": [
+            {
+              "id": "sz11-north-engineering",
+              "scopeType": "engineering",
+              "taskKind": "engineering_track",
+              "stationIds": [
+                "shenzhen-s202"
+              ],
+              "engineeringEndpoints": [
+                {
+                  "id": "sz11-bitou-existing",
+                  "name": "碧头既有北端",
+                  "stationId": "shenzhen-s202",
+                  "stationInstanceId": "shenzhen-s202__line11-12",
+                  "side": "outward"
+                },
+                {
+                  "id": "sz11-shenzhen-dongguan-boundary",
+                  "name": "深莞边界工程接口（非车站）",
+                  "latlng": [
+                    22.795032,
+                    113.81495
+                  ],
+                  "toleranceM": 100,
+                  "depthM": -15
+                }
+              ],
+              "engineeringSegments": [
+                {
+                  "fromId": "sz11-bitou-existing",
+                  "toId": "sz11-shenzhen-dongguan-boundary",
+                  "points": [
+                    [
+                      22.7862305,
+                      113.8150171
+                    ],
+                    [
+                      22.7879279,
+                      113.8150279
+                    ],
+                    [
+                      22.7889943,
+                      113.8148981
+                    ],
+                    [
+                      22.7912198,
+                      113.8148696
+                    ],
+                    [
+                      22.795032,
+                      113.81495
+                    ]
+                  ],
+                  "corridorToleranceM": 120
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sz-line10-east-shenzhen",
+          "reviewStatus": "verified",
+          "transferReviewStatus": "pending",
+          "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+          "sourcePublicationDate": "2026-04",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceImage": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+          "additionalSources": [
+            "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html"
+          ],
+          "constructionOnly": true,
+          "evidenceNote": "五期规划图项目表第1行2.9公里深圳段；图中两端分离，中间东莞段未作为本期建设。2019政府说明仅佐证终点对接16号线，不以其9.8公里旧全线方案替代2026深圳段。黄阁坑独立站体1座，界外无新增乘客站。预留16号线关系尚待专门规划联系状态，不能计为有效运营换乘。",
+          "groups": [
+            {
+              "id": "sz10-east-engineering",
+              "scopeType": "engineering",
+              "taskKind": "engineering_track",
+              "stationIds": [
+                "shenzhen-s289",
+                "shenzhen-s379"
+              ],
+              "newStationIds": [
+                "shenzhen-s379"
+              ],
+              "engineeringEndpoints": [
+                {
+                  "id": "sz10-shuangyong-existing",
+                  "name": "双拥街既有端",
+                  "stationId": "shenzhen-s289",
+                  "stationInstanceId": "shenzhen-s289",
+                  "side": "outward"
+                },
+                {
+                  "id": "sz10-west-boundary",
+                  "name": "平湖侧深莞边界接口（非车站）",
+                  "latlng": [
+                    22.7090465,
+                    114.140775
+                  ],
+                  "toleranceM": 100,
+                  "depthM": -15
+                },
+                {
+                  "id": "sz10-east-boundary",
+                  "name": "龙岗侧深莞边界接口（非车站）",
+                  "latlng": [
+                    22.7218649,
+                    114.2043542
+                  ],
+                  "toleranceM": 100,
+                  "depthM": -15
+                },
+                {
+                  "id": "sz10-huanggekeng-new-body",
+                  "name": "黄阁坑10号线站体",
+                  "stationId": "shenzhen-s379",
+                  "stationInstanceId": "shenzhen-s379__line10-11",
+                  "side": "outward"
+                }
+              ],
+              "engineeringSegments": [
+                {
+                  "fromId": "sz10-shuangyong-existing",
+                  "toId": "sz10-west-boundary",
+                  "points": [
+                    [
+                      22.7011507,
+                      114.1277233
+                    ],
+                    [
+                      22.703,
+                      114.1298
+                    ],
+                    [
+                      22.706,
+                      114.1358
+                    ],
+                    [
+                      22.7090465,
+                      114.140775
+                    ]
+                  ],
+                  "corridorToleranceM": 180
+                },
+                {
+                  "fromId": "sz10-east-boundary",
+                  "toId": "sz10-huanggekeng-new-body",
+                  "points": [
+                    [
+                      22.7218649,
+                      114.2043542
+                    ],
+                    [
+                      22.7219,
+                      114.2082
+                    ],
+                    [
+                      22.7220585,
+                      114.2132827
+                    ]
+                  ],
+                  "corridorToleranceM": 180
+                }
+              ]
+            }
+          ]
         }
       ],
       "cutoffNetwork": {
@@ -4606,7 +4782,90 @@
               ],
               "allowReverse": true,
               "fullServiceOrder": true
+            },
+            {
+              "id": "route:beijing-r19",
+              "historicalLineId": "beijing-line19-19",
+              "scopeType": "stations",
+              "stationNames": [
+                "牡丹园",
+                "积水潭",
+                "牛街",
+                "草桥",
+                "新发地",
+                "新宫"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
+            },
+            {
+              "id": "route:beijing-r20",
+              "historicalLineId": "beijing-route-20",
+              "scopeType": "stations",
+              "stationNames": [
+                "昌平西山口",
+                "十三陵景区",
+                "昌平",
+                "昌平东关",
+                "北邵洼",
+                "南邵",
+                "沙河高教园",
+                "沙河",
+                "巩华城",
+                "朱辛庄",
+                "生命科学园",
+                "西二旗",
+                "清河"
+              ],
+              "constructionStationNames": [
+                "西二旗",
+                "清河"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true,
+              "requiredServiceStatus": "trial"
+            },
+            {
+              "id": "route:beijing-r11",
+              "historicalLineId": "beijing-line11-11",
+              "scopeType": "stations",
+              "stationNames": [
+                "金安桥",
+                "北辛安",
+                "新首钢"
+              ],
+              "constructionStationNames": [
+                "金安桥",
+                "北辛安",
+                "新首钢"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
             }
+          ],
+          "additionalSources": [
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220103_2581472.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=16",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=18",
+            "https://www.bjmoa.cn/metroLineList.html?sline=10"
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s371-line21-line19-19",
+            "historic-transfer-beijing-s70-line1-line19-19",
+            "historic-transfer-beijing-xingong-4-19",
+            "historic-transfer-beijing-s92-line13-13-line8-8",
+            "historic-transfer-beijing-s152-line20-line8-8",
+            "historic-transfer-beijing-s96-line13-13-line20",
+            "historic-transfer-beijing-s127-line10-10-line8-8",
+            "historic-transfer-beijing-s141-line10-10-line8-8",
+            "historic-transfer-beijing-s153-line10-10-line14-14",
+            "historic-transfer-beijing-s164-line10-10-line14-14",
+            "historic-transfer-beijing-s174-line10-10-line23",
+            "historic-transfer-beijing-s164-line10-10-line17-17",
+            "historic-transfer-beijing-s178-line10-10-line19-19"
           ]
         },
         {
@@ -4632,7 +4891,33 @@
               ],
               "allowReverse": true,
               "fullServiceOrder": false
+            },
+            {
+              "id": "opening:bj11-modekou",
+              "historicalLineId": "beijing-line11-11",
+              "scopeType": "stations",
+              "stationNames": [
+                "模式口",
+                "金安桥",
+                "北辛安",
+                "新首钢"
+              ],
+              "constructionStationNames": [
+                "模式口",
+                "金安桥"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
             }
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s182-line10-10-line16-16",
+            "historic-transfer-beijing-s175-line10-10-line17-17"
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=10"
           ]
         },
         {
@@ -4699,7 +4984,10 @@
             "historic-transfer-beijing-s149-line8-8-line18-18",
             "historic-transfer-bj18-malianwa-16",
             "historic-transfer-bj18-tiantongyuan-5",
-            "historic-transfer-bj18-tiantongyuandong-17"
+            "historic-transfer-bj18-tiantongyuandong-17",
+            "historic-transfer-beijing-s170-line10-10-line6-6",
+            "historic-transfer-beijing-s187-line10-10-line6-6",
+            "historic-transfer-beijing-s344-line11-11-line6-6"
           ]
         },
         {
@@ -4737,6 +5025,9 @@
               "allowReverse": true,
               "fullServiceOrder": true
             }
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s89-line13-13-line17-17"
           ]
         },
         {
@@ -4802,9 +5093,41 @@
               ],
               "fullServiceOrder": true,
               "allowReverse": true
+            },
+            {
+              "id": "opening:bj-changping-first",
+              "historicalLineId": "beijing-route-20",
+              "scopeType": "stations",
+              "stationNames": [
+                "南邵",
+                "沙河高教园",
+                "沙河",
+                "巩华城",
+                "朱辛庄",
+                "生命科学园",
+                "西二旗"
+              ],
+              "constructionStationNames": [
+                "南邵",
+                "沙河高教园",
+                "沙河",
+                "巩华城",
+                "朱辛庄",
+                "生命科学园",
+                "西二旗"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true,
+              "requiredServiceStatus": "trial"
             }
           ],
-          "transfers": []
+          "transfers": [
+            "historic-transfer-beijing-s95-line13-13-line20"
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=18"
+          ]
         },
         {
           "chapterId": "beijing-network-milestone-2017-12-30",
@@ -4832,8 +5155,667 @@
             }
           ],
           "transfers": [
-            "historic-transfer-beijing-yanfang-fangshan"
+            "historic-transfer-beijing-yanfang-fangshan",
+            "historic-transfer-beijing-s156-line10-10-line22"
           ]
+        },
+        {
+          "chapterId": "beijing-line19-infill-2022",
+          "date": "2022-07-30",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
+          "sourcePublicationDate": "2022-07-29",
+          "groups": [
+            {
+              "id": "opening:bj19-infill",
+              "historicalLineId": "beijing-line19-19",
+              "scopeType": "stations",
+              "stationNames": [
+                "牡丹园",
+                "北太平庄",
+                "积水潭",
+                "平安里",
+                "太平桥",
+                "牛街",
+                "景风门",
+                "草桥",
+                "新发地",
+                "新宫"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=16"
+          ],
+          "transfers": []
+        },
+        {
+          "chapterId": "beijing-changping-north-2015",
+          "date": "2015-12-26",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
+          "sourcePublicationDate": "2015-12-28",
+          "groups": [
+            {
+              "id": "opening:bj-changping-north",
+              "historicalLineId": "beijing-route-20",
+              "scopeType": "stations",
+              "stationNames": [
+                "昌平西山口",
+                "十三陵景区",
+                "昌平",
+                "昌平东关",
+                "北邵洼",
+                "南邵",
+                "沙河高教园",
+                "沙河",
+                "巩华城",
+                "朱辛庄",
+                "生命科学园",
+                "西二旗"
+              ],
+              "constructionStationNames": [
+                "昌平西山口",
+                "十三陵景区",
+                "昌平",
+                "昌平东关",
+                "北邵洼",
+                "南邵"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=18"
+          ],
+          "transfers": []
+        },
+        {
+          "chapterId": "beijing-changping-south-2023",
+          "date": "2023-02-04",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+          "sourcePublicationDate": "2023-02-02",
+          "groups": [
+            {
+              "id": "opening:bj-changping-south",
+              "historicalLineId": "beijing-route-20",
+              "scopeType": "stations",
+              "stationNames": [
+                "昌平西山口",
+                "十三陵景区",
+                "昌平",
+                "昌平东关",
+                "北邵洼",
+                "南邵",
+                "沙河高教园",
+                "沙河",
+                "巩华城",
+                "朱辛庄",
+                "生命科学园",
+                "西二旗",
+                "清河",
+                "清河小营桥",
+                "学知园",
+                "六道口",
+                "学院桥",
+                "西土城"
+              ],
+              "constructionStationNames": [
+                "清河",
+                "清河小营桥",
+                "学知园",
+                "六道口",
+                "学院桥",
+                "西土城"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=18"
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s2-line20-line15-15",
+            "historic-transfer-beijing-s179-line10-10-line20"
+          ]
+        },
+        {
+          "chapterId": "beijing-network-milestone-2024-12-15",
+          "date": "2024-12-15",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+          "sourcePublicationDate": "2024-12-15",
+          "groups": [
+            {
+              "id": "opening:bj-changping-infill",
+              "historicalLineId": "beijing-route-20",
+              "scopeType": "stations",
+              "stationNames": [
+                "昌平西山口",
+                "十三陵景区",
+                "昌平",
+                "昌平东关",
+                "北邵洼",
+                "南邵",
+                "沙河高教园",
+                "沙河",
+                "巩华城",
+                "朱辛庄",
+                "生命科学园",
+                "西二旗",
+                "清河",
+                "朱房北",
+                "清河小营桥",
+                "学知园",
+                "六道口",
+                "学院桥",
+                "西土城",
+                "蓟门桥"
+              ],
+              "constructionStationNames": [
+                "昌平西山口",
+                "十三陵景区",
+                "昌平",
+                "昌平东关",
+                "北邵洼",
+                "南邵",
+                "沙河高教园",
+                "沙河",
+                "巩华城",
+                "朱辛庄",
+                "生命科学园",
+                "西二旗",
+                "清河",
+                "朱房北",
+                "清河小营桥",
+                "学知园",
+                "六道口",
+                "学院桥",
+                "西土城",
+                "蓟门桥"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=18"
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s100-line13-13-line12-12",
+            "historic-transfer-beijing-s87-line13-13-line12-12",
+            "historic-transfer-beijing-s253-line20-line12-12",
+            "historic-transfer-beijing-s171-line10-10-line3-3",
+            "historic-transfer-beijing-s174-line10-10-line12-12",
+            "historic-transfer-beijing-s185-line10-10-line12-12"
+          ]
+        },
+        {
+          "chapterId": "beijing-line13-west-2002",
+          "date": "2002-09-28",
+          "source": "https://news.sohu.com/35/91/news203429135.shtml",
+          "sourcePublicationDate": "2002-09-28",
+          "groups": [
+            {
+              "id": "opening:bj13-west",
+              "historicalLineId": "beijing-line13-13",
+              "scopeType": "stations",
+              "stationNames": [
+                "西直门",
+                "大钟寺",
+                "知春路",
+                "五道口",
+                "上地",
+                "西二旗",
+                "龙泽",
+                "回龙观",
+                "霍营"
+              ],
+              "constructionStationNames": [
+                "西直门",
+                "大钟寺",
+                "知春路",
+                "五道口",
+                "上地",
+                "西二旗",
+                "龙泽",
+                "回龙观",
+                "霍营"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://news.sohu.com/35/91/news203429135.shtml",
+            "https://www.bjmoa.cn/metroLineList.html?sline=11"
+          ],
+          "transfers": []
+        },
+        {
+          "chapterId": "beijing-line13-east-2003",
+          "date": "2003-01-28",
+          "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
+          "sourcePublicationDate": "2016-09-08",
+          "groups": [
+            {
+              "id": "opening:bj13-east",
+              "historicalLineId": "beijing-line13-13",
+              "scopeType": "stations",
+              "stationNames": [
+                "西直门",
+                "大钟寺",
+                "知春路",
+                "五道口",
+                "上地",
+                "西二旗",
+                "龙泽",
+                "回龙观",
+                "霍营",
+                "立水桥",
+                "北苑",
+                "望京西",
+                "芍药居",
+                "光熙门",
+                "柳芳",
+                "东直门"
+              ],
+              "constructionStationNames": [
+                "霍营",
+                "立水桥",
+                "北苑",
+                "望京西",
+                "芍药居",
+                "光熙门",
+                "柳芳",
+                "东直门"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=11"
+          ],
+          "transfers": []
+        },
+        {
+          "chapterId": "beijing-network-milestone-2019-07-26",
+          "date": "2019-12-30",
+          "source": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
+          "sourcePublicationDate": "2025-08-20",
+          "groups": [
+            {
+              "id": "route:beijing-r13",
+              "historicalLineId": "beijing-line13-13",
+              "scopeType": "stations",
+              "stationNames": [
+                "西直门",
+                "大钟寺",
+                "知春路",
+                "五道口",
+                "上地",
+                "清河站",
+                "西二旗",
+                "龙泽",
+                "回龙观",
+                "霍营",
+                "立水桥",
+                "北苑",
+                "望京西",
+                "芍药居",
+                "光熙门",
+                "柳芳",
+                "东直门"
+              ],
+              "constructionStationNames": [
+                "西直门",
+                "大钟寺",
+                "知春路",
+                "五道口",
+                "上地",
+                "清河站",
+                "西二旗",
+                "龙泽",
+                "回龙观",
+                "霍营",
+                "立水桥",
+                "北苑",
+                "望京西",
+                "芍药居",
+                "光熙门",
+                "柳芳",
+                "东直门"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=11"
+          ],
+          "transfers": []
+        },
+        {
+          "chapterId": "beijing-line10-first-2008",
+          "date": "2008-07-19",
+          "source": "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
+          "sourcePublicationDate": "2008-07-28",
+          "groups": [
+            {
+              "id": "opening:bj10-first",
+              "historicalLineId": "beijing-line10-10",
+              "scopeType": "stations",
+              "stationNames": [
+                "巴沟",
+                "苏州街",
+                "海淀黄庄",
+                "知春里",
+                "知春路",
+                "西土城",
+                "牡丹园",
+                "健德门",
+                "北土城",
+                "安贞门",
+                "惠新西街南口",
+                "芍药居",
+                "太阳宫",
+                "三元桥",
+                "亮马桥",
+                "农业展览馆",
+                "团结湖",
+                "呼家楼",
+                "金台夕照",
+                "国贸",
+                "双井",
+                "劲松"
+              ],
+              "constructionStationNames": [
+                "巴沟",
+                "苏州街",
+                "海淀黄庄",
+                "知春里",
+                "知春路",
+                "西土城",
+                "牡丹园",
+                "健德门",
+                "北土城",
+                "安贞门",
+                "惠新西街南口",
+                "芍药居",
+                "太阳宫",
+                "三元桥",
+                "亮马桥",
+                "农业展览馆",
+                "团结湖",
+                "呼家楼",
+                "金台夕照",
+                "国贸",
+                "双井",
+                "劲松"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=9",
+            "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240117/4298740.html"
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s108-line5-5-line10-10",
+            "historic-transfer-beijing-s88-line10-10-line13-13",
+            "historic-transfer-beijing-s99-line10-10-line13-13"
+          ]
+        },
+        {
+          "chapterId": "beijing-network-milestone-2012-12-30",
+          "date": "2012-12-30",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201211/t20121122_337170.html",
+          "sourcePublicationDate": "2012-11-22",
+          "groups": [
+            {
+              "id": "opening:bj10-c",
+              "historicalLineId": "beijing-line10-10",
+              "scopeType": "stations",
+              "stationNames": [
+                "西局",
+                "六里桥",
+                "莲花桥",
+                "公主坟",
+                "西钓鱼台",
+                "慈寿寺",
+                "车道沟",
+                "长春桥",
+                "火器营",
+                "巴沟",
+                "苏州街",
+                "海淀黄庄",
+                "知春里",
+                "知春路",
+                "西土城",
+                "牡丹园",
+                "健德门",
+                "北土城",
+                "安贞门",
+                "惠新西街南口",
+                "芍药居",
+                "太阳宫",
+                "三元桥",
+                "亮马桥",
+                "农业展览馆",
+                "团结湖",
+                "呼家楼",
+                "金台夕照",
+                "国贸",
+                "双井",
+                "劲松",
+                "潘家园",
+                "十里河",
+                "分钟寺",
+                "成寿寺",
+                "宋家庄",
+                "石榴庄",
+                "大红门",
+                "角门西",
+                "草桥",
+                "纪家庙",
+                "首经贸"
+              ],
+              "constructionStationNames": [
+                "西局",
+                "六里桥",
+                "莲花桥",
+                "公主坟",
+                "西钓鱼台",
+                "慈寿寺",
+                "车道沟",
+                "长春桥",
+                "火器营",
+                "巴沟",
+                "苏州街",
+                "海淀黄庄",
+                "知春里",
+                "知春路",
+                "西土城",
+                "牡丹园",
+                "健德门",
+                "北土城",
+                "安贞门",
+                "惠新西街南口",
+                "芍药居",
+                "太阳宫",
+                "三元桥",
+                "亮马桥",
+                "农业展览馆",
+                "团结湖",
+                "呼家楼",
+                "金台夕照",
+                "国贸",
+                "双井",
+                "劲松",
+                "潘家园",
+                "十里河",
+                "分钟寺",
+                "成寿寺",
+                "宋家庄",
+                "石榴庄",
+                "大红门",
+                "角门西",
+                "草桥",
+                "纪家庙",
+                "首经贸"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial"
+            }
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/dtxx/201211/t20121122_337170.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=9",
+            "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240117/4298740.html"
+          ],
+          "transfers": [
+            "historic-transfer-beijing-s119-line24-line10-10",
+            "historic-transfer-beijing-s119-line5-5-line10-10",
+            "historic-transfer-beijing-s159-line4-4-line10-10",
+            "historic-transfer-beijing-s190-line9-9-line10-10",
+            "historic-transfer-beijing-s60-line10-10-line0"
+          ]
+        },
+        {
+          "chapterId": "beijing-network-milestone-2013-05-05",
+          "date": "2013-05-05",
+          "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
+          "sourcePublicationDate": "2013-06-24",
+          "groups": [
+            {
+              "id": "route:beijing-r10",
+              "historicalLineId": "beijing-line10-10",
+              "scopeType": "stations",
+              "stationNames": [
+                "巴沟",
+                "苏州街",
+                "海淀黄庄",
+                "知春里",
+                "知春路",
+                "西土城",
+                "牡丹园",
+                "健德门",
+                "北土城",
+                "安贞门",
+                "惠新西街南口",
+                "芍药居",
+                "太阳宫",
+                "三元桥",
+                "亮马桥",
+                "农业展览馆",
+                "团结湖",
+                "呼家楼",
+                "金台夕照",
+                "国贸",
+                "双井",
+                "劲松",
+                "潘家园",
+                "十里河",
+                "分钟寺",
+                "成寿寺",
+                "宋家庄",
+                "石榴庄",
+                "大红门",
+                "角门东",
+                "角门西",
+                "草桥",
+                "纪家庙",
+                "首经贸",
+                "丰台站",
+                "泥洼",
+                "西局",
+                "六里桥",
+                "莲花桥",
+                "公主坟",
+                "西钓鱼台",
+                "慈寿寺",
+                "车道沟",
+                "长春桥",
+                "火器营"
+              ],
+              "constructionStationNames": [
+                "巴沟",
+                "苏州街",
+                "海淀黄庄",
+                "知春里",
+                "知春路",
+                "西土城",
+                "牡丹园",
+                "健德门",
+                "北土城",
+                "安贞门",
+                "惠新西街南口",
+                "芍药居",
+                "太阳宫",
+                "三元桥",
+                "亮马桥",
+                "农业展览馆",
+                "团结湖",
+                "呼家楼",
+                "金台夕照",
+                "国贸",
+                "双井",
+                "劲松",
+                "潘家园",
+                "十里河",
+                "分钟寺",
+                "成寿寺",
+                "宋家庄",
+                "石榴庄",
+                "大红门",
+                "角门东",
+                "角门西",
+                "草桥",
+                "纪家庙",
+                "首经贸",
+                "丰台站",
+                "泥洼",
+                "西局",
+                "六里桥",
+                "莲花桥",
+                "公主坟",
+                "西钓鱼台",
+                "慈寿寺",
+                "车道沟",
+                "长春桥",
+                "火器营"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true,
+              "requiredServiceStatus": "trial",
+              "loop": true
+            }
+          ],
+          "additionalSources": [
+            "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
+            "https://www.bjmoa.cn/metroLineList.html?sline=9",
+            "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240117/4298740.html"
+          ],
+          "transfers": []
         }
       ],
       "projects": [
@@ -5192,6 +6174,158 @@
             "fullServiceOrder": true,
             "lastPhysicalOpeningDate": "2017-12-30",
             "lastPhysicalOpeningSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html"
+          },
+          {
+            "id": "beijing-line19-19",
+            "historicalLineId": "beijing-line19-19",
+            "scopeType": "stations",
+            "stationNames": [
+              "牡丹园",
+              "北太平庄",
+              "积水潭",
+              "平安里",
+              "太平桥",
+              "牛街",
+              "景风门",
+              "草桥",
+              "新发地",
+              "新宫"
+            ],
+            "allowReverse": true,
+            "fullServiceOrder": true,
+            "lastPhysicalOpeningDate": "2022-07-30",
+            "lastPhysicalOpeningSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html"
+          },
+          {
+            "id": "beijing-route-20",
+            "historicalLineId": "beijing-route-20",
+            "scopeType": "stations",
+            "stationNames": [
+              "昌平西山口",
+              "十三陵景区",
+              "昌平",
+              "昌平东关",
+              "北邵洼",
+              "南邵",
+              "沙河高教园",
+              "沙河",
+              "巩华城",
+              "朱辛庄",
+              "生命科学园",
+              "西二旗",
+              "清河",
+              "朱房北",
+              "清河小营桥",
+              "学知园",
+              "六道口",
+              "学院桥",
+              "西土城",
+              "蓟门桥"
+            ],
+            "allowReverse": true,
+            "fullServiceOrder": true,
+            "lastPhysicalOpeningDate": "2024-12-15",
+            "lastPhysicalOpeningSource": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html"
+          },
+          {
+            "id": "beijing-line13-13",
+            "historicalLineId": "beijing-line13-13",
+            "scopeType": "stations",
+            "stationNames": [
+              "西直门",
+              "大钟寺",
+              "知春路",
+              "五道口",
+              "上地",
+              "清河站",
+              "西二旗",
+              "龙泽",
+              "回龙观",
+              "霍营",
+              "立水桥",
+              "北苑",
+              "望京西",
+              "芍药居",
+              "光熙门",
+              "柳芳",
+              "东直门"
+            ],
+            "allowReverse": true,
+            "fullServiceOrder": true,
+            "lastPhysicalOpeningDate": "2019-12-30",
+            "lastPhysicalOpeningSource": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html"
+          },
+          {
+            "id": "beijing-line10-10",
+            "historicalLineId": "beijing-line10-10",
+            "scopeType": "stations",
+            "stationNames": [
+              "巴沟",
+              "苏州街",
+              "海淀黄庄",
+              "知春里",
+              "知春路",
+              "西土城",
+              "牡丹园",
+              "健德门",
+              "北土城",
+              "安贞门",
+              "惠新西街南口",
+              "芍药居",
+              "太阳宫",
+              "三元桥",
+              "亮马桥",
+              "农业展览馆",
+              "团结湖",
+              "呼家楼",
+              "金台夕照",
+              "国贸",
+              "双井",
+              "劲松",
+              "潘家园",
+              "十里河",
+              "分钟寺",
+              "成寿寺",
+              "宋家庄",
+              "石榴庄",
+              "大红门",
+              "角门东",
+              "角门西",
+              "草桥",
+              "纪家庙",
+              "首经贸",
+              "丰台站",
+              "泥洼",
+              "西局",
+              "六里桥",
+              "莲花桥",
+              "公主坟",
+              "西钓鱼台",
+              "慈寿寺",
+              "车道沟",
+              "长春桥",
+              "火器营"
+            ],
+            "allowReverse": true,
+            "fullServiceOrder": true,
+            "lastPhysicalOpeningDate": "2013-05-05",
+            "lastPhysicalOpeningSource": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
+            "loop": true
+          },
+          {
+            "id": "beijing-line11-11",
+            "historicalLineId": "beijing-line11-11",
+            "scopeType": "stations",
+            "stationNames": [
+              "模式口",
+              "金安桥",
+              "北辛安",
+              "新首钢"
+            ],
+            "allowReverse": true,
+            "fullServiceOrder": true,
+            "lastPhysicalOpeningDate": "2023-12-30",
+            "lastPhysicalOpeningSource": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html"
           }
         ],
         "temporalEvidence": [

@@ -623,6 +623,11 @@ func _draw_campaign_corridors() -> void:
 
 func _draw_campaign_targets() -> void:
 	if not bool(campaign_blueprint.get("visible", false)): return
+	for marker in campaign_blueprint.get("engineeringMarkers",[]):
+		var point:=_to_screen(marker.latlng)
+		if not Rect2(Vector2(-60,-60),size+Vector2(120,120)).has_point(point):continue
+		draw_rect(Rect2(point-Vector2(6,6),Vector2(12,12)),Color("#8a929c"),false,2.0)
+		_draw_label(point+Vector2(11,-7),str(marker.name)+" · 轨道接口",Color("#42515c"),get_theme_default_font(),15,true)
 	for target in campaign_blueprint.get("stations", []):
 		var latlng: Array = target.get("latlng", [])
 		if latlng.size() < 2: continue

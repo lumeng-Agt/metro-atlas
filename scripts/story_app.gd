@@ -5,6 +5,7 @@ const SaveWriter = preload("res://scripts/save_coordinator.gd")
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
 const Story = preload("res://scripts/story_session.gd")
+const Engineering = preload("res://scripts/engineering_construction.gd")
 const Catalog = preload("res://scripts/campaign_system.gd")
 const MapScript = preload("res://scripts/map_view.gd")
 const Rules = preload("res://scripts/story_construction.gd")
@@ -625,6 +626,7 @@ func _left() -> void:
 				var task_confirmed:=str(task_progress.get(task_id,{}).get("status",""))=="confirmed"
 				var task_state:="已确认" if task_confirmed else "站体 %d/%d" % [task_built,task_targets.size()]
 				if task_targets.size()>0 and task_built==task_targets.size():task_state="站体已就位 · 待核对区间"
+				if Engineering.is_group(task_group):task_state="轨道接口工程 · 待检查"
 				if task_confirmed:task_state="已确认"
 				left.add_child(button(("当前 · " if task_id==selected_task else "")+task_name+"  ·  "+task_state,_select_chapter_task.bind(task_id)))
 				if task_id==selected_task and not str(task_group.get("constructionScopeNote","")).is_empty():left.add_child(label(str(task_group.get("constructionScopeNote","")),15))
@@ -644,14 +646,21 @@ func _left() -> void:
 				left.add_child(status_button)
 				if proposal.is_empty():left.add_child(label("先完成该线路的目标站和连续轨道，才能确认历史服务范围。",15))
 		var active_targets:=Story.targets(world,true,_active_task_id())
+		var active_groups:=Story.groups(world,true,_active_task_id())
+		var engineering_only:=not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group))
 		var built:=active_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
-		if not bool(chapter.get("eventOnly",false)):left.add_child(label("当前任务站体 %d / %d" % [built,active_targets.size()],20,true))
+		if engineering_only:
+			var new_station_count:=0
+			for group in active_groups:new_station_count+=group.get("newStationIds",[]).size()
+			left.add_child(label("轨道接口工程 · 本任务不新增车站" if new_station_count==0 else "工程轨道与 %d 座本线新站体"%new_station_count,18,true))
+		elif not bool(chapter.get("eventOnly",false)):left.add_child(label("当前任务站体 %d / %d" % [built,active_targets.size()],20,true))
 		var missing_targets:Array[Dictionary]=active_targets.filter(func(target:Dictionary):return not bool(target.built))
 		if not missing_targets.is_empty():
 			left.add_child(label("尚未建设：",15,true))
 			for missing_target in missing_targets.slice(0,4):
 				left.add_child(label("· %s · %s线站体" % [str(missing_target.get("name","目标站")),str(missing_target.get("historicalLineName",missing_target.get("historicalLineId","本期")))],15))
 			if missing_targets.size()>4:left.add_child(label("另有 %d 座目标站体" % (missing_targets.size()-4),15))
+		elif engineering_only:left.add_child(label("沿本期走廊连接目标站端与工程接口；方形接口不是车站。未纳入本期的界外区间不会自动补齐，完成工程不会生成运营线路。",15))
 		elif not bool(chapter.get("eventOnly",false)):left.add_child(label("目标站体已建齐；还需核对连续轨道、本期站序和线路关系。",15))
 		if bool(chapter.get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):left.add_child(label("原有站轨保留：请点击下方「线路整理」，核对分段记录的贯通站序。",18))
 		var transfer_evaluation:Dictionary=Story.evaluate(world) if not chapter.get("requiredTransfers",[]).is_empty() else {}
@@ -669,10 +678,10 @@ func _left() -> void:
 					for status_line in _transfer_status_lines(transfer,transfer_evaluation):left.add_child(label(status_line,15))
 					left.add_child(label("两侧都显示“已接入本期线路”后，才能建立换乘关系。",15))
 		if not bool(chapter.get("eventOnly",false)):check_button=button("检查本章复现",_check);left.add_child(check_button)
-		if bool(world.storyState.get("learnedTools",false)) and Story.plan_is_final(world):left.add_child(button("连续复现相邻区间",_begin_batch_tracks))
+		if not engineering_only and bool(world.storyState.get("learnedTools",false)) and Story.plan_is_final(world):left.add_child(button("连续复现相邻区间",_begin_batch_tracks))
 		if not bool(chapter.get("eventOnly",false)):
-			left.add_child(button("核对区间走向",_path_picker))
-			if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)):left.add_child(button("预览辅助完成重复建设",_assist))
+			if not engineering_only:left.add_child(button("核对区间走向",_path_picker))
+			if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)):left.add_child(button("预览工程轨道" if engineering_only else "预览辅助完成重复建设",_assist))
 			left.add_child(button("返回本章位置",_locate_chapter))
 		if Tutorial.active(world):
 			left.add_child(button("跳过操作引导",func():Tutorial.skip(world);_mark_dirty();spotlight.clear_focus();_refresh()))
@@ -1515,7 +1524,9 @@ func _repair_legacy_station_binding(issue:Dictionary) -> void:
 	)
 
 func _locate_chapter() -> void:
-	var targets:Array=Story.blueprint(world,false,_active_task_id()).get("stations",[])
+	var blueprint:=Story.blueprint(world,false,_active_task_id())
+	var targets:Array=blueprint.get("stations",[]).duplicate()
+	targets.append_array(blueprint.get("engineeringMarkers",[]))
 	if targets.is_empty() or map_area.size.x<100:return
 	var left_width:=left_panel.size.x+32 if left_panel.visible else 32.0
 	var right_width:=right_panel.size.x+32 if right_panel.visible else 32.0
@@ -1666,11 +1677,13 @@ func _assist_path_matches_ports(path:Dictionary,ports:Array) -> bool:
 	return (str(ports[0]).is_empty() or str(path.edges[0].get("fromNodeId",""))==str(ports[0])) and (str(ports[1]).is_empty() or str(path.edges[-1].get("toNodeId",""))==str(ports[1]))
 
 func _assist_candidate() -> Dictionary:
+	if Story.chapter(world).is_empty() or bool(Story.chapter(world).get("eventOnly",false)):return {"issue":"当前没有建设任务。请先在故事页选择本期建设范围。"}
 	var candidate:=world.duplicate(true);var helper:=Rules.new();helper.world=candidate;helper.active_city_id=str(world.cityId);helper.map_view=map_view
 	for target in Story.targets(candidate,true):
 		if bool(target.built):
 			if bool(target.get("historicalNameRequired",false)):Story.bound_station(candidate,str(target.historicalId),str(target.stationInstanceId),str(target.get("historicalLineId", ""))).name=target.name
 			continue
+		if bool(target.get("engineeringExistingAnchor",false)):return {"issue":"既有接头「%s」缺少对应线路站体。请先修复原线路；本工程不会增建这个车站。"%str(target.name)}
 		var station:={"id":"assist_%s" % str(target.id),"stationInstanceId":str(target.stationInstanceId),"stationComplexId":str(target.stationComplexId),"stationLineId":str(target.historicalLineId),"stationLineName":str(target.get("historicalLineName",target.historicalLineId)),"name":str(target.name),"historicalId":str(target.historicalId),"latlng":target.latlng.duplicate(),"heading":float(target.referenceHeading) if float(target.referenceHeading)>=0 else map_view.blueprint_heading_for(str(target.id)),"lengthM":118.788,"widthM":20.0,"depthM":-15.0,"vehicleId":"B-6","existing":false,"routeIds":[]}
 		_apply_profile(station,Story.profile(candidate,str(target.id)))
 		if helper._station_overlaps_in(station,candidate.stations):return {"issue":"%s 与现有站体冲突，请手动调整。" % str(station.name)}
@@ -1684,6 +1697,11 @@ func _assist_candidate() -> Dictionary:
 	TrackNetwork.ensure_station_nodes(candidate)
 	var path_index:=TrackNetwork.build_path_index(candidate,construction_lat)
 	for group in construction_groups:
+		if Engineering.is_group(group):
+			var engineering_result:=Engineering.add_preview(candidate,group)
+			if not str(engineering_result.get("issue","")).is_empty():return engineering_result
+			path_index=TrackNetwork.build_path_index(candidate,construction_lat)
+			continue
 		var ids:Array=group.get("stationIds",[]);var prior_arrival:="";var first_departure:=""
 		for index in range(ids.size()-1):
 			var a_id:=str(ids[index]);var b_id:=str(ids[index+1]);var a_instance:=Story.station_instance_id(group,a_id);var b_instance:=Story.station_instance_id(group,b_id)
@@ -1722,6 +1740,7 @@ func _assist_candidate() -> Dictionary:
 	var assisted_groups:Array=Story.groups(candidate,true)
 	for group_index in range(assisted_groups.size()):
 		var assisted_group:Dictionary=assisted_groups[group_index]
+		if Engineering.is_group(assisted_group):continue
 		var station_ids:Array=assisted_group.get("stationIds",[])
 		var prior_end:=""
 		for segment_index in range(station_ids.size()-1):
@@ -1752,6 +1771,7 @@ func _assist_candidate() -> Dictionary:
 
 ## The same transaction is used by the visible preview confirmation and replay.
 func _commit_assisted_construction(preview:Dictionary,expected_revision:int) -> Dictionary:
+	if Story.chapter(world).is_empty() or bool(Story.chapter(world).get("eventOnly",false)):return {"ok":false,"error":"当前没有可提交的建设任务，请返回故事页选择。"}
 	if expected_revision!=int(world.revision) or int(preview.get("revision",-1))!=expected_revision:return {"ok":false,"error":"规划已变化，请重新预览辅助建设。"}
 	if str(preview.get("gameId",""))!=str(world.gameId) or str(preview.get("chapterId",""))!=str(Story.chapter(world).get("id","")):return {"ok":false,"error":"草稿不属于当前游戏或章节。"}
 	if not Story.plan_is_final(world):return {"ok":false,"error":"请先采用本期方案。"}

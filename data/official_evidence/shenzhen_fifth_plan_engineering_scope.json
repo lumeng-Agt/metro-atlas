@@ -1,0 +1,34 @@
+{
+  "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+  "image": "https://www.szmc.net/SMARTC/upload/image/20260415/1776243534542009920.jpg",
+  "retrievedAt": "2026-10-25",
+  "imageSha256": "3472e7975f23394db917f595215001f5436837ec77a1f0ac0b1563d5637c4c96",
+  "scopeTableRows": [
+    {
+      "line": "10号线东延",
+      "range": "双拥街—黄阁坑（深圳段）",
+      "lengthKm": 2.9
+    },
+    {
+      "line": "11号线北延",
+      "range": "碧头—深莞边界",
+      "lengthKm": 0.8
+    }
+  ],
+  "geographicReference": {
+    "license": "OpenStreetMap ODbL",
+    "coordinateSystem": "WGS84",
+    "existingBitouNode": 3424984587,
+    "northTrackWay": 979736654,
+    "langbiRoadWay": 724339971,
+    "boundaryRiverWay": 1096796639,
+    "note": "仅用于近似走廊，不把示意图直接投影为精确线位。",
+    "eastExtensionBoundaryWays": [
+      1343377016,
+      1343377017
+    ],
+    "huanggekengStationNode": 10293010303
+  },
+  "boundaryCoordinateNote": "茅洲河行政边界位于北纬22.79503附近；朗碧路北向走廊，界外不铺轨。",
+  "eastExtensionScopeNote": "两个深圳段分别建设；不在未批准的中间东莞段铺轨。黄阁坑10号线独立站体采用现有站区近似，不把16号线站体作为10号线站体。"
+}

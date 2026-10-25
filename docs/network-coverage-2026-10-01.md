@@ -7,9 +7,9 @@
 | 城市 | 官方线路数／口径 | 地图线路条目 | 地图包独立站点 | 章节数 | 有建设目标章节 | 项目资料条目 | 可玩项目章 |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | 上海 | 18 | 18 | 436 | 36 | 35 | 10 | 10 |
-| 北京 | 30 | 25 | 426 | 25 | 22 | 9 | 7 |
+| 北京 | 30 | 25 | 426 | 31 | 28 | 9 | 7 |
 | 广州 | 口径不等同 | 20 | 373 | 26 | 22 | 9 | 9 |
-| 深圳 | 17 | 17 | 364 | 27 | 23 | 13 | 10 |
+| 深圳 | 17 | 17 | 364 | 27 | 23 | 13 | 12 |
 | 成都 | 16 | 16 | 375 | 39 | 32 | 7 | 5 |
 
 ## 截止日线路目录与内容缺口
@@ -111,25 +111,31 @@
 | 1973-04-23—1981-09-15 | 一期工程正式向社会运营 | 已有可玩章节 | 样章目标 一期对社会运营线路 |
 | 1981-09-15—1984-09-20 | 二期工程投入运营 | 已有可玩章节 | — |
 | 1984-09-20—1987-12-28 | 2号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r2；样章目标 2号线 · 本期新增段1、2号线 · 本期新增段2 |
-| 1987-12-28—2007-10-07 | 5号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r5；样章目标 5号线 |
-| 2007-10-07—2009-09-28 | 4号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r4；样章目标 4号线 |
-| 2009-09-28—2010-12-30 | 亦庄线建设阶段 | 已有可玩章节 | 地图关系 beijing-r24, beijing-r4；样章目标 亦庄线、大兴线：公益西桥—天宫院贯通 |
-| 2010-12-30—2012-12-30 | 9号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r9；样章目标 9号线 |
-| 2012-12-30—2013-05-05 | 10号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r10；样章目标 10号线 |
-| 2013-05-05—2017-12-30 | 房山线建设阶段 | 已有可玩章节 | 地图关系 beijing-r22, beijing-r25；样章目标 房山线、燕房线 |
-| 2017-12-30—2019-07-26 | 13号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r13；样章目标 13号线 |
-| 2019-07-26—2019-09-26 | 大兴机场线建设阶段 | 已有可玩章节 | 地图关系 beijing-r21；样章目标 大兴机场线 |
+| 1987-12-28—2002-09-28 | 城市铁路西段：西直门至霍营 | 已有可玩章节 | 地图关系 beijing-r13；样章目标 城市铁路西段：西直门至霍营 |
+| 2002-09-28—2003-01-28 | 城市铁路东西贯通 | 已有可玩章节 | 地图关系 beijing-r13；样章目标 城市铁路东西贯通 |
+| 2003-01-28—2007-10-07 | 5号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r5；样章目标 5号线 |
+| 2007-10-07—2008-07-19 | 10号线一期：巴沟至劲松 | 已有可玩章节 | 地图关系 beijing-r10；样章目标 10号线一期：巴沟至劲松 |
+| 2008-07-19—2009-09-28 | 4号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r4；样章目标 4号线 |
+| 2009-09-28—2010-12-30 | 亦庄线建设阶段 | 已有可玩章节 | 地图关系 beijing-r20, beijing-r24, beijing-r4；样章目标 亦庄线、大兴线：公益西桥—天宫院贯通、昌平线一期七站试运营 |
+| 2010-12-30—2012-12-30 | 9号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r10, beijing-r9；样章目标 9号线、10号线二期先行段：大C形运行 |
+| 2012-12-30—2013-05-05 | 10号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r10；样章目标 10号线45站成环 |
+| 2013-05-05—2015-12-26 | 昌平线二期进入昌平城区 | 已有可玩章节 | 地图关系 beijing-r20；样章目标 昌平线二期进入昌平城区 |
+| 2015-12-26—2017-12-30 | 房山线建设阶段 | 已有可玩章节 | 地图关系 beijing-r22, beijing-r25；样章目标 房山线、燕房线 |
+| 2017-12-30—2019-09-26 | 大兴机场线建设阶段 | 已有可玩章节 | 地图关系 beijing-r21；样章目标 大兴机场线 |
 | 2019-09-26—2019-12-28 | 7号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r7；样章目标 7号线 |
-| 2019-12-28—2021-08-26 | 1号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r1；样章目标 1号线 · 本期新增段1、1号线 · 本期新增段2 |
-| 2021-08-26—2021-12-31 | 8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段 | 已有可玩章节 | 地图关系 beijing-r11, beijing-r14, beijing-r19, beijing-r20, beijing-r23, beijing-r8；样章目标 8号线、11号线、14号线、19号线、昌平线、首都机场线、17号线 |
-| 2021-12-31—2022-12-31 | 15号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r15；样章目标 15号线 |
-| 2022-12-31—2023-12-30 | 16号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r16；样章目标 16号线、17号线 |
-| 2023-12-30—2024-12-15 | 3号线、12号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r12, beijing-r3；样章目标 3号线、12号线 |
+| 2019-12-28—2019-12-30 | 13号线清河站投入使用 | 已有可玩章节 | 地图关系 beijing-r13；样章目标 13号线清河站投入使用 |
+| 2019-12-30—2021-08-26 | 1号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r1；样章目标 1号线 · 本期新增段1、1号线 · 本期新增段2 |
+| 2021-08-26—2021-12-31 | 8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段 | 已有可玩章节 | 地图关系 beijing-r11, beijing-r14, beijing-r19, beijing-r20, beijing-r23, beijing-r8；样章目标 8号线、14号线、首都机场线、17号线、19号线、昌平线南延至清河、11号线西段首开三站 |
+| 2021-12-31—2022-07-30 | 19号线四座暂缓站开放 | 已有可玩章节 | 地图关系 beijing-r19；样章目标 19号线 |
+| 2022-07-30—2022-12-31 | 15号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r15；样章目标 15号线 |
+| 2022-12-31—2023-02-04 | 昌平线南延一期首开五站 | 已有可玩章节 | 地图关系 beijing-r20；样章目标 昌平线南延一期首开五站 |
+| 2023-02-04—2023-12-30 | 16号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r11, beijing-r16；样章目标 16号线、17号线、11号线模式口站开放 |
+| 2023-12-30—2024-12-15 | 3号线、12号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r12, beijing-r20, beijing-r3；样章目标 3号线、12号线、朱房北与蓟门桥开放 |
 | 2024-12-15—2025-12-27 | 6号线、18号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r17, beijing-r18, beijing-r6；样章目标 6号线、18号线、17号线 |
 | 2025-12-27—2026-01-31 | 17号线建设阶段 | 已有可玩章节 | 地图关系 beijing-r17；样章目标 17号线 |
 | 2026-01-31—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 beijing-r1, beijing-r10, beijing-r11, beijing-r12, beijing-r13, beijing-r14, beijing-r15, beijing-r16, beijing-r17, beijing-r18, beijing-r19, beijing-r2, beijing-r20, beijing-r21, beijing-r22, beijing-r23, beijing-r24, beijing-r25, beijing-r3, beijing-r4, beijing-r5, beijing-r6, beijing-r7, beijing-r8, beijing-r9；样章目标 1号线、2号线、3号线、4号线—大兴线、5号线、6号线、7号线、8号线、9号线、10号线、11号线、12号线、13号线、14号线、15号线、16号线、17号线、18号线、19号线、昌平线、大兴机场线、房山线、首都机场线、亦庄线、燕房线 |
 
-历史事件索引 34 项；当前章节 25 个，其中含铺轨目标 22 个、纯历史节点 3 个、使用整条地图路线目标的章节 16 个。未进入任何章节的事件 0 项。
+历史事件索引 44 项；当前章节 31 个，其中含铺轨目标 28 个、纯历史节点 3 个、使用整条地图路线目标的章节 16 个。未进入任何章节的事件 0 项。
 
 ### 广州
 
@@ -190,7 +196,7 @@
 - [深圳地铁线路信息（含沿途站点）](https://jtys.sz.gov.cn/ydmh/jtcx/dtcx_180970/dtxl/content/post_12601090.html)：1—14、16、20号线及6号线支线的线路／站序清单。
 - [地铁13号线二期北延段6月28日开通运营](https://jtys.sz.gov.cn/ydmh/jtzx/zyhy_1510/content/post_12867344.html)：13号线北延段实际开通日期、11座车站及与一期贯通。
 
-截止日建设／规划项目：登记 13 项，可玩建设章 10 项，仍待制作 2 项，另有 1 项政策／规划方向（可选）、0 项联络／扩能工程（不新增车站）。
+截止日建设／规划项目：登记 13 项，可玩建设章 12 项，仍待制作 0 项，另有 1 项政策／规划方向（可选）、0 项联络／扩能工程（不新增车站）。
 
 - [15号线](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府报道列入五期持续推进项目；交通局2026年仍发布区间施工进度。
 - [17号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进，未计入截止日已开通线网。
@@ -203,8 +209,8 @@
 - [32号线一期](https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12637191.html) · `在建` · 已有可玩建设任务：深圳市政府确认持续推进；按城市轨道交通范围纳入。
 - [13号线二期南延段](https://www.sz.gov.cn/zfgb/2026/gb1420/content/post_12894205.html) · `十五五规划目标` · 已有可玩建设任务：规划提出建成13号线二期南北延；北延已于2026-06-28开通，此处只登记其余规划范围，不把整段重复算作未建。
 - [城市轨道交通第五期建设规划（项目库）](https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_10089296.html) · `已批建设规划` · 政策／规划方向，未发布逐站蓝图，不阻塞解锁：规划包含13个项目；只有逐项目工程范围和 stationOrder 完成核对后才转为可玩建设任务。
-- [10号线东延深圳段](https://www.szmc.net/SMARTC/upload/file/20240619/1718790831457082212.pdf) · `第五期批准的深圳段` · 尚无可玩建设任务：此PDF经下载核对为社会责任报告，并非10东专属环评；可证明纳入五期，不能证明逐站工程范围。深圳段工程不得被东莞段审批替代；需进一步使用专属工程资料制作边界接头。
-- [11号线北延深圳段](https://www.szmc.net/SMARTC/upload/file/20241120/1732067852504023329.pdf) · `第五期批准的深圳段` · 尚无可玩建设任务：旧引用20240202文件经封面核对为20号线二期环评，不能充当11北专属报告。此32号线环评只佐证五期纳入；需专属范围资料。纯区间边界接头不能因无新增车站被免除。
+- [10号线东延深圳段](https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html) · `第五期批准的深圳段` · 已有可玩建设任务：按官方五期规划的双拥街—黄阁坑深圳段2.9公里，分西、东两段建设。西段从双拥街到深莞边界；东段从深莞边界到黄阁坑10号线独立站体。中间东莞段不属于本期批复，不能跨界补线或生成贯通运营。黄阁坑预留16号线衔接，整线未成前不冒充已形成运营换乘。站址沿既有站区，边界及区间为现代地理参考的近似走廊，非隧道测绘。
+- [11号线北延深圳段](https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html) · `第五期批准的深圳段` · 已有可玩建设任务：官方五期规划图列明碧头—深莞边界、0.8公里；深圳段不把东莞后续工程算入本期。按现有碧头站端沿朗碧路向北至茅洲河边界复现近似走廊，不新增客运站、不生成运营服务。工程接口不是车站。公开图为规划示意，不是施工中心线；深度示意。
 
 里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：
 
@@ -419,27 +425,27 @@
 |---|---:|---:|---:|---|
 | 1号线 `beijing-r1` | 37 | 37 | 无 | beijing-network-reconciliation-2026-10-01 (37), beijing-network-milestone-2021-08-26 (25), bj-phase1-built-1969 (11) |
 | 2号线 `beijing-r2` | 18 | 18 | 无 | beijing-network-reconciliation-2026-10-01 (18), beijing-network-milestone-1987-12-28 (10), bj-phase1-apple-1973 (6) |
-| 3号线 `beijing-r3` | 10 | 10 | 无 | beijing-network-milestone-2024-12-15 (10), beijing-network-reconciliation-2026-10-01 (10), beijing-network-milestone-1987-12-28 (1) |
+| 3号线 `beijing-r3` | 10 | 10 | 无 | beijing-network-milestone-2024-12-15 (10), beijing-network-reconciliation-2026-10-01 (10), beijing-line10-first-2008 (1) |
 | 4号线—大兴线 `beijing-r4` | 35 | 35 | 无 | beijing-network-reconciliation-2026-10-01 (35), beijing-network-milestone-2009-09-28 (24), beijing-network-milestone-2010-12-30 (12) |
-| 5号线 `beijing-r5` | 23 | 23 | 无 | beijing-network-milestone-2007-10-07 (23), beijing-network-reconciliation-2026-10-01 (23), beijing-network-milestone-2013-05-05 (2) |
-| 6号线 `beijing-r6` | 37 | 37 | 无 | beijing-network-milestone-2025-12-27 (37), beijing-network-reconciliation-2026-10-01 (37), beijing-network-milestone-2013-05-05 (2) |
+| 5号线 `beijing-r5` | 23 | 23 | 无 | beijing-network-milestone-2007-10-07 (23), beijing-network-reconciliation-2026-10-01 (23), beijing-network-milestone-2012-12-30 (2) |
+| 6号线 `beijing-r6` | 37 | 37 | 无 | beijing-network-milestone-2025-12-27 (37), beijing-network-reconciliation-2026-10-01 (37), beijing-network-milestone-2012-12-30 (2) |
 | 7号线 `beijing-r7` | 30 | 30 | 无 | beijing-network-milestone-2019-12-28 (30), beijing-network-reconciliation-2026-10-01 (30), beijing-network-milestone-2021-08-26 (2) |
-| 8号线 `beijing-r8` | 36 | 36 | 无 | beijing-network-milestone-2021-12-31 (36), beijing-network-reconciliation-2026-10-01 (36), beijing-network-milestone-2013-05-05 (2) |
+| 8号线 `beijing-r8` | 36 | 36 | 无 | beijing-network-milestone-2021-12-31 (36), beijing-network-reconciliation-2026-10-01 (36), beijing-network-milestone-2012-12-30 (2) |
 | 9号线 `beijing-r9` | 13 | 13 | 无 | beijing-network-milestone-2012-12-30 (13), beijing-network-reconciliation-2026-10-01 (13), beijing-network-milestone-2009-09-28 (1) |
-| 10号线 `beijing-r10` | 47 | 47 | 无 | beijing-network-milestone-2013-05-05 (47), beijing-network-reconciliation-2026-10-01 (47), beijing-network-milestone-2007-10-07 (2) |
-| 11号线 `beijing-r11` | 4 | 4 | 无 | beijing-network-milestone-2021-12-31 (4), beijing-network-reconciliation-2026-10-01 (4), beijing-network-milestone-2025-12-27 (1) |
-| 12号线 `beijing-r12` | 20 | 20 | 无 | beijing-network-milestone-2024-12-15 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2013-05-05 (2) |
-| 13号线 `beijing-r13` | 17 | 17 | 无 | beijing-network-milestone-2019-07-26 (17), beijing-network-reconciliation-2026-10-01 (17), beijing-network-milestone-2013-05-05 (2) |
-| 14号线 `beijing-r14` | 35 | 35 | 无 | beijing-network-milestone-2021-12-31 (35), beijing-network-reconciliation-2026-10-01 (35), beijing-network-milestone-2013-05-05 (2) |
-| 15号线 `beijing-r15` | 20 | 20 | 无 | beijing-network-milestone-2022-12-31 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2007-10-07 (1) |
-| 16号线 `beijing-r16` | 30 | 30 | 无 | beijing-network-milestone-2023-12-30 (30), beijing-network-reconciliation-2026-10-01 (30), beijing-network-milestone-2009-09-28 (1) |
+| 10号线 `beijing-r10` | 45 | 45 | 无 | beijing-network-milestone-2013-05-05 (45), beijing-network-reconciliation-2026-10-01 (45), beijing-network-milestone-2012-12-30 (42) |
+| 11号线 `beijing-r11` | 4 | 4 | 无 | beijing-network-reconciliation-2026-10-01 (4), beijing-network-milestone-2021-12-31 (3), beijing-network-milestone-2023-12-30 (2) |
+| 12号线 `beijing-r12` | 20 | 20 | 无 | beijing-network-milestone-2024-12-15 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2012-12-30 (2) |
+| 13号线 `beijing-r13` | 17 | 17 | 无 | beijing-network-milestone-2019-07-26 (17), beijing-network-reconciliation-2026-10-01 (17), beijing-line13-west-2002 (9) |
+| 14号线 `beijing-r14` | 35 | 35 | 无 | beijing-network-milestone-2021-12-31 (35), beijing-network-reconciliation-2026-10-01 (35), beijing-network-milestone-2012-12-30 (2) |
+| 15号线 `beijing-r15` | 20 | 20 | 无 | beijing-network-milestone-2022-12-31 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-changping-south-2023 (1) |
+| 16号线 `beijing-r16` | 30 | 30 | 无 | beijing-network-milestone-2023-12-30 (30), beijing-network-reconciliation-2026-10-01 (30), beijing-line10-first-2008 (1) |
 | 17号线 `beijing-r17` | 20 | 20 | 无 | beijing-network-milestone-2026-01-31 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2025-12-27 (19) |
 | 18号线 `beijing-r18` | 11 | 11 | 无 | beijing-network-milestone-2025-12-27 (11), beijing-network-reconciliation-2026-10-01 (11), beijing-network-milestone-2021-12-31 (1) |
-| 19号线 `beijing-r19` | 10 | 10 | 无 | beijing-network-milestone-2021-12-31 (10), beijing-network-reconciliation-2026-10-01 (10), beijing-network-milestone-1987-12-28 (1) |
-| 昌平线 `beijing-r20` | 19 | 19 | 无 | beijing-network-milestone-2021-12-31 (19), beijing-network-reconciliation-2026-10-01 (19), beijing-network-milestone-2019-07-26 (2) |
-| 大兴机场线 `beijing-r21` | 3 | 3 | 无 | beijing-network-milestone-2019-09-26 (3), beijing-network-reconciliation-2026-10-01 (3), beijing-network-milestone-2021-12-31 (1) |
+| 19号线 `beijing-r19` | 10 | 10 | 无 | beijing-line19-infill-2022 (10), beijing-network-reconciliation-2026-10-01 (10), beijing-network-milestone-2021-12-31 (6) |
+| 昌平线 `beijing-r20` | 20 | 20 | 无 | beijing-network-milestone-2024-12-15 (20), beijing-network-reconciliation-2026-10-01 (20), beijing-network-milestone-2010-12-30 (7) |
+| 大兴机场线 `beijing-r21` | 3 | 3 | 无 | beijing-network-milestone-2019-09-26 (3), beijing-network-reconciliation-2026-10-01 (3), beijing-line19-infill-2022 (1) |
 | 房山线 `beijing-r22` | 16 | 16 | 无 | beijing-network-milestone-2017-12-30 (16), beijing-network-reconciliation-2026-10-01 (16), beijing-network-milestone-2012-12-30 (1) |
-| 首都机场线 `beijing-r23` | 5 | 5 | 无 | beijing-network-milestone-2021-12-31 (5), beijing-network-reconciliation-2026-10-01 (5), beijing-network-milestone-1987-12-28 (1) |
+| 首都机场线 `beijing-r23` | 5 | 5 | 无 | beijing-network-milestone-2021-12-31 (5), beijing-network-reconciliation-2026-10-01 (5), beijing-line10-first-2008 (1) |
 | 亦庄线 `beijing-r24` | 14 | 14 | 无 | beijing-network-milestone-2010-12-30 (14), beijing-network-reconciliation-2026-10-01 (14), beijing-network-milestone-2007-10-07 (1) |
 | 燕房线 `beijing-r25` | 9 | 9 | 无 | beijing-network-milestone-2017-12-30 (9), beijing-network-reconciliation-2026-10-01 (9), beijing-network-milestone-2017-12-30 (1) |
 
@@ -452,31 +458,41 @@
 - `bj-phase1-public-1981` 1981-09-15 · 一期对社会运营线路：16个目标站，线位等级 `corridor`，有章节／线路来源链接
 - `beijing-network-milestone-1987-12-28` 1987-12-28 · 2号线 · 本期新增段1：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-1987-12-28` 1987-12-28 · 2号线 · 本期新增段2：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-line13-west-2002` 2002-09-28 · 城市铁路西段：西直门至霍营：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-line13-east-2003` 2003-01-28 · 城市铁路东西贯通：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2007-10-07` 2007-10-07 · 5号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-line10-first-2008` 2008-07-19 · 10号线一期：巴沟至劲松：22个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2009-09-28` 2009-09-28 · 4号线：24个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2010-12-30` 2010-12-30 · 亦庄线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2010-12-30` 2010-12-30 · 大兴线：公益西桥—天宫院贯通：12个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2010-12-30` 2010-12-30 · 昌平线一期七站试运营：7个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2012-12-30` 2012-12-30 · 9号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `beijing-network-milestone-2013-05-05` 2013-05-05 · 10号线：47个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2012-12-30` 2012-12-30 · 10号线二期先行段：大C形运行：42个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2013-05-05` 2013-05-05 · 10号线45站成环：45个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-changping-north-2015` 2015-12-26 · 昌平线二期进入昌平城区：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2017-12-30` 2017-12-30 · 房山线：16个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2017-12-30` 2017-12-30 · 燕房线：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `beijing-network-milestone-2019-07-26` 2019-07-26 · 13号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2019-09-26` 2019-09-26 · 大兴机场线：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2019-12-28` 2019-12-28 · 7号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2019-07-26` 2019-12-30 · 13号线清河站投入使用：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2021-08-26` 2021-08-26 · 1号线 · 本期新增段1：25个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2021-08-26` 2021-08-26 · 1号线 · 本期新增段2：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2021-12-31` 2021-12-31 · 8号线：36个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `beijing-network-milestone-2021-12-31` 2021-12-31 · 11号线：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2021-12-31` 2021-12-31 · 14号线：35个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `beijing-network-milestone-2021-12-31` 2021-12-31 · 19号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `beijing-network-milestone-2021-12-31` 2021-12-31 · 昌平线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2021-12-31` 2021-12-31 · 首都机场线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2021-12-31` 2021-12-31 · 17号线：7个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 19号线：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 昌平线南延至清河：2个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2021-12-31` 2021-12-31 · 11号线西段首开三站：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-line19-infill-2022` 2022-07-30 · 19号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2022-12-31` 2022-12-31 · 15号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-changping-south-2023` 2023-02-04 · 昌平线南延一期首开五站：6个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2023-12-30` 2023-12-30 · 16号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2023-12-30` 2023-12-30 · 17号线：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2023-12-30` 2023-12-30 · 11号线模式口站开放：2个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2024-12-15` 2024-12-15 · 3号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2024-12-15` 2024-12-15 · 12号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-milestone-2024-12-15` 2024-12-15 · 朱房北与蓟门桥开放：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2025-12-27` 2025-12-27 · 6号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2025-12-27` 2025-12-27 · 18号线：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-milestone-2025-12-27` 2025-12-27 · 17号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
@@ -490,7 +506,7 @@
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 7号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 8号线：36个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 9号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 10号线：47个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 10号线：45个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 11号线：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 12号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 13号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
@@ -500,7 +516,7 @@
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 17号线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 18号线：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 19号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 昌平线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 昌平线：20个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 大兴机场线：3个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 房山线：16个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `beijing-network-reconciliation-2026-10-01` 2026-10-01 · 首都机场线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接

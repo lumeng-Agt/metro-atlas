@@ -5,6 +5,7 @@ extends RefCounted
 ## Presentation time and UI refresh never advance a chapter.
 const Catalog = preload("res://scripts/campaign_system.gd")
 const Paths = preload("res://scripts/route_path.gd")
+const Engineering = preload("res://scripts/engineering_construction.gd")
 
 static func config(world: Dictionary) -> Dictionary:
 	return Catalog.city_config(str(world.get("cityId", "")))
@@ -103,6 +104,7 @@ static func targets(world: Dictionary, final_plan: bool = false, selected_task_i
 			var item: Dictionary = refs[reference_id].duplicate(true)
 			item["id"]=instance_id;item["referenceId"]=reference_id;item["stationInstanceId"]=instance_id;item["stationComplexId"]=canonical_complex;item["historicalId"]=canonical_complex;item["historicalLineId"]=str(group.get("historicalLineId",""))
 			item["historicalLineName"]=str(group.get("name",group.get("historicalLineId","本期线路")))
+			item["engineeringExistingAnchor"]=Engineering.is_group(group) and not group.get("newStationIds",[]).has(id)
 			var coordinate_reference:=ReferenceAlignment.station_reference(reference_id)
 			if not coordinate_reference.is_empty() and plan_is_final(world):
 				item["rawLatlng"]=item.latlng;item["latlng"]=coordinate_reference.latlng;item["coordinateSource"]=coordinate_reference
@@ -238,9 +240,15 @@ static func nearest_target(world: Dictionary, latlng: Array, selected_task_id:St
 static func blueprint(world: Dictionary, show_previous: bool = false, selected_task_id:String="") -> Dictionary:
 	var stations := targets(world, false, selected_task_id)
 	var corridors: Array = []
+	var engineering_markers:Array=[]
 	var map: Dictionary = {}
 	for target in stations: map[str(target.id)] = target
 	for group in groups(world, false, selected_task_id):
+		if Engineering.is_group(group):
+			for endpoint in group.get("engineeringEndpoints",[]):
+				if not endpoint.has("stationId"):engineering_markers.append({"id":endpoint.id,"name":str(endpoint.name),"latlng":endpoint.latlng})
+			for segment in group.get("engineeringSegments",[]):corridors.append({"points":segment.get("points",[]),"targets":[],"precision":"schematic","referenceLabel":"工程近似走廊"})
+			continue
 		var points: Array = []; var corridor_targets: Array = []
 		for id_value in group.get("stationIds", []):
 			var instance_id:=station_instance_id(group,str(id_value))
@@ -271,7 +279,7 @@ static func blueprint(world: Dictionary, show_previous: bool = false, selected_t
 				for reference in WorldData.city(str(world.cityId)).get("stations", []):
 					if str(reference.id) == str(id): points.append(reference.latlng); break
 			previous.append(points)
-	return {"visible":not stations.is_empty() and str(state.get("stage","intro"))!="outcome", "stations":stations, "corridors":corridors, "previous":previous, "title":chapter(world).get("title", ""), "date":chapter(world).get("date", ""), "draftOnly":not plan_is_final(world)}
+	return {"visible":(not stations.is_empty() or not engineering_markers.is_empty()) and str(state.get("stage","intro"))!="outcome", "stations":stations, "engineeringMarkers":engineering_markers,"corridors":corridors, "previous":previous, "title":chapter(world).get("title", ""), "date":chapter(world).get("date", ""), "draftOnly":not plan_is_final(world)}
 
 static func plan_is_final(world: Dictionary) -> bool:
 	var versions: Array = chapter(world).get("story", {}).get("planVersions", [])
@@ -280,6 +288,7 @@ static func plan_is_final(world: Dictionary) -> bool:
 static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictionary:
 	var issues: Array[Dictionary] = []
 	var routes: Array = []
+	var engineering_complete:=0
 	var ch := chapter(world)
 	if ch.is_empty(): return {"complete":false,"issues":[{"text":"当前没有可验收章节。"}],"routes":[],"revision":int(world.get("revision",0))}
 	var all_groups: Array = groups(world, true)
@@ -309,6 +318,11 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		bindings[id] = station
 	for scoped_index in range(scoped_groups.size()):
 		var group: Dictionary = scoped_groups[scoped_index]
+		if Engineering.is_group(group):
+			var engineering_result:=Engineering.evaluate(world,group,path_index)
+			issues.append_array(engineering_result.issues)
+			if bool(engineering_result.complete):engineering_complete+=1
+			continue
 		var group_index := selected_group_index if selected_group_index >= 0 else scoped_index
 		var ids: Array = []; var paths: Array = []; var group_valid := true;var repair_targets_reported:Dictionary={}
 		for target_index in range(group.get("stationIds",[]).size()):
@@ -391,6 +405,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		if bool(group.get("loop",false)) and not prior_end.is_empty() and prior_end==first_departure:
 			issues.append({"text":"环线首站的闭合区间与出发区间接在同一站端，尚未形成连续环线。","kind":"station","objectId":str(ids[0])});group_valid=false
 		var default_status:="open" if bool(ch.get("requireOpen",true)) and ch.get("serviceTransitions",[]).is_empty() else "built"
+		default_status=str(group.get("defaultServiceStatus",default_status))
 		var segment_statuses:Array=[]
 		for segment_index in range(paths.size()):
 			segment_statuses.append("built" if bool(group.get("constructionVariant",false)) else _effective_service_status(world,str(group.get("historicalLineId","")),str(ids[segment_index]),str(ids[segment_index+1]),default_status))
@@ -483,7 +498,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		service_transitions.append(proposal)
 		if not _has_service_range(world, str(proposal.id)):
 			issues.append({"text":"请明确确认%s「%s」的%s范围。" % [str(transition.get("historicalLineId","本期线路")),"—".join(transition.get("displayStationNames",[])),service_status_label(str(transition.get("status","built")))],"kind":"service","objectId":str(proposal.id),"latlng":proposal.get("focusLatlng",[])})
-	return {"complete":issues.is_empty() and routes.size()==scoped_groups.size(),"issues":issues,"routes":routes,"serviceRanges":world.get("serviceRanges",[]).duplicate(true),"serviceTransitions":service_transitions,"requiredTransfers":[] if not selected_task_id.is_empty() else ch.get("requiredTransfers",[]),"revision":int(world.get("revision",0)),"chapterId":str(ch.get("id","")),"taskId":selected_task_id,"taskScoped":not selected_task_id.is_empty(),"taskCount":all_groups.size()}
+	return {"complete":issues.is_empty() and routes.size()+engineering_complete==scoped_groups.size(),"issues":issues,"routes":routes,"engineeringComplete":engineering_complete,"serviceRanges":world.get("serviceRanges",[]).duplicate(true),"serviceTransitions":service_transitions,"requiredTransfers":[] if not selected_task_id.is_empty() else ch.get("requiredTransfers",[]),"revision":int(world.get("revision",0)),"chapterId":str(ch.get("id","")),"taskId":selected_task_id,"taskScoped":not selected_task_id.is_empty(),"taskCount":all_groups.size()}
 
 static func _has_service_range(world:Dictionary,range_id:String) -> bool:
 	for saved in world.get("serviceRanges",[]):
@@ -936,7 +951,23 @@ static func _scope_upgrade_route_base(world:Dictionary,existing:Dictionary,incom
 		var after:Variant=change.get("after")
 		if after is Dictionary and after.get("stationOrder",[])==existing.get("stationOrder",[]) and after.get("directions",[])==existing.get("directions",[]):
 			var before:Variant=change.get("before")
-			return before.duplicate(true) if before is Dictionary else {}
+			var base:Dictionary=before.duplicate(true) if before is Dictionary else {}
+			# Reconfirming one task must not roll an unchanged, disconnected
+			# sibling back to the chapter's old before-state. In an upgraded save
+			# that sibling may already support an explicit interchange. Preserve
+			# only the exact current source-defined body order and valid physical
+			# path; neither its task nor any event is marked confirmed here.
+			if id==str(chapter(world).get("id","")):
+				for sibling in groups(world,true):
+					if str(sibling.get("historicalLineId",""))!=str(incoming.get("historicalLineId","")):continue
+					var wanted:Array=[]
+					for station_id in sibling.get("stationIds",[]):
+						var body:=_station_for_instance(world,station_instance_id(sibling,str(station_id)))
+						if not body.is_empty():wanted.append(str(body.id))
+					var reverse_wanted:=wanted.duplicate();reverse_wanted.reverse()
+					if wanted==incoming.get("stationOrder",[]) or reverse_wanted==incoming.get("stationOrder",[]):continue
+					base=_preserve_documented_service_section(world,existing,base,sibling)
+			return base
 	return existing.duplicate(true)
 
 static func _direction_complexes(world:Dictionary,direction:Dictionary) -> Array:
@@ -1172,7 +1203,8 @@ static func confirm_task(world: Dictionary, selected_task_id: String, expected_r
 		if task_id(ch, all_groups[index], index) == selected_task_id: group_index = index; break
 	if group_index < 0: return {"ok":false,"error":"当前任务已不存在。"}
 	var group: Dictionary = all_groups[group_index]
-	tasks[selected_task_id] = {"status":"confirmed","type":"line_group","historicalLineId":str(group.get("historicalLineId", "")),"confirmedAt":str(ch.get("date", "")),"routeId":str(result.get("routes", [{}])[0].get("id", "")),"scopeFingerprint":task_scope_fingerprint(world,selected_task_id)}
+	var confirmed_routes:Array=result.get("routes",[])
+	tasks[selected_task_id] = {"status":"confirmed","type":"engineering_track" if Engineering.is_group(group) else "line_group","historicalLineId":str(group.get("historicalLineId", "")),"confirmedAt":str(ch.get("date", "")),"routeId":"" if confirmed_routes.is_empty() else str(confirmed_routes[0].get("id", "")),"scopeFingerprint":task_scope_fingerprint(world,selected_task_id)}
 	progress["status"] = "in_progress"
 	progress["tasks"] = tasks
 	progress["taskCount"] = all_groups.size()
@@ -1237,7 +1269,7 @@ static func commit_chapter(world: Dictionary, expected_revision: int, checked: D
 	if event_ids.is_empty():event_ids=[str(ch.id)]
 	for event_id in event_ids:
 		if not state.confirmedHistoricalEventIds.has(str(event_id)):state.confirmedHistoricalEventIds.append(str(event_id))
-	state.chapterTaskProgress[str(ch.id)]={"status":"confirmed","confirmedHistoricalEventIds":event_ids.duplicate(),"tasks":Catalog.chapter_task_records(str(world.get("cityId","")),str(ch.id)),"date":str(ch.get("date","")),"scopeRevision":str(ch.get("scopeRevision",""))}
+	state.chapterTaskProgress[str(ch.id)]={"status":"confirmed","confirmedHistoricalEventIds":event_ids.duplicate(),"tasks":Catalog.chapter_task_records(str(world.get("cityId","")),str(ch.id)),"date":str(ch.get("date","")),"scopeRevision":Catalog.chapter_scope_revision(ch)}
 	state["stage"]="outcome"
 	state["chapterId"]=str(ch.id)
 	if bool(world.get("storyPlan",{}).get("assisted",false)) and not state.get("assistedChapters",[]).has(str(ch.id)):state.assistedChapters.append(str(ch.id))
@@ -1615,6 +1647,8 @@ static func plan_status(world:Dictionary) -> String:
 static func current_action(world:Dictionary) -> String:
 	if bool(chapter(world).get("eventOnly",false)):return "查看来源并确认这个历史节点；本节点没有新增铺轨范围。"
 	if not plan_is_final(world):return "对比新旧方案，再采用下一版调整。"
+	var active_groups:=groups(world,true,str(world.get("storyState",{}).get("activeTaskId","")))
+	if not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group)):return "预览并连接工程轨道，再检查确认；接口不是车站。"
 	if bool(chapter(world).get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):return "在「线路整理」确认贯通站序。"
 	for target in targets(world,true):
 		if not bool(target.built):return "建设本期目标站，并连接相邻站端。"

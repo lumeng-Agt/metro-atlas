@@ -4,6 +4,7 @@ extends RefCounted
 const CATALOG_PATH := "res://data/campaigns.json"
 const NETWORK_BASELINE_PATH := "res://data/network_baselines_2026-10-01.json"
 const OFFICIAL_TARGET_PATH := "res://data/official_targets_2026-10-01.json"
+const Engineering = preload("res://scripts/engineering_construction.gd")
 static var _catalog: Dictionary = {}
 static var _network_baseline: Dictionary = {}
 static var _known_station_ids_by_city: Dictionary = {}
@@ -41,6 +42,9 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 			var matching_groups:Array=actual_groups.filter(func(g:Dictionary):return str(g.get("coverageGroupId",g.get("historicalLineId","")))==str(expected.get("id","")))
 			if matching_groups.size()!=1:reasons.append("项目%s的区段范围不完整。" % project_id);continue
 			var group:Dictionary=matching_groups[0]
+			if str(expected.get("scopeType",""))=="engineering":
+				reasons.append_array(Engineering.coverage_errors(group,expected))
+				continue
 			var names:Array=[]
 			for station_id in group.get("stationIds",[]):
 				var name:=str(group.get("stationNames",{}).get(str(station_id),""))
@@ -214,6 +218,16 @@ static func group_scope_fingerprint(group:Dictionary) -> String:
 	if bool(normalized.get("loop",false)) and ids.size()>2 and ids.front()!=ids.back():ids.append(ids.front())
 	return JSON.stringify(normalized).sha256_text()
 
+static func chapter_scope_revision(plan:Dictionary) -> String:
+	# Author revision and actual scope are both required: a forgotten manual
+	# bump cannot hide expanded station/section/transfer requirements.
+	var scope:Dictionary={}
+	for key in ["lineGroups","requiredTransfers","requiredConnections","serviceTransitions","scopeCorrections"]:
+		scope[key]=plan.get(key,[])
+	var result:=str(plan.get("scopeRevision",""))+":"+JSON.stringify(scope).sha256_text()
+	if str(plan.get("chapterScope",""))=="cutoff_reconciliation":result+=":historical-status-v2"
+	return result
+
 static func chapter_task_records(city_id: String, chapter_id: String) -> Dictionary:
 	var result: Dictionary = {}
 	var chapter_row: Dictionary = {}
@@ -225,7 +239,7 @@ static func chapter_task_records(city_id: String, chapter_id: String) -> Diction
 	for group in chapter_row.get("lineGroups", []):
 		var line_id := str(group.get("historicalLineId", group.get("id", "line")))
 		var task_id := str(group.get("taskId", "line:" + line_id))
-		result[task_id] = {"status":"confirmed", "type":"line_group", "historicalLineId":line_id,"scopeFingerprint":group_scope_fingerprint(group)}
+		result[task_id] = {"status":"confirmed", "type":"engineering_track" if Engineering.is_group(group) else "line_group", "historicalLineId":line_id,"scopeFingerprint":group_scope_fingerprint(group)}
 	for transition in chapter_row.get("serviceTransitions", []):
 		var transition_id := str(transition.get("id", transition.get("historicalLineId", "service")))
 		result["service:" + transition_id] = {"status":"confirmed", "type":"service_range", "historicalLineId":str(transition.get("historicalLineId", ""))}
@@ -295,6 +309,9 @@ static func future_data_ready(plan: Dictionary, city_data: Dictionary = {}) -> b
 		known_stations = _known_station_ids_by_city.get(str(plan.get("cityId", "")), {})
 	for group_value in groups:
 		if not group_value is Dictionary: return false
+		if Engineering.is_group(group_value):
+			if not Engineering.definition_errors(group_value,known_stations.keys()).is_empty():return false
+			continue
 		var station_ids: Variant = group_value.get("stationIds", [])
 		if not station_ids is Array or station_ids.size() < 2: return false
 		if float(group_value.get("toleranceM", 0.0)) <= 0.0: return false
@@ -379,9 +396,13 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 					for id in group.get("stationIds",[]):
 						if not station_ids.has(str(id)):errors.append("%s 方案引用未知站点" % chapter_id)
 			for group in chapter.get("lineGroups", []):
+				if Engineering.is_group(group):
+					errors.append_array(Engineering.definition_errors(group,station_ids.keys()))
+					continue
 				if str(chapter.get("precision",""))=="verified_alignment" and group.get("alignment",[]).size()<2:errors.append("%s 声称精确线位但缺少中心线" % chapter_id)
 				if group.get("stationIds", []).size() < 2: errors.append("%s 目标线路少于两站" % chapter_id)
 				if float(group.get("toleranceM", 0.0)) <= 0.0: errors.append("%s 目标站缺少正的容差" % chapter_id)
+				if group.has("defaultServiceStatus") and str(group.defaultServiceStatus) not in ["built","trial","open","suspended"]:errors.append("%s 本期线路状态无效"%chapter_id)
 				var group_targets: Dictionary = {}
 				for station_id in group.get("stationIds", []):
 					if not station_ids.has(str(station_id)): errors.append("%s 引用了未知目标站：%s" % [chapter_id, str(station_id)])
