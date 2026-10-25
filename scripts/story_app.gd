@@ -166,6 +166,9 @@ func _build() -> void:
 	call_deferred("_layout")
 
 func _setup_feedback_audio() -> void:
+	# Logic/data checks have no audio output. Do not leave a WAV playback
+	# queued on the dummy mixer when a headless process exits immediately.
+	if DisplayServer.get_name()=="headless":return
 	# Finite, cached cues end naturally; a generator would keep an audio
 	# playback alive after its last buffer (and leaked during quick teardown).
 	for kind in ["track","station","chapter"]:
@@ -184,6 +187,12 @@ func _play_feedback(kind:String) -> void:
 	if not feedback_enabled or feedback_volume<=0.001 or not is_instance_valid(feedback_player):return
 	feedback_player.stop();feedback_player.stream=feedback_audio.get(kind,feedback_audio.get("track"))
 	feedback_player.volume_db=linear_to_db(feedback_volume);feedback_player.play()
+
+func _exit_tree() -> void:
+	if is_instance_valid(feedback_player):
+		feedback_player.stop()
+		feedback_player.stream=null
+	feedback_audio.clear()
 
 func _layout() -> void:
 	if not is_instance_valid(map_area):return
@@ -1664,9 +1673,16 @@ func _assist_required_ports(state:Dictionary,group:Dictionary,index:int,prior_ar
 	var a:=Story.bound_station(state,str(ids[index]),Story.station_instance_id(group,str(ids[index])),line_id)
 	var b:=Story.bound_station(state,str(ids[index+1]),Story.station_instance_id(group,str(ids[index+1])),line_id)
 	var departure:="";var arrival:=""
+	# Replacing a line after an infill is not an extension beyond its former
+	# terminal. The old arrival end stays the arrival end. Asking for its unused
+	# end here made the inserted final section turn back through the platform,
+	# leaving the following genuine extension impossible. Constrain a replacement
+	# to its reference-facing ends, preserving all old physical construction.
+	var replacing:=bool(group.get("replaceExistingService",false))
+	var facing:=_facing(a,b) if replacing else []
 	if not prior_arrival.is_empty():departure=TrackNetwork.station_node_id(a,"end" if prior_arrival==TrackNetwork.station_node_id(a,"start") else "start")
-	elif index==0:departure=_required_extension_port(state,str(a.id),str(b.id),line_id,path_index,ref_lat)
-	if index==ids.size()-2:arrival=_required_extension_port(state,str(b.id),str(a.id),line_id,path_index,ref_lat)
+	elif index==0:departure=TrackNetwork.station_node_id(a,str(facing[0])) if replacing else _required_extension_port(state,str(a.id),str(b.id),line_id,path_index,ref_lat)
+	if index==ids.size()-2:arrival=TrackNetwork.station_node_id(b,str(facing[1])) if replacing else _required_extension_port(state,str(b.id),str(a.id),line_id,path_index,ref_lat)
 	elif index+2<ids.size():
 		var next:=Story.bound_station(state,str(ids[index+2]),Story.station_instance_id(group,str(ids[index+2])),line_id)
 		if not next.is_empty():

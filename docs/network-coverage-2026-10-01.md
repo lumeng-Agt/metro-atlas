@@ -8,7 +8,7 @@
 |---|---:|---:|---:|---:|---:|---:|---:|
 | 上海 | 18 | 18 | 436 | 36 | 35 | 10 | 10 |
 | 北京 | 30 | 25 | 424 | 31 | 28 | 9 | 9 |
-| 广州 | 口径不等同 | 20 | 373 | 26 | 22 | 9 | 9 |
+| 广州 | 口径不等同 | 20 | 373 | 27 | 23 | 9 | 9 |
 | 深圳 | 17 | 17 | 364 | 27 | 23 | 13 | 12 |
 | 成都 | 16 | 16 | 375 | 39 | 32 | 7 | 5 |
 
@@ -178,16 +178,17 @@
 | 2019-12-20—2019-12-28 | 8号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r8；样章目标 8号线 |
 | 2019-12-28—2021-09-28 | 18号线首通段开放 | 已有可玩章节 | 地图关系 guangzhou-r15；样章目标 18号线 |
 | 2021-09-28—2021-12-28 | 佛山2号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r18；样章目标 佛山2号线 |
-| 2021-12-28—2022-03-31 | 22号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r17；样章目标 22号线 |
+| 2021-12-28—2022-03-31 | 22号线首通：陈头岗至番禺广场 | 已有可玩章节 | 地图关系 guangzhou-r17；样章目标 22号线 |
 | 2022-03-31—2022-05-01 | 7号线西延顺德段开通 | 已有可玩章节 | 地图关系 guangzhou-r7；样章目标 7号线西延：广州南站—美的大道 |
 | 2022-05-01—2023-12-28 | 5号线东延与7号线二期开通 | 已有可玩章节 | 地图关系 guangzhou-r5, guangzhou-r7；样章目标 5号线、7号线 |
 | 2023-12-28—2024-08-23 | 佛山3号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r19；样章目标 佛山3号线 |
 | 2024-08-23—2024-12-28 | 首条市区环线：29站连成一环 | 已有可玩章节 | 地图关系 guangzhou-r11, guangzhou-r13, guangzhou-r14；样章目标 11号线 |
 | 2024-12-28—2025-06-29 | 10号线、12号线建设阶段 | 已有可玩章节 | 地图关系 guangzhou-r10, guangzhou-r12；样章目标 10号线、12号线东段（大学城南—二沙岛）、12号线西段（浔峰岗—广州体育馆） |
 | 2025-06-29—2025-09-29 | 11号线广州东站开放及13、14号线延伸 | 已有可玩章节 | 地图关系 guangzhou-r11, guangzhou-r13, guangzhou-r14；样章目标 13号线、14号线二期 · 嘉禾望岗—乐嘉路、11号线 |
-| 2025-09-29—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 guangzhou-r1, guangzhou-r10, guangzhou-r11, guangzhou-r12, guangzhou-r13, guangzhou-r14, guangzhou-r15, guangzhou-r16, guangzhou-r17, guangzhou-r18, guangzhou-r19, guangzhou-r2, guangzhou-r20, guangzhou-r3, guangzhou-r4, guangzhou-r5, guangzhou-r6, guangzhou-r7, guangzhou-r8, guangzhou-r9；样章目标 1号线、2号线、4号线、5号线、6号线、7号线、8号线、9号线、10号线、13号线、18号线、21号线、22号线、佛山2号线、佛山3号线、广佛线、3号线、3号线、12号线、12号线、14号线、14号线、11号线 |
+| 2025-09-29—2025-12-29 | 22号线后通：连接芳村与西塱 | 已有可玩章节 | 地图关系 guangzhou-r17；样章目标 22号线 |
+| 2025-12-29—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 guangzhou-r1, guangzhou-r10, guangzhou-r11, guangzhou-r12, guangzhou-r13, guangzhou-r14, guangzhou-r15, guangzhou-r16, guangzhou-r17, guangzhou-r18, guangzhou-r19, guangzhou-r2, guangzhou-r20, guangzhou-r3, guangzhou-r4, guangzhou-r5, guangzhou-r6, guangzhou-r7, guangzhou-r8, guangzhou-r9；样章目标 1号线、2号线、4号线、5号线、6号线、7号线、8号线、9号线、10号线、13号线、18号线、21号线、22号线、佛山2号线、佛山3号线、广佛线、3号线、3号线、12号线、12号线、14号线、14号线、11号线 |
 
-历史事件索引 30 项；当前章节 26 个，其中含铺轨目标 22 个、纯历史节点 4 个、使用整条地图路线目标的章节 14 个。未进入任何章节的事件 0 项。
+历史事件索引 31 项；当前章节 27 个，其中含铺轨目标 23 个、纯历史节点 4 个、使用整条地图路线目标的章节 14 个。未进入任何章节的事件 0 项。
 
 ### 深圳
 
@@ -545,7 +546,7 @@
 | 14号线 `guangzhou-r14` | 29 | 29 | 无 | guangzhou-network-reconciliation-2026-10-01 (20), guangzhou-network-milestone-2017-12-28 (10), guangzhou-network-reconciliation-2026-10-01 (10) |
 | 18号线 `guangzhou-r15` | 8 | 8 | 无 | guangzhou-network-milestone-2022-09-28 (8), guangzhou-network-reconciliation-2026-10-01 (8), guangzhou-line11-ring-opening-2024 (1) |
 | 21号线 `guangzhou-r16` | 20 | 20 | 无 | guangzhou-network-reconciliation-2026-10-01 (20), guangzhou-network-milestone-2019-12-20 (12), guangzhou-network-milestone-2018-12-28 (9) |
-| 22号线 `guangzhou-r17` | 8 | 8 | 无 | guangzhou-network-milestone-2022-03-31 (8), guangzhou-network-reconciliation-2026-10-01 (8), gz-line1-1997 (2) |
+| 22号线 `guangzhou-r17` | 8 | 8 | 无 | guangzhou-line22-west-opening-2025 (8), guangzhou-network-reconciliation-2026-10-01 (8), guangzhou-network-milestone-2022-03-31 (4) |
 | 佛山2号线 `guangzhou-r18` | 17 | 17 | 无 | guangzhou-network-milestone-2021-12-28 (17), guangzhou-network-reconciliation-2026-10-01 (17), guangzhou-network-milestone-2018-12-28 (1) |
 | 佛山3号线 `guangzhou-r19` | 37 | 37 | 无 | guangzhou-network-milestone-2024-08-23 (37), guangzhou-network-reconciliation-2026-10-01 (37), guangzhou-network-milestone-2018-12-28 (2) |
 | 广佛线 `guangzhou-r20` | 25 | 25 | 无 | guangzhou-network-milestone-2018-12-28 (25), guangzhou-network-reconciliation-2026-10-01 (25), guangzhou-line11-ring-opening-2024 (2) |
@@ -581,7 +582,7 @@
 - `guangzhou-network-milestone-2019-12-28` 2019-12-28 · 8号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-milestone-2022-09-28` 2021-09-28 · 18号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-milestone-2021-12-28` 2021-12-28 · 佛山2号线：17个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `guangzhou-network-milestone-2022-03-31` 2022-03-31 · 22号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-network-milestone-2022-03-31` 2022-03-31 · 22号线：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-milestone-2022-05-01` 2022-05-01 · 7号线西延：广州南站—美的大道：9个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-milestone-2023-12-28` 2023-12-28 · 5号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-milestone-2023-12-28` 2023-12-28 · 7号线：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
@@ -593,6 +594,7 @@
 - `guangzhou-network-milestone-2025-09-29` 2025-09-29 · 13号线：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-milestone-2025-09-29` 2025-09-29 · 14号线二期 · 嘉禾望岗—乐嘉路：8个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
 - `guangzhou-network-milestone-2025-09-29` 2025-09-29 · 11号线：30个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `guangzhou-line22-west-opening-2025` 2025-12-29 · 22号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 1号线：16个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 2号线：24个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `guangzhou-network-reconciliation-2026-10-01` 2026-10-01 · 4号线：23个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接

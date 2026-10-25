@@ -121,7 +121,7 @@
         "beijing-line28-28"
       ],
       "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
-      "sourceNote": "东大桥既有6/17与在建22/28组成枢纽；本项确认6/17/28，22/28另行明确确认，各站体独立。"
+      "sourceNote": "本项仅确认6／28两线站体；17／28、22／28各有独立配对，不能由一对推断其他联系。"
     },
     {
       "id": "future-transfer-bj28-jingguangqiao-10",
@@ -212,6 +212,22 @@
       ],
       "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
       "sourceNote": "大望路既有1/14换乘站区；保留14号线独立坐标与站体，仅统一站区身份。"
+    },
+    {
+      "id": "future-transfer-bj28-dongdaqiao-17",
+      "name": "东大桥",
+      "complexId": "beijing-s333",
+      "stationInstanceIds": [
+        "beijing-s333__line17-17",
+        "beijing-s333__line28-28"
+      ],
+      "lineIds": [
+        "beijing-line17-17",
+        "beijing-line28-28"
+      ],
+      "precision": "schematic",
+      "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+      "sourceNote": "重大项目办原文明确东大桥17／28换乘；各线站体独立，不用已有6／28关系冒充三线联系。"
     }
   ],
   "plan": {
@@ -228,9 +244,9 @@
     "sourceCheckedAt": "2026-10-21",
     "sourcePublicationDate": "2025-08-02",
     "description": "按2025年8月28号线线路一体化规划方案公示复现：东大桥—广渠东路，9座车站、约8.7公里，其中6座换乘站。东大桥、大望路、大郊亭与既有线换乘，京广桥与10号线金台夕照站换乘。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.13",
+    "contentRevision": "2026.10.25.19",
     "contentRevisionNote": "增加北京28号线建设章。",
-    "scopeRevision": "2026.10.24.19",
+    "scopeRevision": "2026.10.25.19",
     "requiresScopeRecheck": true,
     "stationNamingNote": "使用工程站名；2025一体化公示图的景辉街、茂兴西路分别对应核心区、北京东站，不当作已生效正式命名。"
   }

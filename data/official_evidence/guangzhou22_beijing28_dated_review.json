@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-25",
+  "scope": "dated_public_sources_for_guangzhou22_openings_and_beijing28_transfer_pair",
+  "sources": [
+    {
+      "source": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+      "sourcePublicationDate": "2025-12-30",
+      "retrievedAt": "2026-10-25",
+      "httpStatus": 403,
+      "captured": false,
+      "webReaderVerified": true,
+      "webReaderVerifiedAt": "2026-10-25",
+      "captureNote": "公开正文通过网页读取核对；本地HTTP下载403，未伪造文件哈希或绕过访问限制。"
+    },
+    {
+      "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+      "sourcePublicationDate": "2021-07-27",
+      "retrievedAt": "2026-10-25",
+      "httpStatus": 403,
+      "captured": false,
+      "webReaderVerified": true,
+      "webReaderVerifiedAt": "2026-10-25",
+      "captureNote": "公开正文通过网页读取核对；本地HTTP下载403，未伪造文件哈希或绕过访问限制。"
+    }
+  ],
+  "guangzhou22": {
+    "firstOpening": {
+      "date": "2022-03-31",
+      "stationNames": [
+        "陈头岗",
+        "广州南站",
+        "市广路",
+        "番禺广场"
+      ]
+    },
+    "laterOpening": {
+      "date": "2025-12-29",
+      "newStationNames": [
+        "南浦西",
+        "南漖",
+        "西塱",
+        "芳村"
+      ]
+    },
+    "additionalSource": "https://gzdaily.dayoo.com/pc/html/2025-12/29/content_866_901829.htm",
+    "orderSource": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+    "note": "日期来自同期公告及政府回顾，现行站序仅用于逐站交叉核对；未据此认定广州其他线路时序已核验。"
+  },
+  "beijing28": {
+    "addedPair": {
+      "station": "东大桥",
+      "lines": [
+        "17",
+        "28"
+      ]
+    },
+    "unresolved": [
+      "R1/R4远期预留与铁路接口的分层审查"
+    ],
+    "note": "网页路径2025迁移年月与正文2021-07-27原始时间分别识别。"
+  }
+}

@@ -1,0 +1,2683 @@
+{
+  "schemaVersion": 1,
+  "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+  "sourceLanding": "https://cs.gzmtr.com/ckfw/",
+  "sourceMap": "https://wx.gzmtr.com:50443/#/index?language=Cn",
+  "retrievedAt": "2026-10-25",
+  "captureSha256": "88572da0d1c16793528f104e0ea1ba31904e9a1717b129fb4bd7f2fef601ee2d",
+  "extractionStatus": "operator_order_reviewed_opening_dates_pending",
+  "normalizationNotes": {
+    "虫雷 岗": "运营方用拆字表示𧒽，不视为另一车站或改名。",
+    "庆盛（南沙北站）": "括号标识衔接铁路站；本游戏车站简称庆盛，原文完整保留。"
+  },
+  "scopeNote": "现行匿名查询结果不是截止日开通证据；排除有轨、APM及市域铁路，不把未来时点的新对象提前加入。",
+  "lines": [
+    {
+      "operatorLineId": 1,
+      "lineCode": "1",
+      "lineName": "一号线",
+      "rawStationNames": [
+        "西塱",
+        "坑口",
+        "花地湾",
+        "芳村",
+        "黄沙",
+        "长寿路",
+        "陈家祠",
+        "西门口",
+        "公园前",
+        "农讲所",
+        "烈士陵园",
+        "东山口",
+        "杨箕",
+        "体育西路",
+        "体育中心",
+        "广州东站"
+      ],
+      "stationNames": [
+        "西塱",
+        "坑口",
+        "花地湾",
+        "芳村",
+        "黄沙",
+        "长寿路",
+        "陈家祠",
+        "西门口",
+        "公园前",
+        "农讲所",
+        "烈士陵园",
+        "东山口",
+        "杨箕",
+        "体育西路",
+        "体育中心",
+        "广州东站"
+      ],
+      "operatorStationIds": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        62
+      ],
+      "interchanges": [
+        {
+          "stationName": "西塱",
+          "operatorLineIds": [
+            8,
+            19,
+            32
+          ]
+        },
+        {
+          "stationName": "芳村",
+          "operatorLineIds": [
+            19,
+            30
+          ]
+        },
+        {
+          "stationName": "黄沙",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "陈家祠",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "公园前",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "东山口",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "杨箕",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "体育西路",
+          "operatorLineIds": [
+            3,
+            4
+          ]
+        },
+        {
+          "stationName": "广州东站",
+          "operatorLineIds": [
+            3,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 2,
+      "lineCode": "2",
+      "lineName": "二号线",
+      "rawStationNames": [
+        "嘉禾望岗",
+        "黄边",
+        "江夏",
+        "萧岗",
+        "白云文化广场",
+        "白云公园",
+        "飞翔公园",
+        "三元里",
+        "广州火车站",
+        "越秀公园",
+        "纪念堂",
+        "公园前",
+        "海珠广场",
+        "市二宫",
+        "江南西",
+        "昌岗",
+        "江泰路",
+        "东晓南",
+        "南洲",
+        "洛溪",
+        "南浦",
+        "会江",
+        "石壁",
+        "广州南站"
+      ],
+      "stationNames": [
+        "嘉禾望岗",
+        "黄边",
+        "江夏",
+        "萧岗",
+        "白云文化广场",
+        "白云公园",
+        "飞翔公园",
+        "三元里",
+        "广州火车站",
+        "越秀公园",
+        "纪念堂",
+        "公园前",
+        "海珠广场",
+        "市二宫",
+        "江南西",
+        "昌岗",
+        "江泰路",
+        "东晓南",
+        "南洲",
+        "洛溪",
+        "南浦",
+        "会江",
+        "石壁",
+        "广州南站"
+      ],
+      "operatorStationIds": [
+        69,
+        19,
+        20,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        10,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "interchanges": [
+        {
+          "stationName": "嘉禾望岗",
+          "operatorLineIds": [
+            3,
+            17
+          ]
+        },
+        {
+          "stationName": "白云文化广场",
+          "operatorLineIds": [
+            31
+          ]
+        },
+        {
+          "stationName": "广州火车站",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "公园前",
+          "operatorLineIds": [
+            1
+          ]
+        },
+        {
+          "stationName": "海珠广场",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "昌岗",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "江泰路",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "东晓南",
+          "operatorLineIds": [
+            32
+          ]
+        },
+        {
+          "stationName": "南洲",
+          "operatorLineIds": [
+            8
+          ]
+        },
+        {
+          "stationName": "石壁",
+          "operatorLineIds": [
+            11
+          ]
+        },
+        {
+          "stationName": "广州南站",
+          "operatorLineIds": [
+            11,
+            19,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 3,
+      "lineCode": "3",
+      "lineName": "三北线",
+      "rawStationNames": [
+        "体育西路",
+        "林和西",
+        "广州东站",
+        "燕塘",
+        "梅花园",
+        "京溪南方医院",
+        "同和",
+        "永泰",
+        "白云大道北",
+        "嘉禾望岗",
+        "龙归",
+        "人和",
+        "高增",
+        "机场北（T2）"
+      ],
+      "stationNames": [
+        "体育西路",
+        "林和西",
+        "广州东站",
+        "燕塘",
+        "梅花园",
+        "京溪南方医院",
+        "同和",
+        "永泰",
+        "白云大道北",
+        "嘉禾望岗",
+        "龙归",
+        "人和",
+        "高增",
+        "机场北（T2）"
+      ],
+      "operatorStationIds": [
+        15,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        91,
+        189
+      ],
+      "interchanges": [
+        {
+          "stationName": "体育西路",
+          "operatorLineIds": [
+            1,
+            4
+          ]
+        },
+        {
+          "stationName": "林和西",
+          "operatorLineIds": [
+            9
+          ]
+        },
+        {
+          "stationName": "广州东站",
+          "operatorLineIds": [
+            1,
+            30
+          ]
+        },
+        {
+          "stationName": "燕塘",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "嘉禾望岗",
+          "operatorLineIds": [
+            2,
+            17
+          ]
+        },
+        {
+          "stationName": "高增",
+          "operatorLineIds": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 4,
+      "lineCode": "3",
+      "lineName": "三号线",
+      "rawStationNames": [
+        "海傍",
+        "海涌路",
+        "石碁南",
+        "傍江",
+        "番禺广场",
+        "市桥",
+        "汉溪长隆",
+        "大石",
+        "厦滘",
+        "沥滘",
+        "大塘",
+        "客村",
+        "广州塔",
+        "珠江新城",
+        "体育西路",
+        "石牌桥",
+        "岗顶",
+        "华师",
+        "五山",
+        "天河客运站"
+      ],
+      "stationNames": [
+        "海傍",
+        "海涌路",
+        "石碁南",
+        "傍江",
+        "番禺广场",
+        "市桥",
+        "汉溪长隆",
+        "大石",
+        "厦滘",
+        "沥滘",
+        "大塘",
+        "客村",
+        "广州塔",
+        "珠江新城",
+        "体育西路",
+        "石牌桥",
+        "岗顶",
+        "华师",
+        "五山",
+        "天河客运站"
+      ],
+      "operatorStationIds": [
+        83,
+        441,
+        440,
+        439,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        15,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "interchanges": [
+        {
+          "stationName": "海傍",
+          "operatorLineIds": [
+            5
+          ]
+        },
+        {
+          "stationName": "番禺广场",
+          "operatorLineIds": [
+            18,
+            19
+          ]
+        },
+        {
+          "stationName": "汉溪长隆",
+          "operatorLineIds": [
+            11
+          ]
+        },
+        {
+          "stationName": "沥滘",
+          "operatorLineIds": [
+            8
+          ]
+        },
+        {
+          "stationName": "大塘",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "客村",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "广州塔",
+          "operatorLineIds": [
+            9
+          ]
+        },
+        {
+          "stationName": "珠江新城",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "体育西路",
+          "operatorLineIds": [
+            1,
+            3
+          ]
+        },
+        {
+          "stationName": "华师",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "天河客运站",
+          "operatorLineIds": [
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 5,
+      "lineCode": "4",
+      "lineName": "四号线",
+      "rawStationNames": [
+        "黄村",
+        "车陂",
+        "车陂南",
+        "万胜围",
+        "官洲",
+        "大学城北",
+        "大学城南",
+        "新造",
+        "石碁",
+        "海傍",
+        "低涌",
+        "东涌",
+        "庆盛（南沙北站）",
+        "黄阁汽车城",
+        "黄阁",
+        "蕉门",
+        "金洲",
+        "飞沙角",
+        "广隆",
+        "大涌",
+        "塘坑",
+        "南横",
+        "南沙客运港"
+      ],
+      "stationNames": [
+        "黄村",
+        "车陂",
+        "车陂南",
+        "万胜围",
+        "官洲",
+        "大学城北",
+        "大学城南",
+        "新造",
+        "石碁",
+        "海傍",
+        "低涌",
+        "东涌",
+        "庆盛",
+        "黄阁汽车城",
+        "黄阁",
+        "蕉门",
+        "金洲",
+        "飞沙角",
+        "广隆",
+        "大涌",
+        "塘坑",
+        "南横",
+        "南沙客运港"
+      ],
+      "operatorStationIds": [
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "interchanges": [
+        {
+          "stationName": "黄村",
+          "operatorLineIds": [
+            16
+          ]
+        },
+        {
+          "stationName": "车陂",
+          "operatorLineIds": [
+            13
+          ]
+        },
+        {
+          "stationName": "车陂南",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "万胜围",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "官洲",
+          "operatorLineIds": [
+            33
+          ]
+        },
+        {
+          "stationName": "大学城北",
+          "operatorLineIds": [
+            33
+          ]
+        },
+        {
+          "stationName": "大学城南",
+          "operatorLineIds": [
+            11,
+            33
+          ]
+        },
+        {
+          "stationName": "海傍",
+          "operatorLineIds": [
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 6,
+      "lineCode": "5",
+      "lineName": "五号线",
+      "rawStationNames": [
+        "黄埔新港",
+        "夏港",
+        "保盈大道",
+        "夏园",
+        "庙头",
+        "双沙",
+        "文冲",
+        "大沙东",
+        "大沙地",
+        "鱼珠",
+        "三溪",
+        "东圃",
+        "车陂南",
+        "科韵路",
+        "员村",
+        "潭村",
+        "猎德",
+        "珠江新城",
+        "五羊邨",
+        "杨箕",
+        "动物园",
+        "区庄",
+        "淘金",
+        "小北",
+        "广州火车站",
+        "西村",
+        "西场",
+        "中山八",
+        "坦尾",
+        "滘口"
+      ],
+      "stationNames": [
+        "黄埔新港",
+        "夏港",
+        "保盈大道",
+        "夏园",
+        "庙头",
+        "双沙",
+        "文冲",
+        "大沙东",
+        "大沙地",
+        "鱼珠",
+        "三溪",
+        "东圃",
+        "车陂南",
+        "科韵路",
+        "员村",
+        "潭村",
+        "猎德",
+        "珠江新城",
+        "五羊邨",
+        "杨箕",
+        "动物园",
+        "区庄",
+        "淘金",
+        "小北",
+        "广州火车站",
+        "西村",
+        "西场",
+        "中山八",
+        "坦尾",
+        "滘口"
+      ],
+      "operatorStationIds": [
+        363,
+        362,
+        361,
+        199,
+        360,
+        359,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        75,
+        98,
+        99,
+        100,
+        101,
+        53,
+        102,
+        14,
+        103,
+        104,
+        105,
+        106,
+        27,
+        107,
+        108,
+        109,
+        110,
+        111
+      ],
+      "interchanges": [
+        {
+          "stationName": "夏园",
+          "operatorLineIds": [
+            13
+          ]
+        },
+        {
+          "stationName": "大沙东",
+          "operatorLineIds": [
+            11
+          ]
+        },
+        {
+          "stationName": "鱼珠",
+          "operatorLineIds": [
+            13
+          ]
+        },
+        {
+          "stationName": "车陂南",
+          "operatorLineIds": [
+            5
+          ]
+        },
+        {
+          "stationName": "员村",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "珠江新城",
+          "operatorLineIds": [
+            4
+          ]
+        },
+        {
+          "stationName": "五羊邨",
+          "operatorLineIds": [
+            32
+          ]
+        },
+        {
+          "stationName": "杨箕",
+          "operatorLineIds": [
+            1
+          ]
+        },
+        {
+          "stationName": "区庄",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "广州火车站",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "西村",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "中山八",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "坦尾",
+          "operatorLineIds": [
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 7,
+      "lineCode": "8",
+      "lineName": "八号线",
+      "rawStationNames": [
+        "滘心",
+        "亭岗",
+        "石井",
+        "小坪",
+        "石潭",
+        "聚龙",
+        "上步",
+        "同德",
+        "鹅掌坦",
+        "西村",
+        "彩虹桥",
+        "陈家祠",
+        "华林寺",
+        "文化公园",
+        "同福西",
+        "凤凰新村",
+        "沙园",
+        "宝岗大道",
+        "昌岗",
+        "晓港",
+        "中大",
+        "鹭江",
+        "客村",
+        "赤岗",
+        "磨碟沙",
+        "新港东",
+        "琶洲",
+        "万胜围"
+      ],
+      "stationNames": [
+        "滘心",
+        "亭岗",
+        "石井",
+        "小坪",
+        "石潭",
+        "聚龙",
+        "上步",
+        "同德",
+        "鹅掌坦",
+        "西村",
+        "彩虹桥",
+        "陈家祠",
+        "华林寺",
+        "文化公园",
+        "同福西",
+        "凤凰新村",
+        "沙园",
+        "宝岗大道",
+        "昌岗",
+        "晓港",
+        "中大",
+        "鹭江",
+        "客村",
+        "赤岗",
+        "磨碟沙",
+        "新港东",
+        "琶洲",
+        "万胜围"
+      ],
+      "operatorStationIds": [
+        267,
+        266,
+        265,
+        264,
+        263,
+        269,
+        261,
+        260,
+        268,
+        107,
+        331,
+        8,
+        258,
+        147,
+        257,
+        112,
+        113,
+        114,
+        34,
+        115,
+        116,
+        117,
+        51,
+        118,
+        119,
+        120,
+        121,
+        76
+      ],
+      "interchanges": [
+        {
+          "stationName": "聚龙",
+          "operatorLineIds": [
+            31
+          ]
+        },
+        {
+          "stationName": "西村",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "彩虹桥",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "陈家祠",
+          "operatorLineIds": [
+            1
+          ]
+        },
+        {
+          "stationName": "文化公园",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "沙园",
+          "operatorLineIds": [
+            8
+          ]
+        },
+        {
+          "stationName": "昌岗",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "客村",
+          "operatorLineIds": [
+            4
+          ]
+        },
+        {
+          "stationName": "赤岗",
+          "operatorLineIds": [
+            33
+          ]
+        },
+        {
+          "stationName": "磨碟沙",
+          "operatorLineIds": [
+            18
+          ]
+        },
+        {
+          "stationName": "琶洲",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "万胜围",
+          "operatorLineIds": [
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 8,
+      "lineCode": "GF",
+      "lineName": "广佛线",
+      "rawStationNames": [
+        "沥滘",
+        "南洲",
+        "石溪",
+        "燕岗",
+        "沙园",
+        "沙涌",
+        "鹤洞",
+        "西塱",
+        "菊树",
+        "龙溪",
+        "金融高新区",
+        "千灯湖",
+        "虫雷 岗",
+        "南桂路",
+        "桂城",
+        "朝安",
+        "普君北路",
+        "祖庙",
+        "同济路",
+        "季华园",
+        "魁奇路",
+        "澜石",
+        "世纪莲",
+        "东平",
+        "新城东"
+      ],
+      "stationNames": [
+        "沥滘",
+        "南洲",
+        "石溪",
+        "燕岗",
+        "沙园",
+        "沙涌",
+        "鹤洞",
+        "西塱",
+        "菊树",
+        "龙溪",
+        "金融高新区",
+        "千灯湖",
+        "𧒽岗",
+        "南桂路",
+        "桂城",
+        "朝安",
+        "普君北路",
+        "祖庙",
+        "同济路",
+        "季华园",
+        "魁奇路",
+        "澜石",
+        "世纪莲",
+        "东平",
+        "新城东"
+      ],
+      "operatorStationIds": [
+        49,
+        37,
+        227,
+        157,
+        113,
+        158,
+        159,
+        1,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        175,
+        176,
+        177,
+        178
+      ],
+      "interchanges": [
+        {
+          "stationName": "沥滘",
+          "operatorLineIds": [
+            4
+          ]
+        },
+        {
+          "stationName": "南洲",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "燕岗",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "沙园",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "沙涌",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "西塱",
+          "operatorLineIds": [
+            1,
+            19,
+            32
+          ]
+        },
+        {
+          "stationName": "桂城",
+          "operatorLineIds": [
+            23
+          ]
+        },
+        {
+          "stationName": "魁奇路",
+          "operatorLineIds": [
+            21
+          ]
+        },
+        {
+          "stationName": "东平",
+          "operatorLineIds": [
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 10,
+      "lineCode": "6",
+      "lineName": "六号线",
+      "rawStationNames": [
+        "浔峰岗",
+        "横沙",
+        "沙贝",
+        "河沙",
+        "坦尾",
+        "如意坊",
+        "黄沙",
+        "文化公园",
+        "一德路",
+        "海珠广场",
+        "北京路",
+        "团一大广场",
+        "东湖",
+        "东山口",
+        "区庄",
+        "黄花岗",
+        "沙河顶",
+        "沙河",
+        "天平架",
+        "燕塘",
+        "天河客运站",
+        "长湴",
+        "植物园",
+        "龙洞",
+        "柯木塱",
+        "高塘石",
+        "黄陂",
+        "金峰",
+        "暹岗",
+        "苏元",
+        "萝岗",
+        "香雪"
+      ],
+      "stationNames": [
+        "浔峰岗",
+        "横沙",
+        "沙贝",
+        "河沙",
+        "坦尾",
+        "如意坊",
+        "黄沙",
+        "文化公园",
+        "一德路",
+        "海珠广场",
+        "北京路",
+        "团一大广场",
+        "东湖",
+        "东山口",
+        "区庄",
+        "黄花岗",
+        "沙河顶",
+        "沙河",
+        "天平架",
+        "燕塘",
+        "天河客运站",
+        "长湴",
+        "植物园",
+        "龙洞",
+        "柯木塱",
+        "高塘石",
+        "黄陂",
+        "金峰",
+        "暹岗",
+        "苏元",
+        "萝岗",
+        "香雪"
+      ],
+      "operatorStationIds": [
+        142,
+        143,
+        144,
+        145,
+        110,
+        146,
+        6,
+        147,
+        148,
+        31,
+        149,
+        150,
+        151,
+        13,
+        104,
+        152,
+        153,
+        154,
+        155,
+        63,
+        59,
+        156,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169
+      ],
+      "interchanges": [
+        {
+          "stationName": "浔峰岗",
+          "operatorLineIds": [
+            31
+          ]
+        },
+        {
+          "stationName": "坦尾",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "如意坊",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "黄沙",
+          "operatorLineIds": [
+            1
+          ]
+        },
+        {
+          "stationName": "文化公园",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "海珠广场",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "东湖",
+          "operatorLineIds": [
+            32
+          ]
+        },
+        {
+          "stationName": "东山口",
+          "operatorLineIds": [
+            1
+          ]
+        },
+        {
+          "stationName": "区庄",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "沙河",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "燕塘",
+          "operatorLineIds": [
+            3
+          ]
+        },
+        {
+          "stationName": "天河客运站",
+          "operatorLineIds": [
+            4
+          ]
+        },
+        {
+          "stationName": "苏元",
+          "operatorLineIds": [
+            16
+          ]
+        },
+        {
+          "stationName": "萝岗",
+          "operatorLineIds": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 11,
+      "lineCode": "7",
+      "lineName": "七号线",
+      "rawStationNames": [
+        "美的大道",
+        "北滘公园",
+        "美的",
+        "南涌",
+        "锦龙",
+        "陈村",
+        "陈村北",
+        "大洲",
+        "广州南站",
+        "石壁",
+        "谢村",
+        "钟村",
+        "汉溪长隆",
+        "南村万博",
+        "员岗",
+        "板桥",
+        "大学城南",
+        "深井",
+        "长洲",
+        "裕丰围",
+        "大沙东",
+        "姬堂",
+        "加庄",
+        "科丰路",
+        "萝岗",
+        "水西",
+        "燕山"
+      ],
+      "stationNames": [
+        "美的大道",
+        "北滘公园",
+        "美的",
+        "南涌",
+        "锦龙",
+        "陈村",
+        "陈村北",
+        "大洲",
+        "广州南站",
+        "石壁",
+        "谢村",
+        "钟村",
+        "汉溪长隆",
+        "南村万博",
+        "员岗",
+        "板桥",
+        "大学城南",
+        "深井",
+        "长洲",
+        "裕丰围",
+        "大沙东",
+        "姬堂",
+        "加庄",
+        "科丰路",
+        "萝岗",
+        "水西",
+        "燕山"
+      ],
+      "operatorStationIds": [
+        329,
+        326,
+        325,
+        324,
+        323,
+        322,
+        321,
+        320,
+        42,
+        41,
+        170,
+        171,
+        46,
+        172,
+        173,
+        174,
+        79,
+        364,
+        365,
+        196,
+        93,
+        367,
+        368,
+        369,
+        168,
+        254,
+        370
+      ],
+      "interchanges": [
+        {
+          "stationName": "北滘公园",
+          "operatorLineIds": [
+            23
+          ]
+        },
+        {
+          "stationName": "广州南站",
+          "operatorLineIds": [
+            2,
+            19,
+            21
+          ]
+        },
+        {
+          "stationName": "石壁",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "汉溪长隆",
+          "operatorLineIds": [
+            4
+          ]
+        },
+        {
+          "stationName": "南村万博",
+          "operatorLineIds": [
+            18
+          ]
+        },
+        {
+          "stationName": "大学城南",
+          "operatorLineIds": [
+            5,
+            33
+          ]
+        },
+        {
+          "stationName": "裕丰围",
+          "operatorLineIds": [
+            13
+          ]
+        },
+        {
+          "stationName": "大沙东",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "萝岗",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "水西",
+          "operatorLineIds": [
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 12,
+      "lineCode": "9",
+      "lineName": "九号线",
+      "rawStationNames": [
+        "飞鹅岭",
+        "花都汽车城",
+        "广州北站",
+        "花城路",
+        "花果山公园",
+        "花都广场",
+        "马鞍山公园",
+        "莲塘",
+        "清㘵",
+        "清塘",
+        "高增"
+      ],
+      "stationNames": [
+        "飞鹅岭",
+        "花都汽车城",
+        "广州北站",
+        "花城路",
+        "花果山公园",
+        "花都广场",
+        "马鞍山公园",
+        "莲塘",
+        "清㘵",
+        "清塘",
+        "高增"
+      ],
+      "operatorStationIds": [
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        91
+      ],
+      "interchanges": [
+        {
+          "stationName": "高增",
+          "operatorLineIds": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 13,
+      "lineCode": "13",
+      "lineName": "十三号线",
+      "rawStationNames": [
+        "天河公园",
+        "棠下",
+        "车陂",
+        "天河珠村",
+        "鱼珠",
+        "裕丰围",
+        "双岗",
+        "南海神庙",
+        "夏园",
+        "南岗",
+        "沙村",
+        "白江",
+        "新塘",
+        "官湖",
+        "新沙"
+      ],
+      "stationNames": [
+        "天河公园",
+        "棠下",
+        "车陂",
+        "天河珠村",
+        "鱼珠",
+        "裕丰围",
+        "双岗",
+        "南海神庙",
+        "夏园",
+        "南岗",
+        "沙村",
+        "白江",
+        "新塘",
+        "官湖",
+        "新沙"
+      ],
+      "operatorStationIds": [
+        248,
+        497,
+        74,
+        498,
+        95,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "interchanges": [
+        {
+          "stationName": "天河公园",
+          "operatorLineIds": [
+            16,
+            30
+          ]
+        },
+        {
+          "stationName": "车陂",
+          "operatorLineIds": [
+            5
+          ]
+        },
+        {
+          "stationName": "鱼珠",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "裕丰围",
+          "operatorLineIds": [
+            11
+          ]
+        },
+        {
+          "stationName": "夏园",
+          "operatorLineIds": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 14,
+      "lineCode": "14",
+      "lineName": "十四号线(知识城)",
+      "rawStationNames": [
+        "新和",
+        "红卫",
+        "新南",
+        "枫下",
+        "知识城",
+        "何棠下",
+        "旺村",
+        "汤村",
+        "镇龙北",
+        "镇龙"
+      ],
+      "stationNames": [
+        "新和",
+        "红卫",
+        "新南",
+        "枫下",
+        "知识城",
+        "何棠下",
+        "旺村",
+        "汤村",
+        "镇龙北",
+        "镇龙"
+      ],
+      "operatorStationIds": [
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ],
+      "interchanges": [
+        {
+          "stationName": "新和",
+          "operatorLineIds": [
+            17
+          ]
+        },
+        {
+          "stationName": "镇龙",
+          "operatorLineIds": [
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 16,
+      "lineCode": "21",
+      "lineName": "二十一号线",
+      "rawStationNames": [
+        "天河公园",
+        "棠东",
+        "黄村",
+        "大观南路",
+        "天河智慧城",
+        "神舟路",
+        "科学城",
+        "苏元",
+        "水西",
+        "长平",
+        "金坑",
+        "镇龙西",
+        "镇龙",
+        "中新",
+        "坑贝",
+        "凤岗",
+        "朱村",
+        "山田",
+        "钟岗",
+        "增城广场"
+      ],
+      "stationNames": [
+        "天河公园",
+        "棠东",
+        "黄村",
+        "大观南路",
+        "天河智慧城",
+        "神舟路",
+        "科学城",
+        "苏元",
+        "水西",
+        "长平",
+        "金坑",
+        "镇龙西",
+        "镇龙",
+        "中新",
+        "坑贝",
+        "凤岗",
+        "朱村",
+        "山田",
+        "钟岗",
+        "增城广场"
+      ],
+      "operatorStationIds": [
+        248,
+        249,
+        73,
+        250,
+        251,
+        252,
+        253,
+        167,
+        254,
+        255,
+        256,
+        247,
+        215,
+        246,
+        245,
+        244,
+        242,
+        243,
+        241,
+        235
+      ],
+      "interchanges": [
+        {
+          "stationName": "天河公园",
+          "operatorLineIds": [
+            13,
+            30
+          ]
+        },
+        {
+          "stationName": "黄村",
+          "operatorLineIds": [
+            5
+          ]
+        },
+        {
+          "stationName": "苏元",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "水西",
+          "operatorLineIds": [
+            11
+          ]
+        },
+        {
+          "stationName": "镇龙",
+          "operatorLineIds": [
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 17,
+      "lineCode": "14",
+      "lineName": "十四号线",
+      "rawStationNames": [
+        "乐嘉路",
+        "云霄路",
+        "新市墟",
+        "马务",
+        "鹤边",
+        "鹤龙",
+        "彭边",
+        "嘉禾望岗",
+        "白云东平",
+        "夏良",
+        "太和",
+        "竹料",
+        "钟落潭",
+        "马沥",
+        "新和",
+        "太平",
+        "神岗",
+        "赤草",
+        "从化客运站",
+        "东风"
+      ],
+      "stationNames": [
+        "乐嘉路",
+        "云霄路",
+        "新市墟",
+        "马务",
+        "鹤边",
+        "鹤龙",
+        "彭边",
+        "嘉禾望岗",
+        "白云东平",
+        "夏良",
+        "太和",
+        "竹料",
+        "钟落潭",
+        "马沥",
+        "新和",
+        "太平",
+        "神岗",
+        "赤草",
+        "从化客运站",
+        "东风"
+      ],
+      "operatorStationIds": [
+        490,
+        491,
+        471,
+        492,
+        493,
+        494,
+        495,
+        69,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        206,
+        236,
+        237,
+        238,
+        239,
+        240
+      ],
+      "interchanges": [
+        {
+          "stationName": "新市墟",
+          "operatorLineIds": [
+            31
+          ]
+        },
+        {
+          "stationName": "嘉禾望岗",
+          "operatorLineIds": [
+            2,
+            3
+          ]
+        },
+        {
+          "stationName": "新和",
+          "operatorLineIds": [
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 18,
+      "lineCode": "18",
+      "lineName": "十八号线",
+      "rawStationNames": [
+        "冼村",
+        "磨碟沙",
+        "龙潭",
+        "沙溪",
+        "南村万博",
+        "番禺广场",
+        "横沥",
+        "万顷沙"
+      ],
+      "stationNames": [
+        "冼村",
+        "磨碟沙",
+        "龙潭",
+        "沙溪",
+        "南村万博",
+        "番禺广场",
+        "横沥",
+        "万顷沙"
+      ],
+      "operatorStationIds": [
+        270,
+        119,
+        271,
+        272,
+        172,
+        44,
+        273,
+        274
+      ],
+      "interchanges": [
+        {
+          "stationName": "磨碟沙",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "龙潭",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "南村万博",
+          "operatorLineIds": [
+            11
+          ]
+        },
+        {
+          "stationName": "番禺广场",
+          "operatorLineIds": [
+            4,
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 19,
+      "lineCode": "22",
+      "lineName": "二十二号线",
+      "rawStationNames": [
+        "番禺广场",
+        "市广路",
+        "广州南站",
+        "陈头岗",
+        "南浦西",
+        "南漖",
+        "西塱",
+        "芳村"
+      ],
+      "stationNames": [
+        "番禺广场",
+        "市广路",
+        "广州南站",
+        "陈头岗",
+        "南浦西",
+        "南漖",
+        "西塱",
+        "芳村"
+      ],
+      "operatorStationIds": [
+        44,
+        275,
+        42,
+        276,
+        500,
+        499,
+        1,
+        5
+      ],
+      "interchanges": [
+        {
+          "stationName": "番禺广场",
+          "operatorLineIds": [
+            4,
+            18
+          ]
+        },
+        {
+          "stationName": "广州南站",
+          "operatorLineIds": [
+            2,
+            11,
+            21
+          ]
+        },
+        {
+          "stationName": "西塱",
+          "operatorLineIds": [
+            1,
+            8,
+            32
+          ]
+        },
+        {
+          "stationName": "芳村",
+          "operatorLineIds": [
+            1,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 21,
+      "lineCode": "F2",
+      "lineName": "佛山地铁2号线",
+      "rawStationNames": [
+        "南庄",
+        "湖涌",
+        "绿岛湖",
+        "智慧新城",
+        "张槎",
+        "石湾",
+        "沙岗",
+        "魁奇路",
+        "石梁",
+        "湾华",
+        "登洲",
+        "花卉世界",
+        "仙涌",
+        "石洲",
+        "林岳西",
+        "林岳东",
+        "广州南站"
+      ],
+      "stationNames": [
+        "南庄",
+        "湖涌",
+        "绿岛湖",
+        "智慧新城",
+        "张槎",
+        "石湾",
+        "沙岗",
+        "魁奇路",
+        "石梁",
+        "湾华",
+        "登洲",
+        "花卉世界",
+        "仙涌",
+        "石洲",
+        "林岳西",
+        "林岳东",
+        "广州南站"
+      ],
+      "operatorStationIds": [
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        134,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        42
+      ],
+      "interchanges": [
+        {
+          "stationName": "魁奇路",
+          "operatorLineIds": [
+            8
+          ]
+        },
+        {
+          "stationName": "湾华",
+          "operatorLineIds": [
+            23
+          ]
+        },
+        {
+          "stationName": "林岳西",
+          "operatorLineIds": [
+            22
+          ]
+        },
+        {
+          "stationName": "广州南站",
+          "operatorLineIds": [
+            2,
+            11,
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 23,
+      "lineCode": "F3",
+      "lineName": "佛山地铁3号线",
+      "rawStationNames": [
+        "顺德学院站",
+        "顺德欢乐海岸",
+        "顺德一中",
+        "驹荣北路",
+        "东乐路",
+        "大良钟楼",
+        "环市北",
+        "顺德人民医院",
+        "荔村",
+        "伦教",
+        "广教",
+        "北滘公园",
+        "高村",
+        "北滘西站",
+        "潭洲会展",
+        "岳步",
+        "大墩",
+        "东平",
+        "湾华",
+        "亚艺公园",
+        "季华六路",
+        "镇安",
+        "桂城",
+        "西约",
+        "叠滘",
+        "中山公园",
+        "敦厚",
+        "佛山站",
+        "联和",
+        "孝德东",
+        "罗村",
+        "佛山西站",
+        "兴业东路",
+        "科盛路",
+        "博爱中路",
+        "南海大学城",
+        "佛山大学"
+      ],
+      "stationNames": [
+        "顺德学院站",
+        "顺德欢乐海岸",
+        "顺德一中",
+        "驹荣北路",
+        "东乐路",
+        "大良钟楼",
+        "环市北",
+        "顺德人民医院",
+        "荔村",
+        "伦教",
+        "广教",
+        "北滘公园",
+        "高村",
+        "北滘西站",
+        "潭洲会展",
+        "岳步",
+        "大墩",
+        "东平",
+        "湾华",
+        "亚艺公园",
+        "季华六路",
+        "镇安",
+        "桂城",
+        "西约",
+        "叠滘",
+        "中山公园",
+        "敦厚",
+        "佛山站",
+        "联和",
+        "孝德东",
+        "罗村",
+        "佛山西站",
+        "兴业东路",
+        "科盛路",
+        "博爱中路",
+        "南海大学城",
+        "佛山大学"
+      ],
+      "operatorStationIds": [
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        326,
+        349,
+        350,
+        351,
+        352,
+        353,
+        177,
+        304,
+        356,
+        357,
+        358,
+        128,
+        427,
+        428,
+        429,
+        519,
+        520,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438
+      ],
+      "interchanges": [
+        {
+          "stationName": "北滘公园",
+          "operatorLineIds": [
+            11
+          ]
+        },
+        {
+          "stationName": "东平",
+          "operatorLineIds": [
+            8
+          ]
+        },
+        {
+          "stationName": "湾华",
+          "operatorLineIds": [
+            21
+          ]
+        },
+        {
+          "stationName": "桂城",
+          "operatorLineIds": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 30,
+      "lineCode": "11",
+      "lineName": "十一号线",
+      "rawStationNames": [
+        "赤沙",
+        "琶洲",
+        "员村",
+        "天河公园",
+        "华景路",
+        "华师",
+        "龙口西",
+        "广州东站",
+        "沙河",
+        "云台花园",
+        "大金钟路",
+        "中医药大学",
+        "梓元岗",
+        "流花",
+        "彩虹桥",
+        "中山八",
+        "如意坊",
+        "石围塘",
+        "芳村",
+        "大冲口",
+        "沙涌",
+        "鹤洞东",
+        "棣园",
+        "燕岗",
+        "江泰路",
+        "五凤",
+        "逸景路",
+        "上涌",
+        "大塘",
+        "龙潭"
+      ],
+      "stationNames": [
+        "赤沙",
+        "琶洲",
+        "员村",
+        "天河公园",
+        "华景路",
+        "华师",
+        "龙口西",
+        "广州东站",
+        "沙河",
+        "云台花园",
+        "大金钟路",
+        "中医药大学",
+        "梓元岗",
+        "流花",
+        "彩虹桥",
+        "中山八",
+        "如意坊",
+        "石围塘",
+        "芳村",
+        "大冲口",
+        "沙涌",
+        "鹤洞东",
+        "棣园",
+        "燕岗",
+        "江泰路",
+        "五凤",
+        "逸景路",
+        "上涌",
+        "大塘",
+        "龙潭"
+      ],
+      "operatorStationIds": [
+        442,
+        121,
+        99,
+        248,
+        443,
+        57,
+        444,
+        62,
+        154,
+        445,
+        446,
+        447,
+        448,
+        449,
+        331,
+        109,
+        146,
+        450,
+        5,
+        451,
+        158,
+        452,
+        453,
+        157,
+        35,
+        454,
+        455,
+        456,
+        50,
+        271
+      ],
+      "interchanges": [
+        {
+          "stationName": "赤沙",
+          "operatorLineIds": [
+            33
+          ]
+        },
+        {
+          "stationName": "琶洲",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "员村",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "天河公园",
+          "operatorLineIds": [
+            13,
+            16
+          ]
+        },
+        {
+          "stationName": "华师",
+          "operatorLineIds": [
+            4
+          ]
+        },
+        {
+          "stationName": "广州东站",
+          "operatorLineIds": [
+            1,
+            3
+          ]
+        },
+        {
+          "stationName": "沙河",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "彩虹桥",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "中山八",
+          "operatorLineIds": [
+            6
+          ]
+        },
+        {
+          "stationName": "如意坊",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "芳村",
+          "operatorLineIds": [
+            1,
+            19
+          ]
+        },
+        {
+          "stationName": "沙涌",
+          "operatorLineIds": [
+            8
+          ]
+        },
+        {
+          "stationName": "燕岗",
+          "operatorLineIds": [
+            8
+          ]
+        },
+        {
+          "stationName": "江泰路",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "五凤",
+          "operatorLineIds": [
+            32
+          ]
+        },
+        {
+          "stationName": "大塘",
+          "operatorLineIds": [
+            4
+          ]
+        },
+        {
+          "stationName": "龙潭",
+          "operatorLineIds": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 31,
+      "lineCode": "12",
+      "lineName": "十二号线",
+      "rawStationNames": [
+        "浔峰岗",
+        "浔峰岗北",
+        "西洲",
+        "聚龙",
+        "广州白云站",
+        "棠涌",
+        "新市墟",
+        "白云文化广场",
+        "广州体育馆"
+      ],
+      "stationNames": [
+        "浔峰岗",
+        "浔峰岗北",
+        "西洲",
+        "聚龙",
+        "广州白云站",
+        "棠涌",
+        "新市墟",
+        "白云文化广场",
+        "广州体育馆"
+      ],
+      "operatorStationIds": [
+        142,
+        467,
+        468,
+        269,
+        469,
+        470,
+        471,
+        23,
+        472
+      ],
+      "interchanges": [
+        {
+          "stationName": "浔峰岗",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "聚龙",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "新市墟",
+          "operatorLineIds": [
+            17
+          ]
+        },
+        {
+          "stationName": "白云文化广场",
+          "operatorLineIds": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 32,
+      "lineCode": "10",
+      "lineName": "十号线",
+      "rawStationNames": [
+        "西塱",
+        "花围",
+        "东沙",
+        "大干围",
+        "工业大道南",
+        "东晓南",
+        "五凤",
+        "中大南门",
+        "滨江东路",
+        "东湖",
+        "五羊邨",
+        "杨箕东"
+      ],
+      "stationNames": [
+        "西塱",
+        "花围",
+        "东沙",
+        "大干围",
+        "工业大道南",
+        "东晓南",
+        "五凤",
+        "中大南门",
+        "滨江东路",
+        "东湖",
+        "五羊邨",
+        "杨箕东"
+      ],
+      "operatorStationIds": [
+        1,
+        460,
+        461,
+        462,
+        463,
+        36,
+        454,
+        464,
+        465,
+        151,
+        102,
+        466
+      ],
+      "interchanges": [
+        {
+          "stationName": "西塱",
+          "operatorLineIds": [
+            1,
+            8,
+            19
+          ]
+        },
+        {
+          "stationName": "东晓南",
+          "operatorLineIds": [
+            2
+          ]
+        },
+        {
+          "stationName": "五凤",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "东湖",
+          "operatorLineIds": [
+            10
+          ]
+        },
+        {
+          "stationName": "五羊邨",
+          "operatorLineIds": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "operatorLineId": 33,
+      "lineCode": "12",
+      "lineName": "十二号线（二沙岛-大学城南）",
+      "rawStationNames": [
+        "二沙岛",
+        "赤岗塔",
+        "赤岗",
+        "赤沙北",
+        "赤沙",
+        "北山",
+        "官洲",
+        "大学城北",
+        "大学城南"
+      ],
+      "stationNames": [
+        "二沙岛",
+        "赤岗塔",
+        "赤岗",
+        "赤沙北",
+        "赤沙",
+        "北山",
+        "官洲",
+        "大学城北",
+        "大学城南"
+      ],
+      "operatorStationIds": [
+        473,
+        474,
+        118,
+        475,
+        442,
+        476,
+        77,
+        78,
+        79
+      ],
+      "interchanges": [
+        {
+          "stationName": "赤岗",
+          "operatorLineIds": [
+            7
+          ]
+        },
+        {
+          "stationName": "赤沙",
+          "operatorLineIds": [
+            30
+          ]
+        },
+        {
+          "stationName": "官洲",
+          "operatorLineIds": [
+            5
+          ]
+        },
+        {
+          "stationName": "大学城北",
+          "operatorLineIds": [
+            5
+          ]
+        },
+        {
+          "stationName": "大学城南",
+          "operatorLineIds": [
+            5,
+            11
+          ]
+        }
+      ]
+    }
+  ]
+}

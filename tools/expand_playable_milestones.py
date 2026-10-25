@@ -39,8 +39,8 @@ ROUTE_DATES = {
         "guangzhou-r1":"1999-06-28", "guangzhou-r2":"2010-09-25", "guangzhou-r3":"2018-12-28", "guangzhou-r4":"2017-12-28",
         "guangzhou-r5":"2023-12-28", "guangzhou-r6":"2016-12-28", "guangzhou-r7":"2023-12-28", "guangzhou-r8":"2019-12-28",
         "guangzhou-r9":"2017-12-28", "guangzhou-r10":"2025-06-29", "guangzhou-r11":"2025-09-29", "guangzhou-r12":"2025-06-29",
-        "guangzhou-r13":"2025-09-29", "guangzhou-r14":"2025-09-29", "guangzhou-r15":"2022-09-28", "guangzhou-r16":"2019-12-20",
-        "guangzhou-r17":"2022-03-31", "guangzhou-r18":"2021-12-28", "guangzhou-r19":"2024-08-23", "guangzhou-r20":"2018-12-28",
+        "guangzhou-r13":"2025-09-29", "guangzhou-r14":"2025-09-29", "guangzhou-r15":"2021-09-28", "guangzhou-r16":"2019-12-20",
+        "guangzhou-r17":"2025-12-29", "guangzhou-r18":"2021-12-28", "guangzhou-r19":"2024-08-23", "guangzhou-r20":"2018-12-28",
     },
     "shenzhen": {
         "shenzhen-r1":"2011-06-15", "shenzhen-r2":"2020-10-28", "shenzhen-r3":"2024-12-28", "shenzhen-r4":"2020-10-28",

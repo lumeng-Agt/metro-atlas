@@ -21269,7 +21269,7 @@
               ],
               "precision": "schematic",
               "source": "http://bj.people.com.cn/n2/2025/0802/c14540-41310722.html",
-              "sourceNote": "东大桥既有6/17与在建22/28组成枢纽；本项确认6/17/28，22/28另行明确确认，各站体独立。"
+              "sourceNote": "本项仅确认6／28两线站体；17／28、22／28各有独立配对，不能由一对推断其他联系。"
             },
             {
               "id": "future-transfer-bj28-jingguangqiao-10",
@@ -21366,11 +21366,27 @@
               "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
               "sourceNote": "大望路既有1/14换乘站区；保留14号线独立坐标与站体，仅统一站区身份。",
               "precision": "schematic"
+            },
+            {
+              "id": "future-transfer-bj28-dongdaqiao-17",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "stationInstanceIds": [
+                "beijing-s333__line17-17",
+                "beijing-s333__line28-28"
+              ],
+              "lineIds": [
+                "beijing-line17-17",
+                "beijing-line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "sourceNote": "重大项目办原文明确东大桥17／28换乘；各线站体独立，不用已有6／28关系冒充三线联系。"
             }
           ],
           "requireOpen": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.19",
+          "scopeRevision": "2026.10.25.19",
           "serviceStatusSchema": 2,
           "stationNamingNote": "使用工程站名；2025一体化公示图的景辉街、茂兴西路分别对应核心区、北京东站，不当作已生效正式命名。"
         },
@@ -25431,50 +25447,60 @@
           "id": "guangzhou-network-milestone-2022-03-31",
           "phase": "history",
           "date": "2022-03-31",
-          "title": "22号线建设阶段",
+          "title": "22号线首通：陈头岗至番禺广场",
           "lineGroups": [
             {
               "taskId": "route:guangzhou-r17",
               "mapRouteId": "guangzhou-r17",
               "name": "22号线",
               "stationIds": [
-                "guangzhou-s170",
-                "guangzhou-s298",
-                "guangzhou-s299",
-                "guangzhou-s300",
                 "guangzhou-s301",
                 "guangzhou-s302",
                 "guangzhou-s303",
                 "guangzhou-s276"
               ],
               "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
+              "precisionNote": "开放范围和日期据同期公告及政府回顾；逐站顺序与运营方资料对照，隧道几何为近似参考。",
               "historicalLineId": "guangzhou-line22-17",
               "color": "#CD5228",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
+              "stationOrderSource": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "guangzhou-s170": "guangzhou-s170__line22-17",
+                "guangzhou-s301": "guangzhou-s301",
+                "guangzhou-s302": "guangzhou-s302",
+                "guangzhou-s303": "guangzhou-s303",
                 "guangzhou-s276": "guangzhou-s276__line22-17"
-              }
+              },
+              "stationNames": {
+                "guangzhou-s301": "陈头岗",
+                "guangzhou-s302": "广州南站",
+                "guangzhou-s303": "市广路",
+                "guangzhou-s276": "番禺广场"
+              },
+              "stationNamingNote": "截止日运营方现用名称；1997首章西朗历史名保留。仅在玩家预览并提交本期校正时更新，不在读取旧档时改名。",
+              "stationBodyNote": "西塱22号线独立站体；保留旧1号线站体、坐标及轨道，不以同名或站区别名共用站体。",
+              "replaceExistingService": true,
+              "servicePathRevision": 33,
+              "coverageGroupId": "route:guangzhou-r17",
+              "reconfirmLaterServices": true
             }
           ],
           "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
+          "eventText": "2022年3月31日，22号线陈头岗至番禺广场4站开放；芳村至南浦西仍为后续建设，不提前出现。",
           "precision": "station_areas",
-          "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+          "source": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
           "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
-          "sourceCheckedAt": "2026-10-20",
+          "sourceCheckedAt": "2026-10-25",
           "sourceType": "government_or_operator_route_inventory_and_opening_records",
           "status": "operated",
           "geometryStatus": "station_area_approximation",
           "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
+          "sourcePublicationDate": "2025-12-30",
           "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
           "story": {
-            "opening": "2022年前后，22号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
+            "opening": "2022年3月31日，22号线陈头岗至番禺广场4站开放；芳村至南浦西仍为后续建设，不提前出现。",
+            "purpose": "建设南站快线首通4站，并明确与既有线路的换乘。",
+            "outcome": "22号线首通段连成；后通段在2025年任务中接续。",
             "eventKind": "network_expansion",
             "planVersions": [],
             "steps": [
@@ -25509,29 +25535,13 @@
           "routeMilestoneIds": [
             "guangzhou-r17"
           ],
-          "chapterScope": "cutoff_route_completion",
+          "chapterScope": "dated_opening_ranges",
           "routeTargetCount": 1,
           "requiredTransfers": [
             {
-              "id": "historic-transfer-guangzhou-s170-line1-line22-17",
-              "name": "芳村",
-              "complexId": "guangzhou-s170",
-              "stationInstanceIds": [
-                "guangzhou-s170",
-                "guangzhou-s170__line22-17"
-              ],
-              "lineIds": [
-                "guangzhou-line1",
-                "guangzhou-line22-17"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-guangzhou-s276-line22-17-line18-15",
               "name": "番禺广场",
-              "complexId": "guangzhou-s276",
+              "complexId": "guangzhou-s16",
               "stationInstanceIds": [
                 "guangzhou-s276__line22-17",
                 "guangzhou-s276__line18-15"
@@ -25541,11 +25551,77 @@
                 "guangzhou-line18-15"
               ],
               "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-first-panyu-line3",
+              "name": "番禺广场",
+              "complexId": "guangzhou-s16",
+              "stationInstanceIds": [
+                "guangzhou-s276__line22-17",
+                "guangzhou-s16"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-first-south-line2",
+              "name": "广州南站",
+              "complexId": "guangzhou-s123",
+              "stationInstanceIds": [
+                "guangzhou-s302",
+                "guangzhou-s123__line2-2"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-first-south-line7",
+              "name": "广州南站",
+              "complexId": "guangzhou-s123",
+              "stationInstanceIds": [
+                "guangzhou-s302",
+                "guangzhou-s123__line7-7"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-first-south-foshan2",
+              "name": "广州南站",
+              "complexId": "guangzhou-s123",
+              "stationInstanceIds": [
+                "guangzhou-s302",
+                "guangzhou-s282"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-foshan-line2-18"
+              ],
+              "precision": "schematic",
+              "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "scopeRevision": "2026.10.25.18",
+          "requiresScopeRecheck": true
         },
         {
           "id": "guangzhou-network-milestone-2022-05-01",
@@ -27169,6 +27245,199 @@
           "requiresScopeRecheck": true
         },
         {
+          "id": "guangzhou-line22-west-opening-2025",
+          "phase": "history",
+          "date": "2025-12-29",
+          "title": "22号线后通：连接芳村与西塱",
+          "lineGroups": [
+            {
+              "taskId": "guangzhou-line22-west-opening-2025:line22",
+              "mapRouteId": "guangzhou-r17",
+              "name": "22号线",
+              "stationIds": [
+                "guangzhou-s170",
+                "guangzhou-s298",
+                "guangzhou-s299",
+                "guangzhou-s300",
+                "guangzhou-s301",
+                "guangzhou-s302",
+                "guangzhou-s303",
+                "guangzhou-s276"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "开放范围和日期据同期公告及政府回顾；逐站顺序与运营方资料对照，隧道几何为近似参考。",
+              "historicalLineId": "guangzhou-line22-17",
+              "color": "#CD5228",
+              "stationOrderSource": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s170": "guangzhou-s170__line22-17",
+                "guangzhou-s298": "guangzhou-s298__line22-17",
+                "guangzhou-s299": "guangzhou-s299",
+                "guangzhou-s300": "guangzhou-s300",
+                "guangzhou-s301": "guangzhou-s301",
+                "guangzhou-s302": "guangzhou-s302",
+                "guangzhou-s303": "guangzhou-s303",
+                "guangzhou-s276": "guangzhou-s276__line22-17"
+              },
+              "stationNames": {
+                "guangzhou-s170": "芳村",
+                "guangzhou-s298": "西塱",
+                "guangzhou-s299": "南漖",
+                "guangzhou-s300": "南浦西",
+                "guangzhou-s301": "陈头岗",
+                "guangzhou-s302": "广州南站",
+                "guangzhou-s303": "市广路",
+                "guangzhou-s276": "番禺广场"
+              },
+              "stationNamingNote": "截止日运营方现用名称；1997首章西朗历史名保留。仅在玩家预览并提交本期校正时更新，不在读取旧档时改名。",
+              "stationBodyNote": "西塱22号线独立站体；保留旧1号线站体、坐标及轨道，不以同名或站区别名共用站体。",
+              "replaceExistingService": true,
+              "servicePathRevision": 33,
+              "coverageGroupId": "guangzhou-line22-west-opening-2025:line22",
+              "reconfirmLaterServices": true
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2025年12月29日，南浦西、南漖、西塱和芳村开放，22号线与原首通段贯通运营。",
+          "precision": "station_areas",
+          "source": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+          "sourceTitle": "广州城市轨道交通运营信息与年度新线开通资料",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
+          "sourcePublicationDate": "2025-12-30",
+          "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
+          "story": {
+            "opening": "2025年12月29日，南浦西、南漖、西塱和芳村开放，22号线与原首通段贯通运营。",
+            "purpose": "从既有陈头岗接续北侧四站，形成芳村及西塱新换乘关系。",
+            "outcome": "番禺广场至芳村8站贯通，原首通段复用。",
+            "eventKind": "network_expansion",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "extension",
+          "operationGuide": "复用陈头岗，补建北侧四站并逐项建立西塱、芳村换乘。",
+          "historicalEventIds": [
+            "guangzhou-line22-west-opening-2025:event"
+          ],
+          "routeMilestoneIds": [
+            "guangzhou-r17"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-guangzhou-s170-line1-line22-17",
+              "name": "芳村",
+              "complexId": "guangzhou-s170",
+              "stationInstanceIds": [
+                "guangzhou-s170",
+                "guangzhou-s170__line22-17"
+              ],
+              "lineIds": [
+                "guangzhou-line1",
+                "guangzhou-line22-17"
+              ],
+              "precision": "schematic",
+              "source": "https://gzdaily.dayoo.com/pc/html/2025-12/29/content_866_901829.htm",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-west-xilang-line1",
+              "name": "西塱",
+              "complexId": "guangzhou-s27",
+              "stationInstanceIds": [
+                "guangzhou-s298__line22-17",
+                "guangzhou-s298"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-line1"
+              ],
+              "precision": "schematic",
+              "source": "https://gzdaily.dayoo.com/pc/html/2025-12/29/content_866_901829.htm",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-west-xilang-line10",
+              "name": "西塱",
+              "complexId": "guangzhou-s27",
+              "stationInstanceIds": [
+                "guangzhou-s298__line22-17",
+                "guangzhou-s27__line10-10"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://gzdaily.dayoo.com/pc/html/2025-12/29/content_866_901829.htm",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-west-xilang-guangfo",
+              "name": "西塱",
+              "complexId": "guangzhou-s27",
+              "stationInstanceIds": [
+                "guangzhou-s298__line22-17",
+                "guangzhou-s27__line20"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-foshan-route-20"
+              ],
+              "precision": "schematic",
+              "source": "https://gzdaily.dayoo.com/pc/html/2025-12/29/content_866_901829.htm",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            },
+            {
+              "id": "historic-transfer-gz22-west-fangcun-line11",
+              "name": "芳村",
+              "complexId": "guangzhou-s170",
+              "stationInstanceIds": [
+                "guangzhou-s170__line22-17",
+                "guangzhou-s170__line11-11"
+              ],
+              "lineIds": [
+                "guangzhou-line22-17",
+                "guangzhou-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://gzdaily.dayoo.com/pc/html/2025-12/29/content_866_901829.htm",
+              "sourceNote": "运营方列明换乘，按各线独立站体建立；站内通道为示意，不连入列车轨道。"
+            }
+          ],
+          "eventOnly": false,
+          "scopeRevision": "2026.10.25.18",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": []
+        },
+        {
           "id": "guangzhou-network-reconciliation-2026-10-01",
           "phase": "history",
           "date": "2026-10-01",
@@ -27212,7 +27481,11 @@
                 "guangzhou-s175": "guangzhou-s175__line1",
                 "guangzhou-s6": "guangzhou-s6__line1",
                 "guangzhou-s177": "guangzhou-s177__line1"
-              }
+              },
+              "stationNames": {
+                "guangzhou-s27": "西塱"
+              },
+              "stationNamingNote": "截止日运营方现用名称；1997首章西朗历史名保留。仅在玩家预览并提交本期校正时更新，不在读取旧档时改名。"
             },
             {
               "taskId": "route:guangzhou-r2",
@@ -27581,7 +27854,11 @@
                 "guangzhou-s128": "guangzhou-s128__line10-10",
                 "guangzhou-s352": "guangzhou-s352__line10-10",
                 "guangzhou-s110": "guangzhou-s110__line10-10"
-              }
+              },
+              "stationNames": {
+                "guangzhou-s27": "西塱"
+              },
+              "stationNamingNote": "截止日运营方现用名称；1997首章西朗历史名保留。仅在玩家预览并提交本期校正时更新，不在读取旧档时改名。"
             },
             {
               "taskId": "route:guangzhou-r13",
@@ -27706,8 +27983,16 @@
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "guangzhou-s170": "guangzhou-s170__line22-17",
-                "guangzhou-s276": "guangzhou-s276__line22-17"
-              }
+                "guangzhou-s276": "guangzhou-s276__line22-17",
+                "guangzhou-s298": "guangzhou-s298__line22-17"
+              },
+              "stationNames": {
+                "guangzhou-s298": "西塱"
+              },
+              "stationNamingNote": "截止日运营方现用名称；1997首章西朗历史名保留。仅在玩家预览并提交本期校正时更新，不在读取旧档时改名。",
+              "stationBodyNote": "西塱22号线独立站体；保留旧1号线站体、坐标及轨道，不以同名或站区别名共用站体。",
+              "replaceExistingService": true,
+              "servicePathRevision": 32
             },
             {
               "taskId": "route:guangzhou-r18",
@@ -27846,7 +28131,11 @@
                 "guangzhou-s34": "guangzhou-s34__line20",
                 "guangzhou-s40": "guangzhou-s40__line20",
                 "guangzhou-s43": "guangzhou-s43__line20"
-              }
+              },
+              "stationNames": {
+                "guangzhou-s27": "西塱"
+              },
+              "stationNamingNote": "截止日运营方现用名称；1997首章西朗历史名保留。仅在玩家预览并提交本期校正时更新，不在读取旧档时改名。"
             },
             {
               "taskId": "route:guangzhou-r3:service-1",
@@ -28510,7 +28799,7 @@
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.22",
+          "scopeRevision": "2026.10.25.16",
           "scopeCorrections": [
             {
               "taskId": "route:guangzhou-r12:service-1",
@@ -29984,10 +30273,31 @@
       "stationComplexAliases": {
         "guangzhou-s298": "guangzhou-s27",
         "guangzhou-s342": "guangzhou-s177",
-        "guangzhou-f10-tianhelu": "guangzhou-s6"
+        "guangzhou-f10-tianhelu": "guangzhou-s6",
+        "guangzhou-s302": "guangzhou-s123",
+        "guangzhou-s282": "guangzhou-s123",
+        "guangzhou-s276": "guangzhou-s16"
       },
       "stationInstanceAliases": {
-        "guangzhou-line1|guangzhou-s27": "guangzhou-s298"
+        "guangzhou-line1|guangzhou-s27": "guangzhou-s298",
+        "guangzhou-line22-17|guangzhou-s298": "guangzhou-s298__line22-17"
+      },
+      "stationComplexAliasSources": {
+        "guangzhou-s302": {
+          "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+          "sourceCheckedAt": "2026-10-25",
+          "note": "运营方同站换乘身份，仅统一逻辑站区；独立站体与既有坐标保留。"
+        },
+        "guangzhou-s282": {
+          "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+          "sourceCheckedAt": "2026-10-25",
+          "note": "运营方同站换乘身份，仅统一逻辑站区；独立站体与既有坐标保留。"
+        },
+        "guangzhou-s276": {
+          "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
+          "sourceCheckedAt": "2026-10-25",
+          "note": "运营方同站换乘身份，仅统一逻辑站区；独立站体与既有坐标保留。"
+        }
       }
     },
     "shenzhen": {
@@ -38729,7 +39039,7 @@
               "coverageGroupId": "chengdu-line1-ocean-2013:line1",
               "replaceExistingService": true,
               "loop": false,
-              "servicePathRevision": 6,
+              "servicePathRevision": 7,
               "reconfirmLaterServices": true
             }
           ],
@@ -38850,7 +39160,7 @@
           "eventOnly": false,
           "chapterScope": "dated_infill_or_rename",
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.18",
+          "scopeRevision": "2026.10.25.17",
           "routeTargetCount": 1,
           "scopeCorrections": [],
           "serviceTransitions": []
@@ -38931,7 +39241,7 @@
               "coverageGroupId": "chengdu-line1-jincheng-rename-2013:line1",
               "replaceExistingService": true,
               "loop": false,
-              "servicePathRevision": 6,
+              "servicePathRevision": 7,
               "reconfirmLaterServices": true
             }
           ],
@@ -39052,7 +39362,7 @@
           "eventOnly": false,
           "chapterScope": "dated_infill_or_rename",
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.18",
+          "scopeRevision": "2026.10.25.17",
           "routeTargetCount": 1,
           "scopeCorrections": [],
           "serviceTransitions": []
@@ -47507,6 +47817,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.25.14",
-  "contentRevisionNote": "北京1号线截止日按35个开放停站核对，福寿岭不提前开放、八角越站；未来支线不覆盖当前主线。"
+  "contentRevision": "2026.10.25.19",
+  "contentRevisionNote": "广州22号线恢复2022首通4站及2025后通4站，新增真实换乘并保留旧站轨，不提前开放现代全线。"
 }
