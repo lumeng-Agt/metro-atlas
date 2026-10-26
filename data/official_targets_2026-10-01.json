@@ -7308,8 +7308,146 @@
             "future-transfer-bj19-newlongze-capacity13B",
             "future-transfer-bj19-newlongze-18"
           ],
-          "transferReviewStatus": "pending",
-          "transferReviewNote": "地铁侧联系已配置，工程名新龙泽与正式龙泽西的全量分层证据、预留铁路接口继续核对；不因8站建成而解除项目完整性门槛。"
+          "transferReviewStatus": "verified",
+          "transferReviewNote": "按最终环评表2-1-3逐接口及独立命名链核对地铁范围；清河当前13、未来13A，以及新龙泽13A/13B和已开放18服务分别引用真实站体。市郊铁路与北部联络线记录为范围外背景，未冒充地铁换乘。",
+          "transferDefinitions": [
+            {
+              "id": "future-transfer-bj19-beishatan-15",
+              "name": "北沙滩",
+              "complexId": "beijing-s3",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-line15-15"
+              ],
+              "stationInstanceIds": [
+                "beijing-s3__north19",
+                "beijing-s3"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-xiaoying-changping",
+              "name": "清河小营桥",
+              "complexId": "beijing-s250",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-route-20"
+              ],
+              "stationInstanceIds": [
+                "beijing-s250__north19",
+                "beijing-s250"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-qinghe-13",
+              "name": "清河",
+              "complexId": "beijing-s96",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-line13-13"
+              ],
+              "stationInstanceIds": [
+                "beijing-s96__north19",
+                "beijing-s96__line13-13"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-qinghe-changping",
+              "name": "清河",
+              "complexId": "beijing-s96",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-route-20"
+              ],
+              "stationInstanceIds": [
+                "beijing-s96__north19",
+                "beijing-s96__line20"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-qinghe-capacity13A",
+              "name": "清河",
+              "complexId": "beijing-s96",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-capacity13A"
+              ],
+              "stationInstanceIds": [
+                "beijing-s96__north19",
+                "beijing-s96__line13-13"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-newlongze-capacity13A",
+              "name": "新龙泽／龙泽西",
+              "complexId": "beijing-open18-longzexi",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-capacity13A"
+              ],
+              "stationInstanceIds": [
+                "beijing-open18-longzexi__north19",
+                "beijing-open18-longzexi"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-newlongze-capacity13B",
+              "name": "新龙泽／龙泽西",
+              "complexId": "beijing-open18-longzexi",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-capacity13B"
+              ],
+              "stationInstanceIds": [
+                "beijing-open18-longzexi__north19",
+                "beijing-open18-longzexi__capacity13B"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-newlongze-18",
+              "name": "新龙泽／龙泽西",
+              "complexId": "beijing-open18-longzexi",
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-line18-18"
+              ],
+              "stationInstanceIds": [
+                "beijing-open18-longzexi__north19",
+                "beijing-open18-longzexi"
+              ],
+              "transferKind": "interchange",
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
+            }
+          ]
         },
         {
           "id": "bj-yizhuang-taihu-infill",

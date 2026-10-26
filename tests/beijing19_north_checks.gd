@@ -65,6 +65,16 @@ func _run() -> void:
 	check(str(lifegu.get("constructionForm",""))=="地面一层双岛四线" and is_zero_approx(float(lifegu.depthM)),"final EIA surface station is not omitted or shown as a deep tunnel")
 	var target:Dictionary=OfficialNetworkAudit.target_data().cities.beijing.projects.filter(func(t:Dictionary):return str(t.id)=="bj-line19-north-phase2")[0]
 	check(OfficialNetworkAudit.project_errors(world,target).is_empty(),"built main, branch and contacts satisfy independent scope")
+	check(target.get("transferDefinitions",[]).size()==8 and str(target.get("transferReviewStatus",""))=="verified","eight EIA metro pairings have independent physical identities")
+	var structure:=Story.bound_station(world,"beijing-f19-lifescience-south","beijing-f19-lifescience-south__north19")
+	check(str(structure.get("constructionForm",""))=="地下三层双岛四线","Life Science South uses the three-floor structure in the final EIA")
+	var mispaired:=world.duplicate(true)
+	for connection in mispaired.transferConnections:
+		if str(connection.id)=="future-transfer-bj19-newlongze-capacity13B":connection.stationInstanceIds[1]="beijing-open18-longzexi"
+	check(not OfficialNetworkAudit.project_errors(mispaired,target).is_empty(),"a valid-looking wrong counterpart cannot pass by retaining the same connection ID")
+	var no_pair:=world.duplicate(true)
+	no_pair.transferConnections=no_pair.transferConnections.filter(func(p:Dictionary):return str(p.id)!="future-transfer-bj19-qinghe-changping")
+	check(not OfficialNetworkAudit.project_errors(no_pair,target).is_empty(),"one omitted metro interface is a project failure")
 	var broken:=world.duplicate(true)
 	for edge in broken.trackEdges:
 		if str(edge.get("referenceAlignmentId",""))==str(road.id):

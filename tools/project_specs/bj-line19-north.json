@@ -144,121 +144,129 @@
       "id": "future-transfer-bj19-beishatan-15",
       "name": "北沙滩",
       "complexId": "beijing-s3",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-line15-15"
-      ],
       "stationInstanceIds": [
         "beijing-s3__north19",
         "beijing-s3"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-line15-15"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     },
     {
       "id": "future-transfer-bj19-xiaoying-changping",
       "name": "清河小营桥",
       "complexId": "beijing-s250",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-route-20"
-      ],
       "stationInstanceIds": [
         "beijing-s250__north19",
         "beijing-s250"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-route-20"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     },
     {
       "id": "future-transfer-bj19-qinghe-13",
       "name": "清河",
       "complexId": "beijing-s96",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-line13-13"
-      ],
       "stationInstanceIds": [
         "beijing-s96__north19",
         "beijing-s96__line13-13"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-line13-13"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     },
     {
       "id": "future-transfer-bj19-qinghe-changping",
       "name": "清河",
       "complexId": "beijing-s96",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-route-20"
-      ],
       "stationInstanceIds": [
         "beijing-s96__north19",
         "beijing-s96__line20"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-route-20"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     },
     {
       "id": "future-transfer-bj19-qinghe-capacity13A",
       "name": "清河",
       "complexId": "beijing-s96",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-capacity13A"
-      ],
       "stationInstanceIds": [
         "beijing-s96__north19",
         "beijing-s96__line13-13"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-capacity13A"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     },
     {
       "id": "future-transfer-bj19-newlongze-capacity13A",
       "name": "新龙泽／龙泽西",
       "complexId": "beijing-open18-longzexi",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-capacity13A"
-      ],
       "stationInstanceIds": [
         "beijing-open18-longzexi__north19",
         "beijing-open18-longzexi"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-capacity13A"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     },
     {
       "id": "future-transfer-bj19-newlongze-capacity13B",
       "name": "新龙泽／龙泽西",
       "complexId": "beijing-open18-longzexi",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-capacity13B"
-      ],
       "stationInstanceIds": [
         "beijing-open18-longzexi__north19",
         "beijing-open18-longzexi__capacity13B"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-capacity13B"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     },
     {
       "id": "future-transfer-bj19-newlongze-18",
       "name": "新龙泽／龙泽西",
       "complexId": "beijing-open18-longzexi",
-      "lineIds": [
-        "beijing-line19-19",
-        "beijing-line18-18"
-      ],
       "stationInstanceIds": [
         "beijing-open18-longzexi__north19",
         "beijing-open18-longzexi"
       ],
-      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
-      "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-line18-18"
+      ],
+      "precision": "schematic",
+      "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+      "sourceNote": "最终环评表2-1-3明确地铁接口；工程名新龙泽经北郊农场桥关联正式龙泽西，不关联旧龙泽或还建龙泽。换乘结构为示意，不宣称已开放。"
     }
   ],
   "plan": {
@@ -351,7 +359,7 @@
       },
       "beijing-f19-lifescience-south__north19": {
         "id": "bj19-final-eia-5",
-        "form": "地下二层双岛四线",
+        "form": "地下三层双岛四线",
         "depthM": -15.0,
         "parameterStatus": {
           "form": "public_reference",
@@ -360,7 +368,7 @@
         "parameterSources": {
           "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
         },
-        "note": "最终环评表2-1-3：地下二层双岛四线。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+        "note": "最终环评表2-1-3为地下三层双岛四线；原作者误写二层已更正。显示埋深、矩形和展示车型仍为示意。"
       },
       "beijing-f19-lifegu__north19": {
         "id": "bj19-final-eia-6",

@@ -125,6 +125,7 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 		var problems:=Reservation.errors(world,reserved,reserved_groups)
 		errors.append_array(problems)
 		if not Reservation.saved_matches(world,reserved):errors.append("%s: required reserved interchange missing or wrongly active"%str(reserved.get("id","")))
+	for relation in project.get("transferDefinitions",[]):errors.append_array(transfer_structure_errors(world,relation))
 	for required_id in project.get("transfers",[]):
 		var found:=false
 		for connection in world.get("transferConnections",[]):

@@ -65,7 +65,7 @@ def main():
             parameterStatus={'form':'public_reference','depthM':'game_estimate'},parameterSources={'form':EIA},
             note='最终环评表2-1-3：'+form+'。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。')
             for index,(sid,form) in enumerate([(ids[1],'地下三层岛式'),(ids[2],'地下二层双岛四线'),(ids[3],'地下四层叠落岛式'),
-                (ids[4],'地下二层岛式'),(ids[5],'地下三层岛式'),(ids[6],'地下二层双岛四线'),(ids[7],'地面一层双岛四线'),(qinghe,'地下二层岛式')])})
+                (ids[4],'地下二层岛式'),(ids[5],'地下三层岛式'),(ids[6],'地下三层双岛四线'),(ids[7],'地面一层双岛四线'),(qinghe,'地下二层岛式')])})
     spec=dict(city='beijing',projectIds=['bj-line19-north-phase2'],stations=stations,lineGroups=[main_group,branch_group],transfers=pairs,plan=plan)
     write('tools/project_specs/bj-line19-north.json',spec)
     baseline=read('data/network_baselines_2026-10-01.json');roster=baseline['cities']['beijing']['projectsAtCutoff']

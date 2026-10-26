@@ -6,6 +6,17 @@ from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
+    def test_beijing19_same_id_does_not_excuse_a_wrong_physical_counterpart(self):
+        city=read(ROOT/'data/official_targets_2026-10-01.json')['cities']['beijing']
+        target=next(p for p in city['projects'] if p['id']=='bj-line19-north-phase2')
+        plan=next(p for p in read(ROOT/'data/campaigns.json')['cities']['beijing']['futurePlans'] if p['id']=='bj-line19-north-build')
+        self.assertEqual(len(target['transferDefinitions']),8)
+        self.assertEqual(transfer_definition_errors(target['transferDefinitions'],[plan]),[])
+        changed=copy.deepcopy(plan)
+        pair=next(p for p in changed['requiredTransfers'] if p['id']=='future-transfer-bj19-newlongze-capacity13B')
+        pair['stationInstanceIds'][1]='beijing-open18-longzexi'
+        self.assertTrue(transfer_definition_errors(target['transferDefinitions'],[changed]))
+
     def test_planned_pedestrian_project_needs_actual_explicit_unopened_scope(self):
         pair=dict(id='future-passage',complexId='city-station',lineIds=['city-a','city-b'],stationInstanceIds=['city-body-a','city-body-b'],status='reserved',reservationKind='pedestrian_passage',source='https://example.org/permit',reservationEvidence='https://example.org/permit')
         target=dict(id='passage',operationType='transfer_connection',reviewStatus='verified',source='https://example.org/permit',sourcePublicationDate='2026-07-03',groups=[],reservedTransfers=[copy.deepcopy(pair)])
