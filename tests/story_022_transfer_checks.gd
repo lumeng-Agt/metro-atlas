@@ -144,6 +144,11 @@ func _run() -> void:
 		listed.append_array(items.map(func(t:Dictionary):return str(t.id)))
 	_check(listed==reviewed_cutoff.get("requiredTransfers",[]).map(func(t:Dictionary):return str(t.id)),"paging exposes every reviewed transfer exactly once, including the last partial page")
 	app._new_game("shenzhen",false)
+	var isolated_proposal:Dictionary=app._transfer_candidate()
+	for field in ["routes","stations","trackEdges","trackLinks","transferConnections"]:
+		var before:Variant=app.world.get(field,[]).duplicate(true)
+		isolated_proposal[field].append({"id":"preview_only"})
+		_check(app.world.get(field,[])==before,"transfer preview mutations are isolated from formal "+field)
 	app._begin_chapter()
 	app.world.storyState.chapterId="sz-initial-cross-2004"
 	app.world.storyState.learnedTools=true

@@ -1,0 +1,106 @@
+{
+  "blueprintTargets": 517,
+  "contentRevision": "2026.10.25.26",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+  "date": "2026-10-26T11:07:23",
+  "engineVersion": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "harnessSha256": "9b08e18a29ce08c2de7a5839e5a4a91ab978de7de6e250d6907926eafc78f585",
+  "history": 200,
+  "kind": "native-renderer-smoke",
+  "mapSourceSha256": "5a9c17f9f4d9c92cfef8eb8bfb5a486ea384202b441874e4f7dff1a79bc10b18",
+  "measuredThresholdsPassed": true,
+  "notFullAcceptance": true,
+  "overlayFixture": true,
+  "overlayNote": "Real cutoff blueprint and sourced story markers with a full assisted-preview display fixture. This does not advance or certify history.",
+  "presentationGeometrySha256": "51bf9f23fc10c022c72b51c357052a25c22576d3f8a932a0218e4ea083eb85fd",
+  "previewStationCount": 650,
+  "repeats": 1,
+  "resolution": [
+    1600,
+    980
+  ],
+  "routes": 25,
+  "saveMainThreadRequestMs": 54.836,
+  "saveOk": true,
+  "saveSnapshotMs": 54.758,
+  "saveTotalMs": 580.831,
+  "saveWorkerMs": 496.382,
+  "scenarios": [
+    {
+      "averageFps": 48.3761182916961,
+      "drawPhases": {
+        "basemap": {
+          "count": 174161,
+          "maxMs": 4.235,
+          "totalMs": 206213.899999994
+        },
+        "blueprint_corridors": {
+          "count": 174161,
+          "maxMs": 3.722,
+          "totalMs": 133841.497000001
+        },
+        "blueprint_targets": {
+          "count": 174161,
+          "maxMs": 6.028,
+          "totalMs": 388777.294999997
+        },
+        "built_tracks": {
+          "count": 174161,
+          "maxMs": 0.237,
+          "totalMs": 2806.08299999676
+        },
+        "draft": {
+          "count": 174161,
+          "maxMs": 3.421,
+          "totalMs": 153867.807999999
+        },
+        "hints": {
+          "count": 174161,
+          "maxMs": 0.204,
+          "totalMs": 736.746000001152
+        },
+        "road_labels": {
+          "count": 174161,
+          "maxMs": 0.244,
+          "totalMs": 1603.72000000147
+        },
+        "selected_geometry": {
+          "count": 174161,
+          "maxMs": 0.201,
+          "totalMs": 578.641999999771
+        },
+        "stations": {
+          "count": 174161,
+          "maxMs": 19.255,
+          "totalMs": 1438905.23499999
+        },
+        "story_markers": {
+          "count": 174161,
+          "maxMs": 0.433,
+          "totalMs": 12883.4389999972
+        },
+        "train_display": {
+          "count": 348315,
+          "maxMs": 0.584,
+          "totalMs": 29981.7850000698
+        }
+      },
+      "engineStaticMiB": 235.287061691284,
+      "firstFrameMs": 111.878,
+      "frames": 174155,
+      "mapReady": true,
+      "maxFrameMs": 43.492,
+      "p95Ms": 22.922,
+      "prepareMs": 2319.272,
+      "pressureGoalMet": true,
+      "run": 0,
+      "scenario": "overview"
+    }
+  ],
+  "secondsPerScenario": 3600.0,
+  "sourceCheckpointSha256": "b6544817b68ee6c9974c0710c472dcf5fb54a7161b1e9b3bb684bc3a772ea3d4",
+  "stations": 650,
+  "storyMarkers": 4,
+  "version": "0.25.0"
+}

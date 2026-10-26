@@ -861,6 +861,14 @@ func _inspect_transfer(transfer:Dictionary) -> void:
 		if not station.is_empty():map_view.center_on(station.latlng,16)
 	_preview_transfer(transfer)
 
+func _transfer_candidate() -> Dictionary:
+	# Transfer proposals can update service membership in these five fields.
+	# The milestone archive, history, geometry nodes and story progress remain
+	# read-only; copying their full nested archive for each pair is unnecessary.
+	var candidate:=world.duplicate(false)
+	for key in ["routes","stations","trackEdges","trackLinks","transferConnections"]:candidate[key]=world.get(key,[]).duplicate(true)
+	return candidate
+
 func _transfer_station_status(transfer:Dictionary,index:int,checked:Dictionary={}) -> String:
 	var instance_ids:Array=transfer.get("stationInstanceIds",[]);var line_ids:Array=transfer.get("lineIds",[])
 	if index<0 or index>=instance_ids.size() or index>=line_ids.size():return "配置不完整"
@@ -895,7 +903,7 @@ func _preview_transfer(transfer: Dictionary) -> void:
 		details.append("%s线站体：%s（独立站体）" % [_historical_line_name(str(line_ids[index])), str(station.get("name", "车站"))])
 	var expected_revision := int(world.get("revision", 0))
 	var connection: Dictionary = {"id":str(transfer.get("id","")),"name":str(transfer.get("name","换乘站")),"complexId":str(transfer.get("complexId","")),"stationInstanceIds":instance_ids.duplicate(),"lineIds":line_ids.duplicate(),"status":"active","precision":str(transfer.get("precision","schematic")),"source":str(transfer.get("source","")),"effectiveDate":str(Story.chapter(world).get("date",""))}
-	var probe: Dictionary = world.duplicate(true)
+	var probe: Dictionary = _transfer_candidate()
 	for route in checked.get("routes", []):
 		var draft_route:Dictionary=route.duplicate(true)
 		var existing:=WorldData.find_route(probe,str(route.get("id","")))
@@ -923,7 +931,7 @@ func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expec
 		if connection.get(key)!=transfer.get(key):return {"ok":false,"error":"换乘预览与当前目标不一致。"}
 	if not _transfer_ready(transfer,checked):return {"ok":false,"error":"两侧独立站体、连续轨道和线路站序尚未全部就绪。"}
 	if _transfer_connected(transfer):return {"ok":false,"error":"这条换乘联系已经建立。"}
-	var candidate:=world.duplicate(true)
+	var candidate:=_transfer_candidate()
 	# A reviewed map duplicate can be an alias of the same historical complex.
 	# Persist the canonical identity already used by its independent bodies;
 	# never create a second complex just to satisfy a raw catalogue reference.
@@ -1457,6 +1465,7 @@ func _execute(title:String,mutation:Callable) -> void:
 	elif title=="确认线路重组":fields=["storyPlan","storyState","routes","stations","trackEdges","trackLinks","transferConnections"]
 	elif title=="修改站名":fields=["stations"]
 	elif title=="确认预留换乘":fields=["transferConnections"]
+	elif title=="建立换乘联系":fields=["routes","stations","trackEdges","trackLinks","transferConnections"]
 	elif title=="添加建设阶段":fields=["planningPhases","currentPlanningPhaseId"]
 	elif title=="辅助完成重复建设":fields=["stations","stationComplexes","transferConnections","trackNodes","trackEdges","storyPlan"]
 	if not history.execute(title,mutation,fields):return

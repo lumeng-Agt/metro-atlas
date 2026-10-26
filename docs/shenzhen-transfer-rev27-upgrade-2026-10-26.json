@@ -1,0 +1,172 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "shenzhen",
+  "operatorRetrievedAt": "2026-10-26",
+  "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+  "expectedPairs": 96,
+  "matchedPairs": 96,
+  "missingPairs": [],
+  "invalidConnections": [],
+  "nonOpenConnections": [
+    {
+      "id": "future-transfer-laojie-line1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-laojie-line3",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sungang-line7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-luohubei-line14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-baigelong-line5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-dantou-line3",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-shiyaling-line14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-shanglilang-line10",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz19-jinlong-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz19-xinhe-16",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz19-pingshanzhongxin-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-hongshuwan",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-hongshuwan",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-baishizhou-1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-zhuguang-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-xingdong",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-shangsha-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-xiangmeibei-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-minle-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-minzhi-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-songyuanxia-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-tielugongyuan-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-sihai-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-shendanan-9",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-honglangbei-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-pingzhou-1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-liutang-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz25-longhua-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz25-songhe-22",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz25-beierlu-10",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xili-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xili-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-changlingpi-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-baishilong-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-youfu-25",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-fukang-22",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-jihuayiyuan-25",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xilihsr-15",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xilihsr-29",
+      "reason": "construction relationship has no current open service"
+    }
+  ],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "4f6b92ecd37e2a87e1f325b0228cabfb54379b5503cd413a4933073a1147d067",
+  "evidenceSha256": "25c278900e20138456a56eda17b74e7a909bdf557b05ce250db395a9a6d61007"
+}
