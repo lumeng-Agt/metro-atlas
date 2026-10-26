@@ -136,6 +136,13 @@ func _run() -> void:
 	var app=preload("res://scripts/main.gd").new()
 	root.add_child(app)
 	await process_frame
+	var reviewed_cutoff:Dictionary=CampaignSystem.city_config("shenzhen").get("chapters",[]).filter(func(c:Dictionary):return str(c.id)=="shenzhen-network-reconciliation-2026-10-01")[0]
+	var listed:Array=[]
+	for page_index in range(ceili(reviewed_cutoff.get("requiredTransfers",[]).size()/10.0)):
+		var items:Array=app._transfer_page(reviewed_cutoff,page_index)
+		_check(items.size()<=10,"full-network interchange pages remain bounded")
+		listed.append_array(items.map(func(t:Dictionary):return str(t.id)))
+	_check(listed==reviewed_cutoff.get("requiredTransfers",[]).map(func(t:Dictionary):return str(t.id)),"paging exposes every reviewed transfer exactly once, including the last partial page")
 	app._new_game("shenzhen",false)
 	app._begin_chapter()
 	app.world.storyState.chapterId="sz-initial-cross-2004"

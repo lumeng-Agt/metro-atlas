@@ -3,6 +3,7 @@ extends RefCounted
 
 const TARGET_PATH="res://data/official_targets_2026-10-01.json"
 const Engineering=preload("res://scripts/engineering_construction.gd")
+const Reservation=preload("res://scripts/transfer_reservation.gd")
 static var _target_snapshot:Dictionary={}
 static var _target_snapshot_sha256:=""
 
@@ -91,6 +92,13 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 						previous_end=str(path.toNodeId)
 					if bool(expected.get("loop",false)) and first_start==previous_end:errors.append("%s: ring closes on its departure end" % str(expected.id))
 		if not matched:errors.append("%s: actual built line does not contain the official ordered scope" % str(expected.id))
+	for reserved in project.get("reservedTransfers",[]):
+		var reserved_groups:Array=project.get("groups",[]).duplicate(true)
+		for group in reserved_groups:
+			if str(group.get("source","")).is_empty():group["source"]=str(project.get("source",""))
+		var problems:=Reservation.errors(world,reserved,reserved_groups)
+		errors.append_array(problems)
+		if not Reservation.saved_matches(world,reserved):errors.append("%s: required reserved interchange missing or wrongly active"%str(reserved.get("id","")))
 	for required_id in project.get("transfers",[]):
 		var found:=false
 		for connection in world.get("transferConnections",[]):

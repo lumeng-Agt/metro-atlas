@@ -27619,12 +27619,11 @@
             },
             {
               "taskId": "route:guangzhou-r12-east-open",
-              "historicalLineId": "guangzhou-line12-12",
-              "name": "12号线东段（大学城南—二沙岛）",
+              "mapRouteId": "guangzhou-r12",
+              "name": "十二号线东段首开（赤岗暂缓）",
               "stationIds": [
                 "guangzhou-s363",
                 "guangzhou-s364",
-                "guangzhou-s164",
                 "guangzhou-s365",
                 "guangzhou-s337",
                 "guangzhou-s366",
@@ -27632,34 +27631,37 @@
                 "guangzhou-s62",
                 "guangzhou-s61"
               ],
+              "toleranceM": 220,
+              "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+              "historicalLineId": "guangzhou-line12-12",
+              "color": "#435428",
+              "stationOrderSource": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "guangzhou-s164": "guangzhou-s164__line12-12",
+                "guangzhou-s363": "guangzhou-s363",
+                "guangzhou-s364": "guangzhou-s364",
+                "guangzhou-s365": "guangzhou-s365",
                 "guangzhou-s337": "guangzhou-s337__line12-12",
+                "guangzhou-s366": "guangzhou-s366",
                 "guangzhou-s63": "guangzhou-s63__line12-12",
                 "guangzhou-s62": "guangzhou-s62__line12-12",
                 "guangzhou-s61": "guangzhou-s61__line12-12"
               },
-              "toleranceM": 180.0,
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
-              "sourceStationIds": [
-                "guangzhou-s363",
-                "guangzhou-s364",
-                "guangzhou-s164",
-                "guangzhou-s365",
-                "guangzhou-s337",
-                "guangzhou-s366",
-                "guangzhou-s63",
-                "guangzhou-s62",
-                "guangzhou-s61"
-              ],
-              "sourceStationInstances": {
-                "guangzhou-s164": "guangzhou-s164__line12-12",
-                "guangzhou-s337": "guangzhou-s337__line12-12",
-                "guangzhou-s63": "guangzhou-s63__line12-12",
-                "guangzhou-s62": "guangzhou-s62__line12-12",
-                "guangzhou-s61": "guangzhou-s61__line12-12"
-              }
+              "stationNames": {
+                "guangzhou-s363": "二沙岛",
+                "guangzhou-s364": "赤岗塔",
+                "guangzhou-s365": "赤沙北",
+                "guangzhou-s337": "赤沙",
+                "guangzhou-s366": "北山",
+                "guangzhou-s63": "官洲",
+                "guangzhou-s62": "大学城北",
+                "guangzhou-s61": "大学城南"
+              },
+              "coverageGroupId": "route:guangzhou-r12-east-open",
+              "replaceExistingService": true,
+              "servicePathRevision": 38,
+              "constructionScope": "dated_service_patterns",
+              "reconfirmLaterServices": true
             },
             {
               "mapRouteId": "guangzhou-r12",
@@ -27687,7 +27689,7 @@
                 "guangzhou-s150": "guangzhou-s150__line12-12",
                 "guangzhou-s371": "guangzhou-s371__line12-12"
               },
-              "constructionScope": "new_contiguous_range",
+              "constructionScope": "dated_service_patterns",
               "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
               "sourceStationIds": [
                 "guangzhou-s373",
@@ -27704,7 +27706,8 @@
                 "guangzhou-s233": "guangzhou-s233__line12-12",
                 "guangzhou-s150": "guangzhou-s150__line12-12",
                 "guangzhou-s371": "guangzhou-s371__line12-12"
-              }
+              },
+              "coverageGroupId": "route:guangzhou-r12-west-open"
             }
           ],
           "requireOpen": true,
@@ -27800,22 +27803,6 @@
               "stationInstanceIds": [
                 "guangzhou-s150__line8-8",
                 "guangzhou-s150__line12-12"
-              ],
-              "lineIds": [
-                "guangzhou-line8-8",
-                "guangzhou-line12-12"
-              ],
-              "precision": "schematic",
-              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-guangzhou-s164-line8-8-line12-12",
-              "name": "赤岗",
-              "complexId": "guangzhou-s164",
-              "stationInstanceIds": [
-                "guangzhou-s164__line8-8",
-                "guangzhou-s164__line12-12"
               ],
               "lineIds": [
                 "guangzhou-line8-8",
@@ -28027,8 +28014,99 @@
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.25.21",
-          "requiresScopeRecheck": true
+          "scopeRevision": "2026.10.25.26",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": [
+            {
+              "taskId": "route:guangzhou-r12-east-open",
+              "transferId": "historic-transfer-guangzhou-s164-line8-8-line12-12",
+              "oldLineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line12-12"
+              ],
+              "oldStationInstanceIds": [
+                "guangzhou-s164__line8-8",
+                "guangzhou-s164__line12-12"
+              ],
+              "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "description": "2025首开时赤岗尚未开放：保留旧站体，暂存旧版提前建立的换乘，至2026正式节点明确恢复。"
+            },
+            {
+              "taskId": "route:guangzhou-r12-east-open",
+              "restoreAfterTaskId": "route:guangzhou-r12-west-open",
+              "transferId": "historic-transfer-guangzhou-s150-line8-8-line12-12",
+              "oldLineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line12-12"
+              ],
+              "oldStationInstanceIds": [
+                "guangzhou-s150__line8-8",
+                "guangzhou-s150__line12-12"
+              ],
+              "source": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "description": "东、西两段分别核对：西段任务确认后恢复其对应独立站体的原换乘联系。"
+            },
+            {
+              "taskId": "route:guangzhou-r12-east-open",
+              "restoreAfterTaskId": "route:guangzhou-r12-west-open",
+              "transferId": "historic-transfer-gz-reviewed-guangzhou-s373-6-12",
+              "oldLineIds": [
+                "guangzhou-line6-6",
+                "guangzhou-line12-12"
+              ],
+              "oldStationInstanceIds": [
+                "guangzhou-s122",
+                "guangzhou-s373"
+              ],
+              "source": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "description": "东、西两段分别核对：西段任务确认后恢复其对应独立站体的原换乘联系。"
+            },
+            {
+              "taskId": "route:guangzhou-r12-east-open",
+              "restoreAfterTaskId": "route:guangzhou-r12-west-open",
+              "transferId": "historic-transfer-gz-reviewed-guangzhou-s368-2-12",
+              "oldLineIds": [
+                "guangzhou-line2-2",
+                "guangzhou-line12-12"
+              ],
+              "oldStationInstanceIds": [
+                "guangzhou-s140",
+                "guangzhou-s368"
+              ],
+              "source": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "description": "东、西两段分别核对：西段任务确认后恢复其对应独立站体的原换乘联系。"
+            },
+            {
+              "taskId": "route:guangzhou-r12-east-open",
+              "restoreAfterTaskId": "route:guangzhou-r12-west-open",
+              "transferId": "historic-transfer-guangzhou-s233-line12-12-line14-14",
+              "oldLineIds": [
+                "guangzhou-line12-12",
+                "guangzhou-line14-14"
+              ],
+              "oldStationInstanceIds": [
+                "guangzhou-s233__line12-12",
+                "guangzhou-s233__line14-14"
+              ],
+              "source": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "description": "东、西两段分别核对：西段任务确认后恢复其对应独立站体的原换乘联系。"
+            },
+            {
+              "taskId": "route:guangzhou-r12-east-open",
+              "restoreAfterTaskId": "route:guangzhou-r12-west-open",
+              "transferId": "gz-future-transfer-xizhou-12-13",
+              "oldLineIds": [
+                "guangzhou-line12-12",
+                "guangzhou-line13-13"
+              ],
+              "oldStationInstanceIds": [
+                "guangzhou-s371__line12-12",
+                "guangzhou-s371__line13-13"
+              ],
+              "source": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "description": "东、西两段分别核对：西段任务确认后恢复其对应独立站体的原换乘联系。"
+            }
+          ]
         },
         {
           "id": "guangzhou-network-milestone-2025-09-29",
@@ -28605,6 +28683,114 @@
           "scopeRevision": "2026.10.25.18",
           "requiresScopeRecheck": true,
           "scopeCorrections": []
+        },
+        {
+          "id": "guangzhou-line12-chigang-2026",
+          "phase": "history",
+          "date": "2026-02-13",
+          "title": "赤岗开放：十二号线东段接入八号线",
+          "lineGroups": [
+            {
+              "taskId": "opening:guangzhou-line12-chigang-2026",
+              "mapRouteId": "guangzhou-r12",
+              "name": "十二号线赤岗补站",
+              "stationIds": [
+                "guangzhou-s364",
+                "guangzhou-s164",
+                "guangzhou-s365"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+              "historicalLineId": "guangzhou-line12-12",
+              "color": "#435428",
+              "stationOrderSource": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s364": "guangzhou-s364",
+                "guangzhou-s164": "guangzhou-s164__line12-12",
+                "guangzhou-s365": "guangzhou-s365"
+              },
+              "stationNames": {
+                "guangzhou-s364": "赤岗塔",
+                "guangzhou-s164": "赤岗",
+                "guangzhou-s365": "赤沙北"
+              },
+              "coverageGroupId": "opening:guangzhou-line12-chigang-2026",
+              "replaceExistingService": false,
+              "servicePathRevision": 38
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2026-02-13：赤岗开放：十二号线东段接入八号线",
+          "precision": "station_areas",
+          "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+          "sourceTitle": "官方历史资料索引",
+          "sourceCheckedAt": "2026-10-25",
+          "sourceType": "official_historical_event_index",
+          "status": "opened_or_completed",
+          "geometryStatus": "source_station_range",
+          "alignmentNote": "仅使用该事件明确列出的站区及站序；没有公布的工程中心线不作推断。",
+          "sourcePublicationDate": "2026-02-13",
+          "publicationDateNote": "来源页面发布日期与事件日期分别记录。",
+          "chapterScope": "dated_opening_segment",
+          "eventOnly": false,
+          "historicalEventIds": [
+            "guangzhou-line12-chigang-2026:opening"
+          ],
+          "story": {
+            "opening": "2026年2月13日，十二号线赤岗站正式开放，东段新增与八号线的换乘。",
+            "purpose": "补入赤岗十二号线独立站体，复用赤岗塔、赤沙北，并明确建立8／12号线换乘。",
+            "outcome": "十二号线东段形成九个开放停站，与八号线的换乘经过玩家明确确认。",
+            "eventKind": "dated_network_change",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": []
+          },
+          "operationType": "infill_station",
+          "operationGuide": "建设本期明确列出的站段；检查后确认历史节点。",
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-guangzhou-s164-line8-8-line12-12",
+              "name": "赤岗",
+              "complexId": "guangzhou-s164",
+              "stationInstanceIds": [
+                "guangzhou-s164__line8-8",
+                "guangzhou-s164__line12-12"
+              ],
+              "lineIds": [
+                "guangzhou-line8-8",
+                "guangzhou-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+              "sourceNote": "运营方2026年2月13日开放公告；8、12号线分别保留独立站体，换乘联系不接入列车轨道。",
+              "openingSource": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "effectiveDate": "2026-02-13"
+            }
+          ],
+          "scopeRevision": "2026.10.25.26",
+          "requiresScopeRecheck": true
         },
         {
           "id": "guangzhou-network-reconciliation-2026-10-01",
@@ -29495,7 +29681,7 @@
               },
               "coverageGroupId": "guangzhou-line12-12:service-1",
               "replaceExistingService": true,
-              "servicePathRevision": 3,
+              "servicePathRevision": 38,
               "retainDocumentedFutureService": false
             },
             {
@@ -29543,7 +29729,7 @@
               },
               "coverageGroupId": "guangzhou-line12-12:service-2",
               "replaceExistingService": false,
-              "servicePathRevision": 3
+              "servicePathRevision": 38
             },
             {
               "taskId": "route:guangzhou-r14:service-1",
@@ -29885,7 +30071,9 @@
               ],
               "precision": "schematic",
               "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "sourceNote": "运营方2026年2月13日开放公告；8、12号线分别保留独立站体，换乘联系不接入列车轨道。",
+              "openingSource": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "effectiveDate": "2026-02-13"
             },
             {
               "id": "historic-transfer-guangzhou-s61-line4-4-line12-12",
@@ -30416,7 +30604,7 @@
           ],
           "eventOnly": false,
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.25.25",
+          "scopeRevision": "2026.10.25.26",
           "scopeCorrections": [
             {
               "taskId": "route:guangzhou-r12:service-1",
@@ -37735,7 +37923,7 @@
           "publicationDateNote": "页面发布日期与资料截止日期分开记录。",
           "story": {
             "opening": "历史建设推进到统一核对节点。",
-            "purpose": "检查从早期章节累计建设的各条线路是否覆盖截止日站序与实际轨道连接。",
+            "purpose": "核对全网本期站序及68处换乘站区的96组线路配对。缺少联系时，直接预览并建立对应两侧独立站体的换乘。",
             "outcome": "只有逐线评估通过，才记录城市截止日历史节点。未进入已开通范围的在建线路仍单列为建设项目。",
             "eventKind": "network_reconciliation",
             "planVersions": [],
@@ -37784,9 +37972,1642 @@
             "shenzhen-r16",
             "shenzhen-r17"
           ],
-          "requiredTransfers": [],
+          "requiredTransfers": [
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s262-shenzhen-line13-14-shenzhen-line6-6",
+              "name": "上屋",
+              "complexId": "shenzhen-s262",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s262__line13-14",
+                "shenzhen-s262__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s72-shenzhen-line4-shenzhen-line9-10",
+              "name": "上梅林",
+              "complexId": "shenzhen-s72",
+              "lineIds": [
+                "shenzhen-line4",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s72__line4",
+                "shenzhen-s241__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s15-shenzhen-line1-shenzhen-line2-2",
+              "name": "世界之窗",
+              "complexId": "shenzhen-s15",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s15",
+                "shenzhen-s15__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s131-shenzhen-line10-11-shenzhen-line5-5",
+              "name": "五和",
+              "complexId": "shenzhen-s131",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s131__line10-11",
+                "shenzhen-s131__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-transfer-huizhanzhongxin-2004",
+              "name": "会展中心换乘",
+              "complexId": "shenzhen-s8",
+              "stationInstanceIds": [
+                "shenzhen-s8-line1",
+                "shenzhen-s8-line4"
+              ],
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.szmc.net/szmc_m/home/xinweenzhongxin/gonggaoxinwen/202412/104600.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "historic-transfer-shenzhen-s258-line6-6-line6-7",
+              "name": "光明",
+              "complexId": "shenzhen-s258",
+              "stationInstanceIds": [
+                "shenzhen-s258__line6-6",
+                "shenzhen-s258__line6-7"
+              ],
+              "lineIds": [
+                "shenzhen-line6-6",
+                "shenzhen-line6-7"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/cxtx/",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s359-shenzhen-line13-14-shenzhen-line6-7",
+              "name": "光明城",
+              "complexId": "shenzhen-s359",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line6-7"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s359__line13-14",
+                "shenzhen-s359__line6-7"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s220-shenzhen-line6-6-shenzhen-line7-8",
+              "name": "八卦岭",
+              "complexId": "shenzhen-s220",
+              "lineIds": [
+                "shenzhen-line6-6",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s220__line6-6",
+                "shenzhen-s220__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s405-shenzhen-line13-14-shenzhen-line6-6",
+              "name": "公明广场",
+              "complexId": "shenzhen-s405",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s405",
+                "shenzhen-s254"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s260-shenzhen-line13-14-shenzhen-line6-6",
+              "name": "凤凰城",
+              "complexId": "shenzhen-s260",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s260__line13-14",
+                "shenzhen-s260__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s22-shenzhen-line1-shenzhen-line11-12",
+              "name": "前海湾",
+              "complexId": "shenzhen-s22",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line11-12"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s22__line1",
+                "shenzhen-s22__line11-12"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s22-shenzhen-line1-shenzhen-line5-5",
+              "name": "前海湾",
+              "complexId": "shenzhen-s22",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s22__line1",
+                "shenzhen-s22__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s22-shenzhen-line11-12-shenzhen-line5-5",
+              "name": "前海湾",
+              "complexId": "shenzhen-s22",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s22__line11-12",
+                "shenzhen-s22__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s117-shenzhen-line5-5-shenzhen-line9-10",
+              "name": "前湾",
+              "complexId": "shenzhen-s117",
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s117__line5-5",
+                "shenzhen-s117__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s104-shenzhen-line2-2-shenzhen-line7-8",
+              "name": "华强北",
+              "complexId": "shenzhen-s104",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s104__line2-2",
+                "shenzhen-s218"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s186-shenzhen-line11-12-shenzhen-line7-8",
+              "name": "华强南",
+              "complexId": "shenzhen-s186",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s186",
+                "shenzhen-s186__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s38-shenzhen-line3-3-shenzhen-line7-8",
+              "name": "华新",
+              "complexId": "shenzhen-s38",
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s38__line3-3",
+                "shenzhen-s38__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s190-shenzhen-line11-12-shenzhen-line12-13",
+              "name": "南山",
+              "complexId": "shenzhen-s190",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line12-13"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s190__line11-12",
+                "shenzhen-s190__line12-13"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s229-shenzhen-line12-13-shenzhen-line9-10",
+              "name": "南油",
+              "complexId": "shenzhen-s229",
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s229__line12-13",
+                "shenzhen-s229__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "historic-transfer-shenzhen-s60-line3-3-line16-16",
+              "name": "双龙",
+              "complexId": "shenzhen-s60",
+              "stationInstanceIds": [
+                "shenzhen-s60__line3-3",
+                "shenzhen-s60__line16-16"
+              ],
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line16-16"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/cxtx/",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s189-shenzhen-line11-12-shenzhen-line13-14",
+              "name": "后海",
+              "complexId": "shenzhen-s189",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line13-14"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s189__line11-12",
+                "shenzhen-s189"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s189-shenzhen-line11-12-shenzhen-line2-2",
+              "name": "后海",
+              "complexId": "shenzhen-s189",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s189__line11-12",
+                "shenzhen-s92__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s189-shenzhen-line13-14-shenzhen-line2-2",
+              "name": "后海",
+              "complexId": "shenzhen-s189",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s189",
+                "shenzhen-s92__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s308-shenzhen-line12-13-shenzhen-line20-17",
+              "name": "国展",
+              "complexId": "shenzhen-s308",
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line20-17"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s308__line12-13",
+                "shenzhen-s308__line20-17"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s307-shenzhen-line12-13-shenzhen-line20-17",
+              "name": "国展北",
+              "complexId": "shenzhen-s307",
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line20-17"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s307__line12-13",
+                "shenzhen-s307__line20-17"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s319-shenzhen-line14-15-shenzhen-line16-16",
+              "name": "坪山围",
+              "complexId": "shenzhen-s319",
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line16-16"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s319",
+                "shenzhen-s367__line16-16"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s4-shenzhen-line1-shenzhen-line2-2",
+              "name": "大剧院",
+              "complexId": "shenzhen-s4",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s4",
+                "shenzhen-s4__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s4-shenzhen-line1-shenzhen-line5-5",
+              "name": "大剧院",
+              "complexId": "shenzhen-s4",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s4",
+                "shenzhen-s4__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s4-shenzhen-line2-2-shenzhen-line5-5",
+              "name": "大剧院",
+              "complexId": "shenzhen-s4",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s4__line2-2",
+                "shenzhen-s4__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "historic-transfer-shenzhen-s55-line14-15-line16-16",
+              "name": "大运",
+              "complexId": "shenzhen-s55",
+              "stationInstanceIds": [
+                "shenzhen-s55__line14-15",
+                "shenzhen-s55__line16-16"
+              ],
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line16-16"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/cxtx/",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s55-shenzhen-line14-15-shenzhen-line3-3",
+              "name": "大运",
+              "complexId": "shenzhen-s55",
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s55__line14-15",
+                "shenzhen-s55__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "historic-transfer-shenzhen-s55-line3-3-line16-16",
+              "name": "大运",
+              "complexId": "shenzhen-s55",
+              "stationInstanceIds": [
+                "shenzhen-s55__line3-3",
+                "shenzhen-s55__line16-16"
+              ],
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line16-16"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/cxtx/",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s139-shenzhen-line5-5-shenzhen-line7-8",
+              "name": "太安",
+              "complexId": "shenzhen-s139",
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s139__line5-5",
+                "shenzhen-s139__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s273-shenzhen-line10-11-shenzhen-line9-10",
+              "name": "孖岭",
+              "complexId": "shenzhen-s273",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s273",
+                "shenzhen-s242__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s97-shenzhen-line2-2-shenzhen-line7-8",
+              "name": "安托山",
+              "complexId": "shenzhen-s97",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s97__line2-2",
+                "shenzhen-s97__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s24-shenzhen-line1-shenzhen-line5-5",
+              "name": "宝安中心",
+              "complexId": "shenzhen-s24",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s24__line1",
+                "shenzhen-s24__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s36-shenzhen-line3-3-shenzhen-line4",
+              "name": "少年宫",
+              "complexId": "shenzhen-s36",
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line4"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s36__line3-3",
+                "shenzhen-s36"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "historic-transfer-shenzhen-s7-line1-line10-11",
+              "name": "岗厦",
+              "complexId": "shenzhen-s7",
+              "stationInstanceIds": [
+                "shenzhen-s7",
+                "shenzhen-s7__line10-11"
+              ],
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line10-11"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/cxtx/",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-gangxia-north:shenzhen-line10-11:shenzhen-line11-12",
+              "name": "岗厦北",
+              "complexId": "shenzhen-s103",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line11-12"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s103__line10-11",
+                "shenzhen-s103"
+              ],
+              "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202210/101706.html",
+              "precision": "schematic",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-gangxia-north:shenzhen-line10-11:shenzhen-line14-15",
+              "name": "岗厦北",
+              "complexId": "shenzhen-s103",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line14-15"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s103__line10-11",
+                "shenzhen-s103__line14-15"
+              ],
+              "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202210/101706.html",
+              "precision": "schematic",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-gangxia-north:shenzhen-line2-2:shenzhen-line10-11",
+              "name": "岗厦北",
+              "complexId": "shenzhen-s103",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line10-11"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s103__line2-2",
+                "shenzhen-s103__line10-11"
+              ],
+              "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202210/101706.html",
+              "precision": "schematic",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-gangxia-north:shenzhen-line11-12:shenzhen-line14-15",
+              "name": "岗厦北",
+              "complexId": "shenzhen-s103",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line14-15"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s103",
+                "shenzhen-s103__line14-15"
+              ],
+              "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202210/101706.html",
+              "precision": "schematic",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-gangxia-north:shenzhen-line2-2:shenzhen-line11-12",
+              "name": "岗厦北",
+              "complexId": "shenzhen-s103",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line11-12"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s103__line2-2",
+                "shenzhen-s103"
+              ],
+              "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202210/101706.html",
+              "precision": "schematic",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-gangxia-north:shenzhen-line2-2:shenzhen-line14-15",
+              "name": "岗厦北",
+              "complexId": "shenzhen-s103",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line14-15"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s103__line2-2",
+                "shenzhen-s103__line14-15"
+              ],
+              "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202210/101706.html",
+              "precision": "schematic",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s70-shenzhen-line2-2-shenzhen-line4",
+              "name": "市民中心",
+              "complexId": "shenzhen-s70",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line4"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s70__line2-2",
+                "shenzhen-s70"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s46-shenzhen-line14-15-shenzhen-line3-3",
+              "name": "布吉",
+              "complexId": "shenzhen-s46",
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s46__line14-15",
+                "shenzhen-s46__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s46-shenzhen-line14-15-shenzhen-line5-5",
+              "name": "布吉",
+              "complexId": "shenzhen-s46",
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s46__line14-15",
+                "shenzhen-s46__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s46-shenzhen-line3-3-shenzhen-line5-5",
+              "name": "布吉",
+              "complexId": "shenzhen-s46",
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s46__line3-3",
+                "shenzhen-s46__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s101-shenzhen-line2-2-shenzhen-line9-10",
+              "name": "景田",
+              "complexId": "shenzhen-s101",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s101__line2-2",
+                "shenzhen-s101__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s30-shenzhen-line1-shenzhen-line12-13",
+              "name": "机场东",
+              "complexId": "shenzhen-s30",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line12-13"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s30__line1",
+                "shenzhen-s30__line12-13"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s194-shenzhen-line11-12-shenzhen-line20-17",
+              "name": "机场北",
+              "complexId": "shenzhen-s194",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line20-17"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s194__line11-12",
+                "shenzhen-s194__line20-17"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s201-shenzhen-line11-12-shenzhen-line12-13",
+              "name": "松岗",
+              "complexId": "shenzhen-s201",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line12-13"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s201__line11-12",
+                "shenzhen-s201"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s201-shenzhen-line11-12-shenzhen-line6-6",
+              "name": "松岗",
+              "complexId": "shenzhen-s201",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s201__line11-12",
+                "shenzhen-s201__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s201-shenzhen-line12-13-shenzhen-line6-6",
+              "name": "松岗",
+              "complexId": "shenzhen-s201",
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s201",
+                "shenzhen-s201__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s19-shenzhen-line1-shenzhen-line12-13",
+              "name": "桃园",
+              "complexId": "shenzhen-s19",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line12-13"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s19__line1",
+                "shenzhen-s19__line12-13"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s304-shenzhen-line12-13-shenzhen-line2-2",
+              "name": "海上世界",
+              "complexId": "shenzhen-s304",
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s304__line12-13",
+                "shenzhen-s304__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s75-shenzhen-line4-shenzhen-line5-5",
+              "name": "深圳北站",
+              "complexId": "shenzhen-s75",
+              "lineIds": [
+                "shenzhen-line4",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s75__line4",
+                "shenzhen-s75__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s75-shenzhen-line4-shenzhen-line6-6",
+              "name": "深圳北站",
+              "complexId": "shenzhen-s75",
+              "lineIds": [
+                "shenzhen-line4",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s75__line4",
+                "shenzhen-s75__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s75-shenzhen-line5-5-shenzhen-line6-6",
+              "name": "深圳北站",
+              "complexId": "shenzhen-s75",
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s75__line5-5",
+                "shenzhen-s75__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s18-shenzhen-line1-shenzhen-line13-14",
+              "name": "深大",
+              "complexId": "shenzhen-s18",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line13-14"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s18__line1",
+                "shenzhen-s392"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s106-shenzhen-line2-2-shenzhen-line5-5",
+              "name": "湖贝",
+              "complexId": "shenzhen-s106",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s106__line2-2",
+                "shenzhen-s141"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s122-shenzhen-line12-13-shenzhen-line5-5",
+              "name": "灵芝",
+              "complexId": "shenzhen-s122",
+              "lineIds": [
+                "shenzhen-line12-13",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s122__line12-13",
+                "shenzhen-s122__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s43-shenzhen-line3-3-shenzhen-line7-8",
+              "name": "田贝",
+              "complexId": "shenzhen-s43",
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s43__line3-3",
+                "shenzhen-s43__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s125-shenzhen-line13-14-shenzhen-line5-5",
+              "name": "留仙洞",
+              "complexId": "shenzhen-s125",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s125",
+                "shenzhen-s125__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s33-shenzhen-line3-3-shenzhen-line7-8",
+              "name": "石厦",
+              "complexId": "shenzhen-s33",
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s33__line3-3",
+                "shenzhen-s33__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s271-shenzhen-line10-11-shenzhen-line4",
+              "name": "福民",
+              "complexId": "shenzhen-s69",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line4"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s271__line10-11",
+                "shenzhen-s271"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s271-shenzhen-line10-11-shenzhen-line7-8",
+              "name": "福民",
+              "complexId": "shenzhen-s69",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s271__line10-11",
+                "shenzhen-s69__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s271-shenzhen-line4-shenzhen-line7-8",
+              "name": "福民",
+              "complexId": "shenzhen-s69",
+              "lineIds": [
+                "shenzhen-line4",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s271",
+                "shenzhen-s69__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s195-shenzhen-line11-12-shenzhen-line12-13",
+              "name": "福永",
+              "complexId": "shenzhen-s195",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line12-13"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s195__line11-12",
+                "shenzhen-s333__line12-13"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s35-shenzhen-line11-12-shenzhen-line2-2",
+              "name": "福田",
+              "complexId": "shenzhen-s35",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s35__line11-12",
+                "shenzhen-s35__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s35-shenzhen-line11-12-shenzhen-line3-3",
+              "name": "福田",
+              "complexId": "shenzhen-s35",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s35__line11-12",
+                "shenzhen-s35__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s35-shenzhen-line2-2-shenzhen-line3-3",
+              "name": "福田",
+              "complexId": "shenzhen-s35",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s35__line2-2",
+                "shenzhen-s35__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s68-shenzhen-line10-11-shenzhen-line4",
+              "name": "福田口岸",
+              "complexId": "shenzhen-s68",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line4"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s68__line10-11",
+                "shenzhen-s68__line4"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "id": "sz-transfer-science-museum-line1-line6",
+              "name": "科学馆",
+              "complexId": "shenzhen-s5",
+              "stationInstanceIds": [
+                "shenzhen-s5",
+                "shenzhen-s270"
+              ],
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line6-6"
+              ],
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s93-shenzhen-line13-14-shenzhen-line2-2",
+              "name": "科苑",
+              "complexId": "shenzhen-s93",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s93",
+                "shenzhen-s93__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s232-shenzhen-line13-14-shenzhen-line9-10",
+              "name": "粤海门",
+              "complexId": "shenzhen-s232",
+              "lineIds": [
+                "shenzhen-line13-14",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s232",
+                "shenzhen-s232__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s76-shenzhen-line4-shenzhen-line6-6",
+              "name": "红山",
+              "complexId": "shenzhen-s76",
+              "lineIds": [
+                "shenzhen-line4",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s76__line4",
+                "shenzhen-s76__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s40-shenzhen-line3-3-shenzhen-line9-10",
+              "name": "红岭",
+              "complexId": "shenzhen-s40",
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s40__line3-3",
+                "shenzhen-s40__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s221-shenzhen-line7-8-shenzhen-line9-10",
+              "name": "红岭北",
+              "complexId": "shenzhen-s221",
+              "lineIds": [
+                "shenzhen-line7-8",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s221__line7-8",
+                "shenzhen-s221__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s185-shenzhen-line11-12-shenzhen-line9-10",
+              "name": "红岭南",
+              "complexId": "shenzhen-s185",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s185",
+                "shenzhen-s185__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s188-shenzhen-line11-12-shenzhen-line9-10",
+              "name": "红树湾南",
+              "complexId": "shenzhen-s188",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s188__line11-12",
+                "shenzhen-s188__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s3-shenzhen-line1-shenzhen-line3-3",
+              "name": "老街",
+              "complexId": "shenzhen-s3",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s3",
+                "shenzhen-s3__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s37-shenzhen-line10-11-shenzhen-line3-3",
+              "name": "莲花村",
+              "complexId": "shenzhen-s37",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s37__line10-11",
+                "shenzhen-s37__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s126-shenzhen-line5-5-shenzhen-line7-8",
+              "name": "西丽",
+              "complexId": "shenzhen-s126",
+              "lineIds": [
+                "shenzhen-line5-5",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s126__line5-5",
+                "shenzhen-s126__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "id": "sz-transfer-shopping-park-line1-line3",
+              "name": "购物公园",
+              "complexId": "shenzhen-s9",
+              "stationInstanceIds": [
+                "shenzhen-s9",
+                "shenzhen-s34__line3-3"
+              ],
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line3-3"
+              ],
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s112-shenzhen-line2-2-shenzhen-line5-5",
+              "name": "赤湾",
+              "complexId": "shenzhen-s112",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s112__line2-2",
+                "shenzhen-s112__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s11-shenzhen-line1-shenzhen-line11-12",
+              "name": "车公庙",
+              "complexId": "shenzhen-s11",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line11-12"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s11__line1",
+                "shenzhen-s11__line11-12"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s11-shenzhen-line1-shenzhen-line7-8",
+              "name": "车公庙",
+              "complexId": "shenzhen-s11",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s11__line1",
+                "shenzhen-s212__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s11-shenzhen-line1-shenzhen-line9-10",
+              "name": "车公庙",
+              "complexId": "shenzhen-s11",
+              "lineIds": [
+                "shenzhen-line1",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s11__line1",
+                "shenzhen-s212__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s11-shenzhen-line11-12-shenzhen-line7-8",
+              "name": "车公庙",
+              "complexId": "shenzhen-s11",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s11__line11-12",
+                "shenzhen-s212__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s11-shenzhen-line11-12-shenzhen-line9-10",
+              "name": "车公庙",
+              "complexId": "shenzhen-s11",
+              "lineIds": [
+                "shenzhen-line11-12",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s11__line11-12",
+                "shenzhen-s212__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s212-shenzhen-line7-8-shenzhen-line9-10",
+              "name": "车公庙",
+              "complexId": "shenzhen-s11",
+              "lineIds": [
+                "shenzhen-line7-8",
+                "shenzhen-line9-10"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s212__line7-8",
+                "shenzhen-s212__line9-10"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s39-shenzhen-line3-3-shenzhen-line6-6",
+              "name": "通新岭",
+              "complexId": "shenzhen-s39",
+              "lineIds": [
+                "shenzhen-line3-3",
+                "shenzhen-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s39__line3-3",
+                "shenzhen-s39__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "historic-transfer-shenzhen-s243-line9-10-line6-6",
+              "name": "银湖",
+              "complexId": "shenzhen-s243",
+              "stationInstanceIds": [
+                "shenzhen-s243__line9-10",
+                "shenzhen-s243__line6-6"
+              ],
+              "lineIds": [
+                "shenzhen-line9-10",
+                "shenzhen-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/cxtx/",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s219-shenzhen-line14-15-shenzhen-line7-8",
+              "name": "黄木岗",
+              "complexId": "shenzhen-s219",
+              "lineIds": [
+                "shenzhen-line14-15",
+                "shenzhen-line7-8"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s219__line14-15",
+                "shenzhen-s219__line7-8"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            },
+            {
+              "id": "sz-cutoff-xfer-shenzhen-s107-shenzhen-line2-2-shenzhen-line5-5",
+              "name": "黄贝岭",
+              "complexId": "shenzhen-s107",
+              "lineIds": [
+                "shenzhen-line2-2",
+                "shenzhen-line5-5"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s107__line2-2",
+                "shenzhen-s107__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+              "cutoffEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+              "sourceNote": "截止日全网换乘核对；官方图确认线路配对，原有有日期的历史联系保留。通道形式和深度为示意。"
+            }
+          ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.25.13",
+          "scopeRevision": "2026.10.26.2",
           "requiresScopeRecheck": true,
           "scopeCorrections": [
             {
@@ -39752,11 +41573,31 @@
               ]
             }
           ],
-          "requiredTransfers": [],
+          "requiredTransfers": [
+            {
+              "id": "sz10-huanggekeng-reserved-16",
+              "name": "黄阁坑",
+              "complexId": "shenzhen-s379",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line16-16"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s379__line10-11",
+                "shenzhen-s379__line16-16"
+              ],
+              "status": "reserved",
+              "precision": "schematic",
+              "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+              "reservationEvidence": "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html",
+              "sourceNote": "2026五期图核对深圳段及黄阁坑终点；2019政府说明只佐证与16号线衔接，不沿用旧全线范围。",
+              "note": "五期仅建设深莞边界两侧深圳段；黄阁坑预留10／16号线接口，不计入已开放换乘，不补造中间东莞段。"
+            }
+          ],
           "requireOpen": false,
           "dataStatus": "blueprint_ready",
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.25.8"
+          "scopeRevision": "2026.10.26.1"
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -39810,10 +41651,66 @@
         "shenzhen-s271": "shenzhen-s69",
         "shenzhen-s212": "shenzhen-s11",
         "shenzhen-s270": "shenzhen-s5",
-        "shenzhen-s34": "shenzhen-s9"
+        "shenzhen-s34": "shenzhen-s9",
+        "shenzhen-s241": "shenzhen-s72",
+        "shenzhen-s254": "shenzhen-s405",
+        "shenzhen-s218": "shenzhen-s104",
+        "shenzhen-s92": "shenzhen-s189",
+        "shenzhen-s367": "shenzhen-s319",
+        "shenzhen-s242": "shenzhen-s273",
+        "shenzhen-s392": "shenzhen-s18",
+        "shenzhen-s141": "shenzhen-s106",
+        "shenzhen-s333": "shenzhen-s195"
       },
       "stationInstanceAliases": {
         "shenzhen-line4|shenzhen-s69": "shenzhen-s271"
+      },
+      "stationComplexAliasSources": {
+        "shenzhen-s241": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s254": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s218": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s92": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s367": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s242": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s392": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s141": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        },
+        "shenzhen-s333": {
+          "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "官方运营图明确同一换乘站区；各线路独立实体及位置不变。"
+        }
       }
     },
     "chengdu": {
@@ -49524,6 +51421,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.25.25",
-  "contentRevisionNote": "广州六号线恢复2013首开、2015一德路、2016东延、2017补站和2024沙河开放；独立目标按各期完整停站核对。"
+  "contentRevision": "2026.10.26.2",
+  "contentRevisionNote": "深圳截止日换乘逐组对照官方图，补齐96组线路配对的明确操作；未把现代图当作历史日期证明。"
 }

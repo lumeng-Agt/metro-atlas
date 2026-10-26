@@ -39,6 +39,9 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 		for plan in matching:actual_groups.append_array(plan.get("lineGroups",[]))
 		for required_transfer in requirement.get("transfers",[]):
 			if not matching.any(func(plan:Dictionary):return plan.get("requiredTransfers",[]).any(func(relation:Dictionary):return str(relation.get("id",""))==str(required_transfer))):reasons.append("项目%s缺少必要换乘目标。" % project_id)
+		for reserved in requirement.get("reservedTransfers",[]):
+			var reservation_found:bool=matching.any(func(plan:Dictionary):return not bool(plan.get("requireOpen",true)) and plan.get("requiredTransfers",[]).any(func(relation:Dictionary):return relation.get("status")=="reserved" and relation.get("id")==reserved.get("id") and relation.get("lineIds")==reserved.get("lineIds") and relation.get("stationInstanceIds")==reserved.get("stationInstanceIds") and relation.get("reservationEvidence")==reserved.get("reservationEvidence") and not str(relation.get("reservationEvidence","")).is_empty()))
+			if not reservation_found:reasons.append("项目%s缺少明确的预留换乘接口，或误记为已经开放。"%project_id)
 		for expected in requirement.get("groups",[]):
 			var matching_groups:Array=actual_groups.filter(func(g:Dictionary):return str(g.get("coverageGroupId",g.get("historicalLineId","")))==str(expected.get("id","")))
 			if matching_groups.size()!=1:reasons.append("项目%s的区段范围不完整。" % project_id);continue
@@ -492,6 +495,10 @@ static func validate_catalog(city_data_list: Array) -> Array[String]:
 			if str(event.get("sourceCheckedAt", "")).is_empty() or str(event.get("scope", "")).is_empty() or str(event.get("status", "")).is_empty() or str(event.get("sourceType", "")).is_empty(): errors.append("%s 缺少核验日期、范围、来源类型或实施状态" % str(event.get("title", city_id)))
 			if not event.has("sourcePublicationDate"): errors.append("%s 未明确记录来源公开日期是否已核实" % str(event.get("title", city_id)))
 		for future in _catalog.cities[city_id].get("futurePlans", []):
+			for pairing in future.get("requiredTransfers",[]):
+				if str(pairing.get("status",""))!="reserved":continue
+				var lines:Array=pairing.get("lineIds",[]);var bodies:Array=pairing.get("stationInstanceIds",[])
+				if bool(future.get("requireOpen",true)) or lines.size()!=2 or bodies.size()!=2 or lines[0]==lines[1] or bodies[0]==bodies[1] or not str(pairing.get("reservationEvidence","")).begins_with("https://") or not str(pairing.get("source","")).begins_with("https://"):errors.append("%s 预留换乘的未开放状态、独立站体或来源无效"%str(future.get("id","")))
 			if str(future.get("date", "")) > cutoff_date(): errors.append("%s 远期资料晚于资料截止日期" % str(future.get("id", city_id)))
 			if str(future.get("source", "")).is_empty(): errors.append("%s 远期资料缺少来源" % str(future.get("id", city_id)))
 			if str(future.get("sourceCheckedAt", "")).is_empty(): errors.append("%s 远期资料缺少核验日期" % str(future.get("id", city_id)))

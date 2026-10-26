@@ -70,6 +70,19 @@ def check_project(target, plans, names, *, historical_construction=False):
     for transfer in target.get('transfers', []):
         if not any(t.get('id') == transfer for p in matched for t in p.get('requiredTransfers', [])):
             errors.append(f'{transfer}: required transfer missing')
+    for reserved in target.get('reservedTransfers', []):
+        if reserved.get('status')!='reserved' or len(reserved.get('lineIds',[]))!=2 or len(set(reserved.get('lineIds',[])))!=2 or len(reserved.get('stationInstanceIds',[]))!=2 or len(set(reserved.get('stationInstanceIds',[])))!=2:
+            errors.append(f"{reserved.get('id')}: independent reservation must use two distinct line bodies")
+        candidates=[(p,t) for p in matched for t in p.get('requiredTransfers',[]) if t.get('id')==reserved.get('id')]
+        if len(candidates)!=1:
+            errors.append(f"{reserved.get('id')}: required reserved interface missing or duplicated");continue
+        plan,pair=candidates[0]
+        if plan.get('requireOpen',True) or pair.get('status')!='reserved':
+            errors.append(f"{reserved.get('id')}: planned interface misrepresented as open interchange")
+        if not str(reserved.get('source','')).startswith('https://') or not str(reserved.get('reservationEvidence','')).startswith('https://'):
+            errors.append(f"{reserved.get('id')}: independent reservation evidence missing")
+        for field in ('lineIds','stationInstanceIds','complexId','reservationEvidence','source'):
+            if pair.get(field)!=reserved.get(field):errors.append(f"{reserved.get('id')}: reserved interface {field} differs")
     return errors
 
 

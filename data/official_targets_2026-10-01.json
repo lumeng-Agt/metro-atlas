@@ -1288,7 +1288,7 @@
         {
           "id": "sz-line10-east-shenzhen",
           "reviewStatus": "verified",
-          "transferReviewStatus": "pending",
+          "transferReviewStatus": "verified",
           "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
           "sourcePublicationDate": "2026-04",
           "sourceCheckedAt": "2026-10-25",
@@ -1297,7 +1297,7 @@
             "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html"
           ],
           "constructionOnly": true,
-          "evidenceNote": "五期规划图项目表第1行2.9公里深圳段；图中两端分离，中间东莞段未作为本期建设。2019政府说明仅佐证终点对接16号线，不以其9.8公里旧全线方案替代2026深圳段。黄阁坑独立站体1座，界外无新增乘客站。预留16号线关系尚待专门规划联系状态，不能计为有效运营换乘。",
+          "evidenceNote": "官方五期图为深圳段2.9公里、黄阁坑单一新站及终点规划换乘；2019政府说明佐证接入16号线的关系，不沿用其9.8公里旧全线范围。两个深圳工程区段与预留站体分别检查，不虚构贯通、换乘开放或未来日期。",
           "groups": [
             {
               "id": "sz10-east-engineering",
@@ -1389,7 +1389,29 @@
                   ],
                   "corridorToleranceM": 180
                 }
-              ]
+              ],
+              "historicalLineId": "shenzhen-line10-11"
+            }
+          ],
+          "reservedTransfers": [
+            {
+              "id": "sz10-huanggekeng-reserved-16",
+              "name": "黄阁坑",
+              "complexId": "shenzhen-s379",
+              "lineIds": [
+                "shenzhen-line10-11",
+                "shenzhen-line16-16"
+              ],
+              "stationInstanceIds": [
+                "shenzhen-s379__line10-11",
+                "shenzhen-s379__line16-16"
+              ],
+              "status": "reserved",
+              "precision": "schematic",
+              "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+              "reservationEvidence": "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html",
+              "sourceNote": "2026五期图核对深圳段及黄阁坑终点；2019政府说明只佐证与16号线衔接，不沿用旧全线范围。",
+              "note": "五期仅建设深莞边界两侧深圳段；黄阁坑预留10／16号线接口，不计入已开放换乘，不补造中间东莞段。"
             }
           ]
         }
@@ -1968,12 +1990,102 @@
           }
         ],
         "transfers": [
-          "sz-gangxia-north:shenzhen-line2-2:shenzhen-line10-11",
-          "sz-gangxia-north:shenzhen-line2-2:shenzhen-line11-12",
-          "sz-gangxia-north:shenzhen-line2-2:shenzhen-line14-15",
+          "sz-cutoff-xfer-shenzhen-s262-shenzhen-line13-14-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s72-shenzhen-line4-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s15-shenzhen-line1-shenzhen-line2-2",
+          "sz-cutoff-xfer-shenzhen-s131-shenzhen-line10-11-shenzhen-line5-5",
+          "sz-transfer-huizhanzhongxin-2004",
+          "historic-transfer-shenzhen-s258-line6-6-line6-7",
+          "sz-cutoff-xfer-shenzhen-s359-shenzhen-line13-14-shenzhen-line6-7",
+          "sz-cutoff-xfer-shenzhen-s220-shenzhen-line6-6-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s405-shenzhen-line13-14-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s260-shenzhen-line13-14-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s22-shenzhen-line1-shenzhen-line11-12",
+          "sz-cutoff-xfer-shenzhen-s22-shenzhen-line1-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s22-shenzhen-line11-12-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s117-shenzhen-line5-5-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s104-shenzhen-line2-2-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s186-shenzhen-line11-12-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s38-shenzhen-line3-3-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s190-shenzhen-line11-12-shenzhen-line12-13",
+          "sz-cutoff-xfer-shenzhen-s229-shenzhen-line12-13-shenzhen-line9-10",
+          "historic-transfer-shenzhen-s60-line3-3-line16-16",
+          "sz-cutoff-xfer-shenzhen-s189-shenzhen-line11-12-shenzhen-line13-14",
+          "sz-cutoff-xfer-shenzhen-s189-shenzhen-line11-12-shenzhen-line2-2",
+          "sz-cutoff-xfer-shenzhen-s189-shenzhen-line13-14-shenzhen-line2-2",
+          "sz-cutoff-xfer-shenzhen-s308-shenzhen-line12-13-shenzhen-line20-17",
+          "sz-cutoff-xfer-shenzhen-s307-shenzhen-line12-13-shenzhen-line20-17",
+          "sz-cutoff-xfer-shenzhen-s319-shenzhen-line14-15-shenzhen-line16-16",
+          "sz-cutoff-xfer-shenzhen-s4-shenzhen-line1-shenzhen-line2-2",
+          "sz-cutoff-xfer-shenzhen-s4-shenzhen-line1-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s4-shenzhen-line2-2-shenzhen-line5-5",
+          "historic-transfer-shenzhen-s55-line14-15-line16-16",
+          "sz-cutoff-xfer-shenzhen-s55-shenzhen-line14-15-shenzhen-line3-3",
+          "historic-transfer-shenzhen-s55-line3-3-line16-16",
+          "sz-cutoff-xfer-shenzhen-s139-shenzhen-line5-5-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s273-shenzhen-line10-11-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s97-shenzhen-line2-2-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s24-shenzhen-line1-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s36-shenzhen-line3-3-shenzhen-line4",
+          "historic-transfer-shenzhen-s7-line1-line10-11",
           "sz-gangxia-north:shenzhen-line10-11:shenzhen-line11-12",
           "sz-gangxia-north:shenzhen-line10-11:shenzhen-line14-15",
-          "sz-gangxia-north:shenzhen-line11-12:shenzhen-line14-15"
+          "sz-gangxia-north:shenzhen-line2-2:shenzhen-line10-11",
+          "sz-gangxia-north:shenzhen-line11-12:shenzhen-line14-15",
+          "sz-gangxia-north:shenzhen-line2-2:shenzhen-line11-12",
+          "sz-gangxia-north:shenzhen-line2-2:shenzhen-line14-15",
+          "sz-cutoff-xfer-shenzhen-s70-shenzhen-line2-2-shenzhen-line4",
+          "sz-cutoff-xfer-shenzhen-s46-shenzhen-line14-15-shenzhen-line3-3",
+          "sz-cutoff-xfer-shenzhen-s46-shenzhen-line14-15-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s46-shenzhen-line3-3-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s101-shenzhen-line2-2-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s30-shenzhen-line1-shenzhen-line12-13",
+          "sz-cutoff-xfer-shenzhen-s194-shenzhen-line11-12-shenzhen-line20-17",
+          "sz-cutoff-xfer-shenzhen-s201-shenzhen-line11-12-shenzhen-line12-13",
+          "sz-cutoff-xfer-shenzhen-s201-shenzhen-line11-12-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s201-shenzhen-line12-13-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s19-shenzhen-line1-shenzhen-line12-13",
+          "sz-cutoff-xfer-shenzhen-s304-shenzhen-line12-13-shenzhen-line2-2",
+          "sz-cutoff-xfer-shenzhen-s75-shenzhen-line4-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s75-shenzhen-line4-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s75-shenzhen-line5-5-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s18-shenzhen-line1-shenzhen-line13-14",
+          "sz-cutoff-xfer-shenzhen-s106-shenzhen-line2-2-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s122-shenzhen-line12-13-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s43-shenzhen-line3-3-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s125-shenzhen-line13-14-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s33-shenzhen-line3-3-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s271-shenzhen-line10-11-shenzhen-line4",
+          "sz-cutoff-xfer-shenzhen-s271-shenzhen-line10-11-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s271-shenzhen-line4-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s195-shenzhen-line11-12-shenzhen-line12-13",
+          "sz-cutoff-xfer-shenzhen-s35-shenzhen-line11-12-shenzhen-line2-2",
+          "sz-cutoff-xfer-shenzhen-s35-shenzhen-line11-12-shenzhen-line3-3",
+          "sz-cutoff-xfer-shenzhen-s35-shenzhen-line2-2-shenzhen-line3-3",
+          "sz-cutoff-xfer-shenzhen-s68-shenzhen-line10-11-shenzhen-line4",
+          "sz-transfer-science-museum-line1-line6",
+          "sz-cutoff-xfer-shenzhen-s93-shenzhen-line13-14-shenzhen-line2-2",
+          "sz-cutoff-xfer-shenzhen-s232-shenzhen-line13-14-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s76-shenzhen-line4-shenzhen-line6-6",
+          "sz-cutoff-xfer-shenzhen-s40-shenzhen-line3-3-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s221-shenzhen-line7-8-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s185-shenzhen-line11-12-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s188-shenzhen-line11-12-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s3-shenzhen-line1-shenzhen-line3-3",
+          "sz-cutoff-xfer-shenzhen-s37-shenzhen-line10-11-shenzhen-line3-3",
+          "sz-cutoff-xfer-shenzhen-s126-shenzhen-line5-5-shenzhen-line7-8",
+          "sz-transfer-shopping-park-line1-line3",
+          "sz-cutoff-xfer-shenzhen-s112-shenzhen-line2-2-shenzhen-line5-5",
+          "sz-cutoff-xfer-shenzhen-s11-shenzhen-line1-shenzhen-line11-12",
+          "sz-cutoff-xfer-shenzhen-s11-shenzhen-line1-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s11-shenzhen-line1-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s11-shenzhen-line11-12-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s11-shenzhen-line11-12-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s212-shenzhen-line7-8-shenzhen-line9-10",
+          "sz-cutoff-xfer-shenzhen-s39-shenzhen-line3-3-shenzhen-line6-6",
+          "historic-transfer-shenzhen-s243-line9-10-line6-6",
+          "sz-cutoff-xfer-shenzhen-s219-shenzhen-line14-15-shenzhen-line7-8",
+          "sz-cutoff-xfer-shenzhen-s107-shenzhen-line2-2-shenzhen-line5-5"
         ],
         "temporalEvidence": [
           {
@@ -1998,7 +2110,9 @@
             "chapterId": "shenzhen-network-milestone-2026-06-28"
           }
         ],
-        "note": "17条路径站序另有独立清单；本次仅补核13号线三期开放证据，不宣称其余16条截止日时序已全部审核。"
+        "note": "17条路径站序有独立票价表；68处站区、96组换乘由官方网络图逐符号核对。全网历史形成时间及其他截止日开放证据仍逐项审核，不能由现代图倒推。",
+        "transferReviewStatus": "verified",
+        "transferEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
       }
     },
     "shanghai": {
@@ -7592,6 +7706,103 @@
               "allowReverse": true
             }
           ]
+        },
+        {
+          "chapterId": "guangzhou-network-milestone-2025-06-29",
+          "date": "2025-06-29",
+          "source": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+          "sourcePublicationDate": "2025-06-28",
+          "groups": [
+            {
+              "id": "route:guangzhou-r12-east-open",
+              "historicalLineId": "guangzhou-line12-12",
+              "scopeType": "stations",
+              "stationNames": [
+                "二沙岛",
+                "赤岗塔",
+                "赤沙北",
+                "赤沙",
+                "北山",
+                "官洲",
+                "大学城北",
+                "大学城南"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true
+            },
+            {
+              "id": "route:guangzhou-r12-west-open",
+              "historicalLineId": "guangzhou-line12-12",
+              "scopeType": "stations",
+              "stationNames": [
+                "浔峰岗",
+                "浔峰岗北",
+                "西洲",
+                "聚龙",
+                "广州白云站",
+                "棠涌",
+                "新市墟",
+                "白云文化广场",
+                "广州体育馆"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true
+            }
+          ]
+        },
+        {
+          "chapterId": "guangzhou-line12-chigang-2026",
+          "date": "2026-02-13",
+          "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+          "sourcePublicationDate": "2026-02-13",
+          "transfers": [
+            "historic-transfer-guangzhou-s164-line8-8-line12-12"
+          ],
+          "groups": [
+            {
+              "id": "opening:guangzhou-line12-chigang-2026",
+              "historicalLineId": "guangzhou-line12-12",
+              "scopeType": "stations",
+              "stationNames": [
+                "二沙岛",
+                "赤岗塔",
+                "赤岗",
+                "赤沙北",
+                "赤沙",
+                "北山",
+                "官洲",
+                "大学城北",
+                "大学城南"
+              ],
+              "constructionStationNames": [
+                "赤岗塔",
+                "赤岗",
+                "赤沙北"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true
+            }
+          ],
+          "existingScopes": [
+            {
+              "id": "line12-existing-west",
+              "historicalLineId": "guangzhou-line12-12",
+              "scopeType": "stations",
+              "stationNames": [
+                "浔峰岗",
+                "浔峰岗北",
+                "西洲",
+                "聚龙",
+                "广州白云站",
+                "棠涌",
+                "新市墟",
+                "白云文化广场",
+                "广州体育馆"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true
+            }
+          ]
         }
       ],
       "projects": [
@@ -8722,6 +8933,11 @@
             "source": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
             "sourcePublicationDate": "2025-12-30",
             "scope": "芳村至南浦西4站，接续陈头岗贯通8站"
+          },
+          {
+            "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+            "effectiveDate": "2026-02-13",
+            "scope": "十二号线赤岗站开放，东段九站并增加与八号线换乘。"
           }
         ],
         "sourceRetrievedAt": "2026-10-25",

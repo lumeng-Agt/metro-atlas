@@ -6,6 +6,35 @@ from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
+    def reservation_fixture(self):
+        pair=dict(id='reserved-interface',status='reserved',complexId='complex',lineIds=['line-a','line-b'],stationInstanceIds=['body-a','body-b'],source='https://example.invalid/plan',reservationEvidence='https://example.invalid/interface')
+        self.target['reservedTransfers']=[copy.deepcopy(pair)]
+        self.plans[0].update(requireOpen=False,requiredTransfers=[pair])
+        return pair
+
+    def test_reserved_interface_is_a_separate_unopened_requirement(self):
+        self.reservation_fixture()
+        self.assertEqual(check_project(self.target,self.plans,self.names),[])
+        self.plans[0]['requiredTransfers']=[]
+        self.assertTrue(any('reserved interface missing' in e for e in check_project(self.target,self.plans,self.names)))
+
+    def test_reserved_interface_cannot_be_counted_as_active_or_open(self):
+        pair=self.reservation_fixture();pair['status']='active'
+        self.assertTrue(any('misrepresented as open' in e for e in check_project(self.target,self.plans,self.names)))
+        pair['status']='reserved';self.plans[0]['requireOpen']=True
+        self.assertTrue(any('misrepresented as open' in e for e in check_project(self.target,self.plans,self.names)))
+
+    def test_reservation_identity_and_source_cannot_be_substituted(self):
+        pair=self.reservation_fixture();pair['stationInstanceIds']=['body-a','other-body']
+        self.assertTrue(any('stationInstanceIds differs' in e for e in check_project(self.target,self.plans,self.names)))
+        pair=self.reservation_fixture();pair['reservationEvidence']=''
+        self.assertTrue(any('reservationEvidence differs' in e for e in check_project(self.target,self.plans,self.names)))
+
+    def test_invalid_independent_reservation_cannot_pass_by_matching_bad_data(self):
+        pair=self.reservation_fixture();pair['stationInstanceIds']=['body-a','body-a']
+        self.target['reservedTransfers']=[copy.deepcopy(pair)]
+        self.assertTrue(any('distinct line bodies' in e for e in check_project(self.target,self.plans,self.names)))
+
     def setUp(self):
         self.target = dict(id='fixture', reviewStatus='verified', source='https://example.invalid/fixture', sourcePublicationDate='2026-01-01', groups=[dict(id='line', stationNames=['A', 'B', 'C'], loop=True)])
         self.plans = [dict(projectIds=['fixture'], lineGroups=[dict(historicalLineId='line', stationIds=['a', 'b', 'c'], loop=True)])]

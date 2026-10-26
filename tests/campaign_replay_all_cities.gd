@@ -73,7 +73,8 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 		checked=Story.evaluate(app.world)
 	for transfer in checked.get("requiredTransfers",[]):
 		if app._transfer_connected(transfer):continue
-		var connection:Dictionary={"id":str(transfer.id),"name":str(transfer.get("name","换乘")),"complexId":str(transfer.get("complexId","")),"stationInstanceIds":transfer.get("stationInstanceIds",[]).duplicate(),"lineIds":transfer.get("lineIds",[]).duplicate(),"status":"active","precision":str(transfer.get("precision","schematic")),"source":str(transfer.get("source","")),"effectiveDate":str(chapter.get("date",""))}
+		var connection:Dictionary={"id":str(transfer.id),"name":str(transfer.get("name","换乘")),"complexId":str(transfer.get("complexId","")),"stationInstanceIds":transfer.get("stationInstanceIds",[]).duplicate(),"lineIds":transfer.get("lineIds",[]).duplicate(),"status":str(transfer.get("status","active")),"precision":str(transfer.get("precision","schematic")),"source":str(transfer.get("source","")),"effectiveDate":str(chapter.get("date",""))}
+		if str(connection.status)=="reserved":connection["reservationEvidence"]=str(transfer.get("reservationEvidence",""))
 		var linked:Dictionary=app._commit_transfer_connection(transfer,connection,int(app.world.revision))
 		if not bool(linked.get("ok",false)):return _fail(city,id,str(transfer.id),str(linked.get("error","")))
 	if bool(chapter.get("requiresLineReorganization",false)):

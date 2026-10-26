@@ -1,0 +1,520 @@
+{
+  "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+  "retrievedAt": "2026-10-26",
+  "mapSource": "https://jtys.sz.gov.cn/img/4/4457/4457528/12601089.jpg",
+  "mapSha256": "ba3333ccf238bec222c97d8f142842681338f1625dbb42cf518c9e9386ea22a1",
+  "sourcePublicationDate": "2026-01-14",
+  "dateNote": "页面标注1月14日，但13号线北延已画入，说明附件后续更新；不能以该页面日期证明全部历史形成时间。",
+  "stationOrderEvidence": "res://data/official_evidence/shenzhen_2026-06-28_station_orders.json",
+  "reviewNote": "逐个对照换乘符号；同一枢纽的多线拆为线路对。莲塘为2／8贯通边界，不增加两套独立站体或换乘任务；铁路、有轨和云巴不混入地铁配对。",
+  "lineIds": {
+    "1": "shenzhen-line1",
+    "2": "shenzhen-line2-2",
+    "3": "shenzhen-line3-3",
+    "4": "shenzhen-line4",
+    "5": "shenzhen-line5-5",
+    "6": "shenzhen-line6-6",
+    "6支": "shenzhen-line6-7",
+    "7": "shenzhen-line7-8",
+    "8": "shenzhen-line8-9",
+    "9": "shenzhen-line9-10",
+    "10": "shenzhen-line10-11",
+    "11": "shenzhen-line11-12",
+    "12": "shenzhen-line12-13",
+    "13": "shenzhen-line13-14",
+    "14": "shenzhen-line14-15",
+    "16": "shenzhen-line16-16",
+    "20": "shenzhen-line20-17"
+  },
+  "stations": [
+    {
+      "stationName": "老街",
+      "lineNumbers": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "stationName": "大剧院",
+      "lineNumbers": [
+        "1",
+        "2",
+        "5"
+      ]
+    },
+    {
+      "stationName": "科学馆",
+      "lineNumbers": [
+        "1",
+        "6"
+      ]
+    },
+    {
+      "stationName": "岗厦",
+      "lineNumbers": [
+        "1",
+        "10"
+      ]
+    },
+    {
+      "stationName": "会展中心",
+      "lineNumbers": [
+        "1",
+        "4"
+      ]
+    },
+    {
+      "stationName": "购物公园",
+      "lineNumbers": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "stationName": "车公庙",
+      "lineNumbers": [
+        "1",
+        "7",
+        "9",
+        "11"
+      ]
+    },
+    {
+      "stationName": "世界之窗",
+      "lineNumbers": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "stationName": "深大",
+      "lineNumbers": [
+        "1",
+        "13"
+      ]
+    },
+    {
+      "stationName": "桃园",
+      "lineNumbers": [
+        "1",
+        "12"
+      ]
+    },
+    {
+      "stationName": "前海湾",
+      "lineNumbers": [
+        "1",
+        "5",
+        "11"
+      ]
+    },
+    {
+      "stationName": "宝安中心",
+      "lineNumbers": [
+        "1",
+        "5"
+      ]
+    },
+    {
+      "stationName": "机场东",
+      "lineNumbers": [
+        "1",
+        "12"
+      ]
+    },
+    {
+      "stationName": "赤湾",
+      "lineNumbers": [
+        "2",
+        "5"
+      ]
+    },
+    {
+      "stationName": "海上世界",
+      "lineNumbers": [
+        "2",
+        "12"
+      ]
+    },
+    {
+      "stationName": "后海",
+      "lineNumbers": [
+        "2",
+        "11",
+        "13"
+      ]
+    },
+    {
+      "stationName": "科苑",
+      "lineNumbers": [
+        "2",
+        "13"
+      ]
+    },
+    {
+      "stationName": "安托山",
+      "lineNumbers": [
+        "2",
+        "7"
+      ]
+    },
+    {
+      "stationName": "景田",
+      "lineNumbers": [
+        "2",
+        "9"
+      ]
+    },
+    {
+      "stationName": "福田",
+      "lineNumbers": [
+        "2",
+        "3",
+        "11"
+      ]
+    },
+    {
+      "stationName": "市民中心",
+      "lineNumbers": [
+        "2",
+        "4"
+      ]
+    },
+    {
+      "stationName": "岗厦北",
+      "lineNumbers": [
+        "2",
+        "10",
+        "11",
+        "14"
+      ]
+    },
+    {
+      "stationName": "华强北",
+      "lineNumbers": [
+        "2",
+        "7"
+      ]
+    },
+    {
+      "stationName": "湖贝",
+      "lineNumbers": [
+        "2",
+        "5"
+      ]
+    },
+    {
+      "stationName": "黄贝岭",
+      "lineNumbers": [
+        "2",
+        "5"
+      ]
+    },
+    {
+      "stationName": "石厦",
+      "lineNumbers": [
+        "3",
+        "7"
+      ]
+    },
+    {
+      "stationName": "少年宫",
+      "lineNumbers": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "stationName": "莲花村",
+      "lineNumbers": [
+        "3",
+        "10"
+      ]
+    },
+    {
+      "stationName": "华新",
+      "lineNumbers": [
+        "3",
+        "7"
+      ]
+    },
+    {
+      "stationName": "通新岭",
+      "lineNumbers": [
+        "3",
+        "6"
+      ]
+    },
+    {
+      "stationName": "红岭",
+      "lineNumbers": [
+        "3",
+        "9"
+      ]
+    },
+    {
+      "stationName": "田贝",
+      "lineNumbers": [
+        "3",
+        "7"
+      ]
+    },
+    {
+      "stationName": "布吉",
+      "lineNumbers": [
+        "3",
+        "5",
+        "14"
+      ]
+    },
+    {
+      "stationName": "大运",
+      "lineNumbers": [
+        "3",
+        "14",
+        "16"
+      ]
+    },
+    {
+      "stationName": "双龙",
+      "lineNumbers": [
+        "3",
+        "16"
+      ]
+    },
+    {
+      "stationName": "福田口岸",
+      "lineNumbers": [
+        "4",
+        "10"
+      ]
+    },
+    {
+      "stationName": "福民",
+      "lineNumbers": [
+        "4",
+        "7",
+        "10"
+      ]
+    },
+    {
+      "stationName": "上梅林",
+      "lineNumbers": [
+        "4",
+        "9"
+      ]
+    },
+    {
+      "stationName": "深圳北站",
+      "lineNumbers": [
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "stationName": "红山",
+      "lineNumbers": [
+        "4",
+        "6"
+      ]
+    },
+    {
+      "stationName": "前湾",
+      "lineNumbers": [
+        "5",
+        "9"
+      ]
+    },
+    {
+      "stationName": "灵芝",
+      "lineNumbers": [
+        "5",
+        "12"
+      ]
+    },
+    {
+      "stationName": "留仙洞",
+      "lineNumbers": [
+        "5",
+        "13"
+      ]
+    },
+    {
+      "stationName": "西丽",
+      "lineNumbers": [
+        "5",
+        "7"
+      ]
+    },
+    {
+      "stationName": "五和",
+      "lineNumbers": [
+        "5",
+        "10"
+      ]
+    },
+    {
+      "stationName": "太安",
+      "lineNumbers": [
+        "5",
+        "7"
+      ]
+    },
+    {
+      "stationName": "八卦岭",
+      "lineNumbers": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "stationName": "银湖",
+      "lineNumbers": [
+        "6",
+        "9"
+      ]
+    },
+    {
+      "stationName": "上屋",
+      "lineNumbers": [
+        "6",
+        "13"
+      ]
+    },
+    {
+      "stationName": "凤凰城",
+      "lineNumbers": [
+        "6",
+        "13"
+      ]
+    },
+    {
+      "stationName": "光明",
+      "lineNumbers": [
+        "6",
+        "6支"
+      ]
+    },
+    {
+      "stationName": "公明广场",
+      "lineNumbers": [
+        "6",
+        "13"
+      ]
+    },
+    {
+      "stationName": "松岗",
+      "lineNumbers": [
+        "6",
+        "11",
+        "12"
+      ]
+    },
+    {
+      "stationName": "光明城",
+      "lineNumbers": [
+        "6支",
+        "13"
+      ]
+    },
+    {
+      "stationName": "华强南",
+      "lineNumbers": [
+        "7",
+        "11"
+      ]
+    },
+    {
+      "stationName": "黄木岗",
+      "lineNumbers": [
+        "7",
+        "14"
+      ]
+    },
+    {
+      "stationName": "红岭北",
+      "lineNumbers": [
+        "7",
+        "9"
+      ]
+    },
+    {
+      "stationName": "南油",
+      "lineNumbers": [
+        "9",
+        "12"
+      ]
+    },
+    {
+      "stationName": "粤海门",
+      "lineNumbers": [
+        "9",
+        "13"
+      ]
+    },
+    {
+      "stationName": "红树湾南",
+      "lineNumbers": [
+        "9",
+        "11"
+      ]
+    },
+    {
+      "stationName": "孖岭",
+      "lineNumbers": [
+        "9",
+        "10"
+      ]
+    },
+    {
+      "stationName": "红岭南",
+      "lineNumbers": [
+        "9",
+        "11"
+      ]
+    },
+    {
+      "stationName": "南山",
+      "lineNumbers": [
+        "11",
+        "12"
+      ]
+    },
+    {
+      "stationName": "机场北",
+      "lineNumbers": [
+        "11",
+        "20"
+      ]
+    },
+    {
+      "stationName": "福永",
+      "lineNumbers": [
+        "11",
+        "12"
+      ]
+    },
+    {
+      "stationName": "国展",
+      "lineNumbers": [
+        "12",
+        "20"
+      ]
+    },
+    {
+      "stationName": "国展北",
+      "lineNumbers": [
+        "12",
+        "20"
+      ]
+    },
+    {
+      "stationName": "坪山围",
+      "lineNumbers": [
+        "14",
+        "16"
+      ]
+    }
+  ]
+}

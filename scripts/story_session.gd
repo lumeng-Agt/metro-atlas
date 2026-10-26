@@ -6,6 +6,7 @@ extends RefCounted
 const Catalog = preload("res://scripts/campaign_system.gd")
 const Paths = preload("res://scripts/route_path.gd")
 const Engineering = preload("res://scripts/engineering_construction.gd")
+const Reservation = preload("res://scripts/transfer_reservation.gd")
 
 static func config(world: Dictionary) -> Dictionary:
 	return Catalog.city_config(str(world.get("cityId", "")))
@@ -435,6 +436,11 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		# A line task commits its own physical route first. The separate,
 		# explicitly confirmed transfer action remains a chapter-level condition.
 		if not selected_task_id.is_empty(): continue
+		if str(transfer.get("status",""))=="reserved":
+			var reservation_errors:Array[String]=["预留换乘只能在未开放的规划建设篇确认。"] if bool(ch.get("requireOpen",true)) or str(world.get("storyState",{}).get("phase","history"))!="future" else Reservation.errors(world,transfer,groups(world,true))
+			for issue in reservation_errors:issues.append({"text":issue,"kind":"transfer","objectId":str(transfer.get("complexId",""))})
+			if reservation_errors.is_empty() and not Reservation.saved_matches(world,transfer):issues.append({"text":"%s：工程站体已就绪，请确认预留换乘接口；它还不是已开放换乘。"%str(transfer.get("name","本期站区")),"kind":"transfer","objectId":str(transfer.get("complexId","")),"pendingConfirmation":true})
+			continue
 		var transfer_ok:=true
 		var instance_ids:Array=transfer.get("stationInstanceIds",[])
 		var line_ids:Array=transfer.get("lineIds",[])

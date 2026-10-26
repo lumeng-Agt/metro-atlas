@@ -1,0 +1,691 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "shenzhen",
+  "operatorRetrievedAt": "2026-10-26",
+  "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html",
+  "expectedPairs": 96,
+  "matchedPairs": 22,
+  "missingPairs": [
+    {
+      "station": "上屋",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "上梅林",
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "世界之窗",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line2-2"
+      ]
+    },
+    {
+      "station": "五和",
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "光明城",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line6-7"
+      ]
+    },
+    {
+      "station": "八卦岭",
+      "lineIds": [
+        "shenzhen-line6-6",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "公明广场",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "凤凰城",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "前海湾",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line11-12"
+      ]
+    },
+    {
+      "station": "前海湾",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "前海湾",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "前湾",
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "华强北",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "华强南",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "华新",
+      "lineIds": [
+        "shenzhen-line3-3",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "南山",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line12-13"
+      ]
+    },
+    {
+      "station": "南油",
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "后海",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line13-14"
+      ]
+    },
+    {
+      "station": "后海",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line2-2"
+      ]
+    },
+    {
+      "station": "后海",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line2-2"
+      ]
+    },
+    {
+      "station": "国展",
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line20-17"
+      ]
+    },
+    {
+      "station": "国展北",
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line20-17"
+      ]
+    },
+    {
+      "station": "坪山围",
+      "lineIds": [
+        "shenzhen-line14-15",
+        "shenzhen-line16-16"
+      ]
+    },
+    {
+      "station": "大剧院",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line2-2"
+      ]
+    },
+    {
+      "station": "大剧院",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "大剧院",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "大运",
+      "lineIds": [
+        "shenzhen-line14-15",
+        "shenzhen-line3-3"
+      ]
+    },
+    {
+      "station": "太安",
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "孖岭",
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "安托山",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "宝安中心",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "少年宫",
+      "lineIds": [
+        "shenzhen-line3-3",
+        "shenzhen-line4"
+      ]
+    },
+    {
+      "station": "市民中心",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line4"
+      ]
+    },
+    {
+      "station": "布吉",
+      "lineIds": [
+        "shenzhen-line14-15",
+        "shenzhen-line3-3"
+      ]
+    },
+    {
+      "station": "布吉",
+      "lineIds": [
+        "shenzhen-line14-15",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "布吉",
+      "lineIds": [
+        "shenzhen-line3-3",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "景田",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "机场东",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line12-13"
+      ]
+    },
+    {
+      "station": "机场北",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line20-17"
+      ]
+    },
+    {
+      "station": "松岗",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line12-13"
+      ]
+    },
+    {
+      "station": "松岗",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "松岗",
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "桃园",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line12-13"
+      ]
+    },
+    {
+      "station": "海上世界",
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line2-2"
+      ]
+    },
+    {
+      "station": "深圳北站",
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "深圳北站",
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "深圳北站",
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "深大",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line13-14"
+      ]
+    },
+    {
+      "station": "湖贝",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "灵芝",
+      "lineIds": [
+        "shenzhen-line12-13",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "田贝",
+      "lineIds": [
+        "shenzhen-line3-3",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "留仙洞",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "石厦",
+      "lineIds": [
+        "shenzhen-line3-3",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "福民",
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line4"
+      ]
+    },
+    {
+      "station": "福民",
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "福民",
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "福永",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line12-13"
+      ]
+    },
+    {
+      "station": "福田",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line2-2"
+      ]
+    },
+    {
+      "station": "福田",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line3-3"
+      ]
+    },
+    {
+      "station": "福田",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line3-3"
+      ]
+    },
+    {
+      "station": "福田口岸",
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line4"
+      ]
+    },
+    {
+      "station": "科苑",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line2-2"
+      ]
+    },
+    {
+      "station": "粤海门",
+      "lineIds": [
+        "shenzhen-line13-14",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "红山",
+      "lineIds": [
+        "shenzhen-line4",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "红岭",
+      "lineIds": [
+        "shenzhen-line3-3",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "红岭北",
+      "lineIds": [
+        "shenzhen-line7-8",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "红岭南",
+      "lineIds": [
+        "shenzhen-line11-12",
+        "shenzhen-line9-10"
+      ]
+    },
+    {
+      "station": "老街",
+      "lineIds": [
+        "shenzhen-line1",
+        "shenzhen-line3-3"
+      ]
+    },
+    {
+      "station": "莲花村",
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line3-3"
+      ]
+    },
+    {
+      "station": "西丽",
+      "lineIds": [
+        "shenzhen-line5-5",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "赤湾",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line5-5"
+      ]
+    },
+    {
+      "station": "通新岭",
+      "lineIds": [
+        "shenzhen-line3-3",
+        "shenzhen-line6-6"
+      ]
+    },
+    {
+      "station": "黄木岗",
+      "lineIds": [
+        "shenzhen-line14-15",
+        "shenzhen-line7-8"
+      ]
+    },
+    {
+      "station": "黄贝岭",
+      "lineIds": [
+        "shenzhen-line2-2",
+        "shenzhen-line5-5"
+      ]
+    }
+  ],
+  "invalidConnections": [],
+  "nonOpenConnections": [
+    {
+      "id": "future-transfer-laojie-line1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-laojie-line3",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sungang-line7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-luohubei-line14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-baigelong-line5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-dantou-line3",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-shiyaling-line14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-shanglilang-line10",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz19-jinlong-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz19-xinhe-16",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz19-pingshanzhongxin-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-hongshuwan",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-hongshuwan",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-baishizhou-1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-zhuguang-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz29-xingdong",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-shangsha-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-xiangmeibei-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-minle-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-minzhi-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz22-songyuanxia-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-tielugongyuan-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-sihai-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-shendanan-9",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-honglangbei-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-pingzhou-1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz15-liutang-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz25-longhua-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz25-songhe-22",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz25-beierlu-10",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xili-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xili-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-changlingpi-5",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-baishilong-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-youfu-25",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-fukang-22",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-jihuayiyuan-25",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xilihsr-15",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sz27-xilihsr-29",
+      "reason": "construction relationship has no current open service"
+    }
+  ],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "d2d97ccd70b415acfe5f0d8c4ebc53d95924c18f4eae32dc337b024f774907fb",
+  "evidenceSha256": "25c278900e20138456a56eda17b74e7a909bdf557b05ce250db395a9a6d61007"
+}

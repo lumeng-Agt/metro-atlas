@@ -48,8 +48,11 @@ def main():
                                groups=expected['groups'][1:])
             if services:
                 issues += check_project(service_scope,matches,names)
-            if matches[0].get('requiredTransfers'):
-                issues.append('engineering track must not invent an active passenger service/transfer')
+            reserved=spec.get('reservedTransfers',[])
+            if matches[0].get('requiredTransfers',[])!=reserved or any(p.get('status')!='reserved' or not p.get('reservationEvidence') for p in reserved):
+                issues.append('engineering track must not invent an active passenger service/transfer or omit a reviewed reservation')
+            if expected.get('reservedTransfers',[])!=reserved:
+                issues.append('independent reserved interfaces differ from the source spec')
         answers = [p for p in targets['cities'][city_id]['projects'] if p['id'] == expected['id']]
         if answers != [expected]:
             issues.append('committed independent requirement differs from the reviewed source spec')

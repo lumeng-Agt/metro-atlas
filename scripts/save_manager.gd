@@ -80,6 +80,13 @@ static func validate(data: Dictionary) -> String:
 				var body_complex:=CampaignSystem.canonical_station_complex(str(data.cityId),str(station.get("stationComplexId",station.get("historicalId",""))))
 				var relation_complex:=CampaignSystem.canonical_station_complex(str(data.cityId),str(connection.complexId))
 				if body_complex!=relation_complex:return "换乘站体与其历史站区不一致。"
+		if str(connection.get("status",""))=="reserved":
+			var reserved_lines:Variant=connection.get("lineIds",[])
+			if not reserved_lines is Array or reserved_lines.size()!=2 or connection.stationInstanceIds.size()!=2 or reserved_lines[0]==reserved_lines[1]:return "预留换乘必须逐一对应两条线路的独立站体。"
+			if not str(connection.get("source","")).begins_with("https://") or not str(connection.get("reservationEvidence","")).begins_with("https://"):return "预留换乘缺少规划依据。"
+			for i in range(2):
+				for station in data.get("stations",[]):
+					if str(station.get("stationInstanceId",station.get("id","")))==str(connection.stationInstanceIds[i]) and str(station.get("stationLineId",""))!=str(reserved_lines[i]):return "预留换乘引用了其他线路的站体。"
 		if str(connection.get("status","active"))=="active":
 			if not connection.get("lineIds",[]) is Array or connection.lineIds.size()!=connection.stationInstanceIds.size():return "已建立的换乘关系需要逐一对应物理站体和线路。"
 			var linked_lines:Dictionary={}

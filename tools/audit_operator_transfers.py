@@ -32,7 +32,8 @@ def expected_pairs(evidence):
     return sorted(pairs)
 
 
-def audit(world,evidence):
+def audit_pairs(world,expected,evidence,aliases=None):
+    aliases=aliases or {}
     by_instance={s.get('stationInstanceId',s['id']):s for s in world.get('stations',[])}
     served=set()
     for route in world.get('routes',[]):
@@ -53,9 +54,9 @@ def audit(world,evidence):
                 invalid.append(dict(id=connection.get('id'),reason='body belongs to another physical line'));continue
             if any((line,s['id']) not in served for s,line in [(sa,lines[a]),(sb,lines[b])]):
                 non_open.append(dict(id=connection.get('id'),reason='construction relationship has no current open service'));continue
-            if sa.get('name')==sb.get('name'):
-                present.add((sa['name'],*sorted((lines[a],lines[b]))))
-    expected=expected_pairs(evidence)
+            name_a=aliases.get(sa.get('name'),sa.get('name'));name_b=aliases.get(sb.get('name'),sb.get('name'))
+            if name_a==name_b:
+                present.add((name_a,*sorted((lines[a],lines[b]))))
     missing=[dict(station=name,lineIds=[a,b]) for name,a,b in expected if (name,a,b) not in present]
     return dict(kind='operator-transfer-diagnostic',city=world.get('cityId'),
                 operatorRetrievedAt=evidence['retrievedAt'],source=evidence['source'],
@@ -63,6 +64,10 @@ def audit(world,evidence):
                 missingPairs=missing,invalidConnections=invalid,nonOpenConnections=non_open,
                 completeDeliveryCertified=False,
                 note='Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.')
+
+
+def audit(world,evidence):
+    return audit_pairs(world,expected_pairs(evidence),evidence)
 
 
 def main():

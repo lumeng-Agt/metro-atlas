@@ -59408,12 +59408,11 @@
             },
             {
               "taskId": "route:guangzhou-r12-east-open",
-              "historicalLineId": "guangzhou-line12-12",
-              "name": "12号线东段（大学城南—二沙岛）",
+              "mapRouteId": "guangzhou-r12",
+              "name": "十二号线东段首开（赤岗暂缓）",
               "stationIds": [
                 "guangzhou-s363",
                 "guangzhou-s364",
-                "guangzhou-s164",
                 "guangzhou-s365",
                 "guangzhou-s337",
                 "guangzhou-s366",
@@ -59421,34 +59420,37 @@
                 "guangzhou-s62",
                 "guangzhou-s61"
               ],
+              "toleranceM": 220,
+              "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+              "historicalLineId": "guangzhou-line12-12",
+              "color": "#435428",
+              "stationOrderSource": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "guangzhou-s164": "guangzhou-s164__line12-12",
+                "guangzhou-s363": "guangzhou-s363",
+                "guangzhou-s364": "guangzhou-s364",
+                "guangzhou-s365": "guangzhou-s365",
                 "guangzhou-s337": "guangzhou-s337__line12-12",
+                "guangzhou-s366": "guangzhou-s366",
                 "guangzhou-s63": "guangzhou-s63__line12-12",
                 "guangzhou-s62": "guangzhou-s62__line12-12",
                 "guangzhou-s61": "guangzhou-s61__line12-12"
               },
-              "toleranceM": 180.0,
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
-              "sourceStationIds": [
-                "guangzhou-s363",
-                "guangzhou-s364",
-                "guangzhou-s164",
-                "guangzhou-s365",
-                "guangzhou-s337",
-                "guangzhou-s366",
-                "guangzhou-s63",
-                "guangzhou-s62",
-                "guangzhou-s61"
-              ],
-              "sourceStationInstances": {
-                "guangzhou-s164": "guangzhou-s164__line12-12",
-                "guangzhou-s337": "guangzhou-s337__line12-12",
-                "guangzhou-s63": "guangzhou-s63__line12-12",
-                "guangzhou-s62": "guangzhou-s62__line12-12",
-                "guangzhou-s61": "guangzhou-s61__line12-12"
-              }
+              "stationNames": {
+                "guangzhou-s363": "二沙岛",
+                "guangzhou-s364": "赤岗塔",
+                "guangzhou-s365": "赤沙北",
+                "guangzhou-s337": "赤沙",
+                "guangzhou-s366": "北山",
+                "guangzhou-s63": "官洲",
+                "guangzhou-s62": "大学城北",
+                "guangzhou-s61": "大学城南"
+              },
+              "coverageGroupId": "route:guangzhou-r12-east-open",
+              "replaceExistingService": true,
+              "servicePathRevision": 38,
+              "constructionScope": "dated_service_patterns",
+              "reconfirmLaterServices": true
             },
             {
               "mapRouteId": "guangzhou-r12",
@@ -59476,7 +59478,7 @@
                 "guangzhou-s150": "guangzhou-s150__line12-12",
                 "guangzhou-s371": "guangzhou-s371__line12-12"
               },
-              "constructionScope": "new_contiguous_range",
+              "constructionScope": "dated_service_patterns",
               "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
               "sourceStationIds": [
                 "guangzhou-s373",
@@ -59493,7 +59495,8 @@
                 "guangzhou-s233": "guangzhou-s233__line12-12",
                 "guangzhou-s150": "guangzhou-s150__line12-12",
                 "guangzhou-s371": "guangzhou-s371__line12-12"
-              }
+              },
+              "coverageGroupId": "route:guangzhou-r12-west-open"
             }
           ],
           "targetTransfers": [
@@ -61359,9 +61362,53 @@
           "chapterId": "guangzhou-line11-ring-opening-2024",
           "scope": "本期站序：沙河顶—沙河—天平架",
           "sourcePublicationDate": "2024-12-26"
+        },
+        {
+          "id": "guangzhou-line12-chigang-2026:opening",
+          "date": "2026-02-13",
+          "title": "赤岗开放：十二号线东段接入八号线",
+          "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+          "sourcePublicationDate": "2026-02-13",
+          "status": "opened_or_completed",
+          "routeIds": [
+            "guangzhou-r12"
+          ],
+          "targetLineGroups": [
+            {
+              "taskId": "opening:guangzhou-line12-chigang-2026",
+              "mapRouteId": "guangzhou-r12",
+              "name": "十二号线赤岗补站",
+              "stationIds": [
+                "guangzhou-s364",
+                "guangzhou-s164",
+                "guangzhou-s365"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+              "historicalLineId": "guangzhou-line12-12",
+              "color": "#435428",
+              "stationOrderSource": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s364": "guangzhou-s364",
+                "guangzhou-s164": "guangzhou-s164__line12-12",
+                "guangzhou-s365": "guangzhou-s365"
+              },
+              "stationNames": {
+                "guangzhou-s364": "赤岗塔",
+                "guangzhou-s164": "赤岗",
+                "guangzhou-s365": "赤沙北"
+              },
+              "coverageGroupId": "opening:guangzhou-line12-chigang-2026",
+              "replaceExistingService": false,
+              "servicePathRevision": 38
+            }
+          ],
+          "chapterId": "guangzhou-line12-chigang-2026",
+          "scope": "补入赤岗十二号线独立站体，复用赤岗塔、赤沙北，并明确建立8／12号线换乘。"
         }
       ],
-      "documentedMilestoneCount": 39,
+      "documentedMilestoneCount": 40,
       "milestoneChapters": [
         {
           "id": "guangzhou-milestone-1962-01-01",
@@ -67860,12 +67907,11 @@
                 },
                 {
                   "taskId": "route:guangzhou-r12-east-open",
-                  "historicalLineId": "guangzhou-line12-12",
-                  "name": "12号线东段（大学城南—二沙岛）",
+                  "mapRouteId": "guangzhou-r12",
+                  "name": "十二号线东段首开（赤岗暂缓）",
                   "stationIds": [
                     "guangzhou-s363",
                     "guangzhou-s364",
-                    "guangzhou-s164",
                     "guangzhou-s365",
                     "guangzhou-s337",
                     "guangzhou-s366",
@@ -67873,34 +67919,37 @@
                     "guangzhou-s62",
                     "guangzhou-s61"
                   ],
+                  "toleranceM": 220,
+                  "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+                  "historicalLineId": "guangzhou-line12-12",
+                  "color": "#435428",
+                  "stationOrderSource": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
                   "stationInstances": {
-                    "guangzhou-s164": "guangzhou-s164__line12-12",
+                    "guangzhou-s363": "guangzhou-s363",
+                    "guangzhou-s364": "guangzhou-s364",
+                    "guangzhou-s365": "guangzhou-s365",
                     "guangzhou-s337": "guangzhou-s337__line12-12",
+                    "guangzhou-s366": "guangzhou-s366",
                     "guangzhou-s63": "guangzhou-s63__line12-12",
                     "guangzhou-s62": "guangzhou-s62__line12-12",
                     "guangzhou-s61": "guangzhou-s61__line12-12"
                   },
-                  "toleranceM": 180.0,
-                  "constructionScope": "new_contiguous_range",
-                  "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
-                  "sourceStationIds": [
-                    "guangzhou-s363",
-                    "guangzhou-s364",
-                    "guangzhou-s164",
-                    "guangzhou-s365",
-                    "guangzhou-s337",
-                    "guangzhou-s366",
-                    "guangzhou-s63",
-                    "guangzhou-s62",
-                    "guangzhou-s61"
-                  ],
-                  "sourceStationInstances": {
-                    "guangzhou-s164": "guangzhou-s164__line12-12",
-                    "guangzhou-s337": "guangzhou-s337__line12-12",
-                    "guangzhou-s63": "guangzhou-s63__line12-12",
-                    "guangzhou-s62": "guangzhou-s62__line12-12",
-                    "guangzhou-s61": "guangzhou-s61__line12-12"
-                  }
+                  "stationNames": {
+                    "guangzhou-s363": "二沙岛",
+                    "guangzhou-s364": "赤岗塔",
+                    "guangzhou-s365": "赤沙北",
+                    "guangzhou-s337": "赤沙",
+                    "guangzhou-s366": "北山",
+                    "guangzhou-s63": "官洲",
+                    "guangzhou-s62": "大学城北",
+                    "guangzhou-s61": "大学城南"
+                  },
+                  "coverageGroupId": "route:guangzhou-r12-east-open",
+                  "replaceExistingService": true,
+                  "servicePathRevision": 38,
+                  "constructionScope": "dated_service_patterns",
+                  "reconfirmLaterServices": true
                 },
                 {
                   "mapRouteId": "guangzhou-r12",
@@ -67928,7 +67977,7 @@
                     "guangzhou-s150": "guangzhou-s150__line12-12",
                     "guangzhou-s371": "guangzhou-s371__line12-12"
                   },
-                  "constructionScope": "new_contiguous_range",
+                  "constructionScope": "dated_service_patterns",
                   "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
                   "sourceStationIds": [
                     "guangzhou-s373",
@@ -67945,7 +67994,8 @@
                     "guangzhou-s233": "guangzhou-s233__line12-12",
                     "guangzhou-s150": "guangzhou-s150__line12-12",
                     "guangzhou-s371": "guangzhou-s371__line12-12"
-                  }
+                  },
+                  "coverageGroupId": "route:guangzhou-r12-west-open"
                 }
               ],
               "targetTransfers": [
@@ -68261,12 +68311,11 @@
             },
             {
               "taskId": "route:guangzhou-r12-east-open",
-              "historicalLineId": "guangzhou-line12-12",
-              "name": "12号线东段（大学城南—二沙岛）",
+              "mapRouteId": "guangzhou-r12",
+              "name": "十二号线东段首开（赤岗暂缓）",
               "stationIds": [
                 "guangzhou-s363",
                 "guangzhou-s364",
-                "guangzhou-s164",
                 "guangzhou-s365",
                 "guangzhou-s337",
                 "guangzhou-s366",
@@ -68274,34 +68323,37 @@
                 "guangzhou-s62",
                 "guangzhou-s61"
               ],
+              "toleranceM": 220,
+              "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+              "historicalLineId": "guangzhou-line12-12",
+              "color": "#435428",
+              "stationOrderSource": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
-                "guangzhou-s164": "guangzhou-s164__line12-12",
+                "guangzhou-s363": "guangzhou-s363",
+                "guangzhou-s364": "guangzhou-s364",
+                "guangzhou-s365": "guangzhou-s365",
                 "guangzhou-s337": "guangzhou-s337__line12-12",
+                "guangzhou-s366": "guangzhou-s366",
                 "guangzhou-s63": "guangzhou-s63__line12-12",
                 "guangzhou-s62": "guangzhou-s62__line12-12",
                 "guangzhou-s61": "guangzhou-s61__line12-12"
               },
-              "toleranceM": 180.0,
-              "constructionScope": "new_contiguous_range",
-              "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
-              "sourceStationIds": [
-                "guangzhou-s363",
-                "guangzhou-s364",
-                "guangzhou-s164",
-                "guangzhou-s365",
-                "guangzhou-s337",
-                "guangzhou-s366",
-                "guangzhou-s63",
-                "guangzhou-s62",
-                "guangzhou-s61"
-              ],
-              "sourceStationInstances": {
-                "guangzhou-s164": "guangzhou-s164__line12-12",
-                "guangzhou-s337": "guangzhou-s337__line12-12",
-                "guangzhou-s63": "guangzhou-s63__line12-12",
-                "guangzhou-s62": "guangzhou-s62__line12-12",
-                "guangzhou-s61": "guangzhou-s61__line12-12"
-              }
+              "stationNames": {
+                "guangzhou-s363": "二沙岛",
+                "guangzhou-s364": "赤岗塔",
+                "guangzhou-s365": "赤沙北",
+                "guangzhou-s337": "赤沙",
+                "guangzhou-s366": "北山",
+                "guangzhou-s63": "官洲",
+                "guangzhou-s62": "大学城北",
+                "guangzhou-s61": "大学城南"
+              },
+              "coverageGroupId": "route:guangzhou-r12-east-open",
+              "replaceExistingService": true,
+              "servicePathRevision": 38,
+              "constructionScope": "dated_service_patterns",
+              "reconfirmLaterServices": true
             },
             {
               "mapRouteId": "guangzhou-r12",
@@ -68329,7 +68381,7 @@
                 "guangzhou-s150": "guangzhou-s150__line12-12",
                 "guangzhou-s371": "guangzhou-s371__line12-12"
               },
-              "constructionScope": "new_contiguous_range",
+              "constructionScope": "dated_service_patterns",
               "constructionScopeNote": "2025年分别开放的独立区段；两段之间的中段仍在建设，不把两端合并为已开通线路。",
               "sourceStationIds": [
                 "guangzhou-s373",
@@ -68346,14 +68398,14 @@
                 "guangzhou-s233": "guangzhou-s233__line12-12",
                 "guangzhou-s150": "guangzhou-s150__line12-12",
                 "guangzhou-s371": "guangzhou-s371__line12-12"
-              }
+              },
+              "coverageGroupId": "route:guangzhou-r12-west-open"
             }
           ],
           "chapterTargetStationIds": [
             "guangzhou-s110",
             "guangzhou-s128",
             "guangzhou-s150",
-            "guangzhou-s164",
             "guangzhou-s233",
             "guangzhou-s27",
             "guangzhou-s337",
@@ -68997,8 +69049,109 @@
           ]
         },
         {
-          "id": "guangzhou-milestone-2026-10-01",
+          "id": "guangzhou-milestone-2026-02-13",
           "periodStartExclusive": "2025-12-29",
+          "periodEndInclusive": "2026-02-13",
+          "title": "赤岗开放：十二号线东段接入八号线",
+          "eventIds": [
+            "guangzhou-line12-chigang-2026:opening"
+          ],
+          "events": [
+            {
+              "id": "guangzhou-line12-chigang-2026:opening",
+              "date": "2026-02-13",
+              "title": "赤岗开放：十二号线东段接入八号线",
+              "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "sourcePublicationDate": "2026-02-13",
+              "status": "opened_or_completed",
+              "routeIds": [
+                "guangzhou-r12"
+              ],
+              "targetLineGroups": [
+                {
+                  "taskId": "opening:guangzhou-line12-chigang-2026",
+                  "mapRouteId": "guangzhou-r12",
+                  "name": "十二号线赤岗补站",
+                  "stationIds": [
+                    "guangzhou-s364",
+                    "guangzhou-s164",
+                    "guangzhou-s365"
+                  ],
+                  "toleranceM": 220,
+                  "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+                  "historicalLineId": "guangzhou-line12-12",
+                  "color": "#435428",
+                  "stationOrderSource": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+                  "alignmentPrecision": "station_areas_and_approximate_corridor",
+                  "stationInstances": {
+                    "guangzhou-s364": "guangzhou-s364",
+                    "guangzhou-s164": "guangzhou-s164__line12-12",
+                    "guangzhou-s365": "guangzhou-s365"
+                  },
+                  "stationNames": {
+                    "guangzhou-s364": "赤岗塔",
+                    "guangzhou-s164": "赤岗",
+                    "guangzhou-s365": "赤沙北"
+                  },
+                  "coverageGroupId": "opening:guangzhou-line12-chigang-2026",
+                  "replaceExistingService": false,
+                  "servicePathRevision": 38
+                }
+              ],
+              "chapterId": "guangzhou-line12-chigang-2026",
+              "scope": "补入赤岗十二号线独立站体，复用赤岗塔、赤沙北，并明确建立8／12号线换乘。"
+            }
+          ],
+          "chapterIds": [
+            "guangzhou-line12-chigang-2026"
+          ],
+          "playableChapterId": "guangzhou-line12-chigang-2026",
+          "contentStatus": "playable_milestone",
+          "eventOnly": false,
+          "routeIds": [
+            "guangzhou-r12"
+          ],
+          "targetMapRouteIds": [],
+          "chapterTargetGroups": [
+            {
+              "taskId": "opening:guangzhou-line12-chigang-2026",
+              "mapRouteId": "guangzhou-r12",
+              "name": "十二号线赤岗补站",
+              "stationIds": [
+                "guangzhou-s364",
+                "guangzhou-s164",
+                "guangzhou-s365"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "赤岗12号线站体于2026年2月13日才开放；2025东段通过不停车，不提前形成8／12号线换乘。",
+              "historicalLineId": "guangzhou-line12-12",
+              "color": "#435428",
+              "stationOrderSource": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "guangzhou-s364": "guangzhou-s364",
+                "guangzhou-s164": "guangzhou-s164__line12-12",
+                "guangzhou-s365": "guangzhou-s365"
+              },
+              "stationNames": {
+                "guangzhou-s364": "赤岗塔",
+                "guangzhou-s164": "赤岗",
+                "guangzhou-s365": "赤沙北"
+              },
+              "coverageGroupId": "opening:guangzhou-line12-chigang-2026",
+              "replaceExistingService": false,
+              "servicePathRevision": 38
+            }
+          ],
+          "chapterTargetStationIds": [
+            "guangzhou-s164",
+            "guangzhou-s364",
+            "guangzhou-s365"
+          ]
+        },
+        {
+          "id": "guangzhou-milestone-2026-10-01",
+          "periodStartExclusive": "2026-02-13",
           "periodEndInclusive": "2026-10-01",
           "title": "截至2026年10月1日 · 全网核对",
           "eventIds": [
@@ -70882,7 +71035,7 @@
               },
               "coverageGroupId": "guangzhou-line12-12:service-1",
               "replaceExistingService": true,
-              "servicePathRevision": 3,
+              "servicePathRevision": 38,
               "retainDocumentedFutureService": false
             },
             {
@@ -70930,7 +71083,7 @@
               },
               "coverageGroupId": "guangzhou-line12-12:service-2",
               "replaceExistingService": false,
-              "servicePathRevision": 3
+              "servicePathRevision": 38
             },
             {
               "taskId": "route:guangzhou-r14:service-1",
@@ -71553,11 +71706,11 @@
         }
       ],
       "documentedMilestonesWithoutPlayableChapter": [],
-      "playableChapterCount": 34,
-      "buildChapterCount": 29,
+      "playableChapterCount": 35,
+      "buildChapterCount": 30,
       "eventOnlyChapterCount": 4,
       "routeSnapshotChapterCount": 14,
-      "playableChapterLineGroupCount": 72,
+      "playableChapterLineGroupCount": 73,
       "uniqueChapterTargetCount": 374,
       "chapterTargetsPresentInMapPackage": 374,
       "currentMapStationsNeverTargetedByAnyPlayableChapter": [],
@@ -73213,12 +73366,11 @@
           "chapterTitle": "10号线、12号线建设阶段",
           "chapterDate": "2025-06-29",
           "lineId": "guangzhou-line12-12",
-          "lineName": "12号线东段（大学城南—二沙岛）",
-          "targetStationCount": 9,
+          "lineName": "十二号线东段首开（赤岗暂缓）",
+          "targetStationCount": 8,
           "targetStationIds": [
             "guangzhou-s363",
             "guangzhou-s364",
-            "guangzhou-s164",
             "guangzhou-s365",
             "guangzhou-s337",
             "guangzhou-s366",
@@ -73229,7 +73381,6 @@
           "targetIdsInMapPackage": [
             "guangzhou-s363",
             "guangzhou-s364",
-            "guangzhou-s164",
             "guangzhou-s365",
             "guangzhou-s337",
             "guangzhou-s366",
@@ -73238,7 +73389,7 @@
             "guangzhou-s61"
           ],
           "missingTargetIds": [],
-          "alignmentPrecision": "station_area_approximation",
+          "alignmentPrecision": "station_areas_and_approximate_corridor",
           "hasSource": true
         },
         {
@@ -73431,6 +73582,27 @@
             "guangzhou-s302",
             "guangzhou-s303",
             "guangzhou-s276"
+          ],
+          "missingTargetIds": [],
+          "alignmentPrecision": "station_areas_and_approximate_corridor",
+          "hasSource": true
+        },
+        {
+          "chapterId": "guangzhou-line12-chigang-2026",
+          "chapterTitle": "赤岗开放：十二号线东段接入八号线",
+          "chapterDate": "2026-02-13",
+          "lineId": "guangzhou-line12-12",
+          "lineName": "十二号线赤岗补站",
+          "targetStationCount": 3,
+          "targetStationIds": [
+            "guangzhou-s364",
+            "guangzhou-s164",
+            "guangzhou-s365"
+          ],
+          "targetIdsInMapPackage": [
+            "guangzhou-s364",
+            "guangzhou-s164",
+            "guangzhou-s365"
           ],
           "missingTargetIds": [],
           "alignmentPrecision": "station_areas_and_approximate_corridor",
@@ -75546,7 +75718,7 @@
             {
               "chapterId": "guangzhou-network-milestone-2025-06-29",
               "historicalLineId": "guangzhou-line12-12",
-              "targetLineName": "12号线东段（大学城南—二沙岛）",
+              "targetLineName": "十二号线东段首开（赤岗暂缓）",
               "overlapStationCount": 3
             },
             {
@@ -76252,7 +76424,7 @@
             {
               "chapterId": "guangzhou-network-milestone-2025-06-29",
               "historicalLineId": "guangzhou-line12-12",
-              "targetLineName": "12号线东段（大学城南—二沙岛）",
+              "targetLineName": "十二号线东段首开（赤岗暂缓）",
               "overlapStationCount": 1
             },
             {
@@ -76398,6 +76570,12 @@
               "overlapStationCount": 1
             },
             {
+              "chapterId": "guangzhou-line12-chigang-2026",
+              "historicalLineId": "guangzhou-line12-12",
+              "targetLineName": "十二号线赤岗补站",
+              "overlapStationCount": 1
+            },
+            {
               "chapterId": "guangzhou-line6-first-2013",
               "historicalLineId": "guangzhou-line6-6",
               "targetLineName": "六号线本期开放范围",
@@ -76461,12 +76639,6 @@
               "chapterId": "guangzhou-network-milestone-2023-12-28",
               "historicalLineId": "guangzhou-line5-5",
               "targetLineName": "5号线",
-              "overlapStationCount": 1
-            },
-            {
-              "chapterId": "guangzhou-network-milestone-2025-06-29",
-              "historicalLineId": "guangzhou-line12-12",
-              "targetLineName": "12号线东段（大学城南—二沙岛）",
               "overlapStationCount": 1
             },
             {
@@ -76932,7 +77104,7 @@
             {
               "chapterId": "guangzhou-network-milestone-2025-06-29",
               "historicalLineId": "guangzhou-line12-12",
-              "targetLineName": "12号线东段（大学城南—二沙岛）",
+              "targetLineName": "十二号线东段首开（赤岗暂缓）",
               "overlapStationCount": 1
             },
             {
@@ -77084,12 +77256,6 @@
             {
               "chapterId": "guangzhou-network-milestone-2025-06-29",
               "historicalLineId": "guangzhou-line12-12",
-              "targetLineName": "12号线东段（大学城南—二沙岛）",
-              "overlapStationCount": 9
-            },
-            {
-              "chapterId": "guangzhou-network-milestone-2025-06-29",
-              "historicalLineId": "guangzhou-line12-12",
               "targetLineName": "12号线西段（浔峰岗—广州体育馆）",
               "overlapStationCount": 9
             },
@@ -77104,6 +77270,18 @@
               "historicalLineId": "guangzhou-line12-12",
               "targetLineName": "12号线",
               "overlapStationCount": 9
+            },
+            {
+              "chapterId": "guangzhou-network-milestone-2025-06-29",
+              "historicalLineId": "guangzhou-line12-12",
+              "targetLineName": "十二号线东段首开（赤岗暂缓）",
+              "overlapStationCount": 8
+            },
+            {
+              "chapterId": "guangzhou-line12-chigang-2026",
+              "historicalLineId": "guangzhou-line12-12",
+              "targetLineName": "十二号线赤岗补站",
+              "overlapStationCount": 3
             },
             {
               "chapterId": "guangzhou-network-milestone-2005-12-26",

@@ -140,14 +140,32 @@ func _real_east_project(app:Control,cutoff:Dictionary) -> void:
 		CampaignSystem._catalog.cities.shenzhen.chapters.pop_back();return
 	_check(world.stations.size()==before.stations.size()+1 and world.routes==before.routes and world.transferConnections==before.transferConnections,"real Shenzhen-only extension adds one documented body, without a fictitious through service or active transfer")
 	_check(not app.history.undo().is_empty() and world.stations.size()==before.stations.size(),"the real east-extension new body and both sections undo together")
-	_check(not app.history.redo().is_empty() and bool(Story.evaluate(world).get("complete",false)),"the real east-extension redo restores both independently checked sections")
+	_check(not app.history.redo().is_empty() and int(Story.evaluate(world).get("engineeringComplete",0))==1 and not bool(Story.evaluate(world).get("complete",false)),"redo restores both engineering sections while explicitly waiting for the unopened reservation")
 	var actual_group:Dictionary=Story.groups(world,true)[0]
 	var latitude:=float(WorldData.city("shenzhen").center[0]);var path_index:=TrackNetwork.build_path_index(world,latitude)
 	var west:=Engineering._resolve(world,actual_group.engineeringEndpoints[1],latitude)
 	var east:=Engineering._resolve(world,actual_group.engineeringEndpoints[2],latitude)
 	_check(Engineering.physical_path(world,path_index,str(west.node.id),str(east.node.id)).is_empty(),"the unapproved Dongguan middle is not filled in between the two real Shenzhen fragments")
 	var definition:Dictionary=OfficialNetworkAudit.target_data().cities.shenzhen.projects.filter(func(p:Dictionary):return str(p.id)=="sz-line10-east-shenzhen")[0]
-	_check(OfficialNetworkAudit.project_errors(world,definition).is_empty(),"real east-extension built geometry matches the independently recorded project scope")
+	_check(not OfficialNetworkAudit.project_errors(world,definition).is_empty(),"physical construction alone cannot silently confirm the reserved interchange")
+	var pair:Dictionary=Story.chapter(world).requiredTransfers[0]
+	var reservation:Dictionary=pair.duplicate(true);reservation.effectiveDate="2026-10-01"
+	var forged:=reservation.duplicate(true);forged.status="active"
+	_check(not bool(app._commit_transfer_connection(pair,forged,int(world.revision)).get("ok",false)),"a reserved interface cannot be submitted as an active interchange")
+	var forged_target:=pair.duplicate(true);forged_target.status="active"
+	_check(not bool(app._commit_transfer_connection(forged_target,forged,int(world.revision)).get("ok",false)),"changing the caller's target status cannot bypass the configured reservation")
+	_check(not bool(app._commit_transfer_connection(pair,reservation,int(world.revision)-1).get("ok",false)),"stale reservation preview does not commit")
+	var unchanged:=JSON.stringify([world.routes,world.trackNodes,world.trackEdges])
+	_check(bool(app._commit_transfer_connection(pair,reservation,int(world.revision)).get("ok",false)),"the player explicitly records the two separate terminal bodies as a reserved interface")
+	_check(JSON.stringify([world.routes,world.trackNodes,world.trackEdges])==unchanged,"a reserved interface creates neither a through service nor a train edge")
+	var new_body:=Story.bound_station(world,"shenzhen-s379","shenzhen-s379__line10-11")
+	var old_body:=Story.bound_station(world,"shenzhen-s379","shenzhen-s379__line16-16")
+	_check(Story._minimum_route_transfers(world,str(new_body.id),str(old_body.id),latitude)<0,"network travel cannot use a reserved contact as an open interchange")
+	_check(bool(Story.evaluate(world).get("complete",false)),"both physical sections and the explicit reservation complete this construction project")
+	app.history.undo();_check(not bool(Story.evaluate(world).get("complete",false)),"undo removes the reservation and restores the pending condition")
+	app.history.redo();_check(bool(Story.evaluate(world).get("complete",false)),"redo restores the unopened reservation")
+	var independent_errors:=OfficialNetworkAudit.project_errors(world,definition)
+	_check(independent_errors.is_empty(),"real east-extension built geometry matches the independently recorded project scope: "+JSON.stringify(independent_errors))
 	var broken:=world.duplicate(true);broken.trackEdges.pop_back()
 	_check(not OfficialNetworkAudit.project_errors(broken,definition).is_empty(),"missing either real east-extension section fails independent checking")
 	_check(bool(Story.confirm_task(world,"project:sz-line10-east-build",int(world.revision)).get("ok",false)) and bool(Story.commit_chapter(world,int(world.revision)).get("ok",false)),"real east-extension task and engineering milestone confirm without opening a train service")

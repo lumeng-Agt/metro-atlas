@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.25.25",
+  "contentRevision": "2026.10.26.2",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -8,9 +8,7 @@
       "errors": [
         "inventoryReviewStatus: independent review incomplete",
         "historyReviewStatus: independent review incomplete",
-        "cutoff opening status not independently reviewed",
-        "cutoff interchange inventory not independently reviewed",
-        "sz-line10-east-shenzhen: independent transfer coverage incomplete"
+        "cutoff opening status not independently reviewed"
       ],
       "projects": [
         {
@@ -70,10 +68,8 @@
         },
         {
           "id": "sz-line10-east-shenzhen",
-          "ok": false,
-          "errors": [
-            "independent transfer coverage incomplete"
-          ]
+          "ok": true,
+          "errors": []
         }
       ]
     },

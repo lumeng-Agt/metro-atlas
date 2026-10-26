@@ -1,6 +1,8 @@
 import unittest
 from copy import deepcopy
-from audit_operator_transfers import audit
+from audit_operator_transfers import audit,audit_pairs
+from review_shenzhen_cutoff_interchanges import documented_pairs,evidence_errors,EVIDENCE,ROOT
+import json
 
 
 def evidence():
@@ -47,6 +49,37 @@ class OperatorTransferAudit(unittest.TestCase):
         value=world();source=evidence();before=deepcopy((value,source))
         audit(value,source)
         self.assertEqual((value,source),before)
+
+    def test_reserved_contact_cannot_replace_open_interchange(self):
+        value=world();value['transferConnections'][0]['status']='reserved'
+        self.assertEqual(audit(value,evidence())['matchedPairs'],0)
+
+    def test_alias_only_changes_station_spelling_not_line_identity(self):
+        value=world();value['stations'][0]['name']='旧显示名'
+        report=audit_pairs(value,[('示例站','guangzhou-line1','guangzhou-line2-2')],evidence(),{'旧显示名':'示例站'})
+        self.assertEqual(report['matchedPairs'],1)
+        value['stations'][1]['stationLineId']='wrong-line'
+        self.assertEqual(audit_pairs(value,[('示例站','guangzhou-line1','guangzhou-line2-2')],evidence(),{'旧显示名':'示例站'})['matchedPairs'],0)
+
+    def test_duplicated_external_station_roster_rejected(self):
+        row=dict(stationName='测试',lineNumbers=['1','2'])
+        with self.assertRaises(ValueError):documented_pairs(dict(stations=[row,row],lineIds={'1':'a','2':'b'}))
+
+    def test_repeated_external_line_does_not_create_self_transfer(self):
+        with self.assertRaises(ValueError):documented_pairs(dict(stations=[dict(stationName='测试',lineNumbers=['1','1'])],lineIds={'1':'a'}))
+
+    def test_external_map_omission_is_detected_without_campaign_data(self):
+        source=json.loads(EVIDENCE.read_text(encoding='utf-8'))
+        orders=json.loads((ROOT/'data/official_evidence/shenzhen_2026-06-28_station_orders.json').read_text(encoding='utf-8'))
+        self.assertFalse(evidence_errors(source,orders))
+        source['stations']=[s for s in source['stations'] if s['stationName']!='光明城']
+        self.assertTrue(evidence_errors(source,orders))
+
+    def test_two_of_four_lines_cannot_certify_a_whole_interchange(self):
+        source=json.loads(EVIDENCE.read_text(encoding='utf-8'))
+        orders=json.loads((ROOT/'data/official_evidence/shenzhen_2026-06-28_station_orders.json').read_text(encoding='utf-8'))
+        next(s for s in source['stations'] if s['stationName']=='岗厦北')['lineNumbers']=['2','10']
+        self.assertTrue(evidence_errors(source,orders))
 
 
 if __name__=='__main__':unittest.main()

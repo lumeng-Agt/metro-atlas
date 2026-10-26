@@ -42,7 +42,11 @@ def apply(spec):
         if not service.get('constructionVariant') or len(service.get('stationIds', [])) < 2 or not service.get('source'):
             raise ValueError('Engineering service previews must be sourced, non-operating construction variants')
     plan = copy.deepcopy(spec['chapter'])
-    plan.update(lineGroups=[group] + services, requiredTransfers=[], requireOpen=False,
+    reserved=copy.deepcopy(spec.get('reservedTransfers', []))
+    for pair in reserved:
+        if pair.get('status')!='reserved' or not pair.get('reservationEvidence'):
+            raise ValueError('Engineering interfaces need explicit unopened reservation evidence')
+    plan.update(lineGroups=[group] + services, requiredTransfers=reserved, requireOpen=False,
                 dataStatus='blueprint_ready', requiresScopeRecheck=True,
                 scopeRevision=spec['contentRevision'])
     expected = copy.deepcopy(spec['officialTarget'])

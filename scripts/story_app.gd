@@ -682,10 +682,23 @@ func _left() -> void:
 		elif not bool(chapter.get("eventOnly",false)):left.add_child(label("目标站体已建齐；还需核对连续轨道、本期站序和线路关系。",15))
 		if bool(chapter.get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):left.add_child(label("原有站轨保留：请点击下方「线路整理」，核对分段记录的贯通站序。",18))
 		var transfer_evaluation:Dictionary=Story.evaluate(world) if not chapter.get("requiredTransfers",[]).is_empty() else {}
-		for transfer in chapter.get("requiredTransfers",[]):
+		var pending_transfers:Array=chapter.get("requiredTransfers",[]).filter(func(t:Dictionary):return not _transfer_connected(t))
+		if chapter.get("requiredTransfers",[]).size()>3:
+			left.add_child(label("换乘联系：已确认 %d / %d" % [chapter.get("requiredTransfers",[]).size()-pending_transfers.size(),chapter.get("requiredTransfers",[]).size()],16,true))
+			left.add_child(button("查看全部换乘联系",_transfer_list))
+		for transfer in pending_transfers.slice(0,3):
 			var transfer_line_names:=_transfer_line_names(transfer)
 			var transfer_title:=str(transfer.get("name","换乘站"))
 			var transfer_pair:=" ↔ ".join(transfer_line_names)
+			if str(transfer.get("status",""))=="reserved":
+				left.add_child(label("预留换乘 · "+transfer_title,18,true))
+				left.add_child(label(transfer_pair+"；保留独立站体，界外工程未完成，不计为已开放换乘。",15))
+				if _transfer_connected(transfer):left.add_child(label("已确认预留接口",16,true))
+				else:
+					var reservation_button:=button("预览并确认预留接口",_preview_transfer.bind(transfer));reservation_button.disabled=not _transfer_ready(transfer,transfer_evaluation);left.add_child(reservation_button)
+					if reservation_button.disabled:
+						for reason in TransferReservation.errors(world,transfer,Story.groups(world,true)):left.add_child(label(reason,15))
+				continue
 			left.add_child(label("换乘站 · %s" % transfer_title,18,true))
 			left.add_child(label("%d座独立站体：%s" % [transfer.get("stationInstanceIds",[]).size(),transfer_pair],15))
 			left.add_child(label("建立的是站体之间的换乘联系；不会合并站厅，也不会把两条轨道接在一起。",15))
@@ -695,6 +708,7 @@ func _left() -> void:
 				if transfer_button.disabled:
 					for status_line in _transfer_status_lines(transfer,transfer_evaluation):left.add_child(label(status_line,15))
 					left.add_child(label("两侧都显示“已接入本期线路”后，才能建立换乘关系。",15))
+		if pending_transfers.size()>3:left.add_child(label("另有 %d 组待确认；完成后依次显示，也可从全部列表选择。" % (pending_transfers.size()-3),15))
 		if not bool(chapter.get("eventOnly",false)):check_button=button("检查本章复现",_check);left.add_child(check_button)
 		if not engineering_only and bool(world.storyState.get("learnedTools",false)) and Story.plan_is_final(world):left.add_child(button("连续复现相邻区间",_begin_batch_tracks))
 		if not bool(chapter.get("eventOnly",false)):
@@ -770,11 +784,13 @@ func _service_transition_proposal_for_id(proposal_id:String) -> Dictionary:
 	return {}
 
 func _transfer_connected(transfer: Dictionary) -> bool:
+	if str(transfer.get("status",""))=="reserved":return TransferReservation.saved_matches(world,transfer)
 	for saved in world.get("transferConnections", []):
 		if str(saved.get("id", "")) == str(transfer.get("id", "")) and str(saved.get("status", "active")) == "active" and saved.get("stationInstanceIds", []) == transfer.get("stationInstanceIds", []) and saved.get("lineIds", []) == transfer.get("lineIds", []): return true
 	return false
 
 func _transfer_ready(transfer: Dictionary,checked:Dictionary={}) -> bool:
+	if str(transfer.get("status",""))=="reserved":return str(world.get("storyState",{}).get("phase","history"))=="future" and not bool(Story.chapter(world).get("requireOpen",true)) and TransferReservation.errors(world,transfer,Story.groups(world,true)).is_empty()
 	var instance_ids: Array = transfer.get("stationInstanceIds", [])
 	var line_ids: Array = transfer.get("lineIds", [])
 	if instance_ids.size() < 2 or instance_ids.size() != line_ids.size(): return false
@@ -814,6 +830,37 @@ func _transfer_line_names(transfer:Dictionary) -> Array[String]:
 	for line_id in transfer.get("lineIds",[]):result.append(_historical_line_name(str(line_id)))
 	return result
 
+func _transfer_page(chapter:Dictionary,page_index:int) -> Array:
+	var transfers:Array=chapter.get("requiredTransfers",[])
+	var start:=clampi(page_index,0,maxi(0,ceili(transfers.size()/10.0)-1))*10
+	return transfers.slice(start,start+10)
+
+func _transfer_list(page_index:int=0) -> void:
+	_tool("select");show_right=true
+	if _narrow():show_left=false
+	clear(right);clear(actions)
+	var chapter:=Story.chapter(world);var transfers:Array=chapter.get("requiredTransfers",[])
+	var page_count:=maxi(1,ceili(transfers.size()/10.0));page_index=clampi(page_index,0,page_count-1)
+	right.add_child(label("本期换乘联系",24,true))
+	right.add_child(label("第 %d / %d 页 · 共 %d 组" % [page_index+1,page_count,transfers.size()],16))
+	for transfer in _transfer_page(chapter,page_index):
+		var connected:=_transfer_connected(transfer)
+		var pair_name:=" ↔ ".join(_transfer_line_names(transfer))
+		right.add_child(label(str(transfer.get("name","换乘站"))+" · "+pair_name,18,true))
+		if connected:right.add_child(label("已确认预留" if str(transfer.get("status",""))=="reserved" else "已建立换乘",15))
+		else:right.add_child(button("查看并预览",_inspect_transfer.bind(transfer)))
+	if page_index>0:actions.add_child(button("上一页",_transfer_list.bind(page_index-1)))
+	if page_index+1<page_count:actions.add_child(button("下一页",_transfer_list.bind(page_index+1)))
+	actions.add_child(button("返回本章",func():show_left=true;show_right=false;_refresh()))
+	_layout()
+
+func _inspect_transfer(transfer:Dictionary) -> void:
+	var instances:Array=transfer.get("stationInstanceIds",[])
+	if not instances.is_empty():
+		var station:=Story.bound_station(world,str(transfer.get("complexId","")),str(instances[0]))
+		if not station.is_empty():map_view.center_on(station.latlng,16)
+	_preview_transfer(transfer)
+
 func _transfer_station_status(transfer:Dictionary,index:int,checked:Dictionary={}) -> String:
 	var instance_ids:Array=transfer.get("stationInstanceIds",[]);var line_ids:Array=transfer.get("lineIds",[])
 	if index<0 or index>=instance_ids.size() or index>=line_ids.size():return "配置不完整"
@@ -836,6 +883,8 @@ func _transfer_status_lines(transfer:Dictionary,checked:Dictionary={}) -> Array[
 	return result
 
 func _preview_transfer(transfer: Dictionary) -> void:
+	if str(transfer.get("status",""))=="reserved":
+		_preview_transfer_reservation(transfer);return
 	var checked:=Story.evaluate(world)
 	if not _transfer_ready(transfer,checked):_message("换乘联系尚不能建立", "请先分别建设两侧线路的目标站体，并完成各自轨道与站序。相邻或几何交叉不自动形成换乘。");return
 	if _transfer_connected(transfer):_message("换乘关系已存在", str(transfer.get("name", "换乘站")) + "已在本期明确建立。");return
@@ -862,12 +911,14 @@ func _preview_transfer(transfer: Dictionary) -> void:
 		_refresh())
 
 func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expected_revision:int,checked:Dictionary={}) -> Dictionary:
+	if str(transfer.get("status",""))=="reserved":return _commit_transfer_reservation(transfer,connection,expected_revision)
 	if expected_revision!=int(world.get("revision",0)):return {"ok":false,"error":"规划已变化，请重新检查两侧线路。"}
 	if bool(Story.chapter(world).get("requiresLineReorganization",false)) and not bool(world.get("storyPlan",{}).get("reorganizationAccepted",false)):return {"ok":false,"error":"请使用下方「线路整理」核对并确认本期贯通站序。"}
 	# Recheck formal planning, not a caller's previously computed readiness.
 	checked=Story.evaluate(world)
 	var current_transfers:Array=Story.chapter(world).get("requiredTransfers",[])
-	if not current_transfers.any(func(t:Dictionary):return str(t.get("id",""))==str(transfer.get("id","")) and t.get("stationInstanceIds",[])==transfer.get("stationInstanceIds",[]) and t.get("lineIds",[])==transfer.get("lineIds",[])):return {"ok":false,"error":"换乘目标已变化，请重新预览。"}
+	if not current_transfers.any(func(t:Dictionary):return str(t.get("id",""))==str(transfer.get("id","")) and t.get("stationInstanceIds",[])==transfer.get("stationInstanceIds",[]) and t.get("lineIds",[])==transfer.get("lineIds",[]) and str(t.get("status","active"))==str(transfer.get("status","active"))):return {"ok":false,"error":"换乘目标已变化，请重新预览。"}
+	if str(connection.get("status","active"))!="active":return {"ok":false,"error":"普通换乘与预留接口不能互相替代，请重新预览。"}
 	for key in ["id","complexId","stationInstanceIds","lineIds"]:
 		if connection.get(key)!=transfer.get(key):return {"ok":false,"error":"换乘预览与当前目标不一致。"}
 	if not _transfer_ready(transfer,checked):return {"ok":false,"error":"两侧独立站体、连续轨道和线路站序尚未全部就绪。"}
@@ -900,6 +951,32 @@ func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expec
 	if not validation.is_empty():return {"ok":false,"error":validation}
 	_execute("建立换乘联系",func(state:Dictionary):
 		for key in ["routes","stations","trackEdges","trackLinks","transferConnections"]:state[key]=candidate[key].duplicate(true))
+	return {"ok":true}
+
+func _preview_transfer_reservation(transfer:Dictionary) -> void:
+	if not _transfer_ready(transfer):_message("预留接口尚未就绪","请先完成两侧独立站体及本期实际工程轨道。");return
+	var revision:=int(world.revision)
+	var connection:Dictionary=transfer.duplicate(true)
+	connection["effectiveDate"]=str(Story.chapter(world).get("date",""))
+	_confirm("确认预留换乘 · "+str(transfer.get("name","站区")),"记录两侧独立站体的规划换乘接口。界外线路尚未完成，这不会建立已开放换乘、合并站厅或接通列车轨道。确认后可撤销。",func():
+		var result:=_commit_transfer_reservation(transfer,connection,revision)
+		if not bool(result.get("ok",false)):_message("预留接口未确认",str(result.get("error","请重新预览。")))
+		_refresh())
+
+func _commit_transfer_reservation(transfer:Dictionary,connection:Dictionary,expected_revision:int) -> Dictionary:
+	if expected_revision!=int(world.revision):return {"ok":false,"error":"规划已变化，请重新预览预留接口。"}
+	var configured:Array=Story.chapter(world).get("requiredTransfers",[])
+	if not configured.any(func(pair:Dictionary):return pair==transfer):return {"ok":false,"error":"预留接口目标已经变化。"}
+	if not _transfer_ready(transfer):return {"ok":false,"error":"预留接口的独立站体及实际工程轨道尚未就绪。"}
+	for key in ["id","complexId","lineIds","stationInstanceIds","status","reservationEvidence","source"]:
+		if connection.get(key)!=transfer.get(key):return {"ok":false,"error":"预留接口草稿与当前来源或配对不一致。"}
+	if _transfer_connected(transfer):return {"ok":false,"error":"这处预留换乘已确认。"}
+	for saved in world.get("transferConnections",[]):
+		if str(saved.get("id",""))==str(transfer.get("id","")):return {"ok":false,"error":"同一编号已经存在联系记录，不能覆盖。"}
+	var candidate:=world.duplicate(true);candidate.transferConnections.append(connection.duplicate(true))
+	var invalid:=SaveManager.validate(candidate)
+	if not invalid.is_empty():return {"ok":false,"error":invalid}
+	_execute("确认预留换乘",func(state:Dictionary):state.transferConnections=candidate.transferConnections.duplicate(true))
 	return {"ok":true}
 
 func _unlock_free() -> void:
@@ -1379,6 +1456,7 @@ func _execute(title:String,mutation:Callable) -> void:
 	if title in ["采用历史修订方案","确认区间走向"]:fields=["storyPlan"]
 	elif title=="确认线路重组":fields=["storyPlan","storyState","routes","stations","trackEdges","trackLinks","transferConnections"]
 	elif title=="修改站名":fields=["stations"]
+	elif title=="确认预留换乘":fields=["transferConnections"]
 	elif title=="添加建设阶段":fields=["planningPhases","currentPlanningPhaseId"]
 	elif title=="辅助完成重复建设":fields=["stations","stationComplexes","transferConnections","trackNodes","trackEdges","storyPlan"]
 	if not history.execute(title,mutation,fields):return

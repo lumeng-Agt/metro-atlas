@@ -33,7 +33,8 @@ def main():
     # The final full pattern replaces obsolete non-stop directions left by
     # compatibility backfills; it is not another parallel operating branch.
     template.update(replaceExistingService=True,servicePathRevision=37)
-    cutoff.update(scopeRevision=REVISION,requiresScopeRecheck=True)
+    if tuple(map(int,REVISION.split('.')))>=tuple(map(int,cutoff.get('scopeRevision','0').split('.'))):cutoff['scopeRevision']=REVISION
+    cutoff['requiresScopeRecheck']=True
     by_name={refs[s]['name']:s for s in template['stationIds']}
     def group(order,key,title,source):
         ids=[by_name[n] for n in order];result=deepcopy(template)
@@ -116,8 +117,9 @@ def main():
     city['chapters'].sort(key=lambda c:c['date'])
     row['documentedMilestoneCount']=len(row['documentedMilestones'])
     refresh_schedule('guangzhou',row,city,'2026-10-01')
-    for document in (data,baseline):document['contentRevision']=REVISION
-    data['contentRevisionNote']='广州六号线恢复2013首开、2015一德路、2016东延、2017补站和2024沙河开放；独立目标按各期完整停站核对。'
+    for document in (data,baseline):
+        if tuple(map(int,REVISION.split('.')))>=tuple(map(int,document.get('contentRevision','0').split('.'))):document['contentRevision']=REVISION
+    if data['contentRevision']==REVISION:data['contentRevisionNote']='广州六号线恢复2013首开、2015一德路、2016东延、2017补站和2024沙河开放；独立目标按各期完整停站核对。'
     write('data/campaigns.json',data);write('data/network_baselines_2026-10-01.json',baseline);write('data/official_targets_2026-10-01.json',official)
     print('GZ6 five dated scopes authored; first phase',len(FIRST),'second',len(SECOND),'2017',len(GARDENS),'final',len(FINAL),'transfer pairs',len(early))
 

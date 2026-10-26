@@ -1,6 +1,6 @@
 {
   "cityId": "shenzhen",
-  "contentRevision": "2026.10.25.8",
+  "contentRevision": "2026.10.26.1",
   "chapter": {
     "id": "sz-line10-east-build",
     "projectIds": [
@@ -132,7 +132,7 @@
   "officialTarget": {
     "id": "sz-line10-east-shenzhen",
     "reviewStatus": "verified",
-    "transferReviewStatus": "pending",
+    "transferReviewStatus": "verified",
     "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
     "sourcePublicationDate": "2026-04",
     "sourceCheckedAt": "2026-10-25",
@@ -141,7 +141,7 @@
       "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html"
     ],
     "constructionOnly": true,
-    "evidenceNote": "五期规划图项目表第1行2.9公里深圳段；图中两端分离，中间东莞段未作为本期建设。2019政府说明仅佐证终点对接16号线，不以其9.8公里旧全线方案替代2026深圳段。黄阁坑独立站体1座，界外无新增乘客站。预留16号线关系尚待专门规划联系状态，不能计为有效运营换乘。",
+    "evidenceNote": "官方五期图为深圳段2.9公里、黄阁坑单一新站及终点规划换乘；2019政府说明佐证接入16号线的关系，不沿用其9.8公里旧全线范围。两个深圳工程区段与预留站体分别检查，不虚构贯通、换乘开放或未来日期。",
     "groups": [
       {
         "id": "sz10-east-engineering",
@@ -233,8 +233,51 @@
             ],
             "corridorToleranceM": 180
           }
-        ]
+        ],
+        "historicalLineId": "shenzhen-line10-11"
+      }
+    ],
+    "reservedTransfers": [
+      {
+        "id": "sz10-huanggekeng-reserved-16",
+        "name": "黄阁坑",
+        "complexId": "shenzhen-s379",
+        "lineIds": [
+          "shenzhen-line10-11",
+          "shenzhen-line16-16"
+        ],
+        "stationInstanceIds": [
+          "shenzhen-s379__line10-11",
+          "shenzhen-s379__line16-16"
+        ],
+        "status": "reserved",
+        "precision": "schematic",
+        "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+        "reservationEvidence": "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html",
+        "sourceNote": "2026五期图核对深圳段及黄阁坑终点；2019政府说明只佐证与16号线衔接，不沿用旧全线范围。",
+        "note": "五期仅建设深莞边界两侧深圳段；黄阁坑预留10／16号线接口，不计入已开放换乘，不补造中间东莞段。"
       }
     ]
-  }
+  },
+  "reservedTransfers": [
+    {
+      "id": "sz10-huanggekeng-reserved-16",
+      "name": "黄阁坑",
+      "complexId": "shenzhen-s379",
+      "lineIds": [
+        "shenzhen-line10-11",
+        "shenzhen-line16-16"
+      ],
+      "stationInstanceIds": [
+        "shenzhen-s379__line10-11",
+        "shenzhen-s379__line16-16"
+      ],
+      "status": "reserved",
+      "precision": "schematic",
+      "source": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+      "reservationEvidence": "https://www.lg.gov.cn/bmzz/phjdb/csjs/dljs/content/post_1609620.html",
+      "sourceNote": "2026五期图核对深圳段及黄阁坑终点；2019政府说明只佐证与16号线衔接，不沿用旧全线范围。",
+      "note": "五期仅建设深莞边界两侧深圳段；黄阁坑预留10／16号线接口，不计入已开放换乘，不补造中间东莞段。"
+    }
+  ]
 }
