@@ -1,0 +1,467 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "shanghai",
+  "operatorRetrievedAt": "2026-10-23",
+  "source": "https://service.shmetro.com/czxx/index.htm",
+  "expectedPairs": 131,
+  "matchedPairs": 88,
+  "missingPairs": [
+    {
+      "station": "上海南站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line15-15"
+      ]
+    },
+    {
+      "station": "上海南站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "station": "上海南站",
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "station": "上海火车站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "station": "上海火车站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "station": "人民广场",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "station": "人民广场",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "station": "华夏中路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line16-16"
+      ]
+    },
+    {
+      "station": "南京西路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line13-13"
+      ]
+    },
+    {
+      "station": "南京西路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "station": "南京西路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "station": "呼兰路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "station": "国权路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "station": "娄山关路",
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "station": "宜山路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "station": "宜山路",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "station": "徐家汇",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line11-11"
+      ]
+    },
+    {
+      "station": "徐家汇",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "station": "御桥",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "station": "昌邑路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "station": "曹杨路",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line14-14"
+      ]
+    },
+    {
+      "station": "曹杨路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "station": "曹杨路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "station": "杨高中路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "station": "桂林路",
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "station": "民生路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "station": "江浦公园",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "station": "江浦路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "station": "莘庄",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line5-5"
+      ]
+    },
+    {
+      "station": "莲溪路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "station": "豫园",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line14-14"
+      ]
+    },
+    {
+      "station": "镇坪路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "station": "镇坪路",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "station": "长江南路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "station": "陆家嘴",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "station": "陕西南路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line10-10"
+      ]
+    },
+    {
+      "station": "陕西南路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "station": "静安寺",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "station": "静安寺",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "station": "龙华",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "station": "龙阳路",
+      "lineIds": [
+        "shanghai-line16-16",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "station": "龙阳路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "station": "龙阳路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line7-7"
+      ]
+    }
+  ],
+  "invalidConnections": [
+    {
+      "id": "historic-transfer-shanghai-s128-line1-line5-5",
+      "reason": "body belongs to another physical line"
+    }
+  ],
+  "nonOpenConnections": [
+    {
+      "id": "sh-future-transfer-line23-dongchuan",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "sh-future-transfer-line23-zizhu",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "sh-future-transfer-line23-longcao",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "sh-future-transfer-line23-stadium",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-disney-11",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-xuelin-13",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-guanglan-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-football-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-yanggao-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-dongjing-6",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-huajingxi-15",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-lingzhao-8",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-sportcenter",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-sportcenter",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-sportcenter",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-houtan-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-shibodadao-13",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-tangqiao-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-shangcheng-9",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-pudongnan-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-tilanqiao-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-hailun",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-hailun",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-huajing-23",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-pudongnan-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-jiangyang-18",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh22-shenjiang-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh22-jinji-9",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-liangcheng-19",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-circus-1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-jiangwanzhen-3",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-sufe-18",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-sanmenlu-10",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-nenjianglu-8",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-west-11",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-west-15",
+      "reason": "construction relationship has no current open service"
+    }
+  ],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "b6544817b68ee6c9974c0710c472dcf5fb54a7161b1e9b3bb684bc3a772ea3d4",
+  "evidenceSha256": "5bb8df49301c8631b54105f166f0d393c2dc66a221c75c2c753579415b7dc1de"
+}

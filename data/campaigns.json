@@ -754,7 +754,42 @@
             "sh-through-1997"
           ],
           "requiredTransfers": [],
-          "eventOnly": false
+          "eventOnly": false,
+          "scopeCorrections": [
+            {
+              "taskId": "line:sh-line1-1997:0",
+              "bodyLineReclassification": {
+                "stationInstanceId": "shanghai-s126",
+                "oldLineId": "shanghai-line1-south-extension",
+                "newLineId": "shanghai-line1",
+                "newLineName": "1号线"
+              },
+              "description": "莲花路：贯通后保留站体、朝向和轨道，将临时南延段归属更新为1号线。",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            {
+              "taskId": "line:sh-line1-1997:0",
+              "bodyLineReclassification": {
+                "stationInstanceId": "shanghai-s127",
+                "oldLineId": "shanghai-line1-south-extension",
+                "newLineId": "shanghai-line1",
+                "newLineName": "1号线"
+              },
+              "description": "外环路：贯通后保留站体、朝向和轨道，将临时南延段归属更新为1号线。",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            {
+              "taskId": "line:sh-line1-1997:0",
+              "bodyLineReclassification": {
+                "stationInstanceId": "shanghai-s128",
+                "oldLineId": "shanghai-line1-south-extension",
+                "newLineId": "shanghai-line1",
+                "newLineName": "1号线"
+              },
+              "description": "莘庄：贯通后保留站体、朝向和轨道，将临时南延段归属更新为1号线。",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            }
+          ]
         },
         {
           "id": "shanghai-network-milestone-2000-12-26",
@@ -11076,7 +11111,7 @@
           "publicationDateNote": "页面发布日期与资料截止日期分开记录。",
           "story": {
             "opening": "历史建设推进到统一核对节点。",
-            "purpose": "检查从早期章节累计建设的各条线路是否覆盖截止日站序与实际轨道连接。",
+            "purpose": "核对截至日各线连续站序及运营方列出的131组线路换乘配对；缺少的联系需明确预览确认。",
             "outcome": "只有逐线评估通过，才记录城市截止日历史节点。未进入已开通范围的在建线路仍单列为建设项目。",
             "eventKind": "network_reconciliation",
             "planVersions": [],
@@ -11126,9 +11161,2237 @@
             "shanghai-r17",
             "shanghai-r18"
           ],
-          "requiredTransfers": [],
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-shanghai-s84-line10-10-line13-13",
+              "name": "一大会址·新天地",
+              "complexId": "shanghai-s84",
+              "stationInstanceIds": [
+                "shanghai-s84__line10-10",
+                "shanghai-s84__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s118-line1-line14-14",
+              "name": "一大会址·黄陂南路",
+              "complexId": "shanghai-s118",
+              "stationInstanceIds": [
+                "shanghai-s118",
+                "shanghai-s118__line14-14"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s73-line1-line4-4",
+              "name": "上海体育馆",
+              "complexId": "shanghai-s73",
+              "stationInstanceIds": [
+                "shanghai-s73",
+                "shanghai-s73__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s124-shanghai-line1-shanghai-line15-15",
+              "name": "上海南站",
+              "complexId": "shanghai-s124",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line15-15"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s124",
+                "shanghai-s422__line15-15"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s124-shanghai-line1-shanghai-line3-3",
+              "name": "上海南站",
+              "complexId": "shanghai-s124",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s124",
+                "shanghai-s58"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s422-shanghai-line15-15-shanghai-line3-3",
+              "name": "上海南站",
+              "complexId": "shanghai-s124",
+              "lineIds": [
+                "shanghai-line15-15",
+                "shanghai-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s422__line15-15",
+                "shanghai-s58"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s115-shanghai-line1-shanghai-line3-3",
+              "name": "上海火车站",
+              "complexId": "shanghai-s115",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s115",
+                "shanghai-s46__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s115-shanghai-line1-shanghai-line4-4",
+              "name": "上海火车站",
+              "complexId": "shanghai-s115",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line4-4"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s115",
+                "shanghai-s46__line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s46-line3-3-line4-4",
+              "name": "上海火车站",
+              "complexId": "shanghai-s46",
+              "stationInstanceIds": [
+                "shanghai-s46__line3-3",
+                "shanghai-s46__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s269-line15-15-line11-11",
+              "name": "上海西站",
+              "complexId": "shanghai-s269",
+              "stationInstanceIds": [
+                "shanghai-s269__line15-15",
+                "shanghai-s269__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line15-15",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s64-line4-4-line2-2",
+              "name": "世纪大道",
+              "complexId": "shanghai-s64",
+              "stationInstanceIds": [
+                "shanghai-s64__line4-4",
+                "shanghai-s64__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s64-line6-6-line2-2",
+              "name": "世纪大道",
+              "complexId": "shanghai-s64",
+              "stationInstanceIds": [
+                "shanghai-s64__line6-6",
+                "shanghai-s64__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s64-line9-9-line2-2",
+              "name": "世纪大道",
+              "complexId": "shanghai-s64",
+              "stationInstanceIds": [
+                "shanghai-s64__line9-9",
+                "shanghai-s64__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line9-9",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s64-line4-4-line6-6",
+              "name": "世纪大道",
+              "complexId": "shanghai-s64",
+              "stationInstanceIds": [
+                "shanghai-s64__line4-4",
+                "shanghai-s64__line6-6"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s64-line4-4-line9-9",
+              "name": "世纪大道",
+              "complexId": "shanghai-s64",
+              "stationInstanceIds": [
+                "shanghai-s64__line4-4",
+                "shanghai-s64__line9-9"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s64-line6-6-line9-9",
+              "name": "世纪大道",
+              "complexId": "shanghai-s64",
+              "stationInstanceIds": [
+                "shanghai-s64__line6-6",
+                "shanghai-s64__line9-9"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s71-line4-4-line7-7",
+              "name": "东安路",
+              "complexId": "shanghai-s71",
+              "stationInstanceIds": [
+                "shanghai-s71__line4-4",
+                "shanghai-s71__line7-7"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s7-line6-6-line11-11",
+              "name": "东方体育中心",
+              "complexId": "shanghai-s7",
+              "stationInstanceIds": [
+                "shanghai-s7__line6-6",
+                "shanghai-s7__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s7-line8-8-line11-11",
+              "name": "东方体育中心",
+              "complexId": "shanghai-s7",
+              "stationInstanceIds": [
+                "shanghai-s7__line8-8",
+                "shanghai-s7__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s7-line6-6-line8-8",
+              "name": "东方体育中心",
+              "complexId": "shanghai-s7",
+              "stationInstanceIds": [
+                "shanghai-s7__line6-6",
+                "shanghai-s7__line8-8"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chinametro.net/index.php?aid=13529&id=539&m=mobilenewscon",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s170-line6-6-line13-13",
+              "name": "东明路",
+              "complexId": "shanghai-s170",
+              "stationInstanceIds": [
+                "shanghai-s170__line6-6",
+                "shanghai-s170__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s51-line3-3-line2-2",
+              "name": "中山公园",
+              "complexId": "shanghai-s51",
+              "stationInstanceIds": [
+                "shanghai-s51__line3-3",
+                "shanghai-s51__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s51-line4-4-line2-2",
+              "name": "中山公园",
+              "complexId": "shanghai-s51",
+              "stationInstanceIds": [
+                "shanghai-s51__line4-4",
+                "shanghai-s51__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s51-line3-3-line4-4",
+              "name": "中山公园",
+              "complexId": "shanghai-s51",
+              "stationInstanceIds": [
+                "shanghai-s51__line3-3",
+                "shanghai-s51__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s47-line3-3-line4-4",
+              "name": "中潭路",
+              "complexId": "shanghai-s47",
+              "stationInstanceIds": [
+                "shanghai-s47__line3-3",
+                "shanghai-s47__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s199-line6-6-line14-14",
+              "name": "云山路",
+              "complexId": "shanghai-s199",
+              "stationInstanceIds": [
+                "shanghai-s199__line6-6",
+                "shanghai-s199__line14-14"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s81-line10-10-line11-11",
+              "name": "交通大学",
+              "complexId": "shanghai-s81",
+              "stationInstanceIds": [
+                "shanghai-s81__line10-10",
+                "shanghai-s81__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s16-shanghai-line1-shanghai-line2-2",
+              "name": "人民广场",
+              "complexId": "shanghai-s16",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s303",
+                "shanghai-s303__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s16-line1-line8-8",
+              "name": "人民广场",
+              "complexId": "shanghai-s16",
+              "stationInstanceIds": [
+                "shanghai-s303",
+                "shanghai-s16__line8-8"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s303-shanghai-line2-2-shanghai-line8-8",
+              "name": "人民广场",
+              "complexId": "shanghai-s16",
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line8-8"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s303__line2-2",
+                "shanghai-s16__line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s164-shanghai-line13-13-shanghai-line16-16",
+              "name": "华夏中路",
+              "complexId": "shanghai-s164",
+              "lineIds": [
+                "shanghai-line13-13",
+                "shanghai-line16-16"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s164",
+                "shanghai-s231"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s86-line10-10-line2-2",
+              "name": "南京东路",
+              "complexId": "shanghai-s86",
+              "stationInstanceIds": [
+                "shanghai-s86__line10-10",
+                "shanghai-s86__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s242-shanghai-line12-12-shanghai-line13-13",
+              "name": "南京西路",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line13-13"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s242",
+                "shanghai-s175"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s242-shanghai-line12-12-shanghai-line2-2",
+              "name": "南京西路",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s242",
+                "shanghai-s304"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s175-shanghai-line13-13-shanghai-line2-2",
+              "name": "南京西路",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line13-13",
+                "shanghai-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s175",
+                "shanghai-s304"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s107-shanghai-line1-shanghai-line18-18",
+              "name": "呼兰路",
+              "complexId": "shanghai-s107",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line18-18"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s107__line1",
+                "shanghai-s384"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s147-line12-12-line9-9",
+              "name": "嘉善路",
+              "complexId": "shanghai-s147",
+              "stationInstanceIds": [
+                "shanghai-s147__line12-12",
+                "shanghai-s147__line9-9"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s22-line8-8-line10-10",
+              "name": "四平路",
+              "complexId": "shanghai-s22",
+              "stationInstanceIds": [
+                "shanghai-s22__line8-8",
+                "shanghai-s22__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s91-shanghai-line10-10-shanghai-line18-18",
+              "name": "国权路",
+              "complexId": "shanghai-s91",
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line18-18"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s91__line10-10",
+                "shanghai-s91__line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s15-line8-8-line14-14",
+              "name": "大世界",
+              "complexId": "shanghai-s15",
+              "stationInstanceIds": [
+                "shanghai-s15__line8-8",
+                "shanghai-s15__line14-14"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s70-line4-4-line12-12",
+              "name": "大木桥路",
+              "complexId": "shanghai-s70",
+              "stationInstanceIds": [
+                "shanghai-s70__line4-4",
+                "shanghai-s70__line12-12"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s181-line15-15-line13-13",
+              "name": "大渡河路",
+              "complexId": "shanghai-s181",
+              "stationInstanceIds": [
+                "shanghai-s430",
+                "shanghai-s181__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line15-15",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s61-line4-4-line12-12",
+              "name": "大连路",
+              "complexId": "shanghai-s61",
+              "stationInstanceIds": [
+                "shanghai-s61__line4-4",
+                "shanghai-s61__line12-12"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s87-line12-12-line10-10",
+              "name": "天潼路",
+              "complexId": "shanghai-s87",
+              "stationInstanceIds": [
+                "shanghai-s87__line12-12",
+                "shanghai-s87__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s428-shanghai-line15-15-shanghai-line2-2",
+              "name": "娄山关路",
+              "complexId": "shanghai-s428",
+              "lineIds": [
+                "shanghai-line15-15",
+                "shanghai-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s428",
+                "shanghai-s306"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s54-line3-3-line4-4",
+              "name": "宜山路",
+              "complexId": "shanghai-s54",
+              "stationInstanceIds": [
+                "shanghai-s54__line3-3",
+                "shanghai-s54__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s54-shanghai-line3-3-shanghai-line9-9",
+              "name": "宜山路",
+              "complexId": "shanghai-s54",
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line9-9"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s54__line3-3",
+                "shanghai-s144"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s54-shanghai-line4-4-shanghai-line9-9",
+              "name": "宜山路",
+              "complexId": "shanghai-s54",
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line9-9"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s54__line4-4",
+                "shanghai-s144"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s45-line3-3-line4-4",
+              "name": "宝山路",
+              "complexId": "shanghai-s45",
+              "stationInstanceIds": [
+                "shanghai-s45__line3-3",
+                "shanghai-s45__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s203-line6-6-line12-12",
+              "name": "巨峰路",
+              "complexId": "shanghai-s203",
+              "stationInstanceIds": [
+                "shanghai-s203__line6-6",
+                "shanghai-s203__line12-12"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s120-line1-line7-7",
+              "name": "常熟路",
+              "complexId": "shanghai-s120",
+              "stationInstanceIds": [
+                "shanghai-s352",
+                "shanghai-s120__line7-7"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s52-line3-3-line4-4",
+              "name": "延安西路",
+              "complexId": "shanghai-s52",
+              "stationInstanceIds": [
+                "shanghai-s52__line3-3",
+                "shanghai-s52__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s122-shanghai-line1-shanghai-line11-11",
+              "name": "徐家汇",
+              "complexId": "shanghai-s122",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line11-11"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s145",
+                "shanghai-s145__line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s122-shanghai-line1-shanghai-line9-9",
+              "name": "徐家汇",
+              "complexId": "shanghai-s122",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line9-9"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s145",
+                "shanghai-s145__line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s145-line9-9-line11-11",
+              "name": "徐家汇",
+              "complexId": "shanghai-s122",
+              "stationInstanceIds": [
+                "shanghai-s145__line9-9",
+                "shanghai-s145__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line9-9",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s257-shanghai-line11-11-shanghai-line18-18",
+              "name": "御桥",
+              "complexId": "shanghai-s257",
+              "lineIds": [
+                "shanghai-line11-11",
+                "shanghai-line18-18"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s257__line11-11",
+                "shanghai-s257__line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s9-line8-8-line13-13",
+              "name": "成山路",
+              "complexId": "shanghai-s9",
+              "stationInstanceIds": [
+                "shanghai-s9__line8-8",
+                "shanghai-s9__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s374-shanghai-line14-14-shanghai-line18-18",
+              "name": "昌邑路",
+              "complexId": "shanghai-s374",
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line18-18"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s374__line14-14",
+                "shanghai-s374__line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s17-line12-12-line8-8",
+              "name": "曲阜路",
+              "complexId": "shanghai-s17",
+              "stationInstanceIds": [
+                "shanghai-s17__line12-12",
+                "shanghai-s17__line8-8"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s49-shanghai-line11-11-shanghai-line14-14",
+              "name": "曹杨路",
+              "complexId": "shanghai-s49",
+              "lineIds": [
+                "shanghai-line11-11",
+                "shanghai-line14-14"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s49__line11-11",
+                "shanghai-s399"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s49-line3-3-line11-11",
+              "name": "曹杨路",
+              "complexId": "shanghai-s49",
+              "stationInstanceIds": [
+                "shanghai-s49__line3-3",
+                "shanghai-s49__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s49-line4-4-line11-11",
+              "name": "曹杨路",
+              "complexId": "shanghai-s49",
+              "stationInstanceIds": [
+                "shanghai-s49__line4-4",
+                "shanghai-s49__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s399-shanghai-line14-14-shanghai-line3-3",
+              "name": "曹杨路",
+              "complexId": "shanghai-s49",
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s399",
+                "shanghai-s49__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s399-shanghai-line14-14-shanghai-line4-4",
+              "name": "曹杨路",
+              "complexId": "shanghai-s49",
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line4-4"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s399",
+                "shanghai-s49__line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s49-line3-3-line4-4",
+              "name": "曹杨路",
+              "complexId": "shanghai-s49",
+              "stationInstanceIds": [
+                "shanghai-s49__line3-3",
+                "shanghai-s49__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s152-shanghai-line18-18-shanghai-line9-9",
+              "name": "杨高中路",
+              "complexId": "shanghai-s152",
+              "lineIds": [
+                "shanghai-line18-18",
+                "shanghai-line9-9"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s152__line18-18",
+                "shanghai-s152__line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s239-line12-12-line15-15",
+              "name": "桂林公园",
+              "complexId": "shanghai-s239",
+              "stationInstanceIds": [
+                "shanghai-s239__line12-12",
+                "shanghai-s239__line15-15"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s424-shanghai-line15-15-shanghai-line9-9",
+              "name": "桂林路",
+              "complexId": "shanghai-s424",
+              "lineIds": [
+                "shanghai-line15-15",
+                "shanghai-line9-9"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s424",
+                "shanghai-s143"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s179-line13-13-line14-14",
+              "name": "武宁路",
+              "complexId": "shanghai-s179",
+              "stationInstanceIds": [
+                "shanghai-s179__line13-13",
+                "shanghai-s179__line14-14"
+              ],
+              "lineIds": [
+                "shanghai-line13-13",
+                "shanghai-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s196-shanghai-line18-18-shanghai-line6-6",
+              "name": "民生路",
+              "complexId": "shanghai-s196",
+              "lineIds": [
+                "shanghai-line18-18",
+                "shanghai-line6-6"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s196__line18-18",
+                "shanghai-s196__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s116-line1-line12-12",
+              "name": "汉中路",
+              "complexId": "shanghai-s116",
+              "stationInstanceIds": [
+                "shanghai-s116",
+                "shanghai-s116__line12-12"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s116-line1-line13-13",
+              "name": "汉中路",
+              "complexId": "shanghai-s116",
+              "stationInstanceIds": [
+                "shanghai-s116",
+                "shanghai-s116__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s116-line12-12-line13-13",
+              "name": "汉中路",
+              "complexId": "shanghai-s116",
+              "stationInstanceIds": [
+                "shanghai-s116__line12-12",
+                "shanghai-s116__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s245-shanghai-line12-12-shanghai-line18-18",
+              "name": "江浦公园",
+              "complexId": "shanghai-s245",
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line18-18"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s245__line12-12",
+                "shanghai-s245__line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s24-shanghai-line18-18-shanghai-line8-8",
+              "name": "江浦路",
+              "complexId": "shanghai-s24",
+              "lineIds": [
+                "shanghai-line18-18",
+                "shanghai-line8-8"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s24__line18-18",
+                "shanghai-s24__line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s266-line2-2-line11-11",
+              "name": "江苏路",
+              "complexId": "shanghai-s266",
+              "stationInstanceIds": [
+                "shanghai-s266__line2-2",
+                "shanghai-s266__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s63-line4-4-line14-14",
+              "name": "浦东大道",
+              "complexId": "shanghai-s63",
+              "stationInstanceIds": [
+                "shanghai-s63__line4-4",
+                "shanghai-s63__line14-14"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s59-line4-4-line10-10",
+              "name": "海伦路",
+              "complexId": "shanghai-s59",
+              "stationInstanceIds": [
+                "shanghai-s59__line4-4",
+                "shanghai-s59__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s101-line6-6-line10-10",
+              "name": "港城路",
+              "complexId": "shanghai-s101",
+              "stationInstanceIds": [
+                "shanghai-s101__line6-6",
+                "shanghai-s101__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s123-line1-line12-12",
+              "name": "漕宝路",
+              "complexId": "shanghai-s123",
+              "stationInstanceIds": [
+                "shanghai-s123",
+                "shanghai-s123__line12-12"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s268-line14-14-line11-11",
+              "name": "真如",
+              "complexId": "shanghai-s268",
+              "stationInstanceIds": [
+                "shanghai-s268__line14-14",
+                "shanghai-s268__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s230-line16-16-line11-11",
+              "name": "罗山路",
+              "complexId": "shanghai-s230",
+              "stationInstanceIds": [
+                "shanghai-s230__line16-16",
+                "shanghai-s230__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line16-16",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s10-line7-7-line8-8",
+              "name": "耀华路",
+              "complexId": "shanghai-s10",
+              "stationInstanceIds": [
+                "shanghai-s10__line7-7",
+                "shanghai-s10__line8-8"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s14-line8-8-line10-10",
+              "name": "老西门",
+              "complexId": "shanghai-s14",
+              "stationInstanceIds": [
+                "shanghai-s14__line8-8",
+                "shanghai-s14__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s146-line7-7-line9-9",
+              "name": "肇嘉浜路",
+              "complexId": "shanghai-s146",
+              "stationInstanceIds": [
+                "shanghai-s146__line7-7",
+                "shanghai-s146__line9-9"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s128-line1-line5-5",
+              "name": "莘庄",
+              "complexId": "shanghai-s128",
+              "stationInstanceIds": [
+                "shanghai-s128",
+                "shanghai-s128__line5-5"
+              ],
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s165-shanghai-line13-13-shanghai-line18-18",
+              "name": "莲溪路",
+              "complexId": "shanghai-s165",
+              "lineIds": [
+                "shanghai-line13-13",
+                "shanghai-line18-18"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s165__line13-13",
+                "shanghai-s165__line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s154-line9-9-line14-14",
+              "name": "蓝天路",
+              "complexId": "shanghai-s154",
+              "stationInstanceIds": [
+                "shanghai-s154__line9-9",
+                "shanghai-s154__line14-14"
+              ],
+              "lineIds": [
+                "shanghai-line9-9",
+                "shanghai-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s66-line4-4-line6-6",
+              "name": "蓝村路",
+              "complexId": "shanghai-s66",
+              "stationInstanceIds": [
+                "shanghai-s66__line4-4",
+                "shanghai-s66__line6-6"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s20-line3-3-line8-8",
+              "name": "虹口足球场",
+              "complexId": "shanghai-s20",
+              "stationInstanceIds": [
+                "shanghai-s20__line3-3",
+                "shanghai-s20__line8-8"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s310-line10-10-line2-2",
+              "name": "虹桥2号航站楼",
+              "complexId": "shanghai-s310",
+              "stationInstanceIds": [
+                "shanghai-s310__line10-10",
+                "shanghai-s310__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s311-line17-17-line10-10",
+              "name": "虹桥火车站",
+              "complexId": "shanghai-s311",
+              "stationInstanceIds": [
+                "shanghai-s311__line17-17",
+                "shanghai-s311__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line17-17",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s311-line10-10-line2-2",
+              "name": "虹桥火车站",
+              "complexId": "shanghai-s311",
+              "stationInstanceIds": [
+                "shanghai-s311__line10-10",
+                "shanghai-s311__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s311-line17-17-line2-2",
+              "name": "虹桥火车站",
+              "complexId": "shanghai-s311",
+              "stationInstanceIds": [
+                "shanghai-s311__line17-17",
+                "shanghai-s311__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line17-17",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s53-line3-3-line10-10",
+              "name": "虹桥路",
+              "complexId": "shanghai-s53",
+              "stationInstanceIds": [
+                "shanghai-s53__line3-3",
+                "shanghai-s53__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s53-line4-4-line10-10",
+              "name": "虹桥路",
+              "complexId": "shanghai-s53",
+              "stationInstanceIds": [
+                "shanghai-s53__line4-4",
+                "shanghai-s53__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s53-line3-3-line4-4",
+              "name": "虹桥路",
+              "complexId": "shanghai-s53",
+              "stationInstanceIds": [
+                "shanghai-s53__line3-3",
+                "shanghai-s53__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s12-line4-4-line8-8",
+              "name": "西藏南路",
+              "complexId": "shanghai-s12",
+              "stationInstanceIds": [
+                "shanghai-s12__line4-4",
+                "shanghai-s12__line8-8"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s85-shanghai-line10-10-shanghai-line14-14",
+              "name": "豫园",
+              "complexId": "shanghai-s85",
+              "lineIds": [
+                "shanghai-line10-10",
+                "shanghai-line14-14"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s85",
+                "shanghai-s396"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s50-line3-3-line13-13",
+              "name": "金沙江路",
+              "complexId": "shanghai-s50",
+              "stationInstanceIds": [
+                "shanghai-s50__line3-3",
+                "shanghai-s50__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s50-line4-4-line13-13",
+              "name": "金沙江路",
+              "complexId": "shanghai-s50",
+              "stationInstanceIds": [
+                "shanghai-s50__line4-4",
+                "shanghai-s50__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s50-line3-3-line4-4",
+              "name": "金沙江路",
+              "complexId": "shanghai-s50",
+              "stationInstanceIds": [
+                "shanghai-s50__line3-3",
+                "shanghai-s50__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s157-line12-12-line9-9",
+              "name": "金海路",
+              "complexId": "shanghai-s157",
+              "stationInstanceIds": [
+                "shanghai-s157__line12-12",
+                "shanghai-s157__line9-9"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s401-line15-15-line14-14",
+              "name": "铜川路",
+              "complexId": "shanghai-s401",
+              "stationInstanceIds": [
+                "shanghai-s401__line15-15",
+                "shanghai-s401__line14-14"
+              ],
+              "lineIds": [
+                "shanghai-line15-15",
+                "shanghai-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s48-line3-3-line4-4",
+              "name": "镇坪路",
+              "complexId": "shanghai-s48",
+              "stationInstanceIds": [
+                "shanghai-s48__line3-3",
+                "shanghai-s48__line4-4"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s48-shanghai-line3-3-shanghai-line7-7",
+              "name": "镇坪路",
+              "complexId": "shanghai-s48",
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line7-7"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s48__line3-3",
+                "shanghai-s343"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s48-shanghai-line4-4-shanghai-line7-7",
+              "name": "镇坪路",
+              "complexId": "shanghai-s48",
+              "lineIds": [
+                "shanghai-line4-4",
+                "shanghai-line7-7"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s48__line4-4",
+                "shanghai-s343"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s178-line7-7-line13-13",
+              "name": "长寿路",
+              "complexId": "shanghai-s178",
+              "stationInstanceIds": [
+                "shanghai-s178__line7-7",
+                "shanghai-s178__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s39-shanghai-line18-18-shanghai-line3-3",
+              "name": "长江南路",
+              "complexId": "shanghai-s39",
+              "lineIds": [
+                "shanghai-line18-18",
+                "shanghai-line3-3"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s39__line18-18",
+                "shanghai-s39__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s171-line7-7-line13-13",
+              "name": "长清路",
+              "complexId": "shanghai-s171",
+              "stationInstanceIds": [
+                "shanghai-s171__line7-7",
+                "shanghai-s171__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s395-shanghai-line14-14-shanghai-line2-2",
+              "name": "陆家嘴",
+              "complexId": "shanghai-s395",
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s395",
+                "shanghai-s302"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s13-line8-8-line9-9",
+              "name": "陆家浜路",
+              "complexId": "shanghai-s13",
+              "stationInstanceIds": [
+                "shanghai-s13__line8-8",
+                "shanghai-s13__line9-9"
+              ],
+              "lineIds": [
+                "shanghai-line8-8",
+                "shanghai-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s119-shanghai-line1-shanghai-line10-10",
+              "name": "陕西南路",
+              "complexId": "shanghai-s119",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line10-10"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s119",
+                "shanghai-s83__line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s119-shanghai-line1-shanghai-line12-12",
+              "name": "陕西南路",
+              "complexId": "shanghai-s119",
+              "lineIds": [
+                "shanghai-line1",
+                "shanghai-line12-12"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s119",
+                "shanghai-s83__line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s83-line12-12-line10-10",
+              "name": "陕西南路",
+              "complexId": "shanghai-s83",
+              "stationInstanceIds": [
+                "shanghai-s83__line12-12",
+                "shanghai-s83__line10-10"
+              ],
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s180-line13-13-line11-11",
+              "name": "隆德路",
+              "complexId": "shanghai-s180",
+              "stationInstanceIds": [
+                "shanghai-s180__line13-13",
+                "shanghai-s180__line11-11"
+              ],
+              "lineIds": [
+                "shanghai-line13-13",
+                "shanghai-line11-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s397-shanghai-line14-14-shanghai-line2-2",
+              "name": "静安寺",
+              "complexId": "shanghai-s397",
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s397",
+                "shanghai-s305__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s397-shanghai-line14-14-shanghai-line7-7",
+              "name": "静安寺",
+              "complexId": "shanghai-s397",
+              "lineIds": [
+                "shanghai-line14-14",
+                "shanghai-line7-7"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s397",
+                "shanghai-s305__line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s305-line7-7-line2-2",
+              "name": "静安寺",
+              "complexId": "shanghai-s305",
+              "stationInstanceIds": [
+                "shanghai-s305__line7-7",
+                "shanghai-s305__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s332-line7-7-line15-15",
+              "name": "顾村公园",
+              "complexId": "shanghai-s332",
+              "stationInstanceIds": [
+                "shanghai-s332__line7-7",
+                "shanghai-s332__line15-15"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s149-line9-9-line13-13",
+              "name": "马当路",
+              "complexId": "shanghai-s149",
+              "stationInstanceIds": [
+                "shanghai-s149__line9-9",
+                "shanghai-s149__line13-13"
+              ],
+              "lineIds": [
+                "shanghai-line9-9",
+                "shanghai-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s191-line6-6-line7-7",
+              "name": "高科西路",
+              "complexId": "shanghai-s191",
+              "stationInstanceIds": [
+                "shanghai-s191__line6-6",
+                "shanghai-s191__line7-7"
+              ],
+              "lineIds": [
+                "shanghai-line6-6",
+                "shanghai-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s264-shanghai-line11-11-shanghai-line12-12",
+              "name": "龙华",
+              "complexId": "shanghai-s264",
+              "lineIds": [
+                "shanghai-line11-11",
+                "shanghai-line12-12"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s264",
+                "shanghai-s240"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s241-line7-7-line12-12",
+              "name": "龙华中路",
+              "complexId": "shanghai-s241",
+              "stationInstanceIds": [
+                "shanghai-s241__line7-7",
+                "shanghai-s241__line12-12"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s56-line3-3-line12-12",
+              "name": "龙漕路",
+              "complexId": "shanghai-s56",
+              "stationInstanceIds": [
+                "shanghai-s56__line3-3",
+                "shanghai-s56__line12-12"
+              ],
+              "lineIds": [
+                "shanghai-line3-3",
+                "shanghai-line12-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s232-shanghai-line16-16-shanghai-line18-18",
+              "name": "龙阳路",
+              "complexId": "shanghai-s232",
+              "lineIds": [
+                "shanghai-line16-16",
+                "shanghai-line18-18"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s232__line16-16",
+                "shanghai-s232__line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s232-line16-16-line2-2",
+              "name": "龙阳路",
+              "complexId": "shanghai-s232",
+              "stationInstanceIds": [
+                "shanghai-s232__line16-16",
+                "shanghai-s232__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line16-16",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-shanghai-s232-line7-7-line16-16",
+              "name": "龙阳路",
+              "complexId": "shanghai-s232",
+              "stationInstanceIds": [
+                "shanghai-s232__line7-7",
+                "shanghai-s232__line16-16"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line16-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s232-shanghai-line18-18-shanghai-line2-2",
+              "name": "龙阳路",
+              "complexId": "shanghai-s232",
+              "lineIds": [
+                "shanghai-line18-18",
+                "shanghai-line2-2"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s232__line18-18",
+                "shanghai-s232__line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "sh-cutoff-xfer-shanghai-s232-shanghai-line18-18-shanghai-line7-7",
+              "name": "龙阳路",
+              "complexId": "shanghai-s232",
+              "lineIds": [
+                "shanghai-line18-18",
+                "shanghai-line7-7"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s232__line18-18",
+                "shanghai-s232__line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://service.shmetro.com/czxx/index.htm",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+            },
+            {
+              "id": "historic-transfer-shanghai-s232-line7-7-line2-2",
+              "name": "龙阳路",
+              "complexId": "shanghai-s232",
+              "stationInstanceIds": [
+                "shanghai-s232__line7-7",
+                "shanghai-s232__line2-2"
+              ],
+              "lineIds": [
+                "shanghai-line7-7",
+                "shanghai-line2-2"
+              ],
+              "precision": "schematic",
+              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+            }
+          ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.23.42",
+          "scopeRevision": "2026.10.26.3",
           "requiresScopeRecheck": true,
           "currentAction": "核对上海地铁各线站序、独立站体及支线；不把花桥换乘的苏州线路当作上海11号线。",
           "scopeCorrections": [
@@ -11183,6 +13446,39 @@
               ],
               "description": "大渡河路：更正shanghai-line15-15对应的独立站体引用，保留另一侧站体和已建站轨。",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html"
+            },
+            {
+              "taskId": "route:shanghai-r1",
+              "bodyLineReclassification": {
+                "stationInstanceId": "shanghai-s126",
+                "oldLineId": "shanghai-line1-south-extension",
+                "newLineId": "shanghai-line1",
+                "newLineName": "1号线"
+              },
+              "description": "莲花路：贯通后保留站体、朝向和轨道，将临时南延段归属更新为1号线。",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            {
+              "taskId": "route:shanghai-r1",
+              "bodyLineReclassification": {
+                "stationInstanceId": "shanghai-s127",
+                "oldLineId": "shanghai-line1-south-extension",
+                "newLineId": "shanghai-line1",
+                "newLineName": "1号线"
+              },
+              "description": "外环路：贯通后保留站体、朝向和轨道，将临时南延段归属更新为1号线。",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            {
+              "taskId": "route:shanghai-r1",
+              "bodyLineReclassification": {
+                "stationInstanceId": "shanghai-s128",
+                "oldLineId": "shanghai-line1-south-extension",
+                "newLineId": "shanghai-line1",
+                "newLineName": "1号线"
+              },
+              "description": "莘庄：贯通后保留站体、朝向和轨道，将临时南延段归属更新为1号线。",
+              "source": "https://www.shlgbj.gov.cn/view/6181"
             }
           ]
         }
@@ -12665,7 +14961,24 @@
         "shanghai-s430": "shanghai-s181",
         "shanghai-f19-huajinglu": "shanghai-f23-huajing",
         "shanghai-s394": "shanghai-s301",
-        "shanghai-reserved18-jiangyangnanlu": "shanghai-f19-jiangyangnanlu"
+        "shanghai-reserved18-jiangyangnanlu": "shanghai-f19-jiangyangnanlu",
+        "shanghai-s422": "shanghai-s124",
+        "shanghai-s58": "shanghai-s124",
+        "shanghai-s46": "shanghai-s115",
+        "shanghai-s231": "shanghai-s164",
+        "shanghai-s175": "shanghai-s242",
+        "shanghai-s304": "shanghai-s242",
+        "shanghai-s384": "shanghai-s107",
+        "shanghai-s306": "shanghai-s428",
+        "shanghai-s144": "shanghai-s54",
+        "shanghai-s399": "shanghai-s49",
+        "shanghai-s143": "shanghai-s424",
+        "shanghai-s396": "shanghai-s85",
+        "shanghai-s343": "shanghai-s48",
+        "shanghai-s302": "shanghai-s395",
+        "shanghai-s83": "shanghai-s119",
+        "shanghai-s305": "shanghai-s397",
+        "shanghai-s240": "shanghai-s264"
       },
       "stationInstanceAliases": {
         "shanghai-line1|shanghai-s16": "shanghai-s303",
@@ -12694,7 +15007,94 @@
           ],
           "note": "同名地铁换乘站在不同OSM线路抽取中重复编号；只声明共同历史站区，不移动或合并各线路站体。"
         }
-      ]
+      ],
+      "stationComplexAliasSources": {
+        "shanghai-s422": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s58": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s46": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s231": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s175": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s304": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s384": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s306": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s144": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s399": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s143": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s396": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s343": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s302": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s83": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s305": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        },
+        "shanghai-s240": {
+          "source": "https://service.shmetro.com/czxx/index.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "运营方相互声明同名换乘；统一逻辑身份，不移动站体或合并轨道。"
+        }
+      }
     },
     "beijing": {
       "name": "北京",
@@ -51421,6 +53821,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.26.2",
-  "contentRevisionNote": "深圳截止日换乘逐组对照官方图，补齐96组线路配对的明确操作；未把现代图当作历史日期证明。"
+  "contentRevision": "2026.10.26.3",
+  "contentRevisionNote": "上海运营方131组配对补成明确换乘操作，修正1号线南延贯通后的站体线路归属；逐时期全量核验继续。"
 }

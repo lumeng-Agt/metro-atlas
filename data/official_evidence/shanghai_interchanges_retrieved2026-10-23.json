@@ -1,0 +1,1002 @@
+{
+  "source": "https://service.shmetro.com/czxx/index.htm",
+  "retrievedAt": "2026-10-23",
+  "decoderSource": "https://service.shmetro.com/skin/js/metrostations.js",
+  "decoderRetrievedAt": "2026-10-26",
+  "decoderSha256": "fe5fbb2877571f61291bf1cc1b12c157e0caf8ef10b4c64f89cf8435d392f23d",
+  "lineSources": {
+    "1": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1",
+      "sha256": "e740935b467d90c0c1ec7f42a6aaa9ce56506f6c49304603911b9974faa2f432"
+    },
+    "2": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2",
+      "sha256": "dd22ba2dff90a6eb16ca1457d53141e8b3359813f96148dd409cc61a7c7a50f0"
+    },
+    "3": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3",
+      "sha256": "e458f9ba89bda79a79c1f32689a9d05823a4ac744e40573ee834570077d0ff19"
+    },
+    "4": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4",
+      "sha256": "52ea8401a307a9e2247b79fb9601d49f458dd699ac046e9c543f0475fd6450c8"
+    },
+    "5": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=5",
+      "sha256": "e8542b6b0a8f767e08cec070a069ef5b71f1a16a617ba02c80c8ec7a22427e48"
+    },
+    "6": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6",
+      "sha256": "e8a2da526b6356aa71ac3dd22d13038a77fbd3f22f519fe205d1e94e0c7eca21"
+    },
+    "7": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=7",
+      "sha256": "703baea99bc335495198f7ed57daad12c6733b17fbf87be0e56aaa888e439515"
+    },
+    "8": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8",
+      "sha256": "b2d7d87f6f0b0d486fbc4e74507449c248fe0f368bb93e177ce5aaf21163aab1"
+    },
+    "9": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9",
+      "sha256": "dc2a69b2b5c5f6a2cdb46515f73b415701bb0521c80874dfc6848f479b49164c"
+    },
+    "10": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=10",
+      "sha256": "c17f85491845cb4a3d17b4d44469f0f13d41295dc48147d8965b446bc73b48fa"
+    },
+    "11": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=11",
+      "sha256": "b6b440224d9596d487ef42b72c48adcb463eb12bd9de041a1c6e888e0e431517"
+    },
+    "12": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=12",
+      "sha256": "e62498d510d6d72c96fdc1aaae5ae8a5a37bfc8b60145683003b11343edc9a95"
+    },
+    "13": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=13",
+      "sha256": "d037d6ae0e93031c7e59364860e3ea8646596da3df9cdfcc244bf8213a167d20"
+    },
+    "14": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=14",
+      "sha256": "10d08fc3593c42e5e18f8a3aedce848a45c0b0fbb4446eb67d2c40fd6f05ef25"
+    },
+    "15": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=15",
+      "sha256": "95401b7896afa423f70670bdf1c1c6d865e7e853846c1c9783edf8a0571581cb"
+    },
+    "16": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=16",
+      "sha256": "cda264df5ec3bc4ba95ca2a404536d441d52f2fee5bbbd04da7ec7479fbc9528"
+    },
+    "17": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=17",
+      "sha256": "25fe17c536ab424b7777546aadd80a682a5e7419e2ab5b999588718a7f699e9c"
+    },
+    "18": {
+      "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=18",
+      "sha256": "6b2feef6c67cc706f8db7373cb05db8c84f1af9d1ee9579c038a32bfa90846bb"
+    }
+  },
+  "pairs": [
+    {
+      "stationName": "一大会址·新天地",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line13-13"
+      ]
+    },
+    {
+      "stationName": "一大会址·黄陂南路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line14-14"
+      ]
+    },
+    {
+      "stationName": "上海体育馆",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "上海南站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line15-15"
+      ]
+    },
+    {
+      "stationName": "上海南站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "上海南站",
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "上海火车站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "上海火车站",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "上海火车站",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "上海西站",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line15-15"
+      ]
+    },
+    {
+      "stationName": "世纪大道",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "世纪大道",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "世纪大道",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "世纪大道",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "世纪大道",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "世纪大道",
+      "lineIds": [
+        "shanghai-line6-6",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "东安路",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "东方体育中心",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "东方体育中心",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "东方体育中心",
+      "lineIds": [
+        "shanghai-line6-6",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "东明路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "中山公园",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "中山公园",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "中山公园",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "中潭路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "云山路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "交通大学",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line11-11"
+      ]
+    },
+    {
+      "stationName": "人民广场",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "人民广场",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "人民广场",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "华夏中路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line16-16"
+      ]
+    },
+    {
+      "stationName": "南京东路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "南京西路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line13-13"
+      ]
+    },
+    {
+      "stationName": "南京西路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "南京西路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "呼兰路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "stationName": "嘉善路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "四平路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "国权路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "stationName": "大世界",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "大木桥路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "大渡河路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line15-15"
+      ]
+    },
+    {
+      "stationName": "大连路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "天潼路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "stationName": "娄山关路",
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "宜山路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "宜山路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "宜山路",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "宝山路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "巨峰路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "常熟路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "延安西路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "徐家汇",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line11-11"
+      ]
+    },
+    {
+      "stationName": "徐家汇",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "徐家汇",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "御桥",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "stationName": "成山路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "昌邑路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "stationName": "曲阜路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "曹杨路",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line14-14"
+      ]
+    },
+    {
+      "stationName": "曹杨路",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "曹杨路",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "曹杨路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "曹杨路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "曹杨路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "杨高中路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "桂林公园",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line15-15"
+      ]
+    },
+    {
+      "stationName": "桂林路",
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "武宁路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line14-14"
+      ]
+    },
+    {
+      "stationName": "民生路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "汉中路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "stationName": "汉中路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line13-13"
+      ]
+    },
+    {
+      "stationName": "汉中路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line13-13"
+      ]
+    },
+    {
+      "stationName": "江浦公园",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "stationName": "江浦路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "江苏路",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "浦东大道",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "海伦路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "港城路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "漕宝路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "stationName": "真如",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line14-14"
+      ]
+    },
+    {
+      "stationName": "罗山路",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line16-16"
+      ]
+    },
+    {
+      "stationName": "耀华路",
+      "lineIds": [
+        "shanghai-line7-7",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "老西门",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "肇嘉浜路",
+      "lineIds": [
+        "shanghai-line7-7",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "莘庄",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line5-5"
+      ]
+    },
+    {
+      "stationName": "莲溪路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "stationName": "蓝天路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "蓝村路",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line6-6"
+      ]
+    },
+    {
+      "stationName": "虹口足球场",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "虹桥2号航站楼",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "虹桥火车站",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line17-17"
+      ]
+    },
+    {
+      "stationName": "虹桥火车站",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "虹桥火车站",
+      "lineIds": [
+        "shanghai-line17-17",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "虹桥路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "虹桥路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "虹桥路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "西藏南路",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line8-8"
+      ]
+    },
+    {
+      "stationName": "豫园",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line14-14"
+      ]
+    },
+    {
+      "stationName": "金沙江路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "金沙江路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "金沙江路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "金海路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "铜川路",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line15-15"
+      ]
+    },
+    {
+      "stationName": "镇坪路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line4-4"
+      ]
+    },
+    {
+      "stationName": "镇坪路",
+      "lineIds": [
+        "shanghai-line3-3",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "镇坪路",
+      "lineIds": [
+        "shanghai-line4-4",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "长寿路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "长江南路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "长清路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "陆家嘴",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "陆家浜路",
+      "lineIds": [
+        "shanghai-line8-8",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "陕西南路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line10-10"
+      ]
+    },
+    {
+      "stationName": "陕西南路",
+      "lineIds": [
+        "shanghai-line1",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "stationName": "陕西南路",
+      "lineIds": [
+        "shanghai-line10-10",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "stationName": "隆德路",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line13-13"
+      ]
+    },
+    {
+      "stationName": "静安寺",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "静安寺",
+      "lineIds": [
+        "shanghai-line14-14",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "静安寺",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "顾村公园",
+      "lineIds": [
+        "shanghai-line15-15",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "马当路",
+      "lineIds": [
+        "shanghai-line13-13",
+        "shanghai-line9-9"
+      ]
+    },
+    {
+      "stationName": "高科西路",
+      "lineIds": [
+        "shanghai-line6-6",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "龙华",
+      "lineIds": [
+        "shanghai-line11-11",
+        "shanghai-line12-12"
+      ]
+    },
+    {
+      "stationName": "龙华中路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "龙漕路",
+      "lineIds": [
+        "shanghai-line12-12",
+        "shanghai-line3-3"
+      ]
+    },
+    {
+      "stationName": "龙阳路",
+      "lineIds": [
+        "shanghai-line16-16",
+        "shanghai-line18-18"
+      ]
+    },
+    {
+      "stationName": "龙阳路",
+      "lineIds": [
+        "shanghai-line16-16",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "龙阳路",
+      "lineIds": [
+        "shanghai-line16-16",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "龙阳路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line2-2"
+      ]
+    },
+    {
+      "stationName": "龙阳路",
+      "lineIds": [
+        "shanghai-line18-18",
+        "shanghai-line7-7"
+      ]
+    },
+    {
+      "stationName": "龙阳路",
+      "lineIds": [
+        "shanghai-line2-2",
+        "shanghai-line7-7"
+      ]
+    }
+  ],
+  "scopeNote": "本轮既定主线1—18号线；浦江、磁浮和市域线另列。仅排除这些范围外编号，不把未知未来线路当作已开放换乘。",
+  "note": "运营方以station_code连字符前的十六进制位掩码标出换乘线；按其公开getExchangeLine方法解析，并逐站检查对侧运营表对称声明。共线、站外换乘的现实结构与历史日期仍需另外分层核对。"
+}
