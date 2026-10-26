@@ -15,12 +15,40 @@ static func load_data() -> void:
 	for item in _data.get("alignments",[]):
 		if str(item.get("coordinateSystem",""))!="EPSG:4326":push_error("区间坐标系不一致，已忽略。");continue
 		_pairs[str(item.fromId)+"|"+str(item.toId)]=item
+	# Future road-corridor references are a separate source class. They are
+	# never relabelled as surveyed track or allowed to overwrite a rail pair.
+	var planning_path:="res://data/planning_corridors.json"
+	if FileAccess.file_exists(planning_path):
+		var planning:Variant=JSON.parse_string(FileAccess.get_file_as_string(planning_path))
+		if not planning is Dictionary or str(planning.get("coordinateSystem",""))!="EPSG:4326":push_error("规划走廊坐标系不一致，未载入。");return
+		_data["planningAlignments"]=[]
+		for item in planning.get("alignments",[]):
+			if str(item.get("sourceKind",""))!="official_road_corridor" or str(item.get("appliesTo",""))!="planned_construction" or str(item.get("coordinateSystem",""))!="EPSG:4326" or not str(item.get("source","")).begins_with("https://") or item.get("sourceRoadWayIds",[]).is_empty() or item.get("points",[]).size()<3:
+				push_error("规划走廊缺少独立来源、道路参照或连续几何，未载入。");continue
+			var pair:=str(item.get("fromId",""))+"|"+str(item.get("toId",""))
+			var reverse_pair:=str(item.get("toId",""))+"|"+str(item.get("fromId",""))
+			if _pairs.has(pair) or _pairs.has(reverse_pair):push_error("规划走廊不能覆盖已有轨道参考。");continue
+			var reference:Dictionary=item.duplicate(true);reference["referenceVersion"]=str(planning.get("version",""))
+			_pairs[pair]=reference;_data.planningAlignments.append(reference)
 
 static func version() -> String:
 	load_data();return str(_data.get("version","unavailable"))
 
 static func station_reference(id:String) -> Dictionary:
 	load_data();return _data.get("stationReferences",{}).get(id,{}).duplicate(true)
+
+static func planning_corridor(id:String) -> Dictionary:
+	load_data()
+	for item in _data.get("planningAlignments",[]):
+		if str(item.get("id",""))==id:return item.duplicate(true)
+	return {}
+
+static func planning_corridor_issue(points:Array,id:String,ref_lat:float,tolerance:float) -> String:
+	var reference:=planning_corridor(id)
+	if reference.is_empty() or reference.get("points",[]).size()<3 or tolerance<=0:return "本区间规划走廊资料缺失，请重新载入资料包。"
+	if points.size()<2:return "本区间尚无可核对的实际轨道几何。"
+	if corridor_issue(points,reference.points,ref_lat,tolerance):return "区间偏离公开道路走廊或跳过必经走向，请查看支线参考。"
+	return ""
 
 static func between(a:String,b:String) -> Dictionary:
 	load_data()
@@ -48,6 +76,7 @@ static func heading(target_id:String,groups:Array,ref_lat:float,line_id:String="
 
 static func label_for(data:Dictionary) -> String:
 	if data.is_empty():return "示意资料 · 连续线位待核验"
+	if str(data.get("sourceKind",""))=="official_road_corridor":return "规划道路走廊 · 近似示意，非施工线位"
 	return "核验线位" if str(data.get("precision",""))=="verified_alignment" else "近似走廊 · OSM轨道 / 历史与高德对照待核验"
 
 static func preview(alignment:Dictionary,start:Dictionary,finish:Dictionary,state:Dictionary,ref_lat:float) -> Dictionary:
@@ -77,7 +106,7 @@ static func preview(alignment:Dictionary,start:Dictionary,finish:Dictionary,stat
 	result[0]=start.latlng.duplicate();result[-1]=finish.latlng.duplicate()
 	var length:=0.0
 	for i in range(result.size()-1):length+=Geo.local_m(result[i],ref_lat).distance_to(Geo.local_m(result[i+1],ref_lat))
-	return {"edge":{"id":"preview","aNodeId":str(start.get("nodeId","")),"bNodeId":str(finish.get("nodeId","")),"geometry":"reference_polyline","referencePoints":result,"referenceAlignmentId":str(alignment.id),"referenceVersion":version(),"referencePrecision":str(alignment.get("precision","approximate_corridor")),"routeIds":[],"depthM":start.get("depthM",-15)},"points":result,"lengthM":length,"issue":"","referenceLabel":label_for(alignment),"revision":int(state.get("revision",0))}
+	return {"edge":{"id":"preview","aNodeId":str(start.get("nodeId","")),"bNodeId":str(finish.get("nodeId","")),"geometry":"reference_polyline","referencePoints":result,"referenceAlignmentId":str(alignment.id),"referenceVersion":str(alignment.get("referenceVersion",version())),"referencePrecision":str(alignment.get("precision","approximate_corridor")),"routeIds":[],"depthM":start.get("depthM",-15)},"points":result,"lengthM":length,"issue":"","referenceLabel":label_for(alignment),"revision":int(state.get("revision",0))}
 
 static func sides(a:Dictionary,b:Dictionary,alignment:Dictionary,lat:float) -> Array:
 	var points:Array=alignment.get("points",[])

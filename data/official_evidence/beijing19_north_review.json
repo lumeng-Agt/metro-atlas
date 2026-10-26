@@ -1,0 +1,34 @@
+{
+  "projectId": "bj-line19-north-phase2",
+  "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202503/t20250303_4023616.htm",
+  "finalEia": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+  "finalEiaPdfPage": 33,
+  "finalEiaPrintedPage": 25,
+  "finalEiaTable": "2-1-3",
+  "mainStationOrder": [
+    "北沙滩",
+    "上清桥南",
+    "清河小营桥",
+    "西三旗",
+    "新龙泽",
+    "生命科学园南",
+    "生命谷"
+  ],
+  "branchStationOrder": [
+    "上清桥南",
+    "清河"
+  ],
+  "mainLengthKm": 17.1,
+  "branchLengthKm": 7.1,
+  "surfaceStation": "生命谷",
+  "existingCivilReservations": [
+    "清河",
+    "清河小营桥"
+  ],
+  "constructionStartSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202602/t20260224_4537012.html",
+  "scopeNote": "Only north extension and its branch; no fabricated opening year or southern phase. Planning-road geometry is approximate, not a surveyed tunnel.",
+  "transferReviewStatus": "pending",
+  "sourceSha256": "460f3614313106f06aed6520745e0bd7bd92a11ec1eb34086e3d09b07043799c",
+  "sourceBytes": 2213023,
+  "sourceRetrievedAt": "2026-10-26"
+}

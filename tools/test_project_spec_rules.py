@@ -5,6 +5,16 @@ from validate_project_spec import validate
 
 
 class ProjectSpecRules(unittest.TestCase):
+    def test_planning_corridor_cannot_apply_one_whole_line_to_many_sections(self):
+        self.spec['lineGroup'].update(requiredPlanningCorridorId='fixture',planningCorridorToleranceM=650)
+        self.assertTrue(any('one explicit station pair' in e for e in validate(self.spec,self.city,set())))
+
+    def test_planning_corridor_tolerance_must_be_finite_and_positive(self):
+        self.spec['lineGroup'].update(stationIds=['test-A','test-B'],requiredPlanningCorridorId='fixture')
+        for value in [float('nan'),float('inf'),True,0,-5,'650']:
+            self.spec['lineGroup']['planningCorridorToleranceM']=value
+            self.assertTrue(any('positive finite tolerance' in e for e in validate(self.spec,self.city,set())))
+
     def setUp(self):
         self.city = dict(id='test', center=[30, 104], stations=[])
         self.spec = dict(city='test', plan=dict(id='test-plan', title='Fixture', status='approved',

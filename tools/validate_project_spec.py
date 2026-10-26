@@ -112,6 +112,11 @@ def validate(spec: dict, city: dict, existing_lines: set[str]) -> list[str]:
                 errors.append(f"group {key}: stationNamingSource needs a public source URL")
             if not group.get("constructionVariant"):
                 errors.append(f"group {key}: planning names require a separate constructionVariant")
+        if group.get('requiredPlanningCorridorId'):
+            tolerance=group.get('planningCorridorToleranceM')
+            if len(ids)!=2:errors.append(f'group {key}: a required planning corridor must bind one explicit station pair')
+            if not isinstance(tolerance,(int,float)) or isinstance(tolerance,bool) or not math.isfinite(tolerance) or tolerance<=0:
+                errors.append(f'group {key}: required planning corridor needs a positive finite tolerance')
         points: list[list[float]] = []
         for station_id in ids:
             entry = stations.get(station_id)

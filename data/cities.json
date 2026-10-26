@@ -16210,6 +16210,62 @@
           "source": "https://m.bjnews.com.cn/detail/1755152233129344.html",
           "sourceCheckedAt": "2026-10-26",
           "coordinateAccuracyM": 400
+        },
+        {
+          "id": "beijing-f19-shangqing-south",
+          "name": "上清桥南",
+          "latlng": [
+            40.01395,
+            116.3536
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "最终环评排水表指向银泉路，许可公开信息为银泉路与京藏高速路口；本地OSM银泉路way/161453474路口近似站区，不取桥名中心代替站址。",
+          "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f19-xisanqi",
+          "name": "西三旗",
+          "latlng": [
+            40.05375,
+            116.32289
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "西三旗京藏高速走廊及安宁庄路排水接口；OSM西三旗桥way/691456226定位路口站区，不是测绘站中心。",
+          "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f19-lifescience-south",
+          "name": "生命科学园南",
+          "latlng": [
+            40.0835,
+            116.2982
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "京投公开答复的二拨子桥与二龙北路之间、京藏高速西侧站区；OSM二拨子桥way/1530337633、二龙北路way/1544797654核对范围。站位为近似，不将村庄或园区中心当车站。",
+          "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f19-lifegu",
+          "name": "生命谷",
+          "latlng": [
+            40.1006,
+            116.2685
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "最终环评明确生命谷地面站、医疗园路在站北侧及与东北环线衔接。按本地OSM医疗园路way/202235308南侧铁路走廊定位，仅作近似站区。",
+          "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 600
         }
       ],
       "lines": [

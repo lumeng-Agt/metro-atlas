@@ -67,6 +67,9 @@ def check_project(target, plans, names, *, historical_construction=False):
                 errors.append(f'{group_id}: documented physical body differs at {required_name}')
         if bool(group.get('loop', False)) != bool(expected.get('loop', False)):
             errors.append(f'{group_id}: loop closure requirement differs')
+        if expected.get('requiredPlanningCorridorId'):
+            for field in ('requiredPlanningCorridorId','planningCorridorToleranceM'):
+                if group.get(field)!=expected.get(field):errors.append(f'{group_id}: mandatory planning corridor {field} differs')
     for transfer in target.get('transfers', []):
         if not any(t.get('id') == transfer for p in matched for t in p.get('requiredTransfers', [])):
             errors.append(f'{transfer}: required transfer missing')

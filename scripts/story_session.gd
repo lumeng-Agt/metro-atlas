@@ -385,6 +385,9 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 			# Exact centerlines are evaluated only when sourced geometry is available.
 			var corridor: Array = group.get("alignment",[])
 			var pair_reference:=ReferenceAlignment.between(str(group.stationIds[i]),str(group.stationIds[i+1]))
+			if not str(group.get("requiredPlanningCorridorId","")).is_empty():
+				var corridor_error:=ReferenceAlignment.planning_corridor_issue(path.points,str(group.requiredPlanningCorridorId),reference_lat,float(group.get("planningCorridorToleranceM",0)))
+				if not corridor_error.is_empty():issues.append({"text":corridor_error,"kind":"station","objectId":str(ids[i])});group_valid=false
 			if str(pair_reference.get("precision",""))=="verified_alignment" and ReferenceAlignment.corridor_issue(path.points,pair_reference.points,reference_lat,float(group.get("alignmentToleranceM",80))):
 				issues.append({"text":"该区间偏离对应站间的核验走廊，或跳过必经走向。","kind":"station","objectId":str(ids[i])});group_valid=false
 			if corridor.size() >= 2 and str(ch.get("precision","")) == "verified_alignment":

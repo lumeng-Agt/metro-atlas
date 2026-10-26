@@ -110,6 +110,9 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 						var path:=TrackNetwork.ordered_station_path(str(ids[i]),str(ids[i+1]),paths[i],world,latitude,path_index)
 						if not bool(path.get("valid",false)):
 							errors.append("%s: %s—%s: %s" % [str(expected.id),str(names[i]),str(names[i+1]),str(path.get("error","invalid path"))]);continue
+						if not str(expected.get("requiredPlanningCorridorId","")).is_empty():
+							var corridor_error:=ReferenceAlignment.planning_corridor_issue(path.get("points",[]),str(expected.requiredPlanningCorridorId),latitude,float(expected.get("planningCorridorToleranceM",0)))
+							if not corridor_error.is_empty():errors.append("%s: %s"%[str(expected.id),corridor_error])
 						if previous_end==str(path.fromNodeId):errors.append("%s: implicit reversal at %s" % [str(expected.id),str(names[i])])
 						if first_start.is_empty():first_start=str(path.fromNodeId)
 						previous_end=str(path.toNodeId)

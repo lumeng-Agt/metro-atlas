@@ -26623,6 +26623,18 @@
           "statusAtCutoff": "已批在建",
           "note": "五站完整站序；早期21.3公里与开工20.78公里分版本记录，不用未公开隧道精度免除建设任务。",
           "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "bj-line19-north-phase2",
+          "name": "19号线二期（北延及北延支线）",
+          "projectType": "approved_and_under_construction",
+          "status": "2025年可研获批，2026年2月全面开工",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202503/t20250303_4023616.htm",
+          "sourceTitle": "京发改（审）〔2025〕109号",
+          "sourceCheckedAt": "2026-10-26",
+          "statusAtCutoff": "已批在建",
+          "note": "北延7站及清河支线1站，含生命谷；主支线分别制作，不包括另行审查的南延。",
+          "playabilityStatus": "playable_build_task"
         }
       ],
       "documentedMilestones": [
@@ -90618,5 +90630,5 @@
     }
   },
   "contentStatus": "playable_cutoff_route_inventories",
-  "contentRevision": "2026.10.26.7"
+  "contentRevision": "2026.10.26.8"
 }

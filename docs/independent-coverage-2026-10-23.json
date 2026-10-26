@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.26.7",
+  "contentRevision": "2026.10.26.8",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -148,7 +148,8 @@
         "bj-line22: independent transfer coverage incomplete",
         "bj-line28: independent transfer coverage incomplete",
         "bj-line13-capacity: independent transfer coverage incomplete",
-        "bj-yizhuang-connector: independent transfer coverage incomplete"
+        "bj-yizhuang-connector: independent transfer coverage incomplete",
+        "bj-line19-north-phase2: independent transfer coverage incomplete"
       ],
       "projects": [
         {
@@ -210,6 +211,13 @@
           "id": "bj-r4-north-phase1",
           "ok": true,
           "errors": []
+        },
+        {
+          "id": "bj-line19-north-phase2",
+          "ok": false,
+          "errors": [
+            "independent transfer coverage incomplete"
+          ]
         }
       ]
     },

@@ -5198,7 +5198,8 @@
         "bj-line1-branch",
         "bj-new-airport",
         "bj-yizhuang-connector",
-        "bj-r4-north-phase1"
+        "bj-r4-north-phase1",
+        "bj-line19-north-phase2"
       ],
       "historicalMilestones": [
         {
@@ -7081,6 +7082,63 @@
             "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20250317/5002992.html"
           ],
           "note": "截止日前已批在建的北段五站及官方明确的3号线、首都机场线联系。S6、北部联络及城际联络在此为远期接口资料，不伪造已建线路或开放换乘。"
+        },
+        {
+          "id": "bj-line19-north-phase2",
+          "reviewStatus": "verified",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202503/t20250303_4023616.htm",
+          "sourcePublicationDate": "2025-03-03",
+          "sourceCheckedAt": "2026-10-26",
+          "additionalSources": [
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+            "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202602/t20260224_4537012.html"
+          ],
+          "constructionOnly": true,
+          "groups": [
+            {
+              "id": "beijing19-north-main",
+              "historicalLineId": "beijing-line19-19",
+              "scopeType": "stations",
+              "stationNames": [
+                "牡丹园",
+                "北沙滩",
+                "上清桥南",
+                "清河小营桥",
+                "西三旗",
+                "新龙泽",
+                "生命科学园南",
+                "生命谷"
+              ],
+              "allowReverse": true,
+              "fullServiceOrder": true
+            },
+            {
+              "id": "beijing19-north-branch",
+              "historicalLineId": "beijing-line19-19",
+              "scopeType": "stations",
+              "stationNames": [
+                "上清桥南",
+                "清河"
+              ],
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence",
+              "requiredPlanningCorridorId": "beijing19-qinghe-road-corridor",
+              "planningCorridorToleranceM": 650
+            }
+          ],
+          "transfers": [
+            "future-transfer-bj19-beishatan-15",
+            "future-transfer-bj19-xiaoying-changping",
+            "future-transfer-bj19-qinghe-13",
+            "future-transfer-bj19-qinghe-changping",
+            "future-transfer-bj19-qinghe-capacity13A",
+            "future-transfer-bj19-newlongze-capacity13A",
+            "future-transfer-bj19-newlongze-capacity13B",
+            "future-transfer-bj19-newlongze-18"
+          ],
+          "transferReviewStatus": "pending",
+          "transferReviewNote": "地铁侧联系已配置，工程名新龙泽与正式龙泽西的全量分层证据、预留铁路接口继续核对；不因8站建成而解除项目完整性门槛。"
         }
       ],
       "cutoffNetwork": {

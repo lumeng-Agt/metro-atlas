@@ -6,6 +6,14 @@ from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
+    def test_mandatory_road_corridor_cannot_be_removed_or_loosened(self):
+        self.target['groups'][0].update(requiredPlanningCorridorId='source-corridor',planningCorridorToleranceM=650)
+        self.assertTrue(any('mandatory planning corridor' in e for e in check_project(self.target,self.plans,self.names)))
+        self.plans[0]['lineGroups'][0].update(requiredPlanningCorridorId='source-corridor',planningCorridorToleranceM=650)
+        self.assertEqual(check_project(self.target,self.plans,self.names),[])
+        self.plans[0]['lineGroups'][0]['planningCorridorToleranceM']=5000
+        self.assertTrue(any('mandatory planning corridor' in e for e in check_project(self.target,self.plans,self.names)))
+
     def test_unreviewed_shared_running_cannot_be_hidden_by_interchange_completion(self):
         network=dict(date='2026-10-01',groups=[dict(id='line')],temporalReviewStatus='verified',transferReviewStatus='verified',
                      temporalEvidence=[dict(source='https://example.invalid/dated',effectiveDate='2026-06-28')],sharedRunningReviewStatus='pending')

@@ -1055,7 +1055,9 @@ func _right() -> void:
 	if not map_view.draft_station.is_empty():
 		var st:Dictionary=map_view.draft_station
 		right.add_child(label("车站预览",24,true));right.add_child(label(str(st.name),20,true));right.add_child(label("拖动换位置；R旋转；确认后加入本章。",16))
-		var elevation_text:="高架示意高度 %.0f 米" % float(st.get("depthM",8)) if float(st.get("depthM",-15))>0 else "地下示意深度 %.0f 米" % -float(st.get("depthM",-15))
+		var elevation_text:="地下示意深度 %.0f 米" % -float(st.get("depthM",-15))
+		if float(st.get("depthM",-15))>0:elevation_text="高架示意高度 %.0f 米" % float(st.depthM)
+		elif is_zero_approx(float(st.get("depthM",-15))):elevation_text="地面示意站体"
 		_angle(st,true);right.add_child(label("站体 %.0f × %.0f 米 · %s\n尺寸为游戏简化表达。" % [float(st.get("lengthM",119)),float(st.get("widthM",20)),elevation_text],16))
 		var details:=CheckButton.new();details.text="建设资料与高级参数";details.button_pressed=advanced_edit;details.toggled.connect(func(value:bool):advanced_edit=value;_right());right.add_child(details)
 		if advanced_edit:right.add_child(label(str(st.get("constructionNote","原始站体尺寸与埋深待核验，当前为游戏示意。")),15))
@@ -1285,7 +1287,7 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 		var candidate:={"id":"draft","name":str(target.get("name","新建车站%d" % (world.stations.size()+1))),"latlng":ll.duplicate(),"heading":90.0,"lengthM":118.788,"widthM":20.0,"depthM":map_view.current_depth_m,"historicalId":str(target.get("historicalId",target.get("id",""))),"stationInstanceId":str(target.get("stationInstanceId",target.get("id",""))),"stationComplexId":str(target.get("stationComplexId",target.get("historicalId",target.get("id","")))),"stationLineId":str(target.get("historicalLineId","")),"stationLineName":str(target.get("historicalLineName",target.get("historicalLineId",""))),"vehicleId":"B-6","existing":false,"routeIds":[]}
 		if not target.is_empty():candidate.latlng=target.latlng.duplicate();candidate.heading=map_view.blueprint_heading_for(str(target.id))
 		_apply_profile(candidate,construction_profile)
-		if str(construction_profile.get("parameterStatus",{}).get("depthM","game_estimate"))=="game_estimate" and not str(construction_profile.get("form","")).contains("高架"):candidate.depthM=map_view.current_depth_m
+		if str(construction_profile.get("parameterStatus",{}).get("depthM","game_estimate"))=="game_estimate" and not str(construction_profile.get("form","")).contains("高架") and not str(construction_profile.get("form","")).contains("地面"):candidate.depthM=map_view.current_depth_m
 		map_view.draft_station=candidate;show_right=true;_station_changed();_right();_layout();_trigger_beat("select",[str(target.get("id",""))]);return
 	if tool=="track":
 		var ref:=_ref(ll,kind,id,side,t)

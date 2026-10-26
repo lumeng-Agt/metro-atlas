@@ -28132,6 +28132,349 @@
             "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20250317/5002992.html",
             "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/xxgh/sy/202401/P020240201380098381172.pdf"
           ]
+        },
+        {
+          "id": "bj-line19-north-build",
+          "projectIds": [
+            "bj-line19-north-phase2"
+          ],
+          "title": "19号线北延主线与清河支线",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "municipal_approval_and_final_eia",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202602/t20260224_4537012.html",
+          "sourceTitle": "北京地铁19号线二期全面开工",
+          "sourceCheckedAt": "2026-10-26",
+          "description": "分别建设牡丹园—生命谷北延主线和上清桥南—清河支线，共8座本期站体；复用牡丹园。清河与清河小营桥的本线预留土建已有实施记录，游戏将其作为明确本线站体完成接轨，不拿其他线路站体代替。只记录规划建设完成，不虚构未来开通时间。",
+          "sourcePublicationDate": "2026-02-24",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line19-north-build:north",
+              "mapRouteId": "beijing-future-line19-north",
+              "name": "19号线北延主线",
+              "historicalLineId": "beijing-line19-19",
+              "color": "#D4AEDE",
+              "stationIds": [
+                "beijing-s178",
+                "beijing-s3",
+                "beijing-f19-shangqing-south",
+                "beijing-s250",
+                "beijing-f19-xisanqi",
+                "beijing-open18-longzexi",
+                "beijing-f19-lifescience-south",
+                "beijing-f19-lifegu"
+              ],
+              "stationNames": {
+                "beijing-s178": "牡丹园",
+                "beijing-s3": "北沙滩",
+                "beijing-f19-shangqing-south": "上清桥南",
+                "beijing-s250": "清河小营桥",
+                "beijing-f19-xisanqi": "西三旗",
+                "beijing-open18-longzexi": "新龙泽",
+                "beijing-f19-lifescience-south": "生命科学园南",
+                "beijing-f19-lifegu": "生命谷"
+              },
+              "toleranceM": 650.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "采用2025年可研批复和最终环评：北延7站、支线1站，复用牡丹园本线端点。站区为官方地点描述与许可地理数据的近似参考，隧道与埋深不宣称测绘精度；本期包含生命谷，不沿用旧版6站北延。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s178": "beijing-s178__line19-19",
+                "beijing-s3": "beijing-s3__north19",
+                "beijing-f19-shangqing-south": "beijing-f19-shangqing-south__north19",
+                "beijing-s250": "beijing-s250__north19",
+                "beijing-f19-xisanqi": "beijing-f19-xisanqi__north19",
+                "beijing-open18-longzexi": "beijing-open18-longzexi__north19",
+                "beijing-f19-lifescience-south": "beijing-f19-lifescience-south__north19",
+                "beijing-f19-lifegu": "beijing-f19-lifegu__north19"
+              },
+              "officialLengthM": 17100,
+              "coverageGroupId": "beijing19-north-main",
+              "constructionVariant": true,
+              "stationNamingSource": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+            },
+            {
+              "taskId": "project:bj-line19-north-build:branch",
+              "mapRouteId": "beijing-future-line19-qinghe",
+              "name": "19号线清河支线",
+              "historicalLineId": "beijing-line19-19",
+              "color": "#D4AEDE",
+              "stationIds": [
+                "beijing-f19-shangqing-south",
+                "beijing-s96"
+              ],
+              "stationNames": {
+                "beijing-f19-shangqing-south": "上清桥南",
+                "beijing-s96": "清河"
+              },
+              "toleranceM": 650.0,
+              "alignmentPrecision": "corridor_only",
+              "precisionNote": "官方北延支线7.1公里，仅新增清河1站；从上清桥南分出，经京藏高速、北五环、京新高速至清河。地图采用这些公开道路的近似弯曲走廊，不用两站直线代替，也不声称示意显示里程等于工程里程。",
+              "stationOrderSource": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-f19-shangqing-south": "beijing-f19-shangqing-south__north19",
+                "beijing-s96": "beijing-s96__north19"
+              },
+              "coverageGroupId": "beijing19-north-branch",
+              "constructionVariant": true,
+              "stationNamingSource": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+              "requiredPlanningCorridorId": "beijing19-qinghe-road-corridor",
+              "planningCorridorToleranceM": 650
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-bj19-beishatan-15",
+              "name": "北沙滩",
+              "complexId": "beijing-s3",
+              "stationInstanceIds": [
+                "beijing-s3__north19",
+                "beijing-s3"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-line15-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-xiaoying-changping",
+              "name": "清河小营桥",
+              "complexId": "beijing-s250",
+              "stationInstanceIds": [
+                "beijing-s250__north19",
+                "beijing-s250"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-route-20"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-qinghe-13",
+              "name": "清河",
+              "complexId": "beijing-s96",
+              "stationInstanceIds": [
+                "beijing-s96__north19",
+                "beijing-s96__line13-13"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-line13-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-qinghe-changping",
+              "name": "清河",
+              "complexId": "beijing-s96",
+              "stationInstanceIds": [
+                "beijing-s96__north19",
+                "beijing-s96__line20"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-route-20"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-qinghe-capacity13A",
+              "name": "清河",
+              "complexId": "beijing-s96",
+              "stationInstanceIds": [
+                "beijing-s96__north19",
+                "beijing-s96__line13-13"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-capacity13A"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-newlongze-capacity13A",
+              "name": "新龙泽／龙泽西",
+              "complexId": "beijing-open18-longzexi",
+              "stationInstanceIds": [
+                "beijing-open18-longzexi__north19",
+                "beijing-open18-longzexi"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-capacity13A"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-newlongze-capacity13B",
+              "name": "新龙泽／龙泽西",
+              "complexId": "beijing-open18-longzexi",
+              "stationInstanceIds": [
+                "beijing-open18-longzexi__north19",
+                "beijing-open18-longzexi__capacity13B"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-capacity13B"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            },
+            {
+              "id": "future-transfer-bj19-newlongze-18",
+              "name": "新龙泽／龙泽西",
+              "complexId": "beijing-open18-longzexi",
+              "stationInstanceIds": [
+                "beijing-open18-longzexi__north19",
+                "beijing-open18-longzexi"
+              ],
+              "lineIds": [
+                "beijing-line19-19",
+                "beijing-line18-18"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+              "sourceNote": "最终环评明确的地铁衔接；19号线使用独立站体。工程名新龙泽与13扩能、18号线龙泽西站区关联，保留对侧正式站名，不误接旧龙泽或还建龙泽。规划联系不表示已开放。"
+            }
+          ],
+          "scopeRevision": "2026.10.26.8",
+          "requiresScopeRecheck": false,
+          "scopeCorrections": [],
+          "stationProfiles": {
+            "beijing-s3__north19": {
+              "id": "bj19-final-eia-0",
+              "form": "地下三层岛式",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地下三层岛式。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            },
+            "beijing-f19-shangqing-south__north19": {
+              "id": "bj19-final-eia-1",
+              "form": "地下二层双岛四线",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地下二层双岛四线。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            },
+            "beijing-s250__north19": {
+              "id": "bj19-final-eia-2",
+              "form": "地下四层叠落岛式",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地下四层叠落岛式。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            },
+            "beijing-f19-xisanqi__north19": {
+              "id": "bj19-final-eia-3",
+              "form": "地下二层岛式",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地下二层岛式。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            },
+            "beijing-open18-longzexi__north19": {
+              "id": "bj19-final-eia-4",
+              "form": "地下三层岛式",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地下三层岛式。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            },
+            "beijing-f19-lifescience-south__north19": {
+              "id": "bj19-final-eia-5",
+              "form": "地下二层双岛四线",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地下二层双岛四线。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            },
+            "beijing-f19-lifegu__north19": {
+              "id": "bj19-final-eia-6",
+              "form": "地面一层双岛四线",
+              "depthM": 0.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地面一层双岛四线。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            },
+            "beijing-s96__north19": {
+              "id": "bj19-final-eia-7",
+              "form": "地下二层岛式",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf"
+              },
+              "note": "最终环评表2-1-3：地下二层岛式。显示埋深、矩形尺寸和展示车型为游戏示意；清河与清河小营桥本线土建已预留，不与对侧线路共用轨道。"
+            }
+          },
+          "additionalSources": [
+            "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202503/t20250303_4023616.htm",
+            "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202308/t20230816_3223339.html"
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -59015,6 +59358,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.26.7",
-  "contentRevisionNote": "补入原清单遗漏的R4一期北段，五站四区间及两处规划换乘；不虚构未来开放时间。"
+  "contentRevision": "2026.10.26.8",
+  "contentRevisionNote": "补齐原清单遗漏的19号线北延及清河支线；保留既有一期开放范围。"
 }
