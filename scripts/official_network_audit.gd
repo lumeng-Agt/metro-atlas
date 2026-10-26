@@ -31,6 +31,28 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 	var requirements:Array=project.get("groups",[]).duplicate()
 	requirements.append_array(project.get("existingScopes",[]))
 	requirements.append_array(project.get("closedScopes",[]))
+	# A full service snapshot is not merely a subsequence. Otherwise an
+	# appended duplicate stop or an obsolete parallel direction can pass while
+	# retaining exactly the bogus tail this audit is supposed to catch.
+	if not bool(project.get("constructionOnly",false)):
+		var complete_patterns:Dictionary={}
+		for expected in requirements:
+			if not bool(expected.get("fullServiceOrder",false)):continue
+			var key:=str(expected.get("historicalLineId",expected.id))
+			if not complete_patterns.has(key):complete_patterns[key]=[]
+			var pattern:Array=expected.get("stationNames",[]).duplicate()
+			if bool(expected.get("loop",false)) and not pattern.is_empty():pattern.append(pattern[0])
+			complete_patterns[key].append(pattern)
+			if bool(expected.get("allowReverse",false)):
+				var reversed:=pattern.duplicate();reversed.reverse();complete_patterns[key].append(reversed)
+		for route in world.get("routes",[]):
+			var key:=str(route.get("historicalLineId",""))
+			if not complete_patterns.has(key) or bool(route.get("retired",false)) or not bool(route.get("open",false)):continue
+			for direction in route.get("directions",[]):
+				# A later planning task may extend the same formal route with
+				# built-only segments. They are construction, not current stops.
+				for actual in open_service_patterns(world,route,direction):
+					if not complete_patterns[key].has(actual):errors.append("%s: active full service contains an extra, missing or incorrectly ordered stop"%key)
 	for expected in requirements:
 		if str(expected.get("scopeType",""))=="engineering":
 			var definition:Dictionary=expected.duplicate(true)
@@ -123,6 +145,20 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 		if not found:errors.append("%s: required active transfer missing"%str(required_id))
 	return errors
 
+## Extract contiguous actually-open ranges, preserving station order. A future
+## built-only extension must neither count as current operation nor hide a gap.
+static func open_service_patterns(world:Dictionary,route:Dictionary,direction:Dictionary) -> Array:
+	var ids:Array=direction.get("stationIds",[]);var statuses:Array=direction.get("serviceStatusBySegment",[])
+	var patterns:Array=[];var current:Array=[]
+	for i in range(maxi(0,ids.size()-1)):
+		var status:=str(statuses[i]) if statuses.size()==ids.size()-1 else str(route.get("serviceStatus","open"))
+		if status in ["open","trial"]:
+			if current.is_empty():current.append(str(WorldData.find_station(world,str(ids[i])).get("name","")))
+			current.append(str(WorldData.find_station(world,str(ids[i+1])).get("name","")))
+		elif not current.is_empty():patterns.append(current);current=[]
+	if not current.is_empty():patterns.append(current)
+	return patterns
+
 static func current_project_errors(world:Dictionary,project_ids:Array) -> Array[String]:
 	var targets:Dictionary=target_data()
 	var errors:Array[String]=[]
@@ -169,7 +205,9 @@ static func historical_chapter_errors(world:Dictionary,chapter_id:String,scope_o
 static func backfill_requirements(milestone:Dictionary) -> Dictionary:
 	var target:=milestone.duplicate(true)
 	for group in target.get("groups",[]):
-		if not group.has("constructionStationNames"):continue
+		if not group.has("constructionStationNames"):
+			group["fullServiceOrder"]=false
+			continue
 		var complete:Array=group.get("stationNames",[]);var section:Array=group.constructionStationNames
 		var contained:=false
 		if section.size()>=2:
@@ -177,7 +215,11 @@ static func backfill_requirements(milestone:Dictionary) -> Dictionary:
 				if complete.slice(offset,offset+section.size())==section:contained=true;break
 		if not bool(group.get("fullServiceOrder",false)) or not contained:return {"ok":false,"error":"%s: invalid independently defined backfill construction range"%str(group.get("id",""))}
 		group.stationNames=section.duplicate()
-		if section!=complete:group["loop"]=false
+		group["fullServiceOrder"]=false
+		if section!=complete:
+			group["loop"]=false
+			# Only the explicitly reviewed old construction subsection is being
+			# rechecked in this late save; legitimate later infill is retained.
 	return {"ok":true,"target":target}
 
 static func permitted_historical_stops(milestones:Array,date:String) -> Dictionary:

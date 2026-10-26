@@ -55,7 +55,7 @@
       "coordinateNote": "永顺镇地名位置；22号线永顺站按镇区走廊定位，属走廊级参考。"
     },
     {
-      "name": "运河商务区",
+      "name": "通州北关",
       "id": "beijing-s325",
       "existing": true
     },
@@ -70,7 +70,7 @@
       "coordinateNote": "芙蓉西路道路位置；车站按道路走廊定位，属走廊级参考。"
     },
     {
-      "name": "北运河东",
+      "name": "城市副中心",
       "id": "beijing-s322",
       "existing": true
     },
@@ -193,6 +193,16 @@
       "id": "beijing-s169",
       "name": "金台夕照",
       "existing": true
+    },
+    {
+      "id": "beijing-s276",
+      "name": "金台路",
+      "existing": true
+    },
+    {
+      "id": "beijing-s278",
+      "name": "大望路",
+      "existing": true
     }
   ],
   "lineGroups": [
@@ -260,6 +270,30 @@
       "alignmentPrecision": "station_areas_and_approximate_corridor",
       "precisionNote": "官方全工程22站与20站首开范围分开：本任务补两座新站及两个区间；站位复用既有换乘站区，独立建设22号线站体，不共轨。",
       "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gqrd/202504/t20250403_4055758.html"
+    },
+    {
+      "key": "hongmiao14",
+      "mapRouteId": "beijing-future-hongmiao14-infill",
+      "coverageGroupId": "beijing-line14-hongmiao-planned",
+      "historicalLineId": "beijing-line14-14",
+      "name": "14号线红庙预留站及换乘工程",
+      "color": "#D8B9B3",
+      "stationIds": [
+        "beijing-s276",
+        "beijing-s277",
+        "beijing-s278"
+      ],
+      "stationInstances": {
+        "beijing-s276": "beijing-s276__line14-14",
+        "beijing-s277": "beijing-s277",
+        "beijing-s278": "beijing-s278"
+      },
+      "constructionVariant": true,
+      "toleranceM": 100,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "stationOrderSource": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240412/4485547.html",
+      "servicePathRevision": 41,
+      "precisionNote": "2024年官方工程范围：14号线红庙及22号线换乘。保留截止日33站开放主线，另行预览未开放的补站方案，不伪造未来开放日期。"
     }
   ],
   "stationInstances": {
@@ -281,7 +315,8 @@
         "beijing-line14-14",
         "beijing-line22-22"
       ],
-      "sourceNote": "官方公布红庙为22号线与14号线换乘站。"
+      "sourceNote": "分别建设14、22号线独立站体和本项目接轨，再明确确认规划换乘；不把未来方案计入截止日开放。",
+      "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240412/4485547.html"
     },
     {
       "id": "future-transfer-bj22-guanzhuang-batong",
@@ -299,7 +334,7 @@
     },
     {
       "id": "future-transfer-bj22-yunhe-6",
-      "name": "运河商务区",
+      "name": "通州北关",
       "complexId": "beijing-s325",
       "stationInstanceIds": [
         "beijing-s325",
@@ -313,7 +348,7 @@
     },
     {
       "id": "future-transfer-bj22-beiyunhedong-6",
-      "name": "北运河东",
+      "name": "城市副中心",
       "complexId": "beijing-s322",
       "stationInstanceIds": [
         "beijing-s322",
@@ -387,10 +422,14 @@
     "sourceTitle": "北京市政府：东大桥—平谷全工程22站，红庙—平谷首开20站",
     "sourceCheckedAt": "2026-10-24",
     "sourcePublicationDate": "2026-07-29",
-    "description": "分别建设红庙—平谷20站首开段和东大桥—红庙西段，合计22座独立站体。截止日尚未开放；不把年底开通计划写成已发生事实。",
-    "contentRevision": "2026.10.24.19",
-    "contentRevisionNote": "增加北京22号线（平谷线）建设章。",
-    "scopeRevision": "2026.10.24.19",
-    "requiresScopeRecheck": true
+    "description": "首开20站、西段两站及14号线红庙配套工程分别建设。通州北关、城市副中心采用截止日前公布名称；规划成果不表示已开放。",
+    "contentRevision": "2026.10.26.6",
+    "contentRevisionNote": "北京22号线配套14号线红庙补站作为独立未开放建设方案，当前33站主线保留；应用截止日前最终站名。",
+    "scopeRevision": "2026.10.26.6",
+    "requiresScopeRecheck": true,
+    "additionalSources": [
+      "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240412/4485547.html",
+      "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html"
+    ]
   }
 }

@@ -45,6 +45,16 @@ func _run() -> void:
 		check(bool(committed.get("ok",false)),"actual separate station bodies explicitly establish their contact")
 		check(not app.history.undo().is_empty() and not app._transfer_connected(pair),"cancelled by undo, a contact leaves the physical network alone")
 		check(not app.history.redo().is_empty() and app._transfer_connected(pair),"redo restores the same explicit contact")
+		if str(pair.get("transferKind",""))=="out_of_station":
+			var stored:Dictionary=world.transferConnections.filter(func(t:Dictionary):return str(t.id)==str(pair.id))[0]
+			stored.erase("transferKind")
+			check(not app._transfer_connected(pair),"a legacy unclassified contact cannot falsely confirm an out-of-gate target")
+			var checked:Dictionary=Story.evaluate(world)
+			check(checked.issues.any(func(issue:Dictionary):return bool(issue.get("pendingConfirmation",false))),"legacy transfer type needs explicit confirmation in chapter evaluation too")
+			var upgraded:Dictionary=app._commit_transfer_connection(pair,connection,int(world.revision))
+			check(bool(upgraded.get("ok",false)) and app._transfer_connected(pair),"explicit confirmation upgrades contact metadata through the formal transaction: "+str(upgraded.get("error","")))
+			check(not app.history.undo().is_empty() and not app._transfer_connected(pair),"undo restores the old unclassified contact")
+			check(not app.history.redo().is_empty() and app._transfer_connected(pair),"redo restores the reviewed out-of-gate type")
 	for key in geometry:check(world.get(key)==geometry[key],"pedestrian contact preserves actual "+key)
 	check(world.transferConnections.filter(func(c:Dictionary):return str(c.get("transferKind",""))=="out_of_station").size()==2,"two out-of-gate contacts are stored distinctly from the paid-area 19/30 relation")
 	var corrupt:=world.duplicate(true);corrupt.transferConnections[0].transferKind="shared_running"

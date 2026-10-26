@@ -15,6 +15,7 @@ func _run() -> void:
 	# the two existing lines through the same formal commands as a player.
 	var cutoff:Dictionary=CampaignSystem.city_config("beijing").chapters.filter(func(c:Dictionary):return str(c.get("chapterScope",""))=="cutoff_reconciliation")[0]
 	var prelude:=cutoff.duplicate(true);prelude.id="fixture-existing-yizhuang-five";prelude.requiredTransfers=[];prelude.scopeCorrections=[];prelude.projectIds=[]
+	prelude.serviceTransitions=[]
 	prelude.lineGroups=prelude.lineGroups.filter(func(g:Dictionary):return str(g.historicalLineId) in ["beijing-line5-5","beijing-route-24"])
 	CampaignSystem._catalog.cities.beijing.chapters.append(prelude)
 	var world:=WorldData.new_world("beijing","campaign");world.storyState.chapterId=prelude.id;world.storyState.stage="build";app._enter(world)

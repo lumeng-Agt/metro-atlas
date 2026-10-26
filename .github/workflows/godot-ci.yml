@@ -35,7 +35,7 @@ jobs:
             $output | Write-Output
             if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Regression failed: $test" }
           }
-          foreach ($test in @('guangzhou_passage_checks.gd', 'guangzhou6_opening_checks.gd', 'guangzhou12_chigang_checks.gd', 'shanghai_line1_joining_identity_checks.gd', 'chengdu_airport_transfer_checks.gd', 'shared_running_checks.gd')) {
+          foreach ($test in @('guangzhou_passage_checks.gd', 'guangzhou6_opening_checks.gd', 'guangzhou12_chigang_checks.gd', 'shanghai_line1_joining_identity_checks.gd', 'chengdu_airport_transfer_checks.gd', 'shared_running_checks.gd', 'beijing_current_scope_checks.gd', 'beijing_hongmiao_planned_checks.gd')) {
             $data = Join-Path $env:RUNNER_TEMP ("metro-atlas-opening-" + [guid]::NewGuid().ToString("N"))
             $output = godot --headless --path . --script "res://tests/$test" -- "--data-dir=$data" 2>&1
             $code = $LASTEXITCODE
@@ -68,6 +68,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Shanghai operator interchange decoding failed" }
           python tools/test_chengdu_transfer_extraction.py
           if ($LASTEXITCODE -ne 0) { throw "Chengdu interchange and shared-running extraction failed" }
+          python tools/test_beijing_transfer_review.py
+          if ($LASTEXITCODE -ne 0) { throw "Beijing reviewed map, physical station and interchange scope failed" }
           python tools/test_gzmtr_operator_orders.py
           if ($LASTEXITCODE -ne 0) { throw "Operator station-order extraction failed" }
           python tools/validate_engineering_specs.py

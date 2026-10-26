@@ -1,0 +1,1036 @@
+{
+  "source": "https://www.bjmoa.cn/viewPhoto_343.html",
+  "mapSource": "https://www.bii.com.cn/file/2026/06/25/1782360280894.jpg",
+  "mapSha256": "d6b6b9f85caf815a58ebb4db4c11f6bc926355742806de3269981b066683b5e1",
+  "retrievedAt": "2026-10-26",
+  "mapDateNote": "6月25日是附件路径日期，不擅自视为每个对象的开放日期；通运门等后续开放另用公告。",
+  "lineIds": {
+    "3": "beijing-line3-3",
+    "4": "beijing-line4-4",
+    "5": "beijing-line5-5",
+    "6": "beijing-line6-6",
+    "7": "beijing-line7-7",
+    "8": "beijing-line8-8",
+    "9": "beijing-line9-9",
+    "10": "beijing-line10-10",
+    "11": "beijing-line11-11",
+    "12": "beijing-line12-12",
+    "13": "beijing-line13-13",
+    "14": "beijing-line14-14",
+    "15": "beijing-line15-15",
+    "16": "beijing-line16-16",
+    "17": "beijing-line17-17",
+    "18": "beijing-line18-18",
+    "19": "beijing-line19-19",
+    "1": "beijing-lineearly0",
+    "2": "beijing-lineearly1",
+    "昌平": "beijing-route-20",
+    "大兴机场": "beijing-route-21",
+    "房山": "beijing-route-22",
+    "首都机场": "beijing-route-23",
+    "亦庄": "beijing-route-24",
+    "燕房": "beijing-lineyanfang"
+  },
+  "orderEvidence": "res://data/official_evidence/beijing_operator_distance_tables_retrieved2026-10-25.json",
+  "orderCorrections": [
+    {
+      "line": "房山",
+      "source": "https://www.bjfsh.gov.cn/zhxw/fsdt/202012/t20201231_40012134.shtml",
+      "addedStations": [
+        "东管头南",
+        "首经贸",
+        "花乡东桥",
+        "白盆窑"
+      ]
+    },
+    {
+      "line": "14",
+      "source": "https://www.mtr.bj.cn/service/line/line-14.html",
+      "stationNames": [
+        "善各庄",
+        "来广营",
+        "东湖渠",
+        "望京",
+        "阜通",
+        "望京南",
+        "将台",
+        "东风北桥",
+        "枣营",
+        "朝阳公园",
+        "金台路",
+        "大望路",
+        "九龙山",
+        "平乐园",
+        "北工大西门",
+        "十里河",
+        "方庄",
+        "蒲黄榆",
+        "景泰",
+        "永定门外",
+        "北京南站",
+        "景风门",
+        "西铁营",
+        "菜户营",
+        "丽泽商务区",
+        "东管头",
+        "西局",
+        "七里庄",
+        "大井",
+        "郭庄子",
+        "大瓦窑",
+        "园博园",
+        "张郭庄"
+      ],
+      "note": "使用运营方当前站点页，不把距离表的红庙、南八里庄、陶然桥和高家园当作开放停站。"
+    }
+  ],
+  "stations": [
+    {
+      "stationName": "七里庄",
+      "lineNumbers": [
+        "14",
+        "9"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "三元桥",
+      "lineNumbers": [
+        "10",
+        "12",
+        "首都机场"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "东单",
+      "lineNumbers": [
+        "1",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "东四",
+      "lineNumbers": [
+        "5",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "东四十条",
+      "lineNumbers": [
+        "2",
+        "3"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "东坝北",
+      "lineNumbers": [
+        "12",
+        "3"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "东大桥",
+      "lineNumbers": [
+        "17",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "东直门",
+      "lineNumbers": [
+        "13",
+        "2",
+        "首都机场"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "丰台南路",
+      "lineNumbers": [
+        "16",
+        "9"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "丰台站",
+      "lineNumbers": [
+        "10",
+        "16"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "丽泽商务区",
+      "lineNumbers": [
+        "14",
+        "16"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "九龙山",
+      "lineNumbers": [
+        "14",
+        "7"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "二里沟",
+      "lineNumbers": [
+        "16",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "人民大学",
+      "lineNumbers": [
+        "12",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "光熙门",
+      "lineNumbers": [
+        "12",
+        "13"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "公主坟",
+      "lineNumbers": [
+        "10",
+        "1"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "六道口",
+      "lineNumbers": [
+        "15",
+        "昌平"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "六里桥",
+      "lineNumbers": [
+        "10",
+        "9"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "军事博物馆",
+      "lineNumbers": [
+        "1",
+        "9"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "前门",
+      "lineNumbers": [
+        "2",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "北京南站",
+      "lineNumbers": [
+        "14",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "北京西站",
+      "lineNumbers": [
+        "7",
+        "9"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "北土城",
+      "lineNumbers": [
+        "10",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "北太平庄",
+      "lineNumbers": [
+        "12",
+        "19"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "北新桥",
+      "lineNumbers": [
+        "5",
+        "首都机场"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "十里河",
+      "lineNumbers": [
+        "10",
+        "14",
+        "17"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "南锣鼓巷",
+      "lineNumbers": [
+        "6",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "双井",
+      "lineNumbers": [
+        "10",
+        "7"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "呼家楼",
+      "lineNumbers": [
+        "10",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "和平西桥",
+      "lineNumbers": [
+        "12",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "回龙观东大街",
+      "lineNumbers": [
+        "18",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "团结湖",
+      "lineNumbers": [
+        "10",
+        "3"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "国家图书馆",
+      "lineNumbers": [
+        "16",
+        "4",
+        "9"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "国贸",
+      "lineNumbers": [
+        "10",
+        "1"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "复兴门",
+      "lineNumbers": [
+        "1",
+        "2"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "大屯路东",
+      "lineNumbers": [
+        "15",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "大望路",
+      "lineNumbers": [
+        "14",
+        "1"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "大红门",
+      "lineNumbers": [
+        "10",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "大钟寺",
+      "lineNumbers": [
+        "12",
+        "13"
+      ],
+      "transferKind": "out_of_station",
+      "source": "https://news.bjd.com.cn/2024/12/16/11004457.shtml"
+    },
+    {
+      "stationName": "天通苑",
+      "lineNumbers": [
+        "18",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "天通苑东",
+      "lineNumbers": [
+        "17",
+        "18"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "太阳宫",
+      "lineNumbers": [
+        "10",
+        "17"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "奥林匹克公园",
+      "lineNumbers": [
+        "15",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "安华桥",
+      "lineNumbers": [
+        "12",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "宋家庄",
+      "lineNumbers": [
+        "10",
+        "5",
+        "亦庄"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "宣武门",
+      "lineNumbers": [
+        "2",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "崇文门",
+      "lineNumbers": [
+        "2",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "工人体育场",
+      "lineNumbers": [
+        "17",
+        "3"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "平安里",
+      "lineNumbers": [
+        "19",
+        "4",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "建国门",
+      "lineNumbers": [
+        "1",
+        "2"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "惠新西街南口",
+      "lineNumbers": [
+        "10",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "慈寿寺",
+      "lineNumbers": [
+        "10",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "新宫",
+      "lineNumbers": [
+        "19",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "景风门",
+      "lineNumbers": [
+        "14",
+        "19"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "望京",
+      "lineNumbers": [
+        "14",
+        "15"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "望京西",
+      "lineNumbers": [
+        "13",
+        "15",
+        "17"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "朝阳公园",
+      "lineNumbers": [
+        "14",
+        "3"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "朝阳门",
+      "lineNumbers": [
+        "2",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "木樨地",
+      "lineNumbers": [
+        "16",
+        "1"
+      ],
+      "transferKind": "out_of_station",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202401/t20240117_3537679.html"
+    },
+    {
+      "stationName": "朱辛庄",
+      "lineNumbers": [
+        "8",
+        "昌平"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "次渠",
+      "lineNumbers": [
+        "17",
+        "亦庄"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "永安里",
+      "lineNumbers": [
+        "17",
+        "1"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "永定门外",
+      "lineNumbers": [
+        "14",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "海淀黄庄",
+      "lineNumbers": [
+        "10",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "牡丹园",
+      "lineNumbers": [
+        "10",
+        "19"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "王府井",
+      "lineNumbers": [
+        "1",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "环球度假区",
+      "lineNumbers": [
+        "1",
+        "7"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "珠市口",
+      "lineNumbers": [
+        "7",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "白石桥南",
+      "lineNumbers": [
+        "6",
+        "9"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "知春路",
+      "lineNumbers": [
+        "10",
+        "13"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "磁器口",
+      "lineNumbers": [
+        "5",
+        "7"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "积水潭",
+      "lineNumbers": [
+        "19",
+        "2"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "立水桥",
+      "lineNumbers": [
+        "13",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "芍药居",
+      "lineNumbers": [
+        "10",
+        "13"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "花庄",
+      "lineNumbers": [
+        "1",
+        "7"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "苏州桥",
+      "lineNumbers": [
+        "12",
+        "16"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "苏州街",
+      "lineNumbers": [
+        "10",
+        "16"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "苹果园",
+      "lineNumbers": [
+        "1",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "草桥",
+      "lineNumbers": [
+        "10",
+        "19",
+        "大兴机场"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "菜市口",
+      "lineNumbers": [
+        "4",
+        "7"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "蒲黄榆",
+      "lineNumbers": [
+        "14",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "蓟门桥",
+      "lineNumbers": [
+        "12",
+        "昌平"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "西二旗",
+      "lineNumbers": [
+        "13",
+        "昌平"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "西单",
+      "lineNumbers": [
+        "1",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "西土城",
+      "lineNumbers": [
+        "10",
+        "昌平"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "西坝河",
+      "lineNumbers": [
+        "12",
+        "17"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "西局",
+      "lineNumbers": [
+        "10",
+        "14"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "西直门",
+      "lineNumbers": [
+        "13",
+        "2",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "西苑",
+      "lineNumbers": [
+        "16",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "角门西",
+      "lineNumbers": [
+        "10",
+        "4"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "车公庄",
+      "lineNumbers": [
+        "2",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "达官营",
+      "lineNumbers": [
+        "16",
+        "7"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "郭公庄",
+      "lineNumbers": [
+        "9",
+        "房山"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "金台路",
+      "lineNumbers": [
+        "14",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "金安桥",
+      "lineNumbers": [
+        "11",
+        "6"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "长春桥",
+      "lineNumbers": [
+        "10",
+        "12"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "阎村东",
+      "lineNumbers": [
+        "房山",
+        "燕房"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "雍和宫",
+      "lineNumbers": [
+        "2",
+        "5"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "霍营",
+      "lineNumbers": [
+        "13",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "马连洼",
+      "lineNumbers": [
+        "16",
+        "18"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "鼓楼大街",
+      "lineNumbers": [
+        "2",
+        "8"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "首经贸",
+      "lineNumbers": [
+        "10",
+        "房山"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "东管头南",
+      "lineNumbers": [
+        "16",
+        "房山"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    },
+    {
+      "stationName": "清河",
+      "lineNumbers": [
+        "13",
+        "昌平"
+      ],
+      "transferKind": "interchange",
+      "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+    }
+  ],
+  "scopeNote": "25项地铁服务口径；S1磁浮、西郊及亦庄T1有轨另列，不计入本轮地铁主线配对。4号线大兴线、1号线八通线分别按贯通服务处理。",
+  "reviewNote": "逐个读取运营图换乘符号。灰色标识是站内通道暂缓，不是完全无法换乘；木樨地和大钟寺保留明确出闸换乘。不同站名的龙泽西／龙泽和霍营东／霍营不伪造联系。"
+}

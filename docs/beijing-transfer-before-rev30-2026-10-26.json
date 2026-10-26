@@ -1,0 +1,227 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "beijing",
+  "operatorRetrievedAt": "2026-10-26",
+  "source": "https://www.bjmoa.cn/viewPhoto_343.html",
+  "expectedPairs": 122,
+  "matchedPairs": 99,
+  "missingPairs": [
+    {
+      "station": "七里庄",
+      "lineIds": [
+        "beijing-line14-14",
+        "beijing-line9-9"
+      ]
+    },
+    {
+      "station": "东直门",
+      "lineIds": [
+        "beijing-line13-13",
+        "beijing-lineearly1"
+      ]
+    },
+    {
+      "station": "东直门",
+      "lineIds": [
+        "beijing-line13-13",
+        "beijing-route-23"
+      ]
+    },
+    {
+      "station": "丰台站",
+      "lineIds": [
+        "beijing-line10-10",
+        "beijing-line16-16"
+      ]
+    },
+    {
+      "station": "军事博物馆",
+      "lineIds": [
+        "beijing-line9-9",
+        "beijing-lineearly0"
+      ]
+    },
+    {
+      "station": "前门",
+      "lineIds": [
+        "beijing-line8-8",
+        "beijing-lineearly1"
+      ]
+    },
+    {
+      "station": "国家图书馆",
+      "lineIds": [
+        "beijing-line16-16",
+        "beijing-line4-4"
+      ]
+    },
+    {
+      "station": "国家图书馆",
+      "lineIds": [
+        "beijing-line16-16",
+        "beijing-line9-9"
+      ]
+    },
+    {
+      "station": "大望路",
+      "lineIds": [
+        "beijing-line14-14",
+        "beijing-lineearly0"
+      ]
+    },
+    {
+      "station": "奥林匹克公园",
+      "lineIds": [
+        "beijing-line15-15",
+        "beijing-line8-8"
+      ]
+    },
+    {
+      "station": "平安里",
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-line4-4"
+      ]
+    },
+    {
+      "station": "平安里",
+      "lineIds": [
+        "beijing-line19-19",
+        "beijing-line6-6"
+      ]
+    },
+    {
+      "station": "景风门",
+      "lineIds": [
+        "beijing-line14-14",
+        "beijing-line19-19"
+      ]
+    },
+    {
+      "station": "望京西",
+      "lineIds": [
+        "beijing-line13-13",
+        "beijing-line15-15"
+      ]
+    },
+    {
+      "station": "望京西",
+      "lineIds": [
+        "beijing-line15-15",
+        "beijing-line17-17"
+      ]
+    },
+    {
+      "station": "木樨地",
+      "lineIds": [
+        "beijing-line16-16",
+        "beijing-lineearly0"
+      ]
+    },
+    {
+      "station": "草桥",
+      "lineIds": [
+        "beijing-line10-10",
+        "beijing-line19-19"
+      ]
+    },
+    {
+      "station": "草桥",
+      "lineIds": [
+        "beijing-line10-10",
+        "beijing-route-21"
+      ]
+    },
+    {
+      "station": "西单",
+      "lineIds": [
+        "beijing-line4-4",
+        "beijing-lineearly0"
+      ]
+    },
+    {
+      "station": "西坝河",
+      "lineIds": [
+        "beijing-line12-12",
+        "beijing-line17-17"
+      ]
+    },
+    {
+      "station": "西直门",
+      "lineIds": [
+        "beijing-line13-13",
+        "beijing-line4-4"
+      ]
+    },
+    {
+      "station": "西直门",
+      "lineIds": [
+        "beijing-line13-13",
+        "beijing-lineearly1"
+      ]
+    },
+    {
+      "station": "达官营",
+      "lineIds": [
+        "beijing-line16-16",
+        "beijing-line7-7"
+      ]
+    }
+  ],
+  "invalidConnections": [
+    {
+      "id": "historic-transfer-beijing-s100-line13-13-line12-12",
+      "reason": "wrong in-station/out-of-station transfer type"
+    }
+  ],
+  "nonOpenConnections": [
+    {
+      "id": "future-transfer-bj1b-zhangguozhuang-14",
+      "reason": "construction relationship has no current open service"
+    }
+  ],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "outOfScopeConstructionConnectionIds": [
+    "future-transfer-bj22-hongmiao-14",
+    "future-transfer-bj22-guanzhuang-batong",
+    "future-transfer-bj22-yunhe-6",
+    "future-transfer-bj22-beiyunhedong-6",
+    "future-transfer-bj22-dongdaqiao-6",
+    "future-transfer-bj22-dongdaqiao-17",
+    "future-transfer-bj22-jintaixizhao-10",
+    "future-transfer-bj28-dongdaqiao",
+    "future-transfer-bj28-jingguangqiao-10",
+    "future-transfer-bj28-dawanglu",
+    "future-transfer-bj28-dajiaoting-7",
+    "future-transfer-bj28-dongdaqiao-22",
+    "future-transfer-bj28-jingguangqiao-22",
+    "future-transfer-bj28-dawanglu-14",
+    "future-transfer-bj28-dongdaqiao-17",
+    "future-transfer-bj-m101-hub-line6",
+    "future-transfer-bj-m101-hub-line22",
+    "future-transfer-bj13A-车公庄-beijing-lineearly1",
+    "future-transfer-bj13A-车公庄-beijing-line6-6",
+    "future-transfer-bj13A-西直门-beijing-lineearly1",
+    "future-transfer-bj13A-西直门-beijing-line4-4",
+    "future-transfer-bj13A-大钟寺-beijing-line12-12",
+    "future-transfer-bj13A-知春路-beijing-line10-10",
+    "future-transfer-bj13A-清华东路西口-beijing-line15-15",
+    "future-transfer-bj13A-清河-beijing-route-20",
+    "future-transfer-bj13A-西二旗-beijing-route-20",
+    "future-transfer-bj13A-回龙观东大街-beijing-line8-8",
+    "future-transfer-bj13A-天通苑-beijing-line5-5",
+    "future-transfer-bj13A-天通苑东-beijing-line17-17",
+    "future-transfer-bj13B-马连洼-beijing-line16-16",
+    "future-transfer-bj13B-霍营-beijing-line8-8",
+    "future-transfer-bj13B-立水桥-beijing-line5-5",
+    "future-transfer-bj13B-望京西-beijing-line15-15",
+    "future-transfer-bj13B-望京西-beijing-line17-17",
+    "future-transfer-bj13B-芍药居-beijing-line10-10",
+    "future-transfer-bj13B-东直门-beijing-lineearly1",
+    "future-transfer-bj13B-东直门-beijing-route-23",
+    "future-transfer-bj13capacity-newlongze"
+  ],
+  "checkpointSha256": "defad90d56ba6ec2fb888401e7e5781c2b0fc8922bc8b343776ec6394d9b83c0",
+  "evidenceSha256": "a6cdd4e4b1a37c3503c81b795a398bed8ed153f3ba29ad25a825a68f91e7d612"
+}

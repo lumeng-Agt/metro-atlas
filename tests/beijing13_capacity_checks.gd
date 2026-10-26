@@ -22,6 +22,9 @@ func _run() -> void:
 	# This explicitly labelled fixture builds real old lines plus the local
 	# fragments needed by the project's interchanges. It is not full-city proof.
 	var prelude:=cutoff.duplicate(true);prelude.id="fixture-existing-beijing13-capacity";prelude.lineGroups=[];prelude.requiredTransfers=[];prelude.projectIds=[];prelude.scopeCorrections=[]
+	# These are explicitly scoped interchange fragments, not the cutoff's
+	# full Line 1/2 public-opening actions (including the complete ring).
+	prelude.serviceTransitions=[]
 	for original in cutoff.lineGroups:
 		var line:=str(original.historicalLineId)
 		if line not in ["beijing-line13-13","beijing-line18-18"] and not needed.has(line):continue

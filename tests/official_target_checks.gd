@@ -14,6 +14,13 @@ func _check(ok:bool,message:String) -> void:
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():quit(2);return
 	WorldData.load_assets()
+	var facts_world:Dictionary={"stations":[{"id":"a","name":"A"},{"id":"b","name":"B"},{"id":"c","name":"C"},{"id":"d","name":"D"}]}
+	var status_direction:Dictionary={"stationIds":["a","b","c","d"],"serviceStatusBySegment":["built","open","built"]}
+	_check(OfficialNetworkAudit.open_service_patterns(facts_world,{"serviceStatus":"mixed"},status_direction)==[["B","C"]],"future built extensions cannot masquerade as current stops")
+	status_direction.serviceStatusBySegment=["open","built","open"]
+	_check(OfficialNetworkAudit.open_service_patterns(facts_world,{"serviceStatus":"mixed"},status_direction)==[["A","B"],["C","D"]],"a built-only gap cannot be silently bridged in current service")
+	status_direction.serviceStatusBySegment=["trial","open","trial"]
+	_check(OfficialNetworkAudit.open_service_patterns(facts_world,{"serviceStatus":"mixed"},status_direction)==[["A","B","C","D"]],"a valid open/trial path remains one actual continuous service range")
 	var dated:Dictionary={"groups":[{"id":"infill","fullServiceOrder":true,"stationNames":["A","B","C","D"],"constructionStationNames":["B","C"],"requiredStationInstances":{"B":"independent-body"}}],"transfers":["explicit-pair"]}
 	var backfill:=OfficialNetworkAudit.backfill_requirements(dated)
 	_check(bool(backfill.ok) and backfill.target.groups[0].stationNames==["B","C"] and backfill.target.groups[0].requiredStationInstances.B=="independent-body" and backfill.target.transfers==["explicit-pair"],"old-save backfill checks explicit construction and retains physical body and transfer requirements")

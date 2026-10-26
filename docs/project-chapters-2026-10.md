@@ -23,7 +23,7 @@
 
 | 项目 | 终态 | 章数 | 车站 | 精度 | 来源 |
 | --- | --- | --- | --- | --- | --- |
-| 轨道交通22号线（平谷线） | 可玩建设章 | 1 | 23 | corridor_only、station_areas_and_approximate_corridor | [京冀首条跨省地铁进入空载试运行](https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202608/t20260825_4836149.html) |
+| 轨道交通22号线（平谷线） | 可玩建设章 | 1 | 26 | corridor_only、station_areas_and_approximate_corridor | [京冀首条跨省地铁进入空载试运行](https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202608/t20260825_4836149.html) |
 | M101线一期 | 可玩建设章 | 1 | 14 | corridor_only | [北京市重大项目办2026年一季度重点任务进展](https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202606/t20260611_4696243.html) |
 | 3号线一期（管庄路西口—曹各庄北） | 可玩建设章 | 1 | 6 | corridor_only | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |
 | 12号线东坝北—东坝北街段 | 可玩建设章 | 1 | 2 | corridor_only | [2026年北京市轨道交通建设计划](https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html) |

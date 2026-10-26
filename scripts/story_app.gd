@@ -787,7 +787,7 @@ func _service_transition_proposal_for_id(proposal_id:String) -> Dictionary:
 func _transfer_connected(transfer: Dictionary) -> bool:
 	if str(transfer.get("status",""))=="reserved":return TransferReservation.saved_matches(world,transfer)
 	for saved in world.get("transferConnections", []):
-		if str(saved.get("id", "")) == str(transfer.get("id", "")) and str(saved.get("status", "active")) == "active" and saved.get("stationInstanceIds", []) == transfer.get("stationInstanceIds", []) and saved.get("lineIds", []) == transfer.get("lineIds", []): return true
+		if str(saved.get("id", "")) == str(transfer.get("id", "")) and str(saved.get("status", "active")) == "active" and saved.get("stationInstanceIds", []) == transfer.get("stationInstanceIds", []) and saved.get("lineIds", []) == transfer.get("lineIds", []) and str(saved.get("transferKind","interchange"))==str(transfer.get("transferKind","interchange")): return true
 	return false
 
 func _transfer_ready(transfer: Dictionary,checked:Dictionary={}) -> bool:
@@ -951,7 +951,11 @@ func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expec
 	for index in range(candidate.transferConnections.size()):
 		var saved:Dictionary=candidate.transferConnections[index]
 		if str(saved.get("id",""))!=str(connection.id):continue
-		if str(saved.get("status","active"))=="active":return {"ok":false,"error":"同一换乘编号仍有不同的有效配对，请先核对变更；本次不会覆盖。"}
+		if str(saved.get("status","active"))=="active":
+			var same_pair:bool=saved.get("lineIds",[])==canonical_connection.lineIds and saved.get("stationInstanceIds",[])==canonical_connection.stationInstanceIds and CampaignSystem.canonical_station_complex(str(world.cityId),str(saved.get("complexId","")))==str(canonical_connection.complexId)
+			# Explicitly reconfirm a reviewed in/out-of-gate classification on
+			# exactly the same pair. Different bodies or lines remain protected.
+			if not same_pair:return {"ok":false,"error":"同一换乘编号仍有不同的有效配对，请先核对变更；本次不会覆盖。"}
 		var restored_connection:=canonical_connection.duplicate(true)
 		var previous:=saved.duplicate(true);previous.erase("previousConnection")
 		restored_connection["previousConnection"]=previous

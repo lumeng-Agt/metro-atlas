@@ -483,7 +483,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 			var linked:=false
 			for saved in world.get("transferConnections",[]):
 				if str(saved.get("id",""))!=str(transfer.get("id","")) or str(saved.get("status","active"))!="active":continue
-				if JSON.stringify(saved.get("stationInstanceIds",[]))==JSON.stringify(instance_ids) and JSON.stringify(saved.get("lineIds",[]))==JSON.stringify(line_ids):
+				if JSON.stringify(saved.get("stationInstanceIds",[]))==JSON.stringify(instance_ids) and JSON.stringify(saved.get("lineIds",[]))==JSON.stringify(line_ids) and str(saved.get("transferKind","interchange"))==str(transfer.get("transferKind","interchange")):
 					linked=true
 					break
 			if not linked:issues.append({"text":"%s：两侧独立站体和线路已就绪，请明确确认建立换乘联系。" % str(transfer.get("name","本章换乘站")),"kind":"transfer","pendingConfirmation":true,"objectId":str(transfer.get("complexId",""))})
@@ -515,9 +515,10 @@ static func _effective_service_status(world:Dictionary,line_id:String,from_stati
 	for saved in world.get("serviceRanges",[]):
 		if str(saved.get("historicalLineId",""))!=line_id:continue
 		var ids:Array=saved.get("stationIds",[])
-		var from_index:=ids.find(from_station_id)
-		if from_index<0:continue
-		if (from_index+1<ids.size() and str(ids[from_index+1])==to_station_id) or (from_index>0 and str(ids[from_index-1])==to_station_id):
+		var includes:=false
+		for index in range(maxi(0,ids.size()-1)):
+			if (str(ids[index])==from_station_id and str(ids[index+1])==to_station_id) or (str(ids[index])==to_station_id and str(ids[index+1])==from_station_id):includes=true;break
+		if includes:
 			var date:=str(saved.get("effectiveDate",""))
 			if date>=latest_date:latest_date=date;status=str(saved.get("status",fallback))
 	return status
@@ -541,17 +542,24 @@ static func _service_transition_proposal(world:Dictionary,transition:Dictionary,
 	for index in range(targets.size()):
 		if first_index+index>=group_ids.size() or str(group_ids[first_index+index])!=str(targets[index]):return {}
 	var station_ids:Array=route.get("stationOrder",[]);var directions:Array=route.get("directions",[])
-	if station_ids.size()!=group_ids.size() or directions.is_empty():return {}
+	var unique_count:=group_ids.size()-1 if group_ids.size()>2 and group_ids.front()==group_ids.back() else group_ids.size()
+	var loop_route:bool=bool(group.get("loop",false)) and station_ids.size()==unique_count+1 and station_ids.front()==station_ids.back()
+	if (station_ids.size()!=group_ids.size() and not loop_route) or directions.is_empty():return {}
+	var include_closing:bool=bool(transition.get("includeClosingSegment",false))
+	if include_closing and (not loop_route or first_index!=0 or targets.size()!=unique_count):return {}
 	var all_paths:Array=directions[0].get("edgePathsBySegment",[])
 	if all_paths.size()!=station_ids.size()-1:return {}
 	var physical_stations:=station_ids.slice(first_index,first_index+targets.size())
 	var paths:=all_paths.slice(first_index,first_index+targets.size()-1)
+	if include_closing:
+		physical_stations.append(physical_stations[0]);paths.append(all_paths[-1])
 	var names:Array[String]=[];var focus:Array=[]
 	for offset in range(targets.size()):
 		var instance_id:=station_instance_id(group,str(targets[offset]));var station:=bound_station(world,str(targets[offset]),instance_id)
 		if station.is_empty():return {}
 		names.append(str(station.get("name","车站")))
 		if focus.is_empty():focus=station.get("latlng",[])
+	if include_closing:names.append(names[0])
 	var line_id:=str(transition.get("historicalLineId",""));var status:=str(transition.get("status",""));var chapter_id:=str(chapter(world).get("id",""))
 	if status not in ["built","trial","open","suspended"]:return {}
 	var transition_id:=str(transition.get("id","%s_%d" % [line_id,transition_index]))
