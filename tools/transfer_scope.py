@@ -13,5 +13,6 @@ def is_transfer_task(chapter,city_id):
         if len(set(lines))!=len(lines) or len(set(bodies))!=len(bodies):return False
         if not all(isinstance(v,str) and v.startswith(city_id+'-') for v in lines+bodies):return False
         if not str(transfer.get('source','')).startswith('https://'):return False
+        if chapter.get('phase')=='future' and (chapter.get('requireOpen',True) or transfer.get('status')!='reserved' or transfer.get('reservationKind')!='pedestrian_passage' or not str(transfer.get('reservationEvidence','')).startswith('https://')):return False
         seen.add(identity)
     return True

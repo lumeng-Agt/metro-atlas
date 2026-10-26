@@ -1,11 +1,28 @@
 """Negative fixtures for coverage rules; not evidence of any city's completeness."""
 import copy
 import unittest
-from official_coverage import ROOT, read, check_project, cutoff_evidence_errors, inventory_evidence_errors
+from official_coverage import ROOT, read, check_project, cutoff_evidence_errors, inventory_evidence_errors, transfer_definition_errors
 from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
+    def test_planned_pedestrian_project_needs_actual_explicit_unopened_scope(self):
+        pair=dict(id='future-passage',complexId='city-station',lineIds=['city-a','city-b'],stationInstanceIds=['city-body-a','city-body-b'],status='reserved',reservationKind='pedestrian_passage',source='https://example.org/permit',reservationEvidence='https://example.org/permit')
+        target=dict(id='passage',operationType='transfer_connection',reviewStatus='verified',source='https://example.org/permit',sourcePublicationDate='2026-07-03',groups=[],reservedTransfers=[copy.deepcopy(pair)])
+        plans=[dict(cityId='city',projectIds=['passage'],phase='future',requireOpen=False,operationType='transfer_connection',lineGroups=[],source='https://example.org/permit',requiredTransfers=[copy.deepcopy(pair)])]
+        self.assertEqual(check_project(target,plans,{}),[])
+        plans[0]['requiredTransfers'][0]['status']='active'
+        self.assertTrue(check_project(target,plans,{}))
+        plans[0]['requiredTransfers']=[]
+        self.assertTrue(check_project(target,plans,{}))
+
+    def test_exit_transfer_structure_is_checked_independently(self):
+        definition=dict(id='fixture-pair',source='https://example.org/map',lineIds=['a','b'],stationInstanceIds=['platform-a','platform-b'],complexId='c',transferKind='out_of_station')
+        plans=[dict(requiredTransfers=[copy.deepcopy(definition)])]
+        self.assertEqual(transfer_definition_errors([definition],plans),[])
+        plans[0]['requiredTransfers'][0]['transferKind']='interchange'
+        self.assertTrue(any('transferKind differs' in e for e in transfer_definition_errors([definition],plans)))
+
     def test_source_roster_omission_is_a_concrete_failure(self):
         target=dict(sourceProjectInventory=[dict(projectId='omitted-infill',source='https://example.org/published-roster',sourcePublicationDate='2026-02-03')],projects=[],requiredProjectIds=[])
         self.assertTrue(any('published mandatory project missing' in e for e in inventory_evidence_errors(target,'2026-10-01')))

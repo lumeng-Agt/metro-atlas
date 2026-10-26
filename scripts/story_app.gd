@@ -691,11 +691,12 @@ func _left() -> void:
 			var transfer_title:=str(transfer.get("name","换乘站"))
 			var transfer_pair:=" ↔ ".join(transfer_line_names)
 			if str(transfer.get("status",""))=="reserved":
-				left.add_child(label("预留换乘 · "+transfer_title,18,true))
-				left.add_child(label(transfer_pair+"；保留独立站体，界外工程未完成，不计为已开放换乘。",15))
-				if _transfer_connected(transfer):left.add_child(label("已确认预留接口",16,true))
+				var passage:bool=str(transfer.get("reservationKind",""))=="pedestrian_passage"
+				left.add_child(label(("规划通道 · " if passage else "预留换乘 · ")+transfer_title,18,true))
+				left.add_child(label(transfer_pair+"；保留独立站体，工程尚未开放，不计为现状站内换乘。",15))
+				if _transfer_connected(transfer):left.add_child(label("已记录规划通道" if passage else "已确认预留接口",16,true))
 				else:
-					var reservation_button:=button("预览并确认预留接口",_preview_transfer.bind(transfer));reservation_button.disabled=not _transfer_ready(transfer,transfer_evaluation);left.add_child(reservation_button)
+					var reservation_button:=button("预览并确认规划通道" if passage else "预览并确认预留接口",_preview_transfer.bind(transfer));reservation_button.disabled=not _transfer_ready(transfer,transfer_evaluation);left.add_child(reservation_button)
 					if reservation_button.disabled:
 						for reason in TransferReservation.errors(world,transfer,Story.groups(world,true)):left.add_child(label(reason,15))
 				continue
@@ -973,7 +974,8 @@ func _preview_transfer_reservation(transfer:Dictionary) -> void:
 	var revision:=int(world.revision)
 	var connection:Dictionary=transfer.duplicate(true)
 	connection["effectiveDate"]=str(Story.chapter(world).get("date",""))
-	_confirm("确认预留换乘 · "+str(transfer.get("name","站区")),"记录两侧独立站体的规划换乘接口。界外线路尚未完成，这不会建立已开放换乘、合并站厅或接通列车轨道。确认后可撤销。",func():
+	var passage:bool=str(transfer.get("reservationKind",""))=="pedestrian_passage"
+	_confirm(("确认规划通道 · " if passage else "确认预留换乘 · ")+str(transfer.get("name","站区")),"记录两侧独立站体之间的规划联系。工程尚未开放，当前换乘方式保持原样；不会合并站厅或接通列车轨道。确认后可撤销。",func():
 		var result:=_commit_transfer_reservation(transfer,connection,revision)
 		if not bool(result.get("ok",false)):_message("预留接口未确认",str(result.get("error","请重新预览。")))
 		_refresh())
@@ -983,7 +985,7 @@ func _commit_transfer_reservation(transfer:Dictionary,connection:Dictionary,expe
 	var configured:Array=Story.chapter(world).get("requiredTransfers",[])
 	if not configured.any(func(pair:Dictionary):return pair==transfer):return {"ok":false,"error":"预留接口目标已经变化。"}
 	if not _transfer_ready(transfer):return {"ok":false,"error":"预留接口的独立站体及实际工程轨道尚未就绪。"}
-	for key in ["id","complexId","lineIds","stationInstanceIds","status","reservationEvidence","source"]:
+	for key in ["id","complexId","lineIds","stationInstanceIds","status","reservationEvidence","source","reservationKind"]:
 		if connection.get(key)!=transfer.get(key):return {"ok":false,"error":"预留接口草稿与当前来源或配对不一致。"}
 	if _transfer_connected(transfer):return {"ok":false,"error":"这处预留换乘已确认。"}
 	for saved in world.get("transferConnections",[]):

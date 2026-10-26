@@ -102,7 +102,7 @@ def main() -> int:
             if str(plan.get("exactAlignment", "")) not in {"station_areas", "corridor_only", "verified_alignment"}:
                 continue
             groups = plan.get("lineGroups", [])
-            if not isinstance(groups, list) or not groups:
+            if not isinstance(groups, list) or (not groups and not is_transfer_task(plan,city_id)):
                 continue
             groups_ready = True
             for group in groups:

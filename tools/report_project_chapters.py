@@ -74,6 +74,9 @@ def render(baseline: dict, campaigns: dict) -> str:
                     if group.get("alignmentPrecision"):
                         precisions.add(str(group["alignmentPrecision"]))
             precision = "、".join(sorted(precisions)) if precisions else "—"
+            if related and all(p.get('operationType')=='transfer_connection' and not p.get('lineGroups') for p in related):
+                station_count='复用站体；'+str(sum(len(p.get('requiredTransfers',[])) for p in related))+'组规划通道'
+                precision='通道关系示意'
             source = project.get("source", "")
             src = f"[{project.get('sourceTitle') or '来源'}]({source})" if source else "—"
             lines.append(

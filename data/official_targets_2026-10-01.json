@@ -2128,7 +2128,8 @@
         "sh-line13-west-east",
         "sh-line12-west",
         "sh-line22-chongming",
-        "sh-line18-jiangyang-reserved"
+        "sh-line18-jiangyang-reserved",
+        "sh-nanjingwest-paid-passage"
       ],
       "historicalMilestones": [
         {
@@ -4238,6 +4239,81 @@
             }
           ],
           "transfers": []
+        },
+        {
+          "id": "sh-nanjingwest-paid-passage",
+          "reviewStatus": "verified",
+          "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+          "sourcePublicationDate": "2026-07-03",
+          "sourceCheckedAt": "2026-10-26",
+          "constructionOnly": true,
+          "operationType": "transfer_connection",
+          "groups": [],
+          "transfers": [],
+          "transferReviewStatus": "verified",
+          "reservedTransfers": [
+            {
+              "id": "planned-nanjingwest-passage-shanghai-line2-2-shanghai-line12-12",
+              "name": "南京西路三线通道",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line12-12"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s304",
+                "shanghai-s242"
+              ],
+              "status": "reserved",
+              "reservationKind": "pedestrian_passage",
+              "transferKind": "interchange",
+              "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "reservationEvidence": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "precision": "schematic",
+              "sourceNote": "2026年7月正式规划许可涉及2、12、13号线，玩家确认规划通道；不把尚未开放的工程写成截止日站内换乘，不新建或共用列车轨道。"
+            },
+            {
+              "id": "planned-nanjingwest-passage-shanghai-line2-2-shanghai-line13-13",
+              "name": "南京西路三线通道",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line13-13"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s304",
+                "shanghai-s175"
+              ],
+              "status": "reserved",
+              "reservationKind": "pedestrian_passage",
+              "transferKind": "interchange",
+              "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "reservationEvidence": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "precision": "schematic",
+              "sourceNote": "2026年7月正式规划许可涉及2、12、13号线，玩家确认规划通道；不把尚未开放的工程写成截止日站内换乘，不新建或共用列车轨道。"
+            },
+            {
+              "id": "planned-nanjingwest-passage-shanghai-line12-12-shanghai-line13-13",
+              "name": "南京西路三线通道",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line13-13"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s242",
+                "shanghai-s175"
+              ],
+              "status": "reserved",
+              "reservationKind": "pedestrian_passage",
+              "transferKind": "interchange",
+              "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "reservationEvidence": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "precision": "schematic",
+              "sourceNote": "2026年7月正式规划许可涉及2、12、13号线，玩家确认规划通道；不把尚未开放的工程写成截止日站内换乘，不新建或共用列车轨道。"
+            }
+          ],
+          "note": "独立转录规划许可的三线衔接范围，未公开通道施工中心线不虚构。三线独立站体保留，规划联系不代替现状出站换乘。"
         }
       ],
       "cutoffNetwork": {
@@ -5182,7 +5258,99 @@
           "sh-cutoff-xfer-shanghai-s232-shanghai-line18-18-shanghai-line7-7",
           "historic-transfer-shanghai-s232-line7-7-line2-2"
         ],
-        "transferEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+        "transferEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+        "transferDefinitions": [
+          {
+            "id": "sh-cutoff-xfer-shanghai-s115-shanghai-line1-shanghai-line3-3",
+            "name": "上海火车站",
+            "complexId": "shanghai-s115",
+            "lineIds": [
+              "shanghai-line1",
+              "shanghai-line3-3"
+            ],
+            "stationInstanceIds": [
+              "shanghai-s115",
+              "shanghai-s46__line3-3"
+            ],
+            "precision": "schematic",
+            "source": "https://www.shanghai.gov.cn/xbhygq/20231206/646ef8c98d8b4b0995177dd8c71d595c.html",
+            "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+            "sourceNote": "上海城市出行码官方说明明确1号线与3/4号线需要出站换乘；铁路直联免安检不是地铁付费区贯通。",
+            "transferKind": "out_of_station"
+          },
+          {
+            "id": "sh-cutoff-xfer-shanghai-s115-shanghai-line1-shanghai-line4-4",
+            "name": "上海火车站",
+            "complexId": "shanghai-s115",
+            "lineIds": [
+              "shanghai-line1",
+              "shanghai-line4-4"
+            ],
+            "stationInstanceIds": [
+              "shanghai-s115",
+              "shanghai-s46__line4-4"
+            ],
+            "precision": "schematic",
+            "source": "https://www.shanghai.gov.cn/xbhygq/20231206/646ef8c98d8b4b0995177dd8c71d595c.html",
+            "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+            "sourceNote": "上海城市出行码官方说明明确1号线与3/4号线需要出站换乘；铁路直联免安检不是地铁付费区贯通。",
+            "transferKind": "out_of_station"
+          },
+          {
+            "id": "sh-cutoff-xfer-shanghai-s242-shanghai-line12-12-shanghai-line13-13",
+            "name": "南京西路",
+            "complexId": "shanghai-s242",
+            "lineIds": [
+              "shanghai-line12-12",
+              "shanghai-line13-13"
+            ],
+            "stationInstanceIds": [
+              "shanghai-s242",
+              "shanghai-s175"
+            ],
+            "precision": "schematic",
+            "source": "https://www.shanghai.gov.cn/shanghai/newshanghai/shgl2025.pdf",
+            "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+            "sourceNote": "官方网络图的出站换乘标记；既有独立站体保留。新通道尚未开放，不能提前改成站内换乘。",
+            "transferKind": "out_of_station"
+          },
+          {
+            "id": "sh-cutoff-xfer-shanghai-s242-shanghai-line12-12-shanghai-line2-2",
+            "name": "南京西路",
+            "complexId": "shanghai-s242",
+            "lineIds": [
+              "shanghai-line12-12",
+              "shanghai-line2-2"
+            ],
+            "stationInstanceIds": [
+              "shanghai-s242",
+              "shanghai-s304"
+            ],
+            "precision": "schematic",
+            "source": "https://www.shanghai.gov.cn/shanghai/newshanghai/shgl2025.pdf",
+            "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+            "sourceNote": "官方网络图的出站换乘标记；既有独立站体保留。新通道尚未开放，不能提前改成站内换乘。",
+            "transferKind": "out_of_station"
+          },
+          {
+            "id": "sh-cutoff-xfer-shanghai-s175-shanghai-line13-13-shanghai-line2-2",
+            "name": "南京西路",
+            "complexId": "shanghai-s242",
+            "lineIds": [
+              "shanghai-line13-13",
+              "shanghai-line2-2"
+            ],
+            "stationInstanceIds": [
+              "shanghai-s175",
+              "shanghai-s304"
+            ],
+            "precision": "schematic",
+            "source": "https://www.shanghai.gov.cn/shanghai/newshanghai/shgl2025.pdf",
+            "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+            "sourceNote": "官方网络图的出站换乘标记；既有独立站体保留。新通道尚未开放，不能提前改成站内换乘。",
+            "transferKind": "out_of_station"
+          }
+        ]
       }
     },
     "beijing": {

@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import json
 from engineering_scope import definition_errors as engineering_definition_errors
+from transfer_scope import is_transfer_task
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -41,7 +42,7 @@ def playable_future_project_ids(campaign: dict[str, Any], city: dict[str, Any]) 
             continue
         project_ids = plan.get("projectIds", [])
         groups = plan.get("lineGroups", [])
-        if not isinstance(project_ids, list) or not project_ids or not isinstance(groups, list) or not groups:
+        if not isinstance(project_ids, list) or not project_ids or not isinstance(groups, list) or (not groups and not is_transfer_task(plan,str(city.get('id','')))):
             continue
         ready = True
         for group in groups:

@@ -83,6 +83,9 @@ func _run() -> void:
 		var heading:=ReferenceAlignment.heading("beijing-airport-wangjingnan",[source],39.9,"beijing-route-23")
 		check(heading>=0,"line-specific reference identity yields a real heading")
 	var reference:=ReferenceAlignment.between("beijing-s174","beijing-airport-wangjingnan")
+	var legacy_terminal:={"historicalId":"beijing-s174","stationInstanceId":"beijing-s174__line23"}
+	check(ReferenceAlignment.for_stations(legacy_terminal,airport).get("id")==reference.get("id"),"manual linking resolves a mixed legacy terminal and new geographic reference")
+	check(ReferenceAlignment.for_stations(airport,legacy_terminal).get("points",[]).front()==reference.points.back(),"manual reverse linking retains exactly the reversed reference geometry")
 	var length:=0.0
 	# Compare reference geography directly, independent of the displayed label.
 	length=0

@@ -62,9 +62,19 @@ static func between(a:String,b:String) -> Dictionary:
 static func for_stations(a:Dictionary,b:Dictionary) -> Dictionary:
 	# A physical station's geographic reference can differ from the shared
 	# complex centre, notably an elevated infill next to an underground line.
-	var ref:=between(str(a.get("referenceId",a.get("stationInstanceId",""))),str(b.get("referenceId",b.get("stationInstanceId",""))))
-	if ref.is_empty():ref=between(str(a.get("historicalId","")),str(b.get("historicalId","")))
-	return ref
+	var starts:Array=[];var finishes:Array=[]
+	for key in ["referenceId","stationInstanceId","historicalId"]:
+		var start:=str(a.get(key,""));var finish:=str(b.get(key,""))
+		if not start.is_empty() and not starts.has(start):starts.append(start)
+		if not finish.is_empty() and not finishes.has(finish):finishes.append(finish)
+	# Old saves lack referenceId. Resolve each endpoint separately so an old
+	# terminal and a new line-specific infill still use the same source as the
+	# assisted builder, rather than falling back to a free-hand curve.
+	for start in starts:
+		for finish in finishes:
+			var ref:=between(str(start),str(finish))
+			if not ref.is_empty():return ref
+	return {}
 
 static func heading(target_id:String,groups:Array,ref_lat:float,line_id:String="") -> float:
 	for group in groups:

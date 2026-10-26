@@ -12,6 +12,7 @@ static func errors(world:Dictionary,pair:Dictionary,engineering_groups:Array=[])
 	var lines:Array=pair.get("lineIds",[]);var instances:Array=pair.get("stationInstanceIds",[])
 	if str(pair.get("status",""))!="reserved" or lines.size()!=2 or instances.size()!=2 or lines[0]==lines[1] or instances[0]==instances[1]:return ["预留换乘必须对应两条线路的两个独立站体。"]
 	if not str(pair.get("source","")).begins_with("https://") or not str(pair.get("reservationEvidence","")).begins_with("https://"):return ["预留换乘缺少明确的规划依据。"]
+	if str(pair.get("reservationKind","")) not in ["","pedestrian_passage"]:return ["规划联系的工程类型无效。"]
 	var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(pair.get("complexId","")))
 	var latitude:=float(WorldData.city(str(world.get("cityId",""))).get("center",[0])[0])
 	var path_index:=TrackNetwork.build_path_index(world,latitude)
@@ -37,5 +38,5 @@ static func errors(world:Dictionary,pair:Dictionary,engineering_groups:Array=[])
 static func saved_matches(world:Dictionary,pair:Dictionary) -> bool:
 	for connection in world.get("transferConnections",[]):
 		if str(connection.get("id",""))!=str(pair.get("id","")) or str(connection.get("status",""))!="reserved":continue
-		if connection.get("lineIds",[])==pair.get("lineIds",[]) and connection.get("stationInstanceIds",[])==pair.get("stationInstanceIds",[]) and str(connection.get("reservationEvidence",""))==str(pair.get("reservationEvidence","")):return true
+		if connection.get("lineIds",[])==pair.get("lineIds",[]) and connection.get("stationInstanceIds",[])==pair.get("stationInstanceIds",[]) and str(connection.get("reservationEvidence",""))==str(pair.get("reservationEvidence","")) and str(connection.get("source",""))==str(pair.get("source","")) and str(connection.get("complexId",""))==str(pair.get("complexId","")) and str(connection.get("reservationKind",""))==str(pair.get("reservationKind","")):return true
 	return false

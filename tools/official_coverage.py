@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from engineering_scope import coverage_errors as engineering_coverage_errors
+from transfer_scope import is_transfer_task
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET_PATH = ROOT / 'data/official_targets_2026-10-01.json'
@@ -30,8 +31,11 @@ def check_project(target, plans, names, *, historical_construction=False):
     if not matched:
         return errors + ['required project has no playable task']
     groups = [g for p in matched for g in p.get('lineGroups', [])]
+    errors.extend(transfer_definition_errors(target.get('transferDefinitions',[]),matched))
     wanted_groups = target.get('groups', [])
-    if not wanted_groups:
+    passage=(target.get('operationType')=='transfer_connection' and target.get('reservedTransfers') and
+             all(is_transfer_task(plan,str(plan.get('cityId',''))) for plan in matched))
+    if not wanted_groups and not passage:
         errors.append('independent construction requirements missing')
     for expected in wanted_groups:
         group_id = expected['id']
@@ -84,8 +88,20 @@ def check_project(target, plans, names, *, historical_construction=False):
             errors.append(f"{reserved.get('id')}: planned interface misrepresented as open interchange")
         if not str(reserved.get('source','')).startswith('https://') or not str(reserved.get('reservationEvidence','')).startswith('https://'):
             errors.append(f"{reserved.get('id')}: independent reservation evidence missing")
-        for field in ('lineIds','stationInstanceIds','complexId','reservationEvidence','source'):
+        for field in ('lineIds','stationInstanceIds','complexId','reservationEvidence','source','reservationKind'):
             if pair.get(field)!=reserved.get(field):errors.append(f"{reserved.get('id')}: reserved interface {field} differs")
+    return errors
+
+
+def transfer_definition_errors(definitions,plans):
+    errors=[]
+    for expected in definitions:
+        identity=expected.get('id')
+        pairs=[p for plan in plans for p in plan.get('requiredTransfers',[]) if p.get('id')==identity]
+        if not identity or len(pairs)!=1 or not str(expected.get('source','')).startswith('https://'):
+            errors.append(f'{identity}: independent transfer structure missing or duplicated');continue
+        for field,default in [('lineIds',[]),('stationInstanceIds',[]),('complexId',''),('transferKind','interchange')]:
+            if pairs[0].get(field,default)!=expected.get(field,default):errors.append(f'{identity}: documented transfer {field} differs')
     return errors
 
 
@@ -161,6 +177,9 @@ def audit(campaigns=None, cities=None, targets=None):
         if not target.get('historicalMilestones'):
             errors.append('independent milestone requirements missing')
         errors.extend(cutoff_evidence_errors(target.get('cutoffNetwork', {}), targets.get('cutoffDate', '2026-10-01')))
+        cutoff=target.get('cutoffNetwork',{})
+        cutoff_plans=[p for p in campaign.get('chapters',[]) if p.get('id')==cutoff.get('chapterId')]
+        errors.extend(transfer_definition_errors(cutoff.get('transferDefinitions',[]),cutoff_plans))
         names = {s['id']: s['name'] for s in city_data[city_id]['stations']}
         projects = []
         for project in target.get('projects', []):

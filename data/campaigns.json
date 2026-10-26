@@ -11277,9 +11277,10 @@
                 "shanghai-s46__line3-3"
               ],
               "precision": "schematic",
-              "source": "https://service.shmetro.com/czxx/index.htm",
+              "source": "https://www.shanghai.gov.cn/xbhygq/20231206/646ef8c98d8b4b0995177dd8c71d595c.html",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+              "sourceNote": "上海城市出行码官方说明明确1号线与3/4号线需要出站换乘；铁路直联免安检不是地铁付费区贯通。",
+              "transferKind": "out_of_station"
             },
             {
               "id": "sh-cutoff-xfer-shanghai-s115-shanghai-line1-shanghai-line4-4",
@@ -11294,9 +11295,10 @@
                 "shanghai-s46__line4-4"
               ],
               "precision": "schematic",
-              "source": "https://service.shmetro.com/czxx/index.htm",
+              "source": "https://www.shanghai.gov.cn/xbhygq/20231206/646ef8c98d8b4b0995177dd8c71d595c.html",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+              "sourceNote": "上海城市出行码官方说明明确1号线与3/4号线需要出站换乘；铁路直联免安检不是地铁付费区贯通。",
+              "transferKind": "out_of_station"
             },
             {
               "id": "historic-transfer-shanghai-s46-line3-3-line4-4",
@@ -11719,9 +11721,10 @@
                 "shanghai-s175"
               ],
               "precision": "schematic",
-              "source": "https://service.shmetro.com/czxx/index.htm",
+              "source": "https://www.shanghai.gov.cn/shanghai/newshanghai/shgl2025.pdf",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+              "sourceNote": "官方网络图的出站换乘标记；既有独立站体保留。新通道尚未开放，不能提前改成站内换乘。",
+              "transferKind": "out_of_station"
             },
             {
               "id": "sh-cutoff-xfer-shanghai-s242-shanghai-line12-12-shanghai-line2-2",
@@ -11736,9 +11739,10 @@
                 "shanghai-s304"
               ],
               "precision": "schematic",
-              "source": "https://service.shmetro.com/czxx/index.htm",
+              "source": "https://www.shanghai.gov.cn/shanghai/newshanghai/shgl2025.pdf",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+              "sourceNote": "官方网络图的出站换乘标记；既有独立站体保留。新通道尚未开放，不能提前改成站内换乘。",
+              "transferKind": "out_of_station"
             },
             {
               "id": "sh-cutoff-xfer-shanghai-s175-shanghai-line13-13-shanghai-line2-2",
@@ -11753,9 +11757,10 @@
                 "shanghai-s304"
               ],
               "precision": "schematic",
-              "source": "https://service.shmetro.com/czxx/index.htm",
+              "source": "https://www.shanghai.gov.cn/shanghai/newshanghai/shgl2025.pdf",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+              "sourceNote": "官方网络图的出站换乘标记；既有独立站体保留。新通道尚未开放，不能提前改成站内换乘。",
+              "transferKind": "out_of_station"
             },
             {
               "id": "sh-cutoff-xfer-shanghai-s107-shanghai-line1-shanghai-line18-18",
@@ -13391,7 +13396,7 @@
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.26.3",
+          "scopeRevision": "2026.10.26.10",
           "requiresScopeRecheck": true,
           "currentAction": "核对上海地铁各线站序、独立站体及支线；不把花桥换乘的苏州线路当作上海11号线。",
           "scopeCorrections": [
@@ -14901,6 +14906,120 @@
           "scopeCorrections": [],
           "requireOpen": false,
           "serviceStatusSchema": 2
+        },
+        {
+          "id": "sh-nanjingwest-passage-build",
+          "cityId": "shanghai",
+          "projectIds": [
+            "sh-nanjingwest-paid-passage"
+          ],
+          "phase": "future",
+          "date": "2026-10-01",
+          "title": "南京西路：三线换乘通道建设篇",
+          "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+          "sourceTitle": "静安区完成全市首个轨道交通类“两证合一”审批",
+          "sourcePublicationDate": "2026-07-03",
+          "sourceCheckedAt": "2026-10-26",
+          "sourceType": "municipal_planning_approval",
+          "status": "approved",
+          "projectType": "approved_project",
+          "required": true,
+          "requireOpen": false,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "station_areas",
+          "lineGroups": [],
+          "requiredTransfers": [
+            {
+              "id": "planned-nanjingwest-passage-shanghai-line2-2-shanghai-line12-12",
+              "name": "南京西路三线通道",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line12-12"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s304",
+                "shanghai-s242"
+              ],
+              "status": "reserved",
+              "reservationKind": "pedestrian_passage",
+              "transferKind": "interchange",
+              "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "reservationEvidence": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "precision": "schematic",
+              "sourceNote": "2026年7月正式规划许可涉及2、12、13号线，玩家确认规划通道；不把尚未开放的工程写成截止日站内换乘，不新建或共用列车轨道。"
+            },
+            {
+              "id": "planned-nanjingwest-passage-shanghai-line2-2-shanghai-line13-13",
+              "name": "南京西路三线通道",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line2-2",
+                "shanghai-line13-13"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s304",
+                "shanghai-s175"
+              ],
+              "status": "reserved",
+              "reservationKind": "pedestrian_passage",
+              "transferKind": "interchange",
+              "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "reservationEvidence": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "precision": "schematic",
+              "sourceNote": "2026年7月正式规划许可涉及2、12、13号线，玩家确认规划通道；不把尚未开放的工程写成截止日站内换乘，不新建或共用列车轨道。"
+            },
+            {
+              "id": "planned-nanjingwest-passage-shanghai-line12-12-shanghai-line13-13",
+              "name": "南京西路三线通道",
+              "complexId": "shanghai-s242",
+              "lineIds": [
+                "shanghai-line12-12",
+                "shanghai-line13-13"
+              ],
+              "stationInstanceIds": [
+                "shanghai-s242",
+                "shanghai-s175"
+              ],
+              "status": "reserved",
+              "reservationKind": "pedestrian_passage",
+              "transferKind": "interchange",
+              "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "reservationEvidence": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+              "precision": "schematic",
+              "sourceNote": "2026年7月正式规划许可涉及2、12、13号线，玩家确认规划通道；不把尚未开放的工程写成截止日站内换乘，不新建或共用列车轨道。"
+            }
+          ],
+          "operationType": "transfer_connection",
+          "eventOnly": false,
+          "scopeRevision": "2026.10.26.10",
+          "requiresScopeRecheck": true,
+          "geometryStatus": "existing_station_bodies_planned_pedestrian_links",
+          "precision": "schematic",
+          "description": "比较南京西路既有三线出站换乘与已批准的站内通道工程；分别查看三个线路站体，预览并确认规划通道。工程确认只表示方案建设完成，不改变截止日开放状态。",
+          "operationGuide": "逐一预览并确认规划通道；三座站体复用，不新增车站、共用站厅或连接列车轨道。",
+          "story": {
+            "opening": "南京西路的三条线路已形成出站换乘，新的站内通道工程在2026年获得规划许可。",
+            "purpose": "复用三线既有独立站体，明确建立三组规划通道关系；保留当前出站换乘。",
+            "outcome": "规划通道连接关系已记录；实际开放时间没有在本章虚构。",
+            "eventKind": "planned_pedestrian_passage",
+            "planVersions": [],
+            "steps": [
+              {
+                "id": "inspect",
+                "action": "read_context"
+              },
+              {
+                "id": "passage",
+                "action": "establish_transfer"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              }
+            ],
+            "beats": []
+          }
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -28558,7 +28677,7 @@
           "date": "2026-10-01",
           "status": "approved",
           "sourceType": "official_infill_project",
-          "projectType": "approved",
+          "projectType": "approved_project",
           "required": true,
           "requireOpen": false,
           "serviceStatusSchema": 2,
@@ -59638,6 +59757,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.26.9",
-  "contentRevisionNote": "补齐三项截止日前已公开的加站工程；不覆盖现状服务，不编造未来开放日期。"
+  "contentRevision": "2026.10.26.10",
+  "contentRevisionNote": "区分上海既有出站换乘与南京西路已批未开放通道；不将规划通道当作列车轨道或现状站内联系。"
 }

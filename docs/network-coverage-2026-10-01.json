@@ -155,10 +155,25 @@
           "status": "已建但暂未开放",
           "note": "范围、任务与独立审核结果分别记录；不以分类豁免必做建设。",
           "playableTaskStatus": "playable"
+        },
+        {
+          "id": "sh-nanjingwest-paid-passage",
+          "name": "南京西路站三线换乘通道",
+          "projectType": "approved_project",
+          "status": "2026年取得规划许可",
+          "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+          "sourceTitle": "静安区完成全市首个轨道交通类“两证合一”审批",
+          "sourceCheckedAt": "2026-10-26",
+          "statusAtCutoff": "已批准，未记作已开放",
+          "playabilityStatus": "playable_build_task",
+          "playablePlanId": "sh-nanjingwest-passage-build",
+          "playabilityNote": "三组明确的规划通道操作，复用独立站体，不生成假铺轨。",
+          "note": "比较南京西路既有三线出站换乘与已批准的站内通道工程；分别查看三个线路站体，预览并确认规划通道。工程确认只表示方案建设完成，不改变截止日开放状态。",
+          "playableTaskStatus": "playable"
         }
       ],
-      "projectInventoryCount": 10,
-      "playableProjectCount": 10,
+      "projectInventoryCount": 11,
+      "playableProjectCount": 11,
       "pendingPlayableProjectCount": 0,
       "policyProjectCount": 0,
       "engineeringProjectCount": 0,
@@ -172,7 +187,8 @@
         "sh-line20-phase1",
         "sh-line21",
         "sh-line22-chongming",
-        "sh-line23-phase1"
+        "sh-line23-phase1",
+        "sh-nanjingwest-paid-passage"
       ],
       "documentedMilestones": [
         {
@@ -32954,6 +32970,7 @@
           "projectType": "approved_and_under_construction",
           "status": "截止日前已公开实施范围",
           "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+          "sourceTitle": "亦庄线台湖车辆段加站",
           "sourceCheckedAt": "2026-10-26",
           "statusAtCutoff": "已批在建",
           "note": "从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。",
@@ -32963,9 +32980,10 @@
         {
           "id": "bj-line15-guozhan-infill",
           "name": "15号线新国展二期加站",
-          "projectType": "approved",
+          "projectType": "approved_project",
           "status": "截止日前已公开实施范围",
           "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+          "sourceTitle": "15号线新国展二期加站",
           "sourceCheckedAt": "2026-10-26",
           "statusAtCutoff": "已批准",
           "note": "在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。",
@@ -32978,6 +32996,7 @@
           "projectType": "approved_and_under_construction",
           "status": "截止日前已公开实施范围",
           "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+          "sourceTitle": "首都机场线望京南加站与天桥换乘",
           "sourceCheckedAt": "2026-10-26",
           "statusAtCutoff": "已批在建",
           "note": "沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。",

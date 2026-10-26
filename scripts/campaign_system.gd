@@ -41,6 +41,13 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 	for evidence in cutoff.get("temporalEvidence",[]):
 		if str(evidence.get("source","")).is_empty() or str(evidence.get("effectiveDate","")).is_empty() or str(evidence.get("effectiveDate",""))>str(parsed.get("cutoffDate","2026-10-01")):reasons.append("截止日证据缺失或包含后期开通。")
 	var campaign:=city_config(city_id)
+	var cutoff_plans:Array=campaign.get("chapters",[]).filter(func(plan:Dictionary):return str(plan.get("id",""))==str(cutoff.get("chapterId","")))
+	for definition in cutoff.get("transferDefinitions",[]):
+		var pairs:Array=[]
+		for plan in cutoff_plans:
+			pairs.append_array(plan.get("requiredTransfers",[]).filter(func(pair:Dictionary):return str(pair.get("id",""))==str(definition.get("id",""))))
+		if pairs.size()!=1 or str(definition.get("id","")).is_empty() or not str(definition.get("source","")).begins_with("https://"):reasons.append("独立换乘结构缺失或重复。");continue
+		if pairs[0].get("lineIds",[])!=definition.get("lineIds",[]) or pairs[0].get("stationInstanceIds",[])!=definition.get("stationInstanceIds",[]) or str(pairs[0].get("complexId",""))!=str(definition.get("complexId","")) or str(pairs[0].get("transferKind","interchange"))!=str(definition.get("transferKind","interchange")):reasons.append("%s的站内／出站换乘结构与独立证据不符。"%str(definition.get("name","换乘站")))
 	var requirements:Array=target.get("projects",[])
 	reasons.append_array(published_inventory_errors(target,str(parsed.get("cutoffDate","2026-10-01"))))
 	for project_id in target.get("requiredProjectIds",[]):
@@ -51,13 +58,14 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 		if str(requirement.get("reviewStatus",""))!="verified" or str(requirement.get("source",""))=="" or str(requirement.get("sourcePublicationDate",""))=="":reasons.append("项目%s的官方范围尚未核对。" % project_id)
 		if str(requirement.get("transferReviewStatus","verified"))!="verified":reasons.append("项目%s的完整换乘范围尚未核对。" % project_id)
 		var matching:Array=campaign.get("futurePlans",[]).filter(func(p:Dictionary):return p.get("projectIds",[]).has(project_id))
-		if matching.is_empty() or requirement.get("groups",[]).is_empty():reasons.append("项目%s缺少可玩建设目标。" % project_id)
+		var passage:bool=str(requirement.get("operationType",""))=="transfer_connection" and not requirement.get("reservedTransfers",[]).is_empty() and matching.all(func(plan:Dictionary):return pedestrian_reservation_task(plan,city_id))
+		if matching.is_empty() or (requirement.get("groups",[]).is_empty() and not passage):reasons.append("项目%s缺少可玩建设目标。" % project_id)
 		var actual_groups:Array=[]
 		for plan in matching:actual_groups.append_array(plan.get("lineGroups",[]))
 		for required_transfer in requirement.get("transfers",[]):
 			if not matching.any(func(plan:Dictionary):return plan.get("requiredTransfers",[]).any(func(relation:Dictionary):return str(relation.get("id",""))==str(required_transfer))):reasons.append("项目%s缺少必要换乘目标。" % project_id)
 		for reserved in requirement.get("reservedTransfers",[]):
-			var reservation_found:bool=matching.any(func(plan:Dictionary):return not bool(plan.get("requireOpen",true)) and plan.get("requiredTransfers",[]).any(func(relation:Dictionary):return relation.get("status")=="reserved" and relation.get("id")==reserved.get("id") and relation.get("lineIds")==reserved.get("lineIds") and relation.get("stationInstanceIds")==reserved.get("stationInstanceIds") and relation.get("reservationEvidence")==reserved.get("reservationEvidence") and not str(relation.get("reservationEvidence","")).is_empty()))
+			var reservation_found:bool=matching.any(func(plan:Dictionary):return not bool(plan.get("requireOpen",true)) and plan.get("requiredTransfers",[]).any(func(relation:Dictionary):return relation.get("status")=="reserved" and relation.get("id")==reserved.get("id") and relation.get("lineIds")==reserved.get("lineIds") and relation.get("stationInstanceIds")==reserved.get("stationInstanceIds") and relation.get("reservationEvidence")==reserved.get("reservationEvidence") and relation.get("reservationKind")==reserved.get("reservationKind") and relation.get("source")==reserved.get("source") and not str(relation.get("reservationEvidence","")).is_empty()))
 			if not reservation_found:reasons.append("项目%s缺少明确的预留换乘接口，或误记为已经开放。"%project_id)
 		for expected in requirement.get("groups",[]):
 			var matching_groups:Array=actual_groups.filter(func(g:Dictionary):return str(g.get("coverageGroupId",g.get("historicalLineId","")))==str(expected.get("id","")))
@@ -351,7 +359,8 @@ static func future_data_ready(plan: Dictionary, city_data: Dictionary = {}) -> b
 	if str(plan.get("dataStatus", "not_digitized")) != "blueprint_ready": return false
 	if str(plan.get("exactAlignment", "not_available")) not in ["station_areas", "corridor_only","verified_alignment"]: return false
 	var groups: Variant = plan.get("lineGroups", [])
-	if not groups is Array or groups.is_empty(): return false
+	if not groups is Array:return false
+	if groups.is_empty():return pedestrian_reservation_task(plan,str(city_data.get("id",plan.get("cityId",""))))
 	var known_stations: Dictionary = {}
 	if not city_data.is_empty():
 		for station in city_data.get("stations", []): known_stations[str(station.get("id", ""))] = true
@@ -372,6 +381,18 @@ static func future_data_ready(plan: Dictionary, city_data: Dictionary = {}) -> b
 		if str(plan.get("exactAlignment",""))=="verified_alignment" and group_value.get("alignment",[]).size()<2:return false
 		for station_id in station_ids:
 			if not known_stations.is_empty() and not known_stations.has(str(station_id)): return false
+	return true
+
+static func pedestrian_reservation_task(plan:Dictionary,city_id:String) -> bool:
+	if city_id.is_empty() or not plan.get("lineGroups",[]).is_empty() or bool(plan.get("eventOnly",false)) or str(plan.get("phase",""))!="future" or str(plan.get("operationType",""))!="transfer_connection" or bool(plan.get("requireOpen",true)) or not str(plan.get("source","")).begins_with("https://"):return false
+	var pairs:Array=plan.get("requiredTransfers",[]);var seen:Dictionary={}
+	if pairs.is_empty():return false
+	for pair in pairs:
+		var id:=str(pair.get("id",""));var lines:Array=pair.get("lineIds",[]);var bodies:Array=pair.get("stationInstanceIds",[])
+		if id.is_empty() or seen.has(id) or lines.size()!=2 or bodies.size()!=2 or lines[0]==lines[1] or bodies[0]==bodies[1] or str(pair.get("status",""))!="reserved" or str(pair.get("reservationKind",""))!="pedestrian_passage" or not str(pair.get("source","")).begins_with("https://") or not str(pair.get("reservationEvidence","")).begins_with("https://"):return false
+		for value in lines+bodies:
+			if not str(value).begins_with(city_id+"-"):return false
+		seen[id]=true
 	return true
 
 static func playable_future_plans(city_id: String) -> Array:

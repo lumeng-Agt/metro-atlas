@@ -9,6 +9,13 @@ def task():
 
 
 class TransferScope(unittest.TestCase):
+    def test_future_passage_must_remain_reserved_and_sourced(self):
+        value=task();value.update(phase='future',requireOpen=False)
+        pair=value['requiredTransfers'][0];pair.update(status='reserved',reservationEvidence='https://example.invalid/approval',reservationKind='pedestrian_passage')
+        self.assertTrue(is_transfer_task(value,'city'))
+        pair['status']='active';self.assertFalse(is_transfer_task(value,'city'))
+        pair['status']='reserved';pair['reservationEvidence']='';self.assertFalse(is_transfer_task(value,'city'))
+
     def test_real_pair_is_a_construction_action_without_rail(self):self.assertTrue(is_transfer_task(task(),'city'))
     def test_no_pairs_is_not_playable(self):
         value=task();value['requiredTransfers']=[];self.assertFalse(is_transfer_task(value,'city'))

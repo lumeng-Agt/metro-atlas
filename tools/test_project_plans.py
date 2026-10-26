@@ -13,6 +13,7 @@ import json
 import sys
 from pathlib import Path
 from engineering_scope import definition_errors as engineering_definition_errors
+from transfer_scope import is_transfer_task
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = ROOT / "data/network_baselines_2026-10-01.json"
@@ -33,7 +34,7 @@ def plan_ready(plan: dict, city_station_ids: set[str]) -> list[str]:
     if str(plan.get("exactAlignment", "")) not in {"station_areas", "corridor_only", "verified_alignment"}:
         errors.append(f"{plan.get('id')}: invalid exactAlignment")
     groups = plan.get("lineGroups", [])
-    if not groups:
+    if not groups and not is_transfer_task(plan,str(plan.get('cityId',''))):
         errors.append(f"{plan.get('id')}: no line groups")
     for index, group in enumerate(groups):
         if group.get('taskKind') == 'engineering_track':

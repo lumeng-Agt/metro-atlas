@@ -257,10 +257,22 @@ static func cutoff_errors(world:Dictionary) -> Array[String]:
 	var network:Dictionary=city.get("cutoffNetwork",{})
 	if network.is_empty():return ["independent cutoff network not yet available"]
 	var errors:=project_errors(world,network)
+	for relation in network.get("transferDefinitions",[]):errors.append_array(transfer_structure_errors(world,relation))
 	errors.append_array(service_shape_errors(world,network,city.get("projects",[])))
 	errors.append_array(SharedRunning.definition_errors(network))
 	for shared in network.get("sharedRunningSections",[]):errors.append_array(SharedRunning.errors(world,shared))
 	return errors
+
+static func transfer_structure_errors(world:Dictionary,expected:Dictionary) -> Array[String]:
+	var id:=str(expected.get("id",""))
+	if id.is_empty() or not str(expected.get("source","")).begins_with("https://"):return ["independent transfer structure evidence missing"]
+	var matches:Array=world.get("transferConnections",[]).filter(func(pair:Dictionary):return str(pair.get("id",""))==id and str(pair.get("status","active"))==str(expected.get("status","active")))
+	if matches.size()!=1:return ["%s: required transfer structure missing or duplicated"%id]
+	var pair:Dictionary=matches[0]
+	for field in ["lineIds","stationInstanceIds"]:
+		if pair.get(field,[])!=expected.get(field,[]):return ["%s: independent %s differs"%[id,field]]
+	if CampaignSystem.canonical_station_complex(str(world.cityId),str(pair.get("complexId","")))!=CampaignSystem.canonical_station_complex(str(world.cityId),str(expected.get("complexId",""))) or str(pair.get("transferKind","interchange"))!=str(expected.get("transferKind","interchange")):return ["%s: expected %s transfer structure"%[id,str(expected.get("transferKind","interchange"))]]
+	return []
 
 static func service_shape_errors(world:Dictionary,network:Dictionary,projects:Array=[]) -> Array[String]:
 	var errors:Array[String]=[]
