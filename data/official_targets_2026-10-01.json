@@ -5197,7 +5197,8 @@
         "bj-line13-capacity",
         "bj-line1-branch",
         "bj-new-airport",
-        "bj-yizhuang-connector"
+        "bj-yizhuang-connector",
+        "bj-r4-north-phase1"
       ],
       "historicalMilestones": [
         {
@@ -7045,6 +7046,41 @@
               "bodyLineAliasEvidence": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf"
             }
           ]
+        },
+        {
+          "id": "bj-r4-north-phase1",
+          "reviewStatus": "verified",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+          "sourcePublicationDate": "2026-06-02",
+          "sourceCheckedAt": "2026-10-26",
+          "constructionOnly": true,
+          "groups": [
+            {
+              "id": "beijing-r4-north-phase1",
+              "historicalLineId": "beijing-r4-north",
+              "scopeType": "stations",
+              "stationNames": [
+                "管庄路西口",
+                "3号航站楼",
+                "中德产业园",
+                "临河",
+                "燕京桥"
+              ],
+              "fullServiceOrder": true,
+              "allowReverse": true
+            }
+          ],
+          "transfers": [
+            "future-transfer-r4-guanzhuanglu-3",
+            "future-transfer-r4-t3-airport"
+          ],
+          "transferReviewStatus": "verified",
+          "additionalSources": [
+            "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202501/t20250107_3982106.htm",
+            "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf",
+            "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20250317/5002992.html"
+          ],
+          "note": "截止日前已批在建的北段五站及官方明确的3号线、首都机场线联系。S6、北部联络及城际联络在此为远期接口资料，不伪造已建线路或开放换乘。"
         }
       ],
       "cutoffNetwork": {

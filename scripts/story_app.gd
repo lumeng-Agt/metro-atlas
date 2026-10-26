@@ -1055,7 +1055,8 @@ func _right() -> void:
 	if not map_view.draft_station.is_empty():
 		var st:Dictionary=map_view.draft_station
 		right.add_child(label("车站预览",24,true));right.add_child(label(str(st.name),20,true));right.add_child(label("拖动换位置；R旋转；确认后加入本章。",16))
-		_angle(st,true);right.add_child(label("站体 %.0f × %.0f 米 · 地下 %.0f 米\n尺寸为游戏简化表达。" % [float(st.get("lengthM",119)),float(st.get("widthM",20)),-float(st.get("depthM",-15))],16))
+		var elevation_text:="高架示意高度 %.0f 米" % float(st.get("depthM",8)) if float(st.get("depthM",-15))>0 else "地下示意深度 %.0f 米" % -float(st.get("depthM",-15))
+		_angle(st,true);right.add_child(label("站体 %.0f × %.0f 米 · %s\n尺寸为游戏简化表达。" % [float(st.get("lengthM",119)),float(st.get("widthM",20)),elevation_text],16))
 		var details:=CheckButton.new();details.text="建设资料与高级参数";details.button_pressed=advanced_edit;details.toggled.connect(func(value:bool):advanced_edit=value;_right());right.add_child(details)
 		if advanced_edit:right.add_child(label(str(st.get("constructionNote","原始站体尺寸与埋深待核验，当前为游戏示意。")),15))
 		confirm_button=button("确认车站",_commit_station);actions.add_child(confirm_button)
@@ -1128,6 +1129,8 @@ func _right() -> void:
 				right.add_child(label(str(issue.get("text","未完成")),16))
 				if issue.has("stationBindingRepair"):
 					right.add_child(button("保留现有轨道，修复站体关联",_repair_legacy_station_binding.bind(issue)))
+				if issue.has("referenceTargetId"):
+					right.add_child(button("预览调整到参考站区",_preview_reference_station_adjustment.bind(str(issue.get("objectId","")))))
 				if issue.has("objectId"):right.add_child(button("定位问题",_locate_issue.bind(issue)))
 	elif selected_kind=="station":
 		var st:=WorldData.find_station(world,selected_id)
@@ -1282,7 +1285,7 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 		var candidate:={"id":"draft","name":str(target.get("name","新建车站%d" % (world.stations.size()+1))),"latlng":ll.duplicate(),"heading":90.0,"lengthM":118.788,"widthM":20.0,"depthM":map_view.current_depth_m,"historicalId":str(target.get("historicalId",target.get("id",""))),"stationInstanceId":str(target.get("stationInstanceId",target.get("id",""))),"stationComplexId":str(target.get("stationComplexId",target.get("historicalId",target.get("id","")))),"stationLineId":str(target.get("historicalLineId","")),"stationLineName":str(target.get("historicalLineName",target.get("historicalLineId",""))),"vehicleId":"B-6","existing":false,"routeIds":[]}
 		if not target.is_empty():candidate.latlng=target.latlng.duplicate();candidate.heading=map_view.blueprint_heading_for(str(target.id))
 		_apply_profile(candidate,construction_profile)
-		if str(construction_profile.get("parameterStatus",{}).get("depthM","game_estimate"))=="game_estimate":candidate.depthM=map_view.current_depth_m
+		if str(construction_profile.get("parameterStatus",{}).get("depthM","game_estimate"))=="game_estimate" and not str(construction_profile.get("form","")).contains("高架"):candidate.depthM=map_view.current_depth_m
 		map_view.draft_station=candidate;show_right=true;_station_changed();_right();_layout();_trigger_beat("select",[str(target.get("id",""))]);return
 	if tool=="track":
 		var ref:=_ref(ll,kind,id,side,t)
@@ -1505,6 +1508,43 @@ func _apply_station(candidate:Dictionary) -> void:
 		map_view.station_preview_edges={};map_view.station_preview_issue="";map_view.requested_redraw()
 	if not WorldData.find_station(world,str(candidate.id)).get("routeIds",[]).is_empty():_confirm("调整已确认路网","关联线路的展示几何将随车站一起改变。是否应用？",apply,_discard_adjustment)
 	else:apply.call()
+
+func _reference_station_adjustment(station_id:String) -> Dictionary:
+	var station:=WorldData.find_station(world,station_id)
+	if station.is_empty():return {"ok":false,"error":"该站体已不存在。"}
+	for target in Story.targets(world,true):
+		if str(target.get("stationInstanceId",""))!=str(station.get("stationInstanceId",station_id)):continue
+		var candidate:=station.duplicate(true)
+		candidate.latlng=target.latlng.duplicate()
+		var preview:=rules._station_preview_analysis(candidate,world)
+		if not str(preview.get("issue","")).is_empty():return {"ok":false,"error":str(preview.issue)}
+		return {"ok":true,"candidate":candidate,"preview":preview,"target":target,"revision":int(world.revision),"gameId":str(world.get("gameId","")),"chapterId":str(Story.chapter(world).get("id",""))}
+	return {"ok":false,"error":"当前任务没有这个线路站体目标，请返回对应任务再调整。"}
+
+func _commit_reference_station_adjustment(proposal:Dictionary,expected_revision:int) -> Dictionary:
+	if expected_revision!=int(world.revision) or int(proposal.get("revision",-1))!=expected_revision or str(proposal.get("gameId",""))!=str(world.get("gameId","")) or str(proposal.get("chapterId",""))!=str(Story.chapter(world).get("id","")):
+		return {"ok":false,"error":"规划或任务已变化，请重新预览参考站位。"}
+	var fresh:=_reference_station_adjustment(str(proposal.get("candidate",{}).get("id","")))
+	if not bool(fresh.get("ok",false)):return fresh
+	if fresh.candidate!=proposal.get("candidate",{}):return {"ok":false,"error":"参考站区已变化，请重新预览。"}
+	var preview:Dictionary=fresh.preview
+	_execute("调整到参考站区",func(state:Dictionary):
+		for key in ["stations","trackNodes","trackEdges","trackLinks"]:state[key]=preview.state.get(key,[]))
+	return {"ok":true}
+
+func _preview_reference_station_adjustment(station_id:String) -> void:
+	var proposal:=_reference_station_adjustment(station_id)
+	if not bool(proposal.get("ok",false)):_message("暂时无法调整",str(proposal.get("error","请先处理关联轨道。")));return
+	var revision:=int(world.revision)
+	var preview:Dictionary=proposal.preview
+	preview_station=preview;preview_station["candidate"]=proposal.candidate
+	selected_kind="station";selected_id=station_id;map_view.selected_id=station_id;map_view.selected_type="station"
+	map_view._station_drag_preview_update(station_id,proposal.candidate.latlng)
+	map_view.station_preview_edges=preview.edges;map_view.station_preview_issue="";map_view.requested_redraw()
+	_confirm("调整到参考站区","将移动这座线路站体，并更新与它直接相连的轨道。其他站体和已确认历史记录保留；确认后可整步撤销。参考位置精度："+str(proposal.target.get("coordinateNote","近似站区，并非工程测量。")),func():
+		var result:=_commit_reference_station_adjustment(proposal,revision)
+		_discard_adjustment()
+		if not bool(result.get("ok",false)):_message("站位未调整",str(result.get("error","请重新预览。"))),_discard_adjustment)
 
 func _preview_curve(id:String,control:String,offset:Array) -> void:
 	if Time.get_ticks_usec()-last_preview_usec<33333:return

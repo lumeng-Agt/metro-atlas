@@ -331,7 +331,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 				issues.append({"text":"该站体绑定到了错误的历史站区。","kind":"station","objectId":str(station.id)});group_valid=false
 			var distance := Geo.local_m(station.latlng, reference_lat).distance_to(Geo.local_m(target.get("latlng", station.latlng), reference_lat))
 			if distance > float(target.get("toleranceM",100)):
-				issues.append({"text":"%s 超出目标站区 %.0f 米容差。" % [str(target.get("name","车站")),float(target.get("toleranceM",100))],"kind":"station","objectId":str(station.id),"latlng":station.latlng}); group_valid = false
+				issues.append({"text":"%s 超出目标站区 %.0f 米容差。" % [str(target.get("name","车站")),float(target.get("toleranceM",100))],"kind":"station","objectId":str(station.id),"latlng":station.latlng,"referenceTargetId":instance_id}); group_valid = false
 			if group.get("stationNames",{}).has(target_id) and str(station.get("name",""))!=str(target.get("name","")) and not _uses_planned_names(world,group):
 				issues.append({"text":"请在车站详情将「%s」更名为本章名称「%s」。" % [str(station.get("name","车站")),str(target.name)],"kind":"station","objectId":str(station.id),"latlng":station.latlng});group_valid=false
 			ids.append(str(station.id))

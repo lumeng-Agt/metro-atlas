@@ -32921,10 +32921,23 @@
           "statusAtCutoff": "建设计划项目",
           "playabilityNote": "明确站端至工程接口的实体轨道任务；新站体仅限已公布站点，不虚构边界车站或运营线路。",
           "playableTaskStatus": "playable"
+        },
+        {
+          "id": "bj-r4-north-phase1",
+          "name": "R4线一期北段（管庄路西口—燕京桥）",
+          "projectType": "approved_and_under_construction",
+          "status": "2026年6月2日开工",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+          "sourceTitle": "北京地铁快线+1！共设5站，将与3号线、首都机场线换乘",
+          "sourceCheckedAt": "2026-10-26",
+          "statusAtCutoff": "已批在建",
+          "note": "五站完整站序；早期21.3公里与开工20.78公里分版本记录，不用未公开隧道精度免除建设任务。",
+          "playabilityStatus": "playable_build_task",
+          "playableTaskStatus": "playable"
         }
       ],
-      "projectInventoryCount": 9,
-      "playableProjectCount": 9,
+      "projectInventoryCount": 10,
+      "playableProjectCount": 10,
       "pendingPlayableProjectCount": 0,
       "policyProjectCount": 0,
       "engineeringProjectCount": 0,
@@ -32937,6 +32950,7 @@
         "bj-line3-phase1",
         "bj-m101-phase1",
         "bj-new-airport",
+        "bj-r4-north-phase1",
         "bj-yizhuang-connector"
       ],
       "documentedMilestones": [

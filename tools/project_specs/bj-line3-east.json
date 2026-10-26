@@ -13,11 +13,13 @@
       "name": "管庄路西口",
       "id": "beijing-f3e-guanzhuanglu",
       "latlng": [
-        39.9738,
-        116.578
+        39.9756,
+        116.565
       ],
-      "coordinateSource": "official_site_description",
-      "coordinateNote": "楼梓庄路与东苇路交叉口南侧，按官方站址描述定位。"
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "官方报道：楼梓庄路与东苇路交叉口南侧。对照离线OSM东苇路way/31557751与东坝大街way/31557749共用端点[39.975724,116.565027]，在路口南侧取近似站区；不是测绘站中心。旧版116.578位于该路口以东约1.1公里，予以更正参考点，旧存档不搬站。",
+      "coordinateAccuracyM": 250,
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html"
     },
     {
       "name": "楼梓庄桥西",
@@ -101,7 +103,8 @@
     "sourceCheckedAt": "2026-10-21",
     "sourcePublicationDate": "2025-12-19",
     "description": "按2025年12月开工报道复现3号线一期东段：管庄路西口—曹各庄北5座车站、约5.1公里。东坝北复用既有3号线站体；曹各庄北为远期预留站。完成本篇只表示规划建设完成，不计作开通。",
-    "contentRevision": "2026.10.21.14",
-    "contentRevisionNote": "增加北京3号线一期东段建设章。"
+    "contentRevision": "2026.10.26.7",
+    "contentRevisionNote": "纠正管庄路西口官方路口参考，补充R4一期北段五站建设；保留已建站体位置。",
+    "requiresScopeRecheck": true
   }
 }

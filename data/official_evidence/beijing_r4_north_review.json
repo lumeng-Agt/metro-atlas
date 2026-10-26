@@ -1,0 +1,48 @@
+{
+  "projectId": "bj-r4-north-phase1",
+  "cutoff": "2026-10-01",
+  "reviewedAt": "2026-10-26",
+  "sourceRecords": [
+    {
+      "url": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202501/t20250107_3982106.htm",
+      "publicationDate": "2025-01-07",
+      "approval": "京发改（审）〔2024〕1067号",
+      "lengthKm": 21.3
+    },
+    {
+      "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+      "publicationDate": "2026-06-02",
+      "event": "construction_start",
+      "lengthKm": 20.78,
+      "stationOrder": [
+        "管庄路西口",
+        "3号航站楼",
+        "中德产业园",
+        "临河",
+        "燕京桥"
+      ],
+      "interchanges": {
+        "管庄路西口": [
+          "3号线"
+        ],
+        "3号航站楼": [
+          "首都机场线"
+        ]
+      }
+    },
+    {
+      "url": "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf",
+      "pdfPage": 35,
+      "printedPage": 25,
+      "table": "2.1-3",
+      "stationCount": 5,
+      "elevatedStation": "临河"
+    }
+  ],
+  "coordinateReview": "Official site descriptions + licensed road/village geography; station-area estimates, never a georeferenced schematic network map.",
+  "excludedFromOpening": [
+    "all R4 stations",
+    "planned S6/北部联络/城际铁路 interfaces"
+  ],
+  "broaderInventoryReview": "Still pending: adding this omitted project does not establish a complete Beijing approved-project inventory."
+}

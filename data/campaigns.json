@@ -26992,6 +26992,8 @@
           "sourceType": "municipal_construction_update",
           "projectType": "approved_and_under_construction",
           "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
           "dataStatus": "blueprint_ready",
           "exactAlignment": "corridor_only",
           "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
@@ -27029,14 +27031,14 @@
               "requireOpen": false,
               "stationInstances": {
                 "beijing-s396": "beijing-s396__line3-3"
-              }
+              },
+              "officialLengthM": 5100
             }
           ],
           "requiredTransfers": [],
-          "requireOpen": false,
+          "scopeRevision": "2026.10.26.7",
           "requiresScopeRecheck": true,
-          "scopeRevision": "2026.10.24.8",
-          "serviceStatusSchema": 2
+          "scopeCorrections": []
         },
         {
           "id": "bj-m101-phase1-build",
@@ -27962,6 +27964,174 @@
           "dataStatus": "blueprint_ready",
           "requiresScopeRecheck": true,
           "scopeRevision": "2026.10.25.11"
+        },
+        {
+          "id": "bj-r4-north-build",
+          "projectIds": [
+            "bj-r4-north-phase1"
+          ],
+          "title": "北京R4线一期北段建设篇",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "municipal_construction_start",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+          "sourceTitle": "北京地铁快线+1！共设5站，将与3号线、首都机场线换乘",
+          "sourceCheckedAt": "2026-10-26",
+          "description": "复现已于2026年6月开工的管庄路西口—燕京桥五站工程，并分别衔接3号线和首都机场线。临河为高架站，其余四站地下，结构来自公开环评；埋深未公开部分仍为游戏示意。成果为规划建设完成，不是历史开通。",
+          "sourcePublicationDate": "2026-06-02",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-r4-north-build",
+              "mapRouteId": "beijing-future-r4-north",
+              "name": "R4线一期北段",
+              "historicalLineId": "beijing-r4-north",
+              "color": "#3867A0",
+              "stationIds": [
+                "beijing-f3e-guanzhuanglu",
+                "beijing-s207",
+                "beijing-fr4-zhongde",
+                "beijing-fr4-linhe",
+                "beijing-fr4-yanjingqiao"
+              ],
+              "stationNames": {
+                "beijing-f3e-guanzhuanglu": "管庄路西口",
+                "beijing-s207": "3号航站楼",
+                "beijing-fr4-zhongde": "中德产业园",
+                "beijing-fr4-linhe": "临河",
+                "beijing-fr4-yanjingqiao": "燕京桥"
+              },
+              "toleranceM": 700.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "五站站序及20.78公里取自2026年6月2日开工记录。早期批复与环评为21.3公里，分别保留来源版本。站区为许可地理数据和官方地点描述的近似定位，区间为走廊示意；管庄路西口至T3为长区间，不添加虚构中间站。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-f3e-guanzhuanglu": "beijing-f3e-guanzhuanglu__r4north",
+                "beijing-s207": "beijing-s207__r4north",
+                "beijing-fr4-zhongde": "beijing-fr4-zhongde__r4north",
+                "beijing-fr4-linhe": "beijing-fr4-linhe__r4north",
+                "beijing-fr4-yanjingqiao": "beijing-fr4-yanjingqiao__r4north"
+              },
+              "officialLengthM": 20780,
+              "coverageGroupId": "beijing-r4-north-phase1"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-r4-guanzhuanglu-3",
+              "name": "管庄路西口",
+              "complexId": "beijing-f3e-guanzhuanglu",
+              "stationInstanceIds": [
+                "beijing-f3e-guanzhuanglu__r4north",
+                "beijing-f3e-guanzhuanglu"
+              ],
+              "lineIds": [
+                "beijing-r4-north",
+                "beijing-line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+              "sourceNote": "官方开工记录明确的两处换乘。两线独立站体与线路路径分别建设后由玩家明确确认；规划联系不算截止日已开放。"
+            },
+            {
+              "id": "future-transfer-r4-t3-airport",
+              "name": "3号航站楼",
+              "complexId": "beijing-s207",
+              "stationInstanceIds": [
+                "beijing-s207__r4north",
+                "beijing-s207"
+              ],
+              "lineIds": [
+                "beijing-r4-north",
+                "beijing-route-23"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+              "sourceNote": "官方开工记录明确的两处换乘。两线独立站体与线路路径分别建设后由玩家明确确认；规划联系不算截止日已开放。"
+            }
+          ],
+          "scopeRevision": "2026.10.26.7",
+          "requiresScopeRecheck": false,
+          "scopeCorrections": [],
+          "stationProfiles": {
+            "beijing-f3e-guanzhuanglu__r4north": {
+              "id": "r4-eia-0",
+              "form": "地下双岛四线",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf"
+              },
+              "note": "公开环评表2.1-3：地下双岛四线。站体矩形、长度、宽度和埋深为游戏示意；未将估算写成工程测量，展示车型仍为简化替身。"
+            },
+            "beijing-s207__r4north": {
+              "id": "r4-eia-1",
+              "form": "地下岛侧五线",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf"
+              },
+              "note": "公开环评表2.1-3：地下岛侧五线。站体矩形、长度、宽度和埋深为游戏示意；未将估算写成工程测量，展示车型仍为简化替身。"
+            },
+            "beijing-fr4-zhongde__r4north": {
+              "id": "r4-eia-2",
+              "form": "地下二层单岛四线",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf"
+              },
+              "note": "公开环评表2.1-3：地下二层单岛四线。站体矩形、长度、宽度和埋深为游戏示意；未将估算写成工程测量，展示车型仍为简化替身。"
+            },
+            "beijing-fr4-linhe__r4north": {
+              "id": "r4-eia-3",
+              "form": "高架三层侧式",
+              "depthM": 8.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf"
+              },
+              "note": "公开环评表2.1-3：高架三层侧式。站体矩形、长度、宽度和高架显示高度为游戏示意；未将估算写成工程测量，展示车型仍为简化替身。"
+            },
+            "beijing-fr4-yanjingqiao__r4north": {
+              "id": "r4-eia-4",
+              "form": "地下二层岛式",
+              "depthM": -15.0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf"
+              },
+              "note": "公开环评表2.1-3：地下二层岛式。站体矩形、长度、宽度和埋深为游戏示意；未将估算写成工程测量，展示车型仍为简化替身。"
+            }
+          },
+          "additionalSources": [
+            "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202501/t20250107_3982106.htm",
+            "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf",
+            "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20250317/5002992.html",
+            "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/xxgh/sy/202401/P020240201380098381172.pdf"
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -58845,6 +59015,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.26.6",
-  "contentRevisionNote": "北京22号线配套14号线红庙补站作为独立未开放建设方案，当前33站主线保留；应用截止日前最终站名。"
+  "contentRevision": "2026.10.26.7",
+  "contentRevisionNote": "补入原清单遗漏的R4一期北段，五站四区间及两处规划换乘；不虚构未来开放时间。"
 }

@@ -38,6 +38,20 @@ func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 	while not Story.plan_is_final(app.world):
 		var revision_result:Dictionary=app._commit_plan_revision(int(app.world.storyPlan.get("planIndex",0))+1,int(app.world.revision))
 		if not bool(revision_result.get("ok",false)):return _fail(city,id,"plan",str(revision_result.get("error","")))
+	# Opt-in replay of an explicit player-visible reference update. Loading a
+	# save never moves stations. The default replay never resolves this conflict
+	# silently, and the opt-in is restricted to named physical target identities.
+	var reference_updates:=OS.get_environment("METRO_REPLAY_REFERENCE_UPDATE_IDS").split(",",false)
+	for target in Story.targets(app.world,true):
+		if not reference_updates.has(str(target.get("stationInstanceId",""))):continue
+		var station:=Story.bound_station(app.world,str(target.get("historicalId","")),str(target.get("stationInstanceId","")))
+		if station.is_empty():continue
+		if Geo.local_m(station.latlng,float(app.world.view.get("referenceLat",39.9))).distance_to(Geo.local_m(target.latlng,float(app.world.view.get("referenceLat",39.9))))<=float(target.get("toleranceM",100)):continue
+		var proposal:Dictionary=app._reference_station_adjustment(str(station.id))
+		if not bool(proposal.get("ok",false)):return _fail(city,id,"reference-preview",str(proposal.get("error","")))
+		var moved:Dictionary=app._commit_reference_station_adjustment(proposal,int(app.world.revision))
+		if not bool(moved.get("ok",false)):return _fail(city,id,"reference-commit",str(moved.get("error","")))
+		print("REPLAY_EXPLICIT_REFERENCE_UPDATE ",city," ",id," ",target.stationInstanceId)
 	var groups:Array=Story.groups(app.world,true)
 	if not groups.is_empty():
 		_trace("assist-preview")

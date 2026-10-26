@@ -1,6 +1,6 @@
 {
   "cutoffDate": "2026-10-01",
-  "contentRevision": "2026.10.26.6",
+  "contentRevision": "2026.10.26.7",
   "ok": false,
   "cities": {
     "shenzhen": {
@@ -205,6 +205,11 @@
           "errors": [
             "independent transfer coverage incomplete"
           ]
+        },
+        {
+          "id": "bj-r4-north-phase1",
+          "ok": true,
+          "errors": []
         }
       ]
     },

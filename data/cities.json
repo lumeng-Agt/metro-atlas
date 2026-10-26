@@ -15504,14 +15504,15 @@
           "id": "beijing-f3e-guanzhuanglu",
           "name": "管庄路西口",
           "latlng": [
-            39.9738,
-            116.578
+            39.9756,
+            116.565
           ],
           "schematic": true,
-          "coordinateSource": "official_site_description",
-          "coordinateNote": "楼梓庄路与东苇路交叉口南侧，按官方站址描述定位。",
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "官方报道：楼梓庄路与东苇路交叉口南侧。对照离线OSM东苇路way/31557751与东坝大街way/31557749共用端点[39.975724,116.565027]，在路口南侧取近似站区；不是测绘站中心。旧版116.578位于该路口以东约1.1公里，予以更正参考点，旧存档不搬站。",
           "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251219_4350423.html",
-          "sourceCheckedAt": "2026-10-21"
+          "sourceCheckedAt": "2026-10-21",
+          "coordinateAccuracyM": 250
         },
         {
           "id": "beijing-f3e-louzizhuangqiaoxi",
@@ -16167,6 +16168,48 @@
           "coordinateNote": "依据2025定名说明的旧站东侧约110米构造近似站区参考点；不是工程坐标，不移动旧龙泽站。",
           "source": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
           "sourceCheckedAt": "2026-10-25"
+        },
+        {
+          "id": "beijing-fr4-zhongde",
+          "name": "中德产业园",
+          "latlng": [
+            40.057196,
+            116.6353076
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "环评PDF第24页表1.8-4及第26页表1.8-6将头二营村及村委会列为中德站相关保护目标；用OSM村落节点6410843011定位头二营站区，仅作近似站区，不宣称村中心等于车站中心。",
+          "source": "https://www.bii.com.cn/file/2024/08/27/1724750589512.pdf",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 700
+        },
+        {
+          "id": "beijing-fr4-linhe",
+          "name": "临河",
+          "latlng": [
+            40.0896,
+            116.655
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "仁和组团控规PDF第15页第33条及第36页空间结构图显示临河站在林河大街、通顺路周边。结合本地OSM林河大街way/1069137480和通顺路way/169683840取站区；图纸为规划示意，未作为精确施工坐标。",
+          "source": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/xxgh/sy/202401/P020240201380098381172.pdf",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-fr4-yanjingqiao",
+          "name": "燕京桥",
+          "latlng": [
+            40.11618,
+            116.65187
+          ],
+          "schematic": true,
+          "coordinateSource": "local_road_geometry",
+          "coordinateNote": "站址报道为通顺路与顺平路交叉口，离线OSM通顺路way/1252702215、顺平路way/48064226附近，燕京桥way/552782914核对，仅为路口站区。",
+          "source": "https://m.bjnews.com.cn/detail/1755152233129344.html",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 400
         }
       ],
       "lines": [

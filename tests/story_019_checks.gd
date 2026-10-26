@@ -37,7 +37,13 @@ func _run() -> void:
 			app.world.storyState.chapterId=chapter.id;app.world.storyState.stage="build"
 			var chapter_beats:Array=chapter.get("story",{}).get("beats",[])
 			if chapter_beats.is_empty():
-				check(not str(chapter.get("source","")).is_empty() and (bool(chapter.get("eventOnly",false)) or not chapter.get("lineGroups",[]).is_empty()),"%s无地点旁注时仍须保留来源与明确节点类型" % chapter.id)
+				# A pedestrian opening is a real operation on two existing line
+				# bodies, not an event-only acknowledgement or a new train track.
+				var transfer_operation:bool=str(chapter.get("operationType",""))=="transfer_connection" and not chapter.get("requiredTransfers",[]).is_empty()
+				if transfer_operation:
+					for pair in chapter.requiredTransfers:
+						transfer_operation=transfer_operation and pair.get("lineIds",[]).size()>=2 and pair.get("lineIds",[]).size()==pair.get("stationInstanceIds",[]).size() and str(pair.get("source","")).begins_with("https://")
+				check(not str(chapter.get("source","")).is_empty() and (bool(chapter.get("eventOnly",false)) or not chapter.get("lineGroups",[]).is_empty() or transfer_operation),"%s无地点旁注时仍须保留来源与明确节点类型" % chapter.id)
 				continue
 			var beat:Dictionary=chapter_beats[0]
 			var untouched:=JSON.stringify(app.world.storyState)
