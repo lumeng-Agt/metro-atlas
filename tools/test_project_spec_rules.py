@@ -5,6 +5,16 @@ from validate_project_spec import validate
 
 
 class ProjectSpecRules(unittest.TestCase):
+    def test_infill_must_preserve_the_current_service(self):
+        self.spec['lineGroup']['connectionMode']='infill'
+        self.assertTrue(any('preserve the current service' in e for e in validate(self.spec,self.city,set())))
+        self.spec['lineGroup']['constructionVariant']=True
+        self.assertEqual(validate(self.spec,self.city,set()),[])
+
+    def test_unknown_connection_mode_is_rejected(self):
+        self.spec['lineGroup']['connectionMode']='ignore-ports'
+        self.assertTrue(any('unknown connectionMode' in e for e in validate(self.spec,self.city,set())))
+
     def test_planning_corridor_cannot_apply_one_whole_line_to_many_sections(self):
         self.spec['lineGroup'].update(requiredPlanningCorridorId='fixture',planningCorridorToleranceM=650)
         self.assertTrue(any('one explicit station pair' in e for e in validate(self.spec,self.city,set())))

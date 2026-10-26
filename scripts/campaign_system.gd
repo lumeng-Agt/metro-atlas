@@ -10,6 +10,19 @@ static var _catalog: Dictionary = {}
 static var _network_baseline: Dictionary = {}
 static var _known_station_ids_by_city: Dictionary = {}
 
+static func published_inventory_errors(target:Dictionary,cutoff_date:String) -> Array[String]:
+	var reasons:Array[String]=[]
+	var requirements:Array=target.get("projects",[])
+	if str(target.get("inventoryReviewStatus",""))=="verified" and target.get("sourceProjectInventory",[]).is_empty():reasons.append("官方清单核对标记没有对应的独立项目记录。")
+	var inventoried:Dictionary={}
+	for row in target.get("sourceProjectInventory",[]):
+		var project_id:=str(row.get("projectId",""))
+		if project_id.is_empty() or inventoried.has(project_id):reasons.append("官方项目清单缺少稳定身份或存在重复。")
+		inventoried[project_id]=true
+		if not str(row.get("source","")).begins_with("https://") or str(row.get("sourcePublicationDate","")).is_empty() or str(row.get("sourcePublicationDate",""))>cutoff_date:reasons.append("项目%s的清单证据缺失或晚于截止日。"%project_id)
+		if bool(row.get("required",true)) and (not target.get("requiredProjectIds",[]).has(project_id) or requirements.filter(func(p:Dictionary):return str(p.get("id",""))==project_id and not bool(p.get("optional",false))).size()!=1):reasons.append("官方已列入的必做项目%s缺少独立建设目标。"%project_id)
+	return reasons
+
 static func delivery_eligibility(city_id:String) -> Dictionary:
 	var reasons:Array[String]=[]
 	var file:=FileAccess.open(OFFICIAL_TARGET_PATH,FileAccess.READ)
@@ -29,6 +42,7 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 		if str(evidence.get("source","")).is_empty() or str(evidence.get("effectiveDate","")).is_empty() or str(evidence.get("effectiveDate",""))>str(parsed.get("cutoffDate","2026-10-01")):reasons.append("截止日证据缺失或包含后期开通。")
 	var campaign:=city_config(city_id)
 	var requirements:Array=target.get("projects",[])
+	reasons.append_array(published_inventory_errors(target,str(parsed.get("cutoffDate","2026-10-01"))))
 	for project_id in target.get("requiredProjectIds",[]):
 		if not requirements.any(func(p:Dictionary):return str(p.get("id",""))==str(project_id) and not bool(p.get("optional",false))):reasons.append("项目%s缺少独立建设目标。" % str(project_id))
 	for requirement in requirements:

@@ -59,10 +59,19 @@ static func between(a:String,b:String) -> Dictionary:
 	var result:=reverse.duplicate(true);result.points.reverse();result.fromId=a;result.toId=b
 	return result
 
+static func for_stations(a:Dictionary,b:Dictionary) -> Dictionary:
+	# A physical station's geographic reference can differ from the shared
+	# complex centre, notably an elevated infill next to an underground line.
+	var ref:=between(str(a.get("referenceId",a.get("stationInstanceId",""))),str(b.get("referenceId",b.get("stationInstanceId",""))))
+	if ref.is_empty():ref=between(str(a.get("historicalId","")),str(b.get("historicalId","")))
+	return ref
+
 static func heading(target_id:String,groups:Array,ref_lat:float,line_id:String="") -> float:
 	for group in groups:
 		if not line_id.is_empty() and str(group.get("historicalLineId",""))!=line_id:continue
-		var ids:Array=group.get("stationIds",[]);var index:=ids.find(target_id)
+		var ids:Array=[]
+		for id in group.get("stationIds",[]):ids.append(str(group.get("stationReferenceIds",{}).get(str(id),id)))
+		var index:=ids.find(target_id)
 		if index<0:continue
 		var other:=index+1 if index+1<ids.size() else index-1
 		if other<0:continue

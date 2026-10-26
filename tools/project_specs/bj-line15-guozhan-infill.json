@@ -1,0 +1,93 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-line15-guozhan-infill"
+  ],
+  "stations": [
+    {
+      "id": "beijing-s14",
+      "name": "国展",
+      "existing": true
+    },
+    {
+      "id": "beijing-future-guozhan2",
+      "name": "新国展二期",
+      "latlng": [
+        40.0754,
+        116.5509
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 250,
+      "coordinateNote": "新站取首都国际会展中心东登录厅正对面的既有15号线高架走廊；会展中心OSM way/478555869、relation/18747310与既有轨道way/92598997核对，站名仍为工程称呼、站中心为约250米精度近似。",
+      "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm"
+    },
+    {
+      "id": "beijing-s15",
+      "name": "花梨坎",
+      "existing": true
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "main",
+      "mapRouteId": "beijing-future-bj-line15-guozhan-infill",
+      "coverageGroupId": "beijing15-guozhan-infill",
+      "historicalLineId": "beijing-line15-15",
+      "name": "15号线新国展二期加站",
+      "color": "#653279",
+      "stationIds": [
+        "beijing-s14",
+        "beijing-future-guozhan2",
+        "beijing-s15"
+      ],
+      "stationInstances": {
+        "beijing-s14": "beijing-s14",
+        "beijing-future-guozhan2": "beijing-future-guozhan2",
+        "beijing-s15": "beijing-s15"
+      },
+      "toleranceM": 450,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "新站取首都国际会展中心东登录厅正对面的既有15号线高架走廊；会展中心OSM way/478555869、relation/18747310与既有轨道way/92598997核对，站名仍为工程称呼、站中心为约250米精度近似。",
+      "stationOrderSource": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+      "constructionVariant": true,
+      "stationNamingSource": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+      "connectionMode": "infill"
+    }
+  ],
+  "transfers": [],
+  "plan": {
+    "id": "bj-line15-guozhan-build",
+    "title": "15号线新国展二期加站",
+    "date": "2026-10-01",
+    "status": "approved",
+    "projectType": "approved",
+    "required": true,
+    "sourceType": "official_infill_project",
+    "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+    "sourceTitle": "15号线新国展二期加站",
+    "sourcePublicationDate": "2026-07-21",
+    "sourceCheckedAt": "2026-10-26",
+    "exactAlignment": "station_areas",
+    "description": "在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。",
+    "additionalSources": [
+      "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260903_4849251.html"
+    ],
+    "contentRevision": "2026.10.26.9",
+    "contentRevisionNote": "补齐三项截止日前已公开的加站工程；不覆盖现状服务，不编造未来开放日期。",
+    "stationProfiles": {
+      "beijing-future-guozhan2": {
+        "id": "bj-line15-guozhan-infill-profile",
+        "form": "高架两层侧式站",
+        "depthM": 8,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm"
+        },
+        "note": "在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。 显示高度与站体矩形为游戏示意。"
+      }
+    }
+  }
+}

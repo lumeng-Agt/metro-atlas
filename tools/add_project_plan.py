@@ -225,7 +225,7 @@ def main() -> int:
                 if identity not in resolved_ids or reference not in catalog:
                     fail(f'group {key}: invalid line-specific station reference {identity}: {reference}')
             group['stationReferenceIds'] = references
-        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId', 'servicePathRevision', 'constructionVariant', 'stationNamingSource', 'stationNamingSources', 'requiredPlanningCorridorId', 'planningCorridorToleranceM'):
+        for field in ('loop', 'officialLengthM', 'officialCenterSpanM', 'coverageGroupId', 'servicePathRevision', 'constructionVariant', 'stationNamingSource', 'stationNamingSources', 'requiredPlanningCorridorId', 'planningCorridorToleranceM', 'connectionMode'):
             if field in group_spec:
                 group[field] = group_spec[field]
         if float(group["toleranceM"]) <= 0:

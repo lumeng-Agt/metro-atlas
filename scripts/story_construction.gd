@@ -490,8 +490,8 @@ func _align_station_edge_handles(state: Dictionary, station_id: String) -> void:
 					# instance. historicalId may instead point at its shared station
 					# complex (for example Xujiahui across several lines), which is not
 					# an alignment key and can silently discard a valid segment.
-					var station_a_id:=str(sa.get("stationInstanceId",sa.get("id",sa.get("historicalId",""))))
-					var station_b_id:=str(sb.get("stationInstanceId",sb.get("id",sb.get("historicalId",""))))
+					var station_a_id:=str(sa.get("referenceId",sa.get("stationInstanceId",sa.get("id",sa.get("historicalId","")))))
+					var station_b_id:=str(sb.get("referenceId",sb.get("stationInstanceId",sb.get("id",sb.get("historicalId","")))))
 					var alignment:=ReferenceAlignment.between(station_a_id,station_b_id)
 					if alignment.is_empty():alignment=ReferenceAlignment.between(str(sa.get("historicalId","")),str(sb.get("historicalId","")))
 					var preview:=ReferenceAlignment.preview(alignment,{"stationId":sa.id,"nodeId":na.id,"side":na.side,"latlng":na.latlng},{"stationId":sb.id,"nodeId":nb.id,"side":nb.side,"latlng":nb.latlng},state,ref_lat)

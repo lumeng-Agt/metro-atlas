@@ -26635,6 +26635,39 @@
           "statusAtCutoff": "已批在建",
           "note": "北延7站及清河支线1站，含生命谷；主支线分别制作，不包括另行审查的南延。",
           "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "bj-yizhuang-taihu-infill",
+          "name": "亦庄线台湖车辆段加站",
+          "projectType": "approved_and_under_construction",
+          "status": "截止日前已公开实施范围",
+          "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+          "sourceCheckedAt": "2026-10-26",
+          "statusAtCutoff": "已批在建",
+          "note": "从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。",
+          "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "bj-line15-guozhan-infill",
+          "name": "15号线新国展二期加站",
+          "projectType": "approved",
+          "status": "截止日前已公开实施范围",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "statusAtCutoff": "已批准",
+          "note": "在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。",
+          "playabilityStatus": "playable_build_task"
+        },
+        {
+          "id": "bj-airport-wangjingnan-infill",
+          "name": "首都机场线望京南加站与天桥换乘",
+          "projectType": "approved_and_under_construction",
+          "status": "截止日前已公开实施范围",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+          "sourceCheckedAt": "2026-10-26",
+          "statusAtCutoff": "已批在建",
+          "note": "沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。",
+          "playabilityStatus": "playable_build_task"
         }
       ],
       "documentedMilestones": [
@@ -90630,5 +90663,5 @@
     }
   },
   "contentStatus": "playable_cutoff_route_inventories",
-  "contentRevision": "2026.10.26.8"
+  "contentRevision": "2026.10.26.9"
 }

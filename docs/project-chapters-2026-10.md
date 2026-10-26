@@ -34,6 +34,9 @@
 | 亦庄线至5号线、10号线联络工程 | 可玩建设章 | 1 | 38 | corridor_only | [亦庄线至5号线、10号线联络工程最终环评及可研批复](https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf) |
 | R4线一期北段（管庄路西口—燕京桥） | 可玩建设章 | 1 | 5 | station_areas_and_approximate_corridor | [北京地铁快线+1！共设5站，将与3号线、首都机场线换乘](https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html) |
 | 19号线二期（北延及北延支线） | 可玩建设章 | 1 | 10 | corridor_only、station_areas_and_approximate_corridor | [京发改（审）〔2025〕109号](https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202503/t20250303_4023616.htm) |
+| 亦庄线台湖车辆段加站 | 可玩建设章 | 1 | 2 | station_areas_and_approximate_corridor | [来源](https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html) |
+| 15号线新国展二期加站 | 可玩建设章 | 1 | 3 | station_areas_and_approximate_corridor | [来源](https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm) |
+| 首都机场线望京南加站与天桥换乘 | 可玩建设章 | 1 | 6 | station_areas_and_approximate_corridor | [来源](https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html) |
 
 ## 广州
 
@@ -81,7 +84,7 @@
 
 ## 合计
 
-- 可玩建设章：47
+- 可玩建设章：50
 - 政策条目：2
 - 工程条目：0
 - 待制作：1

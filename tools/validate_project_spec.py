@@ -112,6 +112,10 @@ def validate(spec: dict, city: dict, existing_lines: set[str]) -> list[str]:
                 errors.append(f"group {key}: stationNamingSource needs a public source URL")
             if not group.get("constructionVariant"):
                 errors.append(f"group {key}: planning names require a separate constructionVariant")
+        if group.get('connectionMode') and group.get('connectionMode')!='infill':
+            errors.append(f'group {key}: unknown connectionMode')
+        if group.get('connectionMode')=='infill' and not group.get('constructionVariant'):
+            errors.append(f'group {key}: infill must preserve the current service as a separate constructionVariant')
         if group.get('requiredPlanningCorridorId'):
             tolerance=group.get('planningCorridorToleranceM')
             if len(ids)!=2:errors.append(f'group {key}: a required planning corridor must bind one explicit station pair')

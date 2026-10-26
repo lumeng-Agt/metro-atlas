@@ -125,6 +125,25 @@ def cutoff_evidence_errors(network, cutoff_date):
     return errors
 
 
+def inventory_evidence_errors(target, cutoff_date):
+    """A concrete source roster cannot disappear with a missing task/ID."""
+    errors=[]
+    if target.get('inventoryReviewStatus')=='verified' and not target.get('sourceProjectInventory'):
+        errors.append('verified inventory has no independent published project records')
+    seen=set()
+    for row in target.get('sourceProjectInventory',[]):
+        pid=row.get('projectId','')
+        if not pid or pid in seen:errors.append('source project inventory has a missing or duplicate identity')
+        seen.add(pid)
+        if not str(row.get('source','')).startswith('https://') or not row.get('sourcePublicationDate') or row['sourcePublicationDate']>cutoff_date:
+            errors.append(f'{pid}: invalid or post-cutoff source inventory evidence')
+        if not row.get('required',True):continue
+        matches=[p for p in target.get('projects',[]) if p.get('id')==pid and not p.get('optional',False)]
+        if len(matches)!=1 or pid not in target.get('requiredProjectIds',[]):
+            errors.append(f'{pid}: published mandatory project missing from independent requirements')
+    return errors
+
+
 def audit(campaigns=None, cities=None, targets=None):
     campaigns = campaigns if campaigns is not None else read(ROOT / 'data/campaigns.json')
     cities = cities if cities is not None else read(ROOT / 'data/cities.json')
@@ -135,6 +154,7 @@ def audit(campaigns=None, cities=None, targets=None):
         target = targets.get('cities', {}).get(city_id, {})
         campaign = campaigns['cities'][city_id]
         errors = []
+        errors.extend(inventory_evidence_errors(target,targets.get('cutoffDate','2026-10-01')))
         for field in ('inventoryReviewStatus', 'historyReviewStatus'):
             if target.get(field) != 'verified':
                 errors.append(f'{field}: independent review incomplete')

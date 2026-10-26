@@ -35,7 +35,7 @@ jobs:
             $output | Write-Output
             if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Regression failed: $test" }
           }
-          foreach ($test in @('guangzhou_passage_checks.gd', 'guangzhou6_opening_checks.gd', 'guangzhou12_chigang_checks.gd', 'shanghai_line1_joining_identity_checks.gd', 'chengdu_airport_transfer_checks.gd', 'shared_running_checks.gd', 'beijing_current_scope_checks.gd', 'beijing_hongmiao_planned_checks.gd', 'beijing_r4_north_checks.gd', 'beijing19_north_checks.gd')) {
+          foreach ($test in @('guangzhou_passage_checks.gd', 'guangzhou6_opening_checks.gd', 'guangzhou12_chigang_checks.gd', 'shanghai_line1_joining_identity_checks.gd', 'chengdu_airport_transfer_checks.gd', 'shared_running_checks.gd', 'beijing_current_scope_checks.gd', 'beijing_hongmiao_planned_checks.gd', 'beijing_r4_north_checks.gd', 'beijing19_north_checks.gd', 'beijing_infill_checks.gd')) {
             $data = Join-Path $env:RUNNER_TEMP ("metro-atlas-opening-" + [guid]::NewGuid().ToString("N"))
             $output = godot --headless --path . --script "res://tests/$test" -- "--data-dir=$data" 2>&1
             $code = $LASTEXITCODE

@@ -1,11 +1,23 @@
 """Negative fixtures for coverage rules; not evidence of any city's completeness."""
 import copy
 import unittest
-from official_coverage import ROOT, read, check_project, cutoff_evidence_errors
+from official_coverage import ROOT, read, check_project, cutoff_evidence_errors, inventory_evidence_errors
 from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
+    def test_source_roster_omission_is_a_concrete_failure(self):
+        target=dict(sourceProjectInventory=[dict(projectId='omitted-infill',source='https://example.org/published-roster',sourcePublicationDate='2026-02-03')],projects=[],requiredProjectIds=[])
+        self.assertTrue(any('published mandatory project missing' in e for e in inventory_evidence_errors(target,'2026-10-01')))
+        target['projects']=[dict(id='omitted-infill')];target['requiredProjectIds']=['omitted-infill']
+        self.assertEqual(inventory_evidence_errors(target,'2026-10-01'),[])
+        target['projects'][0]['optional']=True
+        self.assertTrue(inventory_evidence_errors(target,'2026-10-01'))
+
+    def test_roster_evidence_cannot_use_a_post_cutoff_announcement(self):
+        target=dict(sourceProjectInventory=[dict(projectId='p',source='https://example.org/roster',sourcePublicationDate='2026-10-02',required=False)])
+        self.assertTrue(any('post-cutoff' in e for e in inventory_evidence_errors(target,'2026-10-01')))
+
     def test_mandatory_road_corridor_cannot_be_removed_or_loosened(self):
         self.target['groups'][0].update(requiredPlanningCorridorId='source-corridor',planningCorridorToleranceM=650)
         self.assertTrue(any('mandatory planning corridor' in e for e in check_project(self.target,self.plans,self.names)))

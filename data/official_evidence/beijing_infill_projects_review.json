@@ -1,0 +1,159 @@
+{
+  "cutoff": "2026-10-01",
+  "checkedAt": "2026-10-26",
+  "projects": [
+    {
+      "projectId": "bj-yizhuang-taihu-infill",
+      "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+      "publicationDate": "2025-11-24",
+      "stationOrders": [
+        [
+          "亦庄火车站",
+          "台湖"
+        ]
+      ],
+      "additionalSources": [
+        "https://thzb.crsc.cn/news/tsi_2587_5978_96711.html",
+        "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250813_4171885.html"
+      ],
+      "existingRailReferencePairs": [
+        {
+          "fromId": "beijing-s266",
+          "toId": "beijing-future-taihu",
+          "sourceWayIds": [
+            165274851,
+            199429770,
+            1205979673,
+            1205979688,
+            1205979692,
+            1205979699,
+            1205979700
+          ],
+          "pointCount": 47,
+          "lengthM": 1589
+        }
+      ],
+      "coordinatePrecision": "台湖站区取现状车辆段东侧试车线附近；OSM车辆段way/255022305与试车线way/1205979698核对地理范围。站位为约400米精度游戏参考，不以车辆段中心代替测绘站位。"
+    },
+    {
+      "projectId": "bj-line15-guozhan-infill",
+      "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+      "publicationDate": "2026-07-21",
+      "stationOrders": [
+        [
+          "国展",
+          "新国展二期",
+          "花梨坎"
+        ]
+      ],
+      "additionalSources": [
+        "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260903_4849251.html"
+      ],
+      "existingRailReferencePairs": [
+        {
+          "fromId": "beijing-s14",
+          "toId": "beijing-future-guozhan2",
+          "sourceWayIds": [
+            92598997
+          ],
+          "pointCount": 15,
+          "lengthM": 766
+        },
+        {
+          "fromId": "beijing-future-guozhan2",
+          "toId": "beijing-s15",
+          "sourceWayIds": [
+            92598997
+          ],
+          "pointCount": 16,
+          "lengthM": 920
+        }
+      ],
+      "coordinatePrecision": "新站取首都国际会展中心东登录厅正对面的既有15号线高架走廊；会展中心OSM way/478555869、relation/18747310与既有轨道way/92598997核对，站名仍为工程称呼、站中心为约250米精度近似。"
+    },
+    {
+      "projectId": "bj-airport-wangjingnan-infill",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+      "publicationDate": "2026-04-07",
+      "stationOrders": [
+        [
+          "三元桥",
+          "望京南",
+          "3号航站楼"
+        ],
+        [
+          "2号航站楼",
+          "望京南",
+          "三元桥"
+        ]
+      ],
+      "additionalSources": [
+        "https://www.bii.com.cn/file/2024/11/14/1731565997785.pdf",
+        "https://zdzqgw.beijing.gov.cn/zqfw/bjsdgjjc/bjsdgjjcdt/202411/t20241119_3945372.html"
+      ],
+      "existingRailReferencePairs": [
+        {
+          "fromId": "beijing-s174",
+          "toId": "beijing-airport-wangjingnan",
+          "sourceWayIds": [
+            152596078,
+            152597814
+          ],
+          "pointCount": 57,
+          "lengthM": 3383
+        },
+        {
+          "fromId": "beijing-airport-wangjingnan",
+          "toId": "beijing-s207",
+          "sourceWayIds": [
+            105154052,
+            120511210,
+            120515504,
+            152596078,
+            152596080,
+            152596084,
+            152596088,
+            152596089,
+            152598217
+          ],
+          "pointCount": 275,
+          "lengthM": 14962
+        },
+        {
+          "fromId": "beijing-s208",
+          "toId": "beijing-airport-wangjingnan",
+          "sourceWayIds": [
+            31030468,
+            105154027,
+            105154043,
+            120515503,
+            120515505,
+            152596079,
+            152596082,
+            152596085,
+            152596087,
+            152596090,
+            152598219,
+            597216945
+          ],
+          "pointCount": 315,
+          "lengthM": 17215
+        },
+        {
+          "fromId": "beijing-airport-wangjingnan",
+          "toId": "beijing-s174",
+          "sourceWayIds": [
+            152596078,
+            152597814
+          ],
+          "pointCount": 57,
+          "lengthM": 3383
+        }
+      ],
+      "coordinatePrecision": "机场线站体位于京密路与广顺南大街／万红西街交口南侧既有高架轨道上，单独的机场线站区参考[39.9828,116.47635]。14号线地下站位置保持原样；跨路天桥为换乘联系，不是列车轨道。"
+    }
+  ],
+  "airportEiaPdfPage": 16,
+  "airportEiaSha256": "43e448ae030d8c6acd36444b1f71818df852bff1ab12b65c3146fe571d8fe5df",
+  "note": "Station forms from approvals/EIA; footprint/rail geometry is geographic corroboration, not a surveyed station centre. Exhibition footbridges are not metro transfer edges."
+}

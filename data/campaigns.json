@@ -28475,6 +28475,286 @@
             "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250304_4024106.html",
             "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202308/t20230816_3223339.html"
           ]
+        },
+        {
+          "id": "bj-yizhuang-taihu-build",
+          "projectIds": [
+            "bj-yizhuang-taihu-infill"
+          ],
+          "title": "亦庄线台湖车辆段加站",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "official_infill_project",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "station_areas",
+          "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+          "sourceTitle": "亦庄线台湖车辆段加站",
+          "sourceCheckedAt": "2026-10-26",
+          "description": "从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。",
+          "sourcePublicationDate": "2025-11-24",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-yizhuang-taihu-build",
+              "mapRouteId": "beijing-future-bj-yizhuang-taihu-infill",
+              "name": "亦庄线台湖车辆段加站",
+              "historicalLineId": "beijing-route-24",
+              "color": "#D6007B",
+              "stationIds": [
+                "beijing-s266",
+                "beijing-future-taihu"
+              ],
+              "stationNames": {
+                "beijing-s266": "亦庄火车站",
+                "beijing-future-taihu": "台湖"
+              },
+              "toleranceM": 450.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "台湖站区取现状车辆段东侧试车线附近；OSM车辆段way/255022305与试车线way/1205979698核对地理范围。站位为约400米精度游戏参考，不以车辆段中心代替测绘站位。",
+              "stationOrderSource": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s266": "beijing-s266",
+                "beijing-future-taihu": "beijing-future-taihu"
+              },
+              "coverageGroupId": "beijing-yizhuang-taihu-infill",
+              "constructionVariant": true,
+              "stationNamingSource": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html"
+            }
+          ],
+          "requiredTransfers": [],
+          "scopeRevision": "2026.10.26.9",
+          "requiresScopeRecheck": false,
+          "scopeCorrections": [],
+          "stationProfiles": {
+            "beijing-future-taihu": {
+              "id": "bj-yizhuang-taihu-infill-profile",
+              "form": "地面单侧站",
+              "depthM": 0,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250813_4171885.html"
+              },
+              "note": "从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。 显示高度与站体矩形为游戏示意。"
+            }
+          },
+          "additionalSources": [
+            "https://thzb.crsc.cn/news/tsi_2587_5978_96711.html",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250813_4171885.html"
+          ]
+        },
+        {
+          "id": "bj-line15-guozhan-build",
+          "projectIds": [
+            "bj-line15-guozhan-infill"
+          ],
+          "title": "15号线新国展二期加站",
+          "date": "2026-10-01",
+          "status": "approved",
+          "sourceType": "official_infill_project",
+          "projectType": "approved",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "station_areas",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+          "sourceTitle": "15号线新国展二期加站",
+          "sourceCheckedAt": "2026-10-26",
+          "description": "在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。",
+          "sourcePublicationDate": "2026-07-21",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line15-guozhan-build",
+              "mapRouteId": "beijing-future-bj-line15-guozhan-infill",
+              "name": "15号线新国展二期加站",
+              "historicalLineId": "beijing-line15-15",
+              "color": "#653279",
+              "stationIds": [
+                "beijing-s14",
+                "beijing-future-guozhan2",
+                "beijing-s15"
+              ],
+              "stationNames": {
+                "beijing-s14": "国展",
+                "beijing-future-guozhan2": "新国展二期",
+                "beijing-s15": "花梨坎"
+              },
+              "toleranceM": 450.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "新站取首都国际会展中心东登录厅正对面的既有15号线高架走廊；会展中心OSM way/478555869、relation/18747310与既有轨道way/92598997核对，站名仍为工程称呼、站中心为约250米精度近似。",
+              "stationOrderSource": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s14": "beijing-s14",
+                "beijing-future-guozhan2": "beijing-future-guozhan2",
+                "beijing-s15": "beijing-s15"
+              },
+              "coverageGroupId": "beijing15-guozhan-infill",
+              "constructionVariant": true,
+              "stationNamingSource": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+              "connectionMode": "infill"
+            }
+          ],
+          "requiredTransfers": [],
+          "scopeRevision": "2026.10.26.9",
+          "requiresScopeRecheck": false,
+          "scopeCorrections": [],
+          "stationProfiles": {
+            "beijing-future-guozhan2": {
+              "id": "bj-line15-guozhan-infill-profile",
+              "form": "高架两层侧式站",
+              "depthM": 8,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm"
+              },
+              "note": "在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。 显示高度与站体矩形为游戏示意。"
+            }
+          },
+          "additionalSources": [
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260903_4849251.html"
+          ]
+        },
+        {
+          "id": "bj-airport-wangjingnan-build",
+          "projectIds": [
+            "bj-airport-wangjingnan-infill"
+          ],
+          "title": "首都机场线望京南加站与天桥换乘",
+          "date": "2026-10-01",
+          "status": "approved_and_under_construction",
+          "sourceType": "official_infill_project",
+          "projectType": "approved_and_under_construction",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "station_areas",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+          "sourceTitle": "首都机场线望京南加站与天桥换乘",
+          "sourceCheckedAt": "2026-10-26",
+          "description": "沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。",
+          "sourcePublicationDate": "2026-04-07",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-airport-wangjingnan-build:outbound",
+              "mapRouteId": "beijing-future-bj-airport-wangjingnan-infill",
+              "name": "首都机场线望京南加站与天桥换乘",
+              "historicalLineId": "beijing-route-23",
+              "color": "#9B91B1",
+              "stationIds": [
+                "beijing-s174",
+                "beijing-s271",
+                "beijing-s207"
+              ],
+              "stationNames": {
+                "beijing-s174": "三元桥",
+                "beijing-s271": "望京南",
+                "beijing-s207": "3号航站楼"
+              },
+              "toleranceM": 450.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "机场线站体位于京密路与广顺南大街／万红西街交口南侧既有高架轨道上，单独的机场线站区参考[39.9828,116.47635]。14号线地下站位置保持原样；跨路天桥为换乘联系，不是列车轨道。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s174": "beijing-s174__line23",
+                "beijing-s271": "beijing-s271__airport-infill",
+                "beijing-s207": "beijing-s207"
+              },
+              "stationReferenceIds": {
+                "beijing-s271": "beijing-airport-wangjingnan"
+              },
+              "coverageGroupId": "beijing-airport-wangjingnan-outbound",
+              "constructionVariant": true,
+              "stationNamingSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+              "connectionMode": "infill"
+            },
+            {
+              "taskId": "project:bj-airport-wangjingnan-build:return",
+              "mapRouteId": "beijing-future-airport-return",
+              "name": "机场线望京南：T2返回干线",
+              "historicalLineId": "beijing-route-23",
+              "color": "#9B91B1",
+              "stationIds": [
+                "beijing-s208",
+                "beijing-s271",
+                "beijing-s174"
+              ],
+              "stationNames": {
+                "beijing-s208": "2号航站楼",
+                "beijing-s271": "望京南",
+                "beijing-s174": "三元桥"
+              },
+              "toleranceM": 450.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "机场线站体位于京密路与广顺南大街／万红西街交口南侧既有高架轨道上，单独的机场线站区参考[39.9828,116.47635]。14号线地下站位置保持原样；跨路天桥为换乘联系，不是列车轨道。",
+              "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s208": "beijing-s208",
+                "beijing-s271": "beijing-s271__airport-infill",
+                "beijing-s174": "beijing-s174__line23"
+              },
+              "stationReferenceIds": {
+                "beijing-s271": "beijing-airport-wangjingnan"
+              },
+              "coverageGroupId": "beijing-airport-wangjingnan-return",
+              "constructionVariant": true,
+              "stationNamingSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+              "connectionMode": "infill"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-airport-wangjingnan-14",
+              "name": "望京南天桥换乘",
+              "complexId": "beijing-s271",
+              "stationInstanceIds": [
+                "beijing-s271__airport-infill",
+                "beijing-s271"
+              ],
+              "lineIds": [
+                "beijing-route-23",
+                "beijing-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2024/11/14/1731565997785.pdf",
+              "sourceNote": "公开环评PDF第16页：独立三层高架站，通过天桥接14号线C口；不共用地下站体，不将天桥放入列车轨道图。"
+            }
+          ],
+          "scopeRevision": "2026.10.26.9",
+          "requiresScopeRecheck": false,
+          "scopeCorrections": [],
+          "stationProfiles": {
+            "beijing-s271__airport-infill": {
+              "id": "bj-airport-wangjingnan-infill-profile",
+              "form": "高架三层侧式站",
+              "depthM": 12,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html"
+              },
+              "note": "沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。 显示高度与站体矩形为游戏示意。"
+            }
+          },
+          "additionalSources": [
+            "https://www.bii.com.cn/file/2024/11/14/1731565997785.pdf",
+            "https://zdzqgw.beijing.gov.cn/zqfw/bjsdgjjc/bjsdgjjcdt/202411/t20241119_3945372.html"
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -59358,6 +59638,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.26.8",
-  "contentRevisionNote": "补齐原清单遗漏的19号线北延及清河支线；保留既有一期开放范围。"
+  "contentRevision": "2026.10.26.9",
+  "contentRevisionNote": "补齐三项截止日前已公开的加站工程；不覆盖现状服务，不编造未来开放日期。"
 }

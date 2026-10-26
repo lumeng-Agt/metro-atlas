@@ -5199,7 +5199,10 @@
         "bj-new-airport",
         "bj-yizhuang-connector",
         "bj-r4-north-phase1",
-        "bj-line19-north-phase2"
+        "bj-line19-north-phase2",
+        "bj-yizhuang-taihu-infill",
+        "bj-line15-guozhan-infill",
+        "bj-airport-wangjingnan-infill"
       ],
       "historicalMilestones": [
         {
@@ -7139,6 +7142,109 @@
           ],
           "transferReviewStatus": "pending",
           "transferReviewNote": "地铁侧联系已配置，工程名新龙泽与正式龙泽西的全量分层证据、预留铁路接口继续核对；不因8站建成而解除项目完整性门槛。"
+        },
+        {
+          "id": "bj-yizhuang-taihu-infill",
+          "reviewStatus": "verified",
+          "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+          "sourcePublicationDate": "2025-11-24",
+          "sourceCheckedAt": "2026-10-26",
+          "additionalSources": [
+            "https://thzb.crsc.cn/news/tsi_2587_5978_96711.html",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250813_4171885.html"
+          ],
+          "constructionOnly": true,
+          "groups": [
+            {
+              "id": "beijing-yizhuang-taihu-infill",
+              "historicalLineId": "beijing-route-24",
+              "scopeType": "stations",
+              "stationNames": [
+                "亦庄火车站",
+                "台湖"
+              ],
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence",
+              "stationNamingSource": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html"
+            }
+          ],
+          "transfers": [],
+          "transferReviewStatus": "verified",
+          "note": "从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。"
+        },
+        {
+          "id": "bj-line15-guozhan-infill",
+          "reviewStatus": "verified",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+          "sourcePublicationDate": "2026-07-21",
+          "sourceCheckedAt": "2026-10-26",
+          "additionalSources": [
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260903_4849251.html"
+          ],
+          "constructionOnly": true,
+          "groups": [
+            {
+              "id": "beijing15-guozhan-infill",
+              "historicalLineId": "beijing-line15-15",
+              "scopeType": "stations",
+              "stationNames": [
+                "国展",
+                "新国展二期",
+                "花梨坎"
+              ],
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence",
+              "stationNamingSource": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm"
+            }
+          ],
+          "transfers": [],
+          "transferReviewStatus": "verified",
+          "note": "在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。"
+        },
+        {
+          "id": "bj-airport-wangjingnan-infill",
+          "reviewStatus": "verified",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+          "sourcePublicationDate": "2026-04-07",
+          "sourceCheckedAt": "2026-10-26",
+          "additionalSources": [
+            "https://www.bii.com.cn/file/2024/11/14/1731565997785.pdf",
+            "https://zdzqgw.beijing.gov.cn/zqfw/bjsdgjjc/bjsdgjjcdt/202411/t20241119_3945372.html"
+          ],
+          "constructionOnly": true,
+          "groups": [
+            {
+              "id": "beijing-airport-wangjingnan-outbound",
+              "historicalLineId": "beijing-route-23",
+              "scopeType": "stations",
+              "stationNames": [
+                "三元桥",
+                "望京南",
+                "3号航站楼"
+              ],
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence",
+              "stationNamingSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html"
+            },
+            {
+              "id": "beijing-airport-wangjingnan-return",
+              "historicalLineId": "beijing-route-23",
+              "scopeType": "stations",
+              "stationNames": [
+                "2号航站楼",
+                "望京南",
+                "三元桥"
+              ],
+              "allowReverse": true,
+              "matchScope": "contiguous_subsequence",
+              "stationNamingSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html"
+            }
+          ],
+          "transfers": [
+            "future-transfer-airport-wangjingnan-14"
+          ],
+          "transferReviewStatus": "verified",
+          "note": "沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。"
         }
       ],
       "cutoffNetwork": {
@@ -8089,7 +8195,135 @@
           "historic-transfer-beijing-s96-line13-13-line20"
         ],
         "transferEvidence": "res://data/official_evidence/beijing_interchanges_reviewed2026-10-26.json"
-      }
+      },
+      "sourceProjectInventory": [
+        {
+          "projectId": "bj-line19-north-phase2",
+          "officialName": "轨道交通19号线二期工程（北延及北延支线）",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 104,
+          "required": true
+        },
+        {
+          "projectId": "bj-yizhuang-taihu-infill",
+          "officialName": "轨道交通亦庄线台湖车辆段增设站点工程",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 105,
+          "required": true
+        },
+        {
+          "projectId": "bj-line15-guozhan-infill",
+          "officialName": "轨道交通15号线新国展地区增设站点",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 106,
+          "required": true
+        },
+        {
+          "projectId": "bj-yizhuang-connector",
+          "officialName": "轨道交通亦庄线-5号线、10号线联络线",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 107,
+          "required": true
+        },
+        {
+          "projectId": "bj-line12",
+          "officialName": "轨道交通12号线",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 108,
+          "required": true
+        },
+        {
+          "projectId": "bj-line22",
+          "officialName": "轨道交通22号线（平谷线）工程北京段",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 109,
+          "required": true
+        },
+        {
+          "projectId": "bj-line13-capacity",
+          "officialName": "轨道交通13号线扩能提升工程",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 110,
+          "required": true
+        },
+        {
+          "projectId": "bj-line3-phase1",
+          "officialName": "轨道交通3号线一期",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 111,
+          "required": true
+        },
+        {
+          "projectId": "bj-line1-branch",
+          "officialName": "轨道交通1号线支线",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 112,
+          "required": true
+        },
+        {
+          "projectId": "bj-m101-phase1",
+          "officialName": "轨道交通M101线一期",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 113,
+          "required": true
+        },
+        {
+          "projectId": "bj-line28",
+          "officialName": "轨道交通28号线（CBD线）",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 114,
+          "required": true
+        },
+        {
+          "projectId": "bj-new-airport",
+          "officialName": "轨道交通新机场线北延",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 9,
+          "sourceOrdinal": 115,
+          "required": true
+        },
+        {
+          "projectId": "bj-airport-wangjingnan-infill",
+          "officialName": "轨道交通首都机场线增设望京南站工程",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "sourcePublicationDate": "2026-02-03",
+          "pdfPage": 10,
+          "sourceOrdinal": 116,
+          "required": true
+        },
+        {
+          "projectId": "bj-r4-north-phase1",
+          "officialName": "R4线一期北段",
+          "required": true,
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
+          "sourcePublicationDate": "2026-06-02",
+          "note": "年初重点工程名单之后开工，单独补入，不能用年度名单排除。"
+        }
+      ],
+      "inventoryReviewNote": "2026重点工程名单的13项轨道项目和6月开工R4必须逐项收录；这是独立的最小清单，并非所有有效批准项目已穷尽。11号线二期等更广范围继续核对，不据此将inventoryReviewStatus改为verified。"
     },
     "guangzhou": {
       "inventoryReviewStatus": "pending",

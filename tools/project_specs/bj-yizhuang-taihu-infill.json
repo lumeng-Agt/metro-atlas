@@ -1,0 +1,86 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-yizhuang-taihu-infill"
+  ],
+  "stations": [
+    {
+      "id": "beijing-s266",
+      "name": "亦庄火车站",
+      "existing": true
+    },
+    {
+      "id": "beijing-future-taihu",
+      "name": "台湖",
+      "latlng": [
+        39.8245,
+        116.60149
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 400,
+      "coordinateNote": "台湖站区取现状车辆段东侧试车线附近；OSM车辆段way/255022305与试车线way/1205979698核对地理范围。站位为约400米精度游戏参考，不以车辆段中心代替测绘站位。",
+      "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "main",
+      "mapRouteId": "beijing-future-bj-yizhuang-taihu-infill",
+      "coverageGroupId": "beijing-yizhuang-taihu-infill",
+      "historicalLineId": "beijing-route-24",
+      "name": "亦庄线台湖车辆段加站",
+      "color": "#D6007B",
+      "stationIds": [
+        "beijing-s266",
+        "beijing-future-taihu"
+      ],
+      "stationInstances": {
+        "beijing-s266": "beijing-s266",
+        "beijing-future-taihu": "beijing-future-taihu"
+      },
+      "toleranceM": 450,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "台湖站区取现状车辆段东侧试车线附近；OSM车辆段way/255022305与试车线way/1205979698核对地理范围。站位为约400米精度游戏参考，不以车辆段中心代替测绘站位。",
+      "stationOrderSource": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+      "constructionVariant": true,
+      "stationNamingSource": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html"
+    }
+  ],
+  "transfers": [],
+  "plan": {
+    "id": "bj-yizhuang-taihu-build",
+    "title": "亦庄线台湖车辆段加站",
+    "date": "2026-10-01",
+    "status": "approved_and_under_construction",
+    "projectType": "approved_and_under_construction",
+    "required": true,
+    "sourceType": "official_infill_project",
+    "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+    "sourceTitle": "亦庄线台湖车辆段加站",
+    "sourcePublicationDate": "2025-11-24",
+    "sourceCheckedAt": "2026-10-26",
+    "exactAlignment": "station_areas",
+    "description": "从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。",
+    "additionalSources": [
+      "https://thzb.crsc.cn/news/tsi_2587_5978_96711.html",
+      "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250813_4171885.html"
+    ],
+    "contentRevision": "2026.10.26.9",
+    "contentRevisionNote": "补齐三项截止日前已公开的加站工程；不覆盖现状服务，不编造未来开放日期。",
+    "stationProfiles": {
+      "beijing-future-taihu": {
+        "id": "bj-yizhuang-taihu-infill-profile",
+        "form": "地面单侧站",
+        "depthM": 0,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250813_4171885.html"
+        },
+        "note": "从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。 显示高度与站体矩形为游戏示意。"
+      }
+    }
+  }
+}

@@ -16266,6 +16266,48 @@
           "source": "https://www.bii.com.cn/file/2025/03/03/1740974915275.pdf",
           "sourceCheckedAt": "2026-10-26",
           "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-future-taihu",
+          "name": "台湖",
+          "latlng": [
+            39.8245,
+            116.60149
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "台湖站区取现状车辆段东侧试车线附近；OSM车辆段way/255022305与试车线way/1205979698核对地理范围。站位为约400米精度游戏参考，不以车辆段中心代替测绘站位。",
+          "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 400
+        },
+        {
+          "id": "beijing-future-guozhan2",
+          "name": "新国展二期",
+          "latlng": [
+            40.0754,
+            116.5509
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "新站取首都国际会展中心东登录厅正对面的既有15号线高架走廊；会展中心OSM way/478555869、relation/18747310与既有轨道way/92598997核对，站名仍为工程称呼、站中心为约250米精度近似。",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 250
+        },
+        {
+          "id": "beijing-airport-wangjingnan",
+          "name": "望京南",
+          "latlng": [
+            39.9828,
+            116.47635
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "机场线站体位于京密路与广顺南大街／万红西街交口南侧既有高架轨道上，单独的机场线站区参考[39.9828,116.47635]。14号线地下站位置保持原样；跨路天桥为换乘联系，不是列车轨道。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+          "sourceCheckedAt": "2026-10-26",
+          "coordinateAccuracyM": 250
         }
       ],
       "lines": [

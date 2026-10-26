@@ -1,0 +1,153 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-airport-wangjingnan-infill"
+  ],
+  "stations": [
+    {
+      "id": "beijing-s174",
+      "name": "三元桥",
+      "existing": true
+    },
+    {
+      "id": "beijing-s271",
+      "name": "望京南",
+      "existing": true
+    },
+    {
+      "id": "beijing-s207",
+      "name": "3号航站楼",
+      "existing": true
+    },
+    {
+      "id": "beijing-s208",
+      "name": "2号航站楼",
+      "existing": true
+    },
+    {
+      "id": "beijing-airport-wangjingnan",
+      "name": "望京南",
+      "latlng": [
+        39.9828,
+        116.47635
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 250,
+      "coordinateNote": "机场线站体位于京密路与广顺南大街／万红西街交口南侧既有高架轨道上，单独的机场线站区参考[39.9828,116.47635]。14号线地下站位置保持原样；跨路天桥为换乘联系，不是列车轨道。",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "outbound",
+      "mapRouteId": "beijing-future-bj-airport-wangjingnan-infill",
+      "coverageGroupId": "beijing-airport-wangjingnan-outbound",
+      "historicalLineId": "beijing-route-23",
+      "name": "首都机场线望京南加站与天桥换乘",
+      "color": "#9B91B1",
+      "stationIds": [
+        "beijing-s174",
+        "beijing-s271",
+        "beijing-s207"
+      ],
+      "stationInstances": {
+        "beijing-s174": "beijing-s174__line23",
+        "beijing-s271": "beijing-s271__airport-infill",
+        "beijing-s207": "beijing-s207"
+      },
+      "toleranceM": 450,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "机场线站体位于京密路与广顺南大街／万红西街交口南侧既有高架轨道上，单独的机场线站区参考[39.9828,116.47635]。14号线地下站位置保持原样；跨路天桥为换乘联系，不是列车轨道。",
+      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+      "constructionVariant": true,
+      "stationNamingSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+      "maxSpacingM": 18000,
+      "connectionMode": "infill",
+      "stationReferenceIds": {
+        "beijing-s271": "beijing-airport-wangjingnan"
+      }
+    },
+    {
+      "key": "return",
+      "mapRouteId": "beijing-future-airport-return",
+      "coverageGroupId": "beijing-airport-wangjingnan-return",
+      "historicalLineId": "beijing-route-23",
+      "name": "机场线望京南：T2返回干线",
+      "color": "#9B91B1",
+      "stationIds": [
+        "beijing-s208",
+        "beijing-s271",
+        "beijing-s174"
+      ],
+      "stationInstances": {
+        "beijing-s208": "beijing-s208",
+        "beijing-s271": "beijing-s271__airport-infill",
+        "beijing-s174": "beijing-s174__line23"
+      },
+      "toleranceM": 450,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "机场线站体位于京密路与广顺南大街／万红西街交口南侧既有高架轨道上，单独的机场线站区参考[39.9828,116.47635]。14号线地下站位置保持原样；跨路天桥为换乘联系，不是列车轨道。",
+      "stationOrderSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+      "constructionVariant": true,
+      "stationNamingSource": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+      "maxSpacingM": 18000,
+      "connectionMode": "infill",
+      "stationReferenceIds": {
+        "beijing-s271": "beijing-airport-wangjingnan"
+      }
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-airport-wangjingnan-14",
+      "name": "望京南天桥换乘",
+      "complexId": "beijing-s271",
+      "lineIds": [
+        "beijing-route-23",
+        "beijing-line14-14"
+      ],
+      "stationInstanceIds": [
+        "beijing-s271__airport-infill",
+        "beijing-s271"
+      ],
+      "source": "https://www.bii.com.cn/file/2024/11/14/1731565997785.pdf",
+      "sourceNote": "公开环评PDF第16页：独立三层高架站，通过天桥接14号线C口；不共用地下站体，不将天桥放入列车轨道图。"
+    }
+  ],
+  "plan": {
+    "id": "bj-airport-wangjingnan-build",
+    "title": "首都机场线望京南加站与天桥换乘",
+    "date": "2026-10-01",
+    "status": "approved_and_under_construction",
+    "projectType": "approved_and_under_construction",
+    "required": true,
+    "sourceType": "official_infill_project",
+    "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
+    "sourceTitle": "首都机场线望京南加站与天桥换乘",
+    "sourcePublicationDate": "2026-04-07",
+    "sourceCheckedAt": "2026-10-26",
+    "exactAlignment": "station_areas",
+    "description": "沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。",
+    "additionalSources": [
+      "https://www.bii.com.cn/file/2024/11/14/1731565997785.pdf",
+      "https://zdzqgw.beijing.gov.cn/zqfw/bjsdgjjc/bjsdgjjcdt/202411/t20241119_3945372.html"
+    ],
+    "contentRevision": "2026.10.26.9",
+    "contentRevisionNote": "补齐三项截止日前已公开的加站工程；不覆盖现状服务，不编造未来开放日期。",
+    "stationProfiles": {
+      "beijing-s271__airport-infill": {
+        "id": "bj-airport-wangjingnan-infill-profile",
+        "form": "高架三层侧式站",
+        "depthM": 12,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html"
+        },
+        "note": "沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。 显示高度与站体矩形为游戏示意。"
+      }
+    }
+  }
+}

@@ -1284,7 +1284,7 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 			else:target=Story.nearest_target(world,ll,_active_task_id())
 		if str(world.mode)=="campaign" and target.is_empty():problem="请在蓝图目标站区放置车站；可点击左侧目标定位。";_instruction();return
 		var construction_profile:=Story.profile(world,str(target.get("id","")))
-		var candidate:={"id":"draft","name":str(target.get("name","新建车站%d" % (world.stations.size()+1))),"latlng":ll.duplicate(),"heading":90.0,"lengthM":118.788,"widthM":20.0,"depthM":map_view.current_depth_m,"historicalId":str(target.get("historicalId",target.get("id",""))),"stationInstanceId":str(target.get("stationInstanceId",target.get("id",""))),"stationComplexId":str(target.get("stationComplexId",target.get("historicalId",target.get("id","")))),"stationLineId":str(target.get("historicalLineId","")),"stationLineName":str(target.get("historicalLineName",target.get("historicalLineId",""))),"vehicleId":"B-6","existing":false,"routeIds":[]}
+		var candidate:={"id":"draft","name":str(target.get("name","新建车站%d" % (world.stations.size()+1))),"latlng":ll.duplicate(),"heading":90.0,"lengthM":118.788,"widthM":20.0,"depthM":map_view.current_depth_m,"historicalId":str(target.get("historicalId",target.get("id",""))),"stationInstanceId":str(target.get("stationInstanceId",target.get("id",""))),"referenceId":str(target.get("referenceId",target.get("id",""))),"stationComplexId":str(target.get("stationComplexId",target.get("historicalId",target.get("id","")))),"stationLineId":str(target.get("historicalLineId","")),"stationLineName":str(target.get("historicalLineName",target.get("historicalLineId",""))),"vehicleId":"B-6","existing":false,"routeIds":[]}
 		if not target.is_empty():candidate.latlng=target.latlng.duplicate();candidate.heading=map_view.blueprint_heading_for(str(target.id))
 		_apply_profile(candidate,construction_profile)
 		if str(construction_profile.get("parameterStatus",{}).get("depthM","game_estimate"))=="game_estimate" and not str(construction_profile.get("form","")).contains("高架") and not str(construction_profile.get("form","")).contains("地面"):candidate.depthM=map_view.current_depth_m
@@ -1416,7 +1416,7 @@ func _commit_batch_tracks() -> void:
 func _track_preview(finish:Dictionary) -> void:
 	var start:=map_view.track_start_ref
 	var a:=WorldData.find_station(world,str(start.get("stationId","")));var b:=WorldData.find_station(world,str(finish.get("stationId","")))
-	var reference:=ReferenceAlignment.between(str(a.get("historicalId","")),str(b.get("historicalId","")))
+	var reference:=ReferenceAlignment.for_stations(a,b)
 	if str(world.mode)=="campaign" and not advanced_edit and not reference.is_empty():
 		pending_track=ReferenceAlignment.preview(reference,start,finish,world,float(WorldData.city(str(world.cityId)).center[0]))
 	else:
@@ -1762,7 +1762,7 @@ func _tutorial_map_rect(latlng:Array,step_id:String,radius:float) -> Rect2:
 	return Rect2(point-Vector2(radius,radius),Vector2(radius*2,radius*2))
 
 func _facing(a:Dictionary,b:Dictionary) -> Array:
-	var alignment:=ReferenceAlignment.between(str(a.get("historicalId","")),str(b.get("historicalId","")))
+	var alignment:=ReferenceAlignment.for_stations(a,b)
 	if not alignment.is_empty():return ReferenceAlignment.sides(a,b,alignment,float(WorldData.city(str(world.cityId)).center[0]))
 	var result:=["end","start"];var best:=INF
 	for aside in ["start","end"]:
@@ -1848,7 +1848,9 @@ func _assist_required_ports(state:Dictionary,group:Dictionary,index:int,prior_ar
 	# end here made the inserted final section turn back through the platform,
 	# leaving the following genuine extension impossible. Constrain a replacement
 	# to its reference-facing ends, preserving all old physical construction.
-	var replacing:=bool(group.get("replaceExistingService",false))
+	# A separately stored future infill uses those same facing ports without
+	# replacing the current service. A real extension still needs the free end.
+	var replacing:=bool(group.get("replaceExistingService",false)) or str(group.get("connectionMode",""))=="infill"
 	var facing:=_facing(a,b) if replacing else []
 	var scope_instances:Array=[]
 	if not replacing and (index==0 or index==ids.size()-2):
@@ -1877,7 +1879,7 @@ func _assist_candidate() -> Dictionary:
 			if bool(target.get("historicalNameRequired",false)):Story.bound_station(candidate,str(target.historicalId),str(target.stationInstanceId),str(target.get("historicalLineId", ""))).name=target.name
 			continue
 		if bool(target.get("engineeringExistingAnchor",false)):return {"issue":"既有接头「%s」缺少对应线路站体。请先修复原线路；本工程不会增建这个车站。"%str(target.name)}
-		var station:={"id":"assist_%s" % str(target.id),"stationInstanceId":str(target.stationInstanceId),"stationComplexId":str(target.stationComplexId),"stationLineId":str(target.historicalLineId),"stationLineName":str(target.get("historicalLineName",target.historicalLineId)),"name":str(target.name),"historicalId":str(target.historicalId),"latlng":target.latlng.duplicate(),"heading":float(target.referenceHeading) if float(target.referenceHeading)>=0 else map_view.blueprint_heading_for(str(target.id)),"lengthM":118.788,"widthM":20.0,"depthM":-15.0,"vehicleId":"B-6","existing":false,"routeIds":[]}
+		var station:={"id":"assist_%s" % str(target.id),"stationInstanceId":str(target.stationInstanceId),"referenceId":str(target.get("referenceId",target.id)),"stationComplexId":str(target.stationComplexId),"stationLineId":str(target.historicalLineId),"stationLineName":str(target.get("historicalLineName",target.historicalLineId)),"name":str(target.name),"historicalId":str(target.historicalId),"latlng":target.latlng.duplicate(),"heading":float(target.referenceHeading) if float(target.referenceHeading)>=0 else map_view.blueprint_heading_for(str(target.id)),"lengthM":118.788,"widthM":20.0,"depthM":-15.0,"vehicleId":"B-6","existing":false,"routeIds":[]}
 		_apply_profile(station,Story.profile(candidate,str(target.id)))
 		if helper._station_overlaps_in(station,candidate.stations):return {"issue":"%s 与现有站体冲突，请手动调整。" % str(station.name)}
 		candidate.stations.append(station)
