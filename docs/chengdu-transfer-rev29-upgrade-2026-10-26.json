@@ -1,0 +1,46 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "chengdu",
+  "operatorRetrievedAt": "2026-10-23",
+  "source": "https://www.chengdurail.com/op/station-time",
+  "expectedPairs": 92,
+  "matchedPairs": 92,
+  "missingPairs": [],
+  "invalidConnections": [],
+  "nonOpenConnections": [],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "b0b4974797df5e547493a35a5354c923e4a1a7201b89c69f8ddb43ad3ec893b0",
+  "evidenceSha256": "3848e03208ae0b66311af72aebaa8737e2a856282638a27915e5a49f046133de",
+  "sharedRunningStops": [
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "三岔",
+      "operatorStationNo": "1829",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "福田",
+      "operatorStationNo": "1830",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "天府机场1号2号航站楼",
+      "operatorStationNo": "1832",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "天府机场北",
+      "operatorStationNo": "1833",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    }
+  ],
+  "sharedGeometryCertified": false
+}

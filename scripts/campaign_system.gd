@@ -5,6 +5,7 @@ const CATALOG_PATH := "res://data/campaigns.json"
 const NETWORK_BASELINE_PATH := "res://data/network_baselines_2026-10-01.json"
 const OFFICIAL_TARGET_PATH := "res://data/official_targets_2026-10-01.json"
 const Engineering = preload("res://scripts/engineering_construction.gd")
+const SharedRunning = preload("res://scripts/shared_running_audit.gd")
 static var _catalog: Dictionary = {}
 static var _network_baseline: Dictionary = {}
 static var _known_station_ids_by_city: Dictionary = {}
@@ -22,6 +23,8 @@ static func delivery_eligibility(city_id:String) -> Dictionary:
 	if cutoff.get("groups",[]).is_empty() or str(cutoff.get("date",""))!=str(parsed.get("cutoffDate","2026-10-01")):reasons.append("缺少对应截止日的独立站序目标。")
 	if str(cutoff.get("temporalReviewStatus",""))!="verified" or cutoff.get("temporalEvidence",[]).is_empty():reasons.append("截止日开放范围缺少独立日期证据，现行时刻表不能代替。")
 	if str(cutoff.get("transferReviewStatus",""))!="verified":reasons.append("截止日全量换乘联系尚未完成独立核对。")
+	if str(cutoff.get("sharedRunningReviewStatus","verified"))!="verified":reasons.append("截止日共线运行的实际轨道关系尚未核对完成。")
+	reasons.append_array(SharedRunning.definition_errors(cutoff))
 	for evidence in cutoff.get("temporalEvidence",[]):
 		if str(evidence.get("source","")).is_empty() or str(evidence.get("effectiveDate","")).is_empty() or str(evidence.get("effectiveDate",""))>str(parsed.get("cutoffDate","2026-10-01")):reasons.append("截止日证据缺失或包含后期开通。")
 	var campaign:=city_config(city_id)

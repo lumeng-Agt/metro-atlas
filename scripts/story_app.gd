@@ -701,6 +701,7 @@ func _left() -> void:
 				continue
 			left.add_child(label("换乘站 · %s" % transfer_title,18,true))
 			left.add_child(label("%d座独立站体：%s" % [transfer.get("stationInstanceIds",[]).size(),transfer_pair],15))
+			if str(transfer.get("transferKind",""))=="out_of_station":left.add_child(label("出闸换乘：按导向经公共区域步行至另一站体，两侧名称与实体保留。",15))
 			left.add_child(label("建立的是站体之间的换乘联系；不会合并站厅，也不会把两条轨道接在一起。",15))
 			if _transfer_connected(transfer):left.add_child(label("已建立换乘联系 · %s" % transfer_pair,16,true))
 			else:
@@ -900,7 +901,7 @@ func _preview_transfer(transfer: Dictionary) -> void:
 	var details: Array[String] = []
 	for index in range(instance_ids.size()):
 		var station := Story.bound_station(world, str(transfer.get("complexId", "")), str(instance_ids[index]))
-		details.append("%s线站体：%s（独立站体）" % [_historical_line_name(str(line_ids[index])), str(station.get("name", "车站"))])
+		details.append("%s站体：%s（独立站体）" % [_historical_line_name(str(line_ids[index])), str(station.get("name", "车站"))])
 	var expected_revision := int(world.get("revision", 0))
 	var connection: Dictionary = {"id":str(transfer.get("id","")),"name":str(transfer.get("name","换乘站")),"complexId":str(transfer.get("complexId","")),"stationInstanceIds":instance_ids.duplicate(),"lineIds":line_ids.duplicate(),"status":"active","precision":str(transfer.get("precision","schematic")),"source":str(transfer.get("source","")),"effectiveDate":str(Story.chapter(world).get("date",""))}
 	var probe: Dictionary = _transfer_candidate()
@@ -913,7 +914,8 @@ func _preview_transfer(transfer: Dictionary) -> void:
 	var validation := SaveManager.validate(probe)
 	if not validation.is_empty():_message("换乘预览无效", validation);return
 	var body_count:=instance_ids.size()
-	_confirm("建立换乘关系 · " + str(transfer.get("name","换乘站")), "将建立%d座独立站体之间的站间换乘联系：\n%s\n\n这不会把不同线路站体合并，也不会把轨道接在一起；列车仍只沿各自线路运行。确认后可撤销。" % [body_count,"\n".join(details)], func():
+	var contact_note:="出闸后按导向经公共区域步行至另一站体，两侧名称与实体保留。" if str(transfer.get("transferKind",""))=="out_of_station" else "保留不同线路的独立站体，列车仍沿各自轨道运行。"
+	_confirm("建立换乘关系 · " + str(transfer.get("name","换乘站")), "将建立%d座独立站体之间的换乘联系：\n%s\n\n%s\n确认后可撤销。" % [body_count,"\n".join(details),contact_note], func():
 		var committed:=_commit_transfer_connection(transfer,connection,expected_revision,checked)
 		if not bool(committed.get("ok",false)):_message("换乘联系未建立",str(committed.get("error","请重新预览。")))
 		_refresh())
@@ -925,7 +927,7 @@ func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expec
 	# Recheck formal planning, not a caller's previously computed readiness.
 	checked=Story.evaluate(world)
 	var current_transfers:Array=Story.chapter(world).get("requiredTransfers",[])
-	if not current_transfers.any(func(t:Dictionary):return str(t.get("id",""))==str(transfer.get("id","")) and t.get("stationInstanceIds",[])==transfer.get("stationInstanceIds",[]) and t.get("lineIds",[])==transfer.get("lineIds",[]) and str(t.get("status","active"))==str(transfer.get("status","active"))):return {"ok":false,"error":"换乘目标已变化，请重新预览。"}
+	if not current_transfers.any(func(t:Dictionary):return str(t.get("id",""))==str(transfer.get("id","")) and t.get("stationInstanceIds",[])==transfer.get("stationInstanceIds",[]) and t.get("lineIds",[])==transfer.get("lineIds",[]) and str(t.get("status","active"))==str(transfer.get("status","active")) and str(t.get("transferKind","interchange"))==str(transfer.get("transferKind","interchange"))):return {"ok":false,"error":"换乘目标已变化，请重新预览。"}
 	if str(connection.get("status","active"))!="active":return {"ok":false,"error":"普通换乘与预留接口不能互相替代，请重新预览。"}
 	for key in ["id","complexId","stationInstanceIds","lineIds"]:
 		if connection.get(key)!=transfer.get(key):return {"ok":false,"error":"换乘预览与当前目标不一致。"}
@@ -937,6 +939,7 @@ func _commit_transfer_connection(transfer:Dictionary,connection:Dictionary,expec
 	# never create a second complex just to satisfy a raw catalogue reference.
 	var canonical_connection:=connection.duplicate(true)
 	canonical_connection["complexId"]=CampaignSystem.canonical_station_complex(str(world.cityId),str(connection.complexId))
+	canonical_connection["transferKind"]=str(transfer.get("transferKind","interchange"))
 	for route in checked.get("routes",[]):
 		var route_copy:Dictionary=route.duplicate(true)
 		var existing:=WorldData.find_route(candidate,str(route.get("id","")))

@@ -1,0 +1,201 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "chengdu",
+  "operatorRetrievedAt": "2026-10-23",
+  "source": "https://www.chengdurail.com/op/station-time",
+  "expectedPairs": 92,
+  "matchedPairs": 70,
+  "missingPairs": [
+    {
+      "station": "倪家桥",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line8-8"
+      ]
+    },
+    {
+      "station": "华西坝",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line13-11"
+      ]
+    },
+    {
+      "station": "孵化园",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ]
+    },
+    {
+      "station": "孵化园",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line9-9"
+      ]
+    },
+    {
+      "station": "火车南站",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ]
+    },
+    {
+      "station": "西博城",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ]
+    },
+    {
+      "station": "双流机场2航站楼",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line19-14"
+      ]
+    },
+    {
+      "station": "双流机场2航站楼",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line30-16"
+      ]
+    },
+    {
+      "station": "高升桥",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line3-3"
+      ]
+    },
+    {
+      "station": "高升桥",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line5-5"
+      ]
+    },
+    {
+      "station": "四川师大",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line7-7"
+      ]
+    },
+    {
+      "station": "建设北路",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line6-6"
+      ]
+    },
+    {
+      "station": "红星桥",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line3-3"
+      ]
+    },
+    {
+      "station": "孵化园",
+      "lineIds": [
+        "chengdu-line18-13",
+        "chengdu-line9-9"
+      ]
+    },
+    {
+      "station": "火车南站",
+      "lineIds": [
+        "chengdu-line18-13",
+        "chengdu-line7-7"
+      ]
+    },
+    {
+      "station": "西博城",
+      "lineIds": [
+        "chengdu-line18-13",
+        "chengdu-line6-6"
+      ]
+    },
+    {
+      "station": "龙桥路",
+      "lineIds": [
+        "chengdu-line19-14",
+        "chengdu-line3-3"
+      ]
+    },
+    {
+      "station": "市一医院",
+      "lineIds": [
+        "chengdu-line30-16",
+        "chengdu-line5-5"
+      ]
+    },
+    {
+      "station": "槐树店",
+      "lineIds": [
+        "chengdu-line4-4",
+        "chengdu-line7-7"
+      ]
+    },
+    {
+      "station": "九兴大道",
+      "lineIds": [
+        "chengdu-line5-5",
+        "chengdu-line8-8"
+      ]
+    },
+    {
+      "station": "琉璃场",
+      "lineIds": [
+        "chengdu-line6-6",
+        "chengdu-line7-7"
+      ]
+    },
+    {
+      "station": "理工大学",
+      "lineIds": [
+        "chengdu-line7-7",
+        "chengdu-line8-8"
+      ]
+    }
+  ],
+  "invalidConnections": [],
+  "nonOpenConnections": [],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "f1666108bd347c29db6819bc82eb4a2c94c5f0191166c3a72bae18ef729a5fbb",
+  "evidenceSha256": "3848e03208ae0b66311af72aebaa8737e2a856282638a27915e5a49f046133de",
+  "sharedRunningStops": [
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "三岔",
+      "operatorStationNo": "1829",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "福田",
+      "operatorStationNo": "1830",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "天府机场1号2号航站楼",
+      "operatorStationNo": "1832",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "天府机场北",
+      "operatorStationNo": "1833",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    }
+  ],
+  "sharedGeometryCertified": false
+}

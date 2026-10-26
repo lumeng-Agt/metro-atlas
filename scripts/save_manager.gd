@@ -68,6 +68,7 @@ static func validate(data: Dictionary) -> String:
 		if instance_id.is_empty() or instance_ids.has(instance_id):return "物理站体编号为空或重复。"
 		instance_ids[instance_id]=true
 	for connection in data.get("transferConnections",[]):
+		if connection.has("transferKind") and str(connection.transferKind) not in ["interchange","out_of_station"]:return "换乘联系类型无效。"
 		if str(connection.get("complexId","")).is_empty() or not indexes.stationComplexes.has(str(connection.complexId)):return "换乘关系引用了不存在的站区。"
 		if not connection.get("stationInstanceIds",[]) is Array or connection.stationInstanceIds.size()<2:return "换乘关系至少需要两个独立站体。"
 		var linked_instances:Dictionary={}

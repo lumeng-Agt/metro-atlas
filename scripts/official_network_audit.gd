@@ -4,6 +4,7 @@ extends RefCounted
 const TARGET_PATH="res://data/official_targets_2026-10-01.json"
 const Engineering=preload("res://scripts/engineering_construction.gd")
 const Reservation=preload("res://scripts/transfer_reservation.gd")
+const SharedRunning=preload("res://scripts/shared_running_audit.gd")
 static var _target_snapshot:Dictionary={}
 static var _target_snapshot_sha256:=""
 
@@ -212,6 +213,8 @@ static func cutoff_errors(world:Dictionary) -> Array[String]:
 	if network.is_empty():return ["independent cutoff network not yet available"]
 	var errors:=project_errors(world,network)
 	errors.append_array(service_shape_errors(world,network,city.get("projects",[])))
+	errors.append_array(SharedRunning.definition_errors(network))
+	for shared in network.get("sharedRunningSections",[]):errors.append_array(SharedRunning.errors(world,shared))
 	return errors
 
 static func service_shape_errors(world:Dictionary,network:Dictionary,projects:Array=[]) -> Array[String]:

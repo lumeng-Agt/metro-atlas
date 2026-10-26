@@ -52982,7 +52982,7 @@
           "publicationDateNote": "页面发布日期与资料截止日期分开记录。",
           "story": {
             "opening": "历史建设推进到统一核对节点。",
-            "purpose": "检查从早期章节累计建设的各条线路是否覆盖截止日站序与实际轨道连接。",
+            "purpose": "核对当前目标中的连续站序和92组线路联系；双流机场T2出闸换乘保持不同站名及实体。共线运行另按实际轨道关系处理。",
             "outcome": "只有逐线评估通过，才记录城市截止日历史节点。未进入已开通范围的在建线路仍单列为建设项目。",
             "eventKind": "network_reconciliation",
             "planVersions": [],
@@ -53030,7 +53030,1664 @@
             "chengdu-r15",
             "chengdu-r16"
           ],
-          "requiredTransfers": [],
+          "requiredTransfers": [
+            {
+              "id": "historic-transfer-chengdu-s7-line1-line18-13",
+              "name": "世纪城",
+              "complexId": "chengdu-s7",
+              "stationInstanceIds": [
+                "chengdu-s7",
+                "chengdu-s7__line18-13"
+              ],
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line18-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s21-line1-line6-6",
+              "name": "人民北路",
+              "complexId": "chengdu-s21",
+              "stationInstanceIds": [
+                "chengdu-s21",
+                "chengdu-s21__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s14-chengdu-line1-chengdu-line8-8",
+              "name": "倪家桥",
+              "complexId": "chengdu-s14",
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line8-8"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s274",
+                "chengdu-s274__line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s16-chengdu-line1-chengdu-line13-11",
+              "name": "华西坝",
+              "complexId": "chengdu-s16",
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line13-11"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s321",
+                "chengdu-s321__line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s18-line2-2-line1",
+              "name": "天府广场",
+              "complexId": "chengdu-s18",
+              "stationInstanceIds": [
+                "chengdu-s18__line2-2",
+                "chengdu-s18"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line1"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s9-chengdu-line1-chengdu-line18-13",
+              "name": "孵化园",
+              "complexId": "chengdu-s9",
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line18-13"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s304",
+                "chengdu-s304__line18-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s9-chengdu-line1-chengdu-line9-9",
+              "name": "孵化园",
+              "complexId": "chengdu-s9",
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line9-9"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s304",
+                "chengdu-s170"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s158-line1-line18-13",
+              "name": "海昌路",
+              "complexId": "chengdu-s158",
+              "stationInstanceIds": [
+                "chengdu-s158__line1",
+                "chengdu-s158__line18-13"
+              ],
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line18-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s22-line7-7-line1",
+              "name": "火车北站",
+              "complexId": "chengdu-s22",
+              "stationInstanceIds": [
+                "chengdu-s22__line7-7",
+                "chengdu-s22"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line1"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s12-chengdu-line1-chengdu-line18-13",
+              "name": "火车南站",
+              "complexId": "chengdu-s303",
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line18-13"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s12",
+                "chengdu-s303__line18-13"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s12-line7-7-line1",
+              "name": "火车南站",
+              "complexId": "chengdu-s303",
+              "stationInstanceIds": [
+                "chengdu-s12__line7-7",
+                "chengdu-s12"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line1"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s15-line3-3-line1",
+              "name": "省体育馆",
+              "complexId": "chengdu-s15",
+              "stationInstanceIds": [
+                "chengdu-s15__line3-3",
+                "chengdu-s15"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line1"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s164-chengdu-line1-chengdu-line18-13",
+              "name": "西博城",
+              "complexId": "chengdu-s164",
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line18-13"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s164__line1",
+                "chengdu-s306"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s164-line1-line6-6",
+              "name": "西博城",
+              "complexId": "chengdu-s164",
+              "stationInstanceIds": [
+                "chengdu-s164__line1",
+                "chengdu-s164__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s24-line1-line27-15",
+              "name": "韦家碾",
+              "complexId": "chengdu-s24",
+              "stationInstanceIds": [
+                "chengdu-s24__line1",
+                "chengdu-s24__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line1",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s19-line4-4-line1",
+              "name": "骡马市",
+              "complexId": "chengdu-s19",
+              "stationInstanceIds": [
+                "chengdu-s19__line4-4",
+                "chengdu-s19"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line1"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s144-line10-10-line9-9",
+              "name": "华兴",
+              "complexId": "chengdu-s144",
+              "stationInstanceIds": [
+                "chengdu-s144__line10-10",
+                "chengdu-s144__line9-9"
+              ],
+              "lineIds": [
+                "chengdu-line10-10",
+                "chengdu-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s147-chengdu-line10-10-chengdu-line19-14",
+              "name": "双流机场2航站楼",
+              "complexId": "chengdu-s147",
+              "lineIds": [
+                "chengdu-line10-10",
+                "chengdu-line19-14"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s147",
+                "chengdu-s356__line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "out_of_station",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s147-chengdu-line10-10-chengdu-line30-16",
+              "name": "双流机场2航站楼",
+              "complexId": "chengdu-s147",
+              "lineIds": [
+                "chengdu-line10-10",
+                "chengdu-line30-16"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s147",
+                "chengdu-s356__line30-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.thepaper.cn/newsDetail_forward_32247108",
+              "transferKind": "out_of_station",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s117-line3-3-line10-10",
+              "name": "双流西站",
+              "complexId": "chengdu-s117",
+              "stationInstanceIds": [
+                "chengdu-s117__line3-3",
+                "chengdu-s117__line10-10"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s106-line3-3-line10-10",
+              "name": "太平园",
+              "complexId": "chengdu-s106",
+              "stationInstanceIds": [
+                "chengdu-s106__line3-3",
+                "chengdu-s106__line10-10"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s106-line7-7-line10-10",
+              "name": "太平园",
+              "complexId": "chengdu-s106",
+              "stationInstanceIds": [
+                "chengdu-s106__line7-7",
+                "chengdu-s106__line10-10"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s105-line3-3-line10-10",
+              "name": "红牌楼",
+              "complexId": "chengdu-s105",
+              "stationInstanceIds": [
+                "chengdu-s105__line3-3",
+                "chengdu-s105__line10-10"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s328-chengdu-line10-10-chengdu-line3-3",
+              "name": "高升桥",
+              "complexId": "chengdu-s328",
+              "lineIds": [
+                "chengdu-line10-10",
+                "chengdu-line3-3"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s328",
+                "chengdu-s104__line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s328-chengdu-line10-10-chengdu-line5-5",
+              "name": "高升桥",
+              "complexId": "chengdu-s328",
+              "lineIds": [
+                "chengdu-line10-10",
+                "chengdu-line5-5"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s328",
+                "chengdu-s104__line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s200-line6-6-line13-11",
+              "name": "三官堂",
+              "complexId": "chengdu-s200",
+              "stationInstanceIds": [
+                "chengdu-s200__line6-6",
+                "chengdu-s200__line13-11"
+              ],
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s131-line7-7-line13-11",
+              "name": "东坡路",
+              "complexId": "chengdu-s131",
+              "stationInstanceIds": [
+                "chengdu-s131__line7-7",
+                "chengdu-s131__line13-11"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s271-line8-8-line13-11",
+              "name": "净居寺",
+              "complexId": "chengdu-s271",
+              "stationInstanceIds": [
+                "chengdu-s271__line8-8",
+                "chengdu-s271__line13-11"
+              ],
+              "lineIds": [
+                "chengdu-line8-8",
+                "chengdu-line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s319-chengdu-line13-11-chengdu-line7-7",
+              "name": "四川师大",
+              "complexId": "chengdu-s319",
+              "lineIds": [
+                "chengdu-line13-11",
+                "chengdu-line7-7"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s319",
+                "chengdu-s124"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s176-line9-9-line13-11",
+              "name": "培风",
+              "complexId": "chengdu-s176",
+              "stationInstanceIds": [
+                "chengdu-s176__line9-9",
+                "chengdu-s176__line13-11"
+              ],
+              "lineIds": [
+                "chengdu-line9-9",
+                "chengdu-line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s318-line13-11-line30-16",
+              "name": "娇子立交",
+              "complexId": "chengdu-s318",
+              "stationInstanceIds": [
+                "chengdu-s318__line13-11",
+                "chengdu-s318__line30-16"
+              ],
+              "lineIds": [
+                "chengdu-line13-11",
+                "chengdu-line30-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s292-line17-12-line13-11",
+              "name": "小南街",
+              "complexId": "chengdu-s292",
+              "stationInstanceIds": [
+                "chengdu-s292__line17-12",
+                "chengdu-s292__line13-11"
+              ],
+              "lineIds": [
+                "chengdu-line17-12",
+                "chengdu-line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s101-line3-3-line13-11",
+              "name": "新南门",
+              "complexId": "chengdu-s101",
+              "stationInstanceIds": [
+                "chengdu-s101__line3-3",
+                "chengdu-s101__line13-11"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s244-line5-5-line13-11",
+              "name": "青羊宫",
+              "complexId": "chengdu-s244",
+              "stationInstanceIds": [
+                "chengdu-s244__line5-5",
+                "chengdu-s244__line13-11"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line13-11"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s287-line17-12-line19-14",
+              "name": "九江北",
+              "complexId": "chengdu-s287",
+              "stationInstanceIds": [
+                "chengdu-s287__line17-12",
+                "chengdu-s287__line19-14"
+              ],
+              "lineIds": [
+                "chengdu-line17-12",
+                "chengdu-line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s140-line7-7-line17-12",
+              "name": "二仙桥",
+              "complexId": "chengdu-s140",
+              "stationInstanceIds": [
+                "chengdu-s140__line7-7",
+                "chengdu-s140__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s38-line2-2-line17-12",
+              "name": "人民公园",
+              "complexId": "chengdu-s38",
+              "stationInstanceIds": [
+                "chengdu-s38__line2-2",
+                "chengdu-s38__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s296-chengdu-line17-12-chengdu-line6-6",
+              "name": "建设北路",
+              "complexId": "chengdu-s296",
+              "lineIds": [
+                "chengdu-line17-12",
+                "chengdu-line6-6"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s296",
+                "chengdu-s197"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s175-line17-12-line9-9",
+              "name": "机投桥",
+              "complexId": "chengdu-s175",
+              "stationInstanceIds": [
+                "chengdu-s175__line17-12",
+                "chengdu-s175__line9-9"
+              ],
+              "lineIds": [
+                "chengdu-line17-12",
+                "chengdu-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s245-line5-5-line17-12",
+              "name": "省骨科医院",
+              "complexId": "chengdu-s245",
+              "stationInstanceIds": [
+                "chengdu-s245__line5-5",
+                "chengdu-s245__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s295-chengdu-line17-12-chengdu-line3-3",
+              "name": "红星桥",
+              "complexId": "chengdu-s295",
+              "lineIds": [
+                "chengdu-line17-12",
+                "chengdu-line3-3"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s295",
+                "chengdu-s100"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s130-line7-7-line17-12",
+              "name": "龙爪堰",
+              "complexId": "chengdu-s130",
+              "stationInstanceIds": [
+                "chengdu-s130__line7-7",
+                "chengdu-s130__line17-12"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line17-12"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s308-line18-13-line19-14",
+              "name": "天府站",
+              "complexId": "chengdu-s308",
+              "stationInstanceIds": [
+                "chengdu-s308__line18-13",
+                "chengdu-s308__line19-14"
+              ],
+              "lineIds": [
+                "chengdu-line18-13",
+                "chengdu-line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s304-chengdu-line18-13-chengdu-line9-9",
+              "name": "孵化园",
+              "complexId": "chengdu-s9",
+              "lineIds": [
+                "chengdu-line18-13",
+                "chengdu-line9-9"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s304__line18-13",
+                "chengdu-s170"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s303-chengdu-line18-13-chengdu-line7-7",
+              "name": "火车南站",
+              "complexId": "chengdu-s303",
+              "lineIds": [
+                "chengdu-line18-13",
+                "chengdu-line7-7"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s303__line18-13",
+                "chengdu-s12__line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s306-chengdu-line18-13-chengdu-line6-6",
+              "name": "西博城",
+              "complexId": "chengdu-s164",
+              "lineIds": [
+                "chengdu-line18-13",
+                "chengdu-line6-6"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s306",
+                "chengdu-s164__line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-cd-fengxi-4-19",
+              "name": "凤溪河",
+              "complexId": "chengdu-s58",
+              "stationInstanceIds": [
+                "chengdu-s58",
+                "chengdu-s352"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line19-14"
+              ],
+              "source": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "precision": "schematic",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s356-line19-14-line30-16",
+              "name": "双流机场2航站楼东",
+              "complexId": "chengdu-s356",
+              "stationInstanceIds": [
+                "chengdu-s356__line19-14",
+                "chengdu-s356__line30-16"
+              ],
+              "lineIds": [
+                "chengdu-line19-14",
+                "chengdu-line30-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s219-line6-6-line19-14",
+              "name": "天府商务区",
+              "complexId": "chengdu-s219",
+              "stationInstanceIds": [
+                "chengdu-s219__line6-6",
+                "chengdu-s219__line19-14"
+              ],
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s258-line5-5-line19-14",
+              "name": "怡心湖",
+              "complexId": "chengdu-s258",
+              "stationInstanceIds": [
+                "chengdu-s258__line5-5",
+                "chengdu-s258__line19-14"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s355-chengdu-line19-14-chengdu-line3-3",
+              "name": "龙桥路",
+              "complexId": "chengdu-s355",
+              "lineIds": [
+                "chengdu-line19-14",
+                "chengdu-line3-3"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s355",
+                "chengdu-s111"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s286-line8-8-line19-14",
+              "name": "龙港",
+              "complexId": "chengdu-s286",
+              "stationInstanceIds": [
+                "chengdu-s286__line8-8",
+                "chengdu-s286__line19-14"
+              ],
+              "lineIds": [
+                "chengdu-line8-8",
+                "chengdu-line19-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s33-line2-2-line7-7",
+              "name": "一品天下",
+              "complexId": "chengdu-s33",
+              "stationInstanceIds": [
+                "chengdu-s33__line2-2",
+                "chengdu-s33__line7-7"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s43-line2-2-line8-8",
+              "name": "东大路",
+              "complexId": "chengdu-s43",
+              "stationInstanceIds": [
+                "chengdu-s43__line2-2",
+                "chengdu-s43__line8-8"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s36-line2-2-line4-4",
+              "name": "中医大·省医院",
+              "complexId": "chengdu-s36",
+              "stationInstanceIds": [
+                "chengdu-s36__line2-2",
+                "chengdu-s36__line4-4"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s36-line2-2-line5-5",
+              "name": "中医大·省医院",
+              "complexId": "chengdu-s36",
+              "stationInstanceIds": [
+                "chengdu-s36__line2-2",
+                "chengdu-s36__line5-5"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s47-line2-2-line30-16",
+              "name": "惠王陵",
+              "complexId": "chengdu-s47",
+              "stationInstanceIds": [
+                "chengdu-s47__line2-2",
+                "chengdu-s47__line30-16"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line30-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s45-line2-2-line7-7",
+              "name": "成都东客站",
+              "complexId": "chengdu-s45",
+              "stationInstanceIds": [
+                "chengdu-s45__line2-2",
+                "chengdu-s45__line7-7"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s39-line2-2-line3-3",
+              "name": "春熙路",
+              "complexId": "chengdu-s39",
+              "stationInstanceIds": [
+                "chengdu-s39__line2-2",
+                "chengdu-s39__line3-3"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s41-line2-2-line6-6",
+              "name": "牛王庙",
+              "complexId": "chengdu-s41",
+              "stationInstanceIds": [
+                "chengdu-s41__line2-2",
+                "chengdu-s41__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s25-line2-2-line6-6",
+              "name": "犀浦",
+              "complexId": "chengdu-s25",
+              "stationInstanceIds": [
+                "chengdu-s25__line2-2",
+                "chengdu-s25__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s32-line2-2-line27-15",
+              "name": "羊犀立交",
+              "complexId": "chengdu-s32",
+              "stationInstanceIds": [
+                "chengdu-s32__line2-2",
+                "chengdu-s32__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line2-2",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s238-line5-5-line27-15",
+              "name": "洞子口",
+              "complexId": "chengdu-s238",
+              "stationInstanceIds": [
+                "chengdu-s238__line5-5",
+                "chengdu-s238__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s192-line6-6-line27-15",
+              "name": "金府",
+              "complexId": "chengdu-s192",
+              "stationInstanceIds": [
+                "chengdu-s192__line6-6",
+                "chengdu-s192__line27-15"
+              ],
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line27-15"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s99-line3-3-line6-6",
+              "name": "前锋路",
+              "complexId": "chengdu-s99",
+              "stationInstanceIds": [
+                "chengdu-s99__line3-3",
+                "chengdu-s99__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s106-line7-7-line3-3",
+              "name": "太平园",
+              "complexId": "chengdu-s106",
+              "stationInstanceIds": [
+                "chengdu-s106__line7-7",
+                "chengdu-s106__line3-3"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s74-line4-4-line3-3",
+              "name": "市二医院",
+              "complexId": "chengdu-s74",
+              "stationInstanceIds": [
+                "chengdu-s74__line4-4",
+                "chengdu-s74__line3-3"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s109-line3-3-line9-9",
+              "name": "武青南路",
+              "complexId": "chengdu-s109",
+              "stationInstanceIds": [
+                "chengdu-s109__line3-3",
+                "chengdu-s109__line9-9"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s97-line7-7-line3-3",
+              "name": "驷马桥",
+              "complexId": "chengdu-s97",
+              "stationInstanceIds": [
+                "chengdu-s97__line7-7",
+                "chengdu-s97__line3-3"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line3-3"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s104-line3-3-line5-5",
+              "name": "高升桥",
+              "complexId": "chengdu-s104",
+              "stationInstanceIds": [
+                "chengdu-s104__line3-3",
+                "chengdu-s104__line5-5"
+              ],
+              "lineIds": [
+                "chengdu-line3-3",
+                "chengdu-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s370-chengdu-line30-16-chengdu-line5-5",
+              "name": "市一医院",
+              "complexId": "chengdu-s370",
+              "lineIds": [
+                "chengdu-line30-16",
+                "chengdu-line5-5"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s370",
+                "chengdu-s249"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s282-line8-8-line30-16",
+              "name": "珠江路",
+              "complexId": "chengdu-s282",
+              "stationInstanceIds": [
+                "chengdu-s282__line8-8",
+                "chengdu-s282__line30-16"
+              ],
+              "lineIds": [
+                "chengdu-line8-8",
+                "chengdu-line30-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s204-line6-6-line30-16",
+              "name": "金石路",
+              "complexId": "chengdu-s204",
+              "stationInstanceIds": [
+                "chengdu-s204__line6-6",
+                "chengdu-s204__line30-16"
+              ],
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line30-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s36-line4-4-line5-5",
+              "name": "中医大·省医院",
+              "complexId": "chengdu-s36",
+              "stationInstanceIds": [
+                "chengdu-s36__line4-4",
+                "chengdu-s36__line5-5"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s76-line4-4-line8-8",
+              "name": "双桥路",
+              "complexId": "chengdu-s76",
+              "stationInstanceIds": [
+                "chengdu-s76__line4-4",
+                "chengdu-s76__line8-8"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s67-line4-4-line9-9",
+              "name": "成都西站",
+              "complexId": "chengdu-s67",
+              "stationInstanceIds": [
+                "chengdu-s67__line4-4",
+                "chengdu-s67__line9-9"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s69-line7-7-line4-4",
+              "name": "文化宫",
+              "complexId": "chengdu-s69",
+              "stationInstanceIds": [
+                "chengdu-s69__line7-7",
+                "chengdu-s69__line4-4"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line4-4"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s78-chengdu-line4-4-chengdu-line7-7",
+              "name": "槐树店",
+              "complexId": "chengdu-s78",
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line7-7"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s78",
+                "chengdu-s120"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s75-line4-4-line6-6",
+              "name": "玉双路",
+              "complexId": "chengdu-s75",
+              "stationInstanceIds": [
+                "chengdu-s75__line4-4",
+                "chengdu-s75__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line4-4",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s247-chengdu-line5-5-chengdu-line8-8",
+              "name": "九兴大道",
+              "complexId": "chengdu-s247",
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line8-8"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s247",
+                "chengdu-s277"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s137-line7-7-line5-5",
+              "name": "北站西二路",
+              "complexId": "chengdu-s137",
+              "stationInstanceIds": [
+                "chengdu-s137__line7-7",
+                "chengdu-s137__line5-5"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s224-line5-5-line6-6",
+              "name": "回龙",
+              "complexId": "chengdu-s224",
+              "stationInstanceIds": [
+                "chengdu-s224__line5-5",
+                "chengdu-s224__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s127-line7-7-line5-5",
+              "name": "神仙树",
+              "complexId": "chengdu-s127",
+              "stationInstanceIds": [
+                "chengdu-s127__line7-7",
+                "chengdu-s127__line5-5"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line5-5"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s195-line5-5-line6-6",
+              "name": "西北桥",
+              "complexId": "chengdu-s195",
+              "stationInstanceIds": [
+                "chengdu-s195__line5-5",
+                "chengdu-s195__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s171-line5-5-line9-9",
+              "name": "锦城大道",
+              "complexId": "chengdu-s171",
+              "stationInstanceIds": [
+                "chengdu-s171__line5-5",
+                "chengdu-s171__line9-9"
+              ],
+              "lineIds": [
+                "chengdu-line5-5",
+                "chengdu-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s201-line6-6-line8-8",
+              "name": "东光",
+              "complexId": "chengdu-s201",
+              "stationInstanceIds": [
+                "chengdu-s201__line6-6",
+                "chengdu-s201__line8-8"
+              ],
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s202-chengdu-line6-6-chengdu-line7-7",
+              "name": "琉璃场",
+              "complexId": "chengdu-s202",
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line7-7"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s202",
+                "chengdu-s125"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s135-line7-7-line6-6",
+              "name": "西南交大",
+              "complexId": "chengdu-s135",
+              "stationInstanceIds": [
+                "chengdu-s135__line7-7",
+                "chengdu-s135__line6-6"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line6-6"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s168-line6-6-line9-9",
+              "name": "金融城东",
+              "complexId": "chengdu-s168",
+              "stationInstanceIds": [
+                "chengdu-s168__line6-6",
+                "chengdu-s168__line9-9"
+              ],
+              "lineIds": [
+                "chengdu-line6-6",
+                "chengdu-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "cd-cutoff-xfer-chengdu-s141-chengdu-line7-7-chengdu-line8-8",
+              "name": "理工大学",
+              "complexId": "chengdu-s141",
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line8-8"
+              ],
+              "stationInstanceIds": [
+                "chengdu-s141",
+                "chengdu-s267"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/op/station-time",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。"
+            },
+            {
+              "id": "historic-transfer-chengdu-s128-line7-7-line8-8",
+              "name": "高朋大道",
+              "complexId": "chengdu-s128",
+              "stationInstanceIds": [
+                "chengdu-s128__line7-7",
+                "chengdu-s128__line8-8"
+              ],
+              "lineIds": [
+                "chengdu-line7-7",
+                "chengdu-line8-8"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            },
+            {
+              "id": "historic-transfer-chengdu-s172-line8-8-line9-9",
+              "name": "三元",
+              "complexId": "chengdu-s172",
+              "stationInstanceIds": [
+                "chengdu-s172__line8-8",
+                "chengdu-s172__line9-9"
+              ],
+              "lineIds": [
+                "chengdu-line8-8",
+                "chengdu-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.chengdurail.com/gywm.htm",
+              "sourceNote": "按运营方实际站码确认联系；出闸换乘保留两侧不同站名。18／19号线共线四站另列，不生成步行联系。",
+              "transferKind": "interchange",
+              "cutoffEvidence": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json"
+            }
+          ],
           "eventOnly": false,
           "contentRevision": "2026.10.23.46",
           "requiresScopeRecheck": true,
@@ -53101,7 +54758,7 @@
               ]
             }
           ],
-          "scopeRevision": "2026.10.24.14"
+          "scopeRevision": "2026.10.26.4"
         }
       ],
       "futurePlans": [
@@ -53802,7 +55459,19 @@
         "chengdu-s330": "chengdu-s67",
         "chengdu-s375": "chengdu-s318",
         "chengdu-s170": "chengdu-s9",
-        "chengdu-s352": "chengdu-s58"
+        "chengdu-s352": "chengdu-s58",
+        "chengdu-s306": "chengdu-s164",
+        "chengdu-s356": "chengdu-s147",
+        "chengdu-s104": "chengdu-s328",
+        "chengdu-s124": "chengdu-s319",
+        "chengdu-s197": "chengdu-s296",
+        "chengdu-s100": "chengdu-s295",
+        "chengdu-s111": "chengdu-s355",
+        "chengdu-s249": "chengdu-s370",
+        "chengdu-s120": "chengdu-s78",
+        "chengdu-s277": "chengdu-s247",
+        "chengdu-s125": "chengdu-s202",
+        "chengdu-s267": "chengdu-s141"
       },
       "stationInstanceAliases": {
         "chengdu-line1|chengdu-s9": "chengdu-s304",
@@ -53816,11 +55485,73 @@
         "chengdu-line19-14|chengdu-s310": "chengdu-s310__line18-13",
         "chengdu-line19-14|chengdu-s312": "chengdu-s312__line18-13",
         "chengdu-line19-14|chengdu-s313": "chengdu-s313__line18-13"
+      },
+      "stationComplexAliasSources": {
+        "chengdu-s306": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s356": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s104": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s124": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s197": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s100": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s111": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s249": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s120": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s277": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s125": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        },
+        "chengdu-s267": {
+          "source": "https://www.chengdurail.com/op/station-time",
+          "sourceCheckedAt": "2026-10-26",
+          "note": "逻辑换乘站区包含各自有名称的位置；不合并实体、站厅或轨道。"
+        }
       }
     }
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.26.3",
-  "contentRevisionNote": "上海运营方131组配对补成明确换乘操作，修正1号线南延贯通后的站体线路归属；逐时期全量核验继续。"
+  "contentRevision": "2026.10.26.4",
+  "contentRevisionNote": "成都补齐实际换乘联系，区分双流机场出闸换乘与18／19共线站；共线实体及逐时期全量审核继续，成都12一期不伪装完成。"
 }

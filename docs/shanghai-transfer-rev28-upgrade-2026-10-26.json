@@ -1,0 +1,160 @@
+{
+  "kind": "operator-transfer-diagnostic",
+  "city": "shanghai",
+  "operatorRetrievedAt": "2026-10-23",
+  "source": "https://service.shmetro.com/czxx/index.htm",
+  "expectedPairs": 131,
+  "matchedPairs": 131,
+  "missingPairs": [],
+  "invalidConnections": [],
+  "nonOpenConnections": [
+    {
+      "id": "sh-future-transfer-line23-dongchuan",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "sh-future-transfer-line23-zizhu",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "sh-future-transfer-line23-longcao",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "sh-future-transfer-line23-stadium",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-disney-11",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-xuelin-13",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-guanglan-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-football-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-yanggao-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh21-dongjing-6",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-huajingxi-15",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-lingzhao-8",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-sportcenter",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-sportcenter",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-sportcenter",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-houtan-7",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-shibodadao-13",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-tangqiao-4",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-shangcheng-9",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-pudongnan-2",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-tilanqiao-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-hailun",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-hailun",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-huajing-23",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-pudongnan-14",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh19-jiangyang-18",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh22-shenjiang-12",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh22-jinji-9",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-liangcheng-19",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-circus-1",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-jiangwanzhen-3",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-sufe-18",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-sanmenlu-10",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-nenjianglu-8",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-west-11",
+      "reason": "construction relationship has no current open service"
+    },
+    {
+      "id": "future-transfer-sh20-west-15",
+      "reason": "construction relationship has no current open service"
+    }
+  ],
+  "completeDeliveryCertified": false,
+  "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
+  "checkpointSha256": "8c856a82f36d7c8e126a071647c669875e250561c54d57dbbba08050a840a474",
+  "evidenceSha256": "5bb8df49301c8631b54105f166f0d393c2dc66a221c75c2c753579415b7dc1de"
+}

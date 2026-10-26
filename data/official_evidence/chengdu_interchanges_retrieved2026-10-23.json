@@ -1,0 +1,1147 @@
+{
+  "source": "https://www.chengdurail.com/op/station-time",
+  "sourcePage": "https://www.chengdurail.com/ckfw/smbcskb.htm",
+  "retrievedAt": "2026-10-23",
+  "sourceSha256": "ef2b2c34c28c006725bf791f8c0aad367b16d3cec4a43222b22d4012e5ffe78d",
+  "pairs": [
+    {
+      "stationName": "世纪城",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "世纪城",
+        "chengdu-line18-13": "世纪城"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "人民北路",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "人民北路",
+        "chengdu-line6-6": "人民北路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "倪家桥",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "倪家桥",
+        "chengdu-line8-8": "倪家桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "华西坝",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line13-11"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "华西坝",
+        "chengdu-line13-11": "华西坝"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "天府广场",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line2-2"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "天府广场",
+        "chengdu-line2-2": "天府广场"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "孵化园",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "孵化园",
+        "chengdu-line18-13": "孵化园"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "孵化园",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "孵化园",
+        "chengdu-line9-9": "孵化园"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "海昌路",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "海昌路",
+        "chengdu-line18-13": "海昌路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "火车北站",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "火车北站",
+        "chengdu-line7-7": "火车北站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "火车南站",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "火车南站",
+        "chengdu-line18-13": "火车南站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "火车南站",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "火车南站",
+        "chengdu-line7-7": "火车南站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "省体育馆",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "省体育馆",
+        "chengdu-line3-3": "省体育馆"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "西博城",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line18-13"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "西博城",
+        "chengdu-line18-13": "西博城"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "西博城",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "西博城",
+        "chengdu-line6-6": "西博城"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "韦家碾",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line27-15"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "韦家碾",
+        "chengdu-line27-15": "韦家碾"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "骡马市",
+      "lineIds": [
+        "chengdu-line1",
+        "chengdu-line4-4"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line1": "骡马市",
+        "chengdu-line4-4": "骡马市"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "华兴",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "华兴",
+        "chengdu-line9-9": "华兴"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "双流机场2航站楼",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line19-14"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "双流机场2航站楼",
+        "chengdu-line19-14": "双流机场2航站楼东"
+      },
+      "kind": "out_of_station"
+    },
+    {
+      "stationName": "双流机场2航站楼",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line30-16"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "双流机场2航站楼",
+        "chengdu-line30-16": "双流机场2航站楼东"
+      },
+      "kind": "out_of_station",
+      "source": "https://www.thepaper.cn/newsDetail_forward_32247108",
+      "sourcePublicationDate": "2025-12-24"
+    },
+    {
+      "stationName": "双流西站",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "双流西站",
+        "chengdu-line3-3": "双流西站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "太平园",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "太平园",
+        "chengdu-line3-3": "太平园"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "太平园",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "太平园",
+        "chengdu-line7-7": "太平园"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "红牌楼",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "红牌楼",
+        "chengdu-line3-3": "红牌楼"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "高升桥",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "高升桥",
+        "chengdu-line3-3": "高升桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "高升桥",
+      "lineIds": [
+        "chengdu-line10-10",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line10-10": "高升桥",
+        "chengdu-line5-5": "高升桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "三官堂",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "三官堂",
+        "chengdu-line6-6": "三官堂"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "东坡路",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "东坡路",
+        "chengdu-line7-7": "东坡路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "净居寺",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "净居寺",
+        "chengdu-line8-8": "净居寺"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "四川师大",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "四川师大",
+        "chengdu-line7-7": "四川师大"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "培风",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "培风",
+        "chengdu-line9-9": "培风"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "娇子立交",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line30-16"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "娇子立交",
+        "chengdu-line30-16": "娇子立交"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "小南街",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line17-12"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "小南街",
+        "chengdu-line17-12": "小南街"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "新南门",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "新南门",
+        "chengdu-line3-3": "新南门"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "青羊宫",
+      "lineIds": [
+        "chengdu-line13-11",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line13-11": "青羊宫",
+        "chengdu-line5-5": "青羊宫"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "九江北",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line19-14"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "九江北",
+        "chengdu-line19-14": "九江北"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "二仙桥",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "二仙桥",
+        "chengdu-line7-7": "二仙桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "人民公园",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line2-2"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "人民公园",
+        "chengdu-line2-2": "人民公园"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "建设北路",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "建设北路",
+        "chengdu-line6-6": "建设北路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "机投桥",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "机投桥",
+        "chengdu-line9-9": "机投桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "省骨科医院",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "省骨科医院",
+        "chengdu-line5-5": "省骨科医院"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "红星桥",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "红星桥",
+        "chengdu-line3-3": "红星桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "龙爪堰",
+      "lineIds": [
+        "chengdu-line17-12",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line17-12": "龙爪堰",
+        "chengdu-line7-7": "龙爪堰"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "天府站",
+      "lineIds": [
+        "chengdu-line18-13",
+        "chengdu-line19-14"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line18-13": "天府站",
+        "chengdu-line19-14": "天府站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "孵化园",
+      "lineIds": [
+        "chengdu-line18-13",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line18-13": "孵化园",
+        "chengdu-line9-9": "孵化园"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "火车南站",
+      "lineIds": [
+        "chengdu-line18-13",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line18-13": "火车南站",
+        "chengdu-line7-7": "火车南站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "西博城",
+      "lineIds": [
+        "chengdu-line18-13",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line18-13": "西博城",
+        "chengdu-line6-6": "西博城"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "凤溪河",
+      "lineIds": [
+        "chengdu-line19-14",
+        "chengdu-line4-4"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line19-14": "凤溪河",
+        "chengdu-line4-4": "凤溪河"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "双流机场2航站楼",
+      "lineIds": [
+        "chengdu-line19-14",
+        "chengdu-line30-16"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line19-14": "双流机场2航站楼东",
+        "chengdu-line30-16": "双流机场2航站楼东"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "天府商务区",
+      "lineIds": [
+        "chengdu-line19-14",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line19-14": "天府商务区",
+        "chengdu-line6-6": "天府商务区"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "怡心湖",
+      "lineIds": [
+        "chengdu-line19-14",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line19-14": "怡心湖",
+        "chengdu-line5-5": "怡心湖"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "龙桥路",
+      "lineIds": [
+        "chengdu-line19-14",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line19-14": "龙桥路",
+        "chengdu-line3-3": "龙桥路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "龙港",
+      "lineIds": [
+        "chengdu-line19-14",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line19-14": "龙港",
+        "chengdu-line8-8": "龙港"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "一品天下",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "一品天下",
+        "chengdu-line7-7": "一品天下"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "东大路",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "东大路",
+        "chengdu-line8-8": "东大路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "中医大省医院",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line4-4"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "中医大省医院",
+        "chengdu-line4-4": "中医大省医院"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "中医大省医院",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "中医大省医院",
+        "chengdu-line5-5": "中医大省医院"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "惠王陵",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line30-16"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "惠王陵",
+        "chengdu-line30-16": "惠王陵"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "成都东客站",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "成都东客站",
+        "chengdu-line7-7": "成都东客站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "春熙路",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line3-3"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "春熙路",
+        "chengdu-line3-3": "春熙路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "牛王庙",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "牛王庙",
+        "chengdu-line6-6": "牛王庙"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "犀浦",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "犀浦",
+        "chengdu-line6-6": "犀浦"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "羊犀立交",
+      "lineIds": [
+        "chengdu-line2-2",
+        "chengdu-line27-15"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line2-2": "羊犀立交",
+        "chengdu-line27-15": "羊犀立交"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "洞子口",
+      "lineIds": [
+        "chengdu-line27-15",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line27-15": "洞子口",
+        "chengdu-line5-5": "洞子口"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "金府",
+      "lineIds": [
+        "chengdu-line27-15",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line27-15": "金府",
+        "chengdu-line6-6": "金府"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "前锋路",
+      "lineIds": [
+        "chengdu-line3-3",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line3-3": "前锋路",
+        "chengdu-line6-6": "前锋路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "太平园",
+      "lineIds": [
+        "chengdu-line3-3",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line3-3": "太平园",
+        "chengdu-line7-7": "太平园"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "市二医院",
+      "lineIds": [
+        "chengdu-line3-3",
+        "chengdu-line4-4"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line3-3": "市二医院",
+        "chengdu-line4-4": "市二医院"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "武青南路",
+      "lineIds": [
+        "chengdu-line3-3",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line3-3": "武青南路",
+        "chengdu-line9-9": "武青南路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "驷马桥",
+      "lineIds": [
+        "chengdu-line3-3",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line3-3": "驷马桥",
+        "chengdu-line7-7": "驷马桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "高升桥",
+      "lineIds": [
+        "chengdu-line3-3",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line3-3": "高升桥",
+        "chengdu-line5-5": "高升桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "市一医院",
+      "lineIds": [
+        "chengdu-line30-16",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line30-16": "市一医院",
+        "chengdu-line5-5": "市一医院"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "珠江路",
+      "lineIds": [
+        "chengdu-line30-16",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line30-16": "珠江路",
+        "chengdu-line8-8": "珠江路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "金石路",
+      "lineIds": [
+        "chengdu-line30-16",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line30-16": "金石路",
+        "chengdu-line6-6": "金石路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "中医大省医院",
+      "lineIds": [
+        "chengdu-line4-4",
+        "chengdu-line5-5"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line4-4": "中医大省医院",
+        "chengdu-line5-5": "中医大省医院"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "双桥路",
+      "lineIds": [
+        "chengdu-line4-4",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line4-4": "双桥路",
+        "chengdu-line8-8": "双桥路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "成都西站",
+      "lineIds": [
+        "chengdu-line4-4",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line4-4": "成都西站",
+        "chengdu-line9-9": "成都西站"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "文化宫",
+      "lineIds": [
+        "chengdu-line4-4",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line4-4": "文化宫",
+        "chengdu-line7-7": "文化宫"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "槐树店",
+      "lineIds": [
+        "chengdu-line4-4",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line4-4": "槐树店",
+        "chengdu-line7-7": "槐树店"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "玉双路",
+      "lineIds": [
+        "chengdu-line4-4",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line4-4": "玉双路",
+        "chengdu-line6-6": "玉双路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "九兴大道",
+      "lineIds": [
+        "chengdu-line5-5",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line5-5": "九兴大道",
+        "chengdu-line8-8": "九兴大道"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "北站西二路",
+      "lineIds": [
+        "chengdu-line5-5",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line5-5": "北站西二路",
+        "chengdu-line7-7": "北站西二路"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "回龙",
+      "lineIds": [
+        "chengdu-line5-5",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line5-5": "回龙",
+        "chengdu-line6-6": "回龙"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "神仙树",
+      "lineIds": [
+        "chengdu-line5-5",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line5-5": "神仙树",
+        "chengdu-line7-7": "神仙树"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "西北桥",
+      "lineIds": [
+        "chengdu-line5-5",
+        "chengdu-line6-6"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line5-5": "西北桥",
+        "chengdu-line6-6": "西北桥"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "锦城大道",
+      "lineIds": [
+        "chengdu-line5-5",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line5-5": "锦城大道",
+        "chengdu-line9-9": "锦城大道"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "东光",
+      "lineIds": [
+        "chengdu-line6-6",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line6-6": "东光",
+        "chengdu-line8-8": "东光"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "琉璃场",
+      "lineIds": [
+        "chengdu-line6-6",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line6-6": "琉璃场",
+        "chengdu-line7-7": "琉璃场"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "西南交大",
+      "lineIds": [
+        "chengdu-line6-6",
+        "chengdu-line7-7"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line6-6": "西南交大",
+        "chengdu-line7-7": "西南交大"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "金融城东",
+      "lineIds": [
+        "chengdu-line6-6",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line6-6": "金融城东",
+        "chengdu-line9-9": "金融城东"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "理工大学",
+      "lineIds": [
+        "chengdu-line7-7",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line7-7": "理工大学",
+        "chengdu-line8-8": "理工大学"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "高朋大道",
+      "lineIds": [
+        "chengdu-line7-7",
+        "chengdu-line8-8"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line7-7": "高朋大道",
+        "chengdu-line8-8": "高朋大道"
+      },
+      "kind": "interchange_unspecified"
+    },
+    {
+      "stationName": "三元",
+      "lineIds": [
+        "chengdu-line8-8",
+        "chengdu-line9-9"
+      ],
+      "stationNamesByLine": {
+        "chengdu-line8-8": "三元",
+        "chengdu-line9-9": "三元"
+      },
+      "kind": "interchange_unspecified"
+    }
+  ],
+  "sharedRunningStops": [
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "三岔",
+      "operatorStationNo": "1829",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "福田",
+      "operatorStationNo": "1830",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "天府机场1号2号航站楼",
+      "operatorStationNo": "1832",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    },
+    {
+      "serviceLineId": "chengdu-line19-14",
+      "physicalLineId": "chengdu-line18-13",
+      "stationName": "天府机场北",
+      "operatorStationNo": "1833",
+      "source": "https://www.chengdurail.com/info/1331/52042.htm"
+    }
+  ],
+  "nameAnnotationsNote": "保留出闸换乘和仅换乘的原文语义；规范站名不包含这些提示。双流机场两侧保持不同物理站名，仅共用诊断站区名。",
+  "scopeNote": "S3及蓉2有轨主支线不纳入本轮地铁主线配对。18／19共线四站单列共享运行事实，不生成四条虚假的步行换乘。",
+  "note": "现行接口并非截止日和历史开放日期证明；共线实体迁移及各时期形成时间仍须另外验收。"
+}

@@ -6,6 +6,13 @@ from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
+    def test_unreviewed_shared_running_cannot_be_hidden_by_interchange_completion(self):
+        network=dict(date='2026-10-01',groups=[dict(id='line')],temporalReviewStatus='verified',transferReviewStatus='verified',
+                     temporalEvidence=[dict(source='https://example.invalid/dated',effectiveDate='2026-06-28')],sharedRunningReviewStatus='pending')
+        self.assertEqual(cutoff_evidence_errors(network,'2026-10-01'),['cutoff shared-running geometry not independently reviewed'])
+        network['sharedRunningReviewStatus']='verified'
+        self.assertEqual(cutoff_evidence_errors(network,'2026-10-01'),[])
+
     def reservation_fixture(self):
         pair=dict(id='reserved-interface',status='reserved',complexId='complex',lineIds=['line-a','line-b'],stationInstanceIds=['body-a','body-b'],source='https://example.invalid/plan',reservationEvidence='https://example.invalid/interface')
         self.target['reservedTransfers']=[copy.deepcopy(pair)]
