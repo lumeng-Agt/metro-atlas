@@ -167,6 +167,6 @@
   ],
   "completeDeliveryCertified": false,
   "note": "Operator query proves current pair claims only. Cutoff dates and historical formation still require their dated evidence.",
-  "checkpointSha256": "4f6b92ecd37e2a87e1f325b0228cabfb54379b5503cd413a4933073a1147d067",
+  "checkpointSha256": "ad99e6b560f6e3098406ee0a3d850523c9de8d5ea3433075fb452459ffbd396c",
   "evidenceSha256": "25c278900e20138456a56eda17b74e7a909bdf557b05ce250db395a9a6d61007"
 }
