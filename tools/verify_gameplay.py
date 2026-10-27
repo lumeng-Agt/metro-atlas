@@ -37,6 +37,13 @@ MAX_WORKERS = 5
 FAILURES = re.compile(r'REPLAY_FAILURES\s+(\d+)\s+checkpoints=(\d+)')
 DONE = re.compile(r'REPLAY_CITY_DONE\s+(\S+)\s+visited=(\d+)\s+phase=(\S+)')
 FREE_OK = re.compile(r'REPLAY_FREE_UNLOCK_OK\s+(\S+)')
+# The CI already treats these as fatal; a script that prints them and still
+# exits 0 has not passed.
+SCRIPT_ERROR = re.compile(r'SCRIPT ERROR:|Failed to load script')
+
+
+def _script_errors(output):
+    return len(SCRIPT_ERROR.findall(output or ''))
 
 
 def _godot_env():
@@ -72,6 +79,7 @@ def _replay_check(city, data_dir, extra_env):
         'visited': int(done.group(2)) if done else 0,
         'endPhase': done.group(3) if done else '',
         'freeUnlock': bool(FREE_OK.search(output)),
+        'scriptErrors': _script_errors(output),
         'durationSeconds': round(elapsed, 1),
         'evidence': (failures.group(0) if failures else '') + (' | ' + done.group(0) if done else ''),
     }
@@ -83,7 +91,7 @@ def check_fresh(city):
     row = _replay_check(city, data_dir, {'METRO_REPLAY_FREE_UNLOCK': '1'})
     floor = gameplay_spec.CHECKPOINT_FLOOR[city]
     row['checkpointFloor'] = floor
-    row['ok'] = (row['exitCode'] == 0 and row['failures'] == 0
+    row['ok'] = (row['exitCode'] == 0 and row['failures'] == 0 and row['scriptErrors'] == 0
                  and row['checkpoints'] >= floor and row['freeUnlock'])
     if not row['freeUnlock']:
         row['note'] = 'replay finished without reaching free creation'
@@ -97,14 +105,15 @@ def check_resume(city):
     part = _replay_check(city, data_dir, {'METRO_REPLAY_STOP_AFTER_INDEX': str(gameplay_spec.RESUME_BREAKPOINT)})
     resumed = _replay_check(city, data_dir, {'METRO_REPLAY_RESUME': '1'}) if part['exitCode'] == 0 else {
         'exitCode': 1, 'failures': None, 'checkpoints': 0, 'visited': 0, 'endPhase': '',
-        'freeUnlock': False, 'durationSeconds': 0.0, 'evidence': 'part run failed'}
-    ok = (part['exitCode'] == 0 and part['failures'] == 0
-          and resumed['exitCode'] == 0 and resumed['failures'] == 0
+        'freeUnlock': False, 'scriptErrors': 1, 'durationSeconds': 0.0, 'evidence': 'part run failed'}
+    ok = (part['exitCode'] == 0 and part['failures'] == 0 and part['scriptErrors'] == 0
+          and resumed['exitCode'] == 0 and resumed['failures'] == 0 and resumed['scriptErrors'] == 0
           and resumed['checkpoints'] > 0)
     return {'id': f'replay.resume.{city}', 'kind': 'replay', 'city': city, 'mode': 'resume',
             'breakpoint': gameplay_spec.RESUME_BREAKPOINT, 'ok': ok,
-            'part': {k: part[k] for k in ('exitCode', 'failures', 'checkpoints', 'visited')},
-            'resume': {k: resumed[k] for k in ('exitCode', 'failures', 'checkpoints', 'visited', 'endPhase')},
+            'part': {k: part[k] for k in ('exitCode', 'failures', 'checkpoints', 'visited', 'scriptErrors')},
+            'resume': {k: resumed[k] for k in ('exitCode', 'failures', 'checkpoints', 'visited',
+                                               'endPhase', 'scriptErrors')},
             'durationSeconds': round(part['durationSeconds'] + resumed['durationSeconds'], 1),
             'evidence': f"part {part['evidence']} || resume {resumed['evidence']}"}
 
@@ -113,10 +122,13 @@ def check_gd(name, script):
     data_dir = DATA_ROOT / f'{name.replace(".", "-")}'
     shutil.rmtree(data_dir, ignore_errors=True)
     result, elapsed = _run_godot(script, data_dir, timeout=1800)
-    tail = [line for line in (result.stdout + result.stderr).splitlines() if line.strip()][-3:]
-    return {'id': name, 'kind': 'gd', 'script': script, 'ok': result.returncode == 0,
-            'exitCode': result.returncode, 'durationSeconds': round(elapsed, 1),
-            'evidence': ' | '.join(tail)[-400:]}
+    output = result.stdout + result.stderr
+    errors = _script_errors(output)
+    tail = [line for line in output.splitlines() if line.strip()][-3:]
+    return {'id': name, 'kind': 'gd', 'script': script,
+            'ok': result.returncode == 0 and errors == 0,
+            'exitCode': result.returncode, 'scriptErrors': errors,
+            'durationSeconds': round(elapsed, 1), 'evidence': ' | '.join(tail)[-400:]}
 
 
 def check_py(name, command):
