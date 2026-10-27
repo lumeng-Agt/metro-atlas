@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-29",
+  "city": "guangzhou",
+  "methodNote": "日期与站序分开取证。日期用带日期的官方公告原文，引文由 tools/build_history_ledgers.py 从抓取到的页面文本中按规则截取，不是手写；站序用运营方/政府发布的逐线站表。每条分组与官方站表逐站对齐，对齐方式由 tools/review_history_two_source.py 复算，不采信台账自述。",
+  "orderSources": {
+    "guangzhou-operator-roster": {
+      "url": "https://www.gzmtr.com/ygwm/gsgk/xxjs/",
+      "publicationDate": "2026-10-25",
+      "file": "data/official_evidence/guangzhou_operator_orders_retrieved2026-10-25.json",
+      "sha256": "27184be4476ae6dfdd9b95a3848322fbd1efd48fdeb73e9d760b389782a97c9b",
+      "locator": "运营方/政府发布的逐线站表，按线路分表",
+      "note": "这是逐线站表，与各条开通公告是两份不同文件。"
+    }
+  },
+  "nameAliases": [],
+  "lineRenumbering": [],
+  "milestones": [
+    {
+      "chapterId": "guangzhou-network-milestone-2022-09-28",
+      "date": "2021-09-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.cnr.cn/gd/guangdongyaowen/20210928/t20210928_525617567.shtml",
+          "publicationDate": "2021-09-28",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "央广网·广东要闻《广州地铁十八号线首通段今日开通运营》·2021-09-28·第1、2段",
+          "quote": "广州地铁十八号线首通段今日开通运营_央广网 首页 > 广东频道 > 广东要闻 广州地铁十八号线首通段今日开通运营 2021-09-28 08:36:43 来源：央广网 原创版权禁止商业转载 授权>> 央广网广州9月28日消息（记者夏燕）记者从广州地铁了解到，十八号线首通段（冼村至万顷沙）自9月28日14：00起开通运营。",
+          "httpStatus": 200,
+          "sha256": "380925c095792658676e70da77c564579be9395013330b1c26a0162e2ebf2a16"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "guangzhou-line18-15",
+          "line": "十八号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line11-ring-opening-2024",
+      "date": "2024-12-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf",
+          "publicationDate": "",
+          "publicationBasis": "",
+          "kind": "opening_day",
+          "locator": "《2024年广州市交通发展年度报告》第六章“地铁”·PDF 第28页·十一号线客流情况段",
+          "quote": "第六章 公交都市建设 25 图 6.2 近年广州地铁线网和客流发展历程 2.十一号线客流情况 广州地铁十一号线于2024 年12 月28 日开通，线路全长44.2km，开通运营 29 座车站（广州火车站、广州东站暂缓开通），其中换乘站14 座，与9 条线路 换乘。",
+          "httpStatus": 200,
+          "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:gz11-ring-2024",
+          "line": "11号线",
+          "expect": "subsequence",
+          "gaps": [
+            "广州东站"
+          ]
+        },
+        {
+          "groupId": "opening:guangzhou-line11-ring-opening-2024:line6",
+          "line": "6号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-network-milestone-2025-09-29",
+      "date": "2025-09-29",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
+          "publicationDate": "2025-10-09",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "广州市住建局·住建新闻《市建设工程质监站高质量完成多条城际、地铁消防验收工作》·2025-10-09·第1段",
+          "quote": "市建设工程质监站高质量完成多条城际、地铁消防验收工作-广州市住房和城乡建设局网站 首页 政务公开 政务服务 关爱版 信用建设 --> 重点领域 行业数据 营商环境 当前位置： 首页 > 住建动态 > 住建新闻 市建设工程质监站高质量完成多条城际、地铁消防验收工作 来源：本网广州市建设工程质量监督站 时间： 2025-10-09 10:03 9月29日，广州东环城际、琶莲城际及广州地铁十三号线二期、十四号线二期、十一号线广州东站顺利开通运营，成为“活力大湾区，魅力新广州”建设的生动注脚。",
+          "httpStatus": 200,
+          "sha256": "324283e69b7f2f96e2d24a9e80564b3ce9951f7a4f207c0f966ee834766acf28"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "route:guangzhou-r11",
+          "line": "11号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-network-milestone-2022-03-31",
+      "date": "2022-03-31",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+          "publicationDate": "2025-12-30",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "广州市规划和自然资源局·工作动态《“地铁通湾区，鹅潭启新程”——22号线开通…》·2025-12-30·第1、2段",
+          "quote": "广州地铁22号线后通段（陈头岗-芳村）已于2025年12月29日开通，这条“大湾区最快地铁”，不仅是一条通勤线，更是撬动荔湾区高质量发展的重要动脉。",
+          "httpStatus": 200,
+          "sha256": "abe95901e864c1667194c43104111862aa43c8e074605c009585786f8734ec1e"
+        },
+        {
+          "url": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+          "publicationDate": "2025-12-30",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "区间端点原文（番禺广场—陈头岗）",
+          "quote": "一、时空重塑：补足白鹅潭与南站直连通道，巩固大湾区交通极核地位 广州地铁22号线后通段(陈头岗-芳村)，与首通段(番禺广场-陈头岗)贯通运营，形成\"番禺广场-芳村\"全长29.7公里的市域快线，线路在荔湾辖内共设置芳村、西塱、南漖三个站点。",
+          "httpStatus": 200,
+          "sha256": "abe95901e864c1667194c43104111862aa43c8e074605c009585786f8734ec1e"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "route:guangzhou-r17",
+          "line": "22号线",
+          "expect": "contiguous",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line22-west-opening-2025",
+      "date": "2025-12-29",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+          "publicationDate": "2025-12-30",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "广州市规划和自然资源局·工作动态《“地铁通湾区，鹅潭启新程”——22号线开通…》·2025-12-30·第1段",
+          "quote": "广州地铁22号线后通段（陈头岗-芳村）已于2025年12月29日开通，这条“大湾区最快地铁”，不仅是一条通勤线，更是撬动荔湾区高质量发展的重要动脉。",
+          "httpStatus": 200,
+          "sha256": "abe95901e864c1667194c43104111862aa43c8e074605c009585786f8734ec1e"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "guangzhou-line22-west-opening-2025:line22",
+          "line": "22号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line3-airport-opening-2010",
+      "date": "2010-10-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+          "publicationDate": "2015-01-14",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "生态环境部 环验〔2015〕10号《关于广州市轨道交通三号线北延段工程竣工环境保护验收合格的函》·2015-01-14·“一、工程建设的基本情况”",
+          "quote": "",
+          "httpStatus": 200,
+          "sha256": "f56aa7d4494a6b9eabe03154b08519b9ccb45727a710bd396281e386ac72de1a"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line3-airport-opening-2010",
+          "line": "一号线",
+          "expect": "existing_lead",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line3-airport-north-2018",
+      "date": "2018-04-26",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+          "publicationDate": "2018-05-14",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "广州市国资委·《〔2018〕第9期（总第337期）》信息速递·2018-05-14·4月26日条",
+          "quote": "（风行集团 刘铮） 珠江实业集团深化国企合作推动“广州国资”做强做优做大 4月26日、5月2日，珠江实业集团分别与广州铁投集团和广百集团签署战略合作协议，进一步推动“广州国资”做强做优做大。",
+          "httpStatus": 200,
+          "sha256": "4a35dc31122f36fa106d6b4d9ff5d41a7deac236652cf9cc36d69254db918847"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line3-airport-north-2018",
+          "line": "",
+          "expect": "unaligned",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line3-east-opening-2024",
+      "date": "2024-11-01",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+          "publicationDate": "",
+          "publicationBasis": "",
+          "kind": "opening_day",
+          "locator": "《2024年广州市交通发展年度报告》附录·PDF 第37页（印刷页34）·“11月1日 三号线东延段开通”条",
+          "quote": "海珠有轨 电车试验线长度 7.7 公里，车站 11 座（其中广州塔站、广州塔东站于 2024 年 11 月 13 日起因施工停运），2024 年日均客运量 1.42 万人次，与上一年持平。",
+          "httpStatus": 200,
+          "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+        },
+        {
+          "url": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+          "publicationDate": "",
+          "publicationBasis": "",
+          "kind": "opening_day",
+          "locator": "区间端点原文（海傍—番禺广场）",
+          "quote": "广州地铁三号线东延段（番禺广场~海傍）开通运营，东延段的 开通进一步强化番禺东部亚运城片区与市桥中心的联系。",
+          "httpStatus": 200,
+          "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line3-east-opening-2024",
+          "line": "三号线",
+          "expect": "contiguous",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-network-milestone-2017-12-28",
+      "date": "2017-12-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://kgw.gz.gov.cn/xxgk/rddbjyhzxta/content/post_3108006.html",
+          "publicationDate": "2019-09-10",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "广州空港经济区管委会·政协提案答复函《关于市政协十三届三次会议第2059号提案答复的函》·2019-09-10·“一、二是”段",
+          "quote": "实现与地铁快速换乘，2018年4月地铁3号线开通机场北站，与原有的机场南站两个站点分别接驳T2、T1航站楼，提升了飞机与地铁的无缝衔接；",
+          "httpStatus": 200,
+          "sha256": "c4379f8270429f9dd8726f449ff7db2e6d2ac60ec22327e248cdb6acfcf1f565"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line3-gaozeng-2017",
+          "line": "",
+          "expect": "unaligned",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-south-paid-passage-2024",
+      "date": "2024-01-21",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+          "publicationDate": "",
+          "publicationBasis": "",
+          "kind": "opening_day",
+          "locator": "《2024年广州市交通发展年度报告》附录·PDF 第33页（印刷页30）·“1月21日 佛山地铁2号线广州南站换乘通道正式启用”条",
+          "quote": "1 月 21 日 佛山地铁 2 号线广州南站换乘通道正式启用 佛山地铁2 号线广州南站换乘通道于1 月21 日起正式投入使用，实现了佛山地 铁2 号线， 广州地铁2 号线、7 号线、22 号线的高效互联互通， 是广佛首个实现 四线站内付费区换乘的通道。",
+          "httpStatus": 200,
+          "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": []
+    },
+    {
+      "chapterId": "guangzhou-line6-first-2013",
+      "date": "2013-12-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://gd.people.com.cn/GB/123947/357429/index.html",
+          "publicationDate": "2013-12-28",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "人民网广东频道·六号线专题页《六号线首期12月28日开门迎客》·专题首页",
+          "quote": "计划2013年12月28日开通。",
+          "httpStatus": 200,
+          "sha256": "ffd21e1cee678d8c4be693c8414b96dd9cc34bfde21bdcc6a30bae13bdefedcc"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line6-first-2013:line6",
+          "line": "6号线",
+          "expect": "subsequence",
+          "gaps": [
+            "一德路",
+            "沙河"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line6-yide-2015",
+      "date": "2015-01-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+          "publicationDate": "2015-01-28",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "新浪新闻转载羊城晚报《广州地铁六号线一德路站今日正式开通》·2015-01-28·标题及首段",
+          "quote": "广州地铁六号线一德路站今日正式开通_新浪新闻 导航 新浪首页 新闻 体育 财经 娱乐 科技 博客 图片 专栏 更多 汽车 教育 时尚 女性 星座 健康 房产 历史 视频 收藏 育儿 读书 佛学 游戏 旅游 邮箱 导航 消息 注册 登录 新闻中心 > 正文 --> 新闻 图片 博客 视频 广州地铁六号线一德路站今日正式开通 2015年01月28日12:59 羊城晚报 分享 添加喜爱 打印 增大字体 减小字体 羊城晚报讯记者刘勇、通讯员叶子川报道： 广州地铁六号线一德路站终于正式开通了！",
+          "httpStatus": 200,
+          "sha256": "84307fb8dec61f1d95547c10cf0468ed93138d94b68baa0162f35aa046a0c178"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line6-yide-2015:line6",
+          "line": "6号线",
+          "expect": "subsequence",
+          "gaps": [
+            "沙河"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-network-milestone-2016-12-28",
+      "date": "2016-12-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
+          "publicationDate": "2016-12-27",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "新浪广东转载广州日报《广州与佛山3条地铁线明日开通 早末班车时间公布》·2016-12-27·第1段",
+          "quote": "修改为各站的地址--> | 邮箱 | 退出 用户登录 | 注册 新浪广东 新浪广东 > 新闻频道 > 便民 > 正文 新浪首页 新浪广东 城事 图说 微距 各地 社会 广州与佛山3条地铁线明日开通 早末班车时间公布 2016-12-27 07:48 大洋网-广州日报 评论（ 人参与） 0 --> A - A + 广州日报讯 （记者李天研 通讯员叶子川）昨天傍晚，广州地铁宣布：六号线二期、七号线一期和广佛线二期定于2016年12月28日开通试运营。",
+          "httpStatus": 200,
+          "sha256": "e00d7cbe6ce7d7cc32e477da443a5c720f1a4850281b618d8c84b1a00f834deb"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "route:guangzhou-r6",
+          "line": "6号线",
+          "expect": "subsequence",
+          "gaps": [
+            "沙河",
+            "植物园",
+            "柯木塱"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line6-gardens-2017",
+      "date": "2017-06-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+          "publicationDate": "2017-06-22",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "央广网转载南方日报《广州地铁六号线植物园站、柯木塱站6月28日开通…》·2017-06-22·第1段",
+          "quote": "广州地铁六号线植物园站、柯木塱站6月28日开通 都设有公共厕所_央广网 要闻 财经 军事 体育 文娱 图片 视频 教育 科技 旅游 健康 汽车 公益 &#xe60d;",
+          "httpStatus": 200,
+          "sha256": "1b761525684349ad0d219615a75d00ee32ef90cc0820cb42fa272d1d781d7236"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line6-gardens-2017:line6",
+          "line": "6号线",
+          "expect": "subsequence",
+          "gaps": [
+            "沙河"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-network-milestone-2025-06-29",
+      "date": "2025-06-29",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+          "publicationDate": "2025-06-28",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "广州日报大洋网《广州地铁十二号线东、西段和十号线换乘、票价、沿线公交接驳一文了解》·2025-06-28·导语",
+          "quote": "广州地铁十二号线东、西段和十号线换乘、票价、沿线公交接驳一文了解→_广州日报大洋网 广州日报大洋网 广州 广东 社会 财经 国际 体育 中国 热评 新媒体端口 数字报 无障碍 首页 菜单 新闻 news.dayoo.com 您的位置： 新闻频道 > 广州 > 正文 广州地铁十二号线东、西段和十号线换乘、票价、沿线公交接驳一文了解→ 2025-06-28 04:18 来源:大洋网 分享到： 6月27日，广州地铁10号线、12号线东西段官宣 定于 6月29日14时正式开通初期运营。",
+          "httpStatus": 200,
+          "sha256": "909db9edeefd5c92f11db997b79861501ed1765f90efbe7d09d5c2668b9c93d1"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "route:guangzhou-r12-east-open",
+          "line": "十二号线（二沙岛-大学城南）",
+          "expect": "subsequence",
+          "gaps": [
+            "赤岗"
+          ]
+        },
+        {
+          "groupId": "route:guangzhou-r12-west-open",
+          "line": "12号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "guangzhou-line12-chigang-2026",
+      "date": "2026-02-13",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+          "publicationDate": "2026-02-13",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "广州日报数字报 A1版《地铁十二号线赤岗站今开通》·2026-02-13·正文",
+          "quote": "广州日报数字报-地铁十二号线赤岗站今开通 返回网站 版面概览 系列报刊 广州日报 信息时报 大洋网 新浪微博 微信公众号 2026年02月13日 星期五 目录 本版 往期 分享 客户端 首页 第A1版：头版 强化基础研究战略性前瞻性体系化布局 支持广大科研人员勇攀科学高峰产出更多原创性成果 严肃换届纪律 加强换届风气监督 抓紧抓细抓实经济运行工作 全力实现一季度“开门好” 为完成全年目标任务打下坚实基础 始终把群众安危冷暖放在心上 周密细致做好春节各项服务保障工作 孙志洋开展春节前走访慰问活动 2026年春节慰问信 广州市人大常委会党组召开2025年度民主生活会暨联动巡视整改专题民主生活会 我国首艘火箭网系回收海上平台广州“智造” 睇花船 行花街 游花城 地铁十二号线赤岗站今开通 • 第A1版：头版 • 第A2版：要闻 • 第A3版：广货行天下·年味最广州 • 第A4版：请到广州唱大年 • 第A5版：要闻 • 第A6版：要闻 • 第A7版：经济周刊·焦点 • 第A8版：经济周刊·理财 第A1版：头版 2026年02月13日 地铁十二号线赤岗站今开通 可换乘八号线 设置五个出入口 李天研 本文字数：263 广州日报讯 （全媒体记者李天研 通讯员周咏菁）记者从广州地铁获悉，2月13日运营时间起，十二号线赤岗站将正式开通对外运营服务。",
+          "httpStatus": 200,
+          "sha256": "e6654b1925f5180ad95b73bf5966b63501f4d89d12bb9b01638e6c894e066e2b"
+        }
+      ],
+      "orderSourceId": "guangzhou-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:guangzhou-line12-chigang-2026",
+          "line": "十二号线（二沙岛-大学城南）",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    }
+  ],
+  "laterStations": [
+    {
+      "station": "广州东站",
+      "chapterId": "guangzhou-network-milestone-2025-09-29",
+      "date": "2025-09-29",
+      "source": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html"
+    },
+    {
+      "station": "沙河",
+      "chapterId": "guangzhou-line11-ring-opening-2024",
+      "date": "2024-12-28",
+      "source": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf"
+    },
+    {
+      "station": "一德路",
+      "chapterId": "guangzhou-line11-ring-opening-2024",
+      "date": "2024-12-28",
+      "source": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf"
+    },
+    {
+      "station": "柯木塱",
+      "chapterId": "guangzhou-line11-ring-opening-2024",
+      "date": "2024-12-28",
+      "source": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf"
+    },
+    {
+      "station": "植物园",
+      "chapterId": "guangzhou-line11-ring-opening-2024",
+      "date": "2024-12-28",
+      "source": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf"
+    },
+    {
+      "station": "赤岗",
+      "chapterId": "guangzhou-line12-chigang-2026",
+      "date": "2026-02-13",
+      "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm"
+    }
+  ]
+}

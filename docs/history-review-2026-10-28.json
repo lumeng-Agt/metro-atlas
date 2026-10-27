@@ -350,11 +350,22 @@
               "url": "https://jtw.sh.gov.cn/xydt/20231218/def064da710d426a946e31760f3042e5.html",
               "publicationDate": "2023-12-18",
               "publicationBasis": "url",
-              "kind": "opening_day",
+              "kind": "context",
               "locator": "正文第1段（鲁班奖报道中的建设历程回顾）",
               "quote": "2020年12月26日开通运营一期工程南段（航头站至御桥站），2021年12月30日开通运营一期工程北段【御桥站（不含）至长江南路站】，实现全线运营，成为连接张江科学城、杨浦大学城、吴淞创新城等科创高地的黄金纽带，是上海首批全功能一次性开通最高等级全自动无人驾驶系统的地铁线路，助推上海地铁实现&ldquo;",
               "httpStatus": 200,
-              "sha256": "71a5af0688f3eeb25d3f66da2e03a7c9e1ebe68eed5b5c95618c63a03329e7d9"
+              "sha256": "71a5af0688f3eeb25d3f66da2e03a7c9e1ebe68eed5b5c95618c63a03329e7d9",
+              "basisNote": "2023年鲁班奖报道，只作背景，不计为开通当日证据。"
+            },
+            {
+              "url": "https://jtw.sh.gov.cn/xwfb2/20211228/103fc31a81644a72b0c05300f5ecee95.html",
+              "publicationDate": "2021-12-28",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "上海市交通委员会《还有2天！两条轨交线开通初期运营》第1段：18号线一期北段区间与站数",
+              "quote": "两条轨交线开通初期运营，上海地铁又添“世界第一” 来源：上海交通 2021-12-28 字号 [ 大 中 小 ] 经过前期紧张的施工建设，上海轨道交通14号线、18号线一期北段（御桥站〈不含〉～长江南路站）将于12月30日（周四）首班车起开通初期运营。",
+              "httpStatus": 200,
+              "sha256": "54cfe3202e7480f64ae9b3473f7b03ac306678e04603673b466c155a5892d305"
             }
           ],
           "orderSourceId": "shanghai-operator-roster",
@@ -366,10 +377,8 @@
               "gaps": []
             }
           ],
-          "verdict": "unverified",
-          "issues": [
-            "shanghai-network-milestone-2021-12-30: announcement published 2023-12-18, 718 days from 2021-12-30"
-          ]
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-network-milestone-2007-12-29",
@@ -380,11 +389,13 @@
               "url": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
               "publicationDate": "2021-04-12",
               "publicationBasis": "url",
-              "kind": "opening_day",
+              "kind": "official_chronicle",
               "locator": "“历史上的今天”第2段（2007年条）",
               "quote": "2007年12月29日，6号线（港城路站—灵岩南路站）通车试运营。",
               "httpStatus": 200,
-              "sha256": "af991fb651fb83baad5ef394ab34867915e058ab9e45666cd92bfb3de811092a"
+              "sha256": "af991fb651fb83baad5ef394ab34867915e058ab9e45666cd92bfb3de811092a",
+              "edition": "2007",
+              "basisNote": "同上，按日记录2007年事件。"
             }
           ],
           "orderSourceId": "shanghai-operator-roster",
@@ -412,7 +423,6 @@
           ],
           "verdict": "unverified",
           "issues": [
-            "shanghai-network-milestone-2007-12-29: announcement published 2021-04-12, 4853 days from 2007-12-29",
             "shanghai-network-milestone-2007-12-29: opening:sh9-first opened section endpoints ['松江新城', '桂林路'] are not named by any dated source",
             "shanghai-network-milestone-2007-12-29: opening:sh8-first opened section endpoints ['市光路', '耀华路'] are not named by any dated source"
           ]
@@ -426,11 +436,13 @@
               "url": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
               "publicationDate": "2021-04-12",
               "publicationBasis": "url",
-              "kind": "opening_day",
+              "kind": "official_chronicle",
               "locator": "“历史上的今天”第1条（2011年4月12日）",
               "quote": "【浦东历史上的今天：4月12日】6号线东方体育中心站投入运营 【浦东历史上的今天：4月12日】6号线东方体育中心站投入运营 04-12 16:55 《浦东历史上的今天》专栏由区档案局、区委党校、区政协学习文史委、区融媒体中心联合主办，将选取浦东历史上部分较为重要的内容，分享给大家。",
               "httpStatus": 200,
-              "sha256": "af991fb651fb83baad5ef394ab34867915e058ab9e45666cd92bfb3de811092a"
+              "sha256": "af991fb651fb83baad5ef394ab34867915e058ab9e45666cd92bfb3de811092a",
+              "edition": "2011",
+              "basisNote": "《浦东历史上的今天》由浦东新区档案局、区委党校、区政协学习文史委、区融媒体中心联合主办，按日记录当年事件，属官方编年体例。"
             }
           ],
           "orderSourceId": "shanghai-operator-roster",
@@ -450,10 +462,8 @@
               ]
             }
           ],
-          "verdict": "unverified",
-          "issues": [
-            "shanghai-network-milestone-2011-04-12: announcement published 2021-04-12, 3653 days from 2011-04-12"
-          ]
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line9-yishan-2008",
@@ -570,11 +580,12 @@
               "url": "https://www.songjiang.gov.cn/sjsz/sjdfls/sj70n/files/basic-html/page154.html",
               "publicationDate": "2007-12-29",
               "publicationBasis": "dateline",
-              "kind": "opening_day",
+              "kind": "official_history",
               "locator": "《松江70年》P.154 正文第2段",
               "quote": "9 号线南延伸工程穿越松江老城地下，与沪杭高铁松江南站对接， 中途设松江体育中心站、醉白池站、松江南站，于 2012 年 12 月 30 日正式通 车。",
               "httpStatus": 200,
-              "sha256": "634ba7172bd038c49d1c7aa91fcb71cd0c5bceca189438a3017316e1030df1c1"
+              "sha256": "634ba7172bd038c49d1c7aa91fcb71cd0c5bceca189438a3017316e1030df1c1",
+              "basisNote": "松江区人民政府《松江70年》P.154，正文写出完整日期，属政府出版物对本地事件的记述。"
             }
           ],
           "orderSourceId": "shanghai-operator-roster",
@@ -588,8 +599,6 @@
           ],
           "verdict": "unverified",
           "issues": [
-            "shanghai-line9-south-2012: announcement published 2007-12-29, 1828 days from 2012-12-30",
-            "shanghai-line9-south-2012: no announcement states 2012-12-30",
             "shanghai-line9-south-2012: opening:sh9-south opened section endpoints ['松江新城'] are not named by any dated source"
           ]
         },
@@ -635,6 +644,16 @@
               "quote": "记者从申通地铁获悉，9月21日起，2024年版上海轨道交通网络示意图将逐步在全网车站、车厢内更新。",
               "httpStatus": 200,
               "sha256": "cba9f142377060f33cdc520105c790119dcf5ed55b03968994e44865f6607874"
+            },
+            {
+              "url": "https://www.shanghai.gov.cn/nw4411/20240922/f5fd81dbfe9244a298fd13806c993ca3.html",
+              "publicationDate": "2024-09-22",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "上海市政府门户网站转载《解放日报》：更名车站清单",
+              "quote": "9号线松江南站站更名为&ldquo;",
+              "httpStatus": 200,
+              "sha256": "cba9f142377060f33cdc520105c790119dcf5ed55b03968994e44865f6607874"
             }
           ],
           "orderSourceId": "shanghai-operator-roster",
@@ -646,10 +665,8 @@
               "gaps": []
             }
           ],
-          "verdict": "unverified",
-          "issues": [
-            "shanghai-songjiang-rename-2024: no source names the renamed station 松江南站"
-          ]
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-jiyang-rename-2011",
@@ -834,7 +851,6 @@
           ],
           "verdict": "unverified",
           "issues": [
-            "shanghai-line11-anting-2010: opening:sh11-branch:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source",
             "shanghai-line11-anting-2010: opening:sh11-branch:pattern-2 opened section endpoints ['安亭', '上海赛车场'] are not named by any dated source"
           ]
         },
@@ -850,6 +866,26 @@
               "kind": "opening_day",
               "locator": "无（HTTP 404，页面不存在）",
               "quote": "11号线一期路线图 刘建平 制图 4月26日，轨道交通11号线支线段昌吉东路站将正式开通，这也是11号线1期工程的最后一座未开通车站。",
+              "httpStatus": 200,
+              "sha256": "4fe3958d1c0a63412597cbff6507378f160ec6170c9abe4e4cff139ff9b64e27"
+            },
+            {
+              "url": "https://sh.sohu.com/20110425/n280401184.shtml",
+              "publicationDate": "2011-04-25",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "搜狐上海《11号线昌吉东路站明天开通》第1段",
+              "quote": "昌吉东路车站是一座有两层结构的地上车站。",
+              "httpStatus": 200,
+              "sha256": "4fe3958d1c0a63412597cbff6507378f160ec6170c9abe4e4cff139ff9b64e27"
+            },
+            {
+              "url": "https://sh.sohu.com/20110425/n280401184.shtml",
+              "publicationDate": "2011-04-25",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "搜狐上海《11号线昌吉东路站明天开通》第1段",
+              "quote": "记者昨日从轨交运营方获悉，昌吉东路站已经着手完成车站深度保洁、导向标志、公告信息张贴等准备工作，4月26日起正式投入运营。",
               "httpStatus": 200,
               "sha256": "4fe3958d1c0a63412597cbff6507378f160ec6170c9abe4e4cff139ff9b64e27"
             }
@@ -873,10 +909,8 @@
               ]
             }
           ],
-          "verdict": "unverified",
-          "issues": [
-            "shanghai-line11-changji-2011: opening:sh11-changji:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source"
-          ]
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line11-huaqiao-2013",
@@ -892,6 +926,16 @@
               "quote": "﻿ 上海：11号线花桥段10月16日上午9：30起开站试运营-轨道交通规划与设计研究室 首页 团队成员 教学工作 科研成果 主要论著 报考指南 毕业生 联系我们 行业动态 当前的位置： 首页 >> 行业动态 >> 正文 上海：11号线花桥段10月16日上午9：30起开站试运营 发表时间：2013-10-16 阅读次数： 次 （资料来源：上海地铁， http://www.shmetro.com/node70/node72/201310/con113430.htm ） ( 通讯员 徐慧莉 制图 左荣亮) 好戏连台，继11号线二期开通后不久，11号线北段延伸工程花桥段安亭站至花桥站近日顺利通过专家评审，并定于10月16日（周三）上午9:30起载客试运营。",
               "httpStatus": 200,
               "sha256": "33d51c3e3b2436f74ac75df470bd1858108a9436952d1dceb587583e272ee3f5"
+            },
+            {
+              "url": "https://district.ce.cn/newarea/roll/201310/15/t20131015_1620587.shtml",
+              "publicationDate": "2013-10-15",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "中国经济网转东方网《沪11号线花桥段16日开通试运营》第1段：花桥段起止与三座新站",
+              "quote": "newsid=1620587&encoding=GBK&data=ABi6awAAADEAAHTgAAAAAQBC5rKqMTHlj7fnur_oirHmoaXmrrUxNuaXpeW8gOmAmuivlei_kOiQpVvpmYTpppbmnKvnj63ovabml7bpl7TooahdAAAAAAAAAAAAAAAtMCsCFFKxN-VkYLsnV9WIGo26mIrlunmJAhNQsMEPn6E4AIHCBLXpCy0QKGH_ --> 沪11号线花桥段16日开通试运营[附首末班车时间表]_中国经济网——国家经济门户 沪11号线花桥段16日开通试运营[附首末班车时间表] 2013年10月15日 09:38 来源：东方网 王铭泽 [ 打印本稿 ] [字号 大 中 小 ] [ 手机看新闻 ] 11号线运行示意图 11号线高峰时段行车间隔示意图 11号线花桥段开通后首末班时间表 东方网记者获悉，上海地铁11号线北段延伸工程花桥段（安亭站至花桥站）已定于10月16日（本周三）上午九点半起载客试运营。",
+              "httpStatus": 200,
+              "sha256": "5bf401a397b1e37cecd6d99aa1a29adb68485820998b92d371669f559b881a26"
             }
           ],
           "orderSourceId": "shanghai-operator-roster",
@@ -917,7 +961,6 @@
           ],
           "verdict": "unverified",
           "issues": [
-            "shanghai-line11-huaqiao-2013: opening:sh11-huaqiao:pattern-1 opened section endpoints ['嘉定北', '罗山路'] are not named by any dated source",
             "shanghai-line11-huaqiao-2013: opening:sh11-huaqiao:pattern-2 opened section endpoints ['兆丰路'] are not named by any dated source"
           ]
         },
@@ -1019,6 +1062,16 @@
               "quote": "全月最大客流出现在8月25日（周二、七夕），达1086万人次。",
               "httpStatus": 200,
               "sha256": "28073c89d892d8a83c8bcb0c968de083ce7078bab8b9bcc6ae6b5706a2693c96"
+            },
+            {
+              "url": "http://m.people.cn/n4/2020/0825/c1406-14372524.html",
+              "publicationDate": "2020-08-25",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "人民网上海《上海轨道交通11号线陈翔公路站正式开通运营》第1段",
+              "quote": "” 人民网上海8月25日电 （龚莎）8月25日，上海轨道交通11号线陈翔公路站正式迎来首班停靠列车。",
+              "httpStatus": 200,
+              "sha256": "b598997ef8ca052a7944a744c83d3fb28747a11beb07ed9a189371fe404cc18d"
             }
           ],
           "orderSourceId": "shanghai-operator-roster",
@@ -1042,8 +1095,7 @@
           ],
           "verdict": "unverified",
           "issues": [
-            "shanghai-line11-chenxiang-2020: opening:sh11-chenxiang:pattern-1 opened section endpoints ['陈翔公路'] are not named by any dated source",
-            "shanghai-line11-chenxiang-2020: opening:sh11-chenxiang:pattern-2 opened section endpoints ['陈翔公路'] are not named by any dated source"
+            "shanghai-line11-chenxiang-2020: date source is not https"
           ]
         },
         {
@@ -1159,10 +1211,10 @@
           ]
         }
       ],
-      "verifiedCount": 8,
-      "unverifiedCount": 15,
+      "verifiedCount": 12,
+      "unverifiedCount": 11,
       "verdict": "incomplete",
-      "note": "两源复核shanghai的23条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，8条两项都对上。未通过：shanghai-network-milestone-2021-12-30（shanghai-network-milestone-2021-12-30: announcement published 2023-12-18, 718 days from 2021-12-30）；shanghai-network-milestone-2007-12-29（shanghai-network-milestone-2007-12-29: announcement published 2021-04-12, 4853 days from 2007-12-29 / shanghai-network-milestone-2007-12-29: opening:sh9-first opened section endpoints ['松江新城', '桂林路'] are not named by any dated source）；shanghai-network-milestone-2011-04-12（shanghai-network-milestone-2011-04-12: announcement published 2021-04-12, 3653 days from 2011-04-12）；shanghai-line9-second-2009（shanghai-line9-second-2009: opening:sh11-first:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source）。未通过项不标已核对，明细见 docs/history-two-source-2026-10-29.json。",
+      "note": "两源复核shanghai的23条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，12条两项都对上。未通过：shanghai-network-milestone-2007-12-29（shanghai-network-milestone-2007-12-29: opening:sh9-first opened section endpoints ['松江新城', '桂林路'] are not named by any dated source / shanghai-network-milestone-2007-12-29: opening:sh8-first opened section endpoints ['市光路', '耀华路'] are not named by any dated source）；shanghai-line9-second-2009（shanghai-line9-second-2009: opening:sh11-first:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source）；shanghai-line9-yanggao-2010（shanghai-line9-yanggao-2010: opening:sh9-yanggao opened section endpoints ['世纪大道', '杨高中路'] are not named by any dated source）；shanghai-line9-south-2012（shanghai-line9-south-2012: opening:sh9-south opened section endpoints ['松江新城'] are not named by any dated source）。未通过项不标已核对，明细见 docs/history-two-source-2026-10-29.json。",
       "ledgerErrors": [],
       "decidedBy": "tools/review_history_two_source.py"
     },
@@ -1171,1310 +1223,2248 @@
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
           "date": "2021-12-31",
-          "sourceUrl": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
-          "sourceAuthority": "official_operator",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "京港地铁官网·公司新闻《京港地铁三条新线（段）今日开通…》·发布 2021-12-31·正文首段",
-          "quote": "京港地铁在今日开通17号线南段、14号线剩余段及16号线玉渊潭东门站",
-          "issues": [
-            "来源仅覆盖京港地铁运营的17号线南段、14号线剩余段、16号线玉渊潭东门站；6个group中另有19号线(route:beijing-r19)、昌平线(route:beijing-r20)、11号线(route:beijing-r11)、8号线(beijing-line8-8)、14号线全线(beijing-line14-14)共5个group未在来源中出现，站序无从核对",
-            "17号线南段来源为自南向北（嘉会湖→十里河），游戏为反向（十里河→嘉会湖），站点集合与相邻关系一致，仅方向相反"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "publicationDate": "2021-12-31",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "京港地铁官网·公司新闻《京港地铁三条新线（段）今日开通…》·发布 2021-12-31·正文首段",
+              "quote": "京港地铁三条新线（段）今日开通 公布首末班车时间 助力乘客便捷出行 - 北京京港地铁有限公司 首页 出行服务 出行查询 线路图 京港线路及车站 列车时刻表 延误告知 失物招领 乘客守则 禁止携带物品目录 购票指南 路网车站站间距信息 最新动态 公司新闻 媒体报道 出行空间 便民服务 M地铁系列 地铁+社区 地铁商务 京港商城 招标信息及供应商须知 关于我们 公司简介 股东介绍 目标理念 大事记 企业社会责任 公司宣传片 招贤纳士 服务表现 安全保护区管理 EN | 搜索 搜索 最新动态 LATEST NEWS 首页 最新动态 公司新闻 正文 京港地铁三条新线（段）今日开通 公布首末班车时间 助力乘客便捷出行 2021-12-31 大 中 小 2021年12月31日（星期五），京港地铁在今日开通17号线南段、14号线剩余段及16号线玉渊潭东门站，开通后，京港地铁所辖线路运营里程将达148.5公里。",
+              "httpStatus": 200,
+              "sha256": "1a41ec2f538b13dbacbb23d519cc13e774cbebe0b85ee1bfd86ab0214359be87"
+            },
+            {
+              "url": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+              "publicationDate": "2021-12-31",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "区间端点原文（十里河—嘉会湖）",
+              "quote": "为提升乘客服务，17号线南段嘉会湖上行首班车时间为05点30分，末班车时间为22点30分，十里河站下行首班车时间为05点55分，末班车时间为22点30分，方便乘客通勤出行。",
+              "httpStatus": 200,
+              "sha256": "1a41ec2f538b13dbacbb23d519cc13e774cbebe0b85ee1bfd86ab0214359be87"
+            }
+          ],
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "beijing-line17-south",
+              "line": "17号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "route:beijing-r19",
+              "line": "19号线",
+              "expect": "subsequence",
+              "gaps": [
+                "景风门",
+                "太平桥",
+                "平安里",
+                "北太平庄"
+              ]
+            },
+            {
+              "groupId": "route:beijing-r20",
+              "line": "",
+              "expect": "unaligned",
+              "gaps": []
+            },
+            {
+              "groupId": "route:beijing-r11",
+              "line": "11号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "beijing-line8-8",
+              "line": "8号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "beijing-line14-14",
+              "line": "14号线",
+              "expect": "subsequence",
+              "gaps": [
+                "红庙"
+              ]
+            }
           ],
           "verdict": "unverified",
-          "groupChecks": [
-            {
-              "id": "beijing-line17-south",
-              "orderConfirmed": true,
-              "note": "来源自南向北逐站列7站（嘉会湖→十里河），与本组站点集合、相邻关系一致，方向相反"
-            },
-            {
-              "id": "route:beijing-r19",
-              "orderConfirmed": "not_checkable",
-              "note": "来源未涉及19号线"
-            },
-            {
-              "id": "route:beijing-r20",
-              "orderConfirmed": "not_checkable",
-              "note": "来源未涉及昌平线"
-            },
-            {
-              "id": "route:beijing-r11",
-              "orderConfirmed": "not_checkable",
-              "note": "来源未涉及11号线"
-            },
-            {
-              "id": "beijing-line8-8",
-              "orderConfirmed": "not_checkable",
-              "note": "来源未涉及8号线（非京港运营）"
-            },
-            {
-              "id": "beijing-line14-14",
-              "orderConfirmed": "not_checkable",
-              "note": "来源只列剩余段5站（东管头、丽泽商务区、菜户营、西铁营、景风门）与“全线贯通”，33站未列"
-            }
+          "issues": [
+            "beijing-network-milestone-2021-12-31: route:beijing-r19 opened section endpoints ['牡丹园', '新宫'] are not named by any dated source",
+            "beijing-network-milestone-2021-12-31: route:beijing-r11 opened section endpoints ['金安桥', '新首钢'] are not named by any dated source",
+            "beijing-network-milestone-2021-12-31: beijing-line14-14 opened section endpoints ['善各庄', '张郭庄'] are not named by any dated source",
+            "beijing-network-milestone-2021-12-31: beijing-line14-14 omits ['红庙'] with no dated statement"
           ]
         },
         {
           "chapterId": "beijing-network-milestone-2023-12-30",
           "date": "2023-12-30",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·新闻发布会《12月30日首班车起 地铁17号线北段等三条地铁线（段）开通试运营》·发布 2023-12-29·第2、3段",
-          "quote": "2023年12月30日（周六）首班车起，地铁17号线北段（工人体育场—未来科学城北）",
-          "issues": [
-            "17号线北段：来源逐站列出10站并注明望京西暂缓开通，游戏9站（不含望京西）与官方一致",
-            "11号线组（模式口/金安桥/北辛安/新首钢）中，北辛安站未在来源中出现（来源只列模式口、金安桥、新首钢及“北起模式口，南至新首钢”），该组站序未逐站核到"
-          ],
-          "verdict": "unverified",
-          "groupChecks": [
+          "chapterKind": "opening",
+          "dateSources": [
             {
-              "id": "beijing-line17-north",
-              "orderConfirmed": true,
-              "note": "来源逐站列10站并注明望京西暂缓开通，本组9站（不含望京西）顺序一致"
+              "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
+              "publicationDate": "2023-12-29",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·新闻发布会《12月30日首班车起 地铁17号线北段等三条地铁线（段）开通试运营》·发布 2023-12-29·第2、3段",
+              "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 12月30日首班车起 地铁17号线北段等三条地铁线（段）开通试运营 发布日期： 2023-12-29 17:00 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 2023年12月30日（周六）首班车起，地铁17号线北段（工人体育场—未来科学城北）、16号线剩余段（榆树庄—宛平城）及苏州街站、11号线西段剩余段（金安桥—模式口）开通试运营。",
+              "httpStatus": 200,
+              "sha256": "9d6ef54dd133262093897b38eb3d459e12ce32e82baf4831a41d1fbf58a7c90b"
+            }
+          ],
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "beijing-line17-north",
+              "line": "17号线",
+              "expect": "subsequence",
+              "gaps": [
+                "望京西"
+              ]
             },
             {
-              "id": "opening:bj11-modekou",
-              "orderConfirmed": "not_checkable",
-              "note": "来源列模式口、金安桥、新首钢并称“北起模式口，南至新首钢”，北辛安未出现"
+              "groupId": "opening:bj11-modekou",
+              "line": "11号线",
+              "expect": "exact",
+              "gaps": []
             }
-          ]
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "beijing-network-milestone-2025-12-27",
           "date": "2025-12-27",
-          "sourceUrl": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·交通大家谈《亮点揭秘！北京3条新地铁通车倒计时》·发布 2025-12-24·导语及第1节",
-          "quote": "北京3条（段）地铁线路预计年底开通",
-          "issues": [
-            "来源为2025-12-24开通前预告，通篇为“预计年底”“通车倒计时”，未写出12月27日这一具体日期",
-            "18号线仅给“共设车站11座”未列站名；17号线中段仅给十里河—工人体育场区间及东大桥、永安里、潘家园西；6号线南延仅给潞城—潞阳，三组站序均未逐站核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+              "publicationDate": "2025-12-24",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·交通大家谈《亮点揭秘！北京3条新地铁通车倒计时》·发布 2025-12-24·导语及第1节",
+              "quote": "2、18号线（马连洼---天通苑东） 18号线（马连洼---天通苑东）是一条位于城市北部东西向的骨干线路，线路途经海淀、昌平两区，约19.8公里，共设车站11座，其中换乘站4座，分别在马连洼站与16号线换乘、回龙观东大街站与8号线换乘、天通苑站与5号线换乘、天通苑东站与17号线换乘。",
+              "httpStatus": 200,
+              "sha256": "3d0dfc9b594e98e8c923295fc3b5af01bc6ba018e8e3db4fe5fbc5aef686175b"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "beijing-line18-open-2025",
+              "line": "18号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "beijing-line17-through",
+              "line": "17号线",
+              "expect": "subsequence",
+              "gaps": [
+                "望京西"
+              ]
+            },
+            {
+              "groupId": "beijing-line6-6",
+              "line": "6号线",
+              "expect": "subsequence",
+              "gaps": [
+                "通运门"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-network-milestone-2025-12-27: no announcement states 2025-12-27",
+            "beijing-network-milestone-2025-12-27: beijing-line17-through opened section endpoints ['工人体育场', '潘家园西'] are not named by any dated source",
+            "beijing-network-milestone-2025-12-27: beijing-line6-6 opened section endpoints ['金安桥', '潞阳'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "beijing-network-milestone-2026-01-31",
           "date": "2026-01-31",
-          "sourceUrl": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
-          "sourceAuthority": "official_operator",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "京港地铁官网·公司新闻《京港地铁17号线望京西站于1月31日正式开通》·发布 2026-01-29·正文首段",
-          "quote": "京港地铁17号线望京西站将于2026年1月31日（星期六）正式开通",
-          "issues": [
-            "来源发布于开通前2日，为预告式公告，日期写明为2026年1月31日（非“预计”），但无开通后报道佐证实际执行",
-            "group 为17号线全线20站，来源只讲望京西单站，20站站序未在来源中出现"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
+              "publicationDate": "2026-01-29",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "京港地铁官网·公司新闻《京港地铁17号线望京西站于1月31日正式开通》·发布 2026-01-29·正文首段",
+              "quote": "京港地铁17号线望京西站于1月31日正式开通 - 北京京港地铁有限公司 首页 出行服务 出行查询 线路图 京港线路及车站 列车时刻表 延误告知 失物招领 乘客守则 禁止携带物品目录 购票指南 路网车站站间距信息 最新动态 公司新闻 媒体报道 出行空间 便民服务 M地铁系列 地铁+社区 地铁商务 京港商城 招标信息及供应商须知 关于我们 公司简介 股东介绍 目标理念 大事记 企业社会责任 公司宣传片 招贤纳士 服务表现 安全保护区管理 EN | 搜索 搜索 最新动态 LATEST NEWS 首页 最新动态 公司新闻 正文 京港地铁17号线望京西站于1月31日正式开通 2026-01-29 大 中 小 京港地铁17号线望京西站将于2026年1月31日（星期六）正式开通。",
+              "httpStatus": 200,
+              "sha256": "478457a5b73634f411613088ad5359c7c8ae59a4bb23b45b4dff27aa28b77996"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "beijing-line17-wangjingxi",
+              "line": "17号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "beijing-network-milestone-2010-12-30",
           "date": "2010-12-30",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·工作动态《大兴线、亦庄线、十五号线首开段、昌平线一期、房山线等五条轨道交通新线12月30日开通试运营》·发布 2010-12-31·大兴线段落",
-          "quote": "从北到南11个车站站名依次为：新宫站、西红门站、高米店北站",
-          "issues": [
-            "大兴线组为4号线+大兴线贯通后35站，来源只列大兴线11站（新宫—天宫院），4号线24站未列，35站整体站序未核到",
-            "建设子段含公益西桥共12站，来源称大兴线自新宫起11站、公益西桥为4号线接轨站，子段比官方口径多1站",
-            "昌平线一期组7站来源逐站列明，与游戏一致"
-          ],
-          "verdict": "unverified",
-          "groupChecks": [
+          "chapterKind": "opening",
+          "dateSources": [
             {
-              "id": "opening:beijing-daxing-2010",
-              "orderConfirmed": "not_checkable",
-              "note": "来源只列大兴线11站，4号线24站未列；建设子段12站含4号线接轨站公益西桥"
+              "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+              "publicationDate": "2010-12-31",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·工作动态《大兴线、亦庄线、十五号线首开段、昌平线一期、房山线等五条轨道交通新线12月30日开通试运营》·发布 2010-12-31·大兴线段落",
+              "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 工作动态 大兴线、亦庄线、十五号线首开段、昌平线一期、房山线等五条轨道交通新线12月30日开通试运营 发布日期： 2010-12-31 23:21 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 大兴线、亦庄线、十五号线首开段、昌平线一期、房山线等五条轨道交通新线 12 月 30 日开通试运营，大兴、北京经济技术开发区、顺义、昌平和房山与中心城区的交通往来将更加便捷，北京轨道交通运营里程达到 336 公里，轨道交通网络进一步完善。",
+              "httpStatus": 200,
+              "sha256": "33121770fce08f59f598c5a7c5cd8244c8f87b6970a0db1f67338f45841cf504"
             },
             {
-              "id": "opening:bj-changping-first",
-              "orderConfirmed": true,
-              "note": "来源列南邵及6座高架站共7站，顺序与本组一致"
+              "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+              "publicationDate": "2010-12-31",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "区间端点原文（南邵—西二旗）",
+              "quote": "南邵站；高架站 6 座 , 分别为沙河高教园站、沙河站、巩华城站、朱辛庄站、生命科学园站、西二旗",
+              "httpStatus": 200,
+              "sha256": "33121770fce08f59f598c5a7c5cd8244c8f87b6970a0db1f67338f45841cf504"
             }
+          ],
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:beijing-daxing-2010",
+              "line": "大兴线",
+              "expect": "existing_lead",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:bj-changping-first",
+              "line": "昌平线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-network-milestone-2010-12-30: opening:beijing-daxing-2010 opened section endpoints ['公益西桥', '天宫院'] are not named by any dated source"
           ]
         },
         {
           "chapterId": "beijing-network-milestone-2017-12-30",
           "date": "2017-12-30",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": true,
-          "locator": "北京市交通委·新闻发布会《12月30日早班车起轨道交通燕房线、S1线、西郊线开通试运营》·发布 2017-12-29·第2段",
-          "quote": "燕山站、房山城关站、饶乐府站、马各庄站、大石河东站、星城站、阎村站、紫草坞站、阎村东站",
-          "issues": [],
-          "verdict": "verified"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html",
+              "publicationDate": "2017-12-29",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·新闻发布会《12月30日早班车起轨道交通燕房线、S1线、西郊线开通试运营》·发布 2017-12-29·第2段",
+              "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 12月30日早班车起轨道交通燕房线、S1线、西郊线开通试运营 发布日期： 2017-12-29 17:31 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 自2017年12月30日早班车起，轨道交通燕房线（含房山线阎村东至苏庄一站一区间）、磁浮S1线、有轨电车西郊线开通试运营。",
+              "httpStatus": 200,
+              "sha256": "7c2d621b29cc1b0141aeb6abc276a903efaeae90455430089d4ac6443a22a743"
+            }
+          ],
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:beijing-yanfang-2017",
+              "line": "燕房线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "beijing-line19-infill-2022",
           "date": "2022-07-30",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·新闻发布会《地铁19号线一期北太平庄等4站7月30日起开通试运营》·发布 2022-07-29·第1、2段",
-          "quote": "4座车站开通后，地铁19号线一期实现全线10座车站开通试运营",
-          "issues": [
-            "来源确认一期共10站、本次开通北太平庄/平安里/太平桥/景风门4站，但未逐一列出10站站序（新发地、牛街未作为车站出现）"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
+              "publicationDate": "2022-07-29",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·新闻发布会《地铁19号线一期北太平庄等4站7月30日起开通试运营》·发布 2022-07-29·第1、2段",
+              "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 地铁19号线一期北太平庄等4站7月30日起开通试运营 发布日期： 2022-07-29 11:30 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 轨道交通19号线一期北太平庄、平安里、太平桥、景风门等4座车站（以下简称“4座车站”）将于7月30日（星期六）首班车起开通试运营。",
+              "httpStatus": 200,
+              "sha256": "5546964ff64dadd86ece498c07b740090a7a72c71205772334c7179ed2071072"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj19-infill",
+              "line": "19号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "beijing-changping-north-2015",
           "date": "2015-12-26",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·新闻发布会《14号线中段和昌平线二期12月26日开通试运营》·发布 2015-12-28·昌平线二期段",
-          "quote": "自西向东分别为昌平西山口站、十三陵景区站、昌平站、昌平东关站、北邵洼站",
-          "issues": [
-            "来源称昌平线二期共设5站并与一期南邵站贯通；游戏建设子段为6站（含既有南邵站），比官方口径多1站",
-            "组内12站中，二期5站逐站列明且顺序一致，一期7站来源只给“南起西二旗，北至南邵，共7座车站”的总数，未列站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
+              "publicationDate": "2015-12-28",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·新闻发布会《14号线中段和昌平线二期12月26日开通试运营》·发布 2015-12-28·昌平线二期段",
+              "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 14号线中段和昌平线二期12月26日开通试运营 发布日期： 2015-12-28 14:58 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 14号线中段和昌平线二期等2条轨道新线将于12月26日投入试运营，届时，北京轨道运营总里程将达到554公里。",
+              "httpStatus": 200,
+              "sha256": "a12ebbce835a835608a270cb4c07a0f8a5f0dec7fdc15994c6e10bf3c1a38d4f"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj-changping-north",
+              "line": "昌平线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-changping-north-2015: opening:bj-changping-north opened section endpoints ['昌平西山口', '南邵'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "beijing-changping-south-2023",
           "date": "2023-02-04",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·新闻发布会《2月4日首班车起昌平线南延一期开通试运营》·发布 2023-02-02·第2段",
-          "quote": "此次开通清河小营桥站、学知园站、六道口站、学院桥站、西土城站",
-          "issues": [
-            "来源称本次开通5站、线路自既有清河站向南延伸；游戏建设子段为6站（含既有清河站），比官方口径多1站",
-            "组内18站中仅5个新站被列明，其余13站（昌平西山口—清河）未在来源中列站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+              "publicationDate": "2023-02-02",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·新闻发布会《2月4日首班车起昌平线南延一期开通试运营》·发布 2023-02-02·第2段",
+              "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 2月4日首班车起昌平线南延一期开通试运营 发布日期： 2023-02-02 17:20 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 自2023年2月4日（周六）首班车起，轨道交通昌平线南延一期正式开通试运营。",
+              "httpStatus": 200,
+              "sha256": "8f113a10deebc3034893b4be134b0fa238d8258a0791aaf1106d16d0a809d953"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj-changping-south",
+              "line": "10号线",
+              "expect": "existing_lead",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-changping-south-2023: opening:bj-changping-south opened section endpoints ['清河', '西土城'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "beijing-network-milestone-2024-12-15",
           "date": "2024-12-15",
-          "sourceUrl": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": false,
-          "locator": "首都之窗·部门动态《3条（段）地铁新线12月15日开通试运营》·发布 2024-12-15·第2、5段",
-          "quote": "昌平线南延一期剩余段（西土城—蓟门桥站及朱房北站）",
-          "issues": [
-            "建设子段被标为全线20站，来源明确本次仅开通朱房北站、蓟门桥站2站，子段多出18站",
-            "20站站序未在来源中列出"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+              "publicationDate": "2024-12-15",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "首都之窗·部门动态《3条（段）地铁新线12月15日开通试运营》·发布 2024-12-15·第2、5段",
+              "quote": "3条（段）地铁新线12月15日开通试运营 北京“七站两场”实现地铁全覆盖_部门动态_首都之窗_北京市人民政府门户网站 要闻动态 > 部门动态 3条（段）地铁新线12月15日开通试运营 北京“七站两场”实现地铁全覆盖 日期：2024-12-15 08:11 来源：北京日报 分享： X 字号： 大 中 小 原标题：3条（段）地铁新线今日开通试运营 北京“七站两场”实现地铁全覆盖 12月15日首班车起，北京地铁3号线一期（东四十条—东坝北）、12号线（四季青桥—东坝北）、昌平线南延一期剩余段（西土城—蓟门桥站及朱房北站）3条（段）地铁新线开通试运营，北京城市轨道交通运营总里程达879公里、车站522座，其中换乘站98座。",
+              "httpStatus": 200,
+              "sha256": "35d9425b27f966da9b646bcf766fc9d91746eb8b0b7c8a6027965a56f609477e"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj-changping-infill",
+              "line": "12号线",
+              "expect": "existing_lead",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-network-milestone-2024-12-15: opening:bj-changping-infill opened section endpoints ['清河'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "beijing-line13-west-2002",
           "date": "2002-09-28",
-          "sourceUrl": "https://news.sohu.com/35/91/news203429135.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": true,
-          "locator": "搜狐新闻转载新华网《北京城市铁路西段今天试运营 全线明年初将开通》·2002-09-28·第1、3段",
-          "quote": "西直门站、大钟寺站、知春路站、五道口站、上地站、西二旗站、龙泽站、回龙观站、霍营站",
-          "issues": [
-            "来源为搜狐转载新华网报道，非官方文件（非政府或地铁运营方原文），按规则不得据此判为已核对",
-            "站序本身与来源一致：16站中前9站即西段，与游戏9站完全相同且连续"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sohu.com/35/91/news203429135.shtml",
+              "publicationDate": "2002-09-28",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "搜狐新闻转载新华网《北京城市铁路西段今天试运营 全线明年初将开通》·2002-09-28·第1、3段",
+              "quote": "北京城市铁路西段今天试运营 全线明年初将开通 中国搜狐 挑战8848 首页 ┊ 邮件 ┊ 短信 ┊ 商城 ┊ 搜索 ┊ 新闻 ┊ 体育 ┊ 财经 ┊ IT ┊ 娱乐圈 ┊ 女人 ┊ 生活 ┊ 健康 ┊ 汽车 ┊ 房产 ┊ 旅游 ┊ 教育 ┊ 出国 ┊ 求职 ┊ 动漫 ┊ 校友录 滚动 | 国内 | 国际 | 财经 | 科技 | 社会 | 军事 | 企业 | 传媒 | 校园 | TOP100 | 评论 | 我来说两句 | 新闻中心纯文字版 --> Sohu 首页 >> 新闻 >> 国内 北京城市铁路西段今天试运营 全线明年初将开通 2002年9月28日15:47 新华网 新华网北京９月２８日电（谭伟 潘善棠）今天上午９时，一列由３节车厢组成的地铁列车，满载首批乘客徐徐从北京城市铁路西直门车站开出，往北驶向霍营站。",
+              "httpStatus": 200,
+              "sha256": "73b0dc5f437b0a0baeafb0ad40e7c393eb0a6403bcfbb1c363116d1c07086a2e"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj13-west",
+              "line": "13号线",
+              "expect": "subsequence",
+              "gaps": [
+                "清河"
+              ]
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "beijing-line13-east-2003",
           "date": "2003-01-28",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·新闻发布会《国庆假期实施穿越地铁13号线箱涵工程…》·发布 2016-09-08·第13段（回溯表述）",
-          "quote": "地铁13号线于2003年1月28日全线开通，西起西直门站，东至东直门站",
-          "issues": [
-            "来源为2016年停运新闻中的回溯句，只给“共设16个车站”总数，未列16站站序",
-            "建设子段8站（霍营—东直门）含既有霍营站；来源将东段界定为“立水桥—东直门”7站、西段为“西直门—霍营”"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
+              "publicationDate": "2016-09-08",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·新闻发布会《国庆假期实施穿越地铁13号线箱涵工程…》·发布 2016-09-08·第13段（回溯表述）",
+              "quote": "地铁 13 号线东段七站以通勤客流为主 国庆期间停运将对市民出行影响降到最低 地铁 13 号线于 2003 年 1 月 28 日全线开通，西起西直门站，东至东直门站，全路线呈 n 字形，全长 40.5 公里，共设 16 个车站，其中 8 座车站为换乘站。",
+              "httpStatus": 200,
+              "sha256": "53f3f551453ae18135d2856e4a6127113c0ecd0707903253eeb197b9b4e1ed93"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj13-east",
+              "line": "13号线",
+              "expect": "subsequence",
+              "gaps": [
+                "清河"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-line13-east-2003: announcement published 2016-09-08, 4972 days from 2003-01-28",
+            "beijing-line13-east-2003: no announcement states 2003-01-28",
+            "beijing-line13-east-2003: opening:bj13-east opened section endpoints ['霍营'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "beijing-network-milestone-2019-07-26",
           "date": "2019-12-30",
-          "sourceUrl": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": false,
-          "locator": "北京市重点站区管委会·清河站地区·站区介绍《基本情况》·发布 2025-08-20·“总体概况”段",
-          "quote": "2019年12月30日清河站开站，高铁、地铁13号线轻轨",
-          "issues": [
-            "chapterId 中的日期（2019-07-26）与 date（2019-12-30）不一致",
-            "本次实为13号线清河站单站开通，建设子段却被标为全线17站",
-            "17站站序未在来源中列出"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
+              "publicationDate": "2023-07-14",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "北京市重点站区管委会·清河站地区·站区介绍《基本情况》·发布 2025-08-20·“总体概况”段",
+              "quote": "2019年12月30日清河站开站，高铁、地铁13号线轻轨、市郊铁路S5（怀柔-密云）线于同时开通运行。",
+              "httpStatus": 200,
+              "sha256": "4cf9d621b40884aa7783e908d779d4cd945dc4e32cd5bfda62151d814ca09a65"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:beijing-r13",
+              "line": "4号线",
+              "expect": "existing_lead",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-network-milestone-2019-07-26: announcement published 2023-07-14, 1292 days from 2019-12-30",
+            "beijing-network-milestone-2019-07-26: route:beijing-r13 is line 13 but the ledger checks line 4号线"
+          ]
         },
         {
           "chapterId": "beijing-line10-first-2008",
           "date": "2008-07-19",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·年度重点工作《2008年市政府实事交通项目进展情况(二)》·发布 2008-07-28·第20件进展",
-          "quote": "已于7月19日顺利开通地铁10号线一期、奥运支线、机场线",
-          "issues": [
-            "来源只确认开通日期与线路，未列10号线一期22站站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
+              "publicationDate": "2008-07-28",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·年度重点工作《2008年市政府实事交通项目进展情况(二)》·发布 2008-07-28·第20件进展",
+              "quote": "继续建设地铁 4 号线、 10 号线二期、 9 号线、 8 号线、 6 号线一期、亦庄线、大兴线 进展：已于 7 月 19 日顺利开通地铁 10 号线一期、奥运支线、机场线。",
+              "httpStatus": 200,
+              "sha256": "76e30747f88947f22c87066c6d08e278e5b720314748656a8aa73ec22ff26de8"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj10-first",
+              "line": "10号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-line10-first-2008: no announcement states 2008-07-19",
+            "beijing-line10-first-2008: opening:bj10-first opened section endpoints ['巴沟', '劲松'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "beijing-network-milestone-2012-12-30",
           "date": "2012-12-30",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/dtxx/201211/t20121122_337170.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·工作动态《10号线二期将于年底开通试运营》·发布 2012-11-22·首段",
-          "quote": "10号线二期将于今年年底开通试运营",
-          "issues": [
-            "来源为2012-11-22预告稿，只写“今年年底”，未写12月30日",
-            "来源列20座新开车站（含当时站名樊家村站，即现首经贸站），42站中其余22站未列，整体站序未核到"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201211/t20121122_337170.html",
+              "publicationDate": "2012-11-22",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·工作动态《10号线二期将于年底开通试运营》·发布 2012-11-22·首段",
+              "quote": "其中，换乘车站13座，分别为：潘家园站与规划地铁11号线换乘，十里河站与在建地铁14号线、天通苑线换乘，宋家庄站与既有地铁5号线、亦庄线换乘，大红门站与规划地铁8号线三期换乘，角门西站与既有地铁4号线换乘，樊家村站与规划房山线北延线换乘，丰台站与规划地铁16号线换乘，西局站与在建地铁14号线换乘，六里桥站与既有地铁9号线换乘，公主坟站与既有地铁1号线换乘，西钓鱼台站与规划地铁3号线换乘，慈寿寺站与在建地铁6号线换乘，长春桥站与规划地铁12号线换乘。",
+              "httpStatus": 200,
+              "sha256": "3abf57ec6bc5a409070947c29dc4de97c0e0acefb8ac80d401f2e2050dcf7c8a"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:bj10-c",
+              "line": "10号线",
+              "expect": "loop_subsequence",
+              "gaps": [
+                "角门东"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-network-milestone-2012-12-30: no announcement states 2012-12-30",
+            "beijing-network-milestone-2012-12-30: opening:bj10-c opened section endpoints ['首经贸'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "beijing-network-milestone-2013-05-05",
           "date": "2013-05-05",
-          "sourceUrl": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "北京市交通委·工作动态《[访谈回顾]刘小明主任做客交通运输部政府网站在线访谈》·发布 2013-06-24·访谈正文",
-          "quote": "10号线剩余段的丰台站、泥洼站、角门东站也已开通试运营，10号线实现成环运营",
-          "issues": [
-            "来源为访谈中的回溯句，只列丰台站、泥洼站、角门东站3站，45站站序未列（“成环”与 loop=true 相符）"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
+              "publicationDate": "2013-06-24",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "北京市交通委·工作动态《[访谈回顾]刘小明主任做客交通运输部政府网站在线访谈》·发布 2013-06-24·访谈正文",
+              "quote": "今年5月5日轨道交通10号线贯通运行、14号线西段开通后，轨道交通日均客运量继续增长，已达到891万人次。",
+              "httpStatus": 200,
+              "sha256": "baf1f7db894f19f1026facb0282a1e8e4ec66902c5c4c3758b0ae7d69252c16c"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:beijing-r10",
+              "line": "10号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "beijing-network-milestone-2013-05-05: announcement published 2013-06-24, 50 days from 2013-05-05"
+          ]
         },
         {
           "chapterId": "beijing-line6-tongyunmen-2026",
           "date": "2026-06-30",
-          "sourceUrl": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260630_4738884.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": false,
-          "locator": "首都之窗·信息提示《地铁6号线通运门站今早开通…》·发布 2026-06-30·第1段",
-          "quote": "今天首班车起，北京地铁6号线通运门站开通运营",
-          "issues": [
-            "本次仅开通通运门1站，建设子段却标为通州北关/通运门/北运河西3站（含2座既有站）",
-            "36站站序未在来源中列出"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260630_4738884.html",
+              "publicationDate": "2026-06-30",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "首都之窗·信息提示《地铁6号线通运门站今早开通…》·发布 2026-06-30·第1段",
+              "quote": "地铁6号线通运门站今早开通 先行开放两个出入口 为运河商务区及居住区提供轨道交通支撑_信息提示_首都之窗_北京市人民政府门户网站 政务服务 > 便民服务 > 信息提示 地铁6号线通运门站今早开通 先行开放两个出入口 为运河商务区及居住区提供轨道交通支撑 日期：2026-06-30 10:22 来源：北京日报 分享： X 字号： 大 中 小 微信图片_20260630111750_149_34 微信图片_20260630111750_149_34 从市交通委、市重大项目办获悉，今天首班车起，北京地铁6号线通运门站开通运营。",
+              "httpStatus": 200,
+              "sha256": "3eceacc20266aef53d07235e65087756e0b72c4aa61dc23803f85b9de9078ed7"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:beijing-line6-tongyunmen-2026",
+              "line": "6号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "beijing-network-milestone-1987-12-28",
           "date": "1987-12-28",
-          "sourceUrl": "https://www.beijing.gov.cn/zhengce/zfwj/zfwj/bgtwj/201905/t20190523_73700.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "首都之窗·市政府办公厅文件 京政办发〔1988〕5号《关于进行北京地铁二期工程验收交接工作的通知》·1988-01-23·正文首段",
-          "quote": "12月28日实现按规划线路成环运营",
-          "issues": [
-            "来源为1988年验收交接通知，确认12月28日成环，但未列二期环线18站站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.beijing.gov.cn/zhengce/zfwj/zfwj/bgtwj/201905/t20190523_73700.html",
+              "publicationDate": "1988-01-23",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "首都之窗·市政府办公厅文件 京政办发〔1988〕5号《关于进行北京地铁二期工程验收交接工作的通知》·1988-01-23·正文首段",
+              "quote": "关于进行北京地铁二期工程验收交接工作的通知_市政府办公厅文件_首都之窗_北京市人民政府门户网站 政务公开 > 政策服务 > 政府文件 > 1986-2014政府文件 > 市政府办公厅文件 [发文字号] 京政办发 〔1988〕 5号 [发布日期] 1988-01-23 [有效性] 否 关于进行北京地铁二期工程验收交接工作的通知 京政办发[1988]5号 市政府有关委、办、局，有关总公司： 北京地铁二期环线工程于1982年7月开始初验，1984年9月19日试运营，1987年12月24日地铁复兴门折返线工程竣工，12月28日实现按规划线路成环运营。",
+              "httpStatus": 200,
+              "sha256": "02beb6feb4546f669cc8665a36c6643c7220224fb722a92e587a8b613156f7ca"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "beijing-operator-roster",
+          "orders": [
+            {
+              "groupId": "beijing-ring2-1987",
+              "line": "2号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         }
       ],
-      "verifiedCount": 1,
-      "unverifiedCount": 17,
+      "verifiedCount": 7,
+      "unverifiedCount": 11,
       "verdict": "incomplete",
-      "note": "逐条重开来源复核beijing的18条历史里程碑，1条通过。日期不成立2条（beijing-network-milestone-2025-12-27、beijing-network-milestone-2012-12-30）建设子段指错7条（beijing-network-milestone-2010-12-30、beijing-changping-north-2015、beijing-changping-south-2023、beijing-network-milestone-2024-12-15、beijing-line13-east-2003、beijing-network-milestone-2019-07-26、beijing-line6-tongyunmen-2026）站序无法逐站核对8条（beijing-network-milestone-2021-12-31、beijing-network-milestone-2023-12-30、beijing-network-milestone-2026-01-31、beijing-line19-infill-2022、beijing-line13-west-2002、beijing-line10-first-2008、beijing-network-milestone-2013-05-05、beijing-network-milestone-1987-12-28）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
+      "note": "两源复核beijing的18条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，7条两项都对上。未通过：beijing-network-milestone-2021-12-31（beijing-network-milestone-2021-12-31: route:beijing-r19 opened section endpoints ['牡丹园', '新宫'] are not named by any dated source / beijing-network-milestone-2021-12-31: route:beijing-r11 opened section endpoints ['金安桥', '新首钢'] are not named by any dated source）；beijing-network-milestone-2025-12-27（beijing-network-milestone-2025-12-27: no announcement states 2025-12-27 / beijing-network-milestone-2025-12-27: beijing-line17-through opened section endpoints ['工人体育场', '潘家园西'] are not named by any dated source）；beijing-network-milestone-2010-12-30（beijing-network-milestone-2010-12-30: opening:beijing-daxing-2010 opened section endpoints ['公益西桥', '天宫院'] are not named by any dated source）；beijing-changping-north-2015（beijing-changping-north-2015: opening:bj-changping-north opened section endpoints ['昌平西山口', '南邵'] are not named by any dated source）。未通过项不标已核对，明细见 docs/history-two-source-2026-10-29.json。",
+      "ledgerErrors": [],
+      "decidedBy": "tools/review_history_two_source.py"
     },
     "guangzhou": {
       "milestones": [
         {
           "chapterId": "guangzhou-network-milestone-2022-09-28",
           "date": "2021-09-28",
-          "sourceUrl": "https://www.cnr.cn/gd/guangdongyaowen/20210928/t20210928_525617567.shtml",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "央广网·广东要闻《广州地铁十八号线首通段今日开通运营》·2021-09-28·第1、2段",
-          "quote": "十八号线首通段（冼村至万顷沙）自9月28日14：00起开通运营",
-          "issues": [
-            "来源为央广网报道，非官方文件",
-            "chapterId 标注 2022-09-28 与 date 2021-09-28 不一致",
-            "来源只给“设站8座”及两端（万顷沙、冼村），未列8站站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.cnr.cn/gd/guangdongyaowen/20210928/t20210928_525617567.shtml",
+              "publicationDate": "2021-09-28",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "央广网·广东要闻《广州地铁十八号线首通段今日开通运营》·2021-09-28·第1、2段",
+              "quote": "广州地铁十八号线首通段今日开通运营_央广网 首页 > 广东频道 > 广东要闻 广州地铁十八号线首通段今日开通运营 2021-09-28 08:36:43 来源：央广网 原创版权禁止商业转载 授权>> 央广网广州9月28日消息（记者夏燕）记者从广州地铁了解到，十八号线首通段（冼村至万顷沙）自9月28日14：00起开通运营。",
+              "httpStatus": 200,
+              "sha256": "380925c095792658676e70da77c564579be9395013330b1c26a0162e2ebf2a16"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "guangzhou-line18-15",
+              "line": "十八号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "guangzhou-line11-ring-opening-2024",
           "date": "2024-12-28",
-          "sourceUrl": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "《2024年广州市交通发展年度报告》第六章“地铁”·PDF 第28页·十一号线客流情况段",
-          "quote": "开通运营29座车站（广州火车站、广州东站暂缓开通）",
-          "issues": [
-            "来源确认29座车站且广州火车站、广州东站暂缓开通，与游戏29站（不含该两站）相符，但未列站序",
-            "第二个 group（6号线32站，建设子段沙河顶/沙河/天平架）在年报全文中完全未出现，无法核对"
-          ],
-          "verdict": "unverified",
-          "sourceFile": "guangzhou-line11-ring-opening-2024.pdf",
-          "sourceSha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71",
-          "groupChecks": [
+          "chapterKind": "opening",
+          "dateSources": [
             {
-              "id": "opening:gz11-ring-2024",
-              "orderConfirmed": "not_checkable",
-              "note": "来源给“29座车站（广州火车站、广州东站暂缓开通）”，站数与缺站相符，未列站序"
+              "url": "https://ghzyj.gz.gov.cn/attachment/7/7806/7806901/10233239.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "《2024年广州市交通发展年度报告》第六章“地铁”·PDF 第28页·十一号线客流情况段",
+              "quote": "第六章 公交都市建设 25 图 6.2 近年广州地铁线网和客流发展历程 2.十一号线客流情况 广州地铁十一号线于2024 年12 月28 日开通，线路全长44.2km，开通运营 29 座车站（广州火车站、广州东站暂缓开通），其中换乘站14 座，与9 条线路 换乘。",
+              "httpStatus": 200,
+              "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+            }
+          ],
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:gz11-ring-2024",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "广州东站"
+              ]
             },
             {
-              "id": "opening:guangzhou-line11-ring-opening-2024:line6",
-              "orderConfirmed": "not_checkable",
-              "note": "年报全文未出现6号线及沙河站，本组无对应表述"
+              "groupId": "opening:guangzhou-line11-ring-opening-2024:line6",
+              "line": "6号线",
+              "expect": "exact",
+              "gaps": []
             }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-line11-ring-opening-2024: date source has no publication date or quote",
+            "guangzhou-line11-ring-opening-2024: no opening-day announcement",
+            "guangzhou-line11-ring-opening-2024: opening:gz11-ring-2024 opened section endpoints ['赤沙', '龙潭'] are not named by any dated source"
           ]
         },
         {
           "chapterId": "guangzhou-network-milestone-2025-09-29",
           "date": "2025-09-29",
-          "sourceUrl": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "广州市住建局·住建新闻《市建设工程质监站高质量完成多条城际、地铁消防验收工作》·2025-10-09·第1段",
-          "quote": "广州地铁十三号线二期、十四号线二期、十一号线广州东站顺利开通运营",
-          "issues": [
-            "来源只提及“十一号线广州东站”开通，未给站数，也未给30站站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
+              "publicationDate": "2025-10-09",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "广州市住建局·住建新闻《市建设工程质监站高质量完成多条城际、地铁消防验收工作》·2025-10-09·第1段",
+              "quote": "市建设工程质监站高质量完成多条城际、地铁消防验收工作-广州市住房和城乡建设局网站 首页 政务公开 政务服务 关爱版 信用建设 --> 重点领域 行业数据 营商环境 当前位置： 首页 > 住建动态 > 住建新闻 市建设工程质监站高质量完成多条城际、地铁消防验收工作 来源：本网广州市建设工程质量监督站 时间： 2025-10-09 10:03 9月29日，广州东环城际、琶莲城际及广州地铁十三号线二期、十四号线二期、十一号线广州东站顺利开通运营，成为“活力大湾区，魅力新广州”建设的生动注脚。",
+              "httpStatus": 200,
+              "sha256": "324283e69b7f2f96e2d24a9e80564b3ce9951f7a4f207c0f966ee834766acf28"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:guangzhou-r11",
+              "line": "11号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "guangzhou-network-milestone-2022-03-31",
           "date": "2022-03-31",
-          "sourceUrl": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "广州市规划和自然资源局·工作动态《“地铁通湾区，鹅潭启新程”——22号线开通…》·2025-12-30·第1、2段",
-          "quote": "与首通段(番禺广场-陈头岗)贯通运营",
-          "issues": [
-            "来源为2025-12-30荔湾分局稿件，主题是2025-12-29后通段开通，通篇未提2022年3月31日",
-            "该URL与 guangzhou-line22-west-opening-2025 里程碑共用，属来源错配",
-            "首通段4站（番禺广场—陈头岗）站序未在来源中出现"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+              "publicationDate": "2025-12-30",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "广州市规划和自然资源局·工作动态《“地铁通湾区，鹅潭启新程”——22号线开通…》·2025-12-30·第1、2段",
+              "quote": "广州地铁22号线后通段（陈头岗-芳村）已于2025年12月29日开通，这条“大湾区最快地铁”，不仅是一条通勤线，更是撬动荔湾区高质量发展的重要动脉。",
+              "httpStatus": 200,
+              "sha256": "abe95901e864c1667194c43104111862aa43c8e074605c009585786f8734ec1e"
+            },
+            {
+              "url": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+              "publicationDate": "2025-12-30",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "区间端点原文（番禺广场—陈头岗）",
+              "quote": "一、时空重塑：补足白鹅潭与南站直连通道，巩固大湾区交通极核地位 广州地铁22号线后通段(陈头岗-芳村)，与首通段(番禺广场-陈头岗)贯通运营，形成\"番禺广场-芳村\"全长29.7公里的市域快线，线路在荔湾辖内共设置芳村、西塱、南漖三个站点。",
+              "httpStatus": 200,
+              "sha256": "abe95901e864c1667194c43104111862aa43c8e074605c009585786f8734ec1e"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:guangzhou-r17",
+              "line": "22号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-network-milestone-2022-03-31: announcement published 2025-12-30, 1370 days from 2022-03-31",
+            "guangzhou-network-milestone-2022-03-31: announcement published 2025-12-30, 1370 days from 2022-03-31",
+            "guangzhou-network-milestone-2022-03-31: no announcement states 2022-03-31"
+          ]
         },
         {
           "chapterId": "guangzhou-line22-west-opening-2025",
           "date": "2025-12-29",
-          "sourceUrl": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "广州市规划和自然资源局·工作动态《“地铁通湾区，鹅潭启新程”——22号线开通…》·2025-12-30·第1段",
-          "quote": "广州地铁22号线后通段（陈头岗-芳村）已于2025年12月29日开通",
-          "issues": [
-            "来源只列荔湾辖内芳村、西塱、南漖3站，南浦西站及全线8站站序未出现"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
+              "publicationDate": "2025-12-30",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "广州市规划和自然资源局·工作动态《“地铁通湾区，鹅潭启新程”——22号线开通…》·2025-12-30·第1段",
+              "quote": "广州地铁22号线后通段（陈头岗-芳村）已于2025年12月29日开通，这条“大湾区最快地铁”，不仅是一条通勤线，更是撬动荔湾区高质量发展的重要动脉。",
+              "httpStatus": 200,
+              "sha256": "abe95901e864c1667194c43104111862aa43c8e074605c009585786f8734ec1e"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "guangzhou-line22-west-opening-2025:line22",
+              "line": "22号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "guangzhou-line3-airport-opening-2010",
           "date": "2010-10-30",
-          "sourceUrl": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": false,
-          "locator": "生态环境部 环验〔2015〕10号《关于广州市轨道交通三号线北延段工程竣工环境保护验收合格的函》·2015-01-14·“一、工程建设的基本情况”",
-          "quote": "共设12座地下车站，已开通10座，其中高增站、机场北站暂未开通",
-          "issues": [
-            "来源只写“2010年10月投入试运营”，未给10月30日",
-            "来源称该段共12站、已开通10座（高增、机场北暂未开通），游戏列11站，比官方“已开通10座”多1站",
-            "来源为环保验收函，非开通公告，且未列站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.mee.gov.cn/gkml/sthjbgw/spwj1/201501/t20150116_294299.htm",
+              "publicationDate": "2015-01-14",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "生态环境部 环验〔2015〕10号《关于广州市轨道交通三号线北延段工程竣工环境保护验收合格的函》·2015-01-14·“一、工程建设的基本情况”",
+              "quote": "",
+              "httpStatus": 200,
+              "sha256": "f56aa7d4494a6b9eabe03154b08519b9ccb45727a710bd396281e386ac72de1a"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line3-airport-opening-2010",
+              "line": "一号线",
+              "expect": "existing_lead",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-line3-airport-opening-2010: date source has no publication date or quote",
+            "guangzhou-line3-airport-opening-2010: announcement published 2015-01-14, 1537 days from 2010-10-30",
+            "guangzhou-line3-airport-opening-2010: no announcement states 2010-10-30",
+            "guangzhou-line3-airport-opening-2010: opening:guangzhou-line3-airport-opening-2010 opened section endpoints ['广州东站', '机场南'] are not named by any dated source",
+            "guangzhou-line3-airport-opening-2010: opening:guangzhou-line3-airport-opening-2010 leads with 机场南, which no other roster lists"
+          ]
         },
         {
           "chapterId": "guangzhou-line3-airport-north-2018",
           "date": "2018-04-26",
-          "sourceUrl": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": true,
-          "locator": "广州市国资委·《〔2018〕第9期（总第337期）》信息速递·2018-05-14·4月26日条",
-          "quote": "4月26日，广州白云机场T2航站楼全面投入启用，机场北地铁站也同步开放",
-          "issues": [],
-          "verdict": "verified"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://gzw.gz.gov.cn/zt/gzgz/content/post_2781834.html",
+              "publicationDate": "2018-05-14",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "广州市国资委·《〔2018〕第9期（总第337期）》信息速递·2018-05-14·4月26日条",
+              "quote": "（风行集团 刘铮） 珠江实业集团深化国企合作推动“广州国资”做强做优做大 4月26日、5月2日，珠江实业集团分别与广州铁投集团和广百集团签署战略合作协议，进一步推动“广州国资”做强做优做大。",
+              "httpStatus": 200,
+              "sha256": "4a35dc31122f36fa106d6b4d9ff5d41a7deac236652cf9cc36d69254db918847"
+            }
+          ],
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line3-airport-north-2018",
+              "line": "",
+              "expect": "unaligned",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "guangzhou-line3-east-opening-2024",
           "date": "2024-11-01",
-          "sourceUrl": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": true,
-          "locator": "《2024年广州市交通发展年度报告》附录·PDF 第37页（印刷页34）·“11月1日 三号线东延段开通”条",
-          "quote": "共设傍江站、石碁南站、海涌路站、海傍站 4 座车站",
-          "issues": [
-            "组内5站＝官方4座新站＋起点番禺广场站（来源“西起番禺广场站”），顺序一致"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "《2024年广州市交通发展年度报告》附录·PDF 第37页（印刷页34）·“11月1日 三号线东延段开通”条",
+              "quote": "海珠有轨 电车试验线长度 7.7 公里，车站 11 座（其中广州塔站、广州塔东站于 2024 年 11 月 13 日起因施工停运），2024 年日均客运量 1.42 万人次，与上一年持平。",
+              "httpStatus": 200,
+              "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+            },
+            {
+              "url": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "区间端点原文（海傍—番禺广场）",
+              "quote": "广州地铁三号线东延段（番禺广场~海傍）开通运营，东延段的 开通进一步强化番禺东部亚运城片区与市桥中心的联系。",
+              "httpStatus": 200,
+              "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+            }
           ],
-          "verdict": "verified",
-          "sourceFile": "guangzhou-line3-east-opening-2024.pdf",
-          "sourceSha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line3-east-opening-2024",
+              "line": "三号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-line3-east-opening-2024: date source has no publication date or quote",
+            "guangzhou-line3-east-opening-2024: date source has no publication date or quote",
+            "guangzhou-line3-east-opening-2024: no opening-day announcement"
+          ]
         },
         {
           "chapterId": "guangzhou-network-milestone-2017-12-28",
           "date": "2017-12-28",
-          "sourceUrl": "https://kgw.gz.gov.cn/xxgk/rddbjyhzxta/content/post_3108006.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "广州空港经济区管委会·政协提案答复函《关于市政协十三届三次会议第2059号提案答复的函》·2019-09-10·“一、二是”段",
-          "quote": "2017年12月地铁9号线一期开通运营，在高增站与地铁3号线换乘",
-          "issues": [
-            "来源只写“2017年12月”，未写12月28日",
-            "来源讲的是9号线一期开通，未涉及3号线高增站自身启用，也未列人和/高增/机场南站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://kgw.gz.gov.cn/xxgk/rddbjyhzxta/content/post_3108006.html",
+              "publicationDate": "2019-09-10",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "广州空港经济区管委会·政协提案答复函《关于市政协十三届三次会议第2059号提案答复的函》·2019-09-10·“一、二是”段",
+              "quote": "实现与地铁快速换乘，2018年4月地铁3号线开通机场北站，与原有的机场南站两个站点分别接驳T2、T1航站楼，提升了飞机与地铁的无缝衔接；",
+              "httpStatus": 200,
+              "sha256": "c4379f8270429f9dd8726f449ff7db2e6d2ac60ec22327e248cdb6acfcf1f565"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line3-gaozeng-2017",
+              "line": "",
+              "expect": "unaligned",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-network-milestone-2017-12-28: announcement published 2019-09-10, 621 days from 2017-12-28",
+            "guangzhou-network-milestone-2017-12-28: no announcement states 2017-12-28"
+          ]
         },
         {
           "chapterId": "guangzhou-south-paid-passage-2024",
           "date": "2024-01-21",
-          "sourceUrl": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "《2024年广州市交通发展年度报告》附录·PDF 第33页（印刷页30）·“1月21日 佛山地铁2号线广州南站换乘通道正式启用”条",
-          "quote": "佛山地铁 2 号线广州南站换乘通道于 1 月 21 日起正式投入使用",
-          "issues": [],
-          "verdict": "verified",
-          "sourceFile": "guangzhou-line11-ring-opening-2024.pdf",
-          "sourceSha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.gz.gov.cn/attachment/7/7808/7808439/10246836.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "《2024年广州市交通发展年度报告》附录·PDF 第33页（印刷页30）·“1月21日 佛山地铁2号线广州南站换乘通道正式启用”条",
+              "quote": "1 月 21 日 佛山地铁 2 号线广州南站换乘通道正式启用 佛山地铁2 号线广州南站换乘通道于1 月21 日起正式投入使用，实现了佛山地 铁2 号线， 广州地铁2 号线、7 号线、22 号线的高效互联互通， 是广佛首个实现 四线站内付费区换乘的通道。",
+              "httpStatus": 200,
+              "sha256": "6dc605e18873f523227a1bcb9c35e7340c1bab58d8fb1ef5abc9c02cd437eb71"
+            }
+          ],
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-south-paid-passage-2024: date source has no publication date or quote",
+            "guangzhou-south-paid-passage-2024: no opening-day announcement"
+          ]
         },
         {
           "chapterId": "guangzhou-line6-first-2013",
           "date": "2013-12-28",
-          "sourceUrl": "https://gd.people.com.cn/GB/123947/357429/index.html",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "人民网广东频道·六号线专题页《六号线首期12月28日开门迎客》·专题首页",
-          "quote": "广州地铁六号线将于2013年12月28日14：00开通试运营",
-          "issues": [
-            "来源为人民网专题页（媒体），非官方文件",
-            "原 https 链接证书与域名不匹配（curl 报 SEC_E_WRONG_PRINCIPAL），改用 http 才取到 200",
-            "来源只给“共设22座车站”及一德路、沙河暂缓开通（20站与游戏相符），未列20站站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://gd.people.com.cn/GB/123947/357429/index.html",
+              "publicationDate": "2013-12-28",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "人民网广东频道·六号线专题页《六号线首期12月28日开门迎客》·专题首页",
+              "quote": "计划2013年12月28日开通。",
+              "httpStatus": 200,
+              "sha256": "ffd21e1cee678d8c4be693c8414b96dd9cc34bfde21bdcc6a30bae13bdefedcc"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line6-first-2013:line6",
+              "line": "6号线",
+              "expect": "subsequence",
+              "gaps": [
+                "一德路",
+                "沙河"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-line6-first-2013: opening:guangzhou-line6-first-2013:line6 opened section endpoints ['浔峰岗', '长湴'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "guangzhou-line6-yide-2015",
           "date": "2015-01-28",
-          "sourceUrl": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "新浪新闻转载羊城晚报《广州地铁六号线一德路站今日正式开通》·2015-01-28·标题及首段",
-          "quote": "广州地铁六号线一德路站今日正式开通",
-          "issues": [
-            "来源为新浪转载羊城晚报，非官方文件",
-            "只确认一德路站当日开通，未列21站站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sina.com.cn/o/2015-01-28/125931453474.shtml?from=wap",
+              "publicationDate": "2015-01-28",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "新浪新闻转载羊城晚报《广州地铁六号线一德路站今日正式开通》·2015-01-28·标题及首段",
+              "quote": "广州地铁六号线一德路站今日正式开通_新浪新闻 导航 新浪首页 新闻 体育 财经 娱乐 科技 博客 图片 专栏 更多 汽车 教育 时尚 女性 星座 健康 房产 历史 视频 收藏 育儿 读书 佛学 游戏 旅游 邮箱 导航 消息 注册 登录 新闻中心 > 正文 --> 新闻 图片 博客 视频 广州地铁六号线一德路站今日正式开通 2015年01月28日12:59 羊城晚报 分享 添加喜爱 打印 增大字体 减小字体 羊城晚报讯记者刘勇、通讯员叶子川报道： 广州地铁六号线一德路站终于正式开通了！",
+              "httpStatus": 200,
+              "sha256": "84307fb8dec61f1d95547c10cf0468ed93138d94b68baa0162f35aa046a0c178"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line6-yide-2015:line6",
+              "line": "6号线",
+              "expect": "subsequence",
+              "gaps": [
+                "沙河"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-line6-yide-2015: opening:guangzhou-line6-yide-2015:line6 opened section endpoints ['文化公园', '海珠广场'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "guangzhou-network-milestone-2016-12-28",
           "date": "2016-12-28",
-          "sourceUrl": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "新浪广东转载广州日报《广州与佛山3条地铁线明日开通 早末班车时间公布》·2016-12-27·第1段",
-          "quote": "六号线二期、七号线一期和广佛线二期定于2016年12月28日开通试运营",
-          "issues": [
-            "来源为新浪转载广州日报，非官方文件",
-            "来源给二期“设10座车站”且植物园、柯木塱暂未开通（即开通8站，与游戏21+8=29相符），但未列站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://gd.sina.com.cn/news/bm/2016-12-27/detail-ifxyxury8790145.shtml?from=gd_ydph",
+              "publicationDate": "2016-12-27",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "新浪广东转载广州日报《广州与佛山3条地铁线明日开通 早末班车时间公布》·2016-12-27·第1段",
+              "quote": "修改为各站的地址--> | 邮箱 | 退出 用户登录 | 注册 新浪广东 新浪广东 > 新闻频道 > 便民 > 正文 新浪首页 新浪广东 城事 图说 微距 各地 社会 广州与佛山3条地铁线明日开通 早末班车时间公布 2016-12-27 07:48 大洋网-广州日报 评论（ 人参与） 0 --> A - A + 广州日报讯 （记者李天研 通讯员叶子川）昨天傍晚，广州地铁宣布：六号线二期、七号线一期和广佛线二期定于2016年12月28日开通试运营。",
+              "httpStatus": 200,
+              "sha256": "e00d7cbe6ce7d7cc32e477da443a5c720f1a4850281b618d8c84b1a00f834deb"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:guangzhou-r6",
+              "line": "6号线",
+              "expect": "subsequence",
+              "gaps": [
+                "沙河",
+                "植物园",
+                "柯木塱"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-network-milestone-2016-12-28: route:guangzhou-r6 opened section endpoints ['长湴', '香雪'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "guangzhou-line6-gardens-2017",
           "date": "2017-06-28",
-          "sourceUrl": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "央广网转载南方日报《广州地铁六号线植物园站、柯木塱站6月28日开通…》·2017-06-22·第1段",
-          "quote": "两站建设工作已经全部完成，定于6月28日开通",
-          "issues": [
-            "来源为央广网转载南方日报，非官方文件",
-            "只确认植物园、柯木塱两站6月28日开通，未列31站站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.cnr.cn/gd/gdkx/20170622/t20170622_523813655.shtml",
+              "publicationDate": "2017-06-22",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "央广网转载南方日报《广州地铁六号线植物园站、柯木塱站6月28日开通…》·2017-06-22·第1段",
+              "quote": "广州地铁六号线植物园站、柯木塱站6月28日开通 都设有公共厕所_央广网 要闻 财经 军事 体育 文娱 图片 视频 教育 科技 旅游 健康 汽车 公益 &#xe60d;",
+              "httpStatus": 200,
+              "sha256": "1b761525684349ad0d219615a75d00ee32ef90cc0820cb42fa272d1d781d7236"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line6-gardens-2017:line6",
+              "line": "6号线",
+              "expect": "subsequence",
+              "gaps": [
+                "沙河"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-line6-gardens-2017: opening:guangzhou-line6-gardens-2017:line6 opened section endpoints ['长湴', '高塘石'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "guangzhou-network-milestone-2025-06-29",
           "date": "2025-06-29",
-          "sourceUrl": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "广州日报大洋网《广州地铁十二号线东、西段和十号线换乘、票价、沿线公交接驳一文了解》·2025-06-28·导语",
-          "quote": "定于 6月29日14时正式开通初期运营",
-          "issues": [
-            "来源为广州日报大洋网，非官方文件",
-            "只给东段（二沙岛-大学城南）、西段（浔峰岗-广州体育馆）区间及部分换乘站，17站站序未列"
-          ],
-          "verdict": "unverified",
-          "groupChecks": [
+          "chapterKind": "opening",
+          "dateSources": [
             {
-              "id": "route:guangzhou-r12-east-open",
-              "orderConfirmed": "not_checkable",
-              "note": "来源只给东段区间（二沙岛-大学城南），未列8站"
+              "url": "https://news.dayoo.com/guangzhou/202506/28/139995_54841356.htm",
+              "publicationDate": "2025-06-28",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "广州日报大洋网《广州地铁十二号线东、西段和十号线换乘、票价、沿线公交接驳一文了解》·2025-06-28·导语",
+              "quote": "广州地铁十二号线东、西段和十号线换乘、票价、沿线公交接驳一文了解→_广州日报大洋网 广州日报大洋网 广州 广东 社会 财经 国际 体育 中国 热评 新媒体端口 数字报 无障碍 首页 菜单 新闻 news.dayoo.com 您的位置： 新闻频道 > 广州 > 正文 广州地铁十二号线东、西段和十号线换乘、票价、沿线公交接驳一文了解→ 2025-06-28 04:18 来源:大洋网 分享到： 6月27日，广州地铁10号线、12号线东西段官宣 定于 6月29日14时正式开通初期运营。",
+              "httpStatus": 200,
+              "sha256": "909db9edeefd5c92f11db997b79861501ed1765f90efbe7d09d5c2668b9c93d1"
+            }
+          ],
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:guangzhou-r12-east-open",
+              "line": "十二号线（二沙岛-大学城南）",
+              "expect": "subsequence",
+              "gaps": [
+                "赤岗"
+              ]
             },
             {
-              "id": "route:guangzhou-r12-west-open",
-              "orderConfirmed": "not_checkable",
-              "note": "来源只给西段区间（浔峰岗-广州体育馆），未列9站"
+              "groupId": "route:guangzhou-r12-west-open",
+              "line": "12号线",
+              "expect": "exact",
+              "gaps": []
             }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "guangzhou-network-milestone-2025-06-29: route:guangzhou-r12-east-open opened section endpoints ['二沙岛', '大学城南'] are not named by any dated source"
           ]
         },
         {
           "chapterId": "guangzhou-line12-chigang-2026",
           "date": "2026-02-13",
-          "sourceUrl": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "广州日报数字报 A1版《地铁十二号线赤岗站今开通》·2026-02-13·正文",
-          "quote": "2月13日运营时间起，十二号线赤岗站将正式开通对外运营服务",
-          "issues": [
-            "来源为广州日报数字报，非官方文件",
-            "只确认赤岗站开通，未列9站站序；建设子段赤岗塔/赤岗/赤沙北为相邻3站（连续），其中赤岗塔、赤沙北为既有站"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
+              "publicationDate": "2026-02-13",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "广州日报数字报 A1版《地铁十二号线赤岗站今开通》·2026-02-13·正文",
+              "quote": "广州日报数字报-地铁十二号线赤岗站今开通 返回网站 版面概览 系列报刊 广州日报 信息时报 大洋网 新浪微博 微信公众号 2026年02月13日 星期五 目录 本版 往期 分享 客户端 首页 第A1版：头版 强化基础研究战略性前瞻性体系化布局 支持广大科研人员勇攀科学高峰产出更多原创性成果 严肃换届纪律 加强换届风气监督 抓紧抓细抓实经济运行工作 全力实现一季度“开门好” 为完成全年目标任务打下坚实基础 始终把群众安危冷暖放在心上 周密细致做好春节各项服务保障工作 孙志洋开展春节前走访慰问活动 2026年春节慰问信 广州市人大常委会党组召开2025年度民主生活会暨联动巡视整改专题民主生活会 我国首艘火箭网系回收海上平台广州“智造” 睇花船 行花街 游花城 地铁十二号线赤岗站今开通 • 第A1版：头版 • 第A2版：要闻 • 第A3版：广货行天下·年味最广州 • 第A4版：请到广州唱大年 • 第A5版：要闻 • 第A6版：要闻 • 第A7版：经济周刊·焦点 • 第A8版：经济周刊·理财 第A1版：头版 2026年02月13日 地铁十二号线赤岗站今开通 可换乘八号线 设置五个出入口 李天研 本文字数：263 广州日报讯 （全媒体记者李天研 通讯员周咏菁）记者从广州地铁获悉，2月13日运营时间起，十二号线赤岗站将正式开通对外运营服务。",
+              "httpStatus": 200,
+              "sha256": "e6654b1925f5180ad95b73bf5966b63501f4d89d12bb9b01638e6c894e066e2b"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "guangzhou-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:guangzhou-line12-chigang-2026",
+              "line": "十二号线（二沙岛-大学城南）",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         }
       ],
-      "verifiedCount": 3,
-      "unverifiedCount": 13,
+      "verifiedCount": 5,
+      "unverifiedCount": 11,
       "verdict": "incomplete",
-      "note": "逐条重开来源复核guangzhou的16条历史里程碑，3条通过。日期不成立3条（guangzhou-network-milestone-2022-03-31、guangzhou-line3-airport-opening-2010、guangzhou-network-milestone-2017-12-28）建设子段指错2条（guangzhou-line11-ring-opening-2024、guangzhou-line12-chigang-2026）站序无法逐站核对8条（guangzhou-network-milestone-2022-09-28、guangzhou-network-milestone-2025-09-29、guangzhou-line22-west-opening-2025、guangzhou-line6-first-2013、guangzhou-line6-yide-2015、guangzhou-network-milestone-2016-12-28、guangzhou-line6-gardens-2017、guangzhou-network-milestone-2025-06-29）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
+      "note": "两源复核guangzhou的16条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，5条两项都对上。未通过：guangzhou-line11-ring-opening-2024（guangzhou-line11-ring-opening-2024: date source has no publication date or quote / guangzhou-line11-ring-opening-2024: no opening-day announcement）；guangzhou-network-milestone-2022-03-31（guangzhou-network-milestone-2022-03-31: announcement published 2025-12-30, 1370 days from 2022-03-31 / guangzhou-network-milestone-2022-03-31: announcement published 2025-12-30, 1370 days from 2022-03-31）；guangzhou-line3-airport-opening-2010（guangzhou-line3-airport-opening-2010: date source has no publication date or quote / guangzhou-line3-airport-opening-2010: announcement published 2015-01-14, 1537 days from 2010-10-30）；guangzhou-line3-east-opening-2024（guangzhou-line3-east-opening-2024: date source has no publication date or quote / guangzhou-line3-east-opening-2024: date source has no publication date or quote）。未通过项不标已核对，明细见 docs/history-two-source-2026-10-29.json。",
+      "ledgerErrors": [],
+      "decidedBy": "tools/review_history_two_source.py"
     },
     "chengdu": {
       "milestones": [
         {
           "chapterId": "cd-line1-2010",
           "date": "2010-09-27",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第1行",
-          "quote": "1 1号线一期 73.58 18.517 17 2005.12 2010.9.27",
-          "issues": [
-            "官方表记 1 号线一期 17 座车站，本条 16 站，差额为 2013-06-08 才开通的海洋公园站（后更名锦城广场站），与首开实际一致，不计为缺站",
-            "官方文件只给站数与端点，未列站名与站序，16 站顺序无从核对",
-            "所引为 2026 年债券募集说明书，属事后披露，非 2010 年开通当日公告"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第1行",
+              "quote": "",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:cd1-first-2010",
+              "line": "1号线",
+              "expect": "subsequence",
+              "gaps": [
+                "锦城广场"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "cd-line1-2010: date source has no publication date or quote",
+            "cd-line1-2010: no opening-day announcement",
+            "cd-line1-2010: opening:cd1-first-2010 opened section endpoints ['升仙湖', '世纪城'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line2-first-2012",
           "date": "2012-09-16",
-          "sourceUrl": "https://www.crsc.cn/news/tsi_1079_3797_1878.html",
-          "sourceAuthority": "official_contractor",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 1 段（发布时间 2013-06-13）",
-          "quote": "成都地铁二号线正线自2012年9月16日开通运营以来，计轴产品运行良好",
-          "issues": [
-            "来源为中国通号（信号设备承包商）企业官网，非运营方或政府公告",
-            "原文只写西起茶店子客运站、东至成都行政学院站、途经天府广场、共设 20 个车站，未逐站列举",
-            "20 站与本条一致，端点一致；站序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.crsc.cn/news/tsi_1079_3797_1878.html",
+              "publicationDate": "2013-06-13",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布时间 2013-06-13）",
+              "quote": "成都地铁二号线正线自2012年9月16日开通运营以来，计轴产品运行良好，受到用户好评。",
+              "httpStatus": 200,
+              "sha256": "1293974bf5b362203f291f7076784c1e173c5a4af08e90bbd5116738d90515ee"
+            },
+            {
+              "url": "https://www.crsc.cn/news/tsi_1079_3797_1878.html",
+              "publicationDate": "2013-06-13",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "区间端点原文（茶店子客运站—成都行政学院）",
+              "quote": "成都地铁二号线正线长23公里，西起茶店子客运站，贯穿成都市中心，途经天府广场、东到成都行政学院站。",
+              "httpStatus": 200,
+              "sha256": "1293974bf5b362203f291f7076784c1e173c5a4af08e90bbd5116738d90515ee"
+            }
           ],
-          "sourceSha256": "978f728423cb8d43c62f9acb236d31e2fb00190a89bd5e1f6889c99c00d18582",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line2-2:chengdu-opening-line2-first-2012:1",
+              "line": "2号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line2-first-2012: announcement published 2013-06-13, 270 days from 2012-09-16",
+            "chengdu-opening-line2-first-2012: announcement published 2013-06-13, 270 days from 2012-09-16"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line2-west-2013",
           "date": "2013-06-08",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第6行",
-          "quote": "6 2号线西延线 31.25 8.77 6 2010.8 2013.6.8",
-          "issues": [
-            "官方表记西延线 6 站；本条 group 7 站含既有茶店子客运站，净增 6 站，一致",
-            "未列站名与站序，7 站顺序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第6行",
+              "quote": "",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line2-2:chengdu-opening-line2-west-2013:1",
+              "line": "2号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line2-west-2013: date source has no publication date or quote",
+            "chengdu-opening-line2-west-2013: no opening-day announcement",
+            "chengdu-opening-line2-west-2013: chengdu-line2-2:chengdu-opening-line2-west-2013:1 opened section endpoints ['犀浦', '迎宾大道'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2014-10-26",
           "date": "2014-10-26",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第7行",
-          "quote": "7 2号线东延线 28.79 11.116 6 2011.12 2014.10.26",
-          "issues": [
-            "官方表记东延线 6 站；本条 group 7 站含既有成都行政学院站，净增 6 站，一致",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第7行",
+              "quote": "（二）发行人现任董事和高级管理人员的主要工作经历 1、董事会成员简历 崔浩，男，出生于 1975 年，大学学历，历任成都市龙泉驿区金龙镇党委书 记，成都市龙泉驿区十陵街道党委书记、人大工作室主任，成都市龙泉 驿区规 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 48 划管理局党组副书记、局长，成都市龙泉驿区西河街道党工委书记，成 都市龙 泉驿区西河镇（街道）党委（党工委）书记，成都市龙泉驿区委办主任 ，成都 市龙泉驿区政府党组成员、副区长，成都市郫都 区委常委、区政府党组副书 记、副区长。",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line2-2:chengdu-network-milestone-2014-10-26:1",
+              "line": "2号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2014-10-26: date source has no publication date or quote",
+            "chengdu-network-milestone-2014-10-26: no opening-day announcement",
+            "chengdu-network-milestone-2014-10-26: chengdu-line2-2:chengdu-network-milestone-2014-10-26:1 opened section endpoints ['成都行政学院'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "cd-line1-2015",
           "date": "2015-07-25",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第2行",
-          "quote": "2 1号线南延线 43.99 5.41 5 2012.8 2015.7.25",
-          "issues": [
-            "官方表记南延线 5 站；本条 group 6 站含既有世纪城站，净增 5 站，一致",
-            "集团大事记「7月25日，地铁1号线南延线开通试运营」可佐证日期",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第2行",
+              "quote": "近一年及一期末发行人其他应付款（不含应付利息）主要构成情况表 单位：万元 项目 2025 年末余额 2026 年 3 月末金额 应付往来款 242,007.24 235,033.87 应付保证金及押金 56,536.34 56,461.44 预提费用-土增税清算 准备 300,567.41 301,888.36 党组织工作经费 34.83 64.26 天府通充值款 528.00 976.73 其他 9,095.73 3,412.73 合计 608,769.55 597,837.39 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 128 发行人 2026 年 3 月末账龄 1 年以上重要的其他应付款 单位：万元 债权单位名称 账龄超过 1 年金额 未偿还原因 成都天府招商轨道城市发展有限公司 40,040.00 未到偿还时间 成都天府新区投资集团有限公司 39,647.44 项目尚未结算 成都天府新区广都轨道城市发展有限公司 28,575.15 未到偿还时间 西南交通大学 26,143.00 项目尚未结算 龙锦综合开发（成都）有限公司 8,768.24 项目尚未结算 合计 143,173.83 （6）一年内到期的非流动负债 近三年及一期末，发行人一年内到期的非流动负债余额分别为 1,602,337.99 万元、2,090,741.64 万元、1,975,098.91 万元和 1,664,148.19 万元。",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line1:cd-line1-2015:1",
+              "line": "1号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "cd-line1-2015: date source has no publication date or quote",
+            "cd-line1-2015: no opening-day announcement",
+            "cd-line1-2015: chengdu-line1:cd-line1-2015:1 opened section endpoints ['世纪城'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line4-first-2015",
           "date": "2015-12-26",
-          "sourceUrl": "https://m.thepaper.cn/newsDetail_forward_9369431",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "「履约收据」时间线条，2015年12月26日条（发布 2020-09-28）",
-          "quote": "2015年12月26日 4号线1期开通（非遗博览园-万年场）",
-          "issues": [
-            "日期冲突：本条引澎湃稿「2015年12月26日 4号线1期开通（非遗博览园-万年场）」，而发行人披露表记「4号线一期 … 2016.1.1」，两份文件互相矛盾，无法判定",
-            "集团大事记 2015 年条目未收录 4 号线一期开通，无运营方文件可裁决",
-            "来源为澎湃号（微成都），非官方；站数 16 与官方一致，但站序未逐站列举"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://m.thepaper.cn/newsDetail_forward_9369431",
+              "publicationDate": "2020-09-28",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "「履约收据」时间线条，2015年12月26日条（发布 2020-09-28）",
+              "quote": "接下来 15小时的连轴转，他们拆完了一座331.6m的桥 骇人的效率 年初 19号线二期，单工地单日最高出土量 达一万余立方米，约重4万吨 体量大概为黄河一天入海泥沙量的1/80 这支箭终究扎在了 2020年9月27日的晨光里 恍惚间 它好像成了18号线 今晨9：30 18号线首开段正式开通 又好像变成了一张线网图 图中轨道除6、8、9、17路以外均已开通 最后，印成一张收据单 履约收据 2010年9月27日 1号线1期开通（升仙湖-世纪城） 里程：约18公里，总里程：约18公里 2012年9月16日 2号线1期开通（茶店子客运站-成都行政学院） 里程：约23公里，总里程：约41公里 2013年6月8日 2号线2期西延线开通（茶店子客运站-犀浦） 里程：约9公里，总里程：约50公里 2014年10月26日 2号线2期东延线开通（成都行政学院-龙泉驿） 里程：约11公里，总里程：约61公里 2015年7月25日 1号线2期开通（世纪城-广都） 里程：约5公里，总里程：约66公里 2015年12月26日 4号线1期开通（非遗博览园-万年场） 里程：约22公里，总里程：约88公里 2016年7月31日 3号线1期开通（军区总医院-太平园） 里程：约20公里，总里程：约109公里 2017年6月2日 4号线2期开通（非遗博览园-万盛、万年场-西河） 里程：约22公里，总里程：约130公里 2017年9月6日 10号线1期开通（太平园－双流机场2航站楼） 里程：约11公里，总里程：约141公里 2017年12月6日 7号线开通（火车北站－火车南站－火车北站环线） 里程：约39公里，总里程：约180公里 2018年3月18日 1号线3期开通（升仙湖-韦家碾、广都－五根松、四河-科学城） 里程：约17公里，总里程：约197公里 2018年12月26日 3号线2、3期开通（军区总医院－成都医学院、太平园双流西站） 里程：30公里，总里程：约226公里 2019年12月27日 5号线1、2期开通（华桂路－回龙） 里程：约49公里，总里程：约275公里 2019年12月27日 10号线2期开通（双流机场2航站楼－新平） 里程：约27公里，总里程：约303公里 2020年9月27日 18号线1、2期首开段开通（火车南站－三岔） 里程：约48公里，总里程：约351公里 注：开通记录与总里程数并未包含非地铁类轨道交通，如有轨电车蓉2 十年之约，成都已赴 蓉筋蜀骨 8条线、300多公里 它们不只是被修造出来 还生长进了肉里 与成都浑然如一、再无彼此 在城市美学的意义上 成都地铁 以天府文化为内核 “盼达”号熊猫主题列车 名字灵感源于 熊猫英文“panda”的谐音，也寓意乘客 可以方便快捷的到达 @Zhou_Real/摄 金沙博物馆站仿佛古人修，今人行 玉琮立柱，太阳神鸟罩顶，壁画随廊走 ▼ 以线路色系为标识 从1-18号线的主题色，分别彰显着 稳重 激情 明快 随和 古典 暖心 勇敢 包容 塑形于蜀 高升桥站台 以武侯祠建筑和三国文化为元素 赶路人抬头即穿魂 「 羽扇纶巾，谈笑间，樯橹灰飞烟灭 」 再化形于蓉 5号线皇花园站柱顶 此站是皇花园故地 相传这里的城墙曾遍布芙蓉，故成都称「 蓉城 」 改变着城市结构 交通结构的变化会带动城市结构的变化 地铁网的形成使更大面积的区域 能在更短的时间内被联动 成都因此可以“无惧于大” 图示 成都市城市总体规划(2016-2030年) 从“十”字型到“米”字型 再到“井+环”的线网架构 地铁网线的建成使得成都 各区县、景点、交通枢纽、产业园区全都被打通 地铁在成都地下肆意穿行 王骏祺/摄 ▼ 也穿梭进了生活 目前，成都市地铁公共交通出行分担率 已经超过50% 比公交+出租的占比总和还要多 成都地铁 单日最高客运量突破500万次 实现安全运送乘客超50亿乘次 截止2020年底，安全运营3600余天 在「走向世界」的修行中 成都已然 经脉大通 生活一脉 编年史的罗列 和俯瞰的叙事 总会损失太多锐利的细节 而生活的直观 就是接踵而至的细节 例如 支付方式的升级 2017 成都地铁实现移动支付购票及充值全覆盖 2019 推出电子单程票，成都地铁APP可扫码过闸 ▼ 换乘安检的免除 2017 成都东客运站启动铁路换乘地铁免安检模式 还有电子屏的改良 一号线的站点位置只有一排小圆点 李欣蔚/摄 4号线的相应位置，进化出电子屏 李欣蔚/摄 ▼ 7号线再进化，站点显示已实现全电子屏 ▼ 细节纷纷 这些细节化为印象 包裹着我们下意识的感受 进步之美、便捷之美、秩序之美 美的细节 1、2、3、4、5、7、10号线的吊环 李欣蔚/摄 拼贴成美的整体 1、2、3、4、5、7、10号线的售票机 李欣蔚/摄 地铁之美 就从细碎的体验中 沁进了生活 成都地铁正式开通运营10周年 这份欣喜不仅属于 决策者、建设者、运营者 也该属于看到这儿的 你 「 请握紧扶手、注意脚下 不要倚靠扶梯、不要看手机 」 ↓ 「 知道啦，谢谢~」 未注明来源图片均源自 成都地铁 原标题：《十年了！",
+              "httpStatus": 200,
+              "sha256": "9ccddeef9068ce8861eb1e689981b2b062ac9c6795fa3d65a0cfa3557c2a2df0"
+            }
           ],
-          "sourceSha256": "6758c2991f6b3d68e0a9f12012edc2ee2c38514eb17bac0ed422434e4facc4ef",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line4-4:chengdu-opening-line4-first-2015:1",
+              "line": "4号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line4-first-2015: announcement published 2020-09-28, 1738 days from 2015-12-26"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line3-first-2016",
           "date": "2016-07-31",
-          "sourceUrl": "https://www.crecg.com/crcdi/cpyfw/gdjt97/2026032511084063483/index.html",
-          "sourceAuthority": "official_contractor",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文首段（发布 2026-03-25 11:07）",
-          "quote": "2012年4月25日开工,2016年7月31日开通运营…共设17座车站",
-          "issues": [
-            "来源为中国中铁（施工方）企业官网，非运营方公告；集团大事记「7月31日，地铁3号线一期工程开通试运营」可佐证日期",
-            "官方只给 17 座车站，与本条 17 站一致，但未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.crecg.com/crcdi/cpyfw/gdjt97/2026032511084063483/index.html",
+              "publicationDate": "2026-03-25",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文首段（发布 2026-03-25 11:07）",
+              "quote": "成都地铁3号线一期 CRCEG网站群 纪委信访举报 --> 搜索 首页 企业简介 公司简介 资质荣誉 社会责任 新闻中心 公司要闻 基层动态 媒体聚焦 党建引领 业务板块 高速公路“投建营”一体化 轨道交通 路衍经济 城市更新 特色房地产 新兴产业 党的建设 党建品牌 红色城投 清廉城投 有为城投 幸福城投 青春城投 企业文化 文化理念 信息公开 公告公示 投诉监督 链接专区 人才招聘 您当前所在位置： 详情页 成都地铁3号线一期 发布时间：2026-03-25 11:07 文章来源： 【字体： 小 中 大 】 成都地铁3号线一期 于2012年4月25日开工,2016年7月31日开通运营。",
+              "httpStatus": 200,
+              "sha256": "3e71b7fac7b400dd295bf81436b31105881e70aff3153272b446dd8dbcecdb6f"
+            }
           ],
-          "sourceSha256": "3e71b7fac7b400dd295bf81436b31105881e70aff3153272b446dd8dbcecdb6f",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line3-3:chengdu-opening-line3-first-2016:1",
+              "line": "3号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line3-first-2016: announcement published 2026-03-25, 3524 days from 2016-07-31",
+            "chengdu-opening-line3-first-2016: chengdu-line3-3:chengdu-opening-line3-first-2016:1 opened section endpoints ['军区总医院', '太平园'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2017-12-26",
           "date": "2017-06-02",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第11行",
-          "quote": "11 4号线二期（含同步实施工程） 104.78 21.475 14 2014.4 2017.6.2",
-          "issues": [
-            "chapterId 为 2017-12-26，date 为 2017-06-02，命名与日期不一致（4 号线二期实际为 2017-06-02 开通）",
-            "官方表记 4 号线二期 14 站；本条两组 9+7 站，扣除两端既有站非遗博览园、万年场后净增 14 站，一致",
-            "未列站名与站序，两段内部顺序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第11行",
+              "quote": "（二）发行人现任董事和高级管理人员的主要工作经历 1、董事会成员简历 崔浩，男，出生于 1975 年，大学学历，历任成都市龙泉驿区金龙镇党委书 记，成都市龙泉驿区十陵街道党委书记、人大工作室主任，成都市龙泉 驿区规 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 48 划管理局党组副书记、局长，成都市龙泉驿区西河街道党工委书记，成 都市龙 泉驿区西河镇（街道）党委（党工委）书记，成都市龙泉驿区委办主任 ，成都 市龙泉驿区政府党组成员、副区长，成都市郫都 区委常委、区政府党组副书 记、副区长。",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line4-4:chengdu-network-milestone-2017-12-26:1",
+              "line": "4号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line4-4:chengdu-network-milestone-2017-12-26:2",
+              "line": "4号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2017-12-26: date source has no publication date or quote",
+            "chengdu-network-milestone-2017-12-26: no opening-day announcement",
+            "chengdu-network-milestone-2017-12-26: chengdu-line4-4:chengdu-network-milestone-2017-12-26:1 opened section endpoints ['万盛', '马厂坝'] are not named by any dated source",
+            "chengdu-network-milestone-2017-12-26: chengdu-line4-4:chengdu-network-milestone-2017-12-26:2 opened section endpoints ['万年场'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line10-first-2017",
           "date": "2017-09-06",
-          "sourceUrl": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=24763",
-          "sourceAuthority": "industry_portal",
-          "httpStatus": 502,
-          "readable": false,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "所引页面返回 502；日期改由募集说明书第57页表第19行与集团大事记 2017 年条目核对",
-          "quote": "19 10号线一期 56.98 10.936 6 2014.5 2017.9.6",
-          "issues": [
-            "所引 tunnelling.cn 页面返回 HTTP 502，正文不可读，按硬规则记 unverified",
-            "替代官方文件确认日期：募集说明书「10号线一期 … 6 … 2017.9.6」、集团大事记「9月6日，成都地铁10号线一期开通试运营」",
-            "官方 6 站与本条一致，站序未列举"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=24763",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "所引页面返回 502；日期改由募集说明书第57页表第19行与集团大事记 2017 年条目核对",
+              "quote": "",
+              "httpStatus": 502,
+              "sha256": ""
+            }
           ],
-          "alternativeSource": {
-            "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-            "authority": "official_issuer",
-            "note": "仅能确认日期与站数，不能确认站序；不足以单独支撑 verified",
-            "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
-          },
-          "sourceSha256": null,
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line10-10:chengdu-opening-line10-first-2017:1",
+              "line": "10号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line10-first-2017: date source has no publication date or quote",
+            "chengdu-opening-line10-first-2017: no opening-day announcement",
+            "chengdu-opening-line10-first-2017: chengdu-line10-10:chengdu-opening-line10-first-2017:1 opened section endpoints ['太平园', '双流机场2航站楼'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2017-12-06",
           "date": "2017-12-06",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第15行",
-          "quote": "15 7号线 288.97 38.625 31 2013.9 2017.12.6",
-          "issues": [
-            "官方表记 7 号线 31 站，与本条 31 站及 loop 标记一致；大事记同日条目可佐证",
-            "未列站名与环线起讫顺序，环线站序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第15行",
+              "quote": "",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line7-7:chengdu-network-milestone-2017-12-06:1",
+              "line": "7号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2017-12-06: date source has no publication date or quote",
+            "chengdu-network-milestone-2017-12-06: no opening-day announcement"
+          ]
         },
         {
           "chapterId": "chengdu-historical-milestone-2018-03-18",
           "date": "2018-03-18",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第3行、募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第4行",
-          "quote": "3 1号线三期首期 … 8 … 2018.3.18；4 1号线三期南段 … 5 … 2018.3.18",
-          "issues": [
-            "官方表记三期首期 8 站、南段 5 站，合计 13 站；本条三组 2+12+2 站，扣除既有升仙湖、四河、广都后净增 13 站，一致",
-            "未列站名与站序，三条支段内部顺序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第3行、募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第4行",
+              "quote": "近一年及一期末发行人其他应付款（不含应付利息）主要构成情况表 单位：万元 项目 2025 年末余额 2026 年 3 月末金额 应付往来款 242,007.24 235,033.87 应付保证金及押金 56,536.34 56,461.44 预提费用-土增税清算 准备 300,567.41 301,888.36 党组织工作经费 34.83 64.26 天府通充值款 528.00 976.73 其他 9,095.73 3,412.73 合计 608,769.55 597,837.39 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 128 发行人 2026 年 3 月末账龄 1 年以上重要的其他应付款 单位：万元 债权单位名称 账龄超过 1 年金额 未偿还原因 成都天府招商轨道城市发展有限公司 40,040.00 未到偿还时间 成都天府新区投资集团有限公司 39,647.44 项目尚未结算 成都天府新区广都轨道城市发展有限公司 28,575.15 未到偿还时间 西南交通大学 26,143.00 项目尚未结算 龙锦综合开发（成都）有限公司 8,768.24 项目尚未结算 合计 143,173.83 （6）一年内到期的非流动负债 近三年及一期末，发行人一年内到期的非流动负债余额分别为 1,602,337.99 万元、2,090,741.64 万元、1,975,098.91 万元和 1,664,148.19 万元。",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line1:chengdu-historical-milestone-2018-03-18:1",
+              "line": "1号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line1:chengdu-historical-milestone-2018-03-18:2",
+              "line": "1号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line1:chengdu-historical-milestone-2018-03-18:3",
+              "line": "1号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-historical-milestone-2018-03-18: date source has no publication date or quote",
+            "chengdu-historical-milestone-2018-03-18: no opening-day announcement",
+            "chengdu-historical-milestone-2018-03-18: chengdu-line1:chengdu-historical-milestone-2018-03-18:1 opened section endpoints ['韦家碾'] are not named by any dated source",
+            "chengdu-historical-milestone-2018-03-18: chengdu-line1:chengdu-historical-milestone-2018-03-18:2 opened section endpoints ['四河', '科学城'] are not named by any dated source",
+            "chengdu-historical-milestone-2018-03-18: chengdu-line1:chengdu-historical-milestone-2018-03-18:3 opened section endpoints ['五根松'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2018-12-26",
           "date": "2018-12-26",
-          "sourceUrl": "https://www.crecg.com/crcdi/cpyfw/gdjt97/2026032511073480334/index.html",
-          "sourceAuthority": "official_contractor",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文首段（发布 2026-03-25 11:06）",
-          "quote": "2016年1月28日开工,2018年12月26日开通运营…设车站20座",
-          "issues": [
-            "来源为中国中铁（施工方）企业官网，非运营方公告；集团大事记同日条目可佐证日期",
-            "官方 20 站；本条两组 10+12 站，扣除既有军区总医院、太平园后净增 20 站，一致",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.crecg.com/crcdi/cpyfw/gdjt97/2026032511073480334/index.html",
+              "publicationDate": "2026-03-25",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文首段（发布 2026-03-25 11:06）",
+              "quote": "成都地铁3号线二三期 CRCEG网站群 纪委信访举报 --> 搜索 首页 企业简介 公司简介 资质荣誉 社会责任 新闻中心 公司要闻 基层动态 媒体聚焦 党建引领 业务板块 高速公路“投建营”一体化 轨道交通 路衍经济 城市更新 特色房地产 新兴产业 党的建设 党建品牌 红色城投 清廉城投 有为城投 幸福城投 青春城投 企业文化 文化理念 信息公开 公告公示 投诉监督 链接专区 人才招聘 您当前所在位置： 详情页 成都地铁3号线二三期 发布时间：2026-03-25 11:06 文章来源： 【字体： 小 中 大 】 成都地铁3号线二三期 于2016年1月28日开工,2018年12月26日开通运营 。",
+              "httpStatus": 200,
+              "sha256": "d70511371fd19586d353177520212d787aa46d892374957eb8a1feee5e093535"
+            }
           ],
-          "sourceSha256": "d70511371fd19586d353177520212d787aa46d892374957eb8a1feee5e093535",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line3-3:chengdu-network-milestone-2018-12-26:1",
+              "line": "3号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line3-3:chengdu-network-milestone-2018-12-26:2",
+              "line": "3号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2018-12-26: announcement published 2026-03-25, 2646 days from 2018-12-26",
+            "chengdu-network-milestone-2018-12-26: chengdu-line3-3:chengdu-network-milestone-2018-12-26:1 opened section endpoints ['成都医学院', '植物园'] are not named by any dated source",
+            "chengdu-network-milestone-2018-12-26: chengdu-line3-3:chengdu-network-milestone-2018-12-26:2 opened section endpoints ['太平园', '双流西站'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2019-06-02",
           "date": "2019-12-27",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第12行",
-          "quote": "12 5号线一二期 374.57 49.012 41 2015.9 2019.12.27",
-          "issues": [
-            "chapterId 为 2019-06-02，date 为 2019-12-27，命名与日期不一致",
-            "官方表记 41 站，与本条 41 站一致；集团大事记同日条目可佐证",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第12行",
+              "quote": "截至 2026 年 3 月末发行人所有权和使用权受到限制的资产情况 单位：万元 项目 受限账面价值 受限原因 货币资金 1,016.40 诉讼冻结 存货 530,157.57 存货项目土地抵押 在建工程 274,475.85 在建工程项目土地抵押 合计 805,649.82 2、票款收费权质押情况 发行人 2026 年 3 月末票款收费权质押情况表 单位：万元 项目 质权人 借款余额 质押物 质押起始日 质押终止日 成都地铁 10 号线一期工程 项目 国家开发银行 253,450.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 10 号 线一期工程建成后享有的票款 收费权及其项下全部收益及其 他收益），上述票款包括乘客 实际支付的票款和借款人取得 的成本规制补贴票款 2022/7/27 2056/7/27 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 150 项目 质权人 借款余额 质押物 质押起始日 质押终止日 成都地铁 1 号 线一期工程项 目 国家开发银行 247,400.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 1 号 线一期工程建成后享有的票款 收费权、上述票款收费权项下 全部收益及其他收益），前述 票款包括乘客实际支付的票款 和借款人取得的成本规制补贴 票款 2019/12/19 2044/12/19 成都地铁 1 号 线南延线工程 国家开发银行 235,700.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 1 号 线南延线工程建成后享有的票 款收费权、上述票款收费权项 下全部收益及其他收益），前 述票款包括乘客实际支付的票 款和借款人取得的成本规制补 贴票款 2022/7/27 2060/7/27 成都地铁 2 号 线一期工程项 目 国家开发银行 406,500.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 2 号 线一期工程建成后享有的票款 收费权、上述票款收费权项下 全部收益及其他收益），前述 票款包括乘客实际支付的票款 和借款人取得的成本规制补贴 票款 2022/7/27 2048/7/27 成都地铁 2 号 线二期工程 （东延线）项 目 国家开发银行 158,900.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 2 号 线二期工程（东延线）建成后 享有的票款收费权、上述票款 收费权项下全部收益及其他收 益），前述票款包括乘客实际 支付的票款和借款人取得的成 本规制补贴票款 2019/12/19 2041/12/19 成都地铁 3 号 线一期工程项 目 国家开发银行 699,200.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 3 号 线一期工程建成后享有的票款 收费权、上述票款收费权项下 全部收益及其他收益），前述 票款包括乘客实际支付的票款 和借款人取得的成本规制补贴 票款 2022/7/27 2056/7/27 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 151 项目 质权人 借款余额 质押物 质押起始日 质押终止日 成都地铁 3 号 线二、三期工 程（含磨子桥 站、李家沱 站）项目 国家开发银行 及银团 759,887.41 出质人依法可以出质的应收账 款（即出质人在 3 号线二、三 期工程（含磨子桥站、李家沱 站）项目建成后享有的票款收 费权、上述票款收费权项下全 部收益及其他收益），前述票 款包括乘客实际支付的票款和 借款人取得的成本规制补贴票 款 2022/10/21 2065/10/21 成都地铁 4 号 线一期工程项 目 国家开发银行 596,700.00 出质人依法可以出质的应收账 款（即出质人在地铁 4 号线一 期工程建成后享有的票款收费 权及其项下全部收益及其他收 益），上述票款包括乘客实际 支付的票款和成本规制补贴票 款 2022/7/27 2057/7/27 成都地铁 4 号 线二期工程项 目 国家开发银行 549,100.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 4 号 线二期工程建成后享有的票款 收费权及其项下全部收益及其 他收益），上述票款包括乘客 实际支付的票款和成本规制补 贴票款 2022/7/27 2058/7/27 成都地铁 5 号 线一期、二期 工程（商贸城 北-回龙路） 项目 国家开发银行 及银团 2,147,919.47 出质人依法可以出质的应收账 款（即出质人在成都地铁 5 号 线一期、二期工程（商贸城北- 回龙路）建成后享有的票款收 费权、上述票款收费权项下全 部收益及其他收益），前述票 款包括乘客实际支付的票款和 借款人取得的成本规制补贴票 款 2022/9/29 2057/9/29 成都地铁 7 号 线工程项目 国家开发银行 及银团 1,360,371.79 出质人依法可以出质的应收账 款（即出质人在地铁 7 号线工 程建成后享有的票款收费权、 上述票款收费权项下全部收益 及其他收益），前述票款包括 乘客实际支付的票款和借款人 取得的成本规制补贴票款 2022/9/29 2053/9/29 成都地铁 6 号 线一二期工程 项目 国家开发银行 及银团 2,569,407.93 出质人依法可以出质的应收账 款（即出质人在成都地铁 6 号 线一二期工程建成后享有的票 款收费权、上述票款收费权项 下全部收益及其他收益），前 述票款包括乘客实际支付的票 款和借款人取得的成本规制补 贴票款 2022/10/21 2065/10/21 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 152 项目 质权人 借款余额 质押物 质押起始日 质押终止日 成都轨道交通 10 号线三期 工程 国家开发银行 90,601.58 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 10 号线三期工程建成后享有的 票款收费权、上述票款收费权 项下全部收益及其他收益）， 前述票款包括乘客实际支付的 票款和借款人取得的成本规制 补贴票款 2022/7/27 2060/7/27 成都轨道交通 10 号线二期 工程（含聚龙 路站）项目 国家开发银行 及银团 786,486.70 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 10 号线二期工程建成后享有的 票款收费权、上述票款收费权 项下全部收益及其他收益）， 前述票款包括乘客实际支付的 票款和借款人取得的成本规制 补贴票款 2022/9/29 2060/9/29 成都轨道交通 6 号线三期工 程 国家开发银行 及银团 1,061,456.33 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 11 号线一期（6 号线三期）工 程项目建成后享有的票款收费 权、上述票款收费权项下全部 收益及其他收益），前述票款 包括乘客实际支付的票款和借 款人取得的成本规制补贴票款 2022/10/21 2065/10/21 成都轨道交通 13 号线一期 工程项目 国家开发银行 及银团 823,390.35 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 13 号线一期工程建成后享有的 票款收费权、上述票款收费权 项下全部收益及其他收益）， 前述票款包括乘客实际支付的 票款和借款人取得的成本规制 补贴票款 2022/10/21 2057/10/21 成都轨道交通 17 号线二期 工程项目 国家开发银行 及银团 426,629.42 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 17 号线二期工程建成后享有的 票款收费权、上述票款收费权 项下全部收益及其他收益）， 前述票款包括乘客实际支付的 票款和借款人取得的成本规制 补贴票款 2022/10/21 2058/10/21 成都轨道交通 18 号线三期 工程项目 国家开发银行 及银团 347,287.50 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 18 号线三期工程建成后就享有 的票款收费权、上述票款收费 权项下全部收益及其他收 益），前述票款包括乘客实际 支付的票款和借款人取得的成 本规制补贴票款 2022/10/21 2059/10/21 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 153 项目 质权人 借款余额 质押物 质押起始日 质押终止日 成都轨道交通 19 号线二期 工程项目 国家开发银行 及银团 1,080,054.28 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 19 号线二期工程建成后享有的 票款收费权、上述票款收费权 项下全部收益及其他收益）， 前述票款包括乘客实际支付的 票款和借款人取得的成本规制 补贴票款 2022/10/21 2060/10/21 成都轨道交通 27 号线一期 工程项目 国家开发银行 及银团 348,293.37 以公司合法享有的应收账款， 即在成都轨道交通 27 号线一期 工程项目建成后享有的票款收 费权（前述票款包括乘客实际 支付的票款和成本规制补贴票 款）、票款收费权项下全部收 益及其它收益提供质押担保 2022/10/21 2062/10/21 成都轨道交通 30 号线一期 工程项目 国家开发银行 及银团 382,593.33 以公司合法享有的应收账款， 即在成都轨道交通 30 号线一期 工程项目建成后享有的票款收 费权（前述票款包括乘客实际 支付的票款和成本规制补贴票 款）、票款收费权项下全部收 益及其它收益提供质押担保 2022/10/21 2062/10/21 成都轨道交通 8 号线一期工 程项目 国家开发银行 及银团 1,252,651.24 出质人依法可以出质的应收账 款（即出质人在成都轨道交通 8 号线一期工程项目建成后享有 的票款收费权、上述票款收费 权项下全部收益及其他收 益），前述票款包括乘客实际 支付的票款和借款人取得的成 本规制补贴票款 2022/9/29 2065/9/29 成都轨道交通 8 号线二期工 程项目 国家开发银行 及银团 215,515.28 以公司合法享有的应收账款， 即在成都轨道交通 8 号线二期 工程项目建成后享有的票款收 费权（前述票款包括乘客实际 支付的票款和成本规制补贴票 款）、票款收费权项下全部收 益及其它收益提供质押担保 2022/10/21 2064/10/21 有轨电车蓉 2 号线工程项目 国家开发银行 24,528.00 以合法享有的应收账款，即本 项目票款收费权以及项目商 业、广告等权益项下的全部权 益和收益提供质押担保 2021/9/10 2046/9/10 轨道交通资阳 线工程项目 国家开发银行 及银团 342,207.74 合法享有的应收账款（即在轨 道交通资阳线工程项目建成后 享有的票款收费权（前述票款 包括乘客实际支付的票款和成 本规制补贴票款）、票款收费 权项下全部收益及其它收益） 2022/10/21 2062/10/21 成都轨道交通集团有限公司 2026 年面向专业投资者公开发行公司债券募集说明书 154 项目 质权人 借款余额 质押物 质押起始日 质押终止日 成都地铁 1 号 线三期首期工 程项目 中国工商银行 股份有限公司 及银团 302,650.00 出质人依法可以出质的应收账 款（即出质人在成都地铁 1 号 线三期首期工程项目建成后享 有的票款收费权、上述票款收 费权项下全部收益及其他收 益），前述票款包括乘客实际 支付的票款和借款人取得的成 本规制补贴票款 2022/10/21 2059/10/21 成都地铁 1 号 线三期南段工 程项目 中国工商银行 股份有限公司 105,045.00 由出质人以其依法可以出质的 应收账款（即出质人就 1 号线 三期南段工程项目建成后享有 的全部票款收费权及其项下全 部收益）提供质押担保，上述 票款包括乘客实际支付票款和 成本规制补贴票款。",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line5-5:chengdu-network-milestone-2019-06-02:1",
+              "line": "5号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2019-06-02: date source has no publication date or quote",
+            "chengdu-network-milestone-2019-06-02: no opening-day announcement"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2019-12-27",
           "date": "2019-12-27",
-          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-          "sourceAuthority": "official_issuer",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第20行",
-          "quote": "20 10号线二期 122.12 27.035 10 2016.12 2019.12.27",
-          "issues": [
-            "官方表记 10 站；本条 11 站含既有双流机场2航站楼站，净增 10 站，一致",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "opening_day",
+              "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第20行",
+              "quote": "",
+              "httpStatus": 200,
+              "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+            }
           ],
-          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line10-10:chengdu-network-milestone-2019-12-27:1",
+              "line": "10号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2019-12-27: date source has no publication date or quote",
+            "chengdu-network-milestone-2019-12-27: no opening-day announcement",
+            "chengdu-network-milestone-2019-12-27: chengdu-line10-10:chengdu-network-milestone-2019-12-27:1 opened section endpoints ['双流机场2航站楼', '新平'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2020-09-27",
           "date": "2020-09-27",
-          "sourceUrl": "https://www.thepaper.cn/newsDetail_forward_9355981",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 6 段（发布 2020-09-26，开通前一日）",
-          "quote": "18号线火车南站、孵化园、锦城广场东、世纪城、海昌路、西博城、兴隆、三岔站将正式投入客运服务",
-          "issues": [
-            "所引稿为开通前一日发布，原文为「计划于9月27日上午将正式开通初期运营」，属预告性表述，非开通后确认",
-            "该稿逐站列出 8 站，与本条 8 站及顺序完全一致，但来源为澎湃号·媒体，不能据此记 verified",
-            "日期另由募集说明书「18号线一期 … 首开段2020.9.27」与集团大事记「9月27日，成都轨道交通18号线正式开通运营」官方确认"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.thepaper.cn/newsDetail_forward_9355981",
+              "publicationDate": "2020-09-26",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第 6 段（发布 2020-09-26，开通前一日）",
+              "quote": "经成都市人民政府同意，成都轨道交通18号线首开段计划于9月27日上午将正式开通初期运营。",
+              "httpStatus": 200,
+              "sha256": "2fe02176dd41078ffe5dc139bceb9a5638da075c4a336fedca294b3874d926cf"
+            }
           ],
-          "alternativeSource": {
-            "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
-            "authority": "official_issuer",
-            "note": "确认首开段日期为 2020.9.27、18号线一期 8 站，但未列站名，站序仍不可核",
-            "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
-          },
-          "sourceSha256": "2fe02176dd41078ffe5dc139bceb9a5638da075c4a336fedca294b3874d926cf",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line18-13:chengdu-network-milestone-2020-09-27:1",
+              "line": "18号线",
+              "expect": "subsequence",
+              "gaps": [
+                "天府站"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2020-09-27: chengdu-line18-13:chengdu-network-milestone-2020-09-27:1 opened section endpoints ['火车南站', '三岔'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2020-12-18",
           "date": "2020-12-18",
-          "sourceUrl": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
-          "sourceAuthority": "industry_portal",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 1 段（发布 2020-12-18 15:53）；日期另见官网转载人民网稿第 1 段",
-          "quote": "2020年12月18日上午10时，成都地铁6号线一二、三期、8号线一期、9号线一期、17号线一期…正式开通初期运营",
-          "issues": [
-            "来源为城市轨道交通网（行业门户），非运营方公告；官网转载人民网稿「经成都市人民政府同意，2020年12月18日上午10时…同步开通初期运营」可佐证日期",
-            "官方表记 6 号线一二期 38 站 + 三期 18 站 = 56 站；本条 54 站，差额为 2024-04-08 开通的青岛路站与 2025-08-22 开通的芦角站，与首开实际一致",
-            "官方文件未逐站列举，54 站顺序无从核对；本条只覆盖 6 号线，同日开通的 8、9、17 号线与 18 号线三岔—机场北段另立条目"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+              "publicationDate": "2020-12-18",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2020-12-18 15:53）；日期另见官网转载人民网稿第 1 段",
+              "quote": "城市轨道交通网 联系 首页 会员服务 登陆 注册 行业要闻 | 人物故事 | 企业推荐 都市快轨 | 创新项目 | 城轨专题 城轨历程 | 现场报道 | 视频专栏 中国节能协会城轨交通节能专业专委会 专委会简介 | 专委会动态 中国勘察设计协会轨道交通分会 分会简介 | 分会动态 中国土木工程学会轨道交通分会 学会简介 | 学会动态 中国城市轨道交通协会设计咨询专业委员会 专委会简介 | 专委会动态 行业资讯 您的位置 » 行业资讯 » 行业要闻 行业要闻 企业推荐 人物故事 行业资讯|成都地铁6号线一二、三期、8号线一期等五线开通初期运营 发布日期：2020-12-18 15:53:30 2020年12月18日上午10时，成都地铁6号线一二、三期、8号线一期、9号线一期、17号线一期及18号线三岔站（不含）至天府机场北站段等五线6项目正式开通初期运营。",
+              "httpStatus": 200,
+              "sha256": "8d341612e453fed40cf7e4db4bdd114b93694da64121a2f00790bfb04ea1b0a1"
+            }
           ],
-          "alternativeSource": {
-            "url": "https://www.chengdurail.com/info/1161/23112.htm",
-            "authority": "official_operator",
-            "note": "官网转载人民网稿，确认 2020-12-18 10:00 五线同步开通及全线网 373 站，未列各线站名",
-            "sha256": "67717679e33fd884f719becf14341a38962f7a95107224b375436310297f630d"
-          },
-          "sourceSha256": "8d341612e453fed40cf7e4db4bdd114b93694da64121a2f00790bfb04ea1b0a1",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line6-6:chengdu-network-milestone-2020-12-18:1",
+              "line": "6号线",
+              "expect": "subsequence",
+              "gaps": [
+                "芦角",
+                "青岛路"
+              ]
+            },
+            {
+              "groupId": "chengdu-line8-8:chengdu-network-milestone-2020-12-18:1",
+              "line": "8号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line9-9:chengdu-network-milestone-2020-12-18:1",
+              "line": "9号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:cd17-first-2020",
+              "line": "9号线",
+              "expect": "existing_lead",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-network-milestone-2020-12-18: chengdu-line6-6:chengdu-network-milestone-2020-12-18:1 opened section endpoints ['望丛祠', '兰家沟'] are not named by any dated source",
+            "chengdu-network-milestone-2020-12-18: chengdu-line8-8:chengdu-network-milestone-2020-12-18:1 opened section endpoints ['十里店', '莲花'] are not named by any dated source",
+            "chengdu-network-milestone-2020-12-18: opening:cd17-first-2020 is line 17 but the ledger checks line 9号线",
+            "chengdu-network-milestone-2020-12-18: opening:cd17-first-2020 opened section endpoints ['金星', '机投桥'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line18-airportnorth-2020",
           "date": "2020-12-18",
-          "sourceUrl": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
-          "sourceAuthority": "industry_portal",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 1 段（发布 2020-12-18）",
-          "quote": "18号线三岔站（不含）至天府机场北站段…正式开通初期运营",
-          "issues": [
-            "来源为行业门户，非运营方公告；官网转载人民网稿同句可佐证",
-            "官方表记 18 号线二期 5 站（含福田、天府机场北），与本条 2 站（三岔为既有锚点）不冲突，但官方口径的 5 站构成未说明，无法逐站对齐",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+              "publicationDate": "2020-12-18",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2020-12-18）",
+              "quote": "城市轨道交通网 联系 首页 会员服务 登陆 注册 行业要闻 | 人物故事 | 企业推荐 都市快轨 | 创新项目 | 城轨专题 城轨历程 | 现场报道 | 视频专栏 中国节能协会城轨交通节能专业专委会 专委会简介 | 专委会动态 中国勘察设计协会轨道交通分会 分会简介 | 分会动态 中国土木工程学会轨道交通分会 学会简介 | 学会动态 中国城市轨道交通协会设计咨询专业委员会 专委会简介 | 专委会动态 行业资讯 您的位置 » 行业资讯 » 行业要闻 行业要闻 企业推荐 人物故事 行业资讯|成都地铁6号线一二、三期、8号线一期等五线开通初期运营 发布日期：2020-12-18 15:53:30 2020年12月18日上午10时，成都地铁6号线一二、三期、8号线一期、9号线一期、17号线一期及18号线三岔站（不含）至天府机场北站段等五线6项目正式开通初期运营。",
+              "httpStatus": 200,
+              "sha256": "8d341612e453fed40cf7e4db4bdd114b93694da64121a2f00790bfb04ea1b0a1"
+            }
           ],
-          "alternativeSource": {
-            "url": "https://www.chengdurail.com/info/1161/23112.htm",
-            "authority": "official_operator",
-            "note": "确认该区段当日开通，未列站名",
-            "sha256": "67717679e33fd884f719becf14341a38962f7a95107224b375436310297f630d"
-          },
-          "sourceSha256": "8d341612e453fed40cf7e4db4bdd114b93694da64121a2f00790bfb04ea1b0a1",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line18-13:chengdu-opening-line18-airportnorth-2020:1",
+              "line": "18号线",
+              "expect": "subsequence",
+              "gaps": [
+                "福田",
+                "天府机场1号2号航站楼"
+              ]
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-opening-line18-terminal-2021",
           "date": "2021-06-27",
-          "sourceUrl": "https://tjxzf.gov.cn/xwzx/bmxx/13248491.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文「轨道交通方面」段（发布 2021-06-21）",
-          "quote": "天府机场1号、2号航站楼站将与机场开航同步投运",
-          "issues": [
-            "所引为通江县人民政府网站稿，主题是天府机场换乘，非地铁开通公告",
-            "原文只写「与机场开航同步投运」，未写出 6 月 27 日这一日期，属间接表述，按规则记未确认",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://tjxzf.gov.cn/xwzx/bmxx/13248491.html",
+              "publicationDate": "2021-06-21",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文「轨道交通方面」段（发布 2021-06-21）",
+              "quote": "轨道交通方面，成都地铁18号线已于2020年底开通至天府机场北站，该线的天府机场1号、2号航站楼站将与机场开航同步投运。",
+              "httpStatus": 200,
+              "sha256": "6c84b735ea96ed35c92c89c31870e2f9219e976433734900fdf376319c7d5a49"
+            }
           ],
-          "sourceSha256": "6c84b735ea96ed35c92c89c31870e2f9219e976433734900fdf376319c7d5a49",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line18-13:chengdu-opening-line18-terminal-2021:1",
+              "line": "18号线",
+              "expect": "subsequence",
+              "gaps": [
+                "福田"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line18-terminal-2021: no announcement states 2021-06-27",
+            "chengdu-opening-line18-terminal-2021: chengdu-line18-13:chengdu-opening-line18-terminal-2021:1 opened section endpoints ['天府机场1号2号航站楼'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line18-futian-2023",
           "date": "2023-08-13",
-          "sourceUrl": "https://sichuan.scol.com.cn/xwtg/202308/58952079.html",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "标题与正文首段（发布 2023-08-11，来源：成都地铁微信公众号）",
-          "quote": "8月13日，成都轨道交通18号线福田站正式开启运营服务",
-          "issues": [
-            "来源为四川在线转载成都地铁微信公众号稿，非运营方原始页面",
-            "原文只写福田站开站，未列三岔—福田—天府机场1号2号航站楼的区间站序，本条 3 站顺序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://sichuan.scol.com.cn/xwtg/202308/58952079.html",
+              "publicationDate": "2023-08-11",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "标题与正文首段（发布 2023-08-11，来源：成都地铁微信公众号）",
+              "quote": "8月13日，成都轨道交通18号线福田站正式开启运营服务_四川在线 四川 &ensp;",
+              "httpStatus": 200,
+              "sha256": "ff6f86b16e63acd890168fe3ea77ea385582894873fefaca20248f358b6ae20a"
+            }
           ],
-          "sourceSha256": "ff6f86b16e63acd890168fe3ea77ea385582894873fefaca20248f358b6ae20a",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line18-13:chengdu-opening-line18-futian-2023:1",
+              "line": "18号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-opening-line18-tianfu-2023",
           "date": "2023-11-28",
-          "sourceUrl": "https://www.chengdurail.com/info/1151/51732.htm",
-          "sourceAuthority": "official_operator",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 2 段（发布 2023-11-27）",
-          "quote": "2023年11月28日09:00，成都轨道交通19号线二期将开通初期运营",
-          "issues": [
-            "所引为 19 号线二期开通稿，全文未提 18 号线天府站于 11 月 28 日开站",
-            "本条日期只能由 19 号线二期开通日推断，官方文件未明确写出天府站启用日期，按规则记未确认",
-            "未列站名与站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.chengdurail.com/info/1151/51732.htm",
+              "publicationDate": "2023-11-27",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文第 2 段（发布 2023-11-27）",
+              "quote": "19号线二期将于11月28日开通初期运营！",
+              "httpStatus": 200,
+              "sha256": "e4e21afd989265e5b53cf65877282fe023ddc0e7fa0acd09e801dd76728baaf7"
+            }
           ],
-          "sourceSha256": "e4e21afd989265e5b53cf65877282fe023ddc0e7fa0acd09e801dd76728baaf7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line18-13:chengdu-opening-line18-tianfu-2023:1",
+              "line": "18号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line18-tianfu-2023: chengdu-line18-13:chengdu-opening-line18-tianfu-2023:1 opened section endpoints ['天府站'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line6-qingdao-2024",
           "date": "2024-04-08",
-          "sourceUrl": "https://www.thepaper.cn/newsDetail_forward_26937599",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "标题与正文（发布 2024-04-06）",
-          "quote": "后天，6号线青岛路站将正式开启运营服务",
-          "issues": [
-            "原文标题与正文只写「后天」，未写出 4 月 8 日这一日期，按规则记未确认",
-            "来源为澎湃号·政务转载，非运营方原始页面",
-            "原文只写青岛路站开站，未说明其位于沈阳路站与昌公堰站之间，本条 3 站插入式站序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.thepaper.cn/newsDetail_forward_26937599",
+              "publicationDate": "2024-04-06",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "标题与正文（发布 2024-04-06）",
+              "quote": "后天，6号线青岛路站将正式开启运营服务_澎湃号·政务_澎湃新闻-The Paper 下载客户端 登录 无障碍 +1 后天，6号线青岛路站将正式开启运营服务 2024-04-06 11:55 来源： 澎湃新闻·澎湃号·政务 字号 天府发布 本篇文章约620字，阅读需要2分钟 随着夔州大道正式通车 成都轨道交通6号线青岛路站 具备开通条件 为进一步方便市民出行 4月8日 青岛路站将正式开启运营服务 部分站点首末班车时刻有调整 青岛路站开通后，线路部分站点首末班车时间略有调整。",
+              "httpStatus": 200,
+              "sha256": "445bf200a848bf40fac6edafd292194a7db214a08761839499990819ee3f956d"
+            }
           ],
-          "sourceSha256": "445bf200a848bf40fac6edafd292194a7db214a08761839499990819ee3f956d",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line6-6:chengdu-opening-line6-qingdao-2024:1",
+              "line": "6号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-opening-eight27-2024",
           "date": "2024-12-19",
-          "sourceUrl": "https://news.chengdu.cn/2024/1218/2459886.shtml",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": false,
-          "locator": "正文第 1 段（发布 2024-12-18）；日期另见集团大事记 2024 年条目",
-          "quote": "成都地铁8号线二期、27号线一期将于2024年12月19日上午09:30正式开通",
-          "issues": [
-            "27 号线一期：官方（募集说明书、官网线路页、集团大事记）均记 23 站，本条仅 22 站，缺 1 站，站点集合不一致",
-            "8 号线二期：官方记 7 站（北段 6 新 + 南段龙港 1 新），本条两组 7+2 站扣除既有十里店、莲花后净增 7 站，一致",
-            "官方文件未逐站列举站名，两段内部站序无从核对",
-            "所引红星新闻网稿为媒体，非官方原件"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.chengdu.cn/2024/1218/2459886.shtml",
+              "publicationDate": "2024-12-18",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2024-12-18）；日期另见集团大事记 2024 年条目",
+              "quote": "8号线二期、27号线一期将于12月19日开通初期运营_原创_新闻首页_红星新闻网 来了！",
+              "httpStatus": 200,
+              "sha256": "26297a66602c8e552ec0290e960b0c3f7f0b535a6f60c1e112bea0a02c662031"
+            }
           ],
-          "alternativeSource": {
-            "url": "https://www.chengdurail.com/gywm.htm",
-            "authority": "official_operator",
-            "note": "集团大事记「2024年12月19日，成都轨道交通8号线二期、27号线一期正式开通初期运营」确认日期",
-            "sha256": "7eb118ba555284f9dc21e5c29da9ce09764d89cb1eea835986942b3262d8c82c"
-          },
-          "sourceSha256": "26297a66602c8e552ec0290e960b0c3f7f0b535a6f60c1e112bea0a02c662031",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line8-8:chengdu-opening-eight27-2024:1",
+              "line": "8号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line8-8:chengdu-opening-eight27-2024:2",
+              "line": "8号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line27-15:chengdu-opening-eight27-2024:1",
+              "line": "27号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-eight27-2024: chengdu-line8-8:chengdu-opening-eight27-2024:1 opened section endpoints ['桂龙路', '圣灯公园'] are not named by any dated source",
+            "chengdu-opening-eight27-2024: chengdu-line8-8:chengdu-opening-eight27-2024:2 opened section endpoints ['龙港'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line10-phase3-first-2025",
           "date": "2025-09-17",
-          "sourceUrl": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 1 段（发布 2025-09-16）；日期另见集团大事记 2025 年条目",
-          "quote": "成都地铁17号线二期，10号线三期（武侯祠站-太平园站），将于2025年9月17日上午10:00正式开通初期运营",
-          "issues": [
-            "10 号线三期首开段官方 3 站，本条 4 站含既有太平园站，净增 3 站，一致；17 号线二期官方 18 站，本条 19 站含既有机投桥站，净增 18 站，一致",
-            "10 号线三期的人民公园、文翁石室两站延后开通（本条 10 号线 group 已剔除，正确）；17 号线二期 group 保留人民公园站，官网稿将其列为 17 号线二期换乘站，可解释",
-            "官方文件未逐站列举 19 站与 4 站的站序，顺序无从核对",
-            "所引红星新闻网稿为媒体，非官方原件"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "publicationDate": "2025-09-16",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2025-09-16）；日期另见集团大事记 2025 年条目",
+              "quote": "9月17日，成都地铁17号线二期、10号线三期 双线齐开！",
+              "httpStatus": 200,
+              "sha256": "1f21e8947dda6cf615e864534f466452587e3a140e6968bc6a66dc8352d29dea"
+            },
+            {
+              "url": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "publicationDate": "2025-09-16",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "区间端点原文（武侯祠—太平园）",
+              "quote": "9月16日，成都地铁消息，成都地铁17号线二期，10号线三期（武侯祠站-太平园站），将于2025年9月17日上午10:00，正式开通初期运营！",
+              "httpStatus": 200,
+              "sha256": "1f21e8947dda6cf615e864534f466452587e3a140e6968bc6a66dc8352d29dea"
+            },
+            {
+              "url": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+              "publicationDate": "2025-09-16",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "区间端点原文（高洪—机投桥）",
+              "quote": "17号线二期 是一期工程的延伸线 起于机投桥站，止于高洪站 贯穿中心城区西南至东北方向 全长24.76公里 线路以 “穿越老社区、便捷老城区、 构建地下艺术空间” 为建设理念 使老城区出行更加便捷 实现了 “建一条地铁、 兴一片城市、暖一方民心” 线路串联起城市多个客流密集区 18座车站中，有 6个站 为 换乘站 与 5条线路 实现 便捷换乘 17号线二期换乘信息 10号线三期 是一二期工程的延伸线 起于人民公园站，止于太平园站 全长5.87公里 为中心城区居民与机场间旅客 提供便捷的轨道交通服务 此次10号线三期开通运营范围为 武侯祠站-太平园站 剩余2个车站（文翁石室站、人民公园站） 待具备开通条件后尽早开通 10号线三期（武侯祠站-太平园站）换乘信息 随着17号线二期 10号线三期（武侯祠站-太平园站） 两条新线的开通 成都地铁全线网将 新增7座换乘站 这将进一步完善城市轨道交通网络体系 服务沿线重点功能区 缓解中心城区交通压力 提升成都地铁网络的通达性 方便沿线区域市民出行 提高城市通勤效率 成都地铁始终秉持 “以客为尊，用心服务”理念 持续推动服务升级 17号线二期 10号线三期（武侯祠站-太平园站） 两条新线以乘客视角 优化导向点位布局与版面设计 在部分车站增设 出入口门匾电子屏 在部分换乘站增设 多媒体站台屏 实时显示车站导向信息、首末班车时间 列车运行状态等内容 进一步提升智能服务水平 为乘客提供更清晰、舒适的视觉体验 17号线二期多媒体电子屏 此外，两条新线均采用 高低位开放式客服中心 并配备 自助票务处理机 卫生间设置 儿童洗手池 母婴室内配置 婴儿护理台和独立哺乳室 积极响应不同群体的出行需求 着力构建全龄友好出行环境 在行车组织方面 两条新线也考虑了 乘客的出行便利性与效率 具体首末班车时刻表如下： 17号线二期 开通后，九江北站首班车时间为6:10、末班车时间为23:00，高洪站首班车时间为6:10、末班车时间为23:00。",
+              "httpStatus": 200,
+              "sha256": "1f21e8947dda6cf615e864534f466452587e3a140e6968bc6a66dc8352d29dea"
+            }
           ],
-          "alternativeSource": {
-            "url": "https://www.chengdurail.com/info/1331/130494.htm",
-            "authority": "official_operator",
-            "note": "官网「官宣！9月17日，成都轨道交通双线齐开」确认日期、17号线二期 18 座车站与人民公园站为换乘站",
-            "sha256": "808b67c1cfda190838e86fc3fc4c84b66ad054faf46877f2ac4e1191ef77969c"
-          },
-          "sourceSha256": "5d4ea7248c753cb67fb1b510dcc3ef33ec89b4a8281961686c79e13c346654c8",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line10-10:chengdu-opening-line10-phase3-first-2025:1",
+              "line": "10号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:cd17-second-2025",
+              "line": "17号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-opening-line10-phase3-first-2025: chengdu-line10-10:chengdu-opening-line10-phase3-first-2025:1 opened section endpoints ['红牌楼'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "chengdu-opening-line6-lujiao-2025",
           "date": "2025-08-22",
-          "sourceUrl": "https://news.chengdu.cn/2025/0819/68a401a754565111d33e7a7f.shtml",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 2 段（发布 2025-08-19）",
-          "quote": "成都轨道交通6号线芦角站将正式开启运营服务",
-          "issues": [
-            "所引红星新闻网稿全文无日期，只写「将正式开启运营服务」，按规则记未确认",
-            "检索到彭州市人民政府网站转载稿写「8月22日…将正式开启运营服务」，但该页返回 HTTP 412 不可读，未采用",
-            "原文未说明芦角站位于松林站与钓鱼嘴站之间，本条 3 站插入式站序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.chengdu.cn/2025/0819/68a401a754565111d33e7a7f.shtml",
+              "publicationDate": "2025-08-19",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第 2 段（发布 2025-08-19）",
+              "quote": "今日 成都地铁发布最新消息 随着站外市政道路具备接驳条件 8月22日 成都轨道交通6号线芦角站 将正式开启运营服务 需注意的是 芦角站开通后 6号线部分站点 首末班车时间有调整 具体如下 市民朋友可通过 成都地铁官网、微博、微信公众号 及成都地铁App等渠道 获取最新乘车信息 乘坐地铁期间如遇相关问题 可咨询车站工作人员 或拨打成都地铁服务热线 028-61638000 为 做好乘客出行服务，成都地铁积极推进芦角站开通各项筹备工作，迎接广大市民乘客的到来。",
+              "httpStatus": 200,
+              "sha256": "cf91eb80b52b2d234b282706c6147a7f98eddcebebc2f12a4473aef9cdb7eee1"
+            }
           ],
-          "sourceSha256": "c57406807094909401a601a67a7d01d0ec6b777d96d90890f0be887e72c07cd5",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line6-6:chengdu-opening-line6-lujiao-2025:1",
+              "line": "6号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-network-milestone-2025-12-16",
           "date": "2025-12-16",
-          "sourceUrl": "https://www.crecg.com/web/xwzx61/gsyw87/2025121815543222258/index.html",
-          "sourceAuthority": "official_contractor",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": false,
-          "locator": "正文第 1 段（发布 2025-12-18）；日期另见集团大事记 2025 年条目",
-          "quote": "12月16日，中国中铁旗下多家单位参建的成都轨道交通13号线一期、30号线一期同日开通初期运营",
-          "issues": [
-            "30 号线一期：官方（集团大事记、官网开通稿、募集说明书）均记 24 站，本条仅 22 站，缺 2 站，站点集合不一致",
-            "13 号线一期：官方 21 站，与本条 21 站一致",
-            "官方文件未逐站列举，站序无从核对",
-            "所引为中国中铁企业官网，非运营方公告"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.crecg.com/web/xwzx61/gsyw87/2025121815543222258/index.html",
+              "publicationDate": "2025-12-18",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2025-12-18）；日期另见集团大事记 2025 年条目",
+              "quote": "首页 > 关于我们 > 公司介绍 领导关怀 组织机构 管理团队 公司荣誉 发展历程 网上展馆 测试数据-可删除 新闻中心 > 公司要闻 国资动态 子分公司动态 媒体之声 视频影像 产业与服务 > 工程建造 设计咨询 装备制造 特色地产 资产经营 资源利用 金融物贸 新兴产业 海外业务 企业文化 > 中国中铁“开路先锋”文化 企业使命 企业愿景 企业价值观 企业精神 工作理念 品牌形象 企业文化理念片 百年渊源 先进典型 职工文艺 121212 可持续发展 > ESG专区 科技创新 全球化发展 安全生产 法治中铁 投资者关系 > 上市信息 股价信息 股东会 治理规则 定期报告 公告及通函 研究报告 公司推介 投资者热线 历年分红 教育和解答 展示文件 人力资源 > 人才战略 人才现状 院士大师 人才招聘 教育培训 党群工作 > 党旗高扬 廉洁从业 职工之家 青年之友 信息公开 > 基本信息 重大事项 公司公告 社会责任 严正声明 当前位置： 首页 > 详情页 首页 > 新闻中心 > 公司要闻 成都轨道交通13号线一期、30号线一期同日开通初期运营 来源： 时间：2025年12月18日 浏览次数： 【字体： 大 中 小 】 打印 12月16日，中国中铁旗下多家单位参建的成都轨道交通13号线一期、30号线一期同日开通初期运营。",
+              "httpStatus": 200,
+              "sha256": "a724704288c9670171e5024b002b1e7dd12e129cd514137aa4237d9312787f58"
+            }
           ],
-          "alternativeSource": {
-            "url": "https://www.chengdurail.com/info/1331/130484.htm",
-            "authority": "official_operator",
-            "note": "官网「13号线一期、30号线一期正式开通初期运营」确认开通，仅给线网 489 站总数，未给单线站数",
-            "sha256": "98b3b28c93eb5cc43ed48e2ea19f204b5281f96a08f962eca608c610e523506f"
-          },
-          "sourceSha256": "a724704288c9670171e5024b002b1e7dd12e129cd514137aa4237d9312787f58",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line13-11:chengdu-network-milestone-2025-12-16:1",
+              "line": "",
+              "expect": "unaligned",
+              "gaps": []
+            },
+            {
+              "groupId": "chengdu-line30-16:chengdu-network-milestone-2025-12-16:1",
+              "line": "30号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-reorganization-17-19-2023",
           "date": "2023-11-27",
-          "sourceUrl": "https://news.chengdu.cn/2023/0904/2371119.shtml",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "「@张先生」问政答复段（发布 2023-09-04）",
-          "quote": "将拆分为19号线一期工程（金星站-九江北站）和17号线一期工程（九江北站-机投桥站）",
-          "issues": [
-            "所引为 2023-09-04 问政答复，只说明拆分方案，未写出 2023-11-27 这一拆分生效日，按规则记未确认",
-            "拆分后 19 号线一期 7 站、17 号线一期 3 站与官方表记站数一致，端点九江北站一致",
-            "未逐站列举，两条线的站序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+              "publicationDate": "2023-09-04",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "「@张先生」问政答复段（发布 2023-09-04）",
+              "quote": "成都轨道集团： 经运营公司核实，根据成都市城市轨道交通线网规划， 现运营的17号线金星站-机投桥站将拆分为19号线一期工程（金星站-九江北站）和17号线一期工程（九江北站-机投桥站），并独立运行。",
+              "httpStatus": 200,
+              "sha256": "040d781e32a377efd76ec46c6e2e437cf279b5f2e07aec8eb4efcc84bda89b07"
+            }
           ],
-          "sourceSha256": "9ff271a3bcad0ddd9e72d9edafcc07736d532f0ae90b7d1c2510d014b94de63d",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "reorganization:cd17-short",
+              "line": "17号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "reorganization:cd19-first",
+              "line": "19号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-reorganization-17-19-2023: announcement published 2023-09-04, 84 days from 2023-11-27",
+            "chengdu-reorganization-17-19-2023: no announcement states 2023-11-27"
+          ]
         },
         {
           "chapterId": "chengdu-network-milestone-2023-11-28",
           "date": "2023-11-28",
-          "sourceUrl": "https://www.chengdurail.com/info/1151/51732.htm",
-          "sourceAuthority": "official_operator",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 1 段（发布 2023-11-27）",
-          "quote": "2023年11月28日09:00，成都轨道交通19号线二期将开通初期运营",
-          "issues": [
-            "运营方官网原文明确写出开通日与时刻，日期确认成立",
-            "官方表记 19 号线二期 12 站（含预留合江站）；本条 16 站为九江北 + 11 座新站 + 18 号线共线 4 站，净增 11 站，与 12 站的差额即未开通的合江预留站，可解释",
-            "原文只写西起九江北（不含）、东至合江（预留）、经天府站接入 18 号线共线至天府机场北，未逐站列举，16 站顺序无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.chengdurail.com/info/1151/51732.htm",
+              "publicationDate": "2023-11-27",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2023-11-27）",
+              "quote": "19号线二期将于11月28日开通初期运营！",
+              "httpStatus": 200,
+              "sha256": "e4e21afd989265e5b53cf65877282fe023ddc0e7fa0acd09e801dd76728baaf7"
+            },
+            {
+              "url": "https://www.chengdurail.com/info/1151/51732.htm",
+              "publicationDate": "2023-11-27",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "区间端点原文（天府机场北—九江北）",
+              "quote": "第四期规划的“先行者” 作为成都市城市轨道交通第四期建设规划的首条开通线路，19号线二期西起九江北站（不含），东至合江站（预留），经天府站接入18号线并共线运营至天府机场北站，串联温江区、双流区和天府新区，兼具市域快线干线和机场线的复合功能，全长43.17km，在共线区段实现4A/8A编组混跑运营，开通初期运营后将与19号线一期贯通，届时全长将突破100km，将有力增强区域辐射带动力，充分发挥轨道交通成网后的快速交通联通服务功能，紧密双机场之间的联系，有效提升综合交通配套水平。",
+              "httpStatus": 200,
+              "sha256": "e4e21afd989265e5b53cf65877282fe023ddc0e7fa0acd09e801dd76728baaf7"
+            }
           ],
-          "sourceSha256": "e4e21afd989265e5b53cf65877282fe023ddc0e7fa0acd09e801dd76728baaf7",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:cd19-second-2023",
+              "line": "19号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-line2-east-suspended",
           "date": "2025-12-20",
-          "sourceUrl": "https://news.chengdu.cn/2025/1215/693f705bdcb7c92ce3d26ad1.shtml?phone=yes",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 2 段（发布 2025-12-15）",
-          "quote": "自2025年12月20日起，预计于2026年10月结束（具体恢复运营时间另行公告）",
-          "issues": [
-            "来源为红星新闻网，非运营方或政府公告原件",
-            "原文逐站列出停运 6 站（大面铺、连山坡、界牌、书房、龙平路、龙泉驿），与本条线路尾段顺序一致，可确认停运范围与新的终点成都行政学院站",
-            "本条 group 为停运后的 26 站运营段，其余站序未逐站列举，无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.chengdu.cn/2025/1215/693f705bdcb7c92ce3d26ad1.shtml?phone=yes",
+              "publicationDate": "2025-12-15",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第 2 段（发布 2025-12-15）",
+              "quote": "12月20日起，地铁2号线东段部分站点暂停运营，成都多项措施保障市民交通出行_本地_红星新闻网 成都头条 原创 本地 国内 区域 头条智造 热点专题 传真机 公示 新消费 生活 财经成都 招采成都 成都河长 成都教育 爱看视频 图说成都 文明成都 更多 爱看视频 图说成都 文明成都 12月20日起，地铁2号线东段部分站点暂停运营，成都多项措施保障市民交通出行 2025-12-15 10:22 来源： 成都发布 × 打开微信，点击底部的“发现”， 使用“扫一扫”即可将网页分享。",
+              "httpStatus": 200,
+              "sha256": "bd35948582d524709350ebe233922ba47401966ccb5d7c8695e1b2e60124173c"
+            }
           ],
-          "sourceSha256": "6fb267735b60265025d26a2a652773451bd997c1ba6d5a90f213311de177f5f4",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line2-east-suspended",
+              "line": "2号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-line2-east-open",
           "date": "2026-09-28",
-          "sourceUrl": "https://sichuan.scol.com.cn/ggxw/202609/83330005.html",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 2 段（发布 2026-09-24，来源：成都地铁）",
-          "quote": "恢复运营的范围为…大面铺站、连山坡站、界牌站、书房站、龙平路站、龙泉驿站共6个站点",
-          "issues": [
-            "来源为四川在线转载成都地铁公告，非运营方原始页面；官网同名稿「9月28日起！2号线东段部分站点恢复运营服务」可佐证日期与 6 站范围",
-            "原文逐站列出恢复 6 站，与本条线路尾段顺序一致；本条 group 为全线 32 站，其余 26 站站序未列举，无从核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://sichuan.scol.com.cn/ggxw/202609/83330005.html",
+              "publicationDate": "2026-09-24",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第 2 段（发布 2026-09-24，来源：成都地铁）",
+              "quote": "成都地铁2号线东段6座车站9月28日恢复运营_四川在线 四川 &ensp;",
+              "httpStatus": 200,
+              "sha256": "160ae03a89a86a5d9e41cdb750a8f817f6db54d4b760f85bc3b8ebe407f1e774"
+            }
           ],
-          "alternativeSource": {
-            "url": "https://www.chengdurail.com/info/1331/137484.htm",
-            "authority": "official_operator",
-            "note": "运营方官网原文写明「将于2026年9月28日恢复运营」并逐站列出 6 站，仍未列全线站序",
-            "sha256": "1fe84eed9bc2bad8a712a187e2dd97ab4b2e52b555c5c0d515c37fe52795d501"
-          },
-          "sourceSha256": "160ae03a89a86a5d9e41cdb750a8f817f6db54d4b760f85bc3b8ebe407f1e774",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line2-east-open",
+              "line": "2号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-line1-ocean-2013",
           "date": "2013-06-08",
-          "sourceUrl": "https://news.sina.com.cn/c/2013-06-08/154027353748.shtml?from=wap",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 1 段（发布 2013-06-08，转四川在线稿）",
-          "quote": "6月8日上午7时56分…西延线和海洋公园站（暂命名）正式开通试运营",
-          "issues": [
-            "来源为新浪转载四川在线稿，非官方",
-            "原文写明海洋公园站位于已开通的世纪城站与孵化园站之间、2010 年一期开通时未同步开通，可确认插入位置",
-            "全线 17 站其余站序未逐站列举"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sina.com.cn/c/2013-06-08/154027353748.shtml?from=wap",
+              "publicationDate": "2013-06-08",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2013-06-08，转四川在线稿）",
+              "quote": "成都地铁2号线西延线和1号线海洋公园站开通试运营_新浪新闻 首页 新闻 体育 娱乐 财经 科技 视频 微博 博客 读书 教育 女性 育儿 健康 星座 收藏 尚品 汽车 房产 更多 更多 游戏 天气 邮箱 短信 导航 注册 | --> 新闻中心 > 国内新闻 > 正文 新闻 图片 微博 博客 视频 成都地铁2号线西延线和1号线海洋公园站开通试运营 2013年06月08日15:40 四川在线 我有话说 四川在线消息（四川在线记者 陈明玥）6月8日上午7时56分，随着成都地铁公司董事长喻宁跃的一声令下，地铁西延线首发车鸣笛，并缓缓开出犀浦站，开始正式载客。",
+              "httpStatus": 200,
+              "sha256": "50d8ee010d5387945226f97684e0d34de9418897eb86131e28cc67493e259085"
+            }
           ],
-          "sourceSha256": "50d8ee010d5387945226f97684e0d34de9418897eb86131e28cc67493e259085",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line1-ocean-2013:line1",
+              "line": "",
+              "expect": "unaligned",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "chengdu-line1-jincheng-rename-2013",
           "date": "2013-07-08",
-          "sourceUrl": "https://news.sina.com.cn/c/2013-07-05/174027588924.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第 1 段（发布 2013-07-05，转四川新闻网稿）",
-          "quote": "从7月8日起，当广播提醒：“锦城广场站到了!”的时候，各位乘客一定不要忘了下车",
-          "issues": [
-            "来源为新浪转载四川新闻网稿，非官方",
-            "本条为站名变更事件（海洋公园→锦城广场），group 为全线 17 站，官方文件未列站序，无从核对",
-            "原文称更名经成都市政府批准，但未见政府批准文件原件"
+          "chapterKind": "rename",
+          "dateSources": [
+            {
+              "url": "https://news.sina.com.cn/c/2013-07-05/174027588924.shtml",
+              "publicationDate": "2013-07-05",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第 1 段（发布 2013-07-05，转四川新闻网稿）",
+              "quote": "7月8日起 1号线海洋公园站更名为锦城广场站_新浪新闻 首页 新闻 体育 娱乐 财经 科技 视频 微博 博客 读书 教育 时尚 育儿 健康 星座 收藏 女性 汽车 房产 更多 更多 游戏 天气 邮箱 短信 导航 注册 | --> 新闻中心 > 国内新闻 > 正文 新闻 图片 微博 博客 视频 7月8日起 1号线海洋公园站更名为锦城广场站 2013年07月05日17:40 四川新闻网 我有话说 四川新闻网成都7月5日讯(记者 张云柯) 记者今日从成都地铁公司获悉，经成都市政府批准，将地铁1号线原海洋公园站(工程名)命名为锦城广场站，英文名：Jincheng Square。",
+              "httpStatus": 200,
+              "sha256": "88409bc5dc6e9045c25a74a74bb22397c5699798547f2dc1ac02598d4b47ec86"
+            }
           ],
-          "sourceSha256": "88409bc5dc6e9045c25a74a74bb22397c5699798547f2dc1ac02598d4b47ec86",
-          "verdict": "unverified"
+          "orderSourceId": "chengdu-operator-roster",
+          "orders": [
+            {
+              "groupId": "chengdu-line1-jincheng-rename-2013:line1",
+              "line": "1号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "chengdu-line1-jincheng-rename-2013: rename chapter has no documented rename"
+          ]
         }
       ],
-      "verifiedCount": 0,
-      "unverifiedCount": 31,
+      "verifiedCount": 9,
+      "unverifiedCount": 22,
       "verdict": "incomplete",
-      "note": "逐条重开来源复核chengdu的31条历史里程碑，0条通过。来源打不开或非官方1条（chengdu-opening-line10-first-2017）日期不成立6条（chengdu-opening-line4-first-2015、chengdu-opening-line18-terminal-2021、chengdu-opening-line18-tianfu-2023、chengdu-opening-line6-qingdao-2024、chengdu-opening-line6-lujiao-2025、chengdu-reorganization-17-19-2023）站序无法逐站核对24条（cd-line1-2010、chengdu-opening-line2-first-2012、chengdu-opening-line2-west-2013、chengdu-network-milestone-2014-10-26、cd-line1-2015、chengdu-opening-line3-first-2016、chengdu-network-milestone-2017-12-26、chengdu-network-milestone-2017-12-06 等24条）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
+      "note": "两源复核chengdu的31条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，9条两项都对上。未通过：cd-line1-2010（cd-line1-2010: date source has no publication date or quote / cd-line1-2010: no opening-day announcement）；chengdu-opening-line2-first-2012（chengdu-opening-line2-first-2012: announcement published 2013-06-13, 270 days from 2012-09-16 / chengdu-opening-line2-first-2012: announcement published 2013-06-13, 270 days from 2012-09-16）；chengdu-opening-line2-west-2013（chengdu-opening-line2-west-2013: date source has no publication date or quote / chengdu-opening-line2-west-2013: no opening-day announcement）；chengdu-network-milestone-2014-10-26（chengdu-network-milestone-2014-10-26: date source has no publication date or quote / chengdu-network-milestone-2014-10-26: no opening-day announcement）。未通过项不标已核对，明细见 docs/history-two-source-2026-10-29.json。",
+      "ledgerErrors": [],
+      "decidedBy": "tools/review_history_two_source.py"
     }
   }
 }

@@ -1,0 +1,631 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-29",
+  "city": "beijing",
+  "methodNote": "日期与站序分开取证。日期用带日期的官方公告原文，引文由 tools/build_history_ledgers.py 从抓取到的页面文本中按规则截取，不是手写；站序用运营方/政府发布的逐线站表。每条分组与官方站表逐站对齐，对齐方式由 tools/review_history_two_source.py 复算，不采信台账自述。",
+  "orderSources": {
+    "beijing-operator-roster": {
+      "url": "https://www.bjmoa.cn/metroLineList.html?sline=1",
+      "publicationDate": "2026-10-25",
+      "file": "data/official_evidence/beijing_operator_distance_tables_retrieved2026-10-25.json",
+      "sha256": "37df6413e300a9362593ade8c052957009bfd2c7b84aa2c576a65d219d9bfcc6",
+      "locator": "运营方/政府发布的逐线站表，按线路分表",
+      "note": "这是逐线站表，与各条开通公告是两份不同文件。"
+    }
+  },
+  "nameAliases": [],
+  "lineRenumbering": [],
+  "milestones": [
+    {
+      "chapterId": "beijing-network-milestone-2021-12-31",
+      "date": "2021-12-31",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+          "publicationDate": "2021-12-31",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "京港地铁官网·公司新闻《京港地铁三条新线（段）今日开通…》·发布 2021-12-31·正文首段",
+          "quote": "京港地铁三条新线（段）今日开通 公布首末班车时间 助力乘客便捷出行 - 北京京港地铁有限公司 首页 出行服务 出行查询 线路图 京港线路及车站 列车时刻表 延误告知 失物招领 乘客守则 禁止携带物品目录 购票指南 路网车站站间距信息 最新动态 公司新闻 媒体报道 出行空间 便民服务 M地铁系列 地铁+社区 地铁商务 京港商城 招标信息及供应商须知 关于我们 公司简介 股东介绍 目标理念 大事记 企业社会责任 公司宣传片 招贤纳士 服务表现 安全保护区管理 EN | 搜索 搜索 最新动态 LATEST NEWS 首页 最新动态 公司新闻 正文 京港地铁三条新线（段）今日开通 公布首末班车时间 助力乘客便捷出行 2021-12-31 大 中 小 2021年12月31日（星期五），京港地铁在今日开通17号线南段、14号线剩余段及16号线玉渊潭东门站，开通后，京港地铁所辖线路运营里程将达148.5公里。",
+          "httpStatus": 200,
+          "sha256": "1a41ec2f538b13dbacbb23d519cc13e774cbebe0b85ee1bfd86ab0214359be87"
+        },
+        {
+          "url": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html",
+          "publicationDate": "2021-12-31",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "区间端点原文（十里河—嘉会湖）",
+          "quote": "为提升乘客服务，17号线南段嘉会湖上行首班车时间为05点30分，末班车时间为22点30分，十里河站下行首班车时间为05点55分，末班车时间为22点30分，方便乘客通勤出行。",
+          "httpStatus": 200,
+          "sha256": "1a41ec2f538b13dbacbb23d519cc13e774cbebe0b85ee1bfd86ab0214359be87"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "beijing-line17-south",
+          "line": "17号线",
+          "expect": "contiguous",
+          "gaps": []
+        },
+        {
+          "groupId": "route:beijing-r19",
+          "line": "19号线",
+          "expect": "subsequence",
+          "gaps": [
+            "景风门",
+            "太平桥",
+            "平安里",
+            "北太平庄"
+          ]
+        },
+        {
+          "groupId": "route:beijing-r20",
+          "line": "",
+          "expect": "unaligned",
+          "gaps": []
+        },
+        {
+          "groupId": "route:beijing-r11",
+          "line": "11号线",
+          "expect": "contiguous",
+          "gaps": []
+        },
+        {
+          "groupId": "beijing-line8-8",
+          "line": "8号线",
+          "expect": "exact",
+          "gaps": []
+        },
+        {
+          "groupId": "beijing-line14-14",
+          "line": "14号线",
+          "expect": "subsequence",
+          "gaps": [
+            "红庙"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2023-12-30",
+      "date": "2023-12-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202312/t20231229_3520885.html",
+          "publicationDate": "2023-12-29",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·新闻发布会《12月30日首班车起 地铁17号线北段等三条地铁线（段）开通试运营》·发布 2023-12-29·第2、3段",
+          "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 12月30日首班车起 地铁17号线北段等三条地铁线（段）开通试运营 发布日期： 2023-12-29 17:00 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 2023年12月30日（周六）首班车起，地铁17号线北段（工人体育场—未来科学城北）、16号线剩余段（榆树庄—宛平城）及苏州街站、11号线西段剩余段（金安桥—模式口）开通试运营。",
+          "httpStatus": 200,
+          "sha256": "9d6ef54dd133262093897b38eb3d459e12ce32e82baf4831a41d1fbf58a7c90b"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "beijing-line17-north",
+          "line": "17号线",
+          "expect": "subsequence",
+          "gaps": [
+            "望京西"
+          ]
+        },
+        {
+          "groupId": "opening:bj11-modekou",
+          "line": "11号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2025-12-27",
+      "date": "2025-12-27",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html",
+          "publicationDate": "2025-12-24",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·交通大家谈《亮点揭秘！北京3条新地铁通车倒计时》·发布 2025-12-24·导语及第1节",
+          "quote": "2、18号线（马连洼---天通苑东） 18号线（马连洼---天通苑东）是一条位于城市北部东西向的骨干线路，线路途经海淀、昌平两区，约19.8公里，共设车站11座，其中换乘站4座，分别在马连洼站与16号线换乘、回龙观东大街站与8号线换乘、天通苑站与5号线换乘、天通苑东站与17号线换乘。",
+          "httpStatus": 200,
+          "sha256": "3d0dfc9b594e98e8c923295fc3b5af01bc6ba018e8e3db4fe5fbc5aef686175b"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "beijing-line18-open-2025",
+          "line": "18号线",
+          "expect": "exact",
+          "gaps": []
+        },
+        {
+          "groupId": "beijing-line17-through",
+          "line": "17号线",
+          "expect": "subsequence",
+          "gaps": [
+            "望京西"
+          ]
+        },
+        {
+          "groupId": "beijing-line6-6",
+          "line": "6号线",
+          "expect": "subsequence",
+          "gaps": [
+            "通运门"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2026-01-31",
+      "date": "2026-01-31",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
+          "publicationDate": "2026-01-29",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "京港地铁官网·公司新闻《京港地铁17号线望京西站于1月31日正式开通》·发布 2026-01-29·正文首段",
+          "quote": "京港地铁17号线望京西站于1月31日正式开通 - 北京京港地铁有限公司 首页 出行服务 出行查询 线路图 京港线路及车站 列车时刻表 延误告知 失物招领 乘客守则 禁止携带物品目录 购票指南 路网车站站间距信息 最新动态 公司新闻 媒体报道 出行空间 便民服务 M地铁系列 地铁+社区 地铁商务 京港商城 招标信息及供应商须知 关于我们 公司简介 股东介绍 目标理念 大事记 企业社会责任 公司宣传片 招贤纳士 服务表现 安全保护区管理 EN | 搜索 搜索 最新动态 LATEST NEWS 首页 最新动态 公司新闻 正文 京港地铁17号线望京西站于1月31日正式开通 2026-01-29 大 中 小 京港地铁17号线望京西站将于2026年1月31日（星期六）正式开通。",
+          "httpStatus": 200,
+          "sha256": "478457a5b73634f411613088ad5359c7c8ae59a4bb23b45b4dff27aa28b77996"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "beijing-line17-wangjingxi",
+          "line": "17号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2010-12-30",
+      "date": "2010-12-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+          "publicationDate": "2010-12-31",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·工作动态《大兴线、亦庄线、十五号线首开段、昌平线一期、房山线等五条轨道交通新线12月30日开通试运营》·发布 2010-12-31·大兴线段落",
+          "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 工作动态 大兴线、亦庄线、十五号线首开段、昌平线一期、房山线等五条轨道交通新线12月30日开通试运营 发布日期： 2010-12-31 23:21 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 大兴线、亦庄线、十五号线首开段、昌平线一期、房山线等五条轨道交通新线 12 月 30 日开通试运营，大兴、北京经济技术开发区、顺义、昌平和房山与中心城区的交通往来将更加便捷，北京轨道交通运营里程达到 336 公里，轨道交通网络进一步完善。",
+          "httpStatus": 200,
+          "sha256": "33121770fce08f59f598c5a7c5cd8244c8f87b6970a0db1f67338f45841cf504"
+        },
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201012/t20101231_335839.html",
+          "publicationDate": "2010-12-31",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "区间端点原文（南邵—西二旗）",
+          "quote": "南邵站；高架站 6 座 , 分别为沙河高教园站、沙河站、巩华城站、朱辛庄站、生命科学园站、西二旗",
+          "httpStatus": 200,
+          "sha256": "33121770fce08f59f598c5a7c5cd8244c8f87b6970a0db1f67338f45841cf504"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:beijing-daxing-2010",
+          "line": "大兴线",
+          "expect": "existing_lead",
+          "gaps": []
+        },
+        {
+          "groupId": "opening:bj-changping-first",
+          "line": "昌平线",
+          "expect": "contiguous",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2017-12-30",
+      "date": "2017-12-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007565.html",
+          "publicationDate": "2017-12-29",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·新闻发布会《12月30日早班车起轨道交通燕房线、S1线、西郊线开通试运营》·发布 2017-12-29·第2段",
+          "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 12月30日早班车起轨道交通燕房线、S1线、西郊线开通试运营 发布日期： 2017-12-29 17:31 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 自2017年12月30日早班车起，轨道交通燕房线（含房山线阎村东至苏庄一站一区间）、磁浮S1线、有轨电车西郊线开通试运营。",
+          "httpStatus": 200,
+          "sha256": "7c2d621b29cc1b0141aeb6abc276a903efaeae90455430089d4ac6443a22a743"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:beijing-yanfang-2017",
+          "line": "燕房线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-line19-infill-2022",
+      "date": "2022-07-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html",
+          "publicationDate": "2022-07-29",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·新闻发布会《地铁19号线一期北太平庄等4站7月30日起开通试运营》·发布 2022-07-29·第1、2段",
+          "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 地铁19号线一期北太平庄等4站7月30日起开通试运营 发布日期： 2022-07-29 11:30 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 轨道交通19号线一期北太平庄、平安里、太平桥、景风门等4座车站（以下简称“4座车站”）将于7月30日（星期六）首班车起开通试运营。",
+          "httpStatus": 200,
+          "sha256": "5546964ff64dadd86ece498c07b740090a7a72c71205772334c7179ed2071072"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj19-infill",
+          "line": "19号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-changping-north-2015",
+      "date": "2015-12-26",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007420.html",
+          "publicationDate": "2015-12-28",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·新闻发布会《14号线中段和昌平线二期12月26日开通试运营》·发布 2015-12-28·昌平线二期段",
+          "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 14号线中段和昌平线二期12月26日开通试运营 发布日期： 2015-12-28 14:58 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 14号线中段和昌平线二期等2条轨道新线将于12月26日投入试运营，届时，北京轨道运营总里程将达到554公里。",
+          "httpStatus": 200,
+          "sha256": "a12ebbce835a835608a270cb4c07a0f8a5f0dec7fdc15994c6e10bf3c1a38d4f"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj-changping-north",
+          "line": "昌平线",
+          "expect": "contiguous",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-changping-south-2023",
+      "date": "2023-02-04",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202302/t20230202_2911135.html",
+          "publicationDate": "2023-02-02",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·新闻发布会《2月4日首班车起昌平线南延一期开通试运营》·发布 2023-02-02·第2段",
+          "quote": "北京市交通委员会 --> 搜本站 搜本站 一网通查 搜索 用户中心 移动版 智能咨询 无障碍 繁体 简体 我在听，请说话 (10s) 抱歉，没听清，请再说一遍吧 首页 政务公开 政务服务 --> 政务服务 政民互动 便民服务 行业风采 --> 专题专栏 您所在的位置： 首页 > 政务公开 > 新闻发布会 2月4日首班车起昌平线南延一期开通试运营 发布日期： 2023-02-02 17:20 [打印] 分享到: 微信 --> --> --> X --> 微信 新浪微博 QQ --> 自2023年2月4日（周六）首班车起，轨道交通昌平线南延一期正式开通试运营。",
+          "httpStatus": 200,
+          "sha256": "8f113a10deebc3034893b4be134b0fa238d8258a0791aaf1106d16d0a809d953"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj-changping-south",
+          "line": "10号线",
+          "expect": "existing_lead",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2024-12-15",
+      "date": "2024-12-15",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+          "publicationDate": "2024-12-15",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "首都之窗·部门动态《3条（段）地铁新线12月15日开通试运营》·发布 2024-12-15·第2、5段",
+          "quote": "3条（段）地铁新线12月15日开通试运营 北京“七站两场”实现地铁全覆盖_部门动态_首都之窗_北京市人民政府门户网站 要闻动态 > 部门动态 3条（段）地铁新线12月15日开通试运营 北京“七站两场”实现地铁全覆盖 日期：2024-12-15 08:11 来源：北京日报 分享： X 字号： 大 中 小 原标题：3条（段）地铁新线今日开通试运营 北京“七站两场”实现地铁全覆盖 12月15日首班车起，北京地铁3号线一期（东四十条—东坝北）、12号线（四季青桥—东坝北）、昌平线南延一期剩余段（西土城—蓟门桥站及朱房北站）3条（段）地铁新线开通试运营，北京城市轨道交通运营总里程达879公里、车站522座，其中换乘站98座。",
+          "httpStatus": 200,
+          "sha256": "35d9425b27f966da9b646bcf766fc9d91746eb8b0b7c8a6027965a56f609477e"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj-changping-infill",
+          "line": "12号线",
+          "expect": "existing_lead",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-line13-west-2002",
+      "date": "2002-09-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://news.sohu.com/35/91/news203429135.shtml",
+          "publicationDate": "2002-09-28",
+          "publicationBasis": "dateline",
+          "kind": "opening_day",
+          "locator": "搜狐新闻转载新华网《北京城市铁路西段今天试运营 全线明年初将开通》·2002-09-28·第1、3段",
+          "quote": "北京城市铁路西段今天试运营 全线明年初将开通 中国搜狐 挑战8848 首页 ┊ 邮件 ┊ 短信 ┊ 商城 ┊ 搜索 ┊ 新闻 ┊ 体育 ┊ 财经 ┊ IT ┊ 娱乐圈 ┊ 女人 ┊ 生活 ┊ 健康 ┊ 汽车 ┊ 房产 ┊ 旅游 ┊ 教育 ┊ 出国 ┊ 求职 ┊ 动漫 ┊ 校友录 滚动 | 国内 | 国际 | 财经 | 科技 | 社会 | 军事 | 企业 | 传媒 | 校园 | TOP100 | 评论 | 我来说两句 | 新闻中心纯文字版 --> Sohu 首页 >> 新闻 >> 国内 北京城市铁路西段今天试运营 全线明年初将开通 2002年9月28日15:47 新华网 新华网北京９月２８日电（谭伟 潘善棠）今天上午９时，一列由３节车厢组成的地铁列车，满载首批乘客徐徐从北京城市铁路西直门车站开出，往北驶向霍营站。",
+          "httpStatus": 200,
+          "sha256": "73b0dc5f437b0a0baeafb0ad40e7c393eb0a6403bcfbb1c363116d1c07086a2e"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj13-west",
+          "line": "13号线",
+          "expect": "subsequence",
+          "gaps": [
+            "清河"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-line13-east-2003",
+      "date": "2003-01-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/201912/t20191209_1007437.html",
+          "publicationDate": "2016-09-08",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·新闻发布会《国庆假期实施穿越地铁13号线箱涵工程…》·发布 2016-09-08·第13段（回溯表述）",
+          "quote": "地铁 13 号线东段七站以通勤客流为主 国庆期间停运将对市民出行影响降到最低 地铁 13 号线于 2003 年 1 月 28 日全线开通，西起西直门站，东至东直门站，全路线呈 n 字形，全长 40.5 公里，共设 16 个车站，其中 8 座车站为换乘站。",
+          "httpStatus": 200,
+          "sha256": "53f3f551453ae18135d2856e4a6127113c0ecd0707903253eeb197b9b4e1ed93"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj13-east",
+          "line": "13号线",
+          "expect": "subsequence",
+          "gaps": [
+            "清河"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2019-07-26",
+      "date": "2019-12-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://zdzqgw.beijing.gov.cn/zqfw/qhzdq/qhzzqjs/202008/t20200821_1988566.html",
+          "publicationDate": "2023-07-14",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "北京市重点站区管委会·清河站地区·站区介绍《基本情况》·发布 2025-08-20·“总体概况”段",
+          "quote": "2019年12月30日清河站开站，高铁、地铁13号线轻轨、市郊铁路S5（怀柔-密云）线于同时开通运行。",
+          "httpStatus": 200,
+          "sha256": "4cf9d621b40884aa7783e908d779d4cd945dc4e32cd5bfda62151d814ca09a65"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "route:beijing-r13",
+          "line": "4号线",
+          "expect": "existing_lead",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-line10-first-2008",
+      "date": "2008-07-19",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/ndzdgz/201912/t20191210_1017724.html",
+          "publicationDate": "2008-07-28",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·年度重点工作《2008年市政府实事交通项目进展情况(二)》·发布 2008-07-28·第20件进展",
+          "quote": "继续建设地铁 4 号线、 10 号线二期、 9 号线、 8 号线、 6 号线一期、亦庄线、大兴线 进展：已于 7 月 19 日顺利开通地铁 10 号线一期、奥运支线、机场线。",
+          "httpStatus": 200,
+          "sha256": "76e30747f88947f22c87066c6d08e278e5b720314748656a8aa73ec22ff26de8"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj10-first",
+          "line": "10号线",
+          "expect": "contiguous",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2012-12-30",
+      "date": "2012-12-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201211/t20121122_337170.html",
+          "publicationDate": "2012-11-22",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·工作动态《10号线二期将于年底开通试运营》·发布 2012-11-22·首段",
+          "quote": "其中，换乘车站13座，分别为：潘家园站与规划地铁11号线换乘，十里河站与在建地铁14号线、天通苑线换乘，宋家庄站与既有地铁5号线、亦庄线换乘，大红门站与规划地铁8号线三期换乘，角门西站与既有地铁4号线换乘，樊家村站与规划房山线北延线换乘，丰台站与规划地铁16号线换乘，西局站与在建地铁14号线换乘，六里桥站与既有地铁9号线换乘，公主坟站与既有地铁1号线换乘，西钓鱼台站与规划地铁3号线换乘，慈寿寺站与在建地铁6号线换乘，长春桥站与规划地铁12号线换乘。",
+          "httpStatus": 200,
+          "sha256": "3abf57ec6bc5a409070947c29dc4de97c0e0acefb8ac80d401f2e2050dcf7c8a"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:bj10-c",
+          "line": "10号线",
+          "expect": "loop_subsequence",
+          "gaps": [
+            "角门东"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-2013-05-05",
+      "date": "2013-05-05",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html",
+          "publicationDate": "2013-06-24",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "北京市交通委·工作动态《[访谈回顾]刘小明主任做客交通运输部政府网站在线访谈》·发布 2013-06-24·访谈正文",
+          "quote": "今年5月5日轨道交通10号线贯通运行、14号线西段开通后，轨道交通日均客运量继续增长，已达到891万人次。",
+          "httpStatus": 200,
+          "sha256": "baf1f7db894f19f1026facb0282a1e8e4ec66902c5c4c3758b0ae7d69252c16c"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "route:beijing-r10",
+          "line": "10号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-line6-tongyunmen-2026",
+      "date": "2026-06-30",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260630_4738884.html",
+          "publicationDate": "2026-06-30",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "首都之窗·信息提示《地铁6号线通运门站今早开通…》·发布 2026-06-30·第1段",
+          "quote": "地铁6号线通运门站今早开通 先行开放两个出入口 为运河商务区及居住区提供轨道交通支撑_信息提示_首都之窗_北京市人民政府门户网站 政务服务 > 便民服务 > 信息提示 地铁6号线通运门站今早开通 先行开放两个出入口 为运河商务区及居住区提供轨道交通支撑 日期：2026-06-30 10:22 来源：北京日报 分享： X 字号： 大 中 小 微信图片_20260630111750_149_34 微信图片_20260630111750_149_34 从市交通委、市重大项目办获悉，今天首班车起，北京地铁6号线通运门站开通运营。",
+          "httpStatus": 200,
+          "sha256": "3eceacc20266aef53d07235e65087756e0b72c4aa61dc23803f85b9de9078ed7"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "opening:beijing-line6-tongyunmen-2026",
+          "line": "6号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    },
+    {
+      "chapterId": "beijing-network-milestone-1987-12-28",
+      "date": "1987-12-28",
+      "chapterKind": "opening",
+      "dateSources": [
+        {
+          "url": "https://www.beijing.gov.cn/zhengce/zfwj/zfwj/bgtwj/201905/t20190523_73700.html",
+          "publicationDate": "1988-01-23",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "首都之窗·市政府办公厅文件 京政办发〔1988〕5号《关于进行北京地铁二期工程验收交接工作的通知》·1988-01-23·正文首段",
+          "quote": "关于进行北京地铁二期工程验收交接工作的通知_市政府办公厅文件_首都之窗_北京市人民政府门户网站 政务公开 > 政策服务 > 政府文件 > 1986-2014政府文件 > 市政府办公厅文件 [发文字号] 京政办发 〔1988〕 5号 [发布日期] 1988-01-23 [有效性] 否 关于进行北京地铁二期工程验收交接工作的通知 京政办发[1988]5号 市政府有关委、办、局，有关总公司： 北京地铁二期环线工程于1982年7月开始初验，1984年9月19日试运营，1987年12月24日地铁复兴门折返线工程竣工，12月28日实现按规划线路成环运营。",
+          "httpStatus": 200,
+          "sha256": "02beb6feb4546f669cc8665a36c6643c7220224fb722a92e587a8b613156f7ca"
+        }
+      ],
+      "orderSourceId": "beijing-operator-roster",
+      "orders": [
+        {
+          "groupId": "beijing-ring2-1987",
+          "line": "2号线",
+          "expect": "exact",
+          "gaps": []
+        }
+      ]
+    }
+  ],
+  "laterStations": [
+    {
+      "station": "太平桥",
+      "chapterId": "beijing-line19-infill-2022",
+      "date": "2022-07-30",
+      "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html"
+    },
+    {
+      "station": "景风门",
+      "chapterId": "beijing-line19-infill-2022",
+      "date": "2022-07-30",
+      "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html"
+    },
+    {
+      "station": "平安里",
+      "chapterId": "beijing-network-milestone-2025-12-27",
+      "date": "2025-12-27",
+      "source": "https://jtw.beijing.gov.cn/zmhd/jtdjt/202512/t20251224_4360655.html"
+    },
+    {
+      "station": "北太平庄",
+      "chapterId": "beijing-line19-infill-2022",
+      "date": "2022-07-30",
+      "source": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202207/t20220729_2781907.html"
+    },
+    {
+      "station": "望京西",
+      "chapterId": "beijing-network-milestone-2026-01-31",
+      "date": "2026-01-31",
+      "source": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html"
+    },
+    {
+      "station": "通运门",
+      "chapterId": "beijing-line6-tongyunmen-2026",
+      "date": "2026-06-30",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260630_4738884.html"
+    },
+    {
+      "station": "清河",
+      "chapterId": "beijing-network-milestone-2021-12-31",
+      "date": "2021-12-31",
+      "source": "https://www.mtr.bj.cn/article/61ce5857b0972c463ee519fb.html"
+    },
+    {
+      "station": "角门东",
+      "chapterId": "beijing-network-milestone-2013-05-05",
+      "date": "2013-05-05",
+      "source": "https://jtw.beijing.gov.cn/xxgk/dtxx/201306/t20130624_333103.html"
+    }
+  ]
+}
