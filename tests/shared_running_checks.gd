@@ -13,9 +13,13 @@ func _run() -> void:
 	WorldData.load_assets();var app:=App.new();root.add_child(app);await process_frame
 	var cutoff:Dictionary=CampaignSystem.city_config("chengdu").chapters.filter(func(c:Dictionary):return str(c.get("chapterScope",""))=="cutoff_reconciliation")[0]
 	var fixture:=cutoff.duplicate(true);fixture.id="fixture-cd18-19-shared-physical";fixture.lineGroups=[];fixture.requiredTransfers=[];fixture.scopeCorrections=[];fixture.chapterScope="";fixture.requireOpen=true;fixture.eventOnly=false
-	var rule:Dictionary={"physicalLineId":"chengdu-line18-13","serviceLineId":"chengdu-line19-14","stationNames":["三岔","福田","天府机场1号2号航站楼","天府机场北"],"source":"https://www.chengdurail.com/info/1331/52042.htm"}
+	var rule:Dictionary={"physicalLineId":"chengdu-line18-13","serviceLineId":"chengdu-line19-14","intervalEndpoints":["三岔","天府机场北"],"stationNames":["三岔","福田","天府机场1号2号航站楼","天府机场北"],"source":"https://www.chengdurail.com/info/1331/52042.htm"}
 	var definition:Dictionary={"sharedRunningSections":[rule.duplicate(true)],"sharedRunningEvidence":rule.stationNames.map(func(name:Variant):return {"stationName":name,"physicalLineId":rule.physicalLineId,"serviceLineId":rule.serviceLineId})}
 	check(Shared.definition_errors(definition).is_empty(),"independent shared rule covers all documented physical stops")
+	var unstated:Dictionary=definition.duplicate(true);unstated.sharedRunningSections[0].erase("intervalEndpoints")
+	check(not Shared.definition_errors(unstated).is_empty(),"a section that never states the published interval cannot pass")
+	var short_endpoint:Dictionary=definition.duplicate(true);short_endpoint.sharedRunningSections[0].intervalEndpoints=["三岔","宝山路"]
+	check(not Shared.definition_errors(short_endpoint).is_empty(),"naming an endpoint the section never reaches is rejected")
 	definition.sharedRunningSections[0].stationNames.pop_back()
 	check(not Shared.definition_errors(definition).is_empty(),"omitting the last shared station cannot pass by shortening the rule")
 	definition.sharedRunningSections=[]

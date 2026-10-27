@@ -87,7 +87,8 @@ func _run() -> void:
 		_check(loaded.world.storyState.get("legacyTaskProgress",{}).has("bj-m101-phase1-build"),"original completion record remains archived")
 		var originals:=DirAccess.open(SaveManager.root_path().path_join("originals"))
 		_check(originals!=null and not originals.get_files().is_empty(),"content migration preserves original file before loading")
-	_check(not CampaignSystem.delivery_eligibility("shenzhen").ok,"unreviewed remaining city content blocks complete release")
+	_check(CampaignSystem.delivery_eligibility("shenzhen").ok,"every reviewed Shenzhen gate now passes")
+	_check(not CampaignSystem.delivery_eligibility("shanghai").ok,"a city with an open gap still blocks complete release")
 	var rebinding:Dictionary={"cityId":"shenzhen","stations":[],"routes":[]}
 	for suffix in ["old","new"]:
 		for name in ["a","b","c"]:rebinding.stations.append({"id":name+suffix,"stationComplexId":name})

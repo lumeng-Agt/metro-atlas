@@ -1,0 +1,619 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "cities": {
+    "shenzhen": {
+      "sources": [
+        {
+          "url": "https://www.sz.gov.cn/szzt2010/sjfb/sjkd/content/post_12660431.html",
+          "publisher": "深圳市发展和改革委员会（深圳政府在线发布）",
+          "title": "深圳市2026年重大项目计划清单",
+          "publicationDate": "2026-02-28",
+          "dateBasis": "页面元数据 PubDate=2026-02-28 16:49:22；正文落款“深圳市发展和改革委员会 2026年2月26日”",
+          "attachment": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/sz_2026_key_projects.pdf",
+          "format": "PDF，62页，表体两列（项目名称/项目单位），无序号、无分类标题",
+          "sha256": "d05d92877a3909f858ae60e2f5d807cbc3a46cbb12c4fbd662300a3b891901bc",
+          "scopeNote": "832个项目。轨道类条目为第46页连续段：13号线二期（北延）、13号线二期（南延）、15、17一期、19一期、20二期、22一期、25一期、27一期、29一期、32一期，共11条地铁，与官方“11条地铁”口径一致。"
+        },
+        {
+          "url": "https://www.szmc.net/shentiejianshe/ditieguihua/202604/105774.html",
+          "publisher": "深圳市地铁集团有限公司",
+          "title": "地铁规划——深圳市城市轨道交通第五期建设规划",
+          "publicationDate": null,
+          "dateBasis": "页面正文无任何日期，仅URL路径含202604；无法确定真实发布日期",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/szmc_plan.html",
+          "format": "HTML",
+          "sha256": null,
+          "usable": false,
+          "scopeNote": "仅作旁证：正文列举五期11个建设项目，含“10号线东延（深圳段）、11号线北延（深圳段）”。因无发布日期，不能作为独立清单来源，不进入本文件任何 row 的 source。"
+        }
+      ],
+      "rows": [
+        {
+          "projectId": "sz-line13-phase2-south",
+          "officialName": "深圳市城市轨道交通13号线二期（南延）工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第3条（13号线二期北延之后）",
+          "quote": "深圳市城市轨道交通13号线二期（南延）工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line15",
+          "officialName": "深圳市城市轨道交通15号线工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第4条",
+          "quote": "深圳市城市轨道交通15号线工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line17-phase1",
+          "officialName": "深圳市城市轨道交通17号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第5条",
+          "quote": "深圳市城市轨道交通17号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line19-phase1",
+          "officialName": "深圳市城市轨道交通19号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第6条",
+          "quote": "深圳市城市轨道交通19号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line20-phase2",
+          "officialName": "深圳市城市轨道交通20号线二期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第7条",
+          "quote": "深圳市城市轨道交通20号线二期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line22-phase1",
+          "officialName": "深圳市城市轨道交通22号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第8条",
+          "quote": "深圳市城市轨道交通22号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line25-phase1",
+          "officialName": "深圳市城市轨道交通25号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第9条",
+          "quote": "深圳市城市轨道交通25号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line27-phase1",
+          "officialName": "深圳市城市轨道交通27号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第10条",
+          "quote": "深圳市城市轨道交通27号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line29-phase1",
+          "officialName": "深圳市城市轨道交通29号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第11条",
+          "quote": "深圳市城市轨道交通29号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line32-phase1",
+          "officialName": "深圳市城市轨道交通32号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第12条",
+          "quote": "深圳市城市轨道交通32号线一期工程　　深圳市地铁集团有限公司"
+        }
+      ],
+      "notInRoster": [
+        {
+          "projectId": "sz-line11-north-shenzhen",
+          "gameName": "11号线北延（深圳段）",
+          "reason": "2026年重大项目清单全表832项、轨道类仅11条地铁，无“11号线”任何条目（对全文检索“11号线”零命中）。清单只覆盖已进入建设阶段的线路，五期规划中的11号线北延（深圳段）尚未列入。",
+          "corroboration": "深圳地铁官网“地铁规划”页正文把“11号线北延（深圳段）”列为五期11个建设项目之一，但该页无任何发布日期，不满足独立来源的日期要求，故只作旁证、不作 row 来源。",
+          "consequence": "不能用该年度清单为该项目的验收背书；需另找带日期的市级批复/开工文件。"
+        },
+        {
+          "projectId": "sz-line10-east-shenzhen",
+          "gameName": "10号线东延（深圳段）",
+          "reason": "同上：清单全文检索“10号线”零命中，轨道类11条中不含10号线东延（深圳段）。该项目属五期规划跨市延伸段（东莞段由东莞市公示），未进入深圳市2026年重大项目清单。",
+          "corroboration": "深圳地铁官网“地铁规划”页同样仅作规划级列举，无发布日期。",
+          "consequence": "不能用该年度清单为该项目的验收背书；需另找带日期的市级批复/开工文件。"
+        }
+      ],
+      "officialOnly": [
+        {
+          "officialName": "深圳市城市轨道交通13号线二期（北延）工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第46页（共62页）表体第2条",
+          "quote": "深圳市城市轨道交通13号线二期（北延）工程　　深圳市地铁集团有限公司，港铁轨道交通（深圳）有限公司",
+          "category": "urban_metro",
+          "required": false,
+          "note": "本作只建模13号线二期南延（4站），北延段未建模；同属13号线二期但为独立批复区段，不得合并计为已覆盖。"
+        },
+        {
+          "officialName": "深圳市五和综合交通枢纽工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第46页表体第1条",
+          "quote": "深圳市五和综合交通枢纽工程　　深圳市地铁集团有限公司",
+          "category": "hub",
+          "required": false,
+          "note": "综合交通枢纽，不是线路；本作不建模枢纽工程。"
+        },
+        {
+          "officialName": "前海综合交通枢纽工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第46页表体末条",
+          "quote": "前海综合交通枢纽工程　　深圳市地铁集团有限公司",
+          "category": "hub",
+          "required": false,
+          "note": "同上，枢纽类，非线路。"
+        },
+        {
+          "officialName": "机场东综合交通枢纽工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "机场东综合交通枢纽工程　　深圳市地铁集团有限公司",
+          "category": "hub",
+          "required": false,
+          "note": "枢纽类，非线路。"
+        },
+        {
+          "officialName": "西丽综合交通枢纽工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "西丽综合交通枢纽工程　　深圳市地铁集团有限公司",
+          "category": "hub",
+          "required": false,
+          "note": "枢纽类，非线路。"
+        },
+        {
+          "officialName": "深圳机场至大亚湾城际深圳机场至坪山段工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "深圳机场至大亚湾城际深圳机场至坪山段工程　　深圳市地铁集团有限公司",
+          "category": "intercity_rail",
+          "required": false,
+          "note": "城际铁路，不是城市轨道交通线路，不计入本作地铁必做项。"
+        },
+        {
+          "officialName": "深惠城际大鹏支线工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "深惠城际大鹏支线工程　　深圳市地铁集团有限公司",
+          "category": "intercity_rail",
+          "required": false,
+          "note": "城际铁路，非城市轨道线路。"
+        },
+        {
+          "officialName": "穗莞深城际前海至皇岗口岸段工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "穗莞深城际前海至皇岗口岸段工程　　深圳市地铁集团有限公司",
+          "category": "intercity_rail",
+          "required": false,
+          "note": "城际铁路，非城市轨道线路。"
+        },
+        {
+          "officialName": "穗莞深城际深圳机场至前海段",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "穗莞深城际深圳机场至前海段　　深圳市地铁集团有限公司",
+          "category": "intercity_rail",
+          "required": false,
+          "note": "城际铁路，非城市轨道线路。"
+        },
+        {
+          "officialName": "深圳至惠州城际铁路前海保税区至坪地段",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "深圳至惠州城际铁路前海保税区至坪地段　　深圳市地铁集团有限公司",
+          "category": "intercity_rail",
+          "required": false,
+          "note": "城际铁路，非城市轨道线路。"
+        },
+        {
+          "officialName": "新建深圳至茂名铁路深圳至江门段",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "新建深圳至茂名铁路深圳至江门段　　深圳市地铁集团有限公司",
+          "category": "national_rail",
+          "required": false,
+          "note": "国铁干线，非城市轨道线路。"
+        },
+        {
+          "officialName": "深圳至深汕合作区铁路工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "深圳至深汕合作区铁路工程　　深圳市地铁集团有限公司",
+          "category": "national_rail",
+          "required": false,
+          "note": "国铁，非城市轨道线路。"
+        },
+        {
+          "officialName": "深圳枢纽新建西丽站及相关工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "深圳枢纽新建西丽站及相关工程　　厦深铁路广东有限公司",
+          "category": "national_rail",
+          "required": false,
+          "note": "铁路车站工程，非城市轨道线路。"
+        },
+        {
+          "officialName": "深圳平湖南至盐田港铁路改造工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第48页表体",
+          "quote": "深圳平湖南至盐田港铁路改造工程　　深圳市平盐疏港铁路有限公司",
+          "category": "freight_rail",
+          "required": false,
+          "note": "疏港货运铁路，非城市轨道线路。"
+        },
+        {
+          "officialName": "深圳都市圈城际铁路动车基地及调度指挥中心工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "locator": "第47页表体",
+          "quote": "深圳都市圈城际铁路动车基地及调度指挥中心工程　　深圳市地铁集团有限公司",
+          "category": "intercity_depot",
+          "required": false,
+          "note": "城际动车基地，非线路。"
+        }
+      ],
+      "verdict": "incomplete",
+      "note": "实际读到：深圳市2026年重大项目计划清单（2026-02-28发布，PDF共62页，sha256 d05d9287…）。清单无序号、无分类标题，轨道类集中在第46—47页。逐条抄录第46页连续段后确认：地铁类共11条，即13号线二期（北延）、13号线二期（南延）、15号线、17号线一期、19号线一期、20号线二期、22号线一期、25号线一期、27号线一期、29号线一期、32号线一期，与官方对外口径“11条地铁”完全吻合，可判定该段无遗漏。本作12个深圳项目中10个能逐字对应；13号线二期南延对应清单里的“（南延）”独立条目，未与“（北延）”混用。未读到：10号线东延（深圳段）、11号线北延（深圳段）——全表检索“10号线”“11号线”均零命中，二者属五期规划跨市延伸段，2026年尚未进入建设清单。深圳地铁官网“地铁规划”页虽把这两项列入五期11个项目，但页面无任何发布日期，只能作旁证，不能当独立清单来源，因此本文件未给它们分配 row。故该市名册只能为10个项目背书，verdict 记为 incomplete。另：清单第46—47页还含4个综合交通枢纽、6条城际/铁路、1个动车基地，均为非城市轨道线路，已放入 officialOnly 并标 required:false，不得计为地铁必做项。"
+    },
+    "chengdu": {
+      "sources": [
+        {
+          "url": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909825/14885780896790609924.pdf",
+          "publisher": "成都市人民政府办公厅",
+          "title": "关于印发成都市2026年市级政府投资项目计划的通知（成办发〔2026〕4号）",
+          "publicationDate": "2026-03-05",
+          "dateBasis": "文内落款“成都市人民政府办公厅 2026年3月5日”",
+          "attachment": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909825/1488578117776703488附件.pdf",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/cd_gov_invest_notice.pdf；.tmp-src/cd_2026_gov_invest_plan.pdf",
+          "format": "PDF，通知+附表（93个项目）",
+          "sha256": "d5201137768cb5c3d2bd019d7b4d5bd41971982ccaad6e83d702a1d0b00ddae1",
+          "attachmentSha256": "614e0490591b3dcb1dcb1033b5aa8a217e9dae0989ebe99aaab142991e703d7a",
+          "scopeNote": "全表93项。一、续建项目（一）交通基础设施项目7项中，城市轨道交通仅2条：序号1成都轨道交通18号线三期工程、序号7成都轨道交通10号线三期工程；其余为市域铁路成德线/成眉线、成渝中线铁路、宝成铁路、火车北站枢纽。二、新开工项目（一）交通基础设施项目仅1项（宝成铁路改造及新建青白江至金堂线），无轨道交通新线。"
+        },
+        {
+          "url": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "publisher": "成都市人民政府（市政府门户网站公开）",
+          "title": "2026年成都市重点项目计划",
+          "publicationDate": "2026-01-30",
+          "dateBasis": "PDF 元数据 CreationDate=2026-01-30 15:04:03；文件本身无落款日期，承载页面对外抓取返回 HTTP 412（需 JS 校验），未能读到网页发布日期，故以文件元数据为准并在此说明",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/cd_2026_key_projects.pdf",
+          "format": "PDF，1134个项目，表体三列（项目名称/建设地址/建设批次）",
+          "sha256": "9aa957e85736e2430187c794a93b389be1b0604acc49429ec67d6ece5723bad3",
+          "scopeNote": "轨道交通条目只有聚合行：“成都市城市轨道交通续建项目”（加快建设）、“轨道交通同体同步及市政配套工程项目”、“都江堰至四姑娘山山地轨道交通扶贫项目（都江堰段）”、“市域（郊）铁路成都至德阳线”、“市域（郊）铁路成都至眉山线”、“市域（郊）铁路龙泉至天府机场线（加快前期）”、“低运量轨道交通项目（加快前期）”、“成都市轨道交通大规模运营更新改造及大中修项目”。全表检索“号线”只命中上述聚合行，没有任何单条地铁线路名称。"
+        },
+        {
+          "url": "https://www.sc.gov.cn/10462/c102942/2026/4/21/c540491a60fa4b7ea45f1a07c89d5464/files/2026年四川省重点项目名单.pdf",
+          "publisher": "四川省人民政府",
+          "title": "2026年四川省重点项目名单（续建）",
+          "publicationDate": "2026-04-21",
+          "dateBasis": "URL 路径 /2026/4/21/ 与省级公开目录发布日期",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/sc_2026_key_projects.pdf",
+          "format": "PDF",
+          "sha256": "8846fb319dedadfa2c5df77e930a10bd28ac2e02b08185bd6f47a8507dce081f",
+          "scopeNote": "省级名单同样只写“成都市城市轨道交通续建项目”一条聚合项，未逐条列出线路，故不能补足成都的逐线名册；仅用于交叉印证“成都的公开年度清单在轨道条目上就是聚合口径”。"
+        }
+      ],
+      "rows": [
+        {
+          "projectId": "cd-line18-phase3",
+          "officialName": "成都轨道交通18号线三期工程",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909825/14885780896790609924.pdf",
+          "sourcePublicationDate": "2026-03-05",
+          "required": true,
+          "locator": "附表 一、续建项目（一）交通基础设施项目 序号1",
+          "quote": "成都轨道交通18号线三期工程｜成都轨道集团｜市住建局｜成都高新区、锦江区、青羊区、金牛区、武侯区｜线路全长约13.55千米，共设车站5座，全部为地下线（原表单元格内文字竖排换行，此处按表意合并，未改动任何字）"
+        },
+        {
+          "projectId": "cd-line10-phase3-remainder",
+          "officialName": "成都轨道交通10号线三期工程",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909825/14885780896790609924.pdf",
+          "sourcePublicationDate": "2026-03-05",
+          "required": true,
+          "locator": "附表 一、续建项目（一）交通基础设施项目 序号7",
+          "quote": "成都轨道交通10号线三期工程｜成都轨道集团｜市住建局｜青羊区、武侯区｜线路全长约5.5千米，共设车站5座，全部为地下线（原表单元格内文字竖排换行，此处按表意合并，未改动任何字）"
+        }
+      ],
+      "notInRoster": [
+        {
+          "projectId": "cd-line12-phase1",
+          "gameName": "12号线一期",
+          "reason": "两份市级年度文件都不逐条列地铁线：2026年重点项目计划（1134项）轨道条目只有“成都市城市轨道交通续建项目”一个聚合行；市级政府投资项目计划（93项）交通基础设施7项里只有18号线三期、10号线三期两条地铁，新开工交通仅宝成铁路1项。省级2026年重点项目名单同样是聚合行。故12号线一期在截止日前的公开年度清单中无独立条目。",
+          "consequence": "不能用年度清单为该项目背书；本作现有的是2026-08-12用地预审/选址类批文，属单项批文而非清单。"
+        },
+        {
+          "projectId": "cd-line18-phase4",
+          "gameName": "18号线四期",
+          "reason": "同上：年度清单未逐条列出五期新开工线路，18号线四期无独立条目；清单中只有“18号线三期”。",
+          "consequence": "不能把18号线三期当成18号线四期的清单依据，两者是不同批复区段。"
+        },
+        {
+          "projectId": "cd-line27-phase2",
+          "gameName": "27号线二期",
+          "reason": "同上：全表检索“27号线”零命中，年度清单无此条目。",
+          "consequence": "需另找带日期的市级批复或开工文件。"
+        },
+        {
+          "projectId": "cd-line10-phase4",
+          "gameName": "10号线四期",
+          "reason": "同上：清单只有“10号线三期”，无四期条目。",
+          "consequence": "不得用10号线三期的条目顶替10号线四期。"
+        }
+      ],
+      "officialOnly": [
+        {
+          "officialName": "市域（郊）铁路成都至德阳线",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "locator": "表体，建设批次“加快建设”",
+          "quote": "市域（郊）铁路成都至德阳线　　跨区（市）县　　加快建设",
+          "category": "regional_rail",
+          "required": false,
+          "note": "市域铁路，不是城市轨道线路；本作未建模，也不应计为地铁必做项。"
+        },
+        {
+          "officialName": "市域（郊）铁路成都至眉山线",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "locator": "表体，建设批次“加快建设”",
+          "quote": "市域（郊）铁路成都至眉山线　　跨区（市）县　　加快建设",
+          "category": "regional_rail",
+          "required": false,
+          "note": "市域铁路，非城市轨道线路。"
+        },
+        {
+          "officialName": "都江堰至四姑娘山山地轨道交通扶贫项目（都江堰段）",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "locator": "表体，建设批次“竣工投产”",
+          "quote": "都江堰至四姑娘山山地轨道交通扶贫项目（都江堰段）　　都江堰市　　竣工投产",
+          "category": "mountain_rail",
+          "required": false,
+          "note": "山地齿轨旅游线，不属城市轨道交通。"
+        },
+        {
+          "officialName": "市域（郊）铁路龙泉至天府机场线",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "locator": "表体，建设批次“加快前期”",
+          "quote": "市域（郊）铁路龙泉至天府机场线　　跨区（市）县　　加快前期",
+          "category": "regional_rail",
+          "required": false,
+          "note": "前期项目，未开工，不构成本作必做项。"
+        },
+        {
+          "officialName": "低运量轨道交通项目",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "locator": "表体，建设批次“加快前期”",
+          "quote": "低运量轨道交通项目　　跨区（市）县　　加快前期",
+          "category": "low_capacity",
+          "required": false,
+          "note": "前期、且未指明具体线路，不能当作任何一条建模线路的依据。"
+        },
+        {
+          "officialName": "轨道交通同体同步及市政配套工程项目",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "locator": "表体，建设批次“加快建设”",
+          "quote": "轨道交通同体同步及市政配套工程项目　　跨区（市）县　　加快建设",
+          "category": "supporting_works",
+          "required": false,
+          "note": "配套工程，不是线路。"
+        },
+        {
+          "officialName": "成都市轨道交通大规模运营更新改造及大中修项目",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909826/14668213091313909762026年成都市重点项目计划.pdf",
+          "locator": "表体，建设批次“加快建设”",
+          "quote": "成都市轨道交通大规模运营更新改造及大中修项目　　跨区（市）县　　加快建设",
+          "category": "renewal",
+          "required": false,
+          "note": "既有线改造，不是新线。"
+        },
+        {
+          "officialName": "宝成铁路改造及新建青白江至金堂线",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909825/14885780896790609924.pdf",
+          "locator": "附表 二、新开工项目（一）交通基础设施项目 序号37",
+          "quote": "宝成铁路改造及新建青白江至金堂线｜成都交投集团｜市交通运输局｜金牛区、成华区、新都区、青白江区、金堂县｜项目起于既有成都站，向北利用既有宝成铁路引出新建青白江至金堂双线",
+          "category": "national_rail",
+          "required": false,
+          "note": "国铁改造，是2026年新开工交通项里唯一一项，与城市轨道无关。"
+        }
+      ],
+      "verdict": "incomplete",
+      "note": "实际读到两份市级年度文件：①《成都市2026年市级政府投资项目计划》（成办发〔2026〕4号，落款2026-03-05，附表93项）；②《2026年成都市重点项目计划》（PDF元数据2026-01-30，1134项）。关键发现是成都的公开年度清单对地铁采用聚合口径：重点项目计划全表只有“成都市城市轨道交通续建项目”一行，政府投资计划交通基础设施7项里只有18号线三期、10号线三期两条具名地铁。为排除“漏读”，又下载了《2026年四川省重点项目名单（续建）》（2026-04-21）交叉核对，省级名单同样只写“成都市城市轨道交通续建项目”聚合行，说明这不是我漏读，而是发布口径本身如此。因此本作6个成都项目中只有2个（18号线三期、10号线三期）能逐字对应到年度清单；12号线一期、18号线四期、27号线二期、10号线四期在截止日前的公开年度清单里都没有独立条目，全部记入 notInRoster，不能拿同线路的其他区段顶替（尤其不能用18号线三期顶18号线四期、10号线三期顶10号线四期）。网页承载页对无 JS 抓取返回 HTTP 412，PDF 直链返回 200，本文档的日期以文内落款和 PDF 元数据为准并已注明。另注：截止日后（2026-10-17）另有市级政府投资项目中期调整计划，超出≤2026-10-01 的约束，本次未采用。"
+    },
+    "beijing": {
+      "sources": [
+        {
+          "url": "https://fgw.beijing.gov.cn/fgwzwgk/2024zcwj/ghjhwb/qt/202602/W020260203349484131373.pdf",
+          "publisher": "北京市发展和改革委员会",
+          "title": "北京市2026年重点工程计划",
+          "publicationDate": "2026-02-03",
+          "dateBasis": "PDF 元数据 CreationDate/ModDate=2026-02-03 16:00:47；文件名前缀 W020260203…；首都之窗 2026-02-03《北京市重点工程计划发布 2026年北京市将建设300项市重点工程》报道“2月2日发布”。计划对外发布日为2月2日，PDF 自身日期为2月3日，名册取 PDF 日期，可接受但需知悉这一日差。",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/bj_2026_key_projects.pdf",
+          "format": "PDF，24页，A3，表体两列（序号/项目名称）",
+          "sha256": "204fff7c52396b9debe66e4db8f098f0453fbd7003e7016e2701b51abddb12ca",
+          "scopeNote": "合计300项。二、基础设施项目（100项）下分（一）铁路（3项，序号101—103）、（二）轨道交通（13项，序号104—116）、（三）公路（12项，序号117起）。“轨道交通”章仅13条，全部为城市轨道，无公路/铁路混入。104—115在第9页，116在第10页。全表检索“11号线”“R4”均零命中。"
+        },
+        {
+          "url": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202606/t20260602_4682415.html",
+          "publisher": "北京市重大项目建设指挥部办公室",
+          "title": "北京轨道交通R4线一期北段工程开工",
+          "publicationDate": "2026-06-02",
+          "dateBasis": "页面“时间：2026年06月02日”，来源标注“市重大项目办”",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/bj_r4_zdb.html",
+          "format": "HTML",
+          "sha256": null,
+          "scopeNote": "仅用于核实 R4 的官方全称与开工事实；属政务动态，不是项目清单，不能替代清单级来源。"
+        },
+        {
+          "url": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html",
+          "publisher": "北京市重大项目建设指挥部办公室",
+          "title": "2025年市政府工作报告重点任务落实情况（含第175项）",
+          "publicationDate": "2026-01-14",
+          "dateBasis": "栏目路径 /202601/ 与页面发布日期",
+          "httpStatus": 200,
+          "retrievedAt": "2026-10-27",
+          "localPath": ".tmp-src/bj_11.html",
+          "format": "HTML",
+          "sha256": null,
+          "scopeNote": "仅用于核实“11号线二期”名称；该文件把11号线二期记为“一体化规划方案已正式批复”，属前期工作，不是年度重点工程建设项目。"
+        }
+      ],
+      "rows": [
+        {
+          "projectId": "bj-line19-north-phase2",
+          "officialName": "轨道交通19号线二期工程（北延及北延支线）",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "104　轨道交通19号线二期工程（北延及北延支线）",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-yizhuang-taihu-infill",
+          "officialName": "轨道交通亦庄线台湖车辆段增设站点工程",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "105　轨道交通亦庄线台湖车辆段增设站点工程",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-line15-guozhan-infill",
+          "officialName": "轨道交通15号线新国展地区增设站点",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "106　轨道交通15号线新国展地区增设站点",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-yizhuang-connector",
+          "officialName": "轨道交通亦庄线-5号线、10号线联络线",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "107　轨道交通亦庄线-5号线、10号线联络线",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-line12",
+          "officialName": "轨道交通12号线",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "108　轨道交通12号线",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-line22",
+          "officialName": "轨道交通22号线（平谷线）工程北京段",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "109　轨道交通22号线（平谷线）工程北京段",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-line13-capacity",
+          "officialName": "轨道交通13号线扩能提升工程",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "110　轨道交通13号线扩能提升工程",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-line3-phase1",
+          "officialName": "轨道交通3号线一期",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "111　轨道交通3号线一期",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-line1-branch",
+          "officialName": "轨道交通1号线支线",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "112　轨道交通1号线支线",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-m101-phase1",
+          "officialName": "轨道交通M101线一期",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "113　轨道交通M101线一期",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-line28",
+          "officialName": "轨道交通28号线（CBD线）",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "114　轨道交通28号线（CBD线）",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-new-airport",
+          "officialName": "轨道交通新机场线北延",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "115　轨道交通新机场线北延",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-airport-wangjingnan-infill",
+          "officialName": "轨道交通首都机场线增设望京南站工程",
+          "confirmed": true,
+          "inPdf": true,
+          "quote": "116　轨道交通首都机场线增设望京南站工程",
+          "issue": ""
+        },
+        {
+          "projectId": "bj-r4-north-phase1",
+          "officialName": "R4线一期北段",
+          "confirmed": true,
+          "inPdf": false,
+          "quote": "北京轨道交通R4线一期北段工程开工……该线路全长20.78公里，南起朝阳区东坝，北至顺义区燕京桥（市重大项目办，2026-06-02）",
+          "issue": "该行不在2026年重点工程计划PDF内（全表检索“R4”零命中），属6月新开工、清单发布后启动，不能算清单行。另：官方全称为“北京轨道交通R4线一期北段工程”，名册写的“R4线一期北段”是简称；名册现用来源是首都之窗转载的北京日报报道（t20260602_4681873.html），属新闻稿，建议改用市重大项目办本页或补充清单级文件。"
+        },
+        {
+          "projectId": "bj-line11-phase2",
+          "officialName": "11号线二期",
+          "confirmed": true,
+          "inPdf": false,
+          "quote": "加快推进11号线二期等线路前期工作……11号线二期：一体化规划方案已正式批复（市重大项目办，2026-01-14）",
+          "issue": "该行不在2026年重点工程计划PDF内（全表检索“11号线”零命中）。来源是市政府工作报告重点任务落实情况表，原文把11号线二期列为“前期工作”“一体化规划方案已正式批复”，属前期项目而非2026年重点工程建设/新开工项目，却与13个年度重点工程行并列为 required:true，口径偏高。"
+        }
+      ],
+      "verdict": "incomplete",
+      "note": "实际读到：北京市2026年重点工程计划 PDF（24页，sha256 204fff7c…，与仓库脚本记录的哈希一致）。逐行核对结果：名册第1—13行的 officialName 与 PDF 第9页（序号104—115）、第10页（序号116）“（二）轨道交通（13项）”章原文逐字一致，无错字、无改写、无漏字；13行全部落在轨道交通章内，PDF 该章也确实只有13条，没有把公路（117起）、铁路（101—103）误列进来。sourcePublicationDate 2026-02-03 与 PDF 元数据 CreationDate 及文件名 W020260203… 一致，可接受；但对外发布日是2026-02-02（首都之窗报道），存在一天日差，此处如实记录。问题出在第14、15行：这两行都不是该 PDF 的行。第14行 R4 是清单发布后（2026-06-02）才开工，只能靠政务动态/新闻背书，且官方全称是“北京轨道交通R4线一期北段工程”，名册用了简称，现引来源还是新闻转载稿。第15行11号线二期来源是任务落实情况表，原文明确写的是“前期工作”“一体化规划方案已正式批复”，把它和13个年度重点工程并列为必做，属于把前期项目当建设项目。因此13行全部通过，但整册15行不能整体作为清单级独立证据，verdict 记为 incomplete：建议或把第14、15行改用清单级文件，或把它们从 required:true 降级为补充项。"
+    }
+  }
+}

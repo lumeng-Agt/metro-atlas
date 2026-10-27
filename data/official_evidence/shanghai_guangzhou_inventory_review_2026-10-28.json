@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "cities": {
+    "shanghai": {
+      "sources": [
+        {
+          "url": "https://fgw.sh.gov.cn/fgw_zdjsxmqd/20260212/859c412000014653b2d34146c1f55f6b.html",
+          "title": "2026年上海市重大工程项目清单（发布页，仅标题+附件）",
+          "publicationDate": "2026-02-12",
+          "retrievedAt": "2026-10-28",
+          "sha256": "7665e8b7a87362ef4472ed9442fd9d0027a61c002c692ba119acb628e5ec674d",
+          "httpStatus": 200,
+          "captured": true,
+          "note": "栏目 https://fgw.sh.gov.cn/fgw_zdjsxmqd/ 列表页可直连；发布页正文只有「( 2026年02月12日 )」与附件链接，无条款正文，故清单内容以下一行 xlsx 为准。"
+        },
+        {
+          "url": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "title": "2026年上海市重大工程项目清单.xlsx（正式项目184项／预备项目14项）",
+          "publicationDate": "2026-02-12",
+          "retrievedAt": "2026-10-28",
+          "sha256": "da24c347a24981687e494cc59286c0f54eb0ef77898106d9b627276b2ba827a4",
+          "httpStatus": 200,
+          "captured": true,
+          "note": "https 直接下载成功，application/vnd.openxmlformats-officedocument.spreadsheetml.sheet，33,630 字节；本地 .tmp-src/sh2026_major_projects.xlsx。用 zipfile+XML 直接解包读取（环境无 openpyxl），未做任何改写。"
+        }
+      ],
+      "rows": [
+        {
+          "projectId": "sh-line22-chongming",
+          "officialName": "轨道交通崇明线(金吉路站-裕安站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号137；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号137｜轨道交通崇明线(金吉路站-裕安站)｜在建"
+        },
+        {
+          "projectId": "sh-line12-west",
+          "officialName": "轨道交通12号线西延伸(七莘路站-洞泾站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号138；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号138｜轨道交通12号线西延伸(七莘路站-洞泾站)｜在建"
+        },
+        {
+          "projectId": "sh-line13-west-east",
+          "officialName": "轨道交通13号线(金运路站-诸光路站，张江路站-丹桂路站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号139；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号139｜轨道交通13号线(金运路站-诸光路站，张江路站-丹桂路站)｜在建"
+        },
+        {
+          "projectId": "sh-line15-south",
+          "officialName": "轨道交通15号线南延伸（紫竹高新区站-望园路站）",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号140；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号140｜轨道交通15号线南延伸（紫竹高新区站-望园路站）｜在建"
+        },
+        {
+          "projectId": "sh-line19",
+          "officialName": "轨道交通19号线",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号141；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号141｜轨道交通19号线｜在建"
+        },
+        {
+          "projectId": "sh-line20-phase1",
+          "officialName": "轨道交通20号线一期工程西段(金昌路站-上海马戏城站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号142；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号142｜轨道交通20号线一期工程西段(金昌路站-上海马戏城站)｜在建"
+        },
+        {
+          "projectId": "sh-line20-east",
+          "officialName": "轨道交通20号线（凉城路站-新园路站）",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号143；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号143｜轨道交通20号线（凉城路站-新园路站）｜在建"
+        },
+        {
+          "projectId": "sh-line21",
+          "officialName": "轨道交通21号线一期及东延伸",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号144；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号144｜轨道交通21号线一期及东延伸｜在建"
+        },
+        {
+          "projectId": "sh-line23-phase1",
+          "officialName": "轨道交通23号线一期(上海体育场站-闵行开发区站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号145；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号145｜轨道交通23号线一期(上海体育场站-闵行开发区站)｜在建"
+        }
+      ],
+      "notInRoster": [
+        {
+          "projectId": "sh-line18-jiangyang-reserved",
+          "reason": "《2026年上海市重大工程项目清单》正式项目184项中检索无「18号线」任何条目，轨道交通15项（序号132—146）逐条核对亦无；该工程是既有18号线未开通的预留车站（长江西路、江杨南路、爱辉路），不属于年度重大工程列项对象，故不在本清单内。其自身证据仍为 2025-12-22 市交通委公开文件。"
+        },
+        {
+          "projectId": "sh-nanjingwest-paid-passage",
+          "reason": "该工程是南京西路站三线换乘人行通道（换乘衔接设施），清单按工程／线路列项，轨道交通15项中无换乘通道类条目，全表检索无「南京西路」，故不在本清单内。"
+        }
+      ],
+      "officialOnly": [
+        {
+          "officialName": "市域线机场联络线",
+          "reason": "市域铁路（机场联络线，2024年已开通），不属本作城市轨道交通线路建模范围"
+        },
+        {
+          "officialName": "市域线嘉闵线及北延伸",
+          "reason": "市域铁路（嘉闵线），不属本作城市轨道交通线路建模范围"
+        },
+        {
+          "officialName": "市域线上海示范区线",
+          "reason": "市域铁路（示范区线），不属本作城市轨道交通线路建模范围"
+        },
+        {
+          "officialName": "市域线南汇支线（两港市域铁路）",
+          "reason": "市域铁路（南汇支线／两港市域铁路），不属本作城市轨道交通线路建模范围"
+        },
+        {
+          "officialName": "市域线南枫线",
+          "reason": "市域铁路（南枫线），不属本作城市轨道交通线路建模范围"
+        },
+        {
+          "officialName": "轨道交通大修更新改造等项目(轨道交通3/4线改造等)",
+          "reason": "既有3/4号线等大修更新改造，非新建线路工程，不建模"
+        }
+      ],
+      "verdict": "complete",
+      "note": "实际读到：上海市发展和改革委员会「重大建设项目清单」栏目（https://fgw.sh.gov.cn/fgw_zdjsxmqd/）2026-02-12 发布的《2026年上海市重大工程项目清单》。该页正文只有标题、日期「( 2026年02月12日 )」和一个 xlsx 附件，无正文条款；已用 https 下载附件并解包读取（xlsx 两个工作表：「正式项目」184 项、「预备项目」14 项）。轨道交通条目全部位于「正式项目」表 四、城市基础设施类（三）轨道交通15项，序号 132—146，逐条为：132 市域线机场联络线、133 市域线嘉闵线及北延伸、134 市域线上海示范区线、135 市域线南汇支线（两港市域铁路）、136 市域线南枫线、137 轨道交通崇明线(金吉路站-裕安站)、138 轨道交通12号线西延伸(七莘路站-洞泾站)、139 轨道交通13号线(金运路站-诸光路站，张江路站-丹桂路站)、140 轨道交通15号线南延伸（紫竹高新区站-望园路站)、141 轨道交通19号线、142 轨道交通20号线一期工程西段(金昌路站-上海马戏城站)、143 轨道交通20号线（凉城路站-新园路站）、144 轨道交通21号线一期及东延伸、145 轨道交通23号线一期(上海体育场站-闵行开发区站)、146 轨道交通大修更新改造等项目(轨道交通3/4线改造等)；建设状态均为「在建」。未读到／无对应：清单全表检索无「18号线」「22号线」「南京西路」字样；预备项目14项中无城市轨道交通（唯一铁路项为「沪乍杭铁路」）。映射判断：本作 11 项中 9 项按线路号与区段端点逐条对上（sh-line22-chongming 对应「轨道交通崇明线」，系同一条线的官方项目名，游戏内「22号线」称呼不进入清单映射；该条终点写作「裕安站」，与本作站名「陈家镇」不同，站名仍以各项目自有环评/批复来源为准，本次不改）。sh-line18-jiangyang-reserved、sh-nanjingwest-paid-passage 在清单内无对应，理由见 notInRoster，不计为清单覆盖缺口：前者是既有18号线未开通的预留车站，后者是换乘人行通道，二者都不是「年度重大工程」的列项对象。反向缺口：轨道交通15项中 6 项本作未建模（5 条市域线 + 1 项大修更新改造），已在 officialOnly 标为 required:false，不得写成必做。"
+    },
+    "guangzhou": {
+      "sources": [
+        {
+          "url": "https://fgw.gz.gov.cn/tzgg/content/post_10694623.html",
+          "title": "广州市2026年重点建设项目计划（市发展改革委通知公告，2026-02-14）",
+          "publicationDate": "2026-02-14",
+          "retrievedAt": "2026-10-28",
+          "sha256": "9ddbed063bf9c73f758c2fad5800d8a4bb45164a93a9744423197302654d6189",
+          "httpStatus": 200,
+          "captured": true,
+          "note": "https 直连可读，正文含「业经市十六届人大六次会议审议通过，现予公布」及落款日期，附件 href 为 http:// 绝对地址。"
+        },
+        {
+          "url": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "title": "《广州市2026年重点建设项目计划》.pdf（附件1，36页；附件2 预备项目，7页）",
+          "publicationDate": "2026-02-14",
+          "retrievedAt": "2026-10-28",
+          "sha256": "04aa0058087c14a8b6c0b01511936961eb27993050988ea4057fe40deebe86a5",
+          "httpStatus": 200,
+          "captured": true,
+          "note": "页面 href 是 http://，改用同域 https 访问返回 200、application/pdf、1,084,534 字节，故按 https 记录并使用；本地 .tmp-src/gz2026_plan.pdf，pdftotext -layout -enc UTF-8 提取，未改写原文。"
+        }
+      ],
+      "rows": [
+        {
+          "projectId": "gz-line18-remainder",
+          "officialName": "轨道交通十八号线工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第1项；印刷页2",
+          "quote": "轨道交通十八号线工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line13-phase2-west",
+          "officialName": "轨道交通十三号线二期工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第2项；印刷页2",
+          "quote": "轨道交通十三号线二期工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line12-mid",
+          "officialName": "轨道交通十二号线工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第3项；印刷页2",
+          "quote": "轨道交通十二号线工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line10-remainder",
+          "officialName": "轨道交通十号线工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第4项；印刷页2",
+          "quote": "轨道交通十号线工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line8-north-branch",
+          "officialName": "轨道交通八号线北延段支线工程（江府-纪念堂）",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第5项；印刷页2",
+          "quote": "轨道交通八号线北延段支线工程（江府-纪念堂）｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line8-north",
+          "officialName": "轨道交通八号线北延段工程（滘心-广州北站）",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第6项；印刷页2",
+          "quote": "轨道交通八号线北延段工程（滘心-广州北站）｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line8-east",
+          "officialName": "轨道交通八号线东延段工程（万胜围-莲花）",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第7项；印刷页2",
+          "quote": "轨道交通八号线东延段工程（万胜围-莲花）｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line14-remainder",
+          "officialName": "轨道交通十四号线二期工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第8项；印刷页2",
+          "quote": "轨道交通十四号线二期工程｜市交通运输局"
+        }
+      ],
+      "notInRoster": [
+        {
+          "projectId": "gz-line11-railway-station",
+          "reason": "《广州市2026年重点建设项目计划》附件1 全文检索「十一号线」「11号线」零命中，5.城市轨道交通仅列 18/13/12/10/8号线支线/8号线北延/8号线东延/14号线二期 8 项线路工程；附件2 预备项目 7 页亦无轨道条目。该工程是既有11号线未开通的广州火车站站，不属本年度重点建设项目，故不在本清单内。"
+        }
+      ],
+      "officialOnly": [
+        {
+          "officialName": "佛山经广州至东莞城际鹭洲至新塘段",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "芳村至白云机场城际",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "新塘经白云机场至广州北站城际轨道交通",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "广州东至花都天贵城际",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "南沙至珠海（中山）城际西线（广州段）",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "广清城际广州白云至广州北站段",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "穗莞深城际琶洲支线",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "广佛环线佛山西站至广州北站段（广州段）",
+          "reason": "城际铁路（4.城际轨道交通分节，印刷页2），按干线铁路报批建设，不属本作城市轨道交通线路范围"
+        },
+        {
+          "officialName": "轨道交通更新改造项目",
+          "reason": "既有线网更新改造，非新建线路，不建模"
+        },
+        {
+          "officialName": "广州轨道交通鱼珠车辆段更新改造及配套一体化工程项目",
+          "reason": "车辆段更新改造及上盖配套，非线路工程，不建模"
+        },
+        {
+          "officialName": "广州轨道交通西塱车辆段更新改造及配套一体化工程项目",
+          "reason": "车辆段更新改造及上盖配套，非线路工程，不建模"
+        }
+      ],
+      "verdict": "complete",
+      "note": "实际读到：广州市发展和改革委员会 2026-02-14 通知公告《广州市2026年重点建设项目计划》（「业经市十六届人大六次会议审议通过，现予公布」，落款 2026年2月14日）。附件 PDF 用 https 下载成功（页面上的 href 写作 http://fgw.gz.gov.cn/attachment/...，同域 https 直接访问返回 200、application/pdf，故按 https 记录），pdftotext -layout 提取：附件1 共 36 页，附件2（重点建设预备项目计划）共 7 页。附件1 只有「项目名称／项目主管部门」两列，没有序号列、没有投资额列，所以 locator 只能写「分节内第 N 项 + 印刷页」，不能写序号。轨道交通条目集中在印刷页 2：4.城际轨道交通 8 项；5.城市轨道交通 12 项（其中 8 项为线路工程，另 4 项为 X光机安检项目、轨道交通更新改造项目、鱼珠车辆段、西塱车辆段更新改造）。未读到／无对应：全文检索「十一号线」「11号线」零命中，附件2 七页检索「轨道／地铁」零命中，即十一号线不在本年度正式或预备计划内。映射判断：本作 9 项中 8 项按线路号与区段端点对上；gz-line8-north-branch 对应「轨道交通八号线北延段支线工程（江府-纪念堂）」，该工程即规划 24 号线，清单仍用「8号线北延段支线」名，照抄不改。gz-line11-railway-station 无对应，见 notInRoster。反向缺口：清单 8 项城市轨道交通线路本作全部已建模，无缺项；另有 8 项城际铁路与 3 项更新改造／车辆段项目未建模，已在 officialOnly 标为 required:false。"
+    }
+  }
+}

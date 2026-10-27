@@ -112,7 +112,8 @@ def main():
             i=definition['lineIds'].index(L4)
             for sid in IDS[:-1]:
                 if definition['stationInstanceIds'][i]==sid+'__line4-4':definition['stationInstanceIds'][i]=SHARED[sid]
-    rule=dict(id='shanghai34-common-2026',physicalLineId=L3,serviceLineId=L4,stationNames=NAMES[:-1],source=OLD,
+    rule=dict(id='shanghai34-common-2026',physicalLineId=L3,serviceLineId=L4,intervalEndpoints=['宝山路','虹桥路'],
+        stationNames=NAMES[:-1],source=OLD,
         directionalStationRules=[dict(stationName='宝山路',precedingStationName='上海火车站',
             sharedPatternId='sh4-inner-2026',independentPatternId='sh4-outer-2026',
             sharedStationInstanceId=SHARED['shanghai-s45'],independentStationInstanceId=old_outer_body,

@@ -1,0 +1,646 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "cities": {
+    "chengdu": {
+      "milestones": [
+        {
+          "chapterId": "cd-line1-2010",
+          "date": "2010-09-27",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第1行",
+          "quote": "1 1号线一期 73.58 18.517 17 2005.12 2010.9.27",
+          "issues": [
+            "官方表记 1 号线一期 17 座车站，本条 16 站，差额为 2013-06-08 才开通的海洋公园站（后更名锦城广场站），与首开实际一致，不计为缺站",
+            "官方文件只给站数与端点，未列站名与站序，16 站顺序无从核对",
+            "所引为 2026 年债券募集说明书，属事后披露，非 2010 年开通当日公告"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line2-first-2012",
+          "date": "2012-09-16",
+          "sourceUrl": "https://www.crsc.cn/news/tsi_1079_3797_1878.html",
+          "sourceAuthority": "official_contractor",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 1 段（发布时间 2013-06-13）",
+          "quote": "成都地铁二号线正线自2012年9月16日开通运营以来，计轴产品运行良好",
+          "issues": [
+            "来源为中国通号（信号设备承包商）企业官网，非运营方或政府公告",
+            "原文只写西起茶店子客运站、东至成都行政学院站、途经天府广场、共设 20 个车站，未逐站列举",
+            "20 站与本条一致，端点一致；站序无从核对"
+          ],
+          "sourceSha256": "978f728423cb8d43c62f9acb236d31e2fb00190a89bd5e1f6889c99c00d18582",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line2-west-2013",
+          "date": "2013-06-08",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第6行",
+          "quote": "6 2号线西延线 31.25 8.77 6 2010.8 2013.6.8",
+          "issues": [
+            "官方表记西延线 6 站；本条 group 7 站含既有茶店子客运站，净增 6 站，一致",
+            "未列站名与站序，7 站顺序无从核对"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2014-10-26",
+          "date": "2014-10-26",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第7行",
+          "quote": "7 2号线东延线 28.79 11.116 6 2011.12 2014.10.26",
+          "issues": [
+            "官方表记东延线 6 站；本条 group 7 站含既有成都行政学院站，净增 6 站，一致",
+            "未列站名与站序"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "cd-line1-2015",
+          "date": "2015-07-25",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第2行",
+          "quote": "2 1号线南延线 43.99 5.41 5 2012.8 2015.7.25",
+          "issues": [
+            "官方表记南延线 5 站；本条 group 6 站含既有世纪城站，净增 5 站，一致",
+            "集团大事记「7月25日，地铁1号线南延线开通试运营」可佐证日期",
+            "未列站名与站序"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line4-first-2015",
+          "date": "2015-12-26",
+          "sourceUrl": "https://m.thepaper.cn/newsDetail_forward_9369431",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": false,
+          "orderConfirmed": "not_checkable",
+          "locator": "「履约收据」时间线条，2015年12月26日条（发布 2020-09-28）",
+          "quote": "2015年12月26日 4号线1期开通（非遗博览园-万年场）",
+          "issues": [
+            "日期冲突：本条引澎湃稿「2015年12月26日 4号线1期开通（非遗博览园-万年场）」，而发行人披露表记「4号线一期 … 2016.1.1」，两份文件互相矛盾，无法判定",
+            "集团大事记 2015 年条目未收录 4 号线一期开通，无运营方文件可裁决",
+            "来源为澎湃号（微成都），非官方；站数 16 与官方一致，但站序未逐站列举"
+          ],
+          "sourceSha256": "6758c2991f6b3d68e0a9f12012edc2ee2c38514eb17bac0ed422434e4facc4ef",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line3-first-2016",
+          "date": "2016-07-31",
+          "sourceUrl": "https://www.crecg.com/crcdi/cpyfw/gdjt97/2026032511084063483/index.html",
+          "sourceAuthority": "official_contractor",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文首段（发布 2026-03-25 11:07）",
+          "quote": "2012年4月25日开工,2016年7月31日开通运营…共设17座车站",
+          "issues": [
+            "来源为中国中铁（施工方）企业官网，非运营方公告；集团大事记「7月31日，地铁3号线一期工程开通试运营」可佐证日期",
+            "官方只给 17 座车站，与本条 17 站一致，但未列站名与站序"
+          ],
+          "sourceSha256": "3e71b7fac7b400dd295bf81436b31105881e70aff3153272b446dd8dbcecdb6f",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2017-12-26",
+          "date": "2017-06-02",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第11行",
+          "quote": "11 4号线二期（含同步实施工程） 104.78 21.475 14 2014.4 2017.6.2",
+          "issues": [
+            "chapterId 为 2017-12-26，date 为 2017-06-02，命名与日期不一致（4 号线二期实际为 2017-06-02 开通）",
+            "官方表记 4 号线二期 14 站；本条两组 9+7 站，扣除两端既有站非遗博览园、万年场后净增 14 站，一致",
+            "未列站名与站序，两段内部顺序无从核对"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line10-first-2017",
+          "date": "2017-09-06",
+          "sourceUrl": "https://www.tunnelling.cn/PNews/NewsDetail.aspx?newsId=24763",
+          "sourceAuthority": "industry_portal",
+          "httpStatus": 502,
+          "readable": false,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "所引页面返回 502；日期改由募集说明书第57页表第19行与集团大事记 2017 年条目核对",
+          "quote": "19 10号线一期 56.98 10.936 6 2014.5 2017.9.6",
+          "issues": [
+            "所引 tunnelling.cn 页面返回 HTTP 502，正文不可读，按硬规则记 unverified",
+            "替代官方文件确认日期：募集说明书「10号线一期 … 6 … 2017.9.6」、集团大事记「9月6日，成都地铁10号线一期开通试运营」",
+            "官方 6 站与本条一致，站序未列举"
+          ],
+          "alternativeSource": {
+            "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+            "authority": "official_issuer",
+            "note": "仅能确认日期与站数，不能确认站序；不足以单独支撑 verified",
+            "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+          },
+          "sourceSha256": null,
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2017-12-06",
+          "date": "2017-12-06",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第15行",
+          "quote": "15 7号线 288.97 38.625 31 2013.9 2017.12.6",
+          "issues": [
+            "官方表记 7 号线 31 站，与本条 31 站及 loop 标记一致；大事记同日条目可佐证",
+            "未列站名与环线起讫顺序，环线站序无从核对"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-historical-milestone-2018-03-18",
+          "date": "2018-03-18",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第3行、募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第4行",
+          "quote": "3 1号线三期首期 … 8 … 2018.3.18；4 1号线三期南段 … 5 … 2018.3.18",
+          "issues": [
+            "官方表记三期首期 8 站、南段 5 站，合计 13 站；本条三组 2+12+2 站，扣除既有升仙湖、四河、广都后净增 13 站，一致",
+            "未列站名与站序，三条支段内部顺序无从核对"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2018-12-26",
+          "date": "2018-12-26",
+          "sourceUrl": "https://www.crecg.com/crcdi/cpyfw/gdjt97/2026032511073480334/index.html",
+          "sourceAuthority": "official_contractor",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文首段（发布 2026-03-25 11:06）",
+          "quote": "2016年1月28日开工,2018年12月26日开通运营…设车站20座",
+          "issues": [
+            "来源为中国中铁（施工方）企业官网，非运营方公告；集团大事记同日条目可佐证日期",
+            "官方 20 站；本条两组 10+12 站，扣除既有军区总医院、太平园后净增 20 站，一致",
+            "未列站名与站序"
+          ],
+          "sourceSha256": "d70511371fd19586d353177520212d787aa46d892374957eb8a1feee5e093535",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2019-06-02",
+          "date": "2019-12-27",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第12行",
+          "quote": "12 5号线一二期 374.57 49.012 41 2015.9 2019.12.27",
+          "issues": [
+            "chapterId 为 2019-06-02，date 为 2019-12-27，命名与日期不一致",
+            "官方表记 41 站，与本条 41 站一致；集团大事记同日条目可佐证",
+            "未列站名与站序"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2019-12-27",
+          "date": "2019-12-27",
+          "sourceUrl": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+          "sourceAuthority": "official_issuer",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "募集说明书（2026-06-18）第57–58页「截至2026年3月末成都市已开通轨道交通线路」表第20行",
+          "quote": "20 10号线二期 122.12 27.035 10 2016.12 2019.12.27",
+          "issues": [
+            "官方表记 10 站；本条 11 站含既有双流机场2航站楼站，净增 10 站，一致",
+            "未列站名与站序"
+          ],
+          "sourceSha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2020-09-27",
+          "date": "2020-09-27",
+          "sourceUrl": "https://www.thepaper.cn/newsDetail_forward_9355981",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 6 段（发布 2020-09-26，开通前一日）",
+          "quote": "18号线火车南站、孵化园、锦城广场东、世纪城、海昌路、西博城、兴隆、三岔站将正式投入客运服务",
+          "issues": [
+            "所引稿为开通前一日发布，原文为「计划于9月27日上午将正式开通初期运营」，属预告性表述，非开通后确认",
+            "该稿逐站列出 8 站，与本条 8 站及顺序完全一致，但来源为澎湃号·媒体，不能据此记 verified",
+            "日期另由募集说明书「18号线一期 … 首开段2020.9.27」与集团大事记「9月27日，成都轨道交通18号线正式开通运营」官方确认"
+          ],
+          "alternativeSource": {
+            "url": "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202606/9dbefc_20260618_SLKT.pdf",
+            "authority": "official_issuer",
+            "note": "确认首开段日期为 2020.9.27、18号线一期 8 站，但未列站名，站序仍不可核",
+            "sha256": "c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7"
+          },
+          "sourceSha256": "2fe02176dd41078ffe5dc139bceb9a5638da075c4a336fedca294b3874d926cf",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2020-12-18",
+          "date": "2020-12-18",
+          "sourceUrl": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+          "sourceAuthority": "industry_portal",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 1 段（发布 2020-12-18 15:53）；日期另见官网转载人民网稿第 1 段",
+          "quote": "2020年12月18日上午10时，成都地铁6号线一二、三期、8号线一期、9号线一期、17号线一期…正式开通初期运营",
+          "issues": [
+            "来源为城市轨道交通网（行业门户），非运营方公告；官网转载人民网稿「经成都市人民政府同意，2020年12月18日上午10时…同步开通初期运营」可佐证日期",
+            "官方表记 6 号线一二期 38 站 + 三期 18 站 = 56 站；本条 54 站，差额为 2024-04-08 开通的青岛路站与 2025-08-22 开通的芦角站，与首开实际一致",
+            "官方文件未逐站列举，54 站顺序无从核对；本条只覆盖 6 号线，同日开通的 8、9、17 号线与 18 号线三岔—机场北段另立条目"
+          ],
+          "alternativeSource": {
+            "url": "https://www.chengdurail.com/info/1161/23112.htm",
+            "authority": "official_operator",
+            "note": "官网转载人民网稿，确认 2020-12-18 10:00 五线同步开通及全线网 373 站，未列各线站名",
+            "sha256": "67717679e33fd884f719becf14341a38962f7a95107224b375436310297f630d"
+          },
+          "sourceSha256": "8d341612e453fed40cf7e4db4bdd114b93694da64121a2f00790bfb04ea1b0a1",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line18-airportnorth-2020",
+          "date": "2020-12-18",
+          "sourceUrl": "https://www.chinametro.net/index.php?aid=51326&id=539&m=newscon",
+          "sourceAuthority": "industry_portal",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 1 段（发布 2020-12-18）",
+          "quote": "18号线三岔站（不含）至天府机场北站段…正式开通初期运营",
+          "issues": [
+            "来源为行业门户，非运营方公告；官网转载人民网稿同句可佐证",
+            "官方表记 18 号线二期 5 站（含福田、天府机场北），与本条 2 站（三岔为既有锚点）不冲突，但官方口径的 5 站构成未说明，无法逐站对齐",
+            "未列站名与站序"
+          ],
+          "alternativeSource": {
+            "url": "https://www.chengdurail.com/info/1161/23112.htm",
+            "authority": "official_operator",
+            "note": "确认该区段当日开通，未列站名",
+            "sha256": "67717679e33fd884f719becf14341a38962f7a95107224b375436310297f630d"
+          },
+          "sourceSha256": "8d341612e453fed40cf7e4db4bdd114b93694da64121a2f00790bfb04ea1b0a1",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line18-terminal-2021",
+          "date": "2021-06-27",
+          "sourceUrl": "https://tjxzf.gov.cn/xwzx/bmxx/13248491.html",
+          "sourceAuthority": "official_gov",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": false,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文「轨道交通方面」段（发布 2021-06-21）",
+          "quote": "天府机场1号、2号航站楼站将与机场开航同步投运",
+          "issues": [
+            "所引为通江县人民政府网站稿，主题是天府机场换乘，非地铁开通公告",
+            "原文只写「与机场开航同步投运」，未写出 6 月 27 日这一日期，属间接表述，按规则记未确认",
+            "未列站名与站序"
+          ],
+          "sourceSha256": "6c84b735ea96ed35c92c89c31870e2f9219e976433734900fdf376319c7d5a49",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line18-futian-2023",
+          "date": "2023-08-13",
+          "sourceUrl": "https://sichuan.scol.com.cn/xwtg/202308/58952079.html",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "标题与正文首段（发布 2023-08-11，来源：成都地铁微信公众号）",
+          "quote": "8月13日，成都轨道交通18号线福田站正式开启运营服务",
+          "issues": [
+            "来源为四川在线转载成都地铁微信公众号稿，非运营方原始页面",
+            "原文只写福田站开站，未列三岔—福田—天府机场1号2号航站楼的区间站序，本条 3 站顺序无从核对"
+          ],
+          "sourceSha256": "ff6f86b16e63acd890168fe3ea77ea385582894873fefaca20248f358b6ae20a",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line18-tianfu-2023",
+          "date": "2023-11-28",
+          "sourceUrl": "https://www.chengdurail.com/info/1151/51732.htm",
+          "sourceAuthority": "official_operator",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": false,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 2 段（发布 2023-11-27）",
+          "quote": "2023年11月28日09:00，成都轨道交通19号线二期将开通初期运营",
+          "issues": [
+            "所引为 19 号线二期开通稿，全文未提 18 号线天府站于 11 月 28 日开站",
+            "本条日期只能由 19 号线二期开通日推断，官方文件未明确写出天府站启用日期，按规则记未确认",
+            "未列站名与站序"
+          ],
+          "sourceSha256": "e4e21afd989265e5b53cf65877282fe023ddc0e7fa0acd09e801dd76728baaf7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line6-qingdao-2024",
+          "date": "2024-04-08",
+          "sourceUrl": "https://www.thepaper.cn/newsDetail_forward_26937599",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": false,
+          "orderConfirmed": "not_checkable",
+          "locator": "标题与正文（发布 2024-04-06）",
+          "quote": "后天，6号线青岛路站将正式开启运营服务",
+          "issues": [
+            "原文标题与正文只写「后天」，未写出 4 月 8 日这一日期，按规则记未确认",
+            "来源为澎湃号·政务转载，非运营方原始页面",
+            "原文只写青岛路站开站，未说明其位于沈阳路站与昌公堰站之间，本条 3 站插入式站序无从核对"
+          ],
+          "sourceSha256": "445bf200a848bf40fac6edafd292194a7db214a08761839499990819ee3f956d",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-eight27-2024",
+          "date": "2024-12-19",
+          "sourceUrl": "https://news.chengdu.cn/2024/1218/2459886.shtml",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": false,
+          "locator": "正文第 1 段（发布 2024-12-18）；日期另见集团大事记 2024 年条目",
+          "quote": "成都地铁8号线二期、27号线一期将于2024年12月19日上午09:30正式开通",
+          "issues": [
+            "27 号线一期：官方（募集说明书、官网线路页、集团大事记）均记 23 站，本条仅 22 站，缺 1 站，站点集合不一致",
+            "8 号线二期：官方记 7 站（北段 6 新 + 南段龙港 1 新），本条两组 7+2 站扣除既有十里店、莲花后净增 7 站，一致",
+            "官方文件未逐站列举站名，两段内部站序无从核对",
+            "所引红星新闻网稿为媒体，非官方原件"
+          ],
+          "alternativeSource": {
+            "url": "https://www.chengdurail.com/gywm.htm",
+            "authority": "official_operator",
+            "note": "集团大事记「2024年12月19日，成都轨道交通8号线二期、27号线一期正式开通初期运营」确认日期",
+            "sha256": "7eb118ba555284f9dc21e5c29da9ce09764d89cb1eea835986942b3262d8c82c"
+          },
+          "sourceSha256": "26297a66602c8e552ec0290e960b0c3f7f0b535a6f60c1e112bea0a02c662031",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line10-phase3-first-2025",
+          "date": "2025-09-17",
+          "sourceUrl": "https://news.chengdu.cn/2025/0916/68c914750c3a9c5be1c4be5c.shtml",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 1 段（发布 2025-09-16）；日期另见集团大事记 2025 年条目",
+          "quote": "成都地铁17号线二期，10号线三期（武侯祠站-太平园站），将于2025年9月17日上午10:00正式开通初期运营",
+          "issues": [
+            "10 号线三期首开段官方 3 站，本条 4 站含既有太平园站，净增 3 站，一致；17 号线二期官方 18 站，本条 19 站含既有机投桥站，净增 18 站，一致",
+            "10 号线三期的人民公园、文翁石室两站延后开通（本条 10 号线 group 已剔除，正确）；17 号线二期 group 保留人民公园站，官网稿将其列为 17 号线二期换乘站，可解释",
+            "官方文件未逐站列举 19 站与 4 站的站序，顺序无从核对",
+            "所引红星新闻网稿为媒体，非官方原件"
+          ],
+          "alternativeSource": {
+            "url": "https://www.chengdurail.com/info/1331/130494.htm",
+            "authority": "official_operator",
+            "note": "官网「官宣！9月17日，成都轨道交通双线齐开」确认日期、17号线二期 18 座车站与人民公园站为换乘站",
+            "sha256": "808b67c1cfda190838e86fc3fc4c84b66ad054faf46877f2ac4e1191ef77969c"
+          },
+          "sourceSha256": "5d4ea7248c753cb67fb1b510dcc3ef33ec89b4a8281961686c79e13c346654c8",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-opening-line6-lujiao-2025",
+          "date": "2025-08-22",
+          "sourceUrl": "https://news.chengdu.cn/2025/0819/68a401a754565111d33e7a7f.shtml",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": false,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 2 段（发布 2025-08-19）",
+          "quote": "成都轨道交通6号线芦角站将正式开启运营服务",
+          "issues": [
+            "所引红星新闻网稿全文无日期，只写「将正式开启运营服务」，按规则记未确认",
+            "检索到彭州市人民政府网站转载稿写「8月22日…将正式开启运营服务」，但该页返回 HTTP 412 不可读，未采用",
+            "原文未说明芦角站位于松林站与钓鱼嘴站之间，本条 3 站插入式站序无从核对"
+          ],
+          "sourceSha256": "c57406807094909401a601a67a7d01d0ec6b777d96d90890f0be887e72c07cd5",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2025-12-16",
+          "date": "2025-12-16",
+          "sourceUrl": "https://www.crecg.com/web/xwzx61/gsyw87/2025121815543222258/index.html",
+          "sourceAuthority": "official_contractor",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": false,
+          "locator": "正文第 1 段（发布 2025-12-18）；日期另见集团大事记 2025 年条目",
+          "quote": "12月16日，中国中铁旗下多家单位参建的成都轨道交通13号线一期、30号线一期同日开通初期运营",
+          "issues": [
+            "30 号线一期：官方（集团大事记、官网开通稿、募集说明书）均记 24 站，本条仅 22 站，缺 2 站，站点集合不一致",
+            "13 号线一期：官方 21 站，与本条 21 站一致",
+            "官方文件未逐站列举，站序无从核对",
+            "所引为中国中铁企业官网，非运营方公告"
+          ],
+          "alternativeSource": {
+            "url": "https://www.chengdurail.com/info/1331/130484.htm",
+            "authority": "official_operator",
+            "note": "官网「13号线一期、30号线一期正式开通初期运营」确认开通，仅给线网 489 站总数，未给单线站数",
+            "sha256": "98b3b28c93eb5cc43ed48e2ea19f204b5281f96a08f962eca608c610e523506f"
+          },
+          "sourceSha256": "a724704288c9670171e5024b002b1e7dd12e129cd514137aa4237d9312787f58",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-reorganization-17-19-2023",
+          "date": "2023-11-27",
+          "sourceUrl": "https://news.chengdu.cn/2023/0904/2371119.shtml",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": false,
+          "orderConfirmed": "not_checkable",
+          "locator": "「@张先生」问政答复段（发布 2023-09-04）",
+          "quote": "将拆分为19号线一期工程（金星站-九江北站）和17号线一期工程（九江北站-机投桥站）",
+          "issues": [
+            "所引为 2023-09-04 问政答复，只说明拆分方案，未写出 2023-11-27 这一拆分生效日，按规则记未确认",
+            "拆分后 19 号线一期 7 站、17 号线一期 3 站与官方表记站数一致，端点九江北站一致",
+            "未逐站列举，两条线的站序无从核对"
+          ],
+          "sourceSha256": "9ff271a3bcad0ddd9e72d9edafcc07736d532f0ae90b7d1c2510d014b94de63d",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-network-milestone-2023-11-28",
+          "date": "2023-11-28",
+          "sourceUrl": "https://www.chengdurail.com/info/1151/51732.htm",
+          "sourceAuthority": "official_operator",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 1 段（发布 2023-11-27）",
+          "quote": "2023年11月28日09:00，成都轨道交通19号线二期将开通初期运营",
+          "issues": [
+            "运营方官网原文明确写出开通日与时刻，日期确认成立",
+            "官方表记 19 号线二期 12 站（含预留合江站）；本条 16 站为九江北 + 11 座新站 + 18 号线共线 4 站，净增 11 站，与 12 站的差额即未开通的合江预留站，可解释",
+            "原文只写西起九江北（不含）、东至合江（预留）、经天府站接入 18 号线共线至天府机场北，未逐站列举，16 站顺序无从核对"
+          ],
+          "sourceSha256": "e4e21afd989265e5b53cf65877282fe023ddc0e7fa0acd09e801dd76728baaf7",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-line2-east-suspended",
+          "date": "2025-12-20",
+          "sourceUrl": "https://news.chengdu.cn/2025/1215/693f705bdcb7c92ce3d26ad1.shtml?phone=yes",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 2 段（发布 2025-12-15）",
+          "quote": "自2025年12月20日起，预计于2026年10月结束（具体恢复运营时间另行公告）",
+          "issues": [
+            "来源为红星新闻网，非运营方或政府公告原件",
+            "原文逐站列出停运 6 站（大面铺、连山坡、界牌、书房、龙平路、龙泉驿），与本条线路尾段顺序一致，可确认停运范围与新的终点成都行政学院站",
+            "本条 group 为停运后的 26 站运营段，其余站序未逐站列举，无从核对"
+          ],
+          "sourceSha256": "6fb267735b60265025d26a2a652773451bd997c1ba6d5a90f213311de177f5f4",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-line2-east-open",
+          "date": "2026-09-28",
+          "sourceUrl": "https://sichuan.scol.com.cn/ggxw/202609/83330005.html",
+          "sourceAuthority": "official_media",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 2 段（发布 2026-09-24，来源：成都地铁）",
+          "quote": "恢复运营的范围为…大面铺站、连山坡站、界牌站、书房站、龙平路站、龙泉驿站共6个站点",
+          "issues": [
+            "来源为四川在线转载成都地铁公告，非运营方原始页面；官网同名稿「9月28日起！2号线东段部分站点恢复运营服务」可佐证日期与 6 站范围",
+            "原文逐站列出恢复 6 站，与本条线路尾段顺序一致；本条 group 为全线 32 站，其余 26 站站序未列举，无从核对"
+          ],
+          "alternativeSource": {
+            "url": "https://www.chengdurail.com/info/1331/137484.htm",
+            "authority": "official_operator",
+            "note": "运营方官网原文写明「将于2026年9月28日恢复运营」并逐站列出 6 站，仍未列全线站序",
+            "sha256": "1fe84eed9bc2bad8a712a187e2dd97ab4b2e52b555c5c0d515c37fe52795d501"
+          },
+          "sourceSha256": "160ae03a89a86a5d9e41cdb750a8f817f6db54d4b760f85bc3b8ebe407f1e774",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-line1-ocean-2013",
+          "date": "2013-06-08",
+          "sourceUrl": "https://news.sina.com.cn/c/2013-06-08/154027353748.shtml?from=wap",
+          "sourceAuthority": "commercial_media_republish",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 1 段（发布 2013-06-08，转四川在线稿）",
+          "quote": "6月8日上午7时56分…西延线和海洋公园站（暂命名）正式开通试运营",
+          "issues": [
+            "来源为新浪转载四川在线稿，非官方",
+            "原文写明海洋公园站位于已开通的世纪城站与孵化园站之间、2010 年一期开通时未同步开通，可确认插入位置",
+            "全线 17 站其余站序未逐站列举"
+          ],
+          "sourceSha256": "50d8ee010d5387945226f97684e0d34de9418897eb86131e28cc67493e259085",
+          "verdict": "unverified"
+        },
+        {
+          "chapterId": "chengdu-line1-jincheng-rename-2013",
+          "date": "2013-07-08",
+          "sourceUrl": "https://news.sina.com.cn/c/2013-07-05/174027588924.shtml",
+          "sourceAuthority": "commercial_media_republish",
+          "httpStatus": 200,
+          "readable": true,
+          "dateConfirmed": true,
+          "orderConfirmed": "not_checkable",
+          "locator": "正文第 1 段（发布 2013-07-05，转四川新闻网稿）",
+          "quote": "从7月8日起，当广播提醒：“锦城广场站到了!”的时候，各位乘客一定不要忘了下车",
+          "issues": [
+            "来源为新浪转载四川新闻网稿，非官方",
+            "本条为站名变更事件（海洋公园→锦城广场），group 为全线 17 站，官方文件未列站序，无从核对",
+            "原文称更名经成都市政府批准，但未见政府批准文件原件"
+          ],
+          "sourceSha256": "88409bc5dc6e9045c25a74a74bb22397c5699798547f2dc1ac02598d4b47ec86",
+          "verdict": "unverified"
+        }
+      ],
+      "verifiedCount": 0,
+      "unverifiedCount": 31,
+      "verdict": "incomplete",
+      "note": "成都共 31 条，通过 0 条，未通过 31 条。通过口径：须有官方（政府/运营方/发行人披露）可读文件，日期在原文明确写出该开通日，且 groups 站序被该官方文件逐站列举并与本条一致。实测：25 条日期在所引文件中有明确日历日（非『预计』『年底』），其中 21 条另有官方文件佐证（募集说明书 9 条、集团大事记或官网开通稿 8 条、施工方企业官网 3 条、运营方官网 1 条），4 条仅见媒体（chengdu-opening-line18-futian-2023、chengdu-line2-east-suspended、chengdu-line1-ocean-2013、chengdu-line1-jincheng-rename-2013）；但无一条官方文件逐站列举站序——募集说明书只给『车站数』，集团官网《发展历程·大事记》与官网开通稿只给日期与总站数，故 orderConfirmed 全部为 not_checkable 或 false，按此口径一条都不能标为已核对。未通过主因五类：一、站点集合不符（2 条）：chengdu-opening-eight27-2024（27 号线一期官方 23 站、本条 22 站，缺 1 站）、chengdu-network-milestone-2025-12-16（30 号线一期官方 24 站、本条 22 站，缺 2 站）。二、来源打不开（1 条）：chengdu-opening-line10-first-2017（tunnelling.cn 返回 502；日期已由募集说明书与大事记另行确认，站序仍不可核）。三、日期互相冲突（1 条）：chengdu-opening-line4-first-2015（所引澎湃稿写 2015-12-26，募集说明书表记 2016.1.1，大事记未收录该年开通，无法裁决）。四、日期未写出或不可确认（5 条）：chengdu-opening-line18-terminal-2021（只写『与机场开航同步投运』）、chengdu-opening-line18-tianfu-2023（所引 19 号线稿未提天府站开站）、chengdu-opening-line6-qingdao-2024（只写『后天』）、chengdu-opening-line6-lujiao-2025（全文无日期）、chengdu-reorganization-17-19-2023（只讲拆分方案，无生效日）。五、日期可确认但站序不可核（22 条）：所引文件为募集说明书 9 条、中国通号/中国中铁企业官网 3 条、运营方官网 1 条、媒体或行业门户 9 条；其中 chengdu-network-milestone-2020-09-27 所引澎湃稿虽逐站列出 8 站且与本条完全一致，但属开通前一日预告且为媒体，按规则不计通过。另：31 条共 43 个 group 全部没有 constructionStationNames，建设子段一项整体无从核对，属数据缺口。证据文件存 .tmp-src：募集说明书 PDF sha256=c3372ad4dd245ff5d66416f714caa5bacd5a96171d34e5d11a0a9f822e1290c7；各条附 sourceSha256 与 alternativeSource（如适用）。另发现 chapterId 与 date 不一致 2 条（chengdu-network-milestone-2017-12-26 实为 2017-06-02、chengdu-network-milestone-2019-06-02 实为 2019-12-27），以及 chengdu-opening-line18-tianfu-2023 与 chengdu-network-milestone-2023-11-28 引同一篇 19 号线二期稿却声称不同事件。结论：成都历史里程碑不具备『已核对』条件，需补齐逐站列举的官方开通公告后再复核。"
+    }
+  }
+}

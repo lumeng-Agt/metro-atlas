@@ -1,0 +1,899 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "city": "shanghai",
+  "interchanges": {
+    "roster": [
+      {
+        "station": "一大会址·新天地",
+        "lines": [
+          "10",
+          "13"
+        ],
+        "locator": "10号线站序第12位；13号线站序第16位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=10"
+      },
+      {
+        "station": "一大会址·黄陂南路",
+        "lines": [
+          "1",
+          "14"
+        ],
+        "locator": "1号线站序第12位；14号线站序第15位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "上海体育馆",
+        "lines": [
+          "1",
+          "4"
+        ],
+        "locator": "1号线站序第7位；4号线站序第26位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "上海南站",
+        "lines": [
+          "1",
+          "3",
+          "15"
+        ],
+        "locator": "1号线站序第5位；3号线站序第1位；15号线站序第12位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "上海火车站",
+        "lines": [
+          "1",
+          "3",
+          "4"
+        ],
+        "locator": "1号线站序第16位；3号线站序第13位；4号线站序第9位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "上海西站",
+        "lines": [
+          "11",
+          "15"
+        ],
+        "locator": "11号线站序第16位；15号线站序第23位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=11"
+      },
+      {
+        "station": "世纪大道",
+        "lines": [
+          "2",
+          "4",
+          "6",
+          "9"
+        ],
+        "locator": "2号线站序第17位；4号线站序第16位；6号线站序第12位；9号线站序第25位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "东安路",
+        "lines": [
+          "4",
+          "7"
+        ],
+        "locator": "4号线站序第24位；7号线站序第22位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4"
+      },
+      {
+        "station": "东方体育中心",
+        "lines": [
+          "6",
+          "8",
+          "11"
+        ],
+        "locator": "6号线站序第1位；8号线站序第7位；11号线站序第28位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6"
+      },
+      {
+        "station": "东明路",
+        "lines": [
+          "6",
+          "13"
+        ],
+        "locator": "6号线站序第6位；13号线站序第22位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6"
+      },
+      {
+        "station": "中山公园",
+        "lines": [
+          "2",
+          "3",
+          "4"
+        ],
+        "locator": "2号线站序第9位；3号线站序第8位；4号线站序第4位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "中潭路",
+        "lines": [
+          "3",
+          "4"
+        ],
+        "locator": "3号线站序第12位；4号线站序第8位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "云山路",
+        "lines": [
+          "6",
+          "14"
+        ],
+        "locator": "6号线站序第17位；14号线站序第24位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6"
+      },
+      {
+        "station": "交通大学",
+        "lines": [
+          "10",
+          "11"
+        ],
+        "locator": "10号线站序第9位；11号线站序第22位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=10"
+      },
+      {
+        "station": "人民广场",
+        "lines": [
+          "1",
+          "2",
+          "8"
+        ],
+        "locator": "1号线站序第13位；2号线站序第13位；8号线站序第16位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "华夏中路",
+        "lines": [
+          "13",
+          "16"
+        ],
+        "locator": "13号线站序第28位；16号线站序第2位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=13"
+      },
+      {
+        "station": "南京东路",
+        "lines": [
+          "2",
+          "10"
+        ],
+        "locator": "2号线站序第14位；10号线站序第15位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "南京西路",
+        "lines": [
+          "2",
+          "12",
+          "13"
+        ],
+        "locator": "2号线站序第12位；12号线站序第15位；13号线站序第14位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "呼兰路",
+        "lines": [
+          "1",
+          "18"
+        ],
+        "locator": "1号线站序第24位；18号线站序第30位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "嘉善路",
+        "lines": [
+          "9",
+          "12"
+        ],
+        "locator": "9号线站序第19位；12号线站序第13位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9"
+      },
+      {
+        "station": "四平路",
+        "lines": [
+          "8",
+          "10"
+        ],
+        "locator": "8号线站序第22位；10号线站序第20位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8"
+      },
+      {
+        "station": "国权路",
+        "lines": [
+          "10",
+          "18"
+        ],
+        "locator": "10号线站序第22位；18号线站序第22位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=10"
+      },
+      {
+        "station": "大世界",
+        "lines": [
+          "8",
+          "14"
+        ],
+        "locator": "8号线站序第15位；14号线站序第16位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8"
+      },
+      {
+        "station": "大木桥路",
+        "lines": [
+          "4",
+          "12"
+        ],
+        "locator": "4号线站序第23位；12号线站序第12位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4"
+      },
+      {
+        "station": "大渡河路",
+        "lines": [
+          "13",
+          "15"
+        ],
+        "locator": "13号线站序第6位；15号线站序第20位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=13"
+      },
+      {
+        "station": "大连路",
+        "lines": [
+          "4",
+          "12"
+        ],
+        "locator": "4号线站序第13位；12号线站序第21位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4"
+      },
+      {
+        "station": "天潼路",
+        "lines": [
+          "10",
+          "12"
+        ],
+        "locator": "10号线站序第16位；12号线站序第18位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=10"
+      },
+      {
+        "station": "娄山关路",
+        "lines": [
+          "2",
+          "15"
+        ],
+        "locator": "2号线站序第8位；15号线站序第18位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "宜山路",
+        "lines": [
+          "3",
+          "4",
+          "9"
+        ],
+        "locator": "3号线站序第5位；4号线站序第1位；9号线站序第16位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "宝山路",
+        "lines": [
+          "3",
+          "4"
+        ],
+        "locator": "3号线站序第14位；4号线站序第10位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "巨峰路",
+        "lines": [
+          "6",
+          "12"
+        ],
+        "locator": "6号线站序第21位；12号线站序第28位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6"
+      },
+      {
+        "station": "常熟路",
+        "lines": [
+          "1",
+          "7"
+        ],
+        "locator": "1号线站序第10位；7号线站序第20位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "延安西路",
+        "lines": [
+          "3",
+          "4"
+        ],
+        "locator": "3号线站序第7位；4号线站序第3位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "徐家汇",
+        "lines": [
+          "1",
+          "9",
+          "11"
+        ],
+        "locator": "1号线站序第8位；9号线站序第17位；11号线站序第23位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "御桥",
+        "lines": [
+          "11",
+          "18"
+        ],
+        "locator": "11号线站序第33位；18号线站序第8位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=11"
+      },
+      {
+        "station": "成山路",
+        "lines": [
+          "8",
+          "13"
+        ],
+        "locator": "8号线站序第9位；13号线站序第21位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8"
+      },
+      {
+        "station": "昌邑路",
+        "lines": [
+          "14",
+          "18"
+        ],
+        "locator": "14号线站序第22位；18号线站序第16位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=14"
+      },
+      {
+        "station": "曲阜路",
+        "lines": [
+          "8",
+          "12"
+        ],
+        "locator": "8号线站序第17位；12号线站序第17位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8"
+      },
+      {
+        "station": "曹杨路",
+        "lines": [
+          "3",
+          "4",
+          "11",
+          "14"
+        ],
+        "locator": "3号线站序第10位；4号线站序第6位；11号线站序第19位；14号线站序第11位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "杨高中路",
+        "lines": [
+          "9",
+          "18"
+        ],
+        "locator": "9号线站序第26位；18号线站序第14位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9"
+      },
+      {
+        "station": "桂林公园",
+        "lines": [
+          "12",
+          "15"
+        ],
+        "locator": "12号线站序第7位；15号线站序第13位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=12"
+      },
+      {
+        "station": "桂林路",
+        "lines": [
+          "9",
+          "15"
+        ],
+        "locator": "9号线站序第15位；15号线站序第14位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9"
+      },
+      {
+        "station": "武宁路",
+        "lines": [
+          "13",
+          "14"
+        ],
+        "locator": "13号线站序第9位；14号线站序第12位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=13"
+      },
+      {
+        "station": "民生路",
+        "lines": [
+          "6",
+          "18"
+        ],
+        "locator": "6号线站序第14位；18号线站序第15位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6"
+      },
+      {
+        "station": "汉中路",
+        "lines": [
+          "1",
+          "12",
+          "13"
+        ],
+        "locator": "1号线站序第15位；12号线站序第16位；13号线站序第12位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "江浦公园",
+        "lines": [
+          "12",
+          "18"
+        ],
+        "locator": "12号线站序第22位；18号线站序第19位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=12"
+      },
+      {
+        "station": "江浦路",
+        "lines": [
+          "8",
+          "18"
+        ],
+        "locator": "8号线站序第24位；18号线站序第20位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8"
+      },
+      {
+        "station": "江苏路",
+        "lines": [
+          "2",
+          "11"
+        ],
+        "locator": "2号线站序第10位；11号线站序第21位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "浦东大道",
+        "lines": [
+          "4",
+          "14"
+        ],
+        "locator": "4号线站序第15位；14号线站序第20位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4"
+      },
+      {
+        "station": "海伦路",
+        "lines": [
+          "4",
+          "10"
+        ],
+        "locator": "4号线站序第11位；10号线站序第18位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4"
+      },
+      {
+        "station": "港城路",
+        "lines": [
+          "6",
+          "10"
+        ],
+        "locator": "6号线站序第28位；10号线站序第32位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6"
+      },
+      {
+        "station": "漕宝路",
+        "lines": [
+          "1",
+          "12"
+        ],
+        "locator": "1号线站序第6位；12号线站序第8位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "真如",
+        "lines": [
+          "11",
+          "14"
+        ],
+        "locator": "11号线站序第17位；14号线站序第9位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=11"
+      },
+      {
+        "station": "罗山路",
+        "lines": [
+          "11",
+          "16"
+        ],
+        "locator": "11号线站序第34位；16号线站序第3位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=11"
+      },
+      {
+        "station": "耀华路",
+        "lines": [
+          "7",
+          "8"
+        ],
+        "locator": "7号线站序第26位；8号线站序第10位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=7"
+      },
+      {
+        "station": "老西门",
+        "lines": [
+          "8",
+          "10"
+        ],
+        "locator": "8号线站序第14位；10号线站序第13位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8"
+      },
+      {
+        "station": "肇嘉浜路",
+        "lines": [
+          "7",
+          "9"
+        ],
+        "locator": "7号线站序第21位；9号线站序第18位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=7"
+      },
+      {
+        "station": "莘庄",
+        "lines": [
+          "1",
+          "5"
+        ],
+        "locator": "1号线站序第1位；5号线站序第1位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "莲溪路",
+        "lines": [
+          "13",
+          "18"
+        ],
+        "locator": "13号线站序第27位；18号线站序第9位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=13"
+      },
+      {
+        "station": "蓝天路",
+        "lines": [
+          "9",
+          "14"
+        ],
+        "locator": "9号线站序第28位；14号线站序第25位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9"
+      },
+      {
+        "station": "蓝村路",
+        "lines": [
+          "4",
+          "6"
+        ],
+        "locator": "4号线站序第18位；6号线站序第10位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4"
+      },
+      {
+        "station": "虹口足球场",
+        "lines": [
+          "3",
+          "8"
+        ],
+        "locator": "3号线站序第16位；8号线站序第20位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "虹桥2号航站楼",
+        "lines": [
+          "2",
+          "10"
+        ],
+        "locator": "2号线站序第4位；10号线站序第2位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "虹桥火车站",
+        "lines": [
+          "2",
+          "10",
+          "17"
+        ],
+        "locator": "2号线站序第3位；10号线站序第1位；17号线站序第1位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "虹桥路",
+        "lines": [
+          "3",
+          "4",
+          "10"
+        ],
+        "locator": "3号线站序第6位；4号线站序第2位；10号线站序第8位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "西藏南路",
+        "lines": [
+          "4",
+          "8"
+        ],
+        "locator": "4号线站序第21位；8号线站序第12位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4"
+      },
+      {
+        "station": "豫园",
+        "lines": [
+          "10",
+          "14"
+        ],
+        "locator": "10号线站序第14位；14号线站序第17位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=10"
+      },
+      {
+        "station": "金沙江路",
+        "lines": [
+          "3",
+          "4",
+          "13"
+        ],
+        "locator": "3号线站序第9位；4号线站序第5位；13号线站序第7位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "金海路",
+        "lines": [
+          "9",
+          "12"
+        ],
+        "locator": "9号线站序第32位；12号线站序第32位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9"
+      },
+      {
+        "station": "铜川路",
+        "lines": [
+          "14",
+          "15"
+        ],
+        "locator": "14号线站序第8位；15号线站序第22位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=14"
+      },
+      {
+        "station": "镇坪路",
+        "lines": [
+          "3",
+          "4",
+          "7"
+        ],
+        "locator": "3号线站序第11位；4号线站序第7位；7号线站序第16位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "长寿路",
+        "lines": [
+          "7",
+          "13"
+        ],
+        "locator": "7号线站序第17位；13号线站序第10位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=7"
+      },
+      {
+        "station": "长江南路",
+        "lines": [
+          "3",
+          "18"
+        ],
+        "locator": "3号线站序第21位；18号线站序第26位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "长清路",
+        "lines": [
+          "7",
+          "13"
+        ],
+        "locator": "7号线站序第25位；13号线站序第20位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=7"
+      },
+      {
+        "station": "陆家嘴",
+        "lines": [
+          "2",
+          "14"
+        ],
+        "locator": "2号线站序第15位；14号线站序第18位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "陆家浜路",
+        "lines": [
+          "8",
+          "9"
+        ],
+        "locator": "8号线站序第13位；9号线站序第22位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=8"
+      },
+      {
+        "station": "陕西南路",
+        "lines": [
+          "1",
+          "10",
+          "12"
+        ],
+        "locator": "1号线站序第11位；10号线站序第11位；12号线站序第14位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=1"
+      },
+      {
+        "station": "隆德路",
+        "lines": [
+          "11",
+          "13"
+        ],
+        "locator": "11号线站序第20位；13号线站序第8位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=11"
+      },
+      {
+        "station": "静安寺",
+        "lines": [
+          "2",
+          "7",
+          "14"
+        ],
+        "locator": "2号线站序第11位；7号线站序第19位；14号线站序第14位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      },
+      {
+        "station": "顾村公园",
+        "lines": [
+          "7",
+          "15"
+        ],
+        "locator": "7号线站序第5位；15号线站序第30位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=7"
+      },
+      {
+        "station": "马当路",
+        "lines": [
+          "9",
+          "13"
+        ],
+        "locator": "9号线站序第21位；13号线站序第17位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=9"
+      },
+      {
+        "station": "高科西路",
+        "lines": [
+          "6",
+          "7"
+        ],
+        "locator": "6号线站序第7位；7号线站序第28位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=6"
+      },
+      {
+        "station": "龙华",
+        "lines": [
+          "11",
+          "12"
+        ],
+        "locator": "11号线站序第25位；12号线站序第10位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=11"
+      },
+      {
+        "station": "龙华中路",
+        "lines": [
+          "7",
+          "12"
+        ],
+        "locator": "7号线站序第23位；12号线站序第11位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=7"
+      },
+      {
+        "station": "龙漕路",
+        "lines": [
+          "3",
+          "12"
+        ],
+        "locator": "3号线站序第3位；12号线站序第9位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=3"
+      },
+      {
+        "station": "龙阳路",
+        "lines": [
+          "2",
+          "7",
+          "16",
+          "18"
+        ],
+        "locator": "2号线站序第20位；7号线站序第32位；16号线站序第1位；18号线站序第12位",
+        "source": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=2"
+      }
+    ],
+    "onlyInOfficial": [
+      "中潭路",
+      "延安西路"
+    ],
+    "onlyInGame": [],
+    "verdict": "incomplete",
+    "note": "依据与读到的内容：名册来自运营方（上海地铁）车站码换乘位掩码的解码结果，逐站再与运营方站序交叉核对——86 个换乘站、131 个线路对，全部能在对应线路的官方站序里找到同名站，0 处对不上。原始抓取件与 sha256 见 data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json：换乘码页 https://service.shmetro.com/czxx/index.htm（检索 2026-10-23）、解码器 https://service.shmetro.com/skin/js/metrostations.js（2026-10-26）、18 条线路站序端点 https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=N（检索 2026-10-23）。本轮复核（2026-10-28）实测：service.shmetro.com、m.shmetro.com、www.shmetro.com 的任意路径均 301 跳回站点根目录，最终只返回 366 字节占位页（HTTP 200），换乘码与站序本轮无法重新逐站抄录，只能核对既有官方抓取件及其哈希；因此本项不能算独立复现，如实记为未完成。集合对比：官方 86 站/131 对，游戏清单 84 站/123 对；官方有而游戏整站缺席的是「中潭路」「延安西路」，虚项 0 个。这两个站只由 3、4 号线服务，官方把共轨段的 3↔4 记为换乘；游戏把共轨段当作同一站体，所以不产生换乘记录（同段其余 6 站因另有第三线，仍以别的换乘对出现在名册里）。更完整的缺口是 8 个 3↔4 换乘对在游戏 transfers 中全部缺失：虹桥路、延安西路、中山公园、金沙江路、曹杨路、镇坪路、中潭路、上海火车站；相反，宝山路（3-4）和宜山路（3-4）游戏却有。这条差异不是简单的漏抄，而是模型口径问题：若坚持「共轨段同站体、无需换乘」，就必须在规则里显式声明并把 8 对映射到 sharedRunningSections，否则名册永远比官方少 8 对、2 站。出站换乘的处理（按要求单列）：官方掩码确实把出站/通道换乘也算作换乘站——南京西路（2/12/13）、陕西南路（1/10/12）、上海火车站（1/3/4）、呼兰路（1/18）、宜山路（3/4/9）都在名册内，游戏也全部保留，这一点口径一致。上海火车站 1 号线与 3 号线需刷码出站才能换乘，有官方说明（https://www.shanghai.gov.cn/xbhygq/20231206/646ef8c98d8b4b0995177dd8c71d595c.html，2023-12-06，原文举例「上海火车站3号线换乘1号线，因为需要刷码出站才能换乘」）。南京西路三线通道到 2026-07-03 才拿到建设用地/建设工程规划许可证（https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html），截止日尚未开通，所以截止日仍按出站换乘计，游戏把它标成 reserved 与官方一致。呼兰路官方写的是「通道+天桥」连接 1 号线高架站（https://www.gzw.sh.gov.cn/shgzw_zxzx_gqdt/20251225/6be68208a5fc4fb896f70df2cb3d610e.html，2025-12-25），属通道换乘而非同站台。未开通站不计入：18 号线二期江杨南路官方明确「暂不开通」（https://www.shanghai.gov.cn/nw17239/20260112/8a7a57212c78409192cfb3ccefb8b9c7.html，2026-01-12），名册与游戏清单都没有它，处理一致。陕西南路只确认到掩码把它算作换乘站，本轮没有找到官方文件说明它是站内还是出站换乘，故不臆断其换乘形式。结论 incomplete：缺口是 3/4 共轨段的 8 个 3↔4 换乘对（或补一条显式等价规则），以及本轮无法重新抓取掩码做独立复现。"
+  },
+  "temporal": {
+    "evidence": [
+      {
+        "source": "https://jtw.sh.gov.cn/xwfb2/20251027/14557ac7aeaa4e95a61cce023ce01a55.html",
+        "effectiveDate": "2025-11-01",
+        "scope": "2号线西延伸（国家会展中心站不含—蟠祥路·国家会计学院站）开通初期运营，新增 1 站 1 区间；开通后全网 898 公里、518 座车站。该站为 2 号线西端终点站，不构成换乘站。"
+      },
+      {
+        "source": "https://www.shanghai.gov.cn/nw17239/20260112/8a7a57212c78409192cfb3ccefb8b9c7.html",
+        "effectiveDate": "2025-12-27",
+        "scope": "18号线二期开通初期运营：长江南路（不含）—康文路，投入 5 站（通南路、长江西路、爱辉路、呼兰路、康文路）；江杨南路站暂不开通，不计入截止日停站。"
+      },
+      {
+        "source": "https://www.gzw.sh.gov.cn/shgzw_zxzx_gqdt/20251225/6be68208a5fc4fb896f70df2cb3d610e.html",
+        "effectiveDate": "2025-12-27",
+        "scope": "18号线二期共设 6 座地下车站（通南路、长江西路、江杨南路、爱辉路、呼兰路、康文路），换乘站 2 座：呼兰路以「通道+天桥」换 1 号线，江杨南路未来换 19 号线；开通后上海地铁运营里程突破 900 公里。"
+      },
+      {
+        "source": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html",
+        "effectiveDate": "2026-02-22",
+        "scope": "3/4号线宝山路站升级改造完成，2月22日首班车起 3/4 号线全线恢复正常运营、临时短驳取消；宝山路改为「3台4向」：1号站台 4号线外圈（独立）、2号站台 3号线往上海南站、3号站台 3号线往江杨北路+4号线内圈（共用）。属运营调整，不新增车站。"
+      },
+      {
+        "source": "https://www.shanghai.gov.cn/gwk/search/content/b0582d1a6ea2499c9d8a775be9db235d",
+        "effectiveDate": "2025-12-31",
+        "scope": "市发改委 2026-08-19 听证公告附件《优化上海市轨道交通票价机制听证方案》称「2025年底，我市已开通运营的轨道交通共19条，运营里程818公里（不含磁浮线、金山铁路、市域机场线）」，即 1—18 号线加浦江线；用于锚定截止日前未再开通新线。"
+      },
+      {
+        "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+        "effectiveDate": "2026-07-03",
+        "scope": "南京西路站三线换乘通道工程（连接 2、12、13 号线）取得建设用地规划许可证与建设工程规划许可证，仍处开工前阶段，截止日未开通——不是开通事件，用于证明该换乘形态在截止日未改变。"
+      },
+      {
+        "source": "https://www.shanghai.gov.cn/nw4411/20240623/bd6f1c2aecea445db0b48d83c558a41e.html",
+        "effectiveDate": "2024-06-22",
+        "scope": "3、4、9号线宜山路站新地下换乘通道启用（全地下、3 段通道），原地面临时通道关闭；证明宜山路三线靠通道换乘，站体分离。"
+      }
+    ],
+    "verdict": "incomplete",
+    "note": "原有 3 条 temporalEvidence 内容完全相同（都是 2017-12-30 9 号线曹路延伸，来源为央广网 cnr.cn，属媒体而非运营方/政府文件），且没有任何一条覆盖 2020 年以后，明显不足以支撑 2026-10-01 的网络状态；本轮未复用这 3 条。补入 7 条官方 https 证据（6 条开通/调整 + 1 条「未开通」反证），实际读到的是网页正文：2 号线西延伸 2025-11-01 开站（上海市交通委员会，2025-10-27 发布，文中给出 898 公里/518 座）；18 号线二期 2025-12-27 初期运营、投入 5 站、江杨南路暂不开通（上海市政府 2026-01-12；市国资委 2025-12-25 另给出 6 站、2 座换乘站与「突破 900 公里」）；3/4 号线宝山路 2026-02-22 恢复全线运营（上海市政府 2026-02-25）；2025 年底全网 19 条、818 公里（市发改委 2026-08-19 听证方案附件，wps 经 LibreOffice 转文本读取）；南京西路三线通道 2026-07-03 仅获规划许可（上海市政府）。最近一次（截止日前）的线路开通是 2025-12-27 的 18 号线二期；最近一次车站启用是 2025-11-01 的 2 号线蟠祥路·国家会计学院站；最近一次与网络拓扑相关的运营调整是 2026-02-22 的宝山路站台拆分。暂缓开通站：江杨南路（18 号线二期）官方写明「暂不开通」，且 2025-12-25 的市国资委稿把它列为「未来与 19 号线换乘」，因此截止日既不能当停站、更不能当换乘站；游戏清单确实没有它，处理正确。缺口（为什么仍判 incomplete）：（1）没有一份官方文件逐线确认 2026-01-01 至 2026-10-01 之间未再开通任何车站，2026-08-19 的听证方案仍以「2025年底 19 条、818 公里」描述现状，只能算强旁证；（2）江杨南路的暂缓状态只在 2025-12 开通当日的文件里出现，没有截止日附近的再次确认；（3）运营方站序本轮抓不到（shmetro 全站返回占位页），无法用最新站序反证 2026 年内没有新增站。另外说明：818 公里/19 条与「898 公里/518 座」口径不同（前者不含磁浮、金山铁路、市域机场线，后者为全网口径），引用时不可混用。"
+  },
+  "sharedRunning": {
+    "verdict": "complete",
+    "discrepancies": [
+      {
+        "item": "共轨区间端点",
+        "expected": "官方：4号线环通段「与原有的轨道交通3号线共用宝山路至虹桥路区间」，即东端到宝山路。",
+        "actual": "游戏 sharedRunningSections 的 stationNames 止于上海火车站（虹桥路…上海火车站共 8 站），宝山路只以 directionalStationRules 单列，未把「上海火车站—宝山路」登记为共线段。",
+        "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+        "impact": "区间少算一段；若按 2026-02-22 后 4 号线外圈在宝山路有独立轨道/站台，也应表述为「上海火车站—宝山路为部分共线（3号线与4号线内圈共线）」，而不是把该段整段排除。",
+        "resolution": "已在 2026-10-28 修订：section 增加 intervalEndpoints=[\"宝山路\",\"虹桥路\"]，与官方「共用宝山路至虹桥路区间」逐字一致；宝山路作为方向性端点由 directionalStationRules 覆盖。审计新增两条强制规则（Python 与运行时各一份）：intervalEndpoints 必须两个不同站、端点里不在 stationNames 中的那个必须恰好等于方向性站台要求的车站集合、stationNames 必须全部落在两端之间（按3号线实际站序）。「上海火车站—宝山路」这一段按部分共线建模：3号线与4号线内圈共用同一站体与同一实体轨道，4号线外圈走自己的站台。",
+        "status": "resolved"
+      },
+      {
+        "item": "「同一物理站体」的表述",
+        "expected": "官方文件能证明的是「共用宝山路至虹桥路区间」（共用区间/钢轨）与宝山路「共用站台」。",
+        "actual": "游戏把 8 站写成同一物理站体并共用实体轨道；站体同一性没有官方文件直接支持（属工程构造细节）。",
+        "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+        "impact": "不是矛盾，是超范围断言；建议改写为「共用同一区间与站台」并注明站体同一性未获官方测绘/工程文件支持。",
+        "resolution": "措辞已按建议改写：「同一物理站体」不再作为对官方的复述，而是记为游戏对官方「共用区间／共用站台」的表示方式；官方未给中心线与站台尺寸，游戏也不据此声明精度。",
+        "status": "wording_fixed"
+      },
+      {
+        "item": "sharedRunningEvidence 的逐站取证强度",
+        "expected": "逐站应有能定位到该站的官方依据。",
+        "actual": "9 条里有 8 条同引同一份 2024-05-26《中央生态环境保护督察群众信访举报转办和边督边改公开情况一览表（第8批）》；该表只能整体证明「共用宝山路至虹桥路区间」和「3/4号线上海火车站-宝山路站 8.04 公里钢轨更换」，不能逐站证明站体同一。",
+        "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+        "impact": "8 条证据实质是 1 条区间级证据复制 8 次，证据条数被高估。",
+        "resolution": "不改数据结构：sharedRunningEvidence 的逐站行是同一份区间级文件按区间内各站各记一行，用于让「漏一站」可判；note 已明确该证据是区间级而不是逐站级，不把条数当强度。",
+        "status": "accepted_as_interval_level"
+      },
+      {
+        "item": "宝山路站台分工（已核对一致）",
+        "expected": "1号站台 4号线外圈；2号站台 3号线往上海南站；3号站台 3号线往江杨北路+4号线内圈。",
+        "actual": "游戏 sourcePlatforms / directionalStationRules 与官方逐条一致。",
+        "source": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html",
+        "impact": "无差异；官方原文另说明「原3/4号线下行共用站台已调整为分离式候车」「4号线外圈由站前接轨改为站后接轨，新增660平方米站台」。"
+      },
+      {
+        "item": "宜山路不共轨（已核对一致）",
+        "expected": "宜山路是 3/4/9 三线通道换乘，站体分离，不属共轨段。",
+        "actual": "游戏把宜山路排除在共轨之外，只作为 3-4、3-9、4-9 换乘站。",
+        "source": "https://www.shanghai.gov.cn/nw4411/20240623/bd6f1c2aecea445db0b48d83c558a41e.html",
+        "impact": "无差异；官方 2024-06-23 报道「3、4、9号线宜山路站新地下换乘通道启用，采用全地下设计，共3段通道」。"
+      }
+    ],
+    "note": "实际读到：官方 2024-05-26 中央生态环保督察公开表原文写「2007年12月，4号线开通运营环通段工程，与原有的轨道交通3号线共用宝山路至虹桥路区间」，并提到「3/4号线宝山路-上海火车站下行侧」与「完成3/4号线上海火车站-宝山路站8.04公里钢轨更换」。宝山路站台分工另有 2026-02-25 上海市政府稿逐条写明，与游戏的 1/2/3 号站台分配完全一致。宜山路：官方 2024-06-23 报道以「全地下、3段通道」换乘、站体分离，游戏不纳入共轨。本轮修订把区间端点从「虹桥路—上海火车站」改成官方写的「宝山路—虹桥路」，并加了两条可判定的强制规则，端点写短或写错都会失败。运行世界复核（tests/shanghai_shared_running_checks.gd，29 项 0 失败）：虹桥路—上海火车站 8 站两线共用同一站体与同一实体轨道；上海火车站—宝山路 由 3 号线与 4 号线内圈共用、4 号线外圈走自己的站台且不停共用站台；中潭路、延安西路各是一座站体、两线都停靠。证据强度说明：sharedRunningEvidence 的逐站行同引这一份区间级文件，是「区间文件＋运营方站序」推出区间内各站，不是逐站测绘；「同一站体」是游戏对「共用区间／共用站台」的表示方式，官方未给中心线与站台尺寸，游戏也不声明该精度。因此本项结论到「共用区间端点、共用站台、共用实体轨道」这一层，到不了测绘级。"
+  }
+}

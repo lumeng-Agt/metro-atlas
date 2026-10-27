@@ -1,0 +1,1683 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "cities": {
+    "beijing": {
+      "interchanges": {
+        "roster": [
+          {
+            "station": "七里庄",
+            "lines": [
+              "9",
+              "14"
+            ],
+            "locator": "官方站表 sline=8,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "三元桥",
+            "lines": [
+              "10",
+              "12",
+              "首都机场"
+            ],
+            "locator": "官方站表 sline=9,29,21 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "东单",
+            "lines": [
+              "1",
+              "5"
+            ],
+            "locator": "官方站表 sline=1,4 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "东四",
+            "lines": [
+              "5",
+              "6"
+            ],
+            "locator": "官方站表 sline=4,5 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "东四十条",
+            "lines": [
+              "2",
+              "3"
+            ],
+            "locator": "官方站表 sline=2,28 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "东坝北",
+            "lines": [
+              "3",
+              "12"
+            ],
+            "locator": "官方站表 sline=28,29 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "东大桥",
+            "lines": [
+              "6",
+              "17"
+            ],
+            "locator": "官方站表 sline=5,15 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "东直门",
+            "lines": [
+              "2",
+              "13",
+              "首都机场"
+            ],
+            "locator": "官方站表 sline=2,11,21 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "东管头南",
+            "lines": [
+              "16",
+              "房山"
+            ],
+            "locator": "房山线北延段（官方 sline=20 表未更新，图上有站）；同名站见 sline=14,20；换乘符号见线网图",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "丰台南路",
+            "lines": [
+              "9",
+              "16"
+            ],
+            "locator": "官方站表 sline=8,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "丰台站",
+            "lines": [
+              "10",
+              "16"
+            ],
+            "locator": "官方站表 sline=9,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "丽泽商务区",
+            "lines": [
+              "14",
+              "16"
+            ],
+            "locator": "官方站表 sline=12,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "九龙山",
+            "lines": [
+              "7",
+              "14"
+            ],
+            "locator": "官方站表 sline=6,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "二里沟",
+            "lines": [
+              "6",
+              "16"
+            ],
+            "locator": "官方站表 sline=5,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "人民大学",
+            "lines": [
+              "4",
+              "12"
+            ],
+            "locator": "官方站表 sline=3,29 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "光熙门",
+            "lines": [
+              "12",
+              "13"
+            ],
+            "locator": "官方站表 sline=29,11 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "公主坟",
+            "lines": [
+              "1",
+              "10"
+            ],
+            "locator": "官方站表 sline=1,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "六道口",
+            "lines": [
+              "15",
+              "昌平"
+            ],
+            "locator": "官方站表 sline=13,18 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "六里桥",
+            "lines": [
+              "9",
+              "10"
+            ],
+            "locator": "官方站表 sline=8,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "军事博物馆",
+            "lines": [
+              "1",
+              "9"
+            ],
+            "locator": "官方站表 sline=1,8 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "前门",
+            "lines": [
+              "2",
+              "8"
+            ],
+            "locator": "官方站表 sline=2,7 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "北京南站",
+            "lines": [
+              "4",
+              "14"
+            ],
+            "locator": "官方站表 sline=3,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "北京西站",
+            "lines": [
+              "7",
+              "9"
+            ],
+            "locator": "官方站表 sline=6,8 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "北土城",
+            "lines": [
+              "8",
+              "10"
+            ],
+            "locator": "官方站表 sline=7,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "北太平庄",
+            "lines": [
+              "12",
+              "19"
+            ],
+            "locator": "官方站表 sline=29,16 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "北新桥",
+            "lines": [
+              "5",
+              "首都机场"
+            ],
+            "locator": "官方站表 sline=4,21 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "十里河",
+            "lines": [
+              "10",
+              "14",
+              "17"
+            ],
+            "locator": "官方站表 sline=9,12,15 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "南锣鼓巷",
+            "lines": [
+              "6",
+              "8"
+            ],
+            "locator": "官方站表 sline=5,7 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "双井",
+            "lines": [
+              "7",
+              "10"
+            ],
+            "locator": "官方站表 sline=6,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "呼家楼",
+            "lines": [
+              "6",
+              "10"
+            ],
+            "locator": "官方站表 sline=5,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "和平西桥",
+            "lines": [
+              "5",
+              "12"
+            ],
+            "locator": "官方站表 sline=4,29 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "回龙观东大街",
+            "lines": [
+              "8",
+              "18"
+            ],
+            "locator": "官方站表 sline=7,30 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "团结湖",
+            "lines": [
+              "3",
+              "10"
+            ],
+            "locator": "官方站表 sline=28,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "国家图书馆",
+            "lines": [
+              "4",
+              "9",
+              "16"
+            ],
+            "locator": "官方站表 sline=3,8,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "国贸",
+            "lines": [
+              "1",
+              "10"
+            ],
+            "locator": "官方站表 sline=1,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "复兴门",
+            "lines": [
+              "1",
+              "2"
+            ],
+            "locator": "官方站表 sline=1,2 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "大屯路东",
+            "lines": [
+              "5",
+              "15"
+            ],
+            "locator": "官方站表 sline=4,13 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "大望路",
+            "lines": [
+              "1",
+              "14"
+            ],
+            "locator": "官方站表 sline=1,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "大红门",
+            "lines": [
+              "8",
+              "10"
+            ],
+            "locator": "官方站表 sline=7,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "大钟寺",
+            "lines": [
+              "12",
+              "13"
+            ],
+            "locator": "官方站表 sline=29,11 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "天通苑",
+            "lines": [
+              "5",
+              "18"
+            ],
+            "locator": "官方站表 sline=4,30 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "天通苑东",
+            "lines": [
+              "17",
+              "18"
+            ],
+            "locator": "官方站表 sline=15,30 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "太阳宫",
+            "lines": [
+              "10",
+              "17"
+            ],
+            "locator": "官方站表 sline=9,15 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "奥林匹克公园",
+            "lines": [
+              "8",
+              "15"
+            ],
+            "locator": "官方站表 sline=7,13 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "安华桥",
+            "lines": [
+              "8",
+              "12"
+            ],
+            "locator": "官方站表 sline=7,29 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "宋家庄",
+            "lines": [
+              "5",
+              "10",
+              "亦庄"
+            ],
+            "locator": "官方站表 sline=4,9,23 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "宣武门",
+            "lines": [
+              "2",
+              "4"
+            ],
+            "locator": "官方站表 sline=2,3 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "崇文门",
+            "lines": [
+              "2",
+              "5"
+            ],
+            "locator": "官方站表 sline=2,4 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "工人体育场",
+            "lines": [
+              "3",
+              "17"
+            ],
+            "locator": "官方站表 sline=28,15 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "平安里",
+            "lines": [
+              "4",
+              "6",
+              "19"
+            ],
+            "locator": "官方站表 sline=3,5,16 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "建国门",
+            "lines": [
+              "1",
+              "2"
+            ],
+            "locator": "官方站表 sline=1,2 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "惠新西街南口",
+            "lines": [
+              "5",
+              "10"
+            ],
+            "locator": "官方站表 sline=4,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "慈寿寺",
+            "lines": [
+              "6",
+              "10"
+            ],
+            "locator": "官方站表 sline=5,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "新宫",
+            "lines": [
+              "4",
+              "19"
+            ],
+            "locator": "官方站表 sline=3,16 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "景风门",
+            "lines": [
+              "14",
+              "19"
+            ],
+            "locator": "官方站表 sline=12,16 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "望京",
+            "lines": [
+              "14",
+              "15"
+            ],
+            "locator": "官方站表 sline=12,13 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "望京西",
+            "lines": [
+              "13",
+              "15",
+              "17"
+            ],
+            "locator": "官方站表 sline=11,13,15 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "朝阳公园",
+            "lines": [
+              "3",
+              "14"
+            ],
+            "locator": "官方站表 sline=28,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "朝阳门",
+            "lines": [
+              "2",
+              "6"
+            ],
+            "locator": "官方站表 sline=2,5 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "木樨地",
+            "lines": [
+              "1",
+              "16"
+            ],
+            "locator": "官方站表 sline=1,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "朱辛庄",
+            "lines": [
+              "8",
+              "昌平"
+            ],
+            "locator": "官方站表 sline=7,18 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "次渠",
+            "lines": [
+              "17",
+              "亦庄"
+            ],
+            "locator": "官方站表 sline=15,23 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "永安里",
+            "lines": [
+              "1",
+              "17"
+            ],
+            "locator": "官方站表 sline=1,15 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "永定门外",
+            "lines": [
+              "8",
+              "14"
+            ],
+            "locator": "官方站表 sline=7,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "海淀黄庄",
+            "lines": [
+              "4",
+              "10"
+            ],
+            "locator": "官方站表 sline=3,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "清河",
+            "lines": [
+              "13",
+              "昌平"
+            ],
+            "locator": "官方站表 sline=11,18 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "牡丹园",
+            "lines": [
+              "10",
+              "19"
+            ],
+            "locator": "官方站表 sline=9,16 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "王府井",
+            "lines": [
+              "1",
+              "8"
+            ],
+            "locator": "官方站表 sline=1,7 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "环球度假区",
+            "lines": [
+              "1",
+              "7"
+            ],
+            "locator": "官方站表 sline=1,6 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "珠市口",
+            "lines": [
+              "7",
+              "8"
+            ],
+            "locator": "官方站表 sline=6,7 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "白石桥南",
+            "lines": [
+              "6",
+              "9"
+            ],
+            "locator": "官方站表 sline=5,8 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "知春路",
+            "lines": [
+              "10",
+              "13"
+            ],
+            "locator": "官方站表 sline=9,11 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "磁器口",
+            "lines": [
+              "5",
+              "7"
+            ],
+            "locator": "官方站表 sline=4,6 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "积水潭",
+            "lines": [
+              "2",
+              "19"
+            ],
+            "locator": "官方站表 sline=2,16 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "立水桥",
+            "lines": [
+              "5",
+              "13"
+            ],
+            "locator": "官方站表 sline=4,11 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "芍药居",
+            "lines": [
+              "10",
+              "13"
+            ],
+            "locator": "官方站表 sline=9,11 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "花庄",
+            "lines": [
+              "1",
+              "7"
+            ],
+            "locator": "官方站表 sline=1,6 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "苏州桥",
+            "lines": [
+              "12",
+              "16"
+            ],
+            "locator": "官方站表 sline=29,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "苏州街",
+            "lines": [
+              "10",
+              "16"
+            ],
+            "locator": "官方站表 sline=9,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "苹果园",
+            "lines": [
+              "1",
+              "6"
+            ],
+            "locator": "官方站表 sline=1,5 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "草桥",
+            "lines": [
+              "10",
+              "19",
+              "大兴机场"
+            ],
+            "locator": "官方站表 sline=9,16,26 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "菜市口",
+            "lines": [
+              "4",
+              "7"
+            ],
+            "locator": "官方站表 sline=3,6 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "蒲黄榆",
+            "lines": [
+              "5",
+              "14"
+            ],
+            "locator": "官方站表 sline=4,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "蓟门桥",
+            "lines": [
+              "12",
+              "昌平"
+            ],
+            "locator": "官方站表 sline=29,18 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "西二旗",
+            "lines": [
+              "13",
+              "昌平"
+            ],
+            "locator": "官方站表 sline=11,18 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "西单",
+            "lines": [
+              "1",
+              "4"
+            ],
+            "locator": "官方站表 sline=1,3 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "西土城",
+            "lines": [
+              "10",
+              "昌平"
+            ],
+            "locator": "官方站表 sline=9,18 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "西坝河",
+            "lines": [
+              "12",
+              "17"
+            ],
+            "locator": "官方站表 sline=29,15 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "西局",
+            "lines": [
+              "10",
+              "14"
+            ],
+            "locator": "官方站表 sline=9,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "西直门",
+            "lines": [
+              "2",
+              "4",
+              "13"
+            ],
+            "locator": "官方站表 sline=2,3,11 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "西苑",
+            "lines": [
+              "4",
+              "16"
+            ],
+            "locator": "官方站表 sline=3,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "角门西",
+            "lines": [
+              "4",
+              "10"
+            ],
+            "locator": "官方站表 sline=3,9 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "车公庄",
+            "lines": [
+              "2",
+              "6"
+            ],
+            "locator": "官方站表 sline=2,5 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "达官营",
+            "lines": [
+              "7",
+              "16"
+            ],
+            "locator": "官方站表 sline=6,14 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "郭公庄",
+            "lines": [
+              "9",
+              "房山"
+            ],
+            "locator": "官方站表 sline=8,20 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "金台路",
+            "lines": [
+              "6",
+              "14"
+            ],
+            "locator": "官方站表 sline=5,12 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "金安桥",
+            "lines": [
+              "6",
+              "11"
+            ],
+            "locator": "官方站表 sline=5,10 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "长春桥",
+            "lines": [
+              "10",
+              "12"
+            ],
+            "locator": "官方站表 sline=9,29 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "阎村东",
+            "lines": [
+              "房山",
+              "燕房"
+            ],
+            "locator": "官方站表 sline=20,24 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "雍和宫",
+            "lines": [
+              "2",
+              "5"
+            ],
+            "locator": "官方站表 sline=2,4 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "霍营",
+            "lines": [
+              "8",
+              "13"
+            ],
+            "locator": "官方站表 sline=7,11 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "首经贸",
+            "lines": [
+              "10",
+              "房山"
+            ],
+            "locator": "房山线北延段（官方 sline=20 表未更新，图上有站）；同名站见 sline=9,20；换乘符号见线网图",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "马连洼",
+            "lines": [
+              "16",
+              "18"
+            ],
+            "locator": "官方站表 sline=14,30 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          },
+          {
+            "station": "鼓楼大街",
+            "lines": [
+              "2",
+              "8"
+            ],
+            "locator": "官方站表 sline=2,7 同名站 + 线网图换乘符号",
+            "source": "https://www.bjmoa.cn/viewPhoto_343.html"
+          }
+        ],
+        "onlyInOfficial": [],
+        "onlyInGame": [],
+        "verdict": "complete",
+        "note": "依据：北京市轨道交通运营管理有限公司《路网线网图》页 https://www.bjmoa.cn/viewPhoto_343.html 所链 8001×8000 线网图 https://www.bii.com.cn/file/2026/06/25/1782360280894.jpg（2026-10-27 实抓 HTTP 200，sha256 d6b6b9f85caf815a58ebb4db4c11f6bc926355742806de3269981b066683b5e1，与本地 mapSha256 一致），并逐站核对 26 条线路的官方《路网车站站间距信息》站表 https://www.bjmoa.cn/metroLineList.html?sline=1…30（逐页实抓 200；sline 与线号非顺序对应，按页面“当前线路”标签解析）。判定规则：同一站名出现在两张官方站表、且线网图上画换乘符号，计为换乘站；共 104 座，与游戏 122 条线路对（去重后 104 站）完全一致，无漏项、无虚项。口径：①首都机场线、大兴机场线按地铁制式计入（三元桥、东直门、北新桥、草桥）；②西郊线为有轨电车，故巴沟（10 号线—西郊线，图上确有换乘符号）不计，若改“含有轨”口径则为 105 站；③S1 为磁浮，苹果园官方通稿称“1/6/S1 三线换乘”、金安桥亦接 S1，本名册只取 1/6 与 6/11；④1 号线与八通线、4 号线与大兴线为贯通运营，四惠、四惠东、公益西桥是同一条服务的中间站，不构成换乘；⑤木樨地（1/16）、大钟寺（12/13）图上标“站内换乘，暂缓开通”，现为出站换乘，仍计换乘站；⑥广渠门外只有 7 号线开放，17 号线中段自 2025-12-27 起经过但不停车，官方 17 号线站表（sline=15）不含该站，图上 17 号线在该处也无站符号，故不是换乘站。站名口径：官方 13 号线站表写“清河站”、昌平线写“清河”，为同一站，名册统一记作清河；游戏“清河站”“木樨地（16号线）”为同一站的异写。房山线官方站表缺 2020 年北延四站，东管头南、首经贸的房山线身份以线网图（与花乡东桥、白盆窑同段）确认。没读到的：站间距表是静态表且各表更新日期不一（红庙、陶然桥等暂缓站仍在表中），故站表只用于“线路归属”，开通状态另见 temporal。"
+      },
+      "temporal": {
+        "evidence": [
+          {
+            "source": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+            "effectiveDate": "2024-12-15",
+            "scope": "3号线一期（东四十条—东坝北）、12号线（四季青桥—东坝北）、昌平线南延一期剩余段（西土城—蓟门桥及朱房北）首班车起开通试运营；全市换乘站 98 座。截止网中 3/12 号线全部换乘由此产生。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370880.html",
+            "effectiveDate": "2025-12-27",
+            "scope": "17号线中段（工人体育场—十里河）、18号线（马连洼—天通苑东）、6号线南延（潞城—潞阳）开通试运营（12-28 报道追述“12月27日…开通试运营”）。产生 永安里1/17、东大桥6/17、工人体育场3/17、马连洼16/18、回龙观东大街8/18、天通苑5/18、天通苑东17/18。"
+          },
+          {
+            "source": "https://www.bjmoa.cn/metroLineList.html?sline=15",
+            "effectiveDate": "2025-12-27",
+            "scope": "运营方 17 号线现行站表共 20 站，不含广渠门外；该站仅 7 号线开放，17 号线通过不停车，故不计 7/17 换乘（站表为当前状态，日期取 17 号线中段开通日）。"
+          },
+          {
+            "source": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
+            "effectiveDate": "2026-01-31",
+            "scope": "17号线望京西站开通，与13号线、15号线三线换乘；原13/15换乘天桥同日关闭。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+            "effectiveDate": "2026-02-03",
+            "scope": "否定证据：22号线（红庙—平谷）2026 年底才“基本具备开通条件”；14号线红庙站、首都机场线望京南站仍在推进，截止日均不计入；当日仅提 10 号线火器营、纪家庙等出入口。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202605/t20260516_4653696.html",
+            "effectiveDate": "2026-05-16",
+            "scope": "1号线苹果园、古城、八宝山首班车起恢复运营；八角游乐园因 1 号线支线施工继续通过不停车；苹果园实现 1/6/S1 三线换乘。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260630_4738884.html",
+            "effectiveDate": "2026-06-30",
+            "scope": "6号线通运门站首班车起开通运营（先行开放 A、B 口）。这是截止日 2026-10-01 前最近一次地铁车站开通。"
+          },
+          {
+            "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20260929/5731562.html",
+            "effectiveDate": "2026-09-29",
+            "scope": "1号线福寿岭站启用改造（增加安全出口）仍处招标计划，预计 2026-10-30 才发招标公告，故福寿岭不在截止网。"
+          }
+        ],
+        "verdict": "complete",
+        "note": "游戏现有 5 条不足以支撑，本文件已补足后判 complete。问题：①原第 1 条引 2025-12-24《交通大家谈》预告（原文只说“预计年底开通”），没有任何开通日期，却写成 effectiveDate 2025-12-27；同批开通的 17 号线中段、6 号线南延也完全没写；②原第 2 条把“广渠门外仍未开放”挂在望京西开通稿上，该稿全文未提广渠门外；③缺 2024-12-15 的 3 号线一期/12 号线/昌平线南延剩余段；④缺 2026-02-03 建设计划这条关键否定证据（22 号线、红庙、望京南均未开通）。本文件以首都之窗 2025-12-28 追述报道替换第 1 条，并补 2024-12-15、17 号线站表、2026-02-03 三条。未读到/未检索到：2026-07-01—2026-09-30 北京地铁没有新站开通公告（2026-07-01 城市副中心线属市郊铁路、2026-09-30 火器营 A1 口与纪家庙 C 口只是出入口，均不计）；2025-12-27 的运营方原始开通公告本轮未检索到，只有首都之窗次日报道与交通委 12-24 预告；广渠门外“暂缓”的市政府原始公告也未取到，改用运营方 17 号线站表 + 线网图（17 号线在该处无站符号）作证。"
+      }
+    },
+    "shenzhen": {
+      "interchanges": {
+        "roster": [
+          {
+            "station": "上屋",
+            "lines": [
+              "6",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「6号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "上梅林",
+            "lines": [
+              "4",
+              "9"
+            ],
+            "locator": "深圳市交通运输局线路信息页「4号线/9号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "世界之窗",
+            "lines": [
+              "1",
+              "2"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/2号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "五和",
+            "lines": [
+              "5",
+              "10"
+            ],
+            "locator": "深圳市交通运输局线路信息页「5号线/10号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "会展中心",
+            "lines": [
+              "1",
+              "4"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/4号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "光明",
+            "lines": [
+              "6",
+              "6支"
+            ],
+            "locator": "深圳市交通运输局线路信息页「6号线/6支号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "光明城",
+            "lines": [
+              "13",
+              "6支"
+            ],
+            "locator": "深圳市交通运输局线路信息页「13号线/6支号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "八卦岭",
+            "lines": [
+              "6",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「6号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "公明广场",
+            "lines": [
+              "6",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「6号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "凤凰城",
+            "lines": [
+              "6",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「6号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "前海湾",
+            "lines": [
+              "1",
+              "5",
+              "11"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/5号线/11号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "前湾",
+            "lines": [
+              "5",
+              "9"
+            ],
+            "locator": "深圳市交通运输局线路信息页「5号线/9号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "华强北",
+            "lines": [
+              "2",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "华强南",
+            "lines": [
+              "7",
+              "11"
+            ],
+            "locator": "深圳市交通运输局线路信息页「7号线/11号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "华新",
+            "lines": [
+              "3",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "南山",
+            "lines": [
+              "11",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「11号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "南油",
+            "lines": [
+              "9",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「9号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "双龙",
+            "lines": [
+              "3",
+              "16"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/16号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "后海",
+            "lines": [
+              "2",
+              "11",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/11号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "国展",
+            "lines": [
+              "12",
+              "20"
+            ],
+            "locator": "深圳市交通运输局线路信息页「12号线/20号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "国展北",
+            "lines": [
+              "12",
+              "20"
+            ],
+            "locator": "深圳市交通运输局线路信息页「12号线/20号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "坪山围",
+            "lines": [
+              "14",
+              "16"
+            ],
+            "locator": "深圳市交通运输局线路信息页「14号线/16号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "大剧院",
+            "lines": [
+              "1",
+              "2",
+              "5"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/2号线/5号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "大运",
+            "lines": [
+              "3",
+              "14",
+              "16"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/14号线/16号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "太安",
+            "lines": [
+              "5",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「5号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "孖岭",
+            "lines": [
+              "9",
+              "10"
+            ],
+            "locator": "深圳市交通运输局线路信息页「9号线/10号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "安托山",
+            "lines": [
+              "2",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "宝安中心",
+            "lines": [
+              "1",
+              "5"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/5号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "少年宫",
+            "lines": [
+              "3",
+              "4"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/4号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "岗厦",
+            "lines": [
+              "1",
+              "10"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/10号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "岗厦北",
+            "lines": [
+              "2",
+              "10",
+              "11",
+              "14"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/10号线/11号线/14号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "市民中心",
+            "lines": [
+              "2",
+              "4"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/4号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "布吉",
+            "lines": [
+              "3",
+              "5",
+              "14"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/5号线/14号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "景田",
+            "lines": [
+              "2",
+              "9"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/9号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "机场东",
+            "lines": [
+              "1",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "机场北",
+            "lines": [
+              "11",
+              "20"
+            ],
+            "locator": "深圳市交通运输局线路信息页「11号线/20号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "松岗",
+            "lines": [
+              "6",
+              "11",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「6号线/11号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "桃园",
+            "lines": [
+              "1",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "海上世界",
+            "lines": [
+              "2",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "深圳北",
+            "lines": [
+              "4",
+              "5",
+              "6"
+            ],
+            "locator": "深圳市交通运输局线路信息页「4号线/5号线/6号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "深大",
+            "lines": [
+              "1",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "湖贝",
+            "lines": [
+              "2",
+              "5"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/5号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "灵芝",
+            "lines": [
+              "5",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「5号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "田贝",
+            "lines": [
+              "3",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "留仙洞",
+            "lines": [
+              "5",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「5号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "石厦",
+            "lines": [
+              "3",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "福民",
+            "lines": [
+              "4",
+              "7",
+              "10"
+            ],
+            "locator": "深圳市交通运输局线路信息页「4号线/7号线/10号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "福永",
+            "lines": [
+              "11",
+              "12"
+            ],
+            "locator": "深圳市交通运输局线路信息页「11号线/12号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "福田",
+            "lines": [
+              "2",
+              "3",
+              "11"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/3号线/11号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "福田口岸",
+            "lines": [
+              "4",
+              "10"
+            ],
+            "locator": "深圳市交通运输局线路信息页「4号线/10号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "科学馆",
+            "lines": [
+              "1",
+              "6"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/6号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "科苑",
+            "lines": [
+              "2",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "粤海门",
+            "lines": [
+              "9",
+              "13"
+            ],
+            "locator": "深圳市交通运输局线路信息页「9号线/13号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "红山",
+            "lines": [
+              "4",
+              "6"
+            ],
+            "locator": "深圳市交通运输局线路信息页「4号线/6号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "红岭",
+            "lines": [
+              "3",
+              "9"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/9号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "红岭北",
+            "lines": [
+              "7",
+              "9"
+            ],
+            "locator": "深圳市交通运输局线路信息页「7号线/9号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "红岭南",
+            "lines": [
+              "9",
+              "11"
+            ],
+            "locator": "深圳市交通运输局线路信息页「9号线/11号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "红树湾南",
+            "lines": [
+              "9",
+              "11"
+            ],
+            "locator": "深圳市交通运输局线路信息页「9号线/11号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "老街",
+            "lines": [
+              "1",
+              "3"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/3号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "莲花村",
+            "lines": [
+              "3",
+              "10"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/10号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "西丽",
+            "lines": [
+              "5",
+              "7"
+            ],
+            "locator": "深圳市交通运输局线路信息页「5号线/7号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "购物公园",
+            "lines": [
+              "1",
+              "3"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/3号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "赤湾",
+            "lines": [
+              "2",
+              "5"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/5号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "车公庙",
+            "lines": [
+              "1",
+              "7",
+              "9",
+              "11"
+            ],
+            "locator": "深圳市交通运输局线路信息页「1号线/7号线/9号线/11号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "通新岭",
+            "lines": [
+              "3",
+              "6"
+            ],
+            "locator": "深圳市交通运输局线路信息页「3号线/6号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "银湖",
+            "lines": [
+              "6",
+              "9"
+            ],
+            "locator": "深圳市交通运输局线路信息页「6号线/9号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "黄木岗",
+            "lines": [
+              "7",
+              "14"
+            ],
+            "locator": "深圳市交通运输局线路信息页「7号线/14号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          },
+          {
+            "station": "黄贝岭",
+            "lines": [
+              "2",
+              "5"
+            ],
+            "locator": "深圳市交通运输局线路信息页「2号线/5号线」站序 + 线网图换乘符号",
+            "source": "https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html"
+          }
+        ],
+        "onlyInOfficial": [],
+        "onlyInGame": [],
+        "verdict": "complete",
+        "note": "依据：深圳市交通运输局《深圳地铁线路信息》 https://jtys.sz.gov.cn/jtzx/wycx/dtcx/dtxl/content/post_12601089.html（2026-10-27 实抓 HTTP 200；页面标注发布时间 2026-01-14，正文给出 1—20 号线及 6 号线支线逐站站序），及其线网图 https://jtys.sz.gov.cn/img/4/4457/4457528/12601089.jpg（sha256 ba3333ccf238bec222c97d8f142842681338f1625dbb42cf518c9e9386ea22a1，与本地一致）、PDF 附件 https://jtys.sz.gov.cn/attachment/1/1726/1726728/12601089.pdf。判定规则：同一站名出现在两条官方站序、且图上画换乘符号，计为换乘站；共 68 座，与游戏 96 条线路对（去重后 68 站）一致，无漏项、无虚项。口径：①同台换乘与通道换乘都计（老街 1/3 为同台，车公庙 1/7/9/11 为通道，均计）；②莲塘是 2 号线与 8 号线贯通运营的分界，官方页面把两线并作“2号线&8号线”一条站序，不另计换乘；③铁路（深圳北站、福田口岸）、坪山云巴、有轨电车不混入地铁配对。2026 年新开通段已进名册：13 号线二期北延（2026-06-28，上屋—李松蓢）使 光明城、凤凰城、公明广场 成为 13/6 换乘；5 号线西延（2025-12-28）使 大剧院 成 1/2/5、湖贝 2/5；11 号线二期（2025-12-28）使 红岭南 9/11。图上黄框标注“以上站点暂未开通”，列 13 号线西丽高铁站及 13 号线南延（深圳湾公园—东角头）；西丽高铁站不在官方 13 号线站序内，游戏也未计入。站名口径：官方 4 号线写“深圳北站”、5/6 号线写“深圳北”，为同一站，名册统一记作深圳北（游戏写“深圳北站”）；官方 5 号线“学城”、9 号线“人民”与游戏“大学城”“人民南”为同站异写。没读到的：地图 JPG 仅 1200×1200、PDF 内嵌栅格约 600px/块，站名靠放大分块判读，个别小字（如“西丽高铁站”以下那段延伸的名称）辨识度有限；页面标注日期早于 13 号线北延开通日却已含李松蓢，说明正文被后续更新，不能用该日期反推开通时间。"
+      },
+      "temporal": {
+        "evidence": [
+          {
+            "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202512/105561.html",
+            "effectiveDate": "2024-12-28",
+            "scope": "13号线南段（深圳湾口岸—高新中）开通初期运营；后海、科苑、粤海门、深大 由此成为 13 号线换乘。"
+          },
+          {
+            "source": "https://www.sz.gov.cn/cn/xxgk/bmtx/content/post_12415878.html",
+            "effectiveDate": "2025-09-28",
+            "scope": "16号线二期（大运—园山西坑）、6号线支线二期（光明—光明城）11:18 开门迎客；光明城站启用，为 6 支/13 换乘的前提。"
+          },
+          {
+            "source": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+            "effectiveDate": "2025-12-28",
+            "scope": "同日开通四段：5号线西延（黄贝岭—大剧院，产生 大剧院1/2/5、湖贝2/5）、8号线三期（小梅沙—溪涌）、11号线二期红岭南段（岗厦北—红岭南，产生 红岭南9/11）、13号线一期北段（高新北—上屋，9 站，产生 上屋6/13、留仙洞5/13）。"
+          },
+          {
+            "source": "https://hmo.sz.gov.cn/zx/wqzc/content/post_1642610.html",
+            "effectiveDate": "2025-12-28",
+            "scope": "13号线一期北段开通时西丽高铁站配合西丽枢纽建设越站通过，不属开放停站。"
+          },
+          {
+            "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+            "effectiveDate": "2026-06-28",
+            "scope": "13号线二期北延（上屋—李松蓢，11 站）11:18 开通，全网 653.7 公里、452 站；产生 凤凰城、公明广场、光明城 的 13/6 换乘。这是截止日 2026-10-01 前最近一次开通。"
+          },
+          {
+            "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
+            "effectiveDate": "2026-06-28",
+            "scope": "开通次日报道复核：6 月 28 日上午开通，与一期贯通运营（与上一条互证日期）。"
+          },
+          {
+            "source": "https://fgw.sz.gov.cn/zwgk/qt/gzdt/content/post_12637175.html",
+            "effectiveDate": "2026-02-08",
+            "scope": "年度汇总：2025 年共开通 6 个项目（6 支二期、16 二期、13 一期北段、11 二期红岭南段、5 西延、8 三期），运营里程 634.5 公里，6 支二期衔接光明城站。"
+          }
+        ],
+        "verdict": "complete",
+        "note": "游戏现有 3 条只覆盖 13 号线，不足以支撑，本文件补足后判 complete。问题：①2025-12-28 同日还开了 5 号线西延、8 号线三期、11 号线二期红岭南段，它们直接产生 大剧院 1/2/5、湖贝 2/5、红岭南 9/11 三个换乘，原第 2 条只写“13 号线一期贯通至上屋”；②缺 2025-09-28 的 16 号线二期、6 号线支线二期（光明城 6 支/13 换乘的前提）；③缺 西丽高铁站越站（暂未开通）的说明。本文件补 2025-09-28、2025-12-28 四段、2025-12-28 越站、2026-06-28 复核及 2026-02-08 汇总。未检索到：2026-06-29—2026-09-30 深圳地铁没有新线/新站开通公告（15、17、19、20 二期、22、25、27、29、32 号线仍在建），故截止日状态即为 2026-06-28 后的状态。另注意：线路信息页标注 2026-01-14，正文却已含 13 号线北延的李松蓢，属页面后续更新，不能据该日期反推开通时间，也不能当作截止日快照。"
+      }
+    }
+  }
+}

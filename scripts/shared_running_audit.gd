@@ -21,7 +21,22 @@ static func definition_errors(network:Dictionary) -> Array[String]:
 		if matching.size()!=1:result.append("共线资料没有对应的唯一实体范围要求。");continue
 		var rule:Dictionary=matching[0];var names:Array=rule.get("stationNames",[])
 		if names.size()!=expected[key].size() or not names.all(func(name:Variant):return expected[key].has(str(name))) or not expected[key].all(func(name:Variant):return names.has(name)) or not str(rule.get("source","")).begins_with("https://"):result.append("共线检查遗漏了已核对站点或缺少来源。")
+		result.append_array(_interval_errors(rule))
 	return result
+
+## The section has to name the interval the official document publishes. Without
+## that, a section could stop one stop short of the published endpoint and still
+## satisfy every pairwise track check, which is exactly the Shanghai 3/4 defect.
+static func _interval_errors(rule:Dictionary) -> Array[String]:
+	var endpoints:Array=rule.get("intervalEndpoints",[])
+	if endpoints.size()!=2:return ["共线区间没有声明官方公布的两个端点。"]
+	var first:=str(endpoints[0]);var second:=str(endpoints[1])
+	if first.is_empty() or second.is_empty() or first==second:return ["共线区间的两个端点不是两座不同的车站。"]
+	var names:Array=rule.get("stationNames",[]).map(func(name:Variant):return str(name))
+	var directional:Array=rule.get("directionalStationRules",[]).map(func(item:Dictionary):return str(item.get("stationName","")))
+	var outside:Array=[first,second].filter(func(name:String):return not names.has(name))
+	if outside.size()!=directional.size() or not outside.all(func(name:String):return directional.has(name)) or not directional.all(func(name:String):return outside.has(name)):return ["共线区间端点与方向性站台要求不吻合。"]
+	return []
 
 ## Independent physical-sharing requirement. A train calling at a similarly
 ## named parallel body, or taking copied parallel rails, is not shared running.
@@ -57,7 +72,25 @@ static func errors(world:Dictionary,rule:Dictionary) -> Array[String]:
 		if own_paths.is_empty() or shared_paths.is_empty() or not own_paths.any(func(path:Array):return shared_paths.has(path)):
 			result.append("%s—%s没有由两条服务共同使用同一站体和实体轨道。"%[str(names[position]),str(names[position+1])])
 	for directional in rule.get("directionalStationRules",[]):result.append_array(_directional_errors(world,directional,owner_routes,service_routes))
+	if not rule.get("intervalEndpoints",[]).is_empty():result.append_array(_interval_order_errors(world,rule,owner))
 	return result
+
+## Every stop inside the stated interval has to sit between its two endpoints on
+## the owning line. A section that names an endpoint it never reaches would pass
+## the pairwise track check alone, so the span is checked separately.
+static func _interval_order_errors(world:Dictionary,rule:Dictionary,owner:String) -> Array[String]:
+	var endpoints:Array=rule.get("intervalEndpoints",[])
+	if endpoints.size()!=2:return ["共线区间没有声明官方公布的两个端点。"]
+	var inside:Array=rule.get("stationNames",[]).map(func(name:Variant):return str(name))
+	for route in world.get("routes",[]):
+		if str(route.get("historicalLineId",""))!=owner or bool(route.get("retired",false)) or not bool(route.get("open",false)):continue
+		for direction in route.get("directions",[]):
+			var names:Array=direction.get("stationIds",[]).map(func(id:Variant):return str(WorldData.find_station(world,str(id)).get("name","")))
+			var first:int=names.find(str(endpoints[0]));var second:int=names.find(str(endpoints[1]))
+			if first<0 or second<0:continue
+			var low:int=mini(first,second);var high:int=maxi(first,second)
+			if inside.all(func(name:String):return names.find(name)>=low and names.find(name)<=high):return []
+	return ["共线区间声明的车站没有全部落在两个端点之间。"]
 
 static func _directional_errors(world:Dictionary,rule:Dictionary,owner_routes:Array,service_routes:Array) -> Array[String]:
 	var result:Array[String]=[]

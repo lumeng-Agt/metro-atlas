@@ -7594,7 +7594,7 @@
             {
               "id": "historic-transfer-shanghai-s305-line7-7-line2-2",
               "name": "静安寺",
-              "complexId": "shanghai-s305",
+              "complexId": "shanghai-s397",
               "stationInstanceIds": [
                 "shanghai-s305__line7-7",
                 "shanghai-s305__line2-2"
@@ -7772,7 +7772,7 @@
             {
               "id": "historic-transfer-shanghai-s83-line12-12-line10-10",
               "name": "陕西南路",
-              "complexId": "shanghai-s83",
+              "complexId": "shanghai-s119",
               "stationInstanceIds": [
                 "shanghai-s83__line12-12",
                 "shanghai-s83__line10-10"
@@ -13552,7 +13552,7 @@
             {
               "id": "historic-transfer-shanghai-s83-line12-12-line10-10",
               "name": "陕西南路",
-              "complexId": "shanghai-s83",
+              "complexId": "shanghai-s119",
               "stationInstanceIds": [
                 "shanghai-s83__line12-12",
                 "shanghai-s83__line10-10"
@@ -13620,7 +13620,7 @@
             {
               "id": "historic-transfer-shanghai-s305-line7-7-line2-2",
               "name": "静安寺",
-              "complexId": "shanghai-s305",
+              "complexId": "shanghai-s397",
               "stationInstanceIds": [
                 "shanghai-s305__line7-7",
                 "shanghai-s305__line2-2"
@@ -17718,7 +17718,7 @@
             {
               "id": "historic-transfer-beijing-s69-line1-line4-4",
               "name": "西直门",
-              "complexId": "beijing-s69",
+              "complexId": "beijing-s101",
               "stationInstanceIds": [
                 "beijing-s69__line1",
                 "beijing-s69__line4-4"
@@ -18266,7 +18266,7 @@
             {
               "id": "historic-transfer-beijing-s219-line4-4-line9-9",
               "name": "国家图书馆",
-              "complexId": "beijing-s219",
+              "complexId": "beijing-s357",
               "stationInstanceIds": [
                 "beijing-s219__line4-4",
                 "beijing-s219__line9-9"
@@ -20381,7 +20381,7 @@
             {
               "id": "historic-transfer-beijing-s371-line21-line19-19",
               "name": "草桥",
-              "complexId": "beijing-s371",
+              "complexId": "beijing-s158",
               "stationInstanceIds": [
                 "beijing-s371__line21",
                 "beijing-s371__line19-19"
@@ -22358,7 +22358,7 @@
             {
               "id": "historic-transfer-beijing-s228-line4-4-line6-6",
               "name": "平安里",
-              "complexId": "beijing-s228",
+              "complexId": "beijing-s390",
               "stationInstanceIds": [
                 "beijing-s228__line4-4",
                 "beijing-s228__line6-6"
@@ -25441,7 +25441,7 @@
             {
               "id": "historic-transfer-beijing-s219-line4-4-line9-9",
               "name": "国家图书馆",
-              "complexId": "beijing-s219",
+              "complexId": "beijing-s357",
               "stationInstanceIds": [
                 "beijing-s219__line4-4",
                 "beijing-s219__line9-9"
@@ -25797,7 +25797,7 @@
             {
               "id": "historic-transfer-beijing-s228-line4-4-line6-6",
               "name": "平安里",
-              "complexId": "beijing-s228",
+              "complexId": "beijing-s390",
               "stationInstanceIds": [
                 "beijing-s228__line4-4",
                 "beijing-s228__line6-6"
@@ -26403,7 +26403,7 @@
             {
               "id": "historic-transfer-beijing-s371-line21-line19-19",
               "name": "草桥",
-              "complexId": "beijing-s371",
+              "complexId": "beijing-s158",
               "stationInstanceIds": [
                 "beijing-s371__line21",
                 "beijing-s371__line19-19"
@@ -26597,7 +26597,7 @@
             {
               "id": "historic-transfer-beijing-s69-line1-line4-4",
               "name": "西直门",
-              "complexId": "beijing-s69",
+              "complexId": "beijing-s101",
               "stationInstanceIds": [
                 "beijing-s69__line1",
                 "beijing-s69__line4-4"
@@ -28166,7 +28166,7 @@
             {
               "id": "future-transfer-bj13A-西直门-beijing-lineearly1",
               "name": "西直门",
-              "complexId": "beijing-s69",
+              "complexId": "beijing-s101",
               "stationInstanceIds": [
                 "beijing-s69__capacity13A",
                 "beijing-s69__line1"
@@ -28182,7 +28182,7 @@
             {
               "id": "future-transfer-bj13A-西直门-beijing-line4-4",
               "name": "西直门",
-              "complexId": "beijing-s69",
+              "complexId": "beijing-s101",
               "stationInstanceIds": [
                 "beijing-s69__capacity13A",
                 "beijing-s69__line4-4"
@@ -52758,7 +52758,7 @@
             {
               "id": "historic-transfer-chengdu-s104-line3-3-line5-5",
               "name": "高升桥",
-              "complexId": "chengdu-s104",
+              "complexId": "chengdu-s328",
               "stationInstanceIds": [
                 "chengdu-s104__line3-3",
                 "chengdu-s104__line5-5"
@@ -55989,7 +55989,7 @@
             {
               "id": "historic-transfer-chengdu-s356-line19-14-line30-16",
               "name": "双流机场2航站楼东",
-              "complexId": "chengdu-s356",
+              "complexId": "chengdu-s147",
               "stationInstanceIds": [
                 "chengdu-s356__line19-14",
                 "chengdu-s356__line30-16"
@@ -59174,7 +59174,7 @@
             {
               "id": "historic-transfer-chengdu-s356-line19-14-line30-16",
               "name": "双流机场2航站楼东",
-              "complexId": "chengdu-s356",
+              "complexId": "chengdu-s147",
               "stationInstanceIds": [
                 "chengdu-s356__line19-14",
                 "chengdu-s356__line30-16"
@@ -59570,7 +59570,7 @@
             {
               "id": "historic-transfer-chengdu-s104-line3-3-line5-5",
               "name": "高升桥",
-              "complexId": "chengdu-s104",
+              "complexId": "chengdu-s328",
               "stationInstanceIds": [
                 "chengdu-s104__line3-3",
                 "chengdu-s104__line5-5"
@@ -60919,6 +60919,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.27.3",
-  "contentRevisionNote": "补入成都12号线一期两段已公示详细规划，只建4座有官方路口的车站，未公布区段保留缺项。"
+  "contentRevision": "2026.10.28.1",
+  "contentRevisionNote": "把16处换乘要求里的弃用复合站ID改写为规范站区ID（另同步北京13号线扩能项目2处），并为北京22号线、28号线、M101线一期补入逐对独立换乘结构定义；不改换乘编号、物理站体、站序与线位。"
 }

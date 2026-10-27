@@ -4,8 +4,8 @@
   "evidencePolicy": "独立整理官方文件中的范围与站序；不得从章节或项目规格反向生成验收目标。未知与未审核状态阻止完整交付。",
   "cities": {
     "shenzhen": {
-      "inventoryReviewStatus": "pending",
-      "historyReviewStatus": "pending",
+      "inventoryReviewStatus": "verified",
+      "historyReviewStatus": "verified",
       "requiredProjectIds": [
         "sz-line15",
         "sz-line17-phase1",
@@ -2108,15 +2108,165 @@
             "scope": "13号线二期北延至李松蓢",
             "historicalLineId": "shenzhen-line13-14",
             "chapterId": "shenzhen-network-milestone-2026-06-28"
+          },
+          {
+            "source": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202512/105561.html",
+            "effectiveDate": "2024-12-28",
+            "scope": "13号线南段（深圳湾口岸—高新中）开通初期运营；后海、科苑、粤海门、深大 由此成为 13 号线换乘。"
+          },
+          {
+            "source": "https://www.sz.gov.cn/cn/xxgk/bmtx/content/post_12415878.html",
+            "effectiveDate": "2025-09-28",
+            "scope": "16号线二期（大运—园山西坑）、6号线支线二期（光明—光明城）11:18 开门迎客；光明城站启用，为 6 支/13 换乘的前提。"
+          },
+          {
+            "source": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+            "effectiveDate": "2025-12-28",
+            "scope": "同日开通四段：5号线西延（黄贝岭—大剧院，产生 大剧院1/2/5、湖贝2/5）、8号线三期（小梅沙—溪涌）、11号线二期红岭南段（岗厦北—红岭南，产生 红岭南9/11）、13号线一期北段（高新北—上屋，9 站，产生 上屋6/13、留仙洞5/13）。"
+          },
+          {
+            "source": "https://hmo.sz.gov.cn/zx/wqzc/content/post_1642610.html",
+            "effectiveDate": "2025-12-28",
+            "scope": "13号线一期北段开通时西丽高铁站配合西丽枢纽建设越站通过，不属开放停站。"
+          },
+          {
+            "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+            "effectiveDate": "2026-06-28",
+            "scope": "13号线二期北延（上屋—李松蓢，11 站）11:18 开通，全网 653.7 公里、452 站；产生 凤凰城、公明广场、光明城 的 13/6 换乘。这是截止日 2026-10-01 前最近一次开通。"
+          },
+          {
+            "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12866204.html",
+            "effectiveDate": "2026-06-28",
+            "scope": "开通次日报道复核：6 月 28 日上午开通，与一期贯通运营（与上一条互证日期）。"
+          },
+          {
+            "source": "https://fgw.sz.gov.cn/zwgk/qt/gzdt/content/post_12637175.html",
+            "effectiveDate": "2026-02-08",
+            "scope": "年度汇总：2025 年共开通 6 个项目（6 支二期、16 二期、13 一期北段、11 二期红岭南段、5 西延、8 三期），运营里程 634.5 公里，6 支二期衔接光明城站。"
           }
         ],
         "note": "17条路径站序有独立票价表；68处站区、96组换乘由官方网络图逐符号核对。全网历史形成时间及其他截止日开放证据仍逐项审核，不能由现代图倒推。",
         "transferReviewStatus": "verified",
-        "transferEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json"
-      }
+        "transferEvidence": "res://data/official_evidence/shenzhen_interchanges_reviewed2026-10-26.json",
+        "temporalReviewStatus": "verified",
+        "temporalReviewNote": "按官方通稿逐次核对截止日前开通：补入2025-09-28两段与2025-12-28三段（大剧院、湖贝、红岭南由此成立），共7条带日期行；西丽高铁站等未开通站未计入截止网。",
+        "transferReviewNote": "按官方线网图换乘符号与2026-06-28运营站序普查得68座多线换乘站，与游戏96条编号（去重68站）逐站逐对比对，漏项0、虚项0；同台换乘与通道换乘都计入，有轨、磁浮与贯通运营段不计。"
+      },
+      "sourceProjectInventory": [
+        {
+          "projectId": "sz-line13-phase2-south",
+          "officialName": "深圳市城市轨道交通13号线二期（南延）工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第3条（13号线二期北延之后）",
+          "quote": "深圳市城市轨道交通13号线二期（南延）工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line15",
+          "officialName": "深圳市城市轨道交通15号线工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第4条",
+          "quote": "深圳市城市轨道交通15号线工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line17-phase1",
+          "officialName": "深圳市城市轨道交通17号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第5条",
+          "quote": "深圳市城市轨道交通17号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line19-phase1",
+          "officialName": "深圳市城市轨道交通19号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第6条",
+          "quote": "深圳市城市轨道交通19号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line20-phase2",
+          "officialName": "深圳市城市轨道交通20号线二期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第7条",
+          "quote": "深圳市城市轨道交通20号线二期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line22-phase1",
+          "officialName": "深圳市城市轨道交通22号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第8条",
+          "quote": "深圳市城市轨道交通22号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line25-phase1",
+          "officialName": "深圳市城市轨道交通25号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第9条",
+          "quote": "深圳市城市轨道交通25号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line27-phase1",
+          "officialName": "深圳市城市轨道交通27号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第10条",
+          "quote": "深圳市城市轨道交通27号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line29-phase1",
+          "officialName": "深圳市城市轨道交通29号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第11条",
+          "quote": "深圳市城市轨道交通29号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line32-phase1",
+          "officialName": "深圳市城市轨道交通32号线一期工程",
+          "source": "https://www.sz.gov.cn/attachment/1/1685/1685344/12660431.pdf",
+          "sourcePublicationDate": "2026-02-28",
+          "required": true,
+          "locator": "第46页（共62页）表体“项目名称”列，第12条",
+          "quote": "深圳市城市轨道交通32号线一期工程　　深圳市地铁集团有限公司"
+        },
+        {
+          "projectId": "sz-line10-east-shenzhen",
+          "officialName": "深圳市城市轨道交通10号线东延（深圳段）工程",
+          "source": "https://fgw.sz.gov.cn/gkmlpt/content/11/11091/post_11091852.html",
+          "sourcePublicationDate": "2024-01-08",
+          "required": true,
+          "locator": "《年度盘点｜深圳发展改革十件大事：推动全市经济高质量发展实现最好结果》第七节“轨道交通五期规划获批”第1句；页面元数据 发布日期 2024-01-08、来源“本网”、SiteName“深圳市发展和改革委员会网站”",
+          "quote": "32号线一期、10号线东延（深圳段）、11号线北延（深圳段），总长185.6公里，项目总投资1952亿元"
+        },
+        {
+          "projectId": "sz-line11-north-shenzhen",
+          "officialName": "深圳市城市轨道交通11号线北延（深圳段）工程",
+          "source": "https://fgw.sz.gov.cn/gkmlpt/content/11/11091/post_11091852.html",
+          "sourcePublicationDate": "2024-01-08",
+          "required": true,
+          "locator": "同上第七节“轨道交通五期规划获批”第1句，为本工程在获批11条线路名单中的末位条目；页面元数据 发布日期 2024-01-08、来源“本网”",
+          "quote": "……32号线一期、10号线东延（深圳段）、11号线北延（深圳段），总长185.6公里，项目总投资1952亿元"
+        }
+      ],
+      "inventoryReviewNote": "按《深圳市2026年重大项目计划清单》（2026-02-28，832项）第46页地铁11条逐条转录，10号线东延（深圳段）与11号线北延（深圳段）不在该册，改引深圳市发改委2024-01-08公开件（批复方案共11条线路，含这两段，总长185.6公里），两段均落到原文点名。12个必做项目全部有带日期的官方记录。该册另列13号线二期（北延）等本作未建模项目与枢纽、城际、动车基地，按非本作范围处理。",
+      "historyReviewNote": "两源复核shenzhen的6条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，6条两项都对上。"
     },
     "shanghai": {
-      "inventoryReviewStatus": "pending",
+      "inventoryReviewStatus": "verified",
       "historyReviewStatus": "pending",
       "requiredProjectIds": [
         "sh-line19",
@@ -4319,7 +4469,8 @@
             "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
             "https://ghzyj.sh.gov.cn/gzcy/lxxd/20241104/60149eef6724456eb4dbebc1af1e9eec.html",
             "https://jtw.sh.gov.cn/xwfb2/20251222/18dc74805200495eb362499c6c1f98d7.html"
-          ]
+          ],
+          "transferReviewNote": "已独立复核13对中的6对：华泾西—15、东方体育中心—6/8/11、浦东南路—2、浦东南路—14、华泾路—23、江杨南路—18有官方点名。其余7对（凌兆新村8、后滩7、世博大道13、塘桥4、商城路9、提篮桥12、海伦路4/10）没有站级官方文件点名；原先当作主来源的czj文件实为债券信用评级报告，只写“18座换乘站”不逐站列线，19号线工可与初设批复未公开，故不标已核对。"
         },
         {
           "id": "sh-line18-jiangyang-reserved",
@@ -5337,14 +5488,39 @@
             "scope": "9号线曹路延伸九站，包含金吉路；2024年更名不改变站序。"
           },
           {
-            "source": "https://www.cnr.cn/shanghai/tt/20171227/t20171227_524078638.shtml",
-            "effectiveDate": "2017-12-30",
-            "scope": "9号线曹路延伸九站，包含金吉路；2024年更名不改变站序。"
+            "source": "https://jtw.sh.gov.cn/xwfb2/20251027/14557ac7aeaa4e95a61cce023ce01a55.html",
+            "effectiveDate": "2025-11-01",
+            "scope": "2号线西延伸（国家会展中心站不含—蟠祥路·国家会计学院站）开通初期运营，新增 1 站 1 区间；开通后全网 898 公里、518 座车站。该站为 2 号线西端终点站，不构成换乘站。"
           },
           {
-            "source": "https://www.cnr.cn/shanghai/tt/20171227/t20171227_524078638.shtml",
-            "effectiveDate": "2017-12-30",
-            "scope": "9号线曹路延伸九站，包含金吉路；2024年更名不改变站序。"
+            "source": "https://www.shanghai.gov.cn/nw17239/20260112/8a7a57212c78409192cfb3ccefb8b9c7.html",
+            "effectiveDate": "2025-12-27",
+            "scope": "18号线二期开通初期运营：长江南路（不含）—康文路，投入 5 站（通南路、长江西路、爱辉路、呼兰路、康文路）；江杨南路站暂不开通，不计入截止日停站。"
+          },
+          {
+            "source": "https://www.gzw.sh.gov.cn/shgzw_zxzx_gqdt/20251225/6be68208a5fc4fb896f70df2cb3d610e.html",
+            "effectiveDate": "2025-12-27",
+            "scope": "18号线二期共设 6 座地下车站（通南路、长江西路、江杨南路、爱辉路、呼兰路、康文路），换乘站 2 座：呼兰路以「通道+天桥」换 1 号线，江杨南路未来换 19 号线；开通后上海地铁运营里程突破 900 公里。"
+          },
+          {
+            "source": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html",
+            "effectiveDate": "2026-02-22",
+            "scope": "3/4号线宝山路站升级改造完成，2月22日首班车起 3/4 号线全线恢复正常运营、临时短驳取消；宝山路改为「3台4向」：1号站台 4号线外圈（独立）、2号站台 3号线往上海南站、3号站台 3号线往江杨北路+4号线内圈（共用）。属运营调整，不新增车站。"
+          },
+          {
+            "source": "https://www.shanghai.gov.cn/gwk/search/content/b0582d1a6ea2499c9d8a775be9db235d",
+            "effectiveDate": "2025-12-31",
+            "scope": "市发改委 2026-08-19 听证公告附件《优化上海市轨道交通票价机制听证方案》称「2025年底，我市已开通运营的轨道交通共19条，运营里程818公里（不含磁浮线、金山铁路、市域机场线）」，即 1—18 号线加浦江线；用于锚定截止日前未再开通新线。"
+          },
+          {
+            "source": "https://www.shanghai.gov.cn/nw15343/20260703/34ae6a8618fa447082256b5f2d1873ab.html",
+            "effectiveDate": "2026-07-03",
+            "scope": "南京西路站三线换乘通道工程（连接 2、12、13 号线）取得建设用地规划许可证与建设工程规划许可证，仍处开工前阶段，截止日未开通——不是开通事件，用于证明该换乘形态在截止日未改变。"
+          },
+          {
+            "source": "https://www.shanghai.gov.cn/nw4411/20240623/bd6f1c2aecea445db0b48d83c558a41e.html",
+            "effectiveDate": "2024-06-22",
+            "scope": "3、4、9号线宜山路站新地下换乘通道启用（全地下、3 段通道），原地面临时通道关闭；证明宜山路三线靠通道换乘，站体分离。"
           }
         ],
         "transfers": [
@@ -5570,6 +5746,10 @@
             "id": "shanghai34-common-2026",
             "physicalLineId": "shanghai-line3-3",
             "serviceLineId": "shanghai-line4-4",
+            "intervalEndpoints": [
+              "宝山路",
+              "虹桥路"
+            ],
             "stationNames": [
               "虹桥路",
               "延安西路",
@@ -5654,12 +5834,100 @@
             "source": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html"
           }
         ],
-        "sharedRunningReviewStatus": "pending",
-        "sharedRunningReviewNote": "已制作真实共轨与宝山路方向性站台；实际轨道、旧档及负例检查完成后再记录核验结果，不以数据配置替代验证。"
-      }
+        "sharedRunningReviewStatus": "verified",
+        "sharedRunningReviewNote": "区间端点已按官方原文声明为「宝山路—虹桥路」并纳入强制校验：section 的 intervalEndpoints 必须与 official 写法一致，端点里不在 stationNames 中的那个必须恰好是方向性站台要求覆盖的车站，且 stationNames 全部要落在两端之间（按3号线实际站序）。改前只写到上海火车站，端点少一站；现在写的是官方东端宝山路。宝山路站台分工（4号线外圈独用1号站台、3号线往江杨北路与4号线内圈共用3号站台、3号线往上海南站用2号站台）与官方2026-02-25通稿逐条一致，专项按运行世界验证「上海火车站—宝山路」这一段由3号线与4号线内圈共用同一站体与同一实体轨道、4号线外圈走自己的站台且不停共用站台。虹桥路—上海火车站8站两线共用同一站体与实体轨道。中潭路、延安西路在截止网里各是一座站体、两线都停靠，与运营方把它列为换乘站的口径一致。宜山路3/4/9号线以全地下三段通道换乘、站体分离，不纳入共轨。“同一站体”是游戏对官方“共用区间／共用站台”的表示方式，不是额外的测绘结论；官方没有给出中心线与站台尺寸，游戏也没有据此声明精度。",
+        "temporalReviewNote": "补入7条官方带日期行（2024-06-22宜山路通道、2025-11-01二号线蟠祥路、2025-12-27十八号线二期、2026-02-22宝山路站台恢复、2026-07-03南京西路仅获规划许可等），最近一次开通为2025-12-27。仍判未核对：没有官方文件逐线确认2026年内未再开通任何车站；运营方站序本轮无法重抓（service.shmetro.com 全站301后只返回占位页），不能用最新站序反证。",
+        "transferReviewStatus": "pending",
+        "transferReviewNote": "按运营方车站码换乘位掩码解码并与18条线路站序逐站交叉核对得86座换乘站、131个线路对，游戏84站/123对：官方有而游戏缺中潭路、延安西路两站（仅3/4号线服务），虚项0；共轨段另有8个3↔4号线换乘对未列，而宝山路、宜山路反而列了，口径不一致。这两座正是共轨段的站，游戏按同一物理站体建模、不另设换乘，与成都剔除共线站的口径相同；但共轨段端点本身与官方不一致（官方“宝山路至虹桥路”，游戏止于上海火车站），在该条转绿之前本项不单独放行。本轮service.shmetro.com全站301后仅返回占位页，无法重抓掩码，只能核对既有官方抓取件，不算独立复现。未标已核对。"
+      },
+      "sourceProjectInventory": [
+        {
+          "projectId": "sh-line22-chongming",
+          "officialName": "轨道交通崇明线(金吉路站-裕安站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号137；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号137｜轨道交通崇明线(金吉路站-裕安站)｜在建"
+        },
+        {
+          "projectId": "sh-line12-west",
+          "officialName": "轨道交通12号线西延伸(七莘路站-洞泾站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号138；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号138｜轨道交通12号线西延伸(七莘路站-洞泾站)｜在建"
+        },
+        {
+          "projectId": "sh-line13-west-east",
+          "officialName": "轨道交通13号线(金运路站-诸光路站，张江路站-丹桂路站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号139；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号139｜轨道交通13号线(金运路站-诸光路站，张江路站-丹桂路站)｜在建"
+        },
+        {
+          "projectId": "sh-line15-south",
+          "officialName": "轨道交通15号线南延伸（紫竹高新区站-望园路站）",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号140；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号140｜轨道交通15号线南延伸（紫竹高新区站-望园路站）｜在建"
+        },
+        {
+          "projectId": "sh-line19",
+          "officialName": "轨道交通19号线",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号141；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号141｜轨道交通19号线｜在建"
+        },
+        {
+          "projectId": "sh-line20-phase1",
+          "officialName": "轨道交通20号线一期工程西段(金昌路站-上海马戏城站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号142；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号142｜轨道交通20号线一期工程西段(金昌路站-上海马戏城站)｜在建"
+        },
+        {
+          "projectId": "sh-line20-east",
+          "officialName": "轨道交通20号线（凉城路站-新园路站）",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号143；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号143｜轨道交通20号线（凉城路站-新园路站）｜在建"
+        },
+        {
+          "projectId": "sh-line21",
+          "officialName": "轨道交通21号线一期及东延伸",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号144；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号144｜轨道交通21号线一期及东延伸｜在建"
+        },
+        {
+          "projectId": "sh-line23-phase1",
+          "officialName": "轨道交通23号线一期(上海体育场站-闵行开发区站)",
+          "source": "https://fgw.sh.gov.cn/cmsres/ec/ecc9bdbad1414ce98052d41343491c77/32e49b81e0b3cea2e818c85c94b0f104.xlsx",
+          "sourcePublicationDate": "2026-02-12",
+          "required": true,
+          "locator": "正式项目表 序号145；四、城市基础设施类（三）轨道交通15项",
+          "quote": "序号145｜轨道交通23号线一期(上海体育场站-闵行开发区站)｜在建"
+        }
+      ],
+      "inventoryReviewNote": "按《2026年上海市重大工程项目清单》（市发改委2026-02-12发布，正式项目184项）城市基础设施—轨道交通15项（序号132—146）逐条原文转录。11个必做项目中9个在清单内；18号线预留站（长江西路、江杨南路、爱辉路）与南京西路三线换乘通道不属年度重大工程列项对象，清单内无对应条目，其自身证据另存。清单另列市域线机场联络线、嘉闵线、示范区线、南汇支线等市域铁路，按干线口径报批，不属本作城市轨道交通范围，未列为必做。",
+      "historyReviewNote": "逐条重开来源复核shanghai的23条历史里程碑，1条通过。来源打不开或非官方1条（shanghai-line11-changji-2011）日期不成立2条（shanghai-line9-yishan-2008、shanghai-network-milestone-2018-12-30）建设子段指错10条（shanghai-network-milestone-2011-04-12、shanghai-line9-second-2009、shanghai-line9-yanggao-2010、shanghai-line9-south-2012、shanghai-network-milestone-2017-12-30、shanghai-songjiang-rename-2024、shanghai-jiyang-rename-2011、shanghai-line8-south-2009 等10条）站序无法逐站核对9条（shanghai-network-milestone-2021-12-30、shanghai-network-milestone-2007-12-29、shanghai-line11-anting-2010、shanghai-line11-huaqiao-2013、shanghai-line11-kangxin-2015、shanghai-line11-disney-2016、shanghai-line11-chenxiang-2020、shanghai-network-milestone-2024-09-28 等9条）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
     },
     "beijing": {
-      "inventoryReviewStatus": "pending",
+      "inventoryReviewStatus": "verified",
       "historyReviewStatus": "pending",
       "requiredProjectIds": [
         "bj-line22",
@@ -6995,17 +7263,53 @@
             "future-transfer-bj-m101-hub-line6",
             "future-transfer-bj-m101-hub-line22"
           ],
-          "transferReviewStatus": "pending",
-          "transferReviewNote": "已补城市副中心6／22独立联系；环评6处换乘站还涉及M102、M103、M104、R1、区域快线及铁路预留，全量分层审查尚未完成，不能仅凭14站通过视为项目完整。",
+          "transferReviewStatus": "verified",
+          "transferReviewNote": "按M101一期环评、2022-04-20线路图稿与2024-07-17首都之窗逐站换乘清单核对：城市副中心枢纽与6号线、22号线两对均有原文点名，站体按项目实际建设分别记录。同一批文件还列出通州西（M102、通密线）、龙旺庄（R1）、通胡大街（M103）、北京大剧院（M104）、张家湾（M102/M104）五处换乘，这些线路在本作没有线体，记录为范围外，不计入要求，也不冒充已建换乘。",
           "additionalSources": [
             "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html"
+          ],
+          "transferDefinitions": [
+            {
+              "id": "future-transfer-bj-m101-hub-line6",
+              "name": "城市副中心枢纽",
+              "complexId": "beijing-s322",
+              "lineIds": [
+                "beijing-line-m101",
+                "beijing-line6-6"
+              ],
+              "stationInstanceIds": [
+                "beijing-f101-fuzhongxin",
+                "beijing-s322"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+              "reviewLocator": "首都之窗 2024-07-17《可换乘12条地铁…》正文第3段（22号线逐站换乘清单）",
+              "reviewQuote": "城市副中心站换乘6号线和在建的M101线"
+            },
+            {
+              "id": "future-transfer-bj-m101-hub-line22",
+              "name": "城市副中心枢纽",
+              "complexId": "beijing-s322",
+              "lineIds": [
+                "beijing-line-m101",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-f101-fuzhongxin",
+                "beijing-s322__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+              "reviewLocator": "首都之窗 2022-04-20《副中心M101线最新线路图公布…》正文第6段（M101换乘线路清单）；另见环评PDF第66页“本项目与M22（平谷线）、M6线、S6线（城际联络线工程）相连”",
+              "reviewQuote": "与5条区域快线/市郊铁路换乘，分别为通密线(S5)、副中心线(S1)、平谷线(S3)"
+            }
           ]
         },
         {
           "id": "bj-line22",
           "reviewStatus": "verified",
           "constructionOnly": true,
-          "transferReviewStatus": "pending",
+          "transferReviewStatus": "verified",
           "source": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
           "sourcePublicationDate": "2026-07-29",
           "additionalSources": [
@@ -7080,6 +7384,128 @@
             "future-transfer-bj22-dongdaqiao-6",
             "future-transfer-bj22-dongdaqiao-17",
             "future-transfer-bj22-jintaixizhao-10"
+          ],
+          "transferReviewNote": "按2026-08-25空载试运行稿、2026-09-24站名公布稿、2020-09-11发改委批复稿逐站核对：红庙14、管庄1号线（八通线）、运河6、北运河东6、东大桥6、东大桥17、金台夕照10共7对全部有原文点名。官方同稿写东大桥还可换乘28号线；该线体由28号线项目章节建立并要求东大桥—22号线这一对，故不在本项目重复要求，也不作为漏项。城市副中心与京唐城际的国铁联系属范围外背景。",
+          "transferDefinitions": [
+            {
+              "id": "future-transfer-bj22-hongmiao-14",
+              "name": "红庙",
+              "complexId": "beijing-s277",
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-s277",
+                "beijing-s277__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202608/t20260825_4836108.html",
+              "reviewLocator": "网页《北京地铁22号线进入空载试运行 年底基本具备开通条件》，2026-08-25，首都之窗，第4段",
+              "reviewQuote": "线路将在红庙站与14号线、管庄站与1号线（八通线）"
+            },
+            {
+              "id": "future-transfer-bj22-guanzhuang-batong",
+              "name": "管庄",
+              "complexId": "beijing-s41",
+              "lineIds": [
+                "beijing-lineearly0",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-s41",
+                "beijing-s41__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+              "reviewLocator": "网页《北京地铁22号线 所有车站站名公布！》，2026-09-24，首都之窗，第4段",
+              "reviewQuote": "管庄站是与地铁八通线的换乘站。"
+            },
+            {
+              "id": "future-transfer-bj22-yunhe-6",
+              "name": "通州北关",
+              "complexId": "beijing-s325",
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-s325",
+                "beijing-s325__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202608/t20260825_4836108.html",
+              "reviewLocator": "网页《北京地铁22号线进入空载试运行 年底基本具备开通条件》，2026-08-25，首都之窗，第4段",
+              "reviewQuote": "北关站与6号线、城市副中心站与6号线及京唐城际"
+            },
+            {
+              "id": "future-transfer-bj22-beiyunhedong-6",
+              "name": "城市副中心",
+              "complexId": "beijing-s322",
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-s322",
+                "beijing-s322__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202608/t20260825_4836108.html",
+              "reviewLocator": "网页《北京地铁22号线进入空载试运行 年底基本具备开通条件》，2026-08-25，首都之窗，第4段",
+              "reviewQuote": "城市副中心站与6号线及京唐城际实现高效换乘"
+            },
+            {
+              "id": "future-transfer-bj22-dongdaqiao-6",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-s333__line6-6",
+                "beijing-s333__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202009/t20200911_2058715.htm",
+              "reviewLocator": "网页《地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程》，2020-09-11，北京市发改委官网“发改之声”，第6段",
+              "reviewQuote": "东大桥站与6号线、17号线（在建）、22号线（在建）换乘"
+            },
+            {
+              "id": "future-transfer-bj22-dongdaqiao-17",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "lineIds": [
+                "beijing-line17-17",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-s333__line17-17",
+                "beijing-s333__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202009/t20200911_2058715.htm",
+              "reviewLocator": "网页《地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程》，2020-09-11，北京市发改委官网“发改之声”，第6段",
+              "reviewQuote": "东大桥站与6号线、17号线（在建）、22号线（在建）换乘"
+            },
+            {
+              "id": "future-transfer-bj22-jintaixizhao-10",
+              "name": "金台夕照",
+              "complexId": "beijing-s169",
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line22-22"
+              ],
+              "stationInstanceIds": [
+                "beijing-s169",
+                "beijing-s169__line22-22"
+              ],
+              "precision": "schematic",
+              "source": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202009/t20200911_2058715.htm",
+              "reviewLocator": "网页《地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程》，2020-09-11，北京市发改委官网“发改之声”，第6段（该稿称“金台夕照（京广桥）站”）",
+              "reviewQuote": "金台夕照（京广桥）站与10号线、22号线（在建）换乘"
+            }
           ]
         },
         {
@@ -7184,7 +7610,7 @@
           "id": "bj-line28",
           "reviewStatus": "verified",
           "constructionOnly": true,
-          "transferReviewStatus": "pending",
+          "transferReviewStatus": "verified",
           "source": "https://xinwen.bjd.com.cn/content/s688c78d3e4b0aabe0a046da1.html",
           "sourcePublicationDate": "2025-08-01",
           "additionalSources": [
@@ -7224,7 +7650,147 @@
             "future-transfer-bj28-dawanglu-14",
             "future-transfer-bj28-dongdaqiao-17"
           ],
-          "transferReviewNote": "已补东大桥遗漏的17／28独立联系；R1、R4远期预留及国铁／市郊背景接口尚未完成分层审查，不解除整项目门槛。"
+          "transferReviewNote": "按2021-07-27北京市重大项目办“9座车站5座可换乘”逐站清单、2020-09-11发改委批复稿、2024-01-06首都之窗京广桥三线换乘与2025-08-01线路一体化规划公示核对：8对换乘全部有原文点名。同一批文件另列光华路（规划R4）、大望路（规划R1），这两条为区域快线、本作没有线体，记录为范围外；茂兴西路官方未写出对方线路，不臆造配对。",
+          "transferDefinitions": [
+            {
+              "id": "future-transfer-bj28-dongdaqiao",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "lineIds": [
+                "beijing-line6-6",
+                "beijing-line17-17",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s333__line6-6",
+                "beijing-s333__line17-17",
+                "beijing-s333__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "reviewLocator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+              "reviewQuote": "东大桥站可以换乘正在建设的17号线、22号线（平谷线）和已经通车的6号线"
+            },
+            {
+              "id": "future-transfer-bj28-jingguangqiao-10",
+              "name": "京广桥",
+              "complexId": "beijing-s169",
+              "lineIds": [
+                "beijing-line10-10",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s169",
+                "beijing-s169__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "reviewLocator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+              "reviewQuote": "京广桥站可换乘22号线，并通过一条换乘通道连接已通车的10号线金台夕照站"
+            },
+            {
+              "id": "future-transfer-bj28-dawanglu",
+              "name": "大望路",
+              "complexId": "beijing-s47",
+              "lineIds": [
+                "beijing-lineearly0",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s47",
+                "beijing-s47__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "reviewLocator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+              "reviewQuote": "大望路站可换乘已通车的1号线、14号线以及规划中的R1线"
+            },
+            {
+              "id": "future-transfer-bj28-dajiaoting-7",
+              "name": "大郊亭",
+              "complexId": "beijing-s310",
+              "lineIds": [
+                "beijing-line7-7",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s310",
+                "beijing-s310__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "reviewLocator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+              "reviewQuote": "大郊亭站可换乘7号线"
+            },
+            {
+              "id": "future-transfer-bj28-dongdaqiao-22",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "lineIds": [
+                "beijing-line22-22",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s333__line22-22",
+                "beijing-s333__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "reviewLocator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+              "reviewQuote": "东大桥站可以换乘正在建设的17号线、22号线（平谷线）和已经通车的6号线"
+            },
+            {
+              "id": "future-transfer-bj28-jingguangqiao-22",
+              "name": "京广桥／金台夕照",
+              "complexId": "beijing-s169",
+              "lineIds": [
+                "beijing-line22-22",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s169__line22-22",
+                "beijing-s169__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+              "reviewLocator": "网页《地铁28号线迎来新进展 京广桥站首幅超深地下连续墙浇筑完成》，2024-01-06，首都之窗，第7段",
+              "reviewQuote": "京广桥站是地铁28号线、22号线、10号线三线换乘车站"
+            },
+            {
+              "id": "future-transfer-bj28-dawanglu-14",
+              "name": "大望路",
+              "complexId": "beijing-s47",
+              "lineIds": [
+                "beijing-line14-14",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s278",
+                "beijing-s47__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "reviewLocator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+              "reviewQuote": "大望路站可换乘已通车的1号线、14号线以及规划中的R1线"
+            },
+            {
+              "id": "future-transfer-bj28-dongdaqiao-17",
+              "name": "东大桥",
+              "complexId": "beijing-s333",
+              "lineIds": [
+                "beijing-line17-17",
+                "beijing-line28-28"
+              ],
+              "stationInstanceIds": [
+                "beijing-s333__line17-17",
+                "beijing-s333__line28-28"
+              ],
+              "precision": "schematic",
+              "source": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+              "reviewLocator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+              "reviewQuote": "东大桥站可以换乘正在建设的17号线、22号线（平谷线）和已经通车的6号线"
+            }
+          ]
         },
         {
           "id": "bj-line13-capacity",
@@ -7340,7 +7906,8 @@
             "future-transfer-bj13capacity-newlongze"
           ],
           "namingRevisionSource": "https://yewu.ghzrzyw.beijing.gov.cn/zkdncms/cxghphgsdmgg/esSearchDetail/31f464cd7a73878d2e5efed190a8559e",
-          "namingRevisionEffectiveDate": "2025-12-25"
+          "namingRevisionEffectiveDate": "2025-12-25",
+          "transferReviewNote": "已独立复核21对中的17对（环评逐站点名11对，另6对由官方网页补齐）。仍未取得点名的4对是知春路—10号线、霍营—8号线、立水桥—5号线、芍药居—10号线：环评把这些站当作既有站改造，没有重述换乘线路，不能凭常识补。另发现光熙门—12号线这一对官方已点名（2024-03-21首都之窗）但本项目清单未列。因此不标已核对，待补站级来源与光熙门一对后再评。"
         },
         {
           "id": "bj-yizhuang-connector",
@@ -7523,7 +8090,8 @@
               ],
               "bodyLineAliasEvidence": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf"
             }
-          ]
+          ],
+          "transferReviewNote": "本工程不新增客运车站（可研批复“不新增运营里程，无新增站点”，环评“无新建、改（扩）建场站”），但并非不改变换乘：批复要求“改造亦庄线宋家庄站，优化与10号线换乘条件”，环评第19页写明3.6万人次改为同台换乘（10号线西向东方向与亦五贯通线南向北方向）、6.5万人次由三线“T”形换乘改为两线“平行”换乘。复核运行世界后确认本项目不产生新的站体对：贯通线在宋家庄复用5号线站体（beijing-s119__line5-5），与10号线站体之间的active换乘已在2012里程碑章建立，因此“新增要求条数”确实为0，不是漏项。仍不能标已核对的原因只剩一项：官方要求的具体形式是“同台”，而现有transferKind只有站内换乘与出闸换乘两种，无法把站台布置写入数据；若另立一条同站体对换乘，既重复既有物理配对，也违反工程类章节“不得凭空新增active换乘”的独立规格规则。故保持pending，并把它记为建模能力缺口而不是转录缺口。"
         },
         {
           "id": "bj-r4-north-phase1",
@@ -8019,12 +8587,13 @@
               "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
             }
           ],
-          "note": "完整14新站范围有官方独立站序；丽金线预留及整体枢纽站体资料口径仍需单独核对，不将其标为全部换乘已审核。"
+          "note": "完整14新站范围有官方独立站序；丽金线预留及整体枢纽站体资料口径仍需单独核对，不将其标为全部换乘已审核。",
+          "transferReviewNote": "已独立复核7对中的6对：体育场南街—1号线支线、北京西站—7号线、北京西站—9号线、丽泽商务区—14/16/大兴机场线均有原文点名（环评第98页“与M7、M9线换乘”等）。莲花桥—10号线只有“换乘站”标注，没有点名10号线的官方句子，故不标已核对。另：官方把丽金线列为丽泽五线换乘之一，本作没有丽金线线体，记录为范围外。"
         }
       ],
       "cutoffNetwork": {
         "date": "2026-10-01",
-        "temporalReviewStatus": "pending",
+        "temporalReviewStatus": "verified",
         "groups": [
           {
             "id": "beijing-line18-open-2025",
@@ -8843,6 +9412,46 @@
             "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260630_4738884.html",
             "effectiveDate": "2026-06-30",
             "scope": "通运门补站；不能由6月25日图或2025全线任务推断提前开放。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/ywdt/gzdt/202412/t20241215_3965616.html",
+            "effectiveDate": "2024-12-15",
+            "scope": "3号线一期（东四十条—东坝北）、12号线（四季青桥—东坝北）、昌平线南延一期剩余段（西土城—蓟门桥及朱房北）首班车起开通试运营；全市换乘站 98 座。截止网中 3/12 号线全部换乘由此产生。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370880.html",
+            "effectiveDate": "2025-12-27",
+            "scope": "17号线中段（工人体育场—十里河）、18号线（马连洼—天通苑东）、6号线南延（潞城—潞阳）开通试运营（12-28 报道追述“12月27日…开通试运营”）。产生 永安里1/17、东大桥6/17、工人体育场3/17、马连洼16/18、回龙观东大街8/18、天通苑5/18、天通苑东17/18。"
+          },
+          {
+            "source": "https://www.bjmoa.cn/metroLineList.html?sline=15",
+            "effectiveDate": "2025-12-27",
+            "scope": "运营方 17 号线现行站表共 20 站，不含广渠门外；该站仅 7 号线开放，17 号线通过不停车，故不计 7/17 换乘（站表为当前状态，日期取 17 号线中段开通日）。"
+          },
+          {
+            "source": "https://www.mtr.bj.cn/article/697b49106a97b45630c3c3ef.html",
+            "effectiveDate": "2026-01-31",
+            "scope": "17号线望京西站开通，与13号线、15号线三线换乘；原13/15换乘天桥同日关闭。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/ywdt/gzdt/202602/t20260203_4486799.html",
+            "effectiveDate": "2026-02-03",
+            "scope": "否定证据：22号线（红庙—平谷）2026 年底才“基本具备开通条件”；14号线红庙站、首都机场线望京南站仍在推进，截止日均不计入；当日仅提 10 号线火器营、纪家庙等出入口。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202605/t20260516_4653696.html",
+            "effectiveDate": "2026-05-16",
+            "scope": "1号线苹果园、古城、八宝山首班车起恢复运营；八角游乐园因 1 号线支线施工继续通过不停车；苹果园实现 1/6/S1 三线换乘。"
+          },
+          {
+            "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260630_4738884.html",
+            "effectiveDate": "2026-06-30",
+            "scope": "6号线通运门站首班车起开通运营（先行开放 A、B 口）。这是截止日 2026-10-01 前最近一次地铁车站开通。"
+          },
+          {
+            "source": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20260929/5731562.html",
+            "effectiveDate": "2026-09-29",
+            "scope": "1号线福寿岭站启用改造（增加安全出口）仍处招标计划，预计 2026-10-30 才发招标公告，故福寿岭不在截止网。"
           }
         ],
         "transfers": [
@@ -8969,7 +9578,10 @@
           "historic-transfer-beijing-s192-line22-line16-16",
           "historic-transfer-beijing-s96-line13-13-line20"
         ],
-        "transferEvidence": "res://data/official_evidence/beijing_interchanges_reviewed2026-10-26.json"
+        "transferEvidence": "res://data/official_evidence/beijing_interchanges_reviewed2026-10-26.json",
+        "temporalReviewNote": "按官方通稿与年度运营通告逐次核对截止日前开通：补入2024-12-15三线、2025-12-27十七号线中段与六号线南延、2026-02-03否定证据等8条带日期行；红庙、陶然桥、广渠门外、福寿岭、八角游乐园等暂缓开通车站均未计入截止网，未发现把未开通站当已开通。",
+        "transferReviewStatus": "verified",
+        "transferReviewNote": "按官方线网图换乘符号与运营方站序普查得104座多线换乘站，与游戏122条编号（去重104站）逐站比对，漏项0、虚项0。巴沟（10号线/西郊线）、苹果园与金安桥的S1、四惠—四惠东—公益西桥贯通段按“有轨、磁浮、贯通不计换乘”排除并单独写明。"
       },
       "sourceProjectInventory": [
         {
@@ -9091,24 +9703,25 @@
         },
         {
           "projectId": "bj-r4-north-phase1",
-          "officialName": "R4线一期北段",
+          "officialName": "北京轨道交通R4线一期北段工程（京发改（审）〔2024〕1067号）",
           "required": true,
-          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202606/t20260602_4681873.html",
-          "sourcePublicationDate": "2026-06-02",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202501/t20250107_3982106.htm",
+          "sourcePublicationDate": "2025-01-07",
           "note": "年初重点工程名单之后开工，单独补入，不能用年度名单排除。"
         },
         {
           "projectId": "bj-line11-phase2",
-          "officialName": "11号线二期",
+          "officialName": "北京地铁11号线二期（型材—丽泽商务区）一体化规划方案批复",
           "required": true,
           "source": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html",
           "sourcePublicationDate": "2026-01-14"
         }
       ],
-      "inventoryReviewNote": "2026重点工程名单的13项轨道项目和6月开工R4必须逐项收录；这是独立的最小清单，并非所有有效批准项目已穷尽。11号线二期等更广范围继续核对，不据此将inventoryReviewStatus改为verified。"
+      "inventoryReviewNote": "按《北京市2026年重点工程计划》（市发改委2026-02-03）第9—10页“（二）轨道交通（13项）”逐条原文转录13行；R4线一期北段与11号线二期在该册中分别属前期项目与规划批复事项，改引其各自的市发改委批复文件，不塞进轨道章。该册是年度重点工程计划，不等于全部已批建设项目，本标记只声明“已发布的年度清单已逐条转录”，不声明北京市全部项目清点完成。",
+      "historyReviewNote": "逐条重开来源复核beijing的18条历史里程碑，1条通过。日期不成立2条（beijing-network-milestone-2025-12-27、beijing-network-milestone-2012-12-30）建设子段指错7条（beijing-network-milestone-2010-12-30、beijing-changping-north-2015、beijing-changping-south-2023、beijing-network-milestone-2024-12-15、beijing-line13-east-2003、beijing-network-milestone-2019-07-26、beijing-line6-tongyunmen-2026）站序无法逐站核对8条（beijing-network-milestone-2021-12-31、beijing-network-milestone-2023-12-30、beijing-network-milestone-2026-01-31、beijing-line19-infill-2022、beijing-line13-west-2002、beijing-line10-first-2008、beijing-network-milestone-2013-05-05、beijing-network-milestone-1987-12-28）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
     },
     "guangzhou": {
-      "inventoryReviewStatus": "pending",
+      "inventoryReviewStatus": "verified",
       "historyReviewStatus": "pending",
       "requiredProjectIds": [
         "gz-line12-mid",
@@ -10233,7 +10846,7 @@
         "chapterId": "guangzhou-network-reconciliation-2026-10-01",
         "date": "2026-10-01",
         "source": "https://apis.gzmtr.com/app-map/metroweb/linestation",
-        "temporalReviewStatus": "pending",
+        "temporalReviewStatus": "verified",
         "inventoryReviewStatus": "operator_paths_reviewed_dates_pending",
         "note": "23条独立服务路径：本次新增运营方直接查询的17条路径；3/12/14号线分支沿用已有官方资料。时序与全量换乘仍未全部审核，不能以现行接口代替2026年10月1日事实。",
         "additionalSources": [
@@ -10990,11 +11603,6 @@
             "scope": "11号线广州东站开放，广州火车站不计入开放停站"
           },
           {
-            "source": "https://zfcj.gz.gov.cn/zjdt/zjxw/content/mpost_10472692.html",
-            "effectiveDate": "2025-09-29",
-            "scope": "11号线广州东站开放，广州火车站不计入开放停站"
-          },
-          {
             "historicalLineId": "guangzhou-line22-17",
             "effectiveDate": "2022-03-31",
             "source": "https://ghzyj.gz.gov.cn/xwzx/gzdt/content/post_10615717.html",
@@ -11012,15 +11620,117 @@
             "source": "https://gzdaily.dayoo.com/pc/html/2026-02/13/content_866_904065.htm",
             "effectiveDate": "2026-02-13",
             "scope": "十二号线赤岗站开放，东段九站并增加与八号线换乘。"
+          },
+          {
+            "source": "https://www.foshan.gov.cn/zwgk/zwdt/bmdt/content/post_6908002.html",
+            "effectiveDate": "2021-12-28",
+            "scope": "佛山 2 号线一期（南庄—广州南站，17 站）开通；广州南站由此成为 2/7/22/佛山2 多线枢纽，湾华、魁奇路与广佛线/佛山3 的换乘随后成立。"
+          },
+          {
+            "source": "https://fsdr.foshan.gov.cn/gkmlpt/content/6/6079/post_6079253.html",
+            "effectiveDate": "2024-08-23",
+            "scope": "佛山 3 号线在建段（镇安—佛山大学，15 站，含桂城、东平）6 时开通，桂城、东平与广佛线换乘成立；该段当时与南段分段运营。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/zwfw/zxfw/jtfw/content/post_9950294.html",
+            "effectiveDate": "2024-11-01",
+            "scope": "3 号线东延段（番禺广场—海傍，含傍江、石碁南、海涌路）首班车起运营；海傍由此成为 3/4 号线换乘。官方 2024-10-31 发布。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/zwfw/zxfw/jtfw/content/post_10045280.html",
+            "effectiveDate": "2024-12-28",
+            "scope": "11 号线（环线，31 座车站）14 时起初期运营，全线换乘站 26 座、开通初期 14 座与既有线换乘；同日 6 号线沙河站对外运营。官方明确：11 号线广州火车站、广州东站因配合国铁改造不满足开通条件，列车不停站通过（通过不停车），故截止日广州火车站仍只有 2/5 号线。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/xw/gzyw/content/mpost_10333816.html",
+            "effectiveDate": "2025-06-29",
+            "scope": "10 号线（杨箕东—西塱）、12 号线东段（二沙岛—大学城南）与西段（浔峰岗—广州体育馆）开通；12 号线中段（广州体育馆—二沙岛）未开通，官方接口至今仍把 12 号线拆成两段独立路径，与游戏 groups 的两段一致。"
+          },
+          {
+            "source": "https://jtj.gz.gov.cn/xwdt/gzdt/content/post_10464307.html",
+            "effectiveDate": "2025-09-26",
+            "scope": "市交通运输局（2025-09-26）称 12 号线中段（广州体育馆—二沙岛）仍在推进、13 号线二期（天河公园—朝阳）尚待建设；证明两段在截止日前未开通，与官方接口缺段一致，游戏也未把这些站当已开通。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/zt/jrshts/2025n/zqgq/dtzx/content/post_10466453.html",
+            "effectiveDate": "2025-09-29",
+            "scope": "13 号线二期（天河公园—鱼珠，4 站）、14 号线二期（嘉禾望岗—乐嘉路，7 站）首班车起开通，与一期贯通；同日 11 号线广州东站开通。11 号线广州东站自 2024-12-28 起为通过不停车，至本日才启用，广州东站由此成为 1/3/11 三线换乘。"
+          },
+          {
+            "source": "https://ghzyj.gz.gov.cn/sjb/xw/gzdt/content/post_10615719.html",
+            "effectiveDate": "2025-12-29",
+            "scope": "22 号线后通段（陈头岗—芳村）开通，与首通段贯通为番禺广场—芳村；西塱形成 1/10/22/广佛线四线换乘，芳村形成 1/11/22 三线换乘。官方 2025-12-30 发布。"
+          },
+          {
+            "source": "https://jtj.gz.gov.cn/hdjl/czc/content/post_10789115.html",
+            "effectiveDate": "2026-04-06",
+            "scope": "市交通运输局（2026-04-06）称 13 号线二期西段（朝阳—天河公园，19 站）计划 2026 年底建成开通；即截止日 2026-10-01 尚未开通，2026-07-03 该段仍在公开征求站名意见，可交叉印证 2026 年内截止日前无新线开通。"
+          },
+          {
+            "source": "https://www.foshan.gov.cn/zwgk/zwdt/bmdt/content/post_7179350.html",
+            "effectiveDate": "2026-06-18",
+            "scope": "佛山 3 号线中山公园—联和段 6 时贯通（含敦厚站启用、佛山站贯通），全线 66.57 公里 37 站连成一线；官方同稿点名湾华换佛山2、桂城与东平换广佛线、北滘公园换广州7号线。这是截止日 2026-10-01 前本线网范围最后一次开通/车站启用，未新增换乘站。"
           }
         ],
         "sourceRetrievedAt": "2026-10-25",
         "transfers": [
+          "historic-transfer-guangzhou-s177-line1-line3-3",
+          "historic-transfer-guangzhou-s6-line1-line3-3",
+          "historic-transfer-guangzhou-s65-line4-4-line5-5",
+          "historic-transfer-guangzhou-s133-line1-line2-2",
+          "historic-transfer-guangzhou-s144-line2-2-line3-3",
+          "historic-transfer-guangzhou-s1-line6-6-line3-3",
+          "historic-transfer-guangzhou-s109-line1-line6-6",
+          "historic-transfer-guangzhou-s113-line2-2-line6-6",
+          "historic-transfer-guangzhou-s116-line1-line6-6",
+          "historic-transfer-guangzhou-s103-line6-6-line3-3",
+          "historic-transfer-guangzhou-s108-line6-6-line5-5",
+          "historic-transfer-guangzhou-s118-line6-6-line5-5",
+          "historic-transfer-guangzhou-s123-line2-2-line7-7",
+          "historic-transfer-guangzhou-s124-line2-2-line7-7",
+          "historic-transfer-guangzhou-s14-line3-3-line7-7",
+          "historic-transfer-guangzhou-s61-line4-4-line7-7",
+          "historic-transfer-guangzhou-s81-line5-5-line13-13",
+          "historic-transfer-guangzhou-s230-line9-9-line3-3",
+          "historic-transfer-guangzhou-s11-line20-line3-3",
+          "historic-transfer-guangzhou-s21-line2-2-line20",
+          "historic-transfer-guangzhou-s27-line1-line20",
+          "historic-transfer-guangzhou-s144-line2-2-line14-14",
+          "historic-transfer-guangzhou-s144-line3-3-line14-14",
+          "historic-transfer-guangzhou-s68-line21-16-line14-14",
+          "historic-transfer-guangzhou-s94-line6-6-line21-16",
           "historic-transfer-gz-reviewed-guangzhou-s250-4-21",
+          "historic-transfer-guangzhou-s115-line6-6-line8-8",
+          "historic-transfer-guangzhou-s130-line2-2-line8-8",
+          "historic-transfer-guangzhou-s156-line1-line8-8",
+          "historic-transfer-guangzhou-s24-line20-line8-8",
+          "historic-transfer-guangzhou-s64-line4-4-line8-8",
+          "historic-transfer-guangzhou-s9-line3-3-line8-8",
           "historic-transfer-gz-reviewed-guangzhou-s277-7-18",
           "historic-transfer-gz-reviewed-guangzhou-s276-3-18",
           "historic-transfer-gz-reviewed-guangzhou-s278-8-18",
+          "historic-transfer-guangzhou-s40-line20-line2-18",
+          "historic-transfer-guangzhou-s276-line22-17-line18-15",
+          "historic-transfer-gz22-first-panyu-line3",
+          "historic-transfer-gz22-first-south-line2",
+          "historic-transfer-gz22-first-south-line7",
+          "historic-transfer-gz22-first-south-foshan2",
+          "historic-transfer-guangzhou-s136-line2-2-line5-5",
+          "historic-transfer-guangzhou-s154-line8-8-line5-5",
+          "historic-transfer-guangzhou-s175-line1-line5-5",
+          "historic-transfer-guangzhou-s218-line21-16-line7-7",
+          "historic-transfer-guangzhou-s7-line3-3-line5-5",
+          "historic-transfer-guangzhou-s93-line6-6-line7-7",
+          "historic-transfer-guangzhou-s82-line7-7-line13-13",
+          "historic-transfer-guangzhou-s85-line5-5-line13-13",
           "historic-transfer-gz-reviewed-guangzhou-s214-5-7",
+          "historic-transfer-gz-south-passage-foshan2-to-line2",
+          "historic-transfer-gz-south-passage-foshan2-to-line7",
+          "historic-transfer-guangzhou-s200-line7-7-line3-19",
+          "historic-transfer-guangzhou-s289-line2-18-line3-19",
+          "historic-transfer-guangzhou-s34-line20-line3-19",
+          "historic-transfer-guangzhou-s43-line20-line3-19",
+          "historic-transfer-gz3-east-haibang-4",
           "historic-transfer-gz-reviewed-guangzhou-s179-5-11",
           "historic-transfer-gz-reviewed-guangzhou-s3-3-11",
           "historic-transfer-gz-reviewed-guangzhou-s339-5-11",
@@ -11034,16 +11744,113 @@
           "historic-transfer-gz-reviewed-guangzhou-s338-8-11",
           "historic-transfer-gz-reviewed-guangzhou-s170-1-11",
           "historic-transfer-gz-reviewed-guangzhou-s280-18-11",
+          "historic-transfer-guangzhou-s110-line6-6-line10-10",
+          "historic-transfer-guangzhou-s128-line2-2-line10-10",
+          "historic-transfer-guangzhou-s150-line8-8-line12-12",
+          "historic-transfer-guangzhou-s27-line1-line10-10",
+          "historic-transfer-guangzhou-s27-line20-line10-10",
+          "historic-transfer-guangzhou-s61-line4-4-line12-12",
+          "historic-transfer-guangzhou-s61-line7-7-line12-12",
+          "historic-transfer-guangzhou-s62-line4-4-line12-12",
+          "historic-transfer-guangzhou-s63-line4-4-line12-12",
+          "historic-transfer-guangzhou-s352-line10-10-line11-11",
           "historic-transfer-gz-reviewed-guangzhou-s361-5-10",
           "historic-transfer-gz-reviewed-guangzhou-s373-6-12",
           "historic-transfer-gz-reviewed-guangzhou-s368-2-12",
           "historic-transfer-gz-reviewed-guangzhou-s337-11-12",
-          "historic-transfer-gz3-east-haibang-4",
-          "historic-transfer-gz-south-passage-foshan2-to-line2",
-          "historic-transfer-gz-south-passage-foshan2-to-line7"
+          "historic-transfer-guangzhou-s233-line12-12-line14-14",
+          "historic-transfer-guangzhou-s66-line4-4-line13-13",
+          "historic-transfer-guangzhou-s78-line21-16-line13-13",
+          "historic-transfer-guangzhou-s78-line11-11-line13-13",
+          "historic-transfer-gz11-east-guangzhou-line1",
+          "historic-transfer-gz11-east-guangzhou-line3-3",
+          "historic-transfer-guangzhou-s170-line1-line22-17",
+          "historic-transfer-gz22-west-xilang-line1",
+          "historic-transfer-gz22-west-xilang-line10",
+          "historic-transfer-gz22-west-xilang-guangfo",
+          "historic-transfer-gz22-west-fangcun-line11",
+          "historic-transfer-guangzhou-s164-line8-8-line12-12"
         ],
-        "transferReviewStatus": "partial_operator_pairs_dated_actions_added"
-      }
+        "transferReviewStatus": "verified",
+        "temporalReviewNote": "按官方通稿与佛山线网通告核对到2026-06-18佛山三号线贯通（敦厚站启用，不新增换乘站）；广州本市最近一次为2025-12-29二十二号线后通段。十一号线广州火车站自2024-12-28起通过不停车、至截止日仍未开通，游戏截止网确实没有该站；未发现把未开通站当已开通。",
+        "transferReviewNote": "按运营方线网接口实抓得75座多线换乘站（广州市内70、佛山5，不含APM，计APM为77）。上一版把这75座与`cutoffNetwork.transfers`里的24个站区相比得出“缺51站”，但那份清单只是2026核对章重列的25条编号，不是游戏截止网的全部换乘。改按全部历史章节的换乘要求重算：历史章节共97条编号，其中赤沙一对同站体有两个编号（旧的`-s337-line12-12-line11-11`与复核后的`-s337-11-12`），旧编号在存档里被标为`superseded`、只有复核后那条是active，故清单取复核后的那一条，得96条编号、75个站区。逐名双向比对（官方有而游戏无、游戏有而官方无均为空），每站线路数也逐站相同（75站全部相等，差异0）。漏项0、虚项0。本次结论到站级与线路数级，站内通道形式与同台／出闸的逐对分类仍以各城专项证据为准。"
+      },
+      "sourceProjectInventory": [
+        {
+          "projectId": "gz-line18-remainder",
+          "officialName": "轨道交通十八号线工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第1项；印刷页2",
+          "quote": "轨道交通十八号线工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line13-phase2-west",
+          "officialName": "轨道交通十三号线二期工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第2项；印刷页2",
+          "quote": "轨道交通十三号线二期工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line12-mid",
+          "officialName": "轨道交通十二号线工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第3项；印刷页2",
+          "quote": "轨道交通十二号线工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line10-remainder",
+          "officialName": "轨道交通十号线工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第4项；印刷页2",
+          "quote": "轨道交通十号线工程｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line8-north-branch",
+          "officialName": "轨道交通八号线北延段支线工程（江府-纪念堂）",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第5项；印刷页2",
+          "quote": "轨道交通八号线北延段支线工程（江府-纪念堂）｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line8-north",
+          "officialName": "轨道交通八号线北延段工程（滘心-广州北站）",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第6项；印刷页2",
+          "quote": "轨道交通八号线北延段工程（滘心-广州北站）｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line8-east",
+          "officialName": "轨道交通八号线东延段工程（万胜围-莲花）",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第7项；印刷页2",
+          "quote": "轨道交通八号线东延段工程（万胜围-莲花）｜市交通运输局"
+        },
+        {
+          "projectId": "gz-line14-remainder",
+          "officialName": "轨道交通十四号线二期工程",
+          "source": "https://fgw.gz.gov.cn/attachment/8/8071/8071455/10694623.pdf",
+          "sourcePublicationDate": "2026-02-14",
+          "required": true,
+          "locator": "附件1 一、基础设施—（一）交通基础设施—5.城市轨道交通 第8项；印刷页2",
+          "quote": "轨道交通十四号线二期工程｜市交通运输局"
+        }
+      ],
+      "inventoryReviewNote": "按《广州市2026年重点建设项目计划》（市发改委2026-02-14，附件1印刷页2）5.城市轨道交通8项逐条原文转录。9个必做项目中8个在清单内；11号线广州火车站站为既有线未开通车站，清单正文与预备项目册均无该条目，其自身证据另存。清单另列城际铁路与车辆段更新改造，按干线铁路/非线路工程报批，不属本作范围。附件原始链接为 http，同域 https 返回200，故按 https 记录。",
+      "historyReviewNote": "逐条重开来源复核guangzhou的16条历史里程碑，3条通过。日期不成立3条（guangzhou-network-milestone-2022-03-31、guangzhou-line3-airport-opening-2010、guangzhou-network-milestone-2017-12-28）建设子段指错2条（guangzhou-line11-ring-opening-2024、guangzhou-line12-chigang-2026）站序无法逐站核对8条（guangzhou-network-milestone-2022-09-28、guangzhou-network-milestone-2025-09-29、guangzhou-line22-west-opening-2025、guangzhou-line6-first-2013、guangzhou-line6-yide-2015、guangzhou-network-milestone-2016-12-28、guangzhou-line6-gardens-2017、guangzhou-network-milestone-2025-06-29）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
     },
     "chengdu": {
       "inventoryReviewStatus": "pending",
@@ -12779,7 +13586,7 @@
         "date": "2026-10-01",
         "source": "https://www.chengdurail.com/op/station-time",
         "sourceRetrievedAt": "2026-10-23",
-        "temporalReviewStatus": "pending",
+        "temporalReviewStatus": "verified",
         "note": "运营方独立站序，取得时间晚于截止日。开放事实及历史分期仍需有日期的官方公告；不据此放行整城。30号线玉虹路、分水暂缓开放，18/19号线不含机场3/4航站楼预留站。",
         "groups": [
           {
@@ -13548,6 +14355,10 @@
             "id": "cd18-19-airport-shared",
             "physicalLineId": "chengdu-line18-13",
             "serviceLineId": "chengdu-line19-14",
+            "intervalEndpoints": [
+              "三岔",
+              "天府机场北"
+            ],
             "stationNames": [
               "三岔",
               "福田",
@@ -13558,8 +14369,114 @@
             "evidenceFile": "res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json",
             "note": "19号线过轨后使用18号线既有站体及同一实体区间；不是四组新的步行换乘。具体过轨工程位置不作测绘精度声明。"
           }
-        ]
-      }
+        ],
+        "temporalEvidence": [
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2015-07-25",
+            "scope": "官方《发展历程》：1 号线南延线开通试运营。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2016-07-31",
+            "scope": "官方《发展历程》：3 号线一期开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2017-06-02",
+            "scope": "官方《发展历程》：4 号线二期开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2017-09-06",
+            "scope": "官方《发展历程》：10 号线一期开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2017-12-06",
+            "scope": "官方《发展历程》：7 号线开通（环线），成都进入“井+环”网络化运营。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2018-03-18",
+            "scope": "官方《发展历程》：1 号线三期开通，线网 196 公里。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2018-12-26",
+            "scope": "官方《发展历程》：3 号线二、三期与蓉2 号线首开段同日开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2019-12-27",
+            "scope": "官方《发展历程》：5 号线一二期、10 号线二期及蓉2 号线非首开段开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2020-09-27",
+            "scope": "官方《发展历程》：18 号线开通运营（火车南站—三岔）。18 号线后续天府机场段（三岔—天府机场北）的带日期官方页本轮未取得，但该段车站均非换乘站，不影响名册；2026-10-27 运营站表已含天府机场1号2号航站楼、天府机场北。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2020-12-18",
+            "scope": "官方《发展历程》：5 条新线集中开通初期运营，线网突破 500 公里（6 号线、8 号线一期、9 号线、17 号线一期等）；该页未逐条列名，故不据此拆分单线日期。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1331/52042.htm",
+            "effectiveDate": "2023-11-28",
+            "scope": "19 号线二期 09:00 开通初期运营，线网突破 600 公里；同日开通天府站站内换乘（18/19），并开行双机场直达车；双流机场2航站楼东与 10 号线双流机场2航站楼之间以地下通道实现“出闸换乘”；19 号线于天府站过轨后与 18 号线共线运营。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1151/56002.htm",
+            "effectiveDate": "2024-12-19",
+            "scope": "8 号线二期、27 号线一期 09:30 开通；新增 5 座换乘站：龙港（8/19）、韦家碾（1/27）、羊犀立交（2/27）、洞子口（5/27）、金府（6/27）。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1141/107332.htm",
+            "effectiveDate": "2025-09-17",
+            "scope": "17 号线二期（机投桥—高洪，18 站，6 座换乘：龙爪堰7、省骨科医院5、人民公园2、红星桥3、建设北路6、二仙桥7）与10 号线三期（武侯祠—太平园）10:00 开通，全网新增 7 座换乘站。官方明确 10 号线三期剩余文翁石室、人民公园两站暂缓，故截止日文翁石室只有 13 号线、人民公园为 2/17（10 号线站未开）。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1141/114994.htm",
+            "effectiveDate": "2025-12-16",
+            "scope": "13 号线一期（瓦窑滩—龙安，21 站）、30 号线一期（双流机场2航站楼东—龙泉驿火车站南，设 24 站）10:00 开通；官方称两线新增 15 座换乘站、全网车站 489 座、换乘站 80 座。这是截止日 2026-10-01 前成都最后一次地铁开通。"
+          }
+        ],
+        "temporalReviewNote": "原temporalEvidence为空，本轮补入14条带日期行，逐线落到最后一次开通日（1/3/4/5/7/10/13/17/18/19/27/30号线分别记录，6/8/9号线并入2020-12-18与2024-12-19两条）。截止日前最近一次开通为2025-12-16十三号线一期与三十号线一期；三十号线玉虹路、分水与十号线文翁石室、人民公园按官方“暂未开通”处理，游戏站序同样不含。",
+        "transferReviewStatus": "verified",
+        "transferReviewNote": "按运营方首末班车时刻接口实抓（与2026-10-23抓取逐字节一致）聚合得83座多线站，剔除18/19号线共线运营的三岔、福田、天府机场1号2号航站楼、天府机场北4座（同一实体站台，不构成步行换乘）后79座；游戏截止网为78个站区、92条编号，差的那一座是双流机场：官方把双流机场2航站楼（10/19）与双流机场2航站楼东（19/30）算作两座，游戏按官方“出闸换乘”把它们并入同一站区，因此78站对79站不是漏项。另官方写“中医大省医院”，游戏站名带间隔号写作“中医大·省医院”，同一座站。按此口径逐站比对漏项0、虚项0；蓉2有轨与S3资阳线不计。复核时专门查了双流机场2航站楼—三十号线这一对：三十号线西端是双流机场2航站楼东，不经双流机场2航站楼，但官方站名后标注“出闸换乘”，两座站名不同的实体站之间确实存在出闸步行联系，故这一对按出闸换乘保留，不删；十号线—十九号线、十九号线—三十号线两对为付费区内换乘，分别保留。"
+      },
+      "sourceProjectInventory": [
+        {
+          "projectId": "cd-line18-phase3",
+          "officialName": "成都轨道交通18号线三期工程",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909825/14885780896790609924.pdf",
+          "sourcePublicationDate": "2026-03-05",
+          "required": true,
+          "locator": "附表 一、续建项目（一）交通基础设施项目 序号1",
+          "quote": "成都轨道交通18号线三期工程｜成都轨道集团｜市住建局｜成都高新区、锦江区、青羊区、金牛区、武侯区｜线路全长约13.55千米，共设车站5座，全部为地下线（原表单元格内文字竖排换行，此处按表意合并，未改动任何字）"
+        },
+        {
+          "projectId": "cd-line10-phase3-remainder",
+          "officialName": "成都轨道交通10号线三期工程",
+          "source": "https://www.chengdu.gov.cn/gkml/uploadfiles/1607625235320909825/14885780896790609924.pdf",
+          "sourcePublicationDate": "2026-03-05",
+          "required": true,
+          "locator": "附表 一、续建项目（一）交通基础设施项目 序号7",
+          "quote": "成都轨道交通10号线三期工程｜成都轨道集团｜市住建局｜青羊区、武侯区｜线路全长约5.5千米，共设车站5座，全部为地下线（原表单元格内文字竖排换行，此处按表意合并，未改动任何字）"
+        },
+        {
+          "projectId": "cd-line12-phase1",
+          "officialName": "成都轨道交通12号线一期工程",
+          "source": "https://www.chengdurail.com/info/1171/134904.htm",
+          "sourcePublicationDate": "2026-08-26",
+          "required": true,
+          "locator": "正文“1、建设项目名称、选址选线、建设内容等基本情况”段；页面标注“发布时间：2026-08-26”，文末署“成都轨道交通集团有限公司 2026年8月26日”",
+          "quote": "起于普安站，止于舜和家园站，正线长约34.2km，均为地下线，设车站28座"
+        }
+      ],
+      "inventoryReviewNote": "《成都市2026年市级政府投资项目计划》（成办发〔2026〕4号，2026-03-05）与《2026年成都市重点项目计划》（2026-01-30）对地铁均采用聚合口径，全表只有“成都市城市轨道交通续建项目”一行，无法形成项目级清单。6个必做项目中18号线三期、10号线三期对上聚合行；12号线一期有2026-08-26成都轨道集团首次环评信息公开可点名（起于普安站、止于舜和家园站、34.2km、28站）；18号线四期、27号线二期、10号线四期只找到招标公告引述省发改委先行开展勘察设计招标的函，可研、节能审查与环评原件均未取得（相关站点412反爬、正文页不可达）。故不标已核对。",
+      "historyReviewNote": "逐条重开来源复核chengdu的31条历史里程碑，0条通过。来源打不开或非官方1条（chengdu-opening-line10-first-2017）日期不成立6条（chengdu-opening-line4-first-2015、chengdu-opening-line18-terminal-2021、chengdu-opening-line18-tianfu-2023、chengdu-opening-line6-qingdao-2024、chengdu-opening-line6-lujiao-2025、chengdu-reorganization-17-19-2023）站序无法逐站核对24条（cd-line1-2010、chengdu-opening-line2-first-2012、chengdu-opening-line2-west-2013、chengdu-network-milestone-2014-10-26、cd-line1-2015、chengdu-opening-line3-first-2016、chengdu-network-milestone-2017-12-26、chengdu-network-milestone-2017-12-06 等24条）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
     }
   }
 }

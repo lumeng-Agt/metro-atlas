@@ -1,0 +1,568 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "retrievedAt": "2026-10-27",
+  "methodNote": "PDF 用 curl -sL -A 'Mozilla/5.0' 取到 D:/gam1/metro-atlas-desktop/.tmp-src/，sha256sum 计算，pdftotext -layout 全文抽取后按页复核引文；政府网页用 curl 抓 HTML 转纯文本阅读，记为“网页读取核对”，不计入文件哈希。所有 source 均为 https。两份 PDF 都带整页水印，抽取时水印单字会插入正文行间，摘句按连续可读正文抄录，不改字词。",
+  "projects": {
+    "bj-line13-capacity": {
+      "sources": [
+        {
+          "url": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "title": "北京轨道交通13号线扩能提升工程环境影响报告书（中国铁道科学研究院集团有限公司）",
+          "publicationDate": "2021-10-21",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 302,
+          "captured": true,
+          "captureMethod": "本地留存副本 .tmp-src/bj13_capacity_eia.pdf（字节数与 sha256 与原记录一致）",
+          "bytes": 29683376,
+          "totalPages": 417,
+          "sha256": "6a52bdd82484c0bada941d95b041a5c8cb18acbca6cefebf85a95a5437ce0c82",
+          "sha256MatchesPriorRecord": true,
+          "pages": [22, 89, 93, 94, 242, 312, 314, 317, 318, 319],
+          "httpStatusNote": "本次复核时该 URL 返回 302 并跳转至 https://www.bii.com.cn/ 首页，正文变成公司首页 HTML（109488 字节），PDF 已不能重新下载。所用副本为 2026-10-25 由同一 URL 取得的文件，字节数 29683376、sha256 6a52bdd8…0c82，与 data/official_evidence/beijing13_capacity_review.json 登记值逐字节一致，故仍按原件复核，但下载动作本身不可在本日重现。",
+          "archiveNote": "原记录给的 web.archive.org 快照本次无法连通（curl 退出码 7，archive.org 返回 000），未能用归档件二次比对。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202403/t20240321_3595561.html",
+          "title": "“地下北三环”开始空载试运行 12号线2024年将开通20座车站 其中13座为换乘站",
+          "publicationDate": "2024-03-21",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202602/t20260201_4482100.html",
+          "title": "地铁17号线望京西站1月31日开通 13号线、15号线、17号线可便捷换乘 地铁三线换乘不再“上天入地”",
+          "publicationDate": "2026-02-01",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202203/t20220314_2629546.html",
+          "title": "全市轨道交通建设正按计划有序推进 昌平线南延一期开始铺轨",
+          "publicationDate": "2022-03-14",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        },
+        {
+          "url": "https://zyk.bjhd.gov.cn/ywdt/hdywx/202109/t20210916_4486325_hd.shtml",
+          "title": "地铁昌平线南延工程迎来新进展 清河站有望年底前开通（海淀区政府网）",
+          "publicationDate": "2021-09-16",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "网页读取核对（检索摘要命中，正文句“西二旗站与清河站均可作为昌平线与13号线的换乘站”）",
+          "sha256": null,
+          "pages": null
+        },
+        {
+          "url": "https://www.bcia.com.cn/dtjcx.html",
+          "title": "首都机场线—换乘站提示（北京首都国际机场官网）",
+          "publicationDate": null,
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "页面无发布日期，属机场运营方现行乘车指引，不是历史文件；只用于确认东直门站与2号线、13号线的换乘身份。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/gzdt/202302/t20230204_2911953.html",
+          "title": "13号线扩能提升将新建18站 工程进入复工满产阶段 拆分AB线运力大幅提升",
+          "publicationDate": "2023-02-04",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "只写“未来不仅可以实现A、B线同站台换乘”，可作新龙泽A/B同台换乘的旁证，未逐站列换乘线路。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/gzdt/202508/t20250821_4179115.html",
+          "title": "尊重历史 照顾习惯 好找好记 13号线扩能提升11座车站定名",
+          "publicationDate": "2025-08-21",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "全文只讲站名与得名原因，未出现任何换乘线路，不能作为换乘证据。"
+        },
+        {
+          "url": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202105/t20210528_2401129.htm",
+          "title": "关于轨道交通13号线扩能提升工程项目可行性研究报告的批复",
+          "publicationDate": "2021-05-28",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "批复只写建设规模（新建29公里、改造34.4公里、增购53列、形成13A和13B两条L型线），全文无“换乘”二字，不能作为换乘证据。"
+        },
+        {
+          "url": "https://yllhj.beijing.gov.cn/ztxx/sgsxx/xzxkjg/202409/t20240920_3902271.shtml",
+          "title": "北京市园林绿化局行政许可结果（含13号线扩能提升工程车公庄站、保福寺站施工场地树木移植/临时占用绿地许可）",
+          "publicationDate": "2024-09-20",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "仅为树木移植、临时占用绿地许可台账，只出现站名与施工场地，无换乘关系，不能作为换乘证据。"
+        }
+      ],
+      "pairs": [
+        {
+          "id": "future-transfer-bj13A-车公庄-beijing-lineearly1",
+          "station": "车公庄",
+          "otherLine": "2号线（本地线体 beijing-lineearly1）",
+          "otherLineId": "beijing-lineearly1",
+          "documented": true,
+          "locator": "环评PDF第93页 表2-3-7 车站结构型式及施工方法，13A新建线段第1行（文档页80）",
+          "quote": "车公庄站 地下四层端厅14m岛式车站 PBA 2号线、6号线换乘站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "表格“备注”列被排版拆成“2号线、6号线换”＋“乘站”两行，摘句按单元格重组成完整短语，未改字词。"
+        },
+        {
+          "id": "future-transfer-bj13A-车公庄-beijing-line6-6",
+          "station": "车公庄",
+          "otherLine": "6号线",
+          "otherLineId": "beijing-line6-6",
+          "documented": true,
+          "locator": "环评PDF第314页 表9-4-5 13A线地下车站地面建筑与周边景观协调性分析，第1行车公庄站",
+          "quote": "车站与既有的6号线换乘，6号线车站为地下暗挖二层分离岛式车站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "第93页表2-3-7 同站备注亦写“2号线、6号线换乘站”，两处互证。"
+        },
+        {
+          "id": "future-transfer-bj13A-西直门-beijing-lineearly1",
+          "station": "西直门",
+          "otherLine": "2号线（本地线体 beijing-lineearly1）",
+          "otherLineId": "beijing-lineearly1",
+          "documented": true,
+          "locator": "环评PDF第93页 表2-3-7 13A新建线段第2行（文档页80）",
+          "quote": "西直门站 地下三层通厅16m岛式车站 PBA 2号线、4号线换乘站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "表格备注列同样被拆行，按单元格重组。"
+        },
+        {
+          "id": "future-transfer-bj13A-西直门-beijing-line4-4",
+          "station": "西直门",
+          "otherLine": "4号线",
+          "otherLineId": "beijing-line4-4",
+          "documented": true,
+          "locator": "环评PDF第93页 表2-3-7 13A新建线段第2行（文档页80）",
+          "quote": "西直门站 地下三层通厅16m岛式车站 PBA 2号线、4号线换乘站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf"
+        },
+        {
+          "id": "future-transfer-bj13A-大钟寺-beijing-line12-12",
+          "station": "大钟寺",
+          "otherLine": "12号线",
+          "otherLineId": "beijing-line12-12",
+          "documented": true,
+          "locator": "首都之窗 2024-03-21《“地下北三环”开始空载试运行…》正文第5段（市重大项目办轨道三处介绍12号线换乘站）",
+          "quote": "在大钟寺站和光熙门站与13号线换乘",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202403/t20240321_3595561.html",
+          "evidenceType": "web_page_read",
+          "note": "原文是站在12号线一侧列换乘站，方向相反但换乘对同一。2021年环评全文检索“12号线”无命中，13号线环评本身没有这条。"
+        },
+        {
+          "id": "future-transfer-bj13A-知春路-beijing-line10-10",
+          "station": "知春路",
+          "otherLine": "10号线",
+          "otherLineId": "beijing-line10-10",
+          "documented": false,
+          "locator": "环评PDF第93页 表2-3-7 扩能改造段第4行：只标“改造站”，未写换乘线路；全文检索“10 号线”零命中",
+          "quote": "大钟寺站、知春路站、五道口站、上地站、西二旗站 改造站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "13号线环评把知春路列为改造站，改造内容只是到发线延长带来的站台、站房改造，通篇没有“知春路与10号线换乘”一句。10号线换乘是2008年既成事实，但本文件没写，按严格口径不记证实。"
+        },
+        {
+          "id": "future-transfer-bj13A-清华东路西口-beijing-line15-15",
+          "station": "清华东路西口",
+          "otherLine": "15号线",
+          "otherLineId": "beijing-line15-15",
+          "documented": true,
+          "locator": "环评PDF第312页 9.4 节既有线新增车站段（正文“清华东路西口站与15号线车站进行站厅换乘”）",
+          "quote": "清华东路西口站与15号线车站进行站厅换乘",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "同页表9-4-4 又写“与15号线换乘通过地下通道换乘”，两处口径略有差别（站厅/通道），换乘关系一致。"
+        },
+        {
+          "id": "future-transfer-bj13A-清河-beijing-route-20",
+          "station": "清河",
+          "otherLine": "昌平线（本地线体 beijing-route-20）",
+          "otherLineId": "beijing-route-20",
+          "documented": true,
+          "locator": "首都之窗 2022-03-14《全市轨道交通建设正按计划有序推进 昌平线南延一期开始铺轨》正文（昌平线南延一期段）",
+          "quote": "其中清河站可与既有13号线、京张高铁通过换乘大厅换乘",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202203/t20220314_2629546.html",
+          "evidenceType": "web_page_read",
+          "note": "原文站在昌平线一侧叙述，换乘对为清河13号线—昌平线，与清单一致。13号线环评只把清河写作“已建清河站”，未点昌平线。"
+        },
+        {
+          "id": "future-transfer-bj13A-西二旗-beijing-route-20",
+          "station": "西二旗",
+          "otherLine": "昌平线（本地线体 beijing-route-20）",
+          "otherLineId": "beijing-route-20",
+          "documented": true,
+          "locator": "海淀区人民政府网 2021-09-16《地铁昌平线南延工程迎来新进展 清河站有望年底前开通》正文",
+          "quote": "西二旗站与清河站均可作为昌平线与13号线的换乘站",
+          "source": "https://zyk.bjhd.gov.cn/ywdt/hdywx/202109/t20210916_4486325_hd.shtml",
+          "evidenceType": "web_page_read",
+          "note": "同一句同时证实清河与西二旗两处，可与上一条互证。13号线环评只在噪声敏感点表里并列出现“13号线、昌平线”，没有换乘表述。"
+        },
+        {
+          "id": "future-transfer-bj13A-回龙观东大街-beijing-line8-8",
+          "station": "回龙观东大街",
+          "otherLine": "8号线",
+          "otherLineId": "beijing-line8-8",
+          "documented": true,
+          "locator": "环评PDF第317页 表9-4-5 13A线地下车站第7行回龙观东大街站",
+          "quote": "地下一层为站厅层（与8号线实现换乘），地下二层为设备层",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "第93页表2-3-7 同站备注“8号线换乘站”，两处一致。"
+        },
+        {
+          "id": "future-transfer-bj13A-天通苑-beijing-line5-5",
+          "station": "天通苑",
+          "otherLine": "5号线",
+          "otherLineId": "beijing-line5-5",
+          "documented": true,
+          "locator": "环评PDF第318页 表9-4-5 第9行天通苑站（文档页305）",
+          "quote": "本站位于立汤路与太平庄中二街交叉口的东侧，沿太平庄中二街布置，与既有5号线换乘",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf"
+        },
+        {
+          "id": "future-transfer-bj13A-天通苑东-beijing-line17-17",
+          "station": "天通苑东",
+          "otherLine": "17号线",
+          "otherLineId": "beijing-line17-17",
+          "documented": true,
+          "locator": "环评PDF第319页 表9-4-5 第11行天通苑东站",
+          "quote": "本站位于白坊路与北苑东路交叉口东侧，沿白坊路呈东西向布置，与在建17号线换乘",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "第93页表2-3-7 备注“17号线换乘站”。"
+        },
+        {
+          "id": "future-transfer-bj13B-马连洼-beijing-line16-16",
+          "station": "马连洼",
+          "otherLine": "16号线",
+          "otherLineId": "beijing-line16-16",
+          "documented": true,
+          "locator": "环评PDF第94页 表2-3-7 13B新建线段第1行；另见第89页2.3.1“13B线路起点为海淀区地铁16号线马连洼站”",
+          "quote": "马连洼站 地下三层14m岛式车站 暗挖法 16号线换乘站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf"
+        },
+        {
+          "id": "future-transfer-bj13B-霍营-beijing-line8-8",
+          "station": "霍营",
+          "otherLine": "8号线",
+          "otherLineId": "beijing-line8-8",
+          "documented": false,
+          "locator": "环评PDF第242页 5.x 污水现状段：只写两站位置相邻，句子被水印截断；表2-3-7 不含霍营（既有站改造，未逐站列换乘）",
+          "quote": "地铁13号线霍营站位于地铁8号线霍营站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "原文是污水接管章节交代站体位置关系，后半句被水印切掉，全句没有“换乘”二字；不能据此判定换乘已证实。"
+        },
+        {
+          "id": "future-transfer-bj13B-立水桥-beijing-line5-5",
+          "station": "立水桥",
+          "otherLine": "5号线",
+          "otherLineId": "beijing-line5-5",
+          "documented": false,
+          "locator": "环评PDF 全文检索：无“立水桥…5号线换乘”表述；立水桥只出现在声屏障与噪声敏感点表中，并标注“13号线、京包线”",
+          "quote": "",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "13B 立水桥为既有站以新代老，环评未单列其换乘关系，全文找不到可抄的换乘句，故不记证实。"
+        },
+        {
+          "id": "future-transfer-bj13B-望京西-beijing-line15-15",
+          "station": "望京西",
+          "otherLine": "15号线",
+          "otherLineId": "beijing-line15-15",
+          "documented": true,
+          "locator": "首都之窗 2026-02-01《地铁17号线望京西站1月31日开通…》正文第3段",
+          "quote": "乘客可以在13号线、15号线、17号线之间自由换乘",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202602/t20260201_4482100.html",
+          "evidenceType": "web_page_read",
+          "note": "同文另写“原先13号线与15号线之间的换乘通道在1月31日停止使用”，说明13/15换乘2010年起即存在，本次只是换通道。13号线环评全文无“15号线望京西”表述。"
+        },
+        {
+          "id": "future-transfer-bj13B-望京西-beijing-line17-17",
+          "station": "望京西",
+          "otherLine": "17号线",
+          "otherLineId": "beijing-line17-17",
+          "documented": true,
+          "locator": "首都之窗 2026-02-01《地铁17号线望京西站1月31日开通…》正文第3段",
+          "quote": "乘客可以在13号线、15号线、17号线之间自由换乘",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202602/t20260201_4482100.html",
+          "evidenceType": "web_page_read",
+          "note": "17号线望京西站2026-01-31才开通，2021年环评写作时该换乘尚不存在，环评未写属正常。"
+        },
+        {
+          "id": "future-transfer-bj13B-芍药居-beijing-line10-10",
+          "station": "芍药居",
+          "otherLine": "10号线",
+          "otherLineId": "beijing-line10-10",
+          "documented": false,
+          "locator": "环评PDF 全文检索：无“芍药居…10号线换乘”表述；芍药居只出现在声屏障、噪声敏感点与污水现状段，未涉换乘",
+          "quote": "",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "与知春路同因：既有换乘关系未进入本工程环评文本，全文“10 号线”零命中，无法抄出官方原句。"
+        },
+        {
+          "id": "future-transfer-bj13B-东直门-beijing-lineearly1",
+          "station": "东直门",
+          "otherLine": "2号线（本地线体 beijing-lineearly1）",
+          "otherLineId": "beijing-lineearly1",
+          "documented": true,
+          "locator": "北京首都国际机场官网 首都机场线“换乘站提示”栏（东直门站条）",
+          "quote": "东直门站可换乘2号线和13号线",
+          "source": "https://www.bcia.com.cn/dtjcx.html",
+          "evidenceType": "web_page_read",
+          "note": "该页无发布日期，属机场运营方现行指引；句子以首都机场线东直门站为主体列出2号线与13号线，换乘对成立。13号线环评只写13B终点为既有东直门站，未写2号线。"
+        },
+        {
+          "id": "future-transfer-bj13B-东直门-beijing-route-23",
+          "station": "东直门",
+          "otherLine": "首都机场线（本地线体 beijing-route-23）",
+          "otherLineId": "beijing-route-23",
+          "documented": true,
+          "locator": "北京首都国际机场官网 首都机场线“换乘站提示”栏；同页“地铁机场线共设5站，北新桥、东直门、三元桥、3号航站楼、2号航站楼”",
+          "quote": "东直门站可换乘2号线和13号线",
+          "source": "https://www.bcia.com.cn/dtjcx.html",
+          "evidenceType": "web_page_read",
+          "note": "该句所在栏目就是首都机场线各站换乘提示，说明机场线东直门站与13号线互为换乘，方向由机场线指向13号线。"
+        },
+        {
+          "id": "future-transfer-bj13capacity-newlongze",
+          "station": "新龙泽（2025-12 定名龙泽西）",
+          "otherLine": "13B线（同站 A/B 换乘）",
+          "otherLineId": "beijing-capacity13B",
+          "documented": true,
+          "locator": "环评PDF第89页 2.3.1 线路走向段（文档页76）；旁证见首都之窗 2023-02-04 报道",
+          "quote": "13A线与13B线在京藏高速西侧新龙泽站，形成双岛四线同台换乘站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "evidenceType": "downloaded_pdf",
+          "note": "第93页表2-3-7 两处新龙泽行均注“三线换乘站”，但环评未点名第三条线，不能据此推定19号线。首都之窗2023-02-04另有“未来不仅可以实现A、B线同站台换乘”。"
+        }
+      ],
+      "missingFromList": [
+        {
+          "station": "光熙门",
+          "otherLine": "12号线",
+          "documented": true,
+          "locator": "首都之窗 2024-03-21《“地下北三环”开始空载试运行…》正文第5段",
+          "quote": "在大钟寺站和光熙门站与13号线换乘",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202403/t20240321_3595561.html",
+          "inRepoScope": true,
+          "reason": "13B 原站序含光熙门，12号线光熙门站开通后形成12/13换乘，但清单只有大钟寺—12号线，没有光熙门—12号线这一对，属真实缺项。"
+        },
+        {
+          "station": "新龙泽（龙泽西）",
+          "otherLine": "未点名的第三条线（公开资料多指19号线）",
+          "documented": false,
+          "locator": "环评PDF第93页 表2-3-7 新龙泽站行，备注仅“三线换乘站”",
+          "quote": "新龙泽站 地下两层双岛四线车站（18m） 明挖法 三线换乘站",
+          "source": "https://www.bii.com.cn/Portals/0/AttachUpload/pdf/2021102114294985.pdf",
+          "inRepoScope": false,
+          "reason": "环评写“三线换乘站”却没点名第三条线（13A、13B 已占两条）。在拿到点名19号线的官方文本前不能补换乘对，只能登记为未解决。"
+        },
+        {
+          "station": "霍营",
+          "otherLine": "市郊铁路东北环线",
+          "documented": false,
+          "locator": "本次所读官方文件均未出现该换乘的明文",
+          "quote": "",
+          "source": null,
+          "inRepoScope": false,
+          "reason": "属市郊铁路接驳，不进入地铁换乘表；本次没有找到可抄的官方原句，仅记录线索，不作证据。"
+        }
+      ],
+      "verdict": "partially_documented",
+      "note": "21 对里 17 对有官方明文。环评 PDF 直接点名的有：车公庄2/6号线、西直门2/4号线、清华东路西口15号线、回龙观东大街8号线、天通苑5号线、天通苑东17号线、马连洼16号线、新龙泽A/B同台（第89页原文“形成双岛四线同台换乘站”）。环评没写的靠网页补齐：大钟寺12号线与光熙门12号线见首都之窗2024-03-21；望京西15/17号线见首都之窗2026-02-01；清河、西二旗昌平线见首都之窗2022-03-14与海淀区2021-09-16；东直门2号线与首都机场线见机场官网换乘提示。未证实 4 对：知春路10号线、霍营8号线、立水桥5号线、芍药居10号线——环评把这几站当既有站改造或根本不提，全文检索“10 号线”零命中，霍营只有一句被水印截断的位置描述，没有“换乘”字样。反向检查发现清单漏了光熙门—12号线；新龙泽“三线换乘站”的第三条线环评未点名，不能补。另需说明：环评 PDF 的官方 URL 本次已 302 跳首页，不能重新下载，所用副本 sha256 与原登记一致；archive.org 本次不可达。市发改委批复与园林绿化局许可页均无换乘信息。"
+    },
+    "bj-m101-phase1": {
+      "sources": [
+        {
+          "url": null,
+          "title": "北京轨道交通M101线一期工程环境影响报告书（中国铁道科学研究院集团有限公司）",
+          "publicationDate": "2023-05",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": null,
+          "captured": true,
+          "captureMethod": "本地留存副本 .tmp-src/bj-m101_eia.pdf（原件经网页归档取得，见 docs/remediation-2026-10-23.md）",
+          "bytes": 6251139,
+          "totalPages": 288,
+          "sha256": "d2584603462e31aeb28127d6d12f6b64c889b2c63f9732ca3e0e97a21f322ea9",
+          "sha256MatchesPriorRecord": true,
+          "pages": [39, 66, 225],
+          "httpStatusNote": "京投 2023-05 原链接已失效，仓库登记为“原链接失效，使用原链接的2023年网页归档取回PDF”。本次未能复原该链接，也未能在 archive.org 复核（archive.org 不可达，curl 退出码 7），故 url 记为 null，不编造地址。",
+          "note": "PDF 内页水印为竖排“北京轨道交通M101线一期工程环境影响报告书”，页脚标注中国铁道科学研究院集团有限公司，与2023-05京投公布本一致。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+          "title": "副中心M101线最新线路图公布 14座车站中6站可换乘 预留延伸至大厂的条件",
+          "publicationDate": "2022-04-20",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "转述铁科院《M101线一期工程环境影响评价第二次公示》，明确列出可换乘的5条城市轨道交通线路与5条区域快线/市郊铁路。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202306/t20230606_3122554.html",
+          "title": "M101线14座车站串起城市副中心 副中心站将实现“七线换乘”",
+          "publicationDate": "2023-06-06",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "只写“城市副中心站支持七线换乘”，未点名线路；逐站点名的只有通州西M102/通密线、龙旺庄R1/区域快线、通胡大街M103。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+          "title": "可换乘12条地铁、2条城际铁路及2条市郊铁路 地铁22号线衔接16条轨道线",
+          "publicationDate": "2024-07-17",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        }
+      ],
+      "pairs": [
+        {
+          "id": "future-transfer-bj-m101-hub-line6",
+          "station": "城市副中心站（城市副中心枢纽）",
+          "otherLine": "6号线",
+          "otherLineId": "beijing-line6-6",
+          "documented": true,
+          "locator": "首都之窗 2024-07-17《可换乘12条地铁…》正文第3段（22号线逐站换乘清单）",
+          "quote": "城市副中心站换乘6号线和在建的M101线",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202407/t20240717_3751316.html",
+          "evidenceType": "web_page_read",
+          "note": "该句以22号线乘客视角逐站列换乘对象，同一句同时点名6号线与M101，两线在此站互为换乘。M101环评第39页表2-1-2 只写该站“七线换乘站”，未点名6号线。"
+        },
+        {
+          "id": "future-transfer-bj-m101-hub-line22",
+          "station": "城市副中心站（城市副中心枢纽）",
+          "otherLine": "22号线（平谷线）",
+          "otherLineId": "beijing-line22-22",
+          "documented": true,
+          "locator": "首都之窗 2022-04-20《副中心M101线最新线路图公布…》正文第6段（M101换乘线路清单）；另见环评PDF第66页“本项目与M22（平谷线）、M6线、S6线（城际联络线工程）相连”",
+          "quote": "与5条区域快线/市郊铁路换乘，分别为通密线(S5)、副中心线(S1)、平谷线(S3)",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202204/t20220420_2681809.html",
+          "evidenceType": "web_page_read",
+          "note": "摘句为节录。官方口径把平谷线写作S3、列入区域快线/市郊铁路一类；环评第66页把M22与平谷线视为同一线（“M22（平谷线）”），故平谷线即22号线。站位层面由2024-07-17报道的22号线逐站清单（该文写城市副中心站换乘6号线和M101）确定，两文合起来才构成完整证据，没有任何一句同时写“M101与22号线在城市副中心站换乘”。"
+        }
+      ],
+      "missingFromList": [
+        {
+          "station": "通州西站",
+          "otherLine": "M102线、通密线（S5）",
+          "documented": true,
+          "locator": "环评PDF第39页 表2-1-2 车站建筑汇总表 第2行；第225页站体方案段",
+          "quote": "通州西站为M101与M102线的双岛四线互联互通车站",
+          "source": null,
+          "quoteSource": "环评PDF第225页（本地副本 sha256 d2584603…22ea9，原件 URL 不可复核）",
+          "inRepoScope": true,
+          "reason": "M102 属城市轨道交通（环评表内写“三线换乘站 M102/通密线”），清单只收城市副中心站两对，漏了通州西—M102；通密线为市郊铁路，按仓库口径不单列。"
+        },
+        {
+          "station": "龙旺庄站",
+          "otherLine": "R1线、区域快线（预留廊道）",
+          "documented": true,
+          "locator": "环评PDF第39页 表2-1-2 第5行（“三线换乘站 R1\\区域快线（预留廊道）”）",
+          "quote": "龙旺庄站 三线换乘站 R1区域快线（预留廊道） 地下两层/岛式",
+          "source": null,
+          "quoteSource": "环评PDF第39页 表2-1-2（本地副本 sha256 d2584603…22ea9，原件 URL 不可复核）",
+          "inRepoScope": true,
+          "reason": "R1 线在2022-04-20报道中被列入“5条城市轨道交通线路”，属地铁类换乘，仓库无 R1 线体，属清单外缺项。"
+        },
+        {
+          "station": "通胡大街站",
+          "otherLine": "M103线",
+          "documented": true,
+          "locator": "环评PDF第39页 表2-1-2 第6行（“两线换乘站 M103”）",
+          "quote": "通胡大街站 两线换乘站 M103 地下三层/岛式",
+          "source": null,
+          "quoteSource": "环评PDF第39页 表2-1-2（本地副本 sha256 d2584603…22ea9，原件 URL 不可复核）",
+          "inRepoScope": true,
+          "reason": "M103 属规划地铁线，仓库无该线体，清单未收。"
+        },
+        {
+          "station": "北京大剧院站",
+          "otherLine": "M104线",
+          "documented": true,
+          "locator": "环评PDF第39页 表2-1-2 第10行（“两线换乘站 在建”）；第225页写明与M104双岛四线互联互通",
+          "quote": "北京大剧院站为M101与M104线的双岛四线互联互通车站",
+          "source": null,
+          "quoteSource": "环评PDF第225页（本地副本 sha256 d2584603…22ea9，原件 URL 不可复核）",
+          "inRepoScope": true,
+          "reason": "表内只写“两线换乘站 在建”，正文第225页才点名M104；仓库无 M104 线体，清单未收。"
+        },
+        {
+          "station": "张家湾站",
+          "otherLine": "M102线、M104线",
+          "documented": true,
+          "locator": "环评PDF第39页 表2-1-2 第13行（“三线换乘站 102/104”）",
+          "quote": "张家湾站 三线换乘站 102/104 地下二层/一岛式",
+          "source": null,
+          "quoteSource": "环评PDF第39页 表2-1-2（本地副本 sha256 d2584603…22ea9，原件 URL 不可复核）",
+          "inRepoScope": true,
+          "reason": "环评简写“102/104”，按上下文即M102、M104两线，与M101构成三线换乘；仓库无这两条线体，清单未收。"
+        },
+        {
+          "station": "城市副中心站",
+          "otherLine": "京唐城际、城际铁路联络线（S6）等其余线路",
+          "documented": true,
+          "locator": "环评PDF第39页 表2-1-2 第8行“七线换乘站 在建”；第66页“本项目与M22（平谷线）、M6线、S6线（城际联络线工程）相连”",
+          "quote": "城市副中心站支持“七线换乘”",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202306/t20230606_3122554.html",
+          "quoteSource": "首都之窗2023-06-06报道；环评PDF第39页表2-1-2写“七线换乘站 在建”",
+          "inRepoScope": false,
+          "reason": "“七线”中除地铁外还含京唐城际、S6城际联络线等铁路与市郊线，按仓库口径只登记地铁换乘对，其余作背景接口，不补条目。"
+        }
+      ],
+      "verdict": "all_documented",
+      "note": "2 对都有官方明文。M101↔6号线：首都之窗2024-07-17原文“城市副中心站换乘6号线和在建的M101线”，同句点名两线。M101↔22号线：没有一句同时写两线换乘，靠两份文件拼合——2022-04-20报道列M101可与“平谷线(S3)”换乘，环评第66页把M22与平谷线写作同一条线；2024-07-17报道又确认22号线在城市副中心站停靠并与M101换乘。站名核对：官方一律写“城市副中心站”，仓库写“城市副中心枢纽”，指同一枢纽，不是北运河东站。环评表2-1-2 该站只标“七线换乘站 在建”，未点名6号线或22号线，所以不能只凭环评结案。反向检查：M101 共6座换乘站，清单只覆盖城市副中心站两对，漏了通州西—M102/通密线、龙旺庄—R1/区域快线、通胡大街—M103、北京大剧院—M104、张家湾—M102/M104；这些线仓库都没有线体，属规划线，补条目须先建线体。"
+    }
+  }
+}

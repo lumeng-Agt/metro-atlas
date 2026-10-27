@@ -1,0 +1,522 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "scope": "independent_source_review_of_transfer_structure_for_sh-line19_bj-line22_bj-line28",
+  "methodNote": "所有 source 均为 https。PDF 用 curl -sL -A \"Mozilla/5.0\" 下载到 .tmp-src/，sha256 为下载文件实际哈希，页码用 pdftotext -f/-l -layout 逐页抽取确认；网页用 curl 取 HTML 后本地去标签核对，个别站点对 curl 返回 412/202（反爬）的，改用网页读取核对并在 captured=false 中注明。引文均为逐字抄录，未改写。",
+  "projects": {
+    "sh-line19": {
+      "sources": [
+        {
+          "url": "https://czj.sh.gov.cn/cmsres/e7/e77ab5e3a70c4a6c91ddac3f3c15485e/0747d825d3f48135737cc1ffa61b2fc9.pdf",
+          "title": "2026年上海市政府专项债券（一～十三期）信用评级报告（联合〔2026〕1476号）",
+          "publicationDate": "2026-03-20",
+          "retrievedAt": "2026-10-27",
+          "sha256": "5657faba9010f8b3966f3e7fe5aea7d76e306b93910a47dc04db4bf709d35dbf",
+          "pages": [38, 42, 49],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "PDF 共 58 页。第38页（18）项给出19号线全线与34站站名序列；第42页（33）虹口区部分、第49页（60）浦东新区部分均写“新建地下车站34座，其中换乘车站18座”。全文只给换乘站数量，未逐站列出可换乘线路。"
+        },
+        {
+          "url": "https://www.xuhui.gov.cn/xwzx_zwxx/20240322/534340.html",
+          "title": "“换乘王”19号线建设进度更新！将途经徐汇这两个站点→",
+          "publicationDate": "2024-03-22",
+          "retrievedAt": "2026-10-27",
+          "sha256": "69502fc5651ae9d823654b04e00583bf21cbff70031497230dbbb19cc2bdb66a",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "徐汇区政府门户网站，正文逐站点写明华泾西、华泾路的换乘线路。"
+        },
+        {
+          "url": "https://www.shanghai.gov.cn/nw15343/20260120/ea5299cdb63b4abfb21ef35ebca2d2fe.html",
+          "title": "上海轨交19号线东方体育中心站地下连续墙开工，浦东四线换乘枢纽建设提速",
+          "publicationDate": "2026-01-20",
+          "retrievedAt": "2026-10-27",
+          "sha256": "5dc137e81cfdbca5675b7959db450194554d7175743a365a86c7337bae46bdfd",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "上海市人民政府门户网站转载浦东新区人民政府稿件，来源标注“浦东新区人民政府”。"
+        },
+        {
+          "url": "https://ghzyj.sh.gov.cn/gzcy/lxxd/20241104/60149eef6724456eb4dbebc1af1e9eec.html",
+          "title": "2号线东昌路（来信选登）",
+          "publicationDate": "2024-10-14",
+          "retrievedAt": "2026-10-27",
+          "sha256": "9a9f03306f33c3298a3d3231f676ed9627c781fd313a33c800d0df923e326381",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "上海市规划和自然资源局回复件，答复单位署名“上海市规划和自然资源局”。"
+        },
+        {
+          "url": "https://jtw.sh.gov.cn/xwfb2/20251222/18dc74805200495eb362499c6c1f98d7.html",
+          "title": "上海轨道交通18号线二期工程 通过初期运营前安全评估，近日即将开通",
+          "publicationDate": "2025-12-22",
+          "retrievedAt": "2026-10-27",
+          "sha256": "ca50a0fc2dc7c041e21227904ae7e7c41df9b67f5e3583b602e9007f919c838a",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "上海市交通委员会新闻发布栏目，来源标注“上海交通”。"
+        },
+        {
+          "url": "https://www.shanghai.gov.cn/gwk/search/content/2d9b25a3bed24964a3739c117926ed58",
+          "title": "关于上海市轨道交通23号线一期工程初步设计的批复（沪建综规〔2021〕744号）",
+          "publicationDate": "2022-09-27",
+          "retrievedAt": "2026-10-27",
+          "sha256": "9822589fbe4b0da18b82a16a011a51d6604dbc3e7d45e9f19e650d604ba0fcce",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "上海市政府公文库主动公开件，印发日期2021-11-22、发布日期2022-09-27。注意：这是23号线批复，不是19号线批复；它从23号线一侧确认“华泾路站与规划19号线通道换乘”。19号线自身的初步设计/工可批复正文未公开可下载。"
+        },
+        {
+          "url": "https://www.pudong.gov.cn/023001003/20220810/709722.html",
+          "title": "途经世博的轨交19号线有新变化！将向北延伸！",
+          "publicationDate": "2022-08-10",
+          "retrievedAt": "2026-10-27",
+          "sha256": null,
+          "pages": [],
+          "httpStatus": 412,
+          "captured": false,
+          "webReaderVerified": true,
+          "webReaderVerifiedAt": "2026-10-27",
+          "note": "curl 返回 HTTP 412（站点反爬），未取得本地文件、不填哈希；正文经网页读取核对。仅提供全线换乘线路集合，未逐站对应，故不用于单对判定。"
+        }
+      ],
+      "pairs": [
+        {
+          "id": "future-transfer-sh19-huajingxi-15",
+          "station": "华泾西（现名景洪路）",
+          "otherLine": "15号线",
+          "documented": true,
+          "locator": "网页《“换乘王”19号线建设进度更新！将途经徐汇这两个站点→》，2024-03-22，徐汇区人民政府，正文第4段",
+          "quote": "居民们未来可以在华泾西站换乘19号线和15号线。"
+        },
+        {
+          "id": "future-transfer-sh19-lingzhao-8",
+          "station": "凌兆新村",
+          "otherLine": "8号线",
+          "documented": false,
+          "locator": "未找到明确写出“凌兆新村可换乘8号线”的 https 官方文件",
+          "quote": ""
+        },
+        {
+          "id": "future-transfer-sh19-sportcenter",
+          "station": "东方体育中心",
+          "otherLine": "6号线、8号线、11号线",
+          "documented": true,
+          "locator": "网页《上海轨交19号线东方体育中心站地下连续墙开工，浦东四线换乘枢纽建设提速》，2026-01-20，上海市人民政府门户网站（来源：浦东新区人民政府），正文第2段",
+          "quote": "东方体育中心站目前已有6号线、8号线和11号线。作为重要换乘节点"
+        },
+        {
+          "id": "future-transfer-sh19-houtan-7",
+          "station": "后滩",
+          "otherLine": "7号线",
+          "documented": false,
+          "locator": "未找到明确写出“后滩可换乘7号线”的 https 官方文件",
+          "quote": ""
+        },
+        {
+          "id": "future-transfer-sh19-shibodadao-13",
+          "station": "世博大道",
+          "otherLine": "13号线",
+          "documented": false,
+          "locator": "未找到明确写出“世博大道可换乘13号线”的 https 官方文件",
+          "quote": ""
+        },
+        {
+          "id": "future-transfer-sh19-tangqiao-4",
+          "station": "塘桥",
+          "otherLine": "4号线",
+          "documented": false,
+          "locator": "已核 2025-12-03《19号线塘桥站建设工程设计方案公示》，正文只有地址与用地性质，无换乘表述",
+          "quote": ""
+        },
+        {
+          "id": "future-transfer-sh19-shangcheng-9",
+          "station": "商城路",
+          "otherLine": "9号线",
+          "documented": false,
+          "locator": "未找到明确写出“商城路可换乘9号线”的 https 官方文件",
+          "quote": ""
+        },
+        {
+          "id": "future-transfer-sh19-pudongnan-2",
+          "station": "浦东南路",
+          "otherLine": "2号线",
+          "documented": true,
+          "locator": "网页《2号线东昌路》（来信选登），2024-10-14，上海市规划和自然资源局，答复情况段",
+          "quote": "19号线、14号线、2号线在本站为换乘车站，故统一命名为浦东南路站。"
+        },
+        {
+          "id": "future-transfer-sh19-tilanqiao-12",
+          "station": "提篮桥",
+          "otherLine": "12号线",
+          "documented": false,
+          "locator": "虹口区政府2024-03-19稿件只给“虹口9站中3站为换乘站，可换乘20号线、4号线、10号线和12号线”的整体表述，未把12号线指到提篮桥",
+          "quote": ""
+        },
+        {
+          "id": "future-transfer-sh19-hailun",
+          "station": "海伦路",
+          "otherLine": "4号线、10号线",
+          "documented": false,
+          "locator": "虹口区政府2024-03-19稿件为整体表述，未逐站指认；海伦路站规划许可证（沪规建(2025)FA310000202500489）只写建筑面积，无换乘条款",
+          "quote": ""
+        },
+        {
+          "id": "future-transfer-sh19-huajing-23",
+          "station": "华泾路",
+          "otherLine": "23号线",
+          "documented": true,
+          "locator": "网页《“换乘王”19号线建设进度更新！将途经徐汇这两个站点→》，2024-03-22，徐汇区人民政府，末段；另见沪建综规〔2021〕744号“16. 华泾路站”条",
+          "quote": "规划为19号线与23号线（在建）之间的换乘枢纽"
+        },
+        {
+          "id": "future-transfer-sh19-pudongnan-14",
+          "station": "浦东南路",
+          "otherLine": "14号线",
+          "documented": true,
+          "locator": "网页《2号线东昌路》（来信选登），2024-10-14，上海市规划和自然资源局，答复情况段",
+          "quote": "19号线、14号线、2号线在本站为换乘车站，故统一命名为浦东南路站。"
+        },
+        {
+          "id": "future-transfer-sh19-jiangyang-18",
+          "station": "江杨南路",
+          "otherLine": "18号线",
+          "documented": true,
+          "locator": "网页《上海轨道交通18号线二期工程 通过初期运营前安全评估，近日即将开通》，2025-12-22，上海市交通委员会，第3段",
+          "quote": "江杨南路站未来将与19号线（在建中）换乘。"
+        }
+      ],
+      "missingFromList": [
+        {
+          "station": "三林南",
+          "otherLine": "机场联络线（在建）、奉贤线（规划）",
+          "confirmed": false,
+          "evidence": "浦东新区政府2022-08-10稿件列出19号线换乘线路集合含“在建机场联络线、规划奉贤线”，但未指明落在哪一站；czj 债券报告第38页站序含“三林南”。无站级文件，故不判定。"
+        },
+        {
+          "station": "周家嘴路",
+          "otherLine": "20号线（规划）",
+          "confirmed": false,
+          "evidence": "虹口区政府2024-03-19称虹口9站中3站为换乘站、涉及20/4/10/12号线，但未逐站指认；周家嘴路是否即20号线接口，本次未取得站级文件。"
+        },
+        {
+          "station": "宝山站",
+          "otherLine": "沪通二期铁路、沪渝蓉高铁",
+          "confirmed": false,
+          "evidence": "czj 债券报告第42页写“北起宝山区沪通（沪渝蓉）铁路宝山路站”；浦东稿件把“沪通二期铁路、沪渝蓉高铁”列入19号线换乘对象。属国铁接口，且无站级换乘条款。"
+        },
+        {
+          "station": "（未定位）",
+          "otherLine": "22号线、24号线、26号线、机场快线（均为规划）",
+          "confirmed": false,
+          "evidence": "浦东新区政府2022-08-10稿件把上述线路列入19号线18座换乘站的换乘对象集合，但全线只有集合、没有站名对应，无法落到具体车站。"
+        }
+      ],
+      "verdict": "partially_documented",
+      "note": "13 对中 6 对取得 https 官方站级证据（华泾西-15、东方体育中心-6/8/11、浦东南路-2、浦东南路-14、华泾路-23、江杨南路-18），7 对未取得：凌兆新村-8、后滩-7、世博大道-13、塘桥-4、商城路-9、提篮桥-12、海伦路-4/10（海伦路按一对计）。实际读到的文件：czj 债券信用评级报告 PDF（58页，第38/42/49页，只有“34站、18换乘站”的总数，没有逐站线路）、徐汇区政府稿（华泾西、华泾路两站写得很实）、上海市政府门户转载浦东稿（东方体育中心 6/8/11）、规划资源局来信选登（浦东南路 2/14/19）、交通委18号线二期稿（江杨南路 18/19）、23号线初步设计批复（华泾路 23/19）。没读到的：19号线自己的工可/初设批复正文（规划资源局多处引用“经市住房城乡建设管理委批复的19号线初步设计文件”，但该批复未上网公开），19号线环评报告书全本（沪环保许评〔2023〕43号，全本链接已失效/需登录）。原清单里 sportcenter 一条捆绑 6/8/11 三条线，本表按清单 id 一对一保留，未拆分计数。"
+    },
+    "bj-line22": {
+      "sources": [
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202608/t20260825_4836108.html",
+          "title": "北京地铁22号线进入空载试运行 年底基本具备开通条件",
+          "publicationDate": "2026-08-25",
+          "retrievedAt": "2026-10-27",
+          "sha256": "ea33f258140fb691677caeb688d87893f4380cde7b69a3f3f6c0bf50ce53eba5",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "首都之窗（北京市人民政府门户）信息提示栏目，来源北京日报。第4段逐站写明红庙/管庄/北关/城市副中心四处换乘。"
+        },
+        {
+          "url": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202009/t20200911_2058715.htm",
+          "title": "地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程",
+          "publicationDate": "2020-09-11",
+          "retrievedAt": "2026-10-27",
+          "sha256": "200cf773633042dba87c5401daa0adc92ee5219abfdd789f0f897eccfa120c2b",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "北京市发展和改革委员会官网“发改之声”栏目，来源标注新京报网（非批复原文，是批复的官方解读稿）。用于22号线东大桥、金台夕照两站，因为该稿逐字写明“东大桥站与6号线、17号线（在建）、22号线（在建）换乘”“金台夕照（京广桥）站与10号线、22号线（在建）换乘”。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202609/t20260924_4879057.html",
+          "title": "北京地铁22号线 所有车站站名公布！",
+          "publicationDate": "2026-09-24",
+          "retrievedAt": "2026-10-27",
+          "sha256": "b3f06fca892de7a361398bf559740ed7104fb29b22bf6f52386ac81d8b6d02be",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "首都之窗信息提示栏目，来源北京广播电视台。写明红庙=22/14换乘站、管庄=22/八通线换乘站，并说明22号线共4座换乘站站名随换乘线路命名。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/gqrd/202504/t20250403_4055758.html",
+          "title": "北京地铁22号线（朝阳段）加速建设",
+          "publicationDate": "2025-04-03",
+          "retrievedAt": "2026-10-27",
+          "sha256": "50ba202c72404da5b1bab32b422b1dadb7ae0ec083612feb58966ea16404e0a9",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "首都之窗各区热点栏目，来源朝阳区人民政府。"
+        },
+        {
+          "url": "https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20240412/4485547.html",
+          "title": "北京地铁14号线红庙站剩余工程土建施工监理（招标计划）",
+          "publicationDate": "2024-04-12",
+          "retrievedAt": "2026-10-27",
+          "sha256": "80e2b4befdeea638f9dfdcf9473f5165a5209d166af202be41206a91cd6fd9ea",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "北京市公共资源交易服务平台招标计划，招标人北京城市快轨建设管理有限公司。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/yaowen/202607/t20260729_4797722.html",
+          "title": "地铁22号线河北段5座车站站名公布",
+          "publicationDate": "2026-07-29",
+          "retrievedAt": "2026-10-27",
+          "sha256": "f5bd725b9bb8fe963ccb6f0f1b98c20fd2c55013d2bde2c17d49d0d7beddf1c3",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "首都之窗北京要闻栏目，来源北京日报。只给“22座车站、12座换乘站”的总数，未逐站列线。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+          "title": "地铁28号线迎来新进展 京广桥站首幅超深地下连续墙浇筑完成",
+          "publicationDate": "2024-01-06",
+          "retrievedAt": "2026-10-27",
+          "sha256": "9641d062efba64021c31cec7a6e5d1986f3d50f79dd20784a42043a4f2faf8af",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "首都之窗部门动态栏目，来源北京日报。写明京广桥站是28/22/10三线换乘站。"
+        }
+      ],
+      "pairs": [
+        {
+          "id": "future-transfer-bj22-hongmiao-14",
+          "station": "红庙",
+          "otherLine": "14号线",
+          "documented": true,
+          "locator": "网页《北京地铁22号线进入空载试运行 年底基本具备开通条件》，2026-08-25，首都之窗，第4段",
+          "quote": "线路将在红庙站与14号线、管庄站与1号线（八通线）"
+        },
+        {
+          "id": "future-transfer-bj22-guanzhuang-batong",
+          "station": "管庄",
+          "otherLine": "1号线（八通线）",
+          "documented": true,
+          "locator": "网页《北京地铁22号线 所有车站站名公布！》，2026-09-24，首都之窗，第4段",
+          "quote": "管庄站是与地铁八通线的换乘站。"
+        },
+        {
+          "id": "future-transfer-bj22-yunhe-6",
+          "station": "通州北关（官方称北关站）",
+          "otherLine": "6号线",
+          "documented": true,
+          "locator": "网页《北京地铁22号线进入空载试运行 年底基本具备开通条件》，2026-08-25，首都之窗，第4段",
+          "quote": "北关站与6号线、城市副中心站与6号线及京唐城际"
+        },
+        {
+          "id": "future-transfer-bj22-beiyunhedong-6",
+          "station": "城市副中心",
+          "otherLine": "6号线",
+          "documented": true,
+          "locator": "网页《北京地铁22号线进入空载试运行 年底基本具备开通条件》，2026-08-25，首都之窗，第4段",
+          "quote": "城市副中心站与6号线及京唐城际实现高效换乘"
+        },
+        {
+          "id": "future-transfer-bj22-dongdaqiao-6",
+          "station": "东大桥",
+          "otherLine": "6号线",
+          "documented": true,
+          "locator": "网页《地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程》，2020-09-11，北京市发改委官网“发改之声”，第6段",
+          "quote": "东大桥站与6号线、17号线（在建）、22号线（在建）换乘"
+        },
+        {
+          "id": "future-transfer-bj22-dongdaqiao-17",
+          "station": "东大桥",
+          "otherLine": "17号线",
+          "documented": true,
+          "locator": "网页《地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程》，2020-09-11，北京市发改委官网“发改之声”，第6段",
+          "quote": "东大桥站与6号线、17号线（在建）、22号线（在建）换乘"
+        },
+        {
+          "id": "future-transfer-bj22-jintaixizhao-10",
+          "station": "金台夕照",
+          "otherLine": "10号线",
+          "documented": true,
+          "locator": "网页《地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程》，2020-09-11，北京市发改委官网“发改之声”，第6段（该稿称“金台夕照（京广桥）站”）",
+          "quote": "金台夕照（京广桥）站与10号线、22号线（在建）换乘"
+        }
+      ],
+      "missingFromList": [
+        {
+          "station": "东大桥",
+          "otherLine": "28号线",
+          "confirmed": true,
+          "evidence": "北京市发改委2020-09-11稿：“东大桥站与6号线、17号线（在建）、22号线（在建）换乘”，即东大桥为22/28同站换乘；重大项目办2021-07-27稿同样写“东大桥站可以换乘…22号线（平谷线）”。清单 bj-line22 只有东大桥-6、东大桥-17，缺东大桥-28（该对只出现在 bj-line28 清单里）。"
+        },
+        {
+          "station": "城市副中心",
+          "otherLine": "京唐城际（国铁）",
+          "confirmed": true,
+          "evidence": "首都之窗2026-08-25：“城市副中心站与6号线及京唐城际实现高效换乘”。属国铁接口，非城市轨道交通，故不计入地铁换乘对。"
+        }
+      ],
+      "verdict": "all_documented",
+      "note": "7 对全部取得 https 官方站级证据。实际读到：首都之窗2026-08-25稿一句话覆盖红庙-14、管庄-1号线（八通线）、北关-6、城市副中心-6；首都之窗2026-09-24稿再确认红庙=22/14、管庄=22/八通线；朝阳区政府2025-04-03稿确认管庄站建成后可与1号线“一站式”换乘；公共资源交易平台2024-04-12招标计划写“红庙站是14号线、22号线、远期R4线的三线换乘车站”；东大桥-6、东大桥-17、金台夕照-10 三对由北京市发改委官网2020-09-11稿逐字给出（该稿是28号线可研批复的官方解读，不是批复原文，已在 locator 注明）。没读到：22号线自己的可研批复正文（京发改〔审〕〔2022〕244号）只有“设站21座”的规模描述，无换乘条款；22号线环评报告书未取得。注意：2026年开通段为红庙—平谷，东大桥、金台夕照不在首通段内，但其换乘结构在规划文件中已确定，本表按“结构是否被官方文件写明”判定，不按开通时序判定。"
+    },
+    "bj-line28": {
+      "sources": [
+        {
+          "url": "https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202504/t20250401_4051485.html",
+          "title": "地铁28号线首站启动建设，9座车站5座可换乘",
+          "publicationDate": "2021-07-27",
+          "retrievedAt": "2026-10-27",
+          "sha256": "28d3f6af5e8cf729b874c95fd86f699f04cb1548f4889e4942dc4d0ae046845e",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "北京市重大项目建设指挥部办公室官网“轨道交通建设”栏目，来源北京日报。这是本次最关键的 28 号线来源：一句话逐站列全 5 座换乘站及其对方线路。URL 路径含 202504，但正文标注时间 2021年07月27日，以正文为准。"
+        },
+        {
+          "url": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202009/t20200911_2058715.htm",
+          "title": "地铁28号线可行性研究报告批复，纳入今年北京市政府重点工程",
+          "publicationDate": "2020-09-11",
+          "retrievedAt": "2026-10-27",
+          "sha256": "200cf773633042dba87c5401daa0adc92ee5219abfdd789f0f897eccfa120c2b",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "北京市发改委官网“发改之声”，来源新京报网。与重大项目办稿互为独立来源，逐站表述一致。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/gzdt/202401/t20240106_3527804.html",
+          "title": "地铁28号线迎来新进展 京广桥站首幅超深地下连续墙浇筑完成",
+          "publicationDate": "2024-01-06",
+          "retrievedAt": "2026-10-27",
+          "sha256": "9641d062efba64021c31cec7a6e5d1986f3d50f79dd20784a42043a4f2faf8af",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "首都之窗部门动态，来源北京日报。写“京广桥站是地铁28号线、22号线、10号线三线换乘车站”，并列出28号线近期5座换乘站。"
+        },
+        {
+          "url": "https://xinwen.bjd.com.cn/content/s688c78d3e4b0aabe0a046da1.html",
+          "title": "28号线线路一体化规划方案公示，国贸地区将迎多个新地铁站",
+          "publicationDate": "2025-08-01",
+          "retrievedAt": "2026-10-27",
+          "sha256": "a63e289700c824c89162b1321a115069d5a2e620ab09290b8c2553f26d05d483",
+          "pages": [],
+          "httpStatus": 200,
+          "captured": true,
+          "note": "北京日报客户端（bjd.com.cn）。转述京投公司当日公示，给出最新9站与6座换乘站名单（东大桥、京广桥、光华路、大望路、茂兴西路、大郊亭），但未写对方线路。"
+        }
+      ],
+      "pairs": [
+        {
+          "id": "future-transfer-bj28-dongdaqiao",
+          "station": "东大桥",
+          "otherLine": "6号线、17号线",
+          "documented": true,
+          "locator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+          "quote": "东大桥站可以换乘正在建设的17号线、22号线（平谷线）和已经通车的6号线"
+        },
+        {
+          "id": "future-transfer-bj28-jingguangqiao-10",
+          "station": "京广桥",
+          "otherLine": "10号线",
+          "documented": true,
+          "locator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+          "quote": "京广桥站可换乘22号线，并通过一条换乘通道连接已通车的10号线金台夕照站"
+        },
+        {
+          "id": "future-transfer-bj28-dawanglu",
+          "station": "大望路",
+          "otherLine": "1号线",
+          "documented": true,
+          "locator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+          "quote": "大望路站可换乘已通车的1号线、14号线以及规划中的R1线"
+        },
+        {
+          "id": "future-transfer-bj28-dajiaoting-7",
+          "station": "大郊亭",
+          "otherLine": "7号线",
+          "documented": true,
+          "locator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+          "quote": "大郊亭站可换乘7号线"
+        },
+        {
+          "id": "future-transfer-bj28-dongdaqiao-22",
+          "station": "东大桥",
+          "otherLine": "22号线",
+          "documented": true,
+          "locator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+          "quote": "东大桥站可以换乘正在建设的17号线、22号线（平谷线）和已经通车的6号线"
+        },
+        {
+          "id": "future-transfer-bj28-jingguangqiao-22",
+          "station": "京广桥（22号线侧称金台夕照）",
+          "otherLine": "22号线",
+          "documented": true,
+          "locator": "网页《地铁28号线迎来新进展 京广桥站首幅超深地下连续墙浇筑完成》，2024-01-06，首都之窗，第7段",
+          "quote": "京广桥站是地铁28号线、22号线、10号线三线换乘车站"
+        },
+        {
+          "id": "future-transfer-bj28-dawanglu-14",
+          "station": "大望路",
+          "otherLine": "14号线",
+          "documented": true,
+          "locator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+          "quote": "大望路站可换乘已通车的1号线、14号线以及规划中的R1线"
+        },
+        {
+          "id": "future-transfer-bj28-dongdaqiao-17",
+          "station": "东大桥",
+          "otherLine": "17号线",
+          "documented": true,
+          "locator": "网页《地铁28号线首站启动建设，9座车站5座可换乘》，2021-07-27，北京市重大项目建设指挥部办公室，第3段",
+          "quote": "东大桥站可以换乘正在建设的17号线、22号线（平谷线）和已经通车的6号线"
+        }
+      ],
+      "missingFromList": [
+        {
+          "station": "光华路",
+          "otherLine": "R4线（规划）",
+          "confirmed": true,
+          "evidence": "北京市发改委2020-09-11稿：“光华路站远期可换乘R4线（规划）”；重大项目办2021-07-27稿：“光华路站可换乘规划中的R4线”。R4 为规划线路，不在既有地铁网，故清单未收。"
+        },
+        {
+          "station": "大望路",
+          "otherLine": "R1线（规划）",
+          "confirmed": true,
+          "evidence": "北京市发改委2020-09-11稿与重大项目办2021-07-27稿均写“大望路站…以及规划中的R1线”。R1 为规划线路。"
+        },
+        {
+          "station": "茂兴西路",
+          "otherLine": "（对方线路未载明）",
+          "confirmed": false,
+          "evidence": "北京日报2025-08-01稿转述京投公司公示：28号线设6座换乘站，为东大桥、京广桥、光华路、大望路、茂兴西路、大郊亭。茂兴西路是2020年方案里没有的新增换乘站，但该稿未写与哪条线换乘，故只列不判。"
+        },
+        {
+          "station": "北京东站",
+          "otherLine": "市郊铁路城市副中心线、东北环线；国铁京哈线",
+          "confirmed": true,
+          "evidence": "重大项目办2021-07-27稿：“28号线同时还将在北京东站站连通城市副中心线、东北环线等2条市郊铁路线路”。属市郊铁路/国铁接口，非城市轨道交通。"
+        }
+      ],
+      "verdict": "all_documented",
+      "note": "8 对全部取得 https 官方站级证据，且有两个互相独立的政府站点（zdb.beijing.gov.cn 2021-07-27 与 fgw.beijing.gov.cn 2020-09-11）逐字一致地写出同一组换乘关系，另有 beijing.gov.cn 2024-01-06 独立确认京广桥三线换乘。原先只有 http://bj.people.com.cn 支撑的 4 对（东大桥、京广桥、大望路、大郊亭）本次已全部换成 https 政府来源，人民网 http 页面不再需要引用。实际读到：重大项目办稿正文逐站列 5 座换乘站及对方线路；发改委稿同样逐站列；首都之窗 2024-01-06 稿写京广桥为 28/22/10 三线换乘并列出近期 5 座换乘站；北京日报 2025-08-01 稿给出最新 9 站与 6 座换乘站名单（新增茂兴西路，未写对方线路）。没读到：28号线可研批复原文（京发改〔审〕〔2020〕451号，仅见招标公告引用文号，正文未公开）、28号线环评报告书全本。另需注意 2020 与 2025 两版方案站名有出入：2020 版含“核心区站、北京东站站”，2025 版为“景辉街站、茂兴西路站”，换乘站由 5 座变 6 座，本表按清单既有 8 对判定，未把新版站名强行套到旧结论上。"
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-29",
+  "cities": {
+    "shenzhen": {
+      "milestones": [
+        {
+          "chapterId": "shenzhen-network-reconciliation-2026-10-01",
+          "date": "2026-10-01",
+          "dateSources": [
+            {
+              "url": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+              "publicationDate": "2026-06-22",
+              "kind": "network_state",
+              "locator": "深圳市发展和改革委员会通知正文第四条；附件《深圳市轨道交通票价表》按线路分表，表头为线路名与站名两列，共17条线路",
+              "quote": "四、本通知自2026年深圳市轨道交通13号线二期（北延）线路开通之日起执行。"
+            },
+            {
+              "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+              "publicationDate": "2026-07-06",
+              "kind": "network_state",
+              "locator": "深圳市人民政府门户网站部门动态正文第1段；截止日前最后一次开通",
+              "quote": "2026年6月28日11时18分，深圳市城市轨道交通13号线二期北延段正式开门迎客"
+            }
+          ],
+          "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
+          "orders": [
+            {
+              "groupId": "shenzhen-line1",
+              "line": "1号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line2-2",
+              "line": "2号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line8-9",
+              "line": "8号线",
+              "expect": "existing_lead",
+              "detail": {
+                "lead": [
+                  "莲塘"
+                ],
+                "skipped": []
+              }
+            },
+            {
+              "groupId": "shenzhen-line3-3",
+              "line": "3号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line4",
+              "line": "4号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line5-5",
+              "line": "5号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line6-6",
+              "line": "6号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line6-7",
+              "line": "6支号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line7-8",
+              "line": "7号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line9-10",
+              "line": "9号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line10-11",
+              "line": "10号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line11-12",
+              "line": "11号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line12-13",
+              "line": "12号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line13-14",
+              "line": "13号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line14-15",
+              "line": "14号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line16-16",
+              "line": "16号线",
+              "expect": "exact"
+            },
+            {
+              "groupId": "shenzhen-line20-17",
+              "line": "20号线",
+              "expect": "exact"
+            }
+          ],
+          "reasoning": "核对章不是开通事件，日期是截止日本身；两源分别是「官方逐线站表（2026-06-22票价表附件，17条线）」与「截止日前最后一次开通（2026-06-28十三号线二期北延）」。17条线路站序与官方逐字相同，仅8号线多出既有2号线莲塘接头一站（同一份站表reviewNote已写明）。",
+          "verdict": "verified",
+          "issues": []
+        },
+        {
+          "chapterId": "shenzhen-network-milestone-2020-08-18",
+          "date": "2020-08-18",
+          "dateSources": [
+            {
+              "url": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202008/83235.html",
+              "publicationDate": "2020-08-18",
+              "kind": "opening_day",
+              "locator": "正文第1段与「6、10号线正式开通」小节第3段",
+              "quote": "8月18日11时18分，地铁6、10号线共计78.7公里线路、沿线50个车站正式开门迎客。地铁10号线起于福田口岸站，途经福田区、龙岗区，止于双拥街站，线路全长29．3公里，共设24座车站（岗厦北站暂未开通）。"
+            }
+          ],
+          "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
+          "orders": [
+            {
+              "groupId": "route:shenzhen-r11",
+              "line": "10号线",
+              "expect": "subsequence",
+              "detail": {
+                "skipped": [
+                  "岗厦北"
+                ]
+              }
+            }
+          ],
+          "reasoning": "当日开通6号线与10号线，10号线官方24站里岗厦北站当时「暂未开通」，故本条23站是官方站表去掉岗厦北，缺的那一站有当日原文点名。",
+          "verdict": "verified",
+          "issues": []
+        },
+        {
+          "chapterId": "shenzhen-network-milestone-2022-10-28",
+          "date": "2022-10-28",
+          "dateSources": [
+            {
+              "url": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202210/101706.html",
+              "publicationDate": "2022-10-28",
+              "kind": "two_source_inference",
+              "locator": "正文第1、2段",
+              "quote": "深圳地铁14号线、11号线福岗区间以及岗厦北枢纽、黄木岗枢纽、大运枢纽同时开门迎客；岗厦北枢纽连接地铁2号线、10号线、11号线、14号线"
+            },
+            {
+              "url": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202008/83235.html",
+              "publicationDate": "2020-08-18",
+              "kind": "two_source_inference",
+              "locator": "正文第1段（2020年开通稿，用于确认岗厦北当时尚未开通）",
+              "quote": "10号线共设24座车站（岗厦北站暂未开通）"
+            }
+          ],
+          "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
+          "orders": [
+            {
+              "groupId": "opening:sz10-gangxia-north",
+              "line": "10号线",
+              "expect": "exact"
+            }
+          ],
+          "reasoning": "当日开通主体是14号线、11号线福岗区间与三座枢纽；本条要证的是10号线岗厦北站自此载客。两源推理：2020-08-18运营方稿写「岗厦北站暂未开通」，2022-10-28运营方稿写岗厦北枢纽当日开门迎客并连接10号线，故该站当日开通，10号线站序由此补齐为官方24站。",
+          "verdict": "verified",
+          "issues": []
+        },
+        {
+          "chapterId": "shenzhen-network-milestone-2024-12-28",
+          "date": "2024-12-28",
+          "dateSources": [
+            {
+              "url": "https://www.szmc.net/home/xinwenzhongxin/gongsixinwen/202412/104601.html",
+              "publicationDate": "2024-12-28",
+              "kind": "opening_day",
+              "locator": "正文第1段",
+              "quote": "12月28日，深圳地铁开通20周年之际，5条地铁新线（段）同步开门迎客：地铁3号线四期、7号线二期、11号线二期、12号线二期、13号线南段开通初期运营"
+            }
+          ],
+          "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
+          "orders": [
+            {
+              "groupId": "dated:shenzhen-2024-12-28-five-openings:shenzhen-line13-14",
+              "line": "13号线",
+              "expect": "contiguous",
+              "detail": {
+                "start": 0
+              }
+            }
+          ],
+          "reasoning": "改用当日运营方通稿（2024-12-28）取代原先的2025年回溯稿；13号线南段7站是官方26站表的前7站。",
+          "verdict": "verified",
+          "issues": []
+        },
+        {
+          "chapterId": "shenzhen-network-milestone-2025-12-28",
+          "date": "2025-12-28",
+          "dateSources": [
+            {
+              "url": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+              "publicationDate": "2025-12-29",
+              "kind": "opening_day",
+              "locator": "正文第1段、第3段",
+              "quote": "12月28日上午，深圳地铁5号线西延段、8号线三期、11号线二期红岭南段和13号线一期北段同步开通初期运营"
+            }
+          ],
+          "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
+          "orders": [
+            {
+              "groupId": "dated:shenzhen-2025-12-28-lines5-8-11-13:shenzhen-line13-14:range-1",
+              "line": "13号线",
+              "expect": "contiguous",
+              "detail": {
+                "start": 0
+              }
+            }
+          ],
+          "reasoning": "13号线一期北段开通后为官方表前15站；建设子段原先多计既有高新中站，已按原文「起自既有高新中站」改为8站。",
+          "verdict": "verified",
+          "issues": []
+        },
+        {
+          "chapterId": "shenzhen-network-milestone-2026-06-28",
+          "date": "2026-06-28",
+          "dateSources": [
+            {
+              "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12880227.html",
+              "publicationDate": "2026-07-06",
+              "kind": "opening_day",
+              "locator": "正文第1段、第2段",
+              "quote": "2026年6月28日11时18分，深圳市城市轨道交通13号线二期北延段正式开门迎客"
+            }
+          ],
+          "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
+          "orders": [
+            {
+              "groupId": "dated:shenzhen-2026-06-28-line13-north:shenzhen-line13-14:range-1",
+              "line": "13号线",
+              "expect": "exact"
+            }
+          ],
+          "reasoning": "13号线二期北延开通后与官方26站表逐字相同；建设子段原先多计既有上屋站，已按原文「起于一期上屋站（不含）」改为11站。",
+          "verdict": "verified",
+          "issues": []
+        }
+      ],
+      "verifiedCount": 6,
+      "unverifiedCount": 0,
+      "verdict": "complete",
+      "note": "两源复核shenzhen的6条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，6条两项都对上。"
+    }
+  }
+}

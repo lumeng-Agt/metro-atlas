@@ -1,0 +1,1612 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "cities": {
+    "guangzhou": {
+      "interchanges": {
+        "roster": [
+          {
+            "station": "万胜围",
+            "lines": [
+              "4",
+              "8"
+            ],
+            "locator": "stationId=76；4 orderNum=4(lineId=5)；8 orderNum=28(lineId=7)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "东山口",
+            "lines": [
+              "1",
+              "6"
+            ],
+            "locator": "stationId=13；1 orderNum=12(lineId=1)；6 orderNum=14(lineId=10)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "东平",
+            "lines": [
+              "广佛线",
+              "佛山3"
+            ],
+            "locator": "stationId=177；广佛线 orderNum=24(lineId=8)；佛山3 orderNum=18(lineId=23)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "东晓南",
+            "lines": [
+              "2",
+              "10"
+            ],
+            "locator": "stationId=36；2 orderNum=18(lineId=2)；10 orderNum=6(lineId=32)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "东湖",
+            "lines": [
+              "6",
+              "10"
+            ],
+            "locator": "stationId=151；6 orderNum=13(lineId=10)；10 orderNum=10(lineId=32)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "中山八",
+            "lines": [
+              "5",
+              "11"
+            ],
+            "locator": "stationId=109；5 orderNum=28(lineId=6)；11 orderNum=16(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "五凤",
+            "lines": [
+              "10",
+              "11"
+            ],
+            "locator": "stationId=454；10 orderNum=7(lineId=32)；11 orderNum=26(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "五羊邨",
+            "lines": [
+              "5",
+              "10"
+            ],
+            "locator": "stationId=102；5 orderNum=19(lineId=6)；10 orderNum=11(lineId=32)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "体育西路",
+            "lines": [
+              "1",
+              "3"
+            ],
+            "locator": "stationId=15；1 orderNum=14(lineId=1)；3 orderNum=1(lineId=3)；3 orderNum=15(lineId=4)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "公园前",
+            "lines": [
+              "1",
+              "2"
+            ],
+            "locator": "stationId=10；1 orderNum=9(lineId=1)；2 orderNum=12(lineId=2)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "北滘公园",
+            "lines": [
+              "7",
+              "佛山3"
+            ],
+            "locator": "stationId=326；7 orderNum=2(lineId=11)；佛山3 orderNum=12(lineId=23)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "区庄",
+            "lines": [
+              "5",
+              "6"
+            ],
+            "locator": "stationId=104；5 orderNum=22(lineId=6)；6 orderNum=15(lineId=10)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "华师",
+            "lines": [
+              "3",
+              "11"
+            ],
+            "locator": "stationId=57；3 orderNum=18(lineId=4)；11 orderNum=6(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "南村万博",
+            "lines": [
+              "7",
+              "18"
+            ],
+            "locator": "stationId=172；7 orderNum=14(lineId=11)；18 orderNum=5(lineId=18)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "南洲",
+            "lines": [
+              "2",
+              "广佛线"
+            ],
+            "locator": "stationId=37；2 orderNum=19(lineId=2)；广佛线 orderNum=2(lineId=8)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "员村",
+            "lines": [
+              "5",
+              "11"
+            ],
+            "locator": "stationId=99；5 orderNum=15(lineId=6)；11 orderNum=3(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "嘉禾望岗",
+            "lines": [
+              "2",
+              "3",
+              "14"
+            ],
+            "locator": "stationId=69；2 orderNum=1(lineId=2)；3 orderNum=10(lineId=3)；14 orderNum=11(lineId=17)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "坦尾",
+            "lines": [
+              "5",
+              "6"
+            ],
+            "locator": "stationId=110；5 orderNum=29(lineId=6)；6 orderNum=5(lineId=10)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "夏园",
+            "lines": [
+              "5",
+              "13"
+            ],
+            "locator": "stationId=199；5 orderNum=4(lineId=6)；13 orderNum=15(lineId=13)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "大塘",
+            "lines": [
+              "3",
+              "11"
+            ],
+            "locator": "stationId=50；3 orderNum=11(lineId=4)；11 orderNum=29(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "大学城北",
+            "lines": [
+              "4",
+              "12"
+            ],
+            "locator": "stationId=78；4 orderNum=6(lineId=5)；12 orderNum=8(lineId=33)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "大学城南",
+            "lines": [
+              "4",
+              "7",
+              "12"
+            ],
+            "locator": "stationId=79；4 orderNum=7(lineId=5)；7 orderNum=17(lineId=11)；12 orderNum=9(lineId=33)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "大沙东",
+            "lines": [
+              "5",
+              "7"
+            ],
+            "locator": "stationId=93；5 orderNum=8(lineId=6)；7 orderNum=22(lineId=11)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "天河公园",
+            "lines": [
+              "11",
+              "13",
+              "21"
+            ],
+            "locator": "stationId=248；11 orderNum=4(lineId=30)；13 orderNum=1(lineId=13)；21 orderNum=2(lineId=16)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "天河客运站",
+            "lines": [
+              "3",
+              "6"
+            ],
+            "locator": "stationId=59；3 orderNum=20(lineId=4)；6 orderNum=21(lineId=10)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "如意坊",
+            "lines": [
+              "6",
+              "11"
+            ],
+            "locator": "stationId=146；6 orderNum=6(lineId=10)；11 orderNum=17(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "官洲",
+            "lines": [
+              "4",
+              "12"
+            ],
+            "locator": "stationId=77；4 orderNum=5(lineId=5)；12 orderNum=7(lineId=33)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "客村",
+            "lines": [
+              "3",
+              "8"
+            ],
+            "locator": "stationId=51；3 orderNum=12(lineId=4)；8 orderNum=23(lineId=7)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "广州东站",
+            "lines": [
+              "1",
+              "3",
+              "11"
+            ],
+            "locator": "stationId=62；1 orderNum=16(lineId=1)；3 orderNum=3(lineId=3)；11 orderNum=8(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "广州南站",
+            "lines": [
+              "2",
+              "7",
+              "22",
+              "佛山2"
+            ],
+            "locator": "stationId=42；2 orderNum=25(lineId=2)；7 orderNum=9(lineId=11)；22 orderNum=3(lineId=19)；佛山2 orderNum=50(lineId=21)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "广州火车站",
+            "lines": [
+              "2",
+              "5"
+            ],
+            "locator": "stationId=27；2 orderNum=9(lineId=2)；5 orderNum=25(lineId=6)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "彩虹桥",
+            "lines": [
+              "8",
+              "11"
+            ],
+            "locator": "stationId=331；8 orderNum=11(lineId=7)；11 orderNum=15(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "文化公园",
+            "lines": [
+              "6",
+              "8"
+            ],
+            "locator": "stationId=147；6 orderNum=8(lineId=10)；8 orderNum=14(lineId=7)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "新市墟",
+            "lines": [
+              "12",
+              "14"
+            ],
+            "locator": "stationId=471；12 orderNum=107(lineId=31)；14 orderNum=3(lineId=17)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "昌岗",
+            "lines": [
+              "2",
+              "8"
+            ],
+            "locator": "stationId=34；2 orderNum=16(lineId=2)；8 orderNum=19(lineId=7)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "杨箕",
+            "lines": [
+              "1",
+              "5"
+            ],
+            "locator": "stationId=14；1 orderNum=13(lineId=1)；5 orderNum=20(lineId=6)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "桂城",
+            "lines": [
+              "广佛线",
+              "佛山3"
+            ],
+            "locator": "stationId=128；广佛线 orderNum=15(lineId=8)；佛山3 orderNum=24(lineId=23)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "水西",
+            "lines": [
+              "7",
+              "21"
+            ],
+            "locator": "stationId=254；7 orderNum=27(lineId=11)；21 orderNum=10(lineId=16)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "汉溪长隆",
+            "lines": [
+              "3",
+              "7"
+            ],
+            "locator": "stationId=46；3 orderNum=7(lineId=4)；7 orderNum=13(lineId=11)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "江泰路",
+            "lines": [
+              "2",
+              "11"
+            ],
+            "locator": "stationId=35；2 orderNum=17(lineId=2)；11 orderNum=25(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "沙园",
+            "lines": [
+              "8",
+              "广佛线"
+            ],
+            "locator": "stationId=113；8 orderNum=17(lineId=7)；广佛线 orderNum=5(lineId=8)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "沙河",
+            "lines": [
+              "6",
+              "11"
+            ],
+            "locator": "stationId=154；6 orderNum=18(lineId=10)；11 orderNum=9(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "沙涌",
+            "lines": [
+              "11",
+              "广佛线"
+            ],
+            "locator": "stationId=158；11 orderNum=21(lineId=30)；广佛线 orderNum=6(lineId=8)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "沥滘",
+            "lines": [
+              "3",
+              "广佛线"
+            ],
+            "locator": "stationId=49；3 orderNum=10(lineId=4)；广佛线 orderNum=1(lineId=8)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "浔峰岗",
+            "lines": [
+              "6",
+              "12"
+            ],
+            "locator": "stationId=142；6 orderNum=1(lineId=10)；12 orderNum=1(lineId=31)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "海傍",
+            "lines": [
+              "3",
+              "4"
+            ],
+            "locator": "stationId=83；3 orderNum=1(lineId=4)；4 orderNum=11(lineId=5)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "海珠广场",
+            "lines": [
+              "2",
+              "6"
+            ],
+            "locator": "stationId=31；2 orderNum=13(lineId=2)；6 orderNum=10(lineId=10)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "湾华",
+            "lines": [
+              "佛山2",
+              "佛山3"
+            ],
+            "locator": "stationId=304；佛山2 orderNum=10(lineId=21)；佛山3 orderNum=19(lineId=23)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "燕塘",
+            "lines": [
+              "3",
+              "6"
+            ],
+            "locator": "stationId=63；3 orderNum=4(lineId=3)；6 orderNum=20(lineId=10)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "燕岗",
+            "lines": [
+              "11",
+              "广佛线"
+            ],
+            "locator": "stationId=157；11 orderNum=24(lineId=30)；广佛线 orderNum=4(lineId=8)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "珠江新城",
+            "lines": [
+              "3",
+              "5"
+            ],
+            "locator": "stationId=53；3 orderNum=14(lineId=4)；5 orderNum=18(lineId=6)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "琶洲",
+            "lines": [
+              "8",
+              "11"
+            ],
+            "locator": "stationId=121；8 orderNum=27(lineId=7)；11 orderNum=2(lineId=30)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "番禺广场",
+            "lines": [
+              "3",
+              "18",
+              "22"
+            ],
+            "locator": "stationId=44；3 orderNum=5(lineId=4)；18 orderNum=6(lineId=18)；22 orderNum=1(lineId=19)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "白云文化广场",
+            "lines": [
+              "2",
+              "12"
+            ],
+            "locator": "stationId=23；2 orderNum=5(lineId=2)；12 orderNum=108(lineId=31)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "石壁",
+            "lines": [
+              "2",
+              "7"
+            ],
+            "locator": "stationId=41；2 orderNum=23(lineId=2)；7 orderNum=10(lineId=11)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "磨碟沙",
+            "lines": [
+              "8",
+              "18"
+            ],
+            "locator": "stationId=119；8 orderNum=25(lineId=7)；18 orderNum=2(lineId=18)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "聚龙",
+            "lines": [
+              "8",
+              "12"
+            ],
+            "locator": "stationId=269；8 orderNum=6(lineId=7)；12 orderNum=104(lineId=31)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "芳村",
+            "lines": [
+              "1",
+              "11",
+              "22"
+            ],
+            "locator": "stationId=5；1 orderNum=4(lineId=1)；11 orderNum=19(lineId=30)；22 orderNum=8(lineId=19)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "苏元",
+            "lines": [
+              "6",
+              "21"
+            ],
+            "locator": "stationId=167；6 orderNum=30(lineId=10)；21 orderNum=9(lineId=16)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "萝岗",
+            "lines": [
+              "6",
+              "7"
+            ],
+            "locator": "stationId=168；6 orderNum=31(lineId=10)；7 orderNum=26(lineId=11)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "裕丰围",
+            "lines": [
+              "7",
+              "13"
+            ],
+            "locator": "stationId=196；7 orderNum=21(lineId=11)；13 orderNum=12(lineId=13)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "西塱",
+            "lines": [
+              "1",
+              "10",
+              "22",
+              "广佛线"
+            ],
+            "locator": "stationId=1；1 orderNum=1(lineId=1)；10 orderNum=1(lineId=32)；22 orderNum=7(lineId=19)；广佛线 orderNum=8(lineId=8)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "西村",
+            "lines": [
+              "5",
+              "8"
+            ],
+            "locator": "stationId=107；5 orderNum=26(lineId=6)；8 orderNum=10(lineId=7)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "赤岗",
+            "lines": [
+              "8",
+              "12"
+            ],
+            "locator": "stationId=118；8 orderNum=24(lineId=7)；12 orderNum=3(lineId=33)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "赤沙",
+            "lines": [
+              "11",
+              "12"
+            ],
+            "locator": "stationId=442；11 orderNum=1(lineId=30)；12 orderNum=5(lineId=33)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "车陂",
+            "lines": [
+              "4",
+              "13"
+            ],
+            "locator": "stationId=74；4 orderNum=2(lineId=5)；13 orderNum=3(lineId=13)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "车陂南",
+            "lines": [
+              "4",
+              "5"
+            ],
+            "locator": "stationId=75；4 orderNum=3(lineId=5)；5 orderNum=13(lineId=6)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "镇龙",
+            "lines": [
+              "14",
+              "21"
+            ],
+            "locator": "stationId=215；14 orderNum=20(lineId=14)；21 orderNum=14(lineId=16)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "陈家祠",
+            "lines": [
+              "1",
+              "8"
+            ],
+            "locator": "stationId=8；1 orderNum=7(lineId=1)；8 orderNum=12(lineId=7)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "高增",
+            "lines": [
+              "3",
+              "9"
+            ],
+            "locator": "stationId=91；3 orderNum=13(lineId=3)；9 orderNum=11(lineId=12)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "魁奇路",
+            "lines": [
+              "广佛线",
+              "佛山2"
+            ],
+            "locator": "stationId=134；广佛线 orderNum=21(lineId=8)；佛山2 orderNum=8(lineId=21)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "鱼珠",
+            "lines": [
+              "5",
+              "13"
+            ],
+            "locator": "stationId=95；5 orderNum=10(lineId=6)；13 orderNum=11(lineId=13)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "黄村",
+            "lines": [
+              "4",
+              "21"
+            ],
+            "locator": "stationId=73；4 orderNum=1(lineId=5)；21 orderNum=4(lineId=16)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "黄沙",
+            "lines": [
+              "1",
+              "6"
+            ],
+            "locator": "stationId=6；1 orderNum=5(lineId=1)；6 orderNum=7(lineId=10)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          },
+          {
+            "station": "龙潭",
+            "lines": [
+              "11",
+              "18"
+            ],
+            "locator": "stationId=271；11 orderNum=30(lineId=30)；18 orderNum=3(lineId=18)",
+            "source": "https://apis.gzmtr.com/app-map/metroweb/linestation"
+          }
+        ],
+        "onlyInOfficial": [
+          "万胜围",
+          "东山口",
+          "东平",
+          "东晓南",
+          "东湖",
+          "五凤",
+          "体育西路",
+          "公园前",
+          "北滘公园",
+          "区庄",
+          "南洲",
+          "嘉禾望岗",
+          "坦尾",
+          "夏园",
+          "大学城北",
+          "大学城南",
+          "天河公园",
+          "天河客运站",
+          "官洲",
+          "客村",
+          "广州东站",
+          "广州火车站",
+          "文化公园",
+          "新市墟",
+          "昌岗",
+          "杨箕",
+          "桂城",
+          "水西",
+          "汉溪长隆",
+          "沙园",
+          "沥滘",
+          "海珠广场",
+          "湾华",
+          "燕塘",
+          "珠江新城",
+          "石壁",
+          "聚龙",
+          "苏元",
+          "萝岗",
+          "裕丰围",
+          "西塱",
+          "西村",
+          "赤岗",
+          "车陂",
+          "车陂南",
+          "镇龙",
+          "陈家祠",
+          "高增",
+          "魁奇路",
+          "鱼珠",
+          "黄沙"
+        ],
+        "onlyInGame": [],
+        "verdict": "incomplete",
+        "note": "依据：广州地铁官方乘客服务线网接口 https://apis.gzmtr.com/app-map/metroweb/linestation（2026-10-27 以 POST {\"\"} 实抓，HTTP 200，181823 字节，sha256 15f98db3a401cd03a02c4cc45beabd08f71d435b9be712c4be490e3d75ef03ad；该地址 GET 返回 404，必须 POST；落点页 https://cs.gzmtr.com/ckfw/ 与 https://wx.gzmtr.com:50443/#/index?language=Cn）。做法：按物理站 stationId 聚合（官方同一站体跨线共用 stationId），线路取每站 hcLines 与该站所属路径的并集，只保留游戏线网范围（1—14、18、21、22 号线，广佛线，佛山 2/3 号线；3 号线北延段、14 号线知识城支线、12 号线东西段按同一线号合并，不另算换乘），得 75 座多线站。排除项：APM（lineId 9）、海珠/黄埔有轨（15/20/22/26）、广佛环/广佛肇/广惠/穗深/琶莲城际（24/25/27/28/34/35）、广清城际。APM 口径：运营方把林和西（3/APM）、广州塔（3/APM，另接海珠有轨 THZ1）标为换乘，若计入 APM 名册为 77 座；本游戏线网无 APM，故不计，广州塔也不因有轨成为换乘。出站换乘/同台换乘：官方接口只有 isHuanCheng 布尔标记，不区分站内通道、同台、出站；本轮未取得广州官方“出站换乘站”清单，故名册不单列，也不因换乘方式剔除任何站。可证实的同台换乘是 11/12 号线中医药大学叠岛（广州市政府 2024-12-26 报道），但 12 号线该段未开通，故不入名册。站名集合对比：游戏 25 条编号去重为 24 站，全部能在官方名册中找到（无虚项）；官方 75 座中 51 座游戏没有。分域看：广州市内官方 70 座、游戏覆盖 24 座、缺 46 座；佛山境内 5 座（东平、桂城、魁奇路、湾华、北滘公园）游戏全缺。结论：25 条里 13 对来自 11 号线开通、4 对来自 10/12 号线开通，其余 8 对是 4/21 黄村、7/18 南村万博、3/18 番禺广场、8/18 磨碟沙、5/7 大沙东、3/4 海傍、广州南站佛山2 两对；老牌换乘（公园前、体育西路、东山口、杨箕、昌岗、客村、广州东站、嘉禾望岗、珠江新城、燕塘、黄沙、陈家祠、文化公园、海珠广场、车陂南、万胜围、大学城南、天河客运站、沙园、沥滘、南洲、西塱等）全缺，属明显不完整。另：编号层面还有配对缺口——广州南站官方为 2/7/22/佛山2 四线，游戏只有 佛山2-2、佛山2-7 两对，缺 2-7、2-22、7-22、佛山2-22；芳村官方 1/11/22，游戏只有 1-11。"
+      },
+      "temporal": {
+        "evidence": [
+          {
+            "source": "https://www.foshan.gov.cn/zwgk/zwdt/bmdt/content/post_6908002.html",
+            "effectiveDate": "2021-12-28",
+            "scope": "佛山 2 号线一期（南庄—广州南站，17 站）开通；广州南站由此成为 2/7/22/佛山2 多线枢纽，湾华、魁奇路与广佛线/佛山3 的换乘随后成立。"
+          },
+          {
+            "source": "https://fsdr.foshan.gov.cn/gkmlpt/content/6/6079/post_6079253.html",
+            "effectiveDate": "2024-08-23",
+            "scope": "佛山 3 号线在建段（镇安—佛山大学，15 站，含桂城、东平）6 时开通，桂城、东平与广佛线换乘成立；该段当时与南段分段运营。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/zwfw/zxfw/jtfw/content/post_9950294.html",
+            "effectiveDate": "2024-11-01",
+            "scope": "3 号线东延段（番禺广场—海傍，含傍江、石碁南、海涌路）首班车起运营；海傍由此成为 3/4 号线换乘。官方 2024-10-31 发布。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/zwfw/zxfw/jtfw/content/post_10045280.html",
+            "effectiveDate": "2024-12-28",
+            "scope": "11 号线（环线，31 座车站）14 时起初期运营，全线换乘站 26 座、开通初期 14 座与既有线换乘；同日 6 号线沙河站对外运营。官方明确：11 号线广州火车站、广州东站因配合国铁改造不满足开通条件，列车不停站通过（通过不停车），故截止日广州火车站仍只有 2/5 号线。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/xw/gzyw/content/mpost_10333816.html",
+            "effectiveDate": "2025-06-29",
+            "scope": "10 号线（杨箕东—西塱）、12 号线东段（二沙岛—大学城南）与西段（浔峰岗—广州体育馆）开通；12 号线中段（广州体育馆—二沙岛）未开通，官方接口至今仍把 12 号线拆成两段独立路径，与游戏 groups 的两段一致。"
+          },
+          {
+            "source": "https://jtj.gz.gov.cn/xwdt/gzdt/content/post_10464307.html",
+            "effectiveDate": "2025-09-26",
+            "scope": "市交通运输局（2025-09-26）称 12 号线中段（广州体育馆—二沙岛）仍在推进、13 号线二期（天河公园—朝阳）尚待建设；证明两段在截止日前未开通，与官方接口缺段一致，游戏也未把这些站当已开通。"
+          },
+          {
+            "source": "https://www.gz.gov.cn/zt/jrshts/2025n/zqgq/dtzx/content/post_10466453.html",
+            "effectiveDate": "2025-09-29",
+            "scope": "13 号线二期（天河公园—鱼珠，4 站）、14 号线二期（嘉禾望岗—乐嘉路，7 站）首班车起开通，与一期贯通；同日 11 号线广州东站开通。11 号线广州东站自 2024-12-28 起为通过不停车，至本日才启用，广州东站由此成为 1/3/11 三线换乘。"
+          },
+          {
+            "source": "https://ghzyj.gz.gov.cn/sjb/xw/gzdt/content/post_10615719.html",
+            "effectiveDate": "2025-12-29",
+            "scope": "22 号线后通段（陈头岗—芳村）开通，与首通段贯通为番禺广场—芳村；西塱形成 1/10/22/广佛线四线换乘，芳村形成 1/11/22 三线换乘。官方 2025-12-30 发布。"
+          },
+          {
+            "source": "https://jtj.gz.gov.cn/hdjl/czc/content/post_10789115.html",
+            "effectiveDate": "2026-04-06",
+            "scope": "市交通运输局（2026-04-06）称 13 号线二期西段（朝阳—天河公园，19 站）计划 2026 年底建成开通；即截止日 2026-10-01 尚未开通，2026-07-03 该段仍在公开征求站名意见，可交叉印证 2026 年内截止日前无新线开通。"
+          },
+          {
+            "source": "https://www.foshan.gov.cn/zwgk/zwdt/bmdt/content/post_7179350.html",
+            "effectiveDate": "2026-06-18",
+            "scope": "佛山 3 号线中山公园—联和段 6 时贯通（含敦厚站启用、佛山站贯通），全线 66.57 公里 37 站连成一线；官方同稿点名湾华换佛山2、桂城与东平换广佛线、北滘公园换广州7号线。这是截止日 2026-10-01 前本线网范围最后一次开通/车站启用，未新增换乘站。"
+          }
+        ],
+        "verdict": "complete",
+        "note": "游戏原 temporalEvidence 仅 5 条，本文件补到 10 条，覆盖 2021-12-28 至 2026-06-18。截止日前最近一次开通/车站启用为 2026-06-18 佛山 3 号线中山公园—联和段贯通（敦厚站启用），不新增换乘站；广州本市最近一次为 2025-12-29 22 号线后通段。暂缓开通/通过不停车已单列：11 号线广州火车站（2024-12-28 起通过不停车，至 2026-10-27 官方接口仍无该站，截止日仍未开通）、11 号线广州东站（2024-12-28 通过不停车，2025-09-29 启用）、12 号线中段、13 号线二期西段、7 号线洪圣沙（官方接口无此站）。时序与截止网是否矛盾：逐线比对官方运营站表与游戏 20 条线路的站名集合，除 3 处命名差异（机场北/机场北(T2)、庆盛/庆盛(南沙北站)、𧒽岗/虫雷岗 拆字）外全部逐站一致，未发现游戏把截止日前未开通的站当已开通（11 号线 30 站无广州火车站、12 号线只有两段、13 号线 15 站止于天河公园、22 号线 8 站含芳村、佛山 3 号线 37 站含佛山站/敦厚）。没读到的：广州地铁官网 www.gzmtr.com 首页为脚本渲染，未取得“换乘站总数”的官方口径数字；11 号线开通报道里的“26 座换乘站”是 11 号线自身口径（含在建/规划线路），不能当全网数。本判定只对截止日线网范围负责，1997—2023 年各线首通日期未逐条重录（对截止网无影响）。"
+      }
+    },
+    "chengdu": {
+      "interchanges": {
+        "roster": [
+          {
+            "station": "一品天下",
+            "lines": [
+              "2",
+              "7"
+            ],
+            "locator": "站号 0229(2号线)/0746(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "三元",
+            "lines": [
+              "8",
+              "9"
+            ],
+            "locator": "站号 0840(8号线)/0929(9号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "三官堂",
+            "lines": [
+              "6",
+              "13"
+            ],
+            "locator": "站号 0649(6号线)/1328(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "世纪城",
+            "lines": [
+              "1",
+              "18"
+            ],
+            "locator": "站号 0137(1号线)/1824(18号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "东光",
+            "lines": [
+              "6",
+              "8"
+            ],
+            "locator": "站号 0650(6号线)/0829(8号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "东坡路",
+            "lines": [
+              "7",
+              "13"
+            ],
+            "locator": "站号 0743(7号线)/1337(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "东大路",
+            "lines": [
+              "2",
+              "8"
+            ],
+            "locator": "站号 0240(2号线)/0827(8号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "中医大省医院",
+            "lines": [
+              "2",
+              "4",
+              "5"
+            ],
+            "locator": "站号 0232(2号线)/0429(4号线)/0541(5号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "九兴大道",
+            "lines": [
+              "5",
+              "8"
+            ],
+            "locator": "站号 0546(5号线)/0835(8号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "九江北",
+            "lines": [
+              "17",
+              "19"
+            ],
+            "locator": "站号 1727(17号线)/1927(19号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "二仙桥",
+            "lines": [
+              "7",
+              "17"
+            ],
+            "locator": "站号 0725(7号线)/1742(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "人民公园",
+            "lines": [
+              "2",
+              "17"
+            ],
+            "locator": "站号 0234(2号线)/1736(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "人民北路",
+            "lines": [
+              "1",
+              "6"
+            ],
+            "locator": "站号 0123(1号线)/0641(6号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "倪家桥",
+            "lines": [
+              "1",
+              "8"
+            ],
+            "locator": "站号 0130(1号线)/0832(8号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "净居寺",
+            "lines": [
+              "8",
+              "13"
+            ],
+            "locator": "站号 0828(8号线)/1327(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "凤溪河",
+            "lines": [
+              "4",
+              "19"
+            ],
+            "locator": "站号 0415(4号线)/1924(19号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "前锋路",
+            "lines": [
+              "3",
+              "6"
+            ],
+            "locator": "站号 0327(3号线)/0643(6号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "北站西二路",
+            "lines": [
+              "5",
+              "7"
+            ],
+            "locator": "站号 0537(5号线)/0751(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "华兴",
+            "lines": [
+              "9",
+              "10"
+            ],
+            "locator": "站号 0927(9号线)/1023(10号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "华西坝",
+            "lines": [
+              "1",
+              "13"
+            ],
+            "locator": "站号 0128(1号线)/1331(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "双桥路",
+            "lines": [
+              "4",
+              "8"
+            ],
+            "locator": "站号 0435(4号线)/0826(8号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "双流机场2航站楼",
+            "lines": [
+              "10",
+              "19"
+            ],
+            "locator": "站号 1026(10号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "双流机场2航站楼东",
+            "lines": [
+              "19",
+              "30"
+            ],
+            "locator": "站号 1929(19号线)/3044(30号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "双流西站",
+            "lines": [
+              "3",
+              "10"
+            ],
+            "locator": "站号 0348(3号线)/1027(10号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "四川师大",
+            "lines": [
+              "7",
+              "13"
+            ],
+            "locator": "站号 0734(7号线)/1326(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "回龙",
+            "lines": [
+              "5",
+              "6"
+            ],
+            "locator": "站号 0561(5号线)/0675(6号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "培风",
+            "lines": [
+              "9",
+              "13"
+            ],
+            "locator": "站号 0923(9号线)/1339(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "天府商务区",
+            "lines": [
+              "6",
+              "19"
+            ],
+            "locator": "站号 0669(6号线)/1936(19号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "天府广场",
+            "lines": [
+              "1",
+              "2"
+            ],
+            "locator": "站号 0126(1号线)/0235(2号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "天府站",
+            "lines": [
+              "18",
+              "19"
+            ],
+            "locator": "站号 1828(18号线)/1938(19号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "太平园",
+            "lines": [
+              "3",
+              "7",
+              "10"
+            ],
+            "locator": "站号 0337(3号线)/0740(7号线)/1021(10号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "娇子立交",
+            "lines": [
+              "13",
+              "30"
+            ],
+            "locator": "站号 1325(13号线)/3028(30号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "孵化园",
+            "lines": [
+              "1",
+              "9",
+              "18"
+            ],
+            "locator": "站号 0135(1号线)/0931(9号线)/1822(18号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "小南街",
+            "lines": [
+              "13",
+              "17"
+            ],
+            "locator": "站号 1333(13号线)/1735(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "市一医院",
+            "lines": [
+              "5",
+              "30"
+            ],
+            "locator": "站号 0549(5号线)/3035(30号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "市二医院",
+            "lines": [
+              "3",
+              "4"
+            ],
+            "locator": "站号 0329(3号线)/0433(4号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "建设北路",
+            "lines": [
+              "6",
+              "17"
+            ],
+            "locator": "站号 0644(6号线)/1740(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "怡心湖",
+            "lines": [
+              "5",
+              "19"
+            ],
+            "locator": "站号 0559(5号线)/1933(19号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "惠王陵",
+            "lines": [
+              "2",
+              "30"
+            ],
+            "locator": "站号 0244(2号线)/3025(30号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "成都东客站",
+            "lines": [
+              "2",
+              "7"
+            ],
+            "locator": "站号 0242(2号线)/0731(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "成都西站",
+            "lines": [
+              "4",
+              "9"
+            ],
+            "locator": "站号 0424(4号线)/0922(9号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "文化宫",
+            "lines": [
+              "4",
+              "7"
+            ],
+            "locator": "站号 0426(4号线)/0744(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "新南门",
+            "lines": [
+              "3",
+              "13"
+            ],
+            "locator": "站号 0331(3号线)/1330(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "春熙路",
+            "lines": [
+              "2",
+              "3"
+            ],
+            "locator": "站号 0236(2号线)/0330(3号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "机投桥",
+            "lines": [
+              "9",
+              "17"
+            ],
+            "locator": "站号 0924(9号线)/1729(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "槐树店",
+            "lines": [
+              "4",
+              "7"
+            ],
+            "locator": "站号 0437(4号线)/0729(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "武青南路",
+            "lines": [
+              "3",
+              "9"
+            ],
+            "locator": "站号 0340(3号线)/0925(9号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "洞子口",
+            "lines": [
+              "5",
+              "27"
+            ],
+            "locator": "站号 0533(5号线)/2734(27号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "海昌路",
+            "lines": [
+              "1",
+              "18"
+            ],
+            "locator": "站号 0145(1号线)/1825(18号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "火车北站",
+            "lines": [
+              "1",
+              "7"
+            ],
+            "locator": "站号 0122(1号线)/0721(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "火车南站",
+            "lines": [
+              "1",
+              "7",
+              "18"
+            ],
+            "locator": "站号 0132(1号线)/0737(7号线)/1821(18号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "牛王庙",
+            "lines": [
+              "2",
+              "6"
+            ],
+            "locator": "站号 0238(2号线)/0647(6号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "犀浦",
+            "lines": [
+              "2",
+              "6"
+            ],
+            "locator": "站号 0221(2号线)/0629(6号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "玉双路",
+            "lines": [
+              "4",
+              "6"
+            ],
+            "locator": "站号 0434(4号线)/0646(6号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "珠江路",
+            "lines": [
+              "8",
+              "30"
+            ],
+            "locator": "站号 0842(8号线)/3039(30号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "理工大学",
+            "lines": [
+              "7",
+              "8"
+            ],
+            "locator": "站号 0726(7号线)/0822(8号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "琉璃场",
+            "lines": [
+              "6",
+              "7"
+            ],
+            "locator": "站号 0651(6号线)/0735(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "省体育馆",
+            "lines": [
+              "1",
+              "3"
+            ],
+            "locator": "站号 0129(1号线)/0333(3号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "省骨科医院",
+            "lines": [
+              "5",
+              "17"
+            ],
+            "locator": "站号 0543(5号线)/1734(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "神仙树",
+            "lines": [
+              "5",
+              "7"
+            ],
+            "locator": "站号 0547(5号线)/0738(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "红星桥",
+            "lines": [
+              "3",
+              "17"
+            ],
+            "locator": "站号 0328(3号线)/1739(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "红牌楼",
+            "lines": [
+              "3",
+              "10"
+            ],
+            "locator": "站号 0336(3号线)/1020(10号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "羊犀立交",
+            "lines": [
+              "2",
+              "27"
+            ],
+            "locator": "站号 0228(2号线)/2740(27号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "西北桥",
+            "lines": [
+              "5",
+              "6"
+            ],
+            "locator": "站号 0538(5号线)/0640(6号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "西南交大",
+            "lines": [
+              "6",
+              "7"
+            ],
+            "locator": "站号 0638(6号线)/0749(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "西博城",
+            "lines": [
+              "1",
+              "6",
+              "18"
+            ],
+            "locator": "站号 0151(1号线)/0670(6号线)/1826(18号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "金府",
+            "lines": [
+              "6",
+              "27"
+            ],
+            "locator": "站号 0636(6号线)/2737(27号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "金石路",
+            "lines": [
+              "6",
+              "30"
+            ],
+            "locator": "站号 0653(6号线)/3031(30号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "金融城东",
+            "lines": [
+              "6",
+              "9"
+            ],
+            "locator": "站号 0654(6号线)/0933(9号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "锦城大道",
+            "lines": [
+              "5",
+              "9"
+            ],
+            "locator": "站号 0551(5号线)/0930(9号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "青羊宫",
+            "lines": [
+              "5",
+              "13"
+            ],
+            "locator": "站号 0542(5号线)/1334(13号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "韦家碾",
+            "lines": [
+              "1",
+              "27"
+            ],
+            "locator": "站号 0120(1号线)/2731(27号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "驷马桥",
+            "lines": [
+              "3",
+              "7"
+            ],
+            "locator": "站号 0325(3号线)/0722(7号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "骡马市",
+            "lines": [
+              "1",
+              "4"
+            ],
+            "locator": "站号 0125(1号线)/0431(4号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "高升桥",
+            "lines": [
+              "3",
+              "5",
+              "10"
+            ],
+            "locator": "站号 0335(3号线)/0544(5号线)/1019(10号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "高朋大道",
+            "lines": [
+              "7",
+              "8"
+            ],
+            "locator": "站号 0739(7号线)/0836(8号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "龙桥路",
+            "lines": [
+              "3",
+              "19"
+            ],
+            "locator": "站号 0342(3号线)/1928(19号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "龙港",
+            "lines": [
+              "8",
+              "19"
+            ],
+            "locator": "站号 0846(8号线)/1930(19号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          },
+          {
+            "station": "龙爪堰",
+            "lines": [
+              "7",
+              "17"
+            ],
+            "locator": "站号 0742(7号线)/1731(17号线)",
+            "source": "https://www.chengdurail.com/op/station-time"
+          }
+        ],
+        "onlyInOfficial": [],
+        "onlyInGame": [],
+        "verdict": "complete",
+        "note": "依据：成都轨道集团官方首末班车时刻接口 https://www.chengdurail.com/op/station-time（2026-10-27 实抓，HTTP 200，632873 字节，sha256 ef2b2c34c28c006725bf791f8c0aad367b16d3cec4a43222b22d4012e5ffe78d，与仓库 2026-10-23 抓取逐字节一致，说明运营站表未变）。做法：按站名聚合 stationList 的 stationCodes 与所属线路，取 16 条地铁线（1—10、13、17、18、19、27、30）中 ≥2 线的站，得 83 座；剔除 18/19 共线运营的 三岔、福田、天府机场1号2号航站楼、天府机场北 4 座（官方 2023-11-28 通稿：19 号线二期于天府站过轨后与 18 号线共线运营，同一实体站台，不构成步行换乘），余 79 座。天府站官方标“仅换乘”，同日开通站内换乘，故作为换乘计入。排除项：蓉2 有轨（101/102）与 S3 资阳线不计，故天河路、望丛祠、新业路 不入名册；成都西站按 4/9 计。出闸换乘：双流机场2航站楼（10/19）与双流机场2航站楼东（19/30）是两个不同车站，官方在站名后标注“出闸换乘”，本名册分别计入并保留原标注说明。站名集合对比：游戏 92 条编号去重为 79 站，与官方 79 座完全一致，无漏项、无虚项。配对层面 1 处不一致（不影响站集合）：游戏有 双流机场2航站楼 10-30 一对，但官方 30 号线西端为双流机场2航站楼东，30 号线不经双流机场2航站楼，该对应删。官方 2025-12-16 通稿称全网换乘站 80 座，与本名册 79 座差 1，差额落在有轨蓉2/统计口径，不影响地铁站集合比对。逐线比对：16 条线站名与游戏 groups 全部逐站一致（含 30 号线 22 站无玉虹路/分水、27 号线 22 站、10 号线 19 站无文翁石室/人民公园、13 号线 21 站）。"
+      },
+      "temporal": {
+        "evidence": [
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2015-07-25",
+            "scope": "官方《发展历程》：1 号线南延线开通试运营。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2016-07-31",
+            "scope": "官方《发展历程》：3 号线一期开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2017-06-02",
+            "scope": "官方《发展历程》：4 号线二期开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2017-09-06",
+            "scope": "官方《发展历程》：10 号线一期开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2017-12-06",
+            "scope": "官方《发展历程》：7 号线开通（环线），成都进入“井+环”网络化运营。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2018-03-18",
+            "scope": "官方《发展历程》：1 号线三期开通，线网 196 公里。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2018-12-26",
+            "scope": "官方《发展历程》：3 号线二、三期与蓉2 号线首开段同日开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2019-12-27",
+            "scope": "官方《发展历程》：5 号线一二期、10 号线二期及蓉2 号线非首开段开通。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2020-09-27",
+            "scope": "官方《发展历程》：18 号线开通运营（火车南站—三岔）。18 号线后续天府机场段（三岔—天府机场北）的带日期官方页本轮未取得，但该段车站均非换乘站，不影响名册；2026-10-27 运营站表已含天府机场1号2号航站楼、天府机场北。"
+          },
+          {
+            "source": "https://www.chengdurail.com/gywm.htm",
+            "effectiveDate": "2020-12-18",
+            "scope": "官方《发展历程》：5 条新线集中开通初期运营，线网突破 500 公里（6 号线、8 号线一期、9 号线、17 号线一期等）；该页未逐条列名，故不据此拆分单线日期。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1331/52042.htm",
+            "effectiveDate": "2023-11-28",
+            "scope": "19 号线二期 09:00 开通初期运营，线网突破 600 公里；同日开通天府站站内换乘（18/19），并开行双机场直达车；双流机场2航站楼东与 10 号线双流机场2航站楼之间以地下通道实现“出闸换乘”；19 号线于天府站过轨后与 18 号线共线运营。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1151/56002.htm",
+            "effectiveDate": "2024-12-19",
+            "scope": "8 号线二期、27 号线一期 09:30 开通；新增 5 座换乘站：龙港（8/19）、韦家碾（1/27）、羊犀立交（2/27）、洞子口（5/27）、金府（6/27）。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1141/107332.htm",
+            "effectiveDate": "2025-09-17",
+            "scope": "17 号线二期（机投桥—高洪，18 站，6 座换乘：龙爪堰7、省骨科医院5、人民公园2、红星桥3、建设北路6、二仙桥7）与10 号线三期（武侯祠—太平园）10:00 开通，全网新增 7 座换乘站。官方明确 10 号线三期剩余文翁石室、人民公园两站暂缓，故截止日文翁石室只有 13 号线、人民公园为 2/17（10 号线站未开）。"
+          },
+          {
+            "source": "https://www.chengdurail.com/info/1141/114994.htm",
+            "effectiveDate": "2025-12-16",
+            "scope": "13 号线一期（瓦窑滩—龙安，21 站）、30 号线一期（双流机场2航站楼东—龙泉驿火车站南，设 24 站）10:00 开通；官方称两线新增 15 座换乘站、全网车站 489 座、换乘站 80 座。这是截止日 2026-10-01 前成都最后一次地铁开通。"
+          }
+        ],
+        "verdict": "complete",
+        "note": "游戏原 temporalEvidence 为 0 条（完全为空），本文件补 14 条，覆盖 2015-07-25 至 2025-12-16，逐线落到最后一次开通日：1 号线 2018-03-18、3 号线 2018-12-26、4 号线 2017-06-02、5 号线 2019-12-27、7 号线 2017-12-06、10 号线 2025-09-17（三期）、13 号线 2025-12-16、17 号线 2025-09-17（二期）、18 号线 2020-09-27、19 号线 2023-11-28（二期）、27 号线 2024-12-19、30 号线 2025-12-16；6 号线、8 号线、9 号线并入 2020-12-18 五线集中开通与 2024-12-19 8 号线二期两条。截止日前最近一次开通为 2025-12-16 13 号线一期、30 号线一期。暂缓开通：30 号线玉虹路、分水（官方称设 24 站，2026-10-27 运营站表仅 22 站且无此二站，游戏 30 号线也是 22 站）；10 号线文翁石室、人民公园（2025-09-17 官方明示待开通，运营站表 19 站无此二站）；27 号线官方介绍称设 23 站而运营站表 22 站，差 1 站官方未点名，本轮未查明是哪一站（该线 5 座换乘站均在表内，不影响名册）。时序与截止网是否矛盾：未发现。16 条线逐站比对游戏 groups 与官方站表完全一致，游戏没有把 18/19 共线四站当换乘，也没有把玉虹路、分水、文翁石室、人民公园（10 号线）当已开通。没读到的：2 号线最后一次开通（2014 年东西延线）不在官方《发展历程》页（起于 2015）覆盖范围，本轮未取得带日期官方页，但 2 号线早于全部截止网事件，不影响判定；18 号线天府机场段的带日期公告亦未取得。另外，成都轨道官网新闻列表为脚本渲染，逐条新闻只能靠首页/新闻中心静态片段定位，故 2026 年是否存在未收录的小规模车站启用无法完全排除，但 2026-05 官方稿仍称线网 758 公里，与 2025-12-31 相同，可佐证截止日前无新线开通。"
+      }
+    }
+  }
+}

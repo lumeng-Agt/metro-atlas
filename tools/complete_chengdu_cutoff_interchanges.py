@@ -55,6 +55,7 @@ def main():
         transferEvidence='res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json',
         sharedRunningReviewStatus='verified',sharedRunningEvidence=evidence['sharedRunningStops'],
         sharedRunningSections=[dict(id='cd18-19-airport-shared',physicalLineId='chengdu-line18-13',serviceLineId='chengdu-line19-14',
+                                    intervalEndpoints=['三岔','天府机场北'],
                                     stationNames=['三岔','福田','天府机场1号2号航站楼','天府机场北'],
                                     source='https://www.chengdurail.com/info/1331/52042.htm',
                                     evidenceFile='res://data/official_evidence/chengdu_interchanges_retrieved2026-10-23.json',

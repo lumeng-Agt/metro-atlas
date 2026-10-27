@@ -20,6 +20,10 @@ func _run() -> void:
 	check(Shared.definition_errors(network).is_empty(),"all eight fully shared and the directional station have independent requirements")
 	var missing:=network.duplicate(true);missing.sharedRunningSections[0].directionalStationRules=[]
 	check(not Shared.definition_errors(missing).is_empty(),"removing Baoshan directional requirements cannot certify the shared network")
+	var wrong_endpoint:=network.duplicate(true);wrong_endpoint.sharedRunningSections[0].intervalEndpoints=["宜山路","虹桥路"]
+	check(not Shared.definition_errors(wrong_endpoint).is_empty(),"claiming Yishan Road as the shared interval end is rejected")
+	var unstated:=network.duplicate(true);unstated.sharedRunningSections[0].erase("intervalEndpoints")
+	check(not Shared.definition_errors(unstated).is_empty(),"a section that never states the published interval cannot pass")
 	var world:=WorldData.new_world("shanghai","campaign");world.storyState.chapterId=fixture.id;world.storyState.stage="build";world.storyState.tutorialEnabled=false;app._enter(world)
 	var before:=JSON.stringify([world.stations,world.trackNodes,world.trackEdges])
 	var candidate:Dictionary=app._assist_candidate()
@@ -40,6 +44,14 @@ func _run() -> void:
 	check(route.get("directions",[]).size()==2,"inner and outer circles are preserved as distinct operating patterns")
 	check(Shared.errors(world,rule).is_empty(),"actual shared bodies and edge IDs match; outer Baoshan uses its own platform: "+JSON.stringify(Shared.errors(world,rule)))
 	check(world.transferConnections.is_empty(),"common physical stations do not require invented walkways")
+	# The operator roster counts these two as interchanges because lines 3 and 4
+	# both call there. They have no transfer row on purpose: one body, two lines.
+	for shared_name in ["中潭路","延安西路"]:
+		var bodies:Array=world.stations.filter(func(s:Dictionary):return str(s.get("name",""))==shared_name)
+		check(bodies.size()==1,"%s is one physical body rather than two named bodies"%shared_name)
+		if bodies.size()!=1:continue
+		var callers:Array=world.routes.filter(func(r:Dictionary):return r.get("stationOrder",[]).has(bodies[0].id))
+		check(callers.size()==2 and callers.all(func(r:Dictionary):return str(r.get("historicalLineId","")) in ["shanghai-line3-3","shanghai-line4-4"]),"%s is called by both lines 3 and 4 without a walkway"%shared_name)
 	var fake_walk:=world.duplicate(true)
 	var source:Dictionary=fake_walk.stations.filter(func(s:Dictionary):return str(s.get("name",""))=="虹桥路" and str(s.get("stationLineId",""))=="shanghai-line3-3")[0]
 	var phantom:=source.duplicate(true);phantom.id="fixture-old-parallel-body";phantom.stationInstanceId=phantom.id;phantom.stationLineId="shanghai-line4-4";fake_walk.stations.append(phantom)

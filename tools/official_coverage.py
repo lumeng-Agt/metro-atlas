@@ -114,6 +114,24 @@ def station_order_matches(actual, wanted, expected):
     return actual in candidates
 
 
+def shared_interval_errors(rule):
+    """The section has to name the interval the official document publishes, and
+    any named endpoint that is not a plain shared stop has to be the directional
+    one. Without this a section can stop one stop short of the published endpoint
+    and still satisfy every pairwise track check (the Shanghai 3/4 defect)."""
+    endpoints=[str(x) for x in rule.get('intervalEndpoints',[])]
+    if len(endpoints)!=2:
+        return ['shared-running section has no stated interval endpoints']
+    if not all(endpoints) or endpoints[0]==endpoints[1]:
+        return ['shared-running interval endpoints are not two distinct stops']
+    plain={str(x) for x in rule.get('stationNames',[])}
+    directional={str(r.get('stationName','')) for r in rule.get('directionalStationRules',[])}
+    outside={x for x in endpoints if x not in plain}
+    if outside!=directional:
+        return ['shared-running interval endpoints and directional stops disagree']
+    return []
+
+
 def cutoff_evidence_errors(network, cutoff_date):
     if not network or not network.get('groups'):
         return ['independent cutoff station orders missing']
@@ -132,6 +150,8 @@ def cutoff_evidence_errors(network, cutoff_date):
         rules=[s for s in network.get('sharedRunningSections',[]) if (s.get('physicalLineId'),s.get('serviceLineId'))==pair]
         if len(rules)!=1 or set(rules[0].get('stationNames',[]))!=expected or len(rules[0].get('stationNames',[]))!=len(expected) or not str(rules[0].get('source','')).startswith('https://'):
             errors.append('independent shared-running physical scope missing or incomplete')
+        if len(rules)==1:
+            errors.extend(shared_interval_errors(rules[0]))
         for directional in [s for s in shared_evidence if (s.get('physicalLineId'),s.get('serviceLineId'))==pair and s.get('sharing')=='directional']:
             matches=[r for section in rules for r in section.get('directionalStationRules',[]) if r.get('stationName')==directional.get('stationName')]
             if len(matches)!=1 or any(matches[0].get(key)!=directional.get(key) for key in ['sharedPatternId','independentPatternId']) or not str(matches[0].get('source','')).startswith('https://'):

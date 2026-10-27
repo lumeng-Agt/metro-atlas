@@ -41,6 +41,10 @@
     "id": "shanghai34-common-2026",
     "physicalLineId": "shanghai-line3-3",
     "serviceLineId": "shanghai-line4-4",
+    "intervalEndpoints": [
+      "宝山路",
+      "虹桥路"
+    ],
     "stationNames": [
       "虹桥路",
       "延安西路",

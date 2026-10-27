@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-28",
+  "cutoff": "2026-10-01",
+  "retrievedAt": "2026-10-27",
+  "intakeNote": "任务说明称 .tmp-project-transfers.json 内含 bj-line11-phase2 的 7 对换乘，实际读取该文件只有 sh-line19、bj-m101-phase1、bj-line22、bj-line28、bj-line13-capacity 五个项目，不含 11 号线二期与亦庄接头。7 对清单改从 data/official_targets_2026-10-01.json 的 transferDefinitions 取得（未修改该文件），并逐对重新到官方文件核对。",
+  "methodNote": "PDF 用 curl -sL -A 'Mozilla/5.0' 下载到 .tmp-src/ 并用 sha256sum 计算；正文用 pdftotext -layout 抽取（11 号线环评带 RC4 加密标记与整页水印字，抽取时水印单字会散落在正文行间，摘句已按连续可读正文抄录）。政府网页用 curl 抓 HTML 后转纯文本阅读，记为“网页读取核对”，不计入下载文件哈希。所有 source 均为 https。",
+  "projects": {
+    "bj-line11-phase2": {
+      "sources": [
+        {
+          "url": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+          "title": "北京轨道交通11号线二期工程环境影响报告书（征求意见稿）",
+          "publicationDate": "2025-07-28",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 下载 PDF",
+          "bytes": 11197821,
+          "totalPages": 271,
+          "sha256": "f703ecadd5f4aa8af70c2876ad0bb4e072bc667a4f93d405bb70f1b9911f26c2",
+          "sha256MatchesPriorRecord": true,
+          "pages": [
+            36,
+            37,
+            98
+          ],
+          "pagesNote": "PDF 第 37 页为表 2-2-2 车站建筑汇总表（文档页 29）；PDF 第 98 页为 4.4.1 下穿河流情况（文档页 90）。仓库原记录写“第35–37页”，实际换乘点名句在第 98 页。"
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202310/t20231009_3272556.html",
+          "title": "地铁1号线支线计划年底开工 共设10座车站 将可换乘14号线等线路",
+          "publicationDate": "2023-10-09",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        },
+        {
+          "url": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "title": "线路一体化规划方案公示 联通北京西站丽泽商务区 地铁11号线二期拟设14座车站",
+          "publicationDate": "2025-05-03",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        },
+        {
+          "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+          "title": "将接入大兴机场线、14号线、16号线 前往大兴机场只需24分钟 丽泽航站楼明年6月底初期投用",
+          "publicationDate": "2026-03-13",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        },
+        {
+          "url": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html",
+          "title": "市重大项目办2025年市政府工作报告重点任务及重要民生实事项目四季度工作进展情况",
+          "publicationDate": "2026-01-14",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null,
+          "note": "该页只是季度进展表，涉 11 号线二期仅一句“一体化规划方案已正式批复”，不含任何换乘信息，不能作为换乘证据。"
+        }
+      ],
+      "pairs": [
+        {
+          "id": "future-transfer-bj11phase2-beijing-f1b-tiyuchangnanjie-beijing-lineearly0",
+          "station": "体育场南街",
+          "otherLine": "1号线支线（本地线体 beijing-lineearly0，1号线西段）",
+          "otherLineId": "beijing-lineearly0",
+          "documented": true,
+          "locator": "首都之窗 2023-10-09 报道第6段（1号线支线环评二次公示）",
+          "quote": "在体育场南街站、张郭庄站、后吕村站，分别与轨道交通11号线二期、14号线、市郊铁路城市副中心线换乘。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202310/t20231009_3272556.html",
+          "evidenceType": "web_page_read",
+          "note": "官方原文写的是“1号线支线”，不是既有 1 号线正线；本地把支线归入 beijing-lineearly0（1号线西段）属于线体归并，目标表应注明该映射。"
+        },
+        {
+          "id": "future-transfer-bj11phase2-beijing-s189-beijing-line10-10",
+          "station": "莲花桥",
+          "otherLine": "10号线",
+          "otherLineId": "beijing-line10-10",
+          "documented": false,
+          "locator": "环评PDF第37页 表2-2-2 车站建筑汇总表 第11行",
+          "quote": "莲花桥站 换乘站 地下三层岛式/暗挖",
+          "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+          "evidenceType": "downloaded_pdf",
+          "documentedAsTransferStation": true,
+          "note": "环评只把莲花桥标为“换乘站”，未点名 10 号线；2025-05-03 首都之窗报道也只列“5站为换乘车站”而未写线路。莲花桥本身是既有 10 号线车站，线路身份可推定，但没有一句官方原文直接写“莲花桥可换乘10号线”，故按严格口径记未证实。"
+        },
+        {
+          "id": "future-transfer-bj11phase2-beijing-s215-beijing-line7-7",
+          "station": "北京西站",
+          "otherLine": "7号线",
+          "otherLineId": "beijing-line7-7",
+          "documented": true,
+          "locator": "环评PDF第98页 4.4.1 下穿河流情况（文档页90）",
+          "quote": "并于北京西站南广场设置北京西站，与 M7、M9 线换乘。",
+          "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+          "evidenceType": "downloaded_pdf"
+        },
+        {
+          "id": "future-transfer-bj11phase2-beijing-s215-beijing-line9-9",
+          "station": "北京西站",
+          "otherLine": "9号线",
+          "otherLineId": "beijing-line9-9",
+          "documented": true,
+          "locator": "环评PDF第98页 4.4.1 下穿河流情况（文档页90）",
+          "quote": "并于北京西站南广场设置北京西站，与 M7、M9 线换乘。",
+          "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+          "evidenceType": "downloaded_pdf"
+        },
+        {
+          "id": "future-transfer-bj11phase2-beijing-s287-beijing-line14-14",
+          "station": "丽泽商务区",
+          "otherLine": "14号线",
+          "otherLineId": "beijing-line14-14",
+          "documented": true,
+          "locator": "首都之窗 2026-03-13 报道正文（丽泽城市航站楼枢纽段）",
+          "quote": "地铁14号线、16号线、大兴机场线，以及11号线、丽金线将在此交会并实现换乘。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+          "evidenceType": "web_page_read"
+        },
+        {
+          "id": "future-transfer-bj11phase2-beijing-s287-beijing-line16-16",
+          "station": "丽泽商务区",
+          "otherLine": "16号线",
+          "otherLineId": "beijing-line16-16",
+          "documented": true,
+          "locator": "首都之窗 2026-03-13 报道正文（丽泽城市航站楼枢纽段）",
+          "quote": "地铁14号线、16号线、大兴机场线，以及11号线、丽金线将在此交会并实现换乘。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+          "evidenceType": "web_page_read"
+        },
+        {
+          "id": "future-transfer-bj11phase2-beijing-s287-beijing-route-21",
+          "station": "丽泽商务区",
+          "otherLine": "大兴机场线（本地线体 beijing-route-21）",
+          "otherLineId": "beijing-route-21",
+          "documented": true,
+          "locator": "首都之窗 2026-03-13 报道正文（丽泽城市航站楼枢纽段）",
+          "quote": "地铁14号线、16号线、大兴机场线，以及11号线、丽金线将在此交会并实现换乘。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+          "evidenceType": "web_page_read",
+          "note": "本地 beijing-route-21 的历史线体名就是“大兴机场线”，与原文一致，不是 21 号线/丽金线。"
+        }
+      ],
+      "missingFromList": [
+        {
+          "station": "丽泽商务区",
+          "otherLine": "丽金线",
+          "documented": true,
+          "locator": "首都之窗 2026-03-13 报道正文",
+          "quote": "地铁14号线、16号线、大兴机场线，以及11号线、丽金线将在此交会并实现换乘。",
+          "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+          "inRepoScope": true,
+          "reason": "官方明确把丽金线列为丽泽 5 线换乘之一，但仓库尚无丽金线线体，属于真正的清单缺项（规划/预留，未开通）。"
+        },
+        {
+          "station": "衙门口东",
+          "otherLine": "市郊铁路城市副中心线",
+          "documented": false,
+          "locator": "环评PDF第37页 表2-2-2 第5行；2025-05-03 首都之窗报道第4段",
+          "quote": "衙门口东站 换乘站 地下三层岛式/明挖盖挖结合",
+          "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+          "inRepoScope": false,
+          "reason": "环评只标“换乘站”未点名线路；公开报道与公示示意图均指市郊铁路城市副中心线。属铁路接驳，按仓库口径不进入地铁换乘表，维持背景接口处理即可。"
+        },
+        {
+          "station": "小瓦窑",
+          "otherLine": "未点名（远期换乘）",
+          "documented": false,
+          "locator": "环评PDF第37页 表2-2-2 第8行",
+          "quote": "小瓦窑站 远期换乘站 地下三层岛式/明挖",
+          "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+          "inRepoScope": false,
+          "reason": "官方只写“远期换乘站”，全文未点名换乘线路，无法建立具体换乘对，暂不补条目。"
+        }
+      ],
+      "verdict": "partially_documented",
+      "note": "7 对中 6 对在官方文件里有明确点名：北京西站 2 对见环评 PDF 第98页原文“与 M7、M9 线换乘”；丽泽 3 对见首都之窗 2026-03-13 原文，其中“大兴机场线”对应本地 beijing-route-21；体育场南街 1 对见首都之窗 2023-10-09 原文，但对方是“1号线支线”而非 1 号线正线。莲花桥—10 号线只有环评“换乘站”标注和 5 站名单，没有任何官方句子点名 10 号线，按严格口径不算证实。反向检查发现清单漏了丽泽—丽金线（官方 5 线换乘之一），另有两项不计入地铁换乘：衙门口东接市郊铁路副中心线、小瓦窑为未点名远期换乘站。原记录把换乘页写成 35–37 页不准确：35–37 页只是车站建筑汇总表，真正点名线路的句子在第 98 页。"
+    },
+    "bj-yizhuang-connector": {
+      "sources": [
+        {
+          "url": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf",
+          "title": "北京轨道交通亦庄线至5号线、10号线联络线工程环境影响报告书",
+          "publicationDate": "2025-10-21",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 下载 PDF",
+          "bytes": 4188372,
+          "totalPages": 159,
+          "sha256": "d65428ebe02fb5123069e9a42906593a0409929413ade12d49567d5a7d0743e1",
+          "sha256MatchesPriorRecord": true,
+          "pages": [
+            26,
+            29
+          ],
+          "pagesNote": "PDF 第 26 页为 2.1 建设项目概况（文档页 16）；PDF 第 29 页为 2.2.2/2.2.3 宋家庄断点与换乘组织（文档页 19）。"
+        },
+        {
+          "url": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202510/t20251020_4232624.htm",
+          "title": "关于轨道交通亦庄线至5号线、10号线联络线工程项目可行性研究报告的批复（京发改（审）〔2025〕958号）",
+          "publicationDate": "2025-10-20",
+          "retrievedAt": "2026-10-27",
+          "httpStatus": 200,
+          "captured": true,
+          "captureMethod": "curl 抓 HTML 后转纯文本阅读",
+          "sha256": null,
+          "pages": null
+        }
+      ],
+      "addsPassengerStation": false,
+      "newInterchange": true,
+      "newInterchangeKind": "existing_station_same_platform_reconfiguration",
+      "preExistingLinePair": true,
+      "evidenceQuote": "改造亦庄线宋家庄站，优化与10号线换乘条件。",
+      "evidenceQuoteSource": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202510/t20251020_4232624.htm",
+      "supportingQuotes": [
+        {
+          "quote": "（替代亦庄线肖村站至宋家庄站区间线路，不新增运营里程，无新增站点）",
+          "locator": "可研批复正文（京发改（审）〔2025〕958号）",
+          "source": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202510/t20251020_4232624.htm"
+        },
+        {
+          "quote": "无新建、改（扩）建场站。",
+          "locator": "环评PDF第26页 2.1 建设项目概况（文档页16）",
+          "source": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf"
+        },
+        {
+          "quote": "3.6 万人次改为同台换乘（10 号线西向东方向与亦五贯通线的南向北方向同台换乘）",
+          "locator": "环评PDF第29页 2.2.3（文档页19）",
+          "source": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf"
+        },
+        {
+          "quote": "6.5 万人次调整换乘站台（三线“T”形换乘调整为两线“平行”换乘）",
+          "locator": "环评PDF第29页 2.2.3（文档页19）",
+          "source": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf"
+        },
+        {
+          "quote": "通过预留未来与 10 号线的跨线条件",
+          "locator": "环评PDF第30页 2.2.4 末段（文档页20）",
+          "source": "https://www.bii.com.cn/file/2025/10/21/1761030868162.pdf"
+        }
+      ],
+      "impliedTransferTargets": [
+        {
+          "station": "宋家庄",
+          "otherLine": "10号线",
+          "form": "同台换乘",
+          "status": "built_by_this_project"
+        }
+      ],
+      "verdict": "transfer_required",
+      "note": "先确认“无新增客运车站”成立：可研批复写“不新增运营里程，无新增站点”，环评写“无新建、改（扩）建场站”，两端肖村、宋家庄均标注“不含”。但“不新增换乘”不成立：批复明确本项目要“改造亦庄线宋家庄站，优化与10号线换乘条件”；环评第19页进一步写明 3.6 万人次“改为同台换乘（10号线西向东方向与亦五贯通线的南向北方向同台换乘）”，6.5 万人次“三线T形换乘调整为两线平行换乘”。即本工程把宋家庄由三线通道换乘改造成 10 号线与亦五贯通线的同台换乘，并让 5 号线与亦庄线由换乘变为贯通运营。因此换乘标志不能记为 0，应补“宋家庄—10号线（同台）”这一条；原 scopeNote 说“同台换乘结构仍需单独核对”，现已核对，结论是有。10 号线跨线预留仍属未来条件，不计为已建直连。"
+    }
+  }
+}

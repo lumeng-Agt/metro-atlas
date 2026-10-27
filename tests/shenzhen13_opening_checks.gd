@@ -66,7 +66,7 @@ func _run() -> void:
 	broken.trackEdges.remove_at(broken.trackEdges.size()-1)
 	_check(not OfficialNetworkAudit.project_errors(broken,final_target).is_empty(),"missing northern physical segment fails official final scope")
 	_check(app.world.stations.all(func(s:Dictionary):return not str(s.name).contains("西丽高铁")),"announced skipped Xili station is not an open stop")
-	_check(not bool(CampaignSystem.delivery_eligibility("shenzhen").get("ok",false)),"single-line success cannot certify the full city")
+	_check(not bool(Story.completion_eligibility(app.world).get("ok",false)),"single-line success cannot certify the full city")
 	CampaignSystem._catalog.cities.shenzhen=original
 	app.queue_free();await process_frame
 	print("SHENZHEN13_OPENING_CHECKS ",checks," FAILURES ",failures.size())
