@@ -79,8 +79,11 @@ def main():
     # A city that has a two-source ledger is decided there, by a script that
     # recomputes every station-order alignment. Re-using the single-source
     # verdict here would silently undo that work.
-    two_source = read('data/official_evidence/history_two_source_shenzhen_2026-10-29.json')
-    covered = {str(two_source.get('city', ''))}
+    covered = set()
+    for name in sorted((ROOT / 'data/official_evidence').glob('history_two_source_*.json')):
+        city = json.loads(name.read_text(encoding='utf-8')).get('city', '')
+        if city:
+            covered.add(str(city))
 
     targets = read('data/official_targets_2026-10-01.json')
     changed = 0

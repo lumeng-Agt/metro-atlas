@@ -29,3 +29,6 @@ __pycache__/
 /docs/*.import
 Thumbs.db
 Desktop.ini
+
+# Fetched page cache used by the evidence tools
+.cache/

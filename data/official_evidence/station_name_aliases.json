@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "note": "车站改名与线路改编号的对照。每条都限定生效范围（until=旧名/旧编号最后一天），并有带日期的官方来源；超出范围不适用，避免用今天的名字掩盖历史章节的差异。由 tools/build_history_ledgers.py 写入各城台账。",
+  "shanghai": {
+    "nameAliases": [
+      {
+        "line": "8号线",
+        "from": "济阳路",
+        "to": "东方体育中心",
+        "until": "2011-05-06",
+        "chapterId": "shanghai-jiyang-rename-2011",
+        "source": "https://tyj.sh.gov.cn/cmsres/35/358f756058ab4d6dac8ac8244daf1cb8/2dc493da0042bdf20170dfc0e2c3d1fd.pdf",
+        "note": "上海市体育局《上海体育年鉴》世游赛专题大事记：5月7日轨道6、8号线济阳路站更名为东方体育中心站。"
+      },
+      {
+        "line": "8号线",
+        "from": "航天博物馆",
+        "to": "沈杜公路",
+        "until": "2013-08-30",
+        "chapterId": "shanghai-line8-shendu-2013",
+        "source": "https://district.ce.cn/newarea/roll/201308/29/t20130829_1346725.shtml",
+        "note": "中国经济网转上海地铁消息：8号线航天博物馆站自2013年8月31日起更名沈杜公路站。"
+      },
+      {
+        "line": "9号线",
+        "from": "松江南站",
+        "to": "上海松江站",
+        "until": "2024-09-20",
+        "chapterId": "shanghai-songjiang-rename-2024",
+        "source": "https://www.shanghai.gov.cn/nw4411/20240922/f5fd81dbfe9244a298fd13806c993ca3.html",
+        "note": "上海市政府门户网站转载《解放日报》：9号线松江南站站更名为上海松江站站，2024年9月21日起生效。"
+      }
+    ],
+    "lineRenumbering": []
+  }
+}

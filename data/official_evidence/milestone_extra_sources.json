@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "note": "台账需要补第二份文件时在此登记：url 为官方页面，need 列出这条里程碑必须由该页点名的站，工具会从页面原文里截出包含这些站的最短句，截不到就不写入。rewrite 用于更正既有来源的性质（官方编年、官方史志），不新增文件。",
+  "shenzhen": {
+    "shenzhen-network-reconciliation-2026-10-01": {
+      "chapterKind": "reconciliation"
+    },
+    "shenzhen-network-milestone-2022-10-28": {
+      "chapterKind": "inference"
+    },
+    "shenzhen-network-milestone-2024-12-28": {
+      "sources": [
+        {
+          "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_11932034.html",
+          "kind": "opening_day",
+          "locator": "深圳市人民政府门户网站部门动态《深圳湾口岸地铁站开通啦！》第1段",
+          "need": [
+            "深圳湾口岸",
+            "高新中"
+          ]
+        }
+      ]
+    },
+    "shenzhen-network-milestone-2025-12-28": {
+      "sources": [
+        {
+          "url": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+          "kind": "opening_day",
+          "locator": "深圳市交通运输局正文：13号线一期北段起止与站数",
+          "need": [
+            "高新中",
+            "上屋"
+          ]
+        }
+      ]
+    }
+  },
+  "shanghai": {
+    "shanghai-network-milestone-2021-12-30": {
+      "rewrite": [
+        {
+          "url": "https://jtw.sh.gov.cn/xydt/20231218/def064da710d426a946e31760f3042e5.html",
+          "kind": "context",
+          "basisNote": "2023年鲁班奖报道，只作背景，不计为开通当日证据。"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://jtw.sh.gov.cn/xwfb2/20211228/103fc31a81644a72b0c05300f5ecee95.html",
+          "kind": "opening_day",
+          "locator": "上海市交通委员会《还有2天！两条轨交线开通初期运营》第1段：18号线一期北段区间与站数",
+          "need": [
+            "御桥",
+            "长江南路"
+          ],
+          "refresh": true
+        }
+      ]
+    },
+    "shanghai-line11-huaqiao-2013": {
+      "sources": [
+        {
+          "url": "https://district.ce.cn/newarea/roll/201310/15/t20131015_1620587.shtml",
+          "kind": "opening_day",
+          "locator": "中国经济网转东方网《沪11号线花桥段16日开通试运营》第1段：花桥段起止与三座新站",
+          "need": [
+            "安亭",
+            "花桥"
+          ]
+        }
+      ]
+    },
+    "shanghai-line11-changji-2011": {
+      "sources": [
+        {
+          "url": "https://sh.sohu.com/20110425/n280401184.shtml",
+          "kind": "opening_day",
+          "locator": "搜狐上海《11号线昌吉东路站明天开通》第1段",
+          "need": [
+            "昌吉东路"
+          ]
+        }
+      ]
+    },
+    "shanghai-line11-chenxiang-2020": {
+      "sources": [
+        {
+          "url": "http://m.people.cn/n4/2020/0825/c1406-14372524.html",
+          "kind": "opening_day",
+          "locator": "人民网上海《上海轨道交通11号线陈翔公路站正式开通运营》第1段",
+          "need": [
+            "陈翔公路"
+          ]
+        }
+      ]
+    },
+    "shanghai-songjiang-rename-2024": {
+      "sources": [
+        {
+          "url": "https://www.shanghai.gov.cn/nw4411/20240922/f5fd81dbfe9244a298fd13806c993ca3.html",
+          "kind": "opening_day",
+          "locator": "上海市政府门户网站转载《解放日报》：更名车站清单",
+          "need": [
+            "松江南站"
+          ]
+        }
+      ]
+    },
+    "shanghai-network-milestone-2011-04-12": {
+      "rewrite": [
+        {
+          "url": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
+          "kind": "official_chronicle",
+          "edition": "2011",
+          "basisNote": "《浦东历史上的今天》由浦东新区档案局、区委党校、区政协学习文史委、区融媒体中心联合主办，按日记录当年事件，属官方编年体例。"
+        }
+      ]
+    },
+    "shanghai-network-milestone-2007-12-29": {
+      "rewrite": [
+        {
+          "url": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
+          "kind": "official_chronicle",
+          "edition": "2007",
+          "basisNote": "同上，按日记录2007年事件。"
+        }
+      ]
+    },
+    "shanghai-line9-south-2012": {
+      "rewrite": [
+        {
+          "url": "https://www.songjiang.gov.cn/sjsz/sjdfls/sj70n/files/basic-html/page154.html",
+          "kind": "official_history",
+          "basisNote": "松江区人民政府《松江70年》P.154，正文写出完整日期，属政府出版物对本地事件的记述。"
+        }
+      ]
+    }
+  }
+}

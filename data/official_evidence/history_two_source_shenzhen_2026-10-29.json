@@ -127,7 +127,8 @@
           "expect": "exact"
         }
       ],
-      "reasoning": "核对章不是开通事件，日期是截止日本身；两源分别是「官方逐线站表（2026-06-22票价表附件，17条线）」与「截止日前最后一次开通（2026-06-28十三号线二期北延）」。17条线路站序与官方逐字相同，仅8号线多出既有2号线莲塘接头一站（同一份站表reviewNote已写明）。"
+      "reasoning": "核对章不是开通事件，日期是截止日本身；两源分别是「官方逐线站表（2026-06-22票价表附件，17条线）」与「截止日前最后一次开通（2026-06-28十三号线二期北延）」。17条线路站序与官方逐字相同，仅8号线多出既有2号线莲塘接头一站（同一份站表reviewNote已写明）。",
+      "chapterKind": "reconciliation"
     },
     {
       "chapterId": "shenzhen-network-milestone-2020-08-18",
@@ -183,7 +184,8 @@
           "expect": "exact"
         }
       ],
-      "reasoning": "当日开通主体是14号线、11号线福岗区间与三座枢纽；本条要证的是10号线岗厦北站自此载客。两源推理：2020-08-18运营方稿写「岗厦北站暂未开通」，2022-10-28运营方稿写岗厦北枢纽当日开门迎客并连接10号线，故该站当日开通，10号线站序由此补齐为官方24站。"
+      "reasoning": "当日开通主体是14号线、11号线福岗区间与三座枢纽；本条要证的是10号线岗厦北站自此载客。两源推理：2020-08-18运营方稿写「岗厦北站暂未开通」，2022-10-28运营方稿写岗厦北枢纽当日开门迎客并连接10号线，故该站当日开通，10号线站序由此补齐为官方24站。",
+      "chapterKind": "inference"
     },
     {
       "chapterId": "shenzhen-network-milestone-2024-12-28",
@@ -195,6 +197,16 @@
           "kind": "opening_day",
           "locator": "正文第1段",
           "quote": "12月28日，深圳地铁开通20周年之际，5条地铁新线（段）同步开门迎客：地铁3号线四期、7号线二期、11号线二期、12号线二期、13号线南段开通初期运营"
+        },
+        {
+          "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_11932034.html",
+          "publicationDate": "2024-12-31",
+          "publicationBasis": "meta",
+          "kind": "opening_day",
+          "locator": "深圳市人民政府门户网站部门动态《深圳湾口岸地铁站开通啦！》第1段",
+          "quote": "随着13号线南段（深圳湾口岸站—高新中站）的正式开通，预计深圳湾口岸将迎来出入境小高峰。",
+          "httpStatus": 200,
+          "sha256": "0d5596a68916ffbd99598c61957eb24a9c0602b042d4d9ba922d8e7499e2f19a"
         }
       ],
       "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
@@ -220,6 +232,16 @@
           "kind": "opening_day",
           "locator": "正文第1段、第3段",
           "quote": "12月28日上午，深圳地铁5号线西延段、8号线三期、11号线二期红岭南段和13号线一期北段同步开通初期运营"
+        },
+        {
+          "url": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+          "publicationDate": "2025-12-29",
+          "publicationBasis": "visible",
+          "kind": "opening_day",
+          "locator": "深圳市交通运输局正文：13号线一期北段起止与站数",
+          "quote": "新开通的北段起自既有高新中站，终至上屋站，全长约16公里，设站9座，是本次集中开通线路中最长的一段。",
+          "httpStatus": 200,
+          "sha256": "fadfcb2449aa4e810061dc322e84ac3c033634e22d35bacd5c576c8ee9c2cf3b"
         }
       ],
       "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",

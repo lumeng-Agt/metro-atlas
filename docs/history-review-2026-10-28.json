@@ -118,6 +118,7 @@
             }
           ],
           "reasoning": "核对章不是开通事件，日期是截止日本身；两源分别是「官方逐线站表（2026-06-22票价表附件，17条线）」与「截止日前最后一次开通（2026-06-28十三号线二期北延）」。17条线路站序与官方逐字相同，仅8号线多出既有2号线莲塘接头一站（同一份站表reviewNote已写明）。",
+          "chapterKind": "reconciliation",
           "verdict": "verified",
           "issues": []
         },
@@ -178,6 +179,7 @@
             }
           ],
           "reasoning": "当日开通主体是14号线、11号线福岗区间与三座枢纽；本条要证的是10号线岗厦北站自此载客。两源推理：2020-08-18运营方稿写「岗厦北站暂未开通」，2022-10-28运营方稿写岗厦北枢纽当日开门迎客并连接10号线，故该站当日开通，10号线站序由此补齐为官方24站。",
+          "chapterKind": "inference",
           "verdict": "verified",
           "issues": []
         },
@@ -191,6 +193,16 @@
               "kind": "opening_day",
               "locator": "正文第1段",
               "quote": "12月28日，深圳地铁开通20周年之际，5条地铁新线（段）同步开门迎客：地铁3号线四期、7号线二期、11号线二期、12号线二期、13号线南段开通初期运营"
+            },
+            {
+              "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_11932034.html",
+              "publicationDate": "2024-12-31",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "深圳市人民政府门户网站部门动态《深圳湾口岸地铁站开通啦！》第1段",
+              "quote": "随着13号线南段（深圳湾口岸站—高新中站）的正式开通，预计深圳湾口岸将迎来出入境小高峰。",
+              "httpStatus": 200,
+              "sha256": "0d5596a68916ffbd99598c61957eb24a9c0602b042d4d9ba922d8e7499e2f19a"
             }
           ],
           "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
@@ -218,6 +230,16 @@
               "kind": "opening_day",
               "locator": "正文第1段、第3段",
               "quote": "12月28日上午，深圳地铁5号线西延段、8号线三期、11号线二期红岭南段和13号线一期北段同步开通初期运营"
+            },
+            {
+              "url": "https://jtys.sz.gov.cn/zwgk/jtzx/cxtx/content/post_12576020.html",
+              "publicationDate": "2025-12-29",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "深圳市交通运输局正文：13号线一期北段起止与站数",
+              "quote": "新开通的北段起自既有高新中站，终至上屋站，全长约16公里，设站9座，是本次集中开通线路中最长的一段。",
+              "httpStatus": 200,
+              "sha256": "fadfcb2449aa4e810061dc322e84ac3c033634e22d35bacd5c576c8ee9c2cf3b"
             }
           ],
           "orderSourceId": "shenzhen-fgw-fare-roster-2026-06-22",
@@ -264,6 +286,7 @@
       "unverifiedCount": 0,
       "verdict": "complete",
       "note": "两源复核shenzhen的6条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，6条两项都对上。",
+      "ledgerErrors": [],
       "decidedBy": "tools/review_history_two_source.py"
     },
     "shanghai": {
@@ -271,445 +294,877 @@
         {
           "chapterId": "shanghai-network-milestone-2020-12-26",
           "date": "2020-12-26",
-          "sourceUrl": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": true,
-          "locator": "“18号线一期南段航头站～御桥站开通初期运营”节第1段",
-          "quote": "设航头站、下沙站、鹤涛路站、沈梅路站、繁荣路站、周浦站、康桥站、御桥站等8座地下车站",
-          "issues": [
-            "5号线两个交路 group 仅能确认起终点与编组（莘庄～奉贤新城 6 编、莘庄～闵行开发区 4 编），中间站序原文未列，记 not_checkable，不阻塞本条主开通段",
-            "10号线二期（6 座新站）当日同开，但未纳入本条 groups，属覆盖不全"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "publicationDate": "2020-12-25",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "“18号线一期南段航头站～御桥站开通初期运营”节第1段",
+              "quote": "本周六起，上海这些轨交线开通初期运营 来源：上海市交通委员会 2020-12-25 字号 [ 大 中 小 ] 据申通地铁集团消息，经过紧张的施工建设、运营接管、专家评审等一系列工作，上海轨道交通10号线二期、18号线一期南段（航头站～御桥站），两条新线新段均将于2020年12月26日（周六）首班车起开通试运营。",
+              "httpStatus": 200,
+              "sha256": "b03aa4bdf9adac1ffa02888c187e583c5de137426c6a3d30d5562a907fafa29d"
+            },
+            {
+              "url": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "publicationDate": "2020-12-25",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "区间端点原文（航头—御桥）",
+              "quote": "航头站首班车时间为6:00，御桥站首班车时间为6:15，末班车时间均为22:00。",
+              "httpStatus": 200,
+              "sha256": "b03aa4bdf9adac1ffa02888c187e583c5de137426c6a3d30d5562a907fafa29d"
+            }
+          ],
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh18-south",
+              "line": "18号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "sh5:2020-12-26:pattern-1",
+              "line": "5号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "sh5:2020-12-26:pattern-2",
+              "line": "5号线",
+              "expect": "exact",
+              "gaps": []
+            }
           ],
           "verdict": "verified",
-          "groupChecks": [
-            {
-              "id": "opening:sh18-south",
-              "orderConfirmed": true,
-              "note": "8 站逐站列出，与本条完全一致，顺序相同"
-            },
-            {
-              "id": "sh5:2020-12-26:pattern-1",
-              "orderConfirmed": "not_checkable",
-              "note": "原文只给“莘庄站～奉贤新城站”交路，未列中间站"
-            },
-            {
-              "id": "sh5:2020-12-26:pattern-2",
-              "orderConfirmed": "not_checkable",
-              "note": "原文只给“莘庄站～闵行开发区站”交路，未列中间站"
-            }
-          ]
+          "issues": []
         },
         {
           "chapterId": "shanghai-network-milestone-2021-12-30",
           "date": "2021-12-30",
-          "sourceUrl": "https://jtw.sh.gov.cn/xydt/20231218/def064da710d426a946e31760f3042e5.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第1段（鲁班奖报道中的建设历程回顾）",
-          "quote": "2021年12月30日开通运营一期工程北段【御桥站（不含）至长江南路站】",
-          "issues": [
-            "原文只给区间“御桥站（不含）至长江南路站”，未逐站列序，19 站顺序无法核对",
-            "本条 19 站含既有站“御桥”，与原文“（不含）”口径不一致（多计 1 站既有站）",
-            "该文件为 2023-12-14 发布的鲁班奖报道，非 2021 年开通公告"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.sh.gov.cn/xydt/20231218/def064da710d426a946e31760f3042e5.html",
+              "publicationDate": "2023-12-18",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "正文第1段（鲁班奖报道中的建设历程回顾）",
+              "quote": "2020年12月26日开通运营一期工程南段（航头站至御桥站），2021年12月30日开通运营一期工程北段【御桥站（不含）至长江南路站】，实现全线运营，成为连接张江科学城、杨浦大学城、吴淞创新城等科创高地的黄金纽带，是上海首批全功能一次性开通最高等级全自动无人驾驶系统的地铁线路，助推上海地铁实现&ldquo;",
+              "httpStatus": 200,
+              "sha256": "71a5af0688f3eeb25d3f66da2e03a7c9e1ebe68eed5b5c95618c63a03329e7d9"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh18-north",
+              "line": "18号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-network-milestone-2021-12-30: announcement published 2023-12-18, 718 days from 2021-12-30"
+          ]
         },
         {
           "chapterId": "shanghai-network-milestone-2007-12-29",
           "date": "2007-12-29",
-          "sourceUrl": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "“历史上的今天”第2段（2007年条）",
-          "quote": "2007年12月29日，6号线（港城路站—灵岩南路站）通车试运营",
-          "issues": [
-            "来源为“浦东发布”经上观号转载，非委办局原始文件",
-            "原文只涉及 6 号线，未涉及 9 号线、8 号线两个 group（后两条当日同开，但本条引用件无对应表述）",
-            "三组（27/12/20 站）均未逐站列序，站序无法核对"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
+              "publicationDate": "2021-04-12",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "“历史上的今天”第2段（2007年条）",
+              "quote": "2007年12月29日，6号线（港城路站—灵岩南路站）通车试运营。",
+              "httpStatus": 200,
+              "sha256": "af991fb651fb83baad5ef394ab34867915e058ab9e45666cd92bfb3de811092a"
+            }
+          ],
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh6-first",
+              "line": "6号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:sh9-first",
+              "line": "9号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:sh8-first",
+              "line": "8号线",
+              "expect": "subsequence",
+              "gaps": [
+                "中华艺术宫"
+              ]
+            }
           ],
           "verdict": "unverified",
-          "alternativeSource": {
-            "url": "https://www.songjiang.gov.cn/sjsz/sjdfls/sj70n/files/basic-html/page154.html",
-            "httpStatus": 200,
-            "read": true,
-            "supports": "partial",
-            "note": "《松江70年》P.154 明确“2007 年 12 月 29 日…9 号线一期（松江新城站—桂林路站）通车试运行”，可支撑 9 号线一组，但仍未列 8 号线，也未逐站列序"
-          }
+          "issues": [
+            "shanghai-network-milestone-2007-12-29: announcement published 2021-04-12, 4853 days from 2007-12-29",
+            "shanghai-network-milestone-2007-12-29: opening:sh9-first opened section endpoints ['松江新城', '桂林路'] are not named by any dated source",
+            "shanghai-network-milestone-2007-12-29: opening:sh8-first opened section endpoints ['市光路', '耀华路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-network-milestone-2011-04-12",
           "date": "2011-04-12",
-          "sourceUrl": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "“历史上的今天”第1条（2011年4月12日）",
-          "quote": "2011年4月12日，上海轨道交通6号线东方体育中心站开通运行，6号线全线贯通",
-          "issues": [
-            "来源为“浦东发布”经上观号转载，非委办局原始文件",
-            "原文只涉及 6 号线东方体育中心站，未涉及 8 号线 group（29 站）",
-            "6 号线 group 的 constructionStationNames 写“灵岩南路、东方体育中心”两站，但本次只新增东方体育中心 1 站，灵岩南路为既有站",
-            "两组均未逐站列序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://sghexport.shobserver.com/html/baijiahao/2021/04/12/405700.html",
+              "publicationDate": "2021-04-12",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "“历史上的今天”第1条（2011年4月12日）",
+              "quote": "【浦东历史上的今天：4月12日】6号线东方体育中心站投入运营 【浦东历史上的今天：4月12日】6号线东方体育中心站投入运营 04-12 16:55 《浦东历史上的今天》专栏由区档案局、区委党校、区政协学习文史委、区融媒体中心联合主办，将选取浦东历史上部分较为重要的内容，分享给大家。",
+              "httpStatus": 200,
+              "sha256": "af991fb651fb83baad5ef394ab34867915e058ab9e45666cd92bfb3de811092a"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:shanghai-r6",
+              "line": "6号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:sh8-jiyang",
+              "line": "8号线",
+              "expect": "subsequence",
+              "gaps": [
+                "中华艺术宫"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-network-milestone-2011-04-12: announcement published 2021-04-12, 3653 days from 2011-04-12"
+          ]
         },
         {
           "chapterId": "shanghai-line9-yishan-2008",
           "date": "2008-12-28",
-          "sourceUrl": "https://news.sohu.com/20081228/n261461461.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第1段（人民网电头后）",
-          "quote": "今天，上海轨道交通桂林路至宜山路区间贯通",
-          "issues": [
-            "原文写“区间贯通”，未明确写“宜山路站开通运营/启用”，日期与事件性质都不足",
-            "来源为人民网稿件经搜狐转载，非官方发布",
-            "未列站序"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sohu.com/20081228/n261461461.shtml",
+              "publicationDate": "2008-12-28",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "正文第1段（人民网电头后）",
+              "quote": "上海轨道交通年客流量11亿人次-搜狐新闻 搜狐 ChinaRen 17173 焦点房地产 搜狗 新闻 - 体育 - S - 娱乐 - V - 财经 - IT - 汽车 - 房产 - 家居 - 女人 - 视频 - 播客 - 邮件 - 博客 - BBS - 我说两句 新闻中心 > 国内新闻 > 国内要闻 > 时事 上海轨道交通年客流量11亿人次 2008年12月28日12:40 [ 我来说两句 ] [字号： 大 中 小 ] 来源：人民网 人民网上海12月28日电（记者沈文敏）今天，上海轨道交通桂林路至宜山路区间贯通，连接松江大学城的9号线直通市区3、4号线宜山路站，为轨道交通网络运营开启了又一个新的换乘结点。",
+              "httpStatus": 200,
+              "sha256": "79da07784cff3233dce562731183fa24ef54de1dbbf323092864f4e6aca580b6"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh9-yishan",
+              "line": "9号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line9-second-2009",
           "date": "2009-12-31",
-          "sourceUrl": "https://news.sina.com.cn/c/2009-12-31/022919371947.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第2段",
-          "quote": "轨道交通9号线二期、11号线北段一期将于今日开通试运营",
-          "issues": [
-            "原文称 9 号线二期“试运营开通9座车站”，未列站名；本条 constructionStationNames 列 10 站，含既有站“宜山路”（2008-12-28 已通），多 1 站",
-            "11 号线 group（16 站）未列站序",
-            "来源为新浪转载《东方早报》，非官方发布"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sina.com.cn/c/2009-12-31/022919371947.shtml",
+              "publicationDate": "2009-12-31",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第2段",
+              "quote": "上海地铁9号线二期11号线一期开通试运营_新闻中心_新浪网 --> 不支持Flash 首页 新闻 体育 娱乐 财经 股票 科技 博客 视频 播客 汽车 房产 游戏 女性 读书 教育 星座 天气 短信 爱问 邮箱 导航 通行证 退出 --> 新闻中心 > 国内新闻 > 正文 上海地铁9号线二期11号线一期开通试运营 http://www.sina.com.cn 2009年12月31日02:29 东方早报 9号线二期今日正式试运营。",
+              "httpStatus": 200,
+              "sha256": "951203412e79230a5e1060e9d5665580f3a11d64065ee60b3806b2862e661600"
+            },
+            {
+              "url": "https://news.sina.com.cn/c/2009-12-31/022919371947.shtml",
+              "publicationDate": "2009-12-31",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "区间端点原文（松江新城—世纪大道）",
+              "quote": "9号线二期接9号线一期(松江新城站—宜山路站)，从徐家汇站继续至浦东世纪大道站，全长约12公里，试运营开通9座车站，其中6座是换乘车站，世纪大道站为四线交会、徐家汇站为三线交会的大型换乘枢纽站。",
+              "httpStatus": 200,
+              "sha256": "951203412e79230a5e1060e9d5665580f3a11d64065ee60b3806b2862e661600"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh9-second",
+              "line": "9号线",
+              "expect": "contiguous",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:sh11-first:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line9-second-2009: opening:sh11-first:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-line9-yanggao-2010",
           "date": "2010-04-07",
-          "sourceUrl": "https://news.sohu.com/20100405/n271320480.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第1段、第4段",
-          "quote": "9号线二期杨高中路也在同一天开通运营，成为9号线东端的终点站",
-          "issues": [
-            "constructionStationNames 写“世纪大道、杨高中路”两站，但本次只新增杨高中路 1 站，世纪大道为既有站（2009-12-31 已通）",
-            "来源为搜狐转载《新闻晚报》（东方网稿），非官方发布",
-            "23 站站序未列"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sohu.com/20100405/n271320480.shtml",
+              "publicationDate": "2010-04-05",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "正文第1段、第4段",
+              "quote": "经过多方努力，徐家汇站换乘大厅将于4月7日全面建成启用。",
+              "httpStatus": 200,
+              "sha256": "10324a3a0318ecf6603d0ad6de7b33fd8129a36a0919d54456da08ad4086d5d1"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh9-yanggao",
+              "line": "9号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line9-yanggao-2010: opening:sh9-yanggao opened section endpoints ['世纪大道', '杨高中路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-line9-south-2012",
           "date": "2012-12-30",
-          "sourceUrl": "https://www.songjiang.gov.cn/sjsz/sjdfls/sj70n/files/basic-html/page154.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "《松江70年》P.154 正文第2段",
-          "quote": "中途设松江体育中心站、醉白池站、松江南站，于2012年12月30日正式通车",
-          "issues": [
-            "constructionStationNames 含既有站“松江新城”，南延伸实为 3 站（松江体育中心、醉白池、松江南站），多计 1 站",
-            "新增 3 站的相对顺序与 group 反向一致（原文由松江新城向外，group 由南向北），可视为顺序吻合",
-            "26 站全线站序未逐站列出，仅南延伸段可核"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.songjiang.gov.cn/sjsz/sjdfls/sj70n/files/basic-html/page154.html",
+              "publicationDate": "2007-12-29",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "《松江70年》P.154 正文第2段",
+              "quote": "9 号线南延伸工程穿越松江老城地下，与沪杭高铁松江南站对接， 中途设松江体育中心站、醉白池站、松江南站，于 2012 年 12 月 30 日正式通 车。",
+              "httpStatus": 200,
+              "sha256": "634ba7172bd038c49d1c7aa91fcb71cd0c5bceca189438a3017316e1030df1c1"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh9-south",
+              "line": "9号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line9-south-2012: announcement published 2007-12-29, 1828 days from 2012-12-30",
+            "shanghai-line9-south-2012: no announcement states 2012-12-30",
+            "shanghai-line9-south-2012: opening:sh9-south opened section endpoints ['松江新城'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-network-milestone-2017-12-30",
           "date": "2017-12-30",
-          "sourceUrl": "https://www.cnr.cn/shanghai/tt/20171227/t20171227_524078638.shtml",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第1段、第2段（“12月30日起9号线三期载客试运营”节）",
-          "quote": "上海轨道交通9号线三期、17号线将于2017年12月30日（周六）首班车起载客试运营",
-          "issues": [
-            "原文列 9 座新站（芳甸路、蓝天路、台儿庄路、金桥、金吉路、金海路、顾唐路、民雷路、曹路），与 group 顺序一致；但 constructionStationNames 列 10 站，含既有站“杨高中路”，多 1 站",
-            "35 站全线站序未列",
-            "来源为央广网，非官方发布"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.cnr.cn/shanghai/tt/20171227/t20171227_524078638.shtml",
+              "publicationDate": "2017-12-27",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第1段、第2段（“12月30日起9号线三期载客试运营”节）",
+              "quote": "9号线三期、17号线12月30日起试运营_央广网 要闻 财经 军事 体育 产经 文娱 图片 视频 教育 科技 旅游 健康 汽车 公益   要闻 财经 军事 体育 文娱 图片 视频 教育 科技 旅游 健康 汽车 公益 三农 应急 &#xe60d;",
+              "httpStatus": 200,
+              "sha256": "cc054a9a0085fe53145eeb55c3dedcff164d106f5d75aaa81f51ab31d0d307e9"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:shanghai-r9",
+              "line": "9号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-songjiang-rename-2024",
           "date": "2024-09-21",
-          "sourceUrl": "https://www.shanghai.gov.cn/nw4411/20240922/f5fd81dbfe9244a298fd13806c993ca3.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第2段（更名车站清单）",
-          "quote": "9号线松江南站站更名为“上海松江站”站",
-          "issues": [
-            "更名仅涉 9 号线松江南站→上海松江站 1 站，constructionStationNames 却写“上海松江站、醉白池”两站，醉白池与更名无关",
-            "35 站站序未列",
-            "稿件署名《解放日报》记者，经上海市政府门户转载"
+          "chapterKind": "rename",
+          "dateSources": [
+            {
+              "url": "https://www.shanghai.gov.cn/nw4411/20240922/f5fd81dbfe9244a298fd13806c993ca3.html",
+              "publicationDate": "2024-09-22",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第2段（更名车站清单）",
+              "quote": "记者从申通地铁获悉，9月21日起，2024年版上海轨道交通网络示意图将逐步在全网车站、车厢内更新。",
+              "httpStatus": 200,
+              "sha256": "cba9f142377060f33cdc520105c790119dcf5ed55b03968994e44865f6607874"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "rename:sh9-songjiang",
+              "line": "9号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-songjiang-rename-2024: no source names the renamed station 松江南站"
+          ]
         },
         {
           "chapterId": "shanghai-jiyang-rename-2011",
           "date": "2011-05-07",
-          "sourceUrl": "https://tyj.sh.gov.cn/cmsres/35/358f756058ab4d6dac8ac8244daf1cb8/2dc493da0042bdf20170dfc0e2c3d1fd.pdf",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "PDF 第11页（世游赛专题大事记 5月7日条）；PDF 第48页（2011年上海体育运动大事记 五月7日条）",
-          "quote": "5月7日，上海世游赛倒计时70天，轨道6、8号线济阳路站更名为东方体育中心站",
-          "issues": [
-            "更名仅涉 1 站（济阳路→东方体育中心），6 号线 group 的 constructionStationNames 写“灵岩南路、东方体育中心”，灵岩南路与更名无关",
-            "8 号线 group 的 constructionStationNames 写成全线 29 站，更名只涉 1 站，子段严重超出",
-            "两 group 均未逐站列序（年鉴只记更名事实）"
+          "chapterKind": "rename",
+          "dateSources": [
+            {
+              "url": "https://tyj.sh.gov.cn/cmsres/35/358f756058ab4d6dac8ac8244daf1cb8/2dc493da0042bdf20170dfc0e2c3d1fd.pdf",
+              "publicationDate": "",
+              "publicationBasis": "",
+              "kind": "official_chronicle",
+              "locator": "PDF 第11页（世游赛专题大事记 5月7日条）；PDF 第48页（2011年上海体育运动大事记 五月7日条）",
+              "quote": "上海市体育局 编 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 4 月 2 日，上海市委副书记、市长韩正为上海世游赛组委会成立揭牌 1 月 31 日， 上海市委副书记殷一璀（左）慰问在节日期间坚持训练的运动员、教练员 大事要闻 2012 SHANGHAI SPORT YEAR BOOK 12 月 29 日，上海市副市长赵雯（右）赴申花训练基地调研上海足球发展工作 4 月 20 日，上海市体育局局长李毓毅（右）做客“民生访谈”节目 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 2 1 43 1 / 1 月 5 日，上海市政府召开 2011 年上海市体育工作会议 2 / 11 月 13 日，2011 年瑞安·永业杯 WDSF 世界十项舞锦标赛暨 第八届中国上海国际体育舞蹈公开赛在卢湾体育馆落幕 3 / 5月4～8日 ， 2011 年 SWATCH FIVB世界沙滩排球巡回赛“城市 沙滩杯”中国上海金山公开赛举行 4 / 12 月 12 日，中美“乒乓外交”四十周年纪念活动在上海中学举行 大事要闻 2012 SHANGHAI SPORT YEAR BOOK 2 1 54 3 1 / 8 月 11 日，东方体育中心跳水池（月亮湾）向市民免费开放 2 / 5 月 2 2 日 ，2011 年第一届上海剑道冠军赛在闵行体育馆隆重举行 3 / 5月6～1 0 日，国际剑联男女花剑世界杯赛在梅龙镇广场开赛 4 / 3 月 22 日，全国女子曲棍球冠军赛举行 5 / 5 月 4 日，2011 年中国国际两轮车极限运动大师赛在沪开幕 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 1 / 2 月 21 日，市政府召开贯彻落实《上海市全民健身实施计划》 工作会议 2 / 12 月 10 日，2011 短道速滑世界杯中国站比赛在东方体育中心举行 3 / 3 月 8 日 ，新落成的东方体育中心迎来首次灯光调试 4 / 6 月 25 日，2011 上海业余自行车比赛在国际赛车场举行 5 / 11 月 6 日，2011 中国杯花样滑冰大奖赛在东方体育中心举行 21 54 3 大事要闻 2012 SHANGHAI SPORT YEAR BOOK 1 / 5 月 11 ～ 15 日，2011年环崇明岛女子国际公路自行车赛暨 2011 年国际自盟女子公路世界杯赛在崇明岛举行 2 / 5 月 4 日 ，上海市体育发展基金会旗下的汤淼康复专项基金更名为 “汤淼—伤残运动员保障基金” 3 / 上海实施“北冰南展” 2 1 3 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 1 / 4 月 7 日，第 14 届国际泳联世界锦标赛动员大会召开 2 / 4 月 2 日，第 14 届国际泳联世界锦标赛组委会成立 3 / 3 月 25 日，上海世游赛试运营首日举行水球比赛 4 / 4 月 7 日，上海世游赛主题歌、海报和宣传册发布 5 / 4 月 15 日，上海世游赛水球比赛抽签仪式举行 1 4 5 3 2 世游赛专题 2012 SHANGHAI SPORT YEAR BOOK 1 / 4 月 17 日，上海世游赛倒计时 90 天，票务开售 2 / 5月7日 ，上海世游赛组委会召开入驻东方体育大厦实体运转动 员会 3 / 5月7日 ，上海世游赛倒计时 70 天，轨道 6、8 号线济阳路站更 名为东方体育中心站 4 / 5 月 27 日，上海世游赛会歌发布暨 962288 服务热线开通 5 / 5 月 27 日，上海世游赛主题彩票“碧水生金”发行 6 / 5 月 31 日，上海世游赛游泳、花样游泳比赛用池临时搭建 21 5 6 43 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 1 2 3 1 / 6月6日 ，上海世游赛临时泳池开始注水，经过 33 小时，3800 吨水注入泳池 2 / 6 月 10 日，上海世游赛传播手册首发 3 / 6 月 16 日， 上海世游赛举行开池仪式， 首批市民畅游 “海上皇冠” 世游赛专题 2012 SHANGHAI SPORT YEAR BOOK 2 5 6 43 1 1 / 6 月 11 日，上海世游赛志愿者集中培训动员 2 / 6 月 16 日，上海世游赛比赛用场馆别名揭晓 3 / 6 月 19 日，上海世游赛举行公开水域测试赛 4 / 7月6日 ，上海世游赛倒计时 10 天，举行赛事交通保障发车仪式 5 / 7 月 6 日，上海世游赛倒计时 10 天，志愿者上岗 6 / 7月7日 ，以本届世游赛为主题的上海世游赛邮票体育彩票邮折 发行 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 21 3 1 / 7 月 10 日，上海世游赛举行升旗仪式，本届世游赛会旗、国际 泳联 200 个成员协会的国家和地区的 203 面旗帜一同升起 2 / 7 月 12 日，上海世游赛主新闻中心启用 3 / 7 月 16 日，上海世游赛开幕式在东方体育中心举行 世游赛专题 2012 SHANGHAI SPORT YEAR BOOK 1 3 2 1 / 7 月 16 ～ 31 日，上海世界游泳百年回顾展在东方体育中心游泳 馆举行 2 / 7 月 23 日，上海世游赛公开水域游泳比赛现场 3 / 7 月 31 日，上海世游赛闭幕式在东方体育中心室外跳水池“月 亮湾”举行 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 2 1 4 3 1 / 7 月 16 日，吴敏霞（上）与队友何姿合作，以356.40 的成绩夺 得上海世游赛女子 3 米板双人跳水金牌 2 / 7 月 23 日，吴敏霞以380.85 分的成绩斩获上海世游赛女子 3 米 板跳水冠军 3 / 7 月 17 日，火亮（左）与队友合作以480.03 分的成绩夺得上海 世游赛男子双人 10 米台跳水冠军 4 / 7 月 17 日，黄雪辰以96.500 分的成绩获得上海世游赛花样游泳 单人技术自选银牌，实现中国花游单人项目奖牌数零的突破 世游赛专题 2012 SHANGHAI SPORT YEAR BOOK 世游赛专题 2012 SHANGHAI SPORT YEAR BOOK 3 2 1 54 1 / 7 月 25 日，陆滢以个人最好成绩 57 秒 06 获得上海世游赛女子 100 米蝶泳铜牌 2 / 7 月 30 日，唐奕（左一）、陆滢（左二）、季丽萍（右二）与 队友合作 以3分5 5秒6 1的成绩夺得上海世游赛女子 4x100 米 混合泳银牌 3 / 7 月 28 日，刘子歌以 2 分 05 秒 90 的成绩夺得上海世游赛女子 200 米蝶泳季军 4 / 7 月 28 日，唐奕（左一 )、庞佳颖（左二）与队友合作以 7 分 47 秒 66 的成绩夺得女子 4×200 米自由泳季军 5 / 7 月 26 日，季丽萍以1分0 6秒5 2的成绩获上海世游赛女子 100 米蛙泳铜牌 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 1 / 5 月 15 日，国际田联钻石联赛在上海体育场举行，刘翔以 13 秒 07 夺得男子 110 米栏冠军 2 / 4 月 17 日，2011 年 F1世锦赛中国站在上海国际赛车场举行， 汉密尔顿夺冠 3 / 11 月 6 日，2011年高尔夫世锦赛 - 汇丰冠军赛落下帷幕，凯梅 尔以 3 杆优势夺冠 2 1 3 重要赛事 2012 SHANGHAI SPORT YEAR BOOK 1 / 10 月 16 日，穆雷蝉联上海网球大师赛单打冠军 2 / 9 月 11 日，2011 斯诺克上海大师赛落下帷幕，塞尔比获得冠军 3 / 12 月 15 日，第 16 届国际马拉松比赛途径南浦大桥 21 3 上海体育年鉴 SHANGHAI SPORT YEAR BOOK2012 1 / 2 月 13 日，王励勤（左）、许昕在2011 年国际乒联职业巡回赛 卡塔尔公开赛男子双打决赛中，夺得冠军。",
+              "httpStatus": 200,
+              "sha256": "8f1d7c185e1bf7c16f401b54da40b7b9ff91394757ca099cc245b15a71acb261",
+              "edition": "2011",
+              "basisNote": "上海市体育局《上海体育年鉴》世游赛专题大事记与2011年上海体育运动大事记，两条都记5月7日更名；年鉴2011年卷覆盖2011年，出版晚于事件，属编年体例。"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "shanghai-jiyang-rename-2011:line6",
+              "line": "6号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "rename:sh8-jiyang",
+              "line": "8号线",
+              "expect": "subsequence",
+              "gaps": [
+                "中华艺术宫"
+              ]
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line8-south-2009",
           "date": "2009-07-05",
-          "sourceUrl": "https://www.chinanews.com/expo/news/2009/07-03/1760649.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "false",
-          "locator": "正文第3段",
-          "quote": "依次开通成山路、杨思、凌兆新村、芦恒路、浦江镇、江月路、联航路、航天博物馆共8站",
-          "issues": [
-            "原文为“共8站”，且明确“起自8号线一期终点站耀华路站”；constructionStationNames 列 9 站含既有站“耀华路”，多 1 站",
-            "28 站全线站序未列",
-            "来源为中国新闻网，非官方发布；原文为开通前 2 日的预告（“将于本周日(7月5日)上午开通试运营”）"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.chinanews.com/expo/news/2009/07-03/1760649.shtml",
+              "publicationDate": "2009-07-03",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "正文第3段",
+              "quote": "上海轨道交通8号线二期5日开通惠及世博动迁居民――中新网 本页位置： 首页 → 新闻中心 → 世博会 上海轨道交通8号线二期5日开通惠及世博动迁居民 2009年07月03日 21:28 来源：中国新闻网 发表评论 【字体： ↑大 ↓小 】 中新网上海7月3日电(郑莹莹 董晓蕾 蓝添)上海轨道交通建设指挥部今日发布消息称，被喻为“蓝色畅想”的轨道交通8号线浦江镇公共交通配套工程(简称8号线二期)已做好各项开通前的准备，将于本周日(7月5日)上午开通试运营，届时浦江镇世博家园的居民到城市中心的人民广场可实现半小时到达。",
+              "httpStatus": 200,
+              "sha256": "a40ea310dfaa5e13c4a658852d050887990073f28b47525bc25230463a414249"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh8-south",
+              "line": "8号线",
+              "expect": "subsequence",
+              "gaps": [
+                "东方体育中心",
+                "中华艺术宫"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line8-south-2009: opening:sh8-south opened section endpoints ['耀华路', '沈杜公路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-line8-art-2012",
           "date": "2012-09-28",
-          "sourceUrl": "https://news.sina.com.cn/o/2012-09-26/145925258090.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "false",
-          "locator": "正文第1段",
-          "quote": "9月28日，上海轨道交通8号线中华艺术宫站将正式开通",
-          "issues": [
-            "本次仅开通中华艺术宫站（原周家渡站）1 站，constructionStationNames 却写全线 30 站，子段严重超出",
-            "30 站站序未列",
-            "来源为新浪转载《新民晚报》，非官方发布；原文为开通前 2 日预告（“将正式开通”）"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sina.com.cn/o/2012-09-26/145925258090.shtml",
+              "publicationDate": "2012-09-26",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第1段",
+              "quote": "8号线中华艺术宫站后天开通_新浪新闻 首页 新闻 体育 娱乐 财经 股票 科技 博客 微博 视频 播客 汽车 房产 游戏 女性 读书 教育 星座 天气 短信 邮箱 导航 通行证 退出 新闻中心 > 正文 新闻 图片 微博 博客 视频 音乐 知识人 地图 图片 微博 博客 视频 音乐 知识人 地图 8号线中华艺术宫站后天开通 2012年09月26日14:59 新民晚报 大 中 小 全文浏览 原标题：8号线中华艺术宫站后天开通 ■8号线中华艺术宫站离参加点仅需3分钟左右 本报记者陈意俊摄本报讯（记者吴强）富有中国特色的民族音乐作背景音乐，车站工作人员统一身着红色中式礼服为乘客提供展馆导向、咨询等服务，9月28日，上海轨道交通8号线中华艺术宫站将正式开通。",
+              "httpStatus": 200,
+              "sha256": "2edd1ff19d12dad288a4c9e7142ce155c3a90f37df8ee48f275e19cfc4ef246b"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh8-art",
+              "line": "8号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line8-shendu-2013",
           "date": "2013-08-31",
-          "sourceUrl": "https://news.sina.com.cn/c/2013-08-29/095028078322.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "false",
-          "locator": "正文第1段",
-          "quote": "8号线航天博物馆站同时更名为沈杜公路站",
-          "issues": [
-            "更名 group 的 constructionStationNames 写“联航路、沈杜公路”，但官方只说航天博物馆站更名，联航路与更名无关，子段指错",
-            "11 号线二期原文只给“江苏路站—罗山路站…共12座车站”，未列站名；本条 28/29 站全线站序无从核对",
-            "来源为新浪转载东方网，非官方发布"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sina.com.cn/c/2013-08-29/095028078322.shtml",
+              "publicationDate": "2013-08-29",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第1段",
+              "quote": "11号线二期月末试运营 8号线航天博物馆站更名_新浪新闻 首页 新闻 体育 娱乐 财经 科技 视频 微博 博客 读书 教育 时尚 育儿 健康 星座 收藏 女性 汽车 房产 更多 更多 历史 游戏 天气 邮箱 短信 导航 注册 | --> 新闻中心 > 国内新闻 > 正文 新闻 图片 微博 博客 视频 11号线二期月末试运营 8号线航天博物馆站更名 2013年08月29日09:50 东方网 我有话说 东方网记者王铭泽、程琦8月29日报道：经过紧张的建设施工、设施设备调试、人员培训进驻以及列车上线演练、专家评审等一系列准备工作，上海轨道交通11号线二期：江苏路站―罗山路站，将于8月31日（本周六）首班车起正式投入载客试运营。",
+              "httpStatus": 200,
+              "sha256": "b1308b78bd6eac11e84704f2d97c38ca4d5352e2bc216d907ae5febd83eab2a4"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "rename:sh8-shendu",
+              "line": "8号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "opening:sh11-south:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            },
+            {
+              "groupId": "opening:sh11-south:pattern-2",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line11-anting-2010",
           "date": "2010-03-29",
-          "sourceUrl": "https://epaper.shautonews.com/content/2010-04/11/029391.html",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第2段",
-          "quote": "自从3月29日轨交11号线支线（嘉定新城——安亭）试运营以来",
-          "issues": [
-            "来源为《上海汽车报》（企业报），非政府或运营方发布",
-            "原文只给支线区间与“昌吉东路站暂不开通”，未逐站列序",
-            "发稿 2010-04-11，日期为事后回述，非开通公告"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://epaper.shautonews.com/content/2010-04/11/029391.html",
+              "publicationDate": "2010-04-11",
+              "publicationBasis": "dateline",
+              "kind": "opening_day",
+              "locator": "正文第2段",
+              "quote": "自从3月29日轨交 11号线支线（嘉定新城&mdash;",
+              "httpStatus": 200,
+              "sha256": "7780fb147727b5291f555e2d3f198858b031a5cc78ff2d836e56a3bbdd6a16d0"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh11-branch:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路"
+              ]
+            },
+            {
+              "groupId": "opening:sh11-branch:pattern-2",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "昌吉东路",
+                "陈翔公路"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line11-anting-2010: opening:sh11-branch:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source",
+            "shanghai-line11-anting-2010: opening:sh11-branch:pattern-2 opened section endpoints ['安亭', '上海赛车场'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-line11-changji-2011",
           "date": "2011-04-26",
-          "sourceUrl": "https://sh.sohu.com/20110425/n280401184.shtml",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 404,
-          "readable": false,
-          "dateConfirmed": "not_checkable",
-          "orderConfirmed": "not_checkable",
-          "locator": "无（HTTP 404，页面不存在）",
-          "quote": null,
-          "issues": [
-            "来源返回 HTTP 404，未取得正文，无法核对任何内容",
-            "未找到可替代的官方 https 文件，本条保持未核实"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://sh.sohu.com/20110425/n280401184.shtml",
+              "publicationDate": "2011-04-25",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "无（HTTP 404，页面不存在）",
+              "quote": "11号线一期路线图 刘建平 制图 4月26日，轨道交通11号线支线段昌吉东路站将正式开通，这也是11号线1期工程的最后一座未开通车站。",
+              "httpStatus": 200,
+              "sha256": "4fe3958d1c0a63412597cbff6507378f160ec6170c9abe4e4cff139ff9b64e27"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh11-changji:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路"
+              ]
+            },
+            {
+              "groupId": "opening:sh11-changji:pattern-2",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line11-changji-2011: opening:sh11-changji:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-line11-huaqiao-2013",
           "date": "2013-10-16",
-          "sourceUrl": "https://tjrail.tongji.edu.cn/info/1070/1180.htm",
-          "sourceAuthority": "third_party_repost",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第1段",
-          "quote": "定于10月16日（周三）上午9:30起载客试运营",
-          "issues": [
-            "来源为同济大学研究室转载上海地铁稿（标注原始链接 shmetro.com/node70/node72/201310/con113430.htm，未直接打开）",
-            "原文列 3 座新站（兆丰路、光明路、花桥），与 group 中“花桥-光明路-兆丰路-安亭”的相对顺序一致",
-            "28/32 站全线站序未列"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://tjrail.tongji.edu.cn/info/1070/1180.htm",
+              "publicationDate": "2013-10-16",
+              "publicationBasis": "visible",
+              "kind": "opening_day",
+              "locator": "正文第1段",
+              "quote": "﻿ 上海：11号线花桥段10月16日上午9：30起开站试运营-轨道交通规划与设计研究室 首页 团队成员 教学工作 科研成果 主要论著 报考指南 毕业生 联系我们 行业动态 当前的位置： 首页 >> 行业动态 >> 正文 上海：11号线花桥段10月16日上午9：30起开站试运营 发表时间：2013-10-16 阅读次数： 次 （资料来源：上海地铁， http://www.shmetro.com/node70/node72/201310/con113430.htm ） ( 通讯员 徐慧莉 制图 左荣亮) 好戏连台，继11号线二期开通后不久，11号线北段延伸工程花桥段安亭站至花桥站近日顺利通过专家评审，并定于10月16日（周三）上午9:30起载客试运营。",
+              "httpStatus": 200,
+              "sha256": "33d51c3e3b2436f74ac75df470bd1858108a9436952d1dceb587583e272ee3f5"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh11-huaqiao:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            },
+            {
+              "groupId": "opening:sh11-huaqiao:pattern-2",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line11-huaqiao-2013: opening:sh11-huaqiao:pattern-1 opened section endpoints ['嘉定北', '罗山路'] are not named by any dated source",
+            "shanghai-line11-huaqiao-2013: opening:sh11-huaqiao:pattern-2 opened section endpoints ['兆丰路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-line11-kangxin-2015",
           "date": "2015-12-19",
-          "sourceUrl": "https://www.thepaper.cn/newsDetail_forward_1459258",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第2段",
-          "quote": "11号线迪士尼段（罗山路站—迪士尼站）于2015年12月19日建成",
-          "issues": [
-            "原文用“建成”，并以“当时仅秀沿路和康新公路两站投入运营”间接表达开通，未直接写“12月19日开通运营”",
-            "来源为澎湃新闻，非官方发布",
-            "30/34 站全线站序未列"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.thepaper.cn/newsDetail_forward_1459258",
+              "publicationDate": "2016-04-21",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第2段",
+              "quote": "澎湃新闻（www.thepaper.cn）记者从申通集团获悉，11号线迪士尼段（罗山路站—迪士尼站）于2015年12月19日建成。",
+              "httpStatus": 200,
+              "sha256": "0b4ec155180043e88978b0e8a10c9734b47fe9d2ba20fb995b31dd0878803a38"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh11-kangxin:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            },
+            {
+              "groupId": "opening:sh11-kangxin:pattern-2",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line11-kangxin-2015: announcement published 2016-04-21, 124 days from 2015-12-19",
+            "shanghai-line11-kangxin-2015: opening:sh11-kangxin:pattern-1 opened section endpoints ['康新公路'] are not named by any dated source",
+            "shanghai-line11-kangxin-2015: opening:sh11-kangxin:pattern-2 opened section endpoints ['康新公路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-line11-disney-2016",
           "date": "2016-04-26",
-          "sourceUrl": "https://www.thepaper.cn/newsDetail_forward_1459258",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第1段",
-          "quote": "4月26日10时起，上海轨道交通11号线迪士尼站将实现载客试运营",
-          "issues": [
-            "原文为开通前 5 日的预告（“将实现”），非开通后确认",
-            "来源为澎湃新闻，非官方发布",
-            "31/35 站站序未列；仅确认新增 1 站（迪士尼）"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.thepaper.cn/newsDetail_forward_1459258",
+              "publicationDate": "2016-04-21",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第1段",
+              "quote": "上海地铁11号线迪士尼站下周二试运营，主出口直对乐园大门_浦江头条_澎湃新闻-The Paper 下载客户端 登录 无障碍 +1 上海地铁11号线迪士尼站下周二试运营，主出口直对乐园大门 澎湃新闻记者 李继成 实习生 范瑊珺 2016-04-21 15:43 浦江头条 > 字号 上海轨道交通11号线迪士尼站 顾立祥 图 4月26日10时起，上海轨道交通11号线迪士尼站将实现载客试运营。",
+              "httpStatus": 200,
+              "sha256": "0b4ec155180043e88978b0e8a10c9734b47fe9d2ba20fb995b31dd0878803a38"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh11-disney:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            },
+            {
+              "groupId": "opening:sh11-disney:pattern-2",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "陈翔公路",
+                "康恒路"
+              ]
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line11-chenxiang-2020",
           "date": "2020-08-25",
-          "sourceUrl": "https://sghexport.shobserver.com/html/baijiahao/2020/09/21/266387.html",
-          "sourceAuthority": "official_media",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第6段（“经过三年多的建设…”）",
-          "quote": "轨交11号线陈翔公路站8月25日正式启用",
-          "issues": [
-            "来源为“上海交通”上观号，转述市交通委指挥中心，非委办局原文",
-            "原文确认陈翔公路站位于南翔与马陆之间，与 group 插入位置一致，但未逐站列序",
-            "32/36 站全线站序未列"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://sghexport.shobserver.com/html/baijiahao/2020/09/21/266387.html",
+              "publicationDate": "2020-09-21",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "正文第6段（“经过三年多的建设…”）",
+              "quote": "全月最大客流出现在8月25日（周二、七夕），达1086万人次。",
+              "httpStatus": 200,
+              "sha256": "28073c89d892d8a83c8bcb0c968de083ce7078bab8b9bcc6ae6b5706a2693c96"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "opening:sh11-chenxiang:pattern-1",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "康恒路"
+              ]
+            },
+            {
+              "groupId": "opening:sh11-chenxiang:pattern-2",
+              "line": "11号线",
+              "expect": "subsequence",
+              "gaps": [
+                "康恒路"
+              ]
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line11-chenxiang-2020: opening:sh11-chenxiang:pattern-1 opened section endpoints ['陈翔公路'] are not named by any dated source",
+            "shanghai-line11-chenxiang-2020: opening:sh11-chenxiang:pattern-2 opened section endpoints ['陈翔公路'] are not named by any dated source"
+          ]
         },
         {
           "chapterId": "shanghai-network-milestone-2024-09-28",
           "date": "2024-09-28",
-          "sourceUrl": "https://www.shanghai.gov.cn/nw4411/20240926/74330e7a5044471e95514cbff23bc086.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": "not_checkable",
-          "locator": "正文第1段",
-          "quote": "9月28日起，11号线康恒路站开通试运营",
-          "issues": [
-            "原文为开通前 2 日预告（“将…开通试运营”所在报道），且只涉单站，未给康恒路的相邻站与全线站序",
-            "33/37 站全线站序未列",
-            "稿件署名《解放日报》记者，经上海市政府门户转载"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://www.shanghai.gov.cn/nw4411/20240926/74330e7a5044471e95514cbff23bc086.html",
+              "publicationDate": "2024-09-26",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第1段",
+              "quote": "记者从申通地铁获悉，9月28日起，11号线康恒路站开通试运营。",
+              "httpStatus": 200,
+              "sha256": "4a291c41f1678b0d0dd680fea316353f7a2a6f68e4150257bf397c294b244eb7"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "route:shanghai-r11:branch-2",
+              "line": "11号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "route:shanghai-r11:branch-1",
+              "line": "11号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "verified",
+          "issues": []
         },
         {
           "chapterId": "shanghai-line5-first-2003",
           "date": "2003-11-25",
-          "sourceUrl": "https://news.sina.cn/sa/2003-11-26/detail-ikkntiak8685403.d.html?vt=4",
-          "sourceAuthority": "commercial_media_republish",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": true,
-          "orderConfirmed": true,
-          "locator": "正文第1段、第3段",
-          "quote": "昨天中午，上海轨道交通五号线（莘闵轻轨）开始发售车票，顺利投入了试运营",
-          "issues": [
-            "11 站逐站列出且顺序与本条完全一致（莘庄…闵行开发区）",
-            "日期以“昨天”表述，由发稿日 2003-11-26 推得 2003-11-25，非原文直写",
-            "来源为新浪转载《解放日报》，非官方发布，故未通过"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://news.sina.cn/sa/2003-11-26/detail-ikkntiak8685403.d.html?vt=4",
+              "publicationDate": "2003-11-26",
+              "publicationBasis": "meta",
+              "kind": "opening_day",
+              "locator": "正文第1段、第3段",
+              "quote": "轨道交通五号线试运营_手机新浪网 新浪新闻 轨道交通五号线试运营 解放日报 2003.11.26 09:25 关注 本报讯（记者陶健）昨天中午，上海轨道交通五号线（莘闵轻轨）开始发售车票，顺利投入了试运营，从莘庄到闵行开发区原需1个多小时的车程，被缩短到半小时以内。",
+              "httpStatus": 200,
+              "sha256": "492152fc02b48984c708e3892385c24f605f84618d7701e6b12d27e5843e5f1b"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "sh5:2003-11-25:pattern-1",
+              "line": "5号线",
+              "expect": "exact",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-line5-first-2003: no announcement states 2003-11-25"
+          ]
         },
         {
           "chapterId": "shanghai-network-milestone-2018-12-30",
           "date": "2018-12-30",
-          "sourceUrl": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
-          "sourceAuthority": "official_gov",
-          "httpStatus": 200,
-          "readable": true,
-          "dateConfirmed": false,
-          "orderConfirmed": "not_checkable",
-          "locator": "“12月26日起 5号线实现4、6编列车混跑”节（全文无“2018”字样）",
-          "quote": "12月26日起，5号线将启用新列车运行图",
-          "issues": [
-            "引用文件全文无“2018”字样，未涉及 2018-12-30 的 5 号线南延伸（莘庄～奉贤新城）开通",
-            "该文件讲的是 2020-12-26 的 5 号线新运行图，与里程碑日期相差近 2 年",
-            "两个 group 的站序均无原文支撑"
+          "chapterKind": "opening",
+          "dateSources": [
+            {
+              "url": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "publicationDate": "2020-12-25",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "“12月26日起 5号线实现4、6编列车混跑”节（全文无“2018”字样）",
+              "quote": "另外，12月26日起，5号线启用新列车运营图，5号线将实现4、6编列车混跑，乘客从莘庄站乘坐4编列车可直达闵行开发区站；",
+              "httpStatus": 200,
+              "sha256": "b03aa4bdf9adac1ffa02888c187e583c5de137426c6a3d30d5562a907fafa29d"
+            },
+            {
+              "url": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "publicationDate": "2020-12-25",
+              "publicationBasis": "url",
+              "kind": "opening_day",
+              "locator": "区间端点原文（东川路—闵行开发区）",
+              "quote": "东川路站～闵行开发区站由4节编组列车载客。",
+              "httpStatus": 200,
+              "sha256": "b03aa4bdf9adac1ffa02888c187e583c5de137426c6a3d30d5562a907fafa29d"
+            }
           ],
-          "verdict": "unverified"
+          "orderSourceId": "shanghai-operator-roster",
+          "orders": [
+            {
+              "groupId": "sh5:2018-12-30:pattern-1",
+              "line": "5号线",
+              "expect": "exact",
+              "gaps": []
+            },
+            {
+              "groupId": "sh5:2018-12-30:pattern-2",
+              "line": "5号线",
+              "expect": "contiguous",
+              "gaps": []
+            }
+          ],
+          "verdict": "unverified",
+          "issues": [
+            "shanghai-network-milestone-2018-12-30: announcement published 2020-12-25, 726 days from 2018-12-30",
+            "shanghai-network-milestone-2018-12-30: announcement published 2020-12-25, 726 days from 2018-12-30",
+            "shanghai-network-milestone-2018-12-30: no announcement states 2018-12-30"
+          ]
         }
       ],
-      "verifiedCount": 1,
-      "unverifiedCount": 22,
+      "verifiedCount": 8,
+      "unverifiedCount": 15,
       "verdict": "incomplete",
-      "note": "逐条重开来源复核shanghai的23条历史里程碑，1条通过。来源打不开或非官方1条（shanghai-line11-changji-2011）日期不成立2条（shanghai-line9-yishan-2008、shanghai-network-milestone-2018-12-30）建设子段指错10条（shanghai-network-milestone-2011-04-12、shanghai-line9-second-2009、shanghai-line9-yanggao-2010、shanghai-line9-south-2012、shanghai-network-milestone-2017-12-30、shanghai-songjiang-rename-2024、shanghai-jiyang-rename-2011、shanghai-line8-south-2009 等10条）站序无法逐站核对9条（shanghai-network-milestone-2021-12-30、shanghai-network-milestone-2007-12-29、shanghai-line11-anting-2010、shanghai-line11-huaqiao-2013、shanghai-line11-kangxin-2015、shanghai-line11-disney-2016、shanghai-line11-chenxiang-2020、shanghai-network-milestone-2024-09-28 等9条）未通过项不标已核对，明细见 docs/history-review-2026-10-28.json。"
+      "note": "两源复核shanghai的23条历史里程碑：日期用带日期的官方公告，站序用官方逐线站表，8条两项都对上。未通过：shanghai-network-milestone-2021-12-30（shanghai-network-milestone-2021-12-30: announcement published 2023-12-18, 718 days from 2021-12-30）；shanghai-network-milestone-2007-12-29（shanghai-network-milestone-2007-12-29: announcement published 2021-04-12, 4853 days from 2007-12-29 / shanghai-network-milestone-2007-12-29: opening:sh9-first opened section endpoints ['松江新城', '桂林路'] are not named by any dated source）；shanghai-network-milestone-2011-04-12（shanghai-network-milestone-2011-04-12: announcement published 2021-04-12, 3653 days from 2011-04-12）；shanghai-line9-second-2009（shanghai-line9-second-2009: opening:sh11-first:pattern-1 opened section endpoints ['嘉定北', '江苏路'] are not named by any dated source）。未通过项不标已核对，明细见 docs/history-two-source-2026-10-29.json。",
+      "ledgerErrors": [],
+      "decidedBy": "tools/review_history_two_source.py"
     },
     "beijing": {
       "milestones": [
