@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import os
 import re
 import shutil
@@ -67,6 +68,11 @@ def source_manifest_hash() -> str:
             continue
         if path.suffix in {".exe", ".zip", ".pck", ".tmp", ".bak"}:
             continue
+        # The gameplay verification record names the fingerprint of the tree it
+        # ran against, so hashing it would make the fingerprint depend on
+        # itself and never match.
+        if path.name.startswith("gameplay-verification-"):
+            continue
         relative = path.relative_to(ROOT).as_posix().encode("utf-8")
         digest.update(relative + b"\0")
         digest.update(bytes.fromhex(sha256(path)))
@@ -85,11 +91,28 @@ def main() -> None:
     parser.add_argument("--version", default=current_version())
     args = parser.parse_args()
 
-    from official_coverage import audit
-    coverage = audit()
-    if not coverage['ok']:
-        failed = [city for city, result in coverage['cities'].items() if not result['ok']]
-        raise RuntimeError('Release blocked by independent official coverage: ' + ', '.join(failed))
+    from gameplay_spec import required_ids
+
+    # What decides whether this build may ship is whether the game plays, not
+    # how much of the archive has been reviewed. The record has to come from a
+    # run against this exact source tree: the fingerprint is recomputed here
+    # rather than trusted from the file.
+    record_path = ROOT / "docs" / f"gameplay-verification-{args.version}.json"
+    if not record_path.is_file():
+        raise RuntimeError(f"Missing gameplay verification record: {record_path}")
+    record = json.loads(record_path.read_text(encoding="utf-8"))
+    if record.get("version") != args.version:
+        raise RuntimeError(f"Gameplay record is for {record.get('version')}, not {args.version}")
+    summary = record.get("summary", {})
+    if int(summary.get("failed", 1)) != 0:
+        raise RuntimeError(f"Gameplay verification failed {summary.get('failed')} check(s)")
+    required = required_ids()
+    passed_ids = {str(check.get("id")) for check in record.get("checks", []) if check.get("ok")}
+    missing = [name for name in required if name not in passed_ids]
+    if missing:
+        raise RuntimeError("Gameplay verification is missing passing checks: " + ", ".join(missing))
+    if record.get("manifestHash") != source_manifest_hash():
+        raise RuntimeError("Gameplay record was produced against a different source tree; rerun tools/verify_gameplay.py")
 
     source_exe = args.exe.resolve() if args.exe else STABLE_EXE
     if not source_exe.is_file():

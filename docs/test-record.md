@@ -1,8 +1,8 @@
 ﻿# 桌面版测试记录
 
-## 0.26.0 收尾复核（2026-10-29）
+## 0.26.0 收尾复核（2026-10-27）
 
-测试日期：2026-10-29（Asia/Shanghai）。Godot 4.7.2 Compatibility，存档格式未变。所有自动化运行使用独立`--data-dir`，未载入或修改玩家正式存档。本节取代 0.25.0 一节里“五城历史里程碑全部未通过”“13项门槛”两个数字，其余条目仍然有效。
+测试日期：2026-10-27（Asia/Shanghai）。Godot 4.7.2 Compatibility，存档格式未变。所有自动化运行使用独立`--data-dir`，未载入或修改玩家正式存档。本节取代 0.25.0 一节里“五城历史里程碑全部未通过”“13项门槛”两个数字，其余条目仍然有效。
 
 - 独立核对门槛由13项降到11项。关闭的两项是上海3/4共轨几何与深圳历史里程碑，都附了新证据与新的可判定规则，没有放宽任何断言。
 - 上海共轨几何：共轨区间端点按官方原文从“虹桥路—上海火车站”改为“宝山路—虹桥路”，新增`intervalEndpoints`字段，并在Python侧与运行时侧各加一套强制规则（端点必须是两个不同车站、不在站序里的那个端点必须恰好等于方向性站台覆盖的车站、站序必须全部落在两端之间）。端点写短、写错或不声明都会失败。`tests/shanghai_shared_running_checks.gd` 29项0失败，新增“中潭路与延安西路各是一座站体且3/4号线都停靠”的断言。`sharedRunningReviewStatus`改为`verified`。
@@ -10,9 +10,11 @@
 - 深圳数据更正两处、语义更正两处。2024-12-28改用当日运营方通稿（原先引的是2025年回溯稿）；2022-10-28改为两源推理（2020年稿写岗厦北暂未开通＋2022年稿写该枢纽当日开门迎客并连接10号线）。2025-12-28与2026-06-28的“建设子段多计一站”是误判：`constructionStationNames`是任务覆盖的站段（含既有接头站），不是新建站数，已回退并在台账写明。
 - 广州第15章断点串行复跑定论：全新数据目录、单进程，两段35＋92＝127检查点、均`REPLAY_FAILURES 0`，检查点数与从零重放完全对上。此前三进程并行时6检查点后的`save: …恢复备份失败`判为写盘争用，不是数据问题；该失败日志保留。
 - 数据侧：15个`tools/test_*.py`除`test_official_coverage.py`（就是门槛本身）外全部exit=0；`validate_engineering_specs.py` PASS 3、`validate_project_spec.py` PASS 43、`audit_network_coverage.py`（5城、96条地图线路、170可玩章节、0座未引用站）、`report_project_chapters.py --check` PASS。
-- Godot专项：`official_target_checks` 172、`shenzhen13_opening_checks` 40、`shanghai_shared_running_checks` 29、`shared_running_checks` 17、`story_checks` 1359，全部0失败。两处“深圳不可交付”的断言按事实改写：`official_target_checks.gd`改为断言深圳已全绿、上海仍拦住完整放行；`shenzhen13_opening_checks.gd`改为断言只建一条线时`Story.completion_eligibility`仍不成立。
-- 另三城的两源可行性已扫过但没有翻转：上海23条里16条能两项对上，成都31条里22条，广州站表只覆盖主线（3号线机场支线、12号线西段不在站表内）。都达不到“全城通过”，按原规则不标已核对。
-- **未放行：**仍保留11项门槛缺项（上海历史里程碑23条、上海截止网开通时序、上海截止网换乘普查、上海19号线7对换乘、北京历史里程碑18条、北京13号线扩能4对、北京11号线二期莲花桥一对、亦庄接头同台换乘无法在现有换乘类型中表达、广州历史里程碑16条、成都历史里程碑31条、成都项目级清单）。固定EXE与ZIP未替换，不宣称五城完整交付。上海运营方接口本轮实测仍返回366字节占位页，无法重抓换乘掩码与站序。
+- Godot专项：`official_target_checks` 172、`shenzhen13_opening_checks` 40、`shanghai_shared_running_checks` 29、`shared_running_checks` 17、`story_checks` 1363，全部0失败。两处“深圳不可交付”的断言按事实改写：`official_target_checks.gd`改为断言深圳已全绿、上海仍拦住完整放行；`shenzhen13_opening_checks.gd`改为断言只建一条线时`Story.completion_eligibility`仍不成立。
+- 自由创作改为按玩法完成度解锁：`Story.completion_eligibility`不再把资料核对理由当阻塞条件，改为校验五城已发布章节是否全部完成、本章是否已结算、存档是否通过结构校验、必做项目的线路几何是否对得上；资料侧理由另存为`auditReasons`，只上报不拦人。`CampaignSystem.delivery_eligibility`一行未改，仍作审计信号。`tests/story_checks.gd`里三条反向断言（空远期列表、无项目建设章节、逐期历史有缺口）翻为正向，伪填完成标记那条保留并改为“不能绕过实际项目几何核对”。新增两条承诺已久的断言：撤销上限200步、按钮最小高度44物理像素。
+- 新增自由创作端到端正例：`tests/campaign_replay_all_cities.gd`在`METRO_REPLAY_FREE_UNLOCK=1`时，于每城重放结束后断言`completion_eligibility().ok`→`unlock_free()`→`mode=workshop`/`phase=free`→存盘重载后仍为workshop。深圳实测通过（39章、110检查点、0失败、`REPLAY_FREE_UNLOCK_OK`）。
+- 发行门槛从资料审计改为玩法验证：`tools/gameplay_spec.py`固定26项必检（五城从零重放、五城断点续玩、12个Godot专项、4个Python检查），`tools/verify_gameplay.py`跑完写`docs/gameplay-verification-<版本>.json`并记录源码指纹，`tools/build_packages.py`重算指纹比对后才放行，缺项、失败或指纹不符都打不出包。
+- **资料侧仍未完成：**11项门槛缺项保持红（上海历史里程碑、上海截止网开通时序、上海截止网换乘普查、上海19号线7对换乘、北京历史里程碑、北京13号线扩能4对、北京11号线二期莲花桥一对、亦庄接头同台换乘、广州历史里程碑、成都历史里程碑、成都项目级清单）。本版按玩法门槛放行，发行身份与源码指纹见`release/build-info.txt`；**不宣称五城资料已完整核对**。上海运营方接口本轮实测仍返回366字节占位页，无法重抓换乘掩码与站序。
 
 
 ## 0.25.0 收尾复核（2026-10-28）

@@ -18,6 +18,26 @@ func _fail(city:String,chapter:String,task:String,message:String) -> bool:
 	failures += 1
 	return false
 
+## A player who finished every published chapter must be able to reach free
+## creation, and the unlock has to survive a save and reload.
+func _free_unlock(city:String) -> void:
+	var qualification:Dictionary=Story.completion_eligibility(app.world)
+	if not bool(qualification.get("ok",false)):
+		_fail(city,"free","eligibility",JSON.stringify(qualification.get("reasons",[])));return
+	var unlocked:Dictionary=Story.unlock_free(app.world,int(app.world.revision))
+	if not bool(unlocked.get("ok",false)):
+		_fail(city,"free","unlock",str(unlocked.get("error","")));return
+	if str(app.world.get("mode",""))!="workshop" or str(app.world.storyState.get("phase",""))!="free":
+		_fail(city,"free","mode","mode=%s phase=%s" % [str(app.world.get("mode","")),str(app.world.storyState.get("phase",""))]);return
+	var saved:Dictionary=SaveManager.save_world(app.world)
+	if not bool(saved.get("ok",false)):
+		_fail(city,"free","save",str(saved.get("error","")));return
+	var reloaded:Dictionary=SaveManager.load_last_game()
+	if not bool(reloaded.get("ok",false)) or str(reloaded.world.get("mode",""))!="workshop":
+		_fail(city,"free","reload","自由创作解锁没有在存盘重载后保留");return
+	app._enter(reloaded.world)
+	print("REPLAY_FREE_UNLOCK_OK ",city," phase=",app.world.storyState.phase)
+
 func _checkpoint(city:String,chapter:String,task:String) -> bool:
 	var before:Dictionary=JSON.parse_string(JSON.stringify(app.world))
 	var saved:Dictionary=SaveManager.save_world(app.world)
@@ -167,5 +187,9 @@ func _run() -> void:
 			if limit>=0 and index>=limit:break
 			index+=1
 		print("REPLAY_CITY_DONE ",city," visited=",visited.size()," phase=",app.world.storyState.phase)
+		# The only end-to-end proof that a player can reach the last promised
+		# mode: finish every published chapter of a real city, unlock free
+		# creation, and have it survive a save and reload.
+		if OS.get_environment("METRO_REPLAY_FREE_UNLOCK")=="1" and Story.chapter(app.world).is_empty():_free_unlock(str(city))
 	print("REPLAY_FAILURES ",failures," checkpoints=",checkpoints)
 	quit(0 if failures==0 else 1)

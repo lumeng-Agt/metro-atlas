@@ -1,0 +1,117 @@
+{
+  "version": "0.26.0",
+  "date": "2026-10-27",
+  "status": "carried_from_0_25_0_not_remeasured",
+  "machine": {
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "renderer": "OpenGL 3.3 Compatibility",
+    "resolution": [
+      1600,
+      980
+    ]
+  },
+  "command": "Godot 4.7.2 --path . --script res://tests/story_performance_smoke.gd -- --data-dir=<temp>",
+  "scenarios": {
+    "overview": {
+      "runs": 3,
+      "averageFps": [
+        36.27,
+        35.61,
+        35.32
+      ],
+      "p95Ms": [
+        29.23,
+        29.89,
+        30.62
+      ],
+      "maxFrameMs": [
+        37.02,
+        33.28,
+        39.56
+      ],
+      "passed": true
+    },
+    "blocks": {
+      "runs": 3,
+      "averageFps": [
+        70.85,
+        71.09,
+        70.88
+      ],
+      "p95Ms": [
+        16.52,
+        16,
+        16.08
+      ],
+      "maxFrameMs": [
+        42.39,
+        33.71,
+        33.77
+      ],
+      "passed": true
+    },
+    "zoom": {
+      "runs": 3,
+      "averageFps": [
+        119.79,
+        119.27,
+        119.65
+      ],
+      "p95Ms": [
+        8.36,
+        8.4,
+        8.4
+      ],
+      "maxFrameMs": [
+        31.45,
+        27.51,
+        26.73
+      ],
+      "passed": true
+    },
+    "buildings": {
+      "runs": 3,
+      "averageFps": [
+        102.54,
+        103.15,
+        102.25
+      ],
+      "p95Ms": [
+        11.52,
+        11.55,
+        11.72
+      ],
+      "maxFrameMs": [
+        20.62,
+        18.07,
+        19.11
+      ],
+      "passed": true
+    }
+  },
+  "saveMs": [
+    120.009,
+    112.102
+  ],
+  "targets": {
+    "normalStreetFps": 60,
+    "stressAverageFpsMinimum": 30,
+    "stressP95FrameMsMaximum": 33.3,
+    "mainThreadBlockingMsMaximum": 100
+  },
+  "result": "四个场景各三次 30 秒压力运行的平均帧率均超过 30，p95 帧时均不超过 33.3ms；保存世界耗时 112–120ms，超过 100ms 的主线程阻塞目标。",
+  "caveats": [
+    "本版未重测性能：数值来自 0.25.0（2026-10-21）的实测，渲染路径未改动。",
+    "保存世界耗时 112–120ms 稳定超过 100ms 主线程阻塞目标，本轮仍未优化。",
+    "未执行一小时最大路网＋200 步撤销连续运行。",
+    "未执行鼠标试玩与真人观察；性能测试不能替代它们。"
+  ],
+  "candidate": {
+    "exe": "release-candidate/造一座地铁.exe",
+    "smoke": "导出程序以 --headless --quit 启动退出码 0；以 --headless 连续运行 20 秒无 stderr 输出。"
+  },
+  "notFullAcceptance": true,
+  "carriedFrom": "docs/performance-0.25.0.json",
+  "note": "本版只改解锁判定与发行门槛，渲染与地图路径未变，因此没有重新做 GPU 压力测试；下列数值是 0.25.0 在 2026-10-21 的实测结果，作为本版基线沿用，不是本版的重新测量。"
+}

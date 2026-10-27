@@ -245,33 +245,41 @@ func _run() -> void:
 		_check(str(api.world.storyState.get("phase",""))=="history" and not bool(api.world.storyState.freeUnlocked),"代表性建设后继续留在历史章节链")
 		var gap_coverage:Dictionary=Catalog.network_coverage(str(api.world.get("cityId","")))
 		_check(not gap_coverage.is_empty() and int(gap_coverage.get("fullyTargetedRouteEntryCount",0))==int(gap_coverage.get("mapRouteEntryCount",0)) and int(gap_coverage.get("uncoveredRouteEntryCount",0))==0,"全城已发布章节覆盖截止日线路目标")
+	var history_steps:=CommandHistory.new()
+	_check(history_steps.max_steps==200,"撤销上限为承诺的200步")
+	var probe_button:Button=api.button("测试",func():pass)
+	_check(probe_button.custom_minimum_size.y>=44.0*float(api.ui_scale),"按钮最小高度不低于44物理像素")
+	probe_button.free()
 	var original_city:Dictionary=Catalog._catalog.cities.shanghai.duplicate(true)
 	Catalog._catalog.cities.shanghai.historyStatus="complete"
 	Catalog._catalog.cities.shanghai.futurePlans=[]
 	var published_ids:Array=Catalog.city_config("shanghai").chapters.map(func(entry:Dictionary):return str(entry.get("id","")))
 	var future_gate:=WorldData.new_world("shanghai","campaign");future_gate.storyState.chapterIndex=published_ids.size()-1;future_gate.storyState.chapterId=str(published_ids.back());future_gate.storyState.stage="outcome";future_gate.storyState.completedChapterIds=published_ids.duplicate()
 	Story.next_chapter(future_gate)
-	_check(str(future_gate.storyState.phase)=="future_gap" and not bool(future_gate.storyState.freeUnlocked),"空远期列表不能当作资料已审核完成")
+	_check(str(future_gate.storyState.phase)=="future_gap" and not bool(future_gate.storyState.freeUnlocked),"没有远期项目时停在远期边界，且解锁资格不等于已进入自由创作")
 	_check(Story.plan_status(future_gate)=="已完成截至日历史建设；截止日后的项目篇尚未数字化","远期资料边界明确表示历史篇已完成")
+	_check(bool(Story.can_create_workshop_copy(future_gate)),"全部已发布章节完成即可解锁自由创作，不受资料核对进度影响")
+	_check(not bool(Story.completion_eligibility(future_gate).get("contentReady",true)),"资料核对未完成只作为审计信息上报，不再阻塞玩家")
 	Catalog._catalog.cities.shanghai.futureStatus="complete"
 	future_gate=WorldData.new_world("shanghai","campaign");future_gate.storyState.chapterIndex=published_ids.size()-1;future_gate.storyState.chapterId=str(published_ids.back());future_gate.storyState.stage="outcome";future_gate.storyState.completedChapterIds=published_ids.duplicate();Story.next_chapter(future_gate)
-	_check(str(future_gate.mode)=="campaign" and not bool(Story.can_create_workshop_copy(future_gate)) and not bool(future_gate.storyState.freeUnlocked),"没有项目建设章节时不能提前解锁自由创作副本")
+	_check(str(future_gate.mode)=="campaign" and bool(Story.can_create_workshop_copy(future_gate)) and not bool(future_gate.storyState.freeUnlocked),"没有项目建设章节时资格成立，但要玩家自己点进自由创作")
 	Catalog._catalog.cities.shanghai.historyStatus="route_inventory_complete"
 	future_gate=WorldData.new_world("shanghai","campaign");future_gate.storyState.chapterIndex=published_ids.size()-1;future_gate.storyState.chapterId=str(published_ids.back());future_gate.storyState.stage="outcome";future_gate.storyState.completedChapterIds=published_ids.duplicate();Story.next_chapter(future_gate)
 	_check(str(future_gate.storyState.phase)=="history_content_gap" and Story.plan_status(future_gate)=="现有线路任务已完成，逐期历史仍待补齐","线路目标覆盖不伪装成五城逐期历史已完成")
-	_check(not bool(Story.can_create_workshop_copy(future_gate)),"逐期历史仍有缺口时不能解锁自由创作副本")
+	_check(bool(Story.can_create_workshop_copy(future_gate)),"逐期历史缺口属内容缺项，不阻塞玩家进入自由创作")
 	Catalog._catalog.cities.shanghai.historyStatus="complete"
 	var future_plan:Dictionary={}
 	for candidate in original_city.chapters:
 		if not bool(candidate.get("eventOnly",false)) and not candidate.get("lineGroups",[]).is_empty():future_plan=candidate.duplicate(true);break
-	future_plan.merge({"id":"acceptance-only-future","required":true,"dataStatus":"blueprint_ready","exactAlignment":"station_areas"},true)
+	var real_project_ids:Array=OfficialNetworkAudit.target_data().get("cities",{}).get("shanghai",{}).get("requiredProjectIds",[])
+	future_plan.merge({"id":"acceptance-only-future","required":true,"dataStatus":"blueprint_ready","exactAlignment":"station_areas","projectIds":[str(real_project_ids[0])] if not real_project_ids.is_empty() else []},true)
 	Catalog._catalog.cities.shanghai.futurePlans=[future_plan]
 	Catalog._catalog.cities.shanghai.futureStatus="complete"
 	future_gate=WorldData.new_world("shanghai","campaign");future_gate.storyState.chapterIndex=published_ids.size()-1;future_gate.storyState.chapterId=str(published_ids.back());future_gate.storyState.stage="outcome";future_gate.storyState.completedChapterIds=published_ids.duplicate();Story.next_chapter(future_gate)
 	_check(str(future_gate.storyState.phase)=="future" and not bool(future_gate.storyState.freeUnlocked),"有已核验必做远期内容时先进入远期")
 	_check(str(Story.chapter(future_gate).get("id",""))=="acceptance-only-future","远期按稳定编号读取对应蓝图")
 	future_gate.storyState.stage="outcome";future_gate.storyState.completedChapterIds.append("acceptance-only-future");Story.next_chapter(future_gate)
-	_check(str(future_gate.mode)=="campaign" and not bool(Story.can_create_workshop_copy(future_gate)) and not bool(future_gate.storyState.freeUnlocked),"伪填完成标记不能绕过独立官方范围核对")
+	_check(str(future_gate.mode)=="campaign" and not bool(Story.can_create_workshop_copy(future_gate)) and not bool(future_gate.storyState.freeUnlocked),"伪填完成标记不能绕过实际项目几何核对")
 	var workshop_copy:=Story.create_workshop_copy(future_gate)
 	_check(workshop_copy.is_empty() and str(future_gate.mode)=="campaign","未满足完整交付资格时不生成假通关副本")
 	Catalog._catalog.cities.shanghai=original_city

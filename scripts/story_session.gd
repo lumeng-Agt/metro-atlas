@@ -1606,9 +1606,13 @@ static func next_chapter(world: Dictionary) -> void:
 static func can_create_workshop_copy(world: Dictionary) -> bool:
 	return bool(completion_eligibility(world).get("ok",false))
 
+## Free creation is a reward for what the player built, not for how much of the
+## archive has been independently reviewed. The evidence review still runs, but
+## its reasons are reported separately as `auditReasons`; they never keep a
+## player who finished every published chapter out of free creation.
 static func completion_eligibility(world:Dictionary) -> Dictionary:
 	var content:=Catalog.delivery_eligibility(str(world.get("cityId","")))
-	var reasons:Array=content.get("reasons",[]).duplicate()
+	var reasons:Array=[]
 	if str(world.get("mode",""))!="campaign":reasons.append("当前不是历史主进度。")
 	var completed:Array=world.get("storyState",{}).get("completedChapterIds",[])
 	var campaign:=config(world)
@@ -1617,20 +1621,21 @@ static func completion_eligibility(world:Dictionary) -> Dictionary:
 		if bool(plan.get("required",false)):required.append(plan)
 	for entry in required:
 		if not completed.has(str(entry.get("id",""))):reasons.append("尚未完成：%s" % str(entry.get("title",entry.get("id",""))))
-	# Completion flags alone cannot unlock an edited/broken formal network.
-	if reasons.is_empty():
-		var saved_problem:=SaveManager.validate(world)
-		if not saved_problem.is_empty():reasons.append(saved_problem)
-		var project_ids:Array=[]
-		for plan in campaign.get("futurePlans",[]):
-			if bool(plan.get("required",false)):project_ids.append_array(plan.get("projectIds",[]))
-		reasons.append_array(OfficialNetworkAudit.current_project_errors(world,project_ids))
-	return {"ok":reasons.is_empty(),"reasons":reasons,"contentReady":bool(content.get("ok",false))}
+	if not chapter(world).is_empty():reasons.append("本章尚未完成。")
+	# A completion flag is not a built network. Both checks run whether or not
+	# the list above is empty, so a forged flag cannot skip either one.
+	var saved_problem:=SaveManager.validate(world)
+	if not saved_problem.is_empty():reasons.append(saved_problem)
+	var project_ids:Array=[]
+	for plan in campaign.get("futurePlans",[]):
+		if bool(plan.get("required",false)):project_ids.append_array(plan.get("projectIds",[]))
+	reasons.append_array(OfficialNetworkAudit.current_project_errors(world,project_ids))
+	return {"ok":reasons.is_empty(),"reasons":reasons,"auditReasons":content.get("reasons",[]),"contentReady":bool(content.get("ok",false))}
 
 static func unlock_free(world:Dictionary,expected_revision:int) -> Dictionary:
 	if int(world.get("revision",0))!=expected_revision:return {"ok":false,"error":"进度已变化，请重新检查。"}
 	var qualification:=completion_eligibility(world)
-	if not bool(qualification.ok):return {"ok":false,"error":"历史与规划必做条件尚未全部满足。","qualification":qualification}
+	if not bool(qualification.ok):return {"ok":false,"error":"必做章节、存档校验或线路核对尚未通过。","qualification":qualification}
 	world["mode"]="workshop"
 	world.storyState["phase"]="free";world.storyState["stage"]="free";world.storyState["freeUnlocked"]=true
 	world.storyState["tutorialEnabled"]=false

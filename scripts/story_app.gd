@@ -1,6 +1,6 @@
 extends Control
 
-const BUILD_VERSION := "0.25.0 · 2026.10.23"
+const BUILD_VERSION := "0.26.0 · 2026.10.27"
 const SaveWriter = preload("res://scripts/save_coordinator.gd")
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
@@ -508,12 +508,12 @@ func _left() -> void:
 			left.add_child(label("可以在当前进度继续自由创作。已确认的历史记录和原存档身份会保留。",16))
 			left.add_child(button("进入自由创作",_unlock_free))
 		else:
-			if phase=="history_content_gap":
-				left.add_child(label("本版线路目标已浏览完",24,true))
-				left.add_child(label("这不代表五城逐期历史已完成。项目建设任务仍未全部制作；已保存路网不会因此丢失。",16))
-			else:
-				left.add_child(label("已完成截至日历史建设",24,true))
-				left.add_child(label("项目资料已登记，但自由创作要等必做项目建设章补齐并完成。",16))
+			var blocked:=Story.completion_eligibility(world)
+			var why:Array=blocked.get("reasons",[])
+			left.add_child(label("暂不能进入自由创作",24,true))
+			left.add_child(label(str(why[0]) if not why.is_empty() else "完成度校验未通过。",16))
+			if not bool(blocked.get("contentReady",true)):
+				left.add_child(label("另有资料核对未完成项，属内容缺项，不影响本版可玩范围。",16))
 		if phase in ["history_gap","history_content_gap","future_gap"]:
 			left.add_child(label("截至 2026-10-01 路网目录",18,true))
 			if not coverage.is_empty():
@@ -1196,7 +1196,7 @@ func _tool(value:String) -> void:
 	if value in ["station","track","line"] and str(world.get("mode",""))=="campaign" and str(Story.chapter(world).get("operationType",""))=="transfer_connection":
 		page="story";show_left=true;show_right=false;problem="本期只需连接既有站体。请点击左侧“预览并建立换乘”，无需重新建站或铺轨。";_refresh();return
 	if value!="select" and str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():
-		problem="当前资料已到边界。后续历史与远期蓝图核验完成后继续，自由创作尚未解锁。";_instruction();return
+		problem="当前资料已到边界，自由创作尚未解锁：请先完成本章结算与必做建设。";_instruction();return
 	# A construction tool must leave read-only comparison first. Otherwise the
 	# user sees an old proposal while the action guard correctly blocks editing,
 	# which looks like the station/track tool ignored the click.
@@ -1473,7 +1473,7 @@ func _commit_station() -> void:
 	show_left=true;show_right=false;_refresh()
 
 func _execute(title:String,mutation:Callable) -> void:
-	if str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():problem="当前已到资料边界，后续故事与自由创作尚未解锁；已确认路网保持不变。";_instruction();_right();return
+	if str(world.get("mode",""))=="campaign" and Story.chapter(world).is_empty():problem="当前已到资料边界，自由创作尚未解锁；已确认路网保持不变。";_instruction();_right();return
 	var fields:Array=["stations","stationComplexes","transferConnections","serviceRanges","trackNodes","trackEdges","trackLinks","routes"]
 	if title in ["采用历史修订方案","确认区间走向"]:fields=["storyPlan"]
 	elif title=="确认线路重组":fields=["storyPlan","storyState","routes","stations","trackEdges","trackLinks","transferConnections"]

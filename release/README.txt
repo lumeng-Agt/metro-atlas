@@ -8,7 +8,7 @@
 
 更新内容：压缩包内 update-notes-0.25.0.txt
 测试记录：压缩包内 test-record.txt
-性能记录：压缩包内 docs/performance-0.25.0.json（本版未测）
+性能记录：压缩包内 docs/performance-0.26.0.json（本版未重测，沿用 0.25.0 实测基线）
 迁移说明：压缩包内 docs/migration-25.md
 五城覆盖：压缩包内 docs/network-coverage-2026-10-01.md
 
