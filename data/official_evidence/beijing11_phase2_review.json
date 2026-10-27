@@ -1,0 +1,170 @@
+{
+  "cutoff": "2026-10-01",
+  "reviewedAt": "2026-10-27",
+  "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+  "approvalSource": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html",
+  "eiaSource": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+  "eiaPdfPages": [
+    35,
+    36,
+    37
+  ],
+  "eiaSha256": "f703ecadd5f4aa8af70c2876ad0bb4e072bc667a4f93d405bb70f1b9911f26c2",
+  "stationNames": [
+    "型材",
+    "锅炉厂南路",
+    "衙门口西",
+    "体育场南街",
+    "衙门口东",
+    "鲁谷大街",
+    "吴家村",
+    "小瓦窑",
+    "青塔",
+    "万丰路",
+    "莲花桥",
+    "北京西站",
+    "马连道",
+    "丽泽商务区"
+  ],
+  "existingConnectionStation": "新首钢",
+  "constructionScope": "14 new station facilities, including 2 civil reservations built by other projects",
+  "geographyPrecision": "road_area_estimates_600m_not_station_survey",
+  "metroTransfers": [
+    {
+      "id": "future-transfer-bj11phase2-beijing-f1b-tiyuchangnanjie-beijing-lineearly0",
+      "name": "体育场南街",
+      "complexId": "beijing-f1b-tiyuchangnanjie",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-lineearly0"
+      ],
+      "stationInstanceIds": [
+        "beijing-f1b-tiyuchangnanjie__line11-phase2",
+        "beijing-f1b-tiyuchangnanjie"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s189-beijing-line10-10",
+      "name": "莲花桥",
+      "complexId": "beijing-s189",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line10-10"
+      ],
+      "stationInstanceIds": [
+        "beijing-s189__line11-phase2",
+        "beijing-s189"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s215-beijing-line7-7",
+      "name": "北京西站",
+      "complexId": "beijing-s215",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line7-7"
+      ],
+      "stationInstanceIds": [
+        "beijing-s215__line11-phase2",
+        "beijing-s215__line7-7"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s215-beijing-line9-9",
+      "name": "北京西站",
+      "complexId": "beijing-s215",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line9-9"
+      ],
+      "stationInstanceIds": [
+        "beijing-s215__line11-phase2",
+        "beijing-s215__line9-9"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s287-beijing-line14-14",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line14-14"
+      ],
+      "stationInstanceIds": [
+        "beijing-s287__line11-phase2",
+        "beijing-s287__line14-14"
+      ],
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s287-beijing-line16-16",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line16-16"
+      ],
+      "stationInstanceIds": [
+        "beijing-s287__line11-phase2",
+        "beijing-s287__line16-16"
+      ],
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s287-beijing-route-21",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-route-21"
+      ],
+      "stationInstanceIds": [
+        "beijing-s287__line11-phase2",
+        "beijing-s287__line21"
+      ],
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    }
+  ],
+  "excludedBackgroundInterfaces": [
+    {
+      "station": "衙门口东",
+      "interface": "市郊铁路城市副中心线",
+      "reason": "主线范围为地铁，铁路不加入列车轨道图"
+    }
+  ],
+  "unresolvedInterfaces": [
+    {
+      "station": "丽泽商务区",
+      "interface": "丽金线",
+      "reason": "枢纽预留已公开；完整项目和换乘目标尚未纳入独立审核，保留缺项"
+    }
+  ],
+  "sourceConflicts": [
+    {
+      "station": "鲁谷大街",
+      "issue": "EIA table says ground three floors but whole line underground"
+    },
+    {
+      "station": "丽泽商务区",
+      "issue": "EIA standalone four-floor and later overall hub five-floor datums differ; no fabricated absolute depth"
+    }
+  ]
+}

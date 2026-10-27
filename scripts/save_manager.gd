@@ -99,6 +99,9 @@ static func validate(data: Dictionary) -> String:
 				for station in data.get("stations",[]):
 					if str(station.get("stationInstanceId",station.get("id","")))==serving_instance:serving_station_id=str(station.get("id",""));break
 				var matching_line_found:=false;var route_serves_station:=false
+				# One line can be stored as several explicit operating patterns.
+				# A pattern that does not stop at this body cannot stand in for the
+				# other pattern that does, so keep looking before failing.
 				for route in data.get("routes",[]):
 					if str(route.get("id",""))!=line_id and str(route.get("historicalLineId",""))!=line_id:continue
 					matching_line_found=true

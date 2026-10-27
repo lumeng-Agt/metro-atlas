@@ -415,6 +415,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		elif not segment_statuses.is_empty() and segment_statuses.all(func(status:String):return status=="suspended"):service_status="suspended"
 		var route := {"id":"historical_%s" % str(group.get("historicalLineId", group.get("name","line"))),"name":str(group.get("name","线路")),"color":str(group.get("color","#36769c")),"stationOrder":ids,"networkBased":true,"vehicleId":str(group.get("vehicleId",profile(world).get("vehicleId","historical-schematic"))),"open":any_open,"serviceStatus":service_status,"directions":[{"id":"forward","stationIds":ids,"edgePathsBySegment":paths,"serviceStatusBySegment":segment_statuses}],"historicalLineId":str(group.get("historicalLineId",group.get("name","line"))),"chapterId":str(ch.get("id",""))}
 		if bool(group.get("replaceExistingService",false)):route["replaceExistingService"]=true
+		if not str(group.get("servicePatternId","")).is_empty():route.directions[0]["servicePatternId"]=str(group.servicePatternId)
 		if bool(group.get("constructionVariant",false)):
 			route["constructionVariantId"]=str(group.get("taskId",group.get("coverageGroupId","")))
 			route["id"]+="_construction_"+str(route.constructionVariantId).sha256_text().substr(0,12)
@@ -584,7 +585,10 @@ static func task_scope_fingerprint(world:Dictionary,selected_task_id:String) -> 
 	var all_groups:=groups(world,true)
 	for index in range(all_groups.size()):
 		if task_id(ch,all_groups[index],index)==selected_task_id:
-			return Catalog.group_scope_fingerprint(all_groups[index])
+			var fingerprint:=Catalog.group_scope_fingerprint(all_groups[index])
+			var corrections:Array=ch.get("scopeCorrections",[]).filter(func(c:Dictionary):return str(c.get("taskId",""))==selected_task_id)
+			if not corrections.is_empty():fingerprint+=":corrections:"+JSON.stringify(corrections).sha256_text()
+			return fingerprint
 	return ""
 
 static func confirmed_task_count(world: Dictionary) -> int:
@@ -598,6 +602,11 @@ static func confirmed_task_count(world: Dictionary) -> int:
 	return count
 
 static func _merge_route_directions(existing_direction: Dictionary, incoming_direction: Dictionary) -> Dictionary:
+	# Explicit operating patterns may use different platforms at the same
+	# named station. Never reverse, concatenate or absorb one into the other.
+	var old_pattern:=str(existing_direction.get("servicePatternId",""))
+	var new_pattern:=str(incoming_direction.get("servicePatternId",""))
+	if (not old_pattern.is_empty() or not new_pattern.is_empty()) and old_pattern!=new_pattern:return {}
 	var old_ids: Array = existing_direction.get("stationIds", [])
 	var old_paths: Array = existing_direction.get("edgePathsBySegment", [])
 	var new_ids: Array = incoming_direction.get("stationIds", [])
@@ -723,7 +732,7 @@ static func _merge_historical_route(existing: Dictionary, incoming: Dictionary) 
 	# A complete closed circuit is authoritative for this line, rather than an
 	# extension to append to an earlier open circuit from the same project.
 	var incoming_order:Array=incoming.get("stationOrder",[])
-	if incoming_order.size()>2 and incoming_order.front()==incoming_order.back():return incoming.duplicate(true)
+	if incoming_order.size()>2 and incoming_order.front()==incoming_order.back() and not incoming.get("directions",[]).any(func(d:Dictionary):return not str(d.get("servicePatternId","")).is_empty()):return incoming.duplicate(true)
 	var result := existing.duplicate(true)
 	var old_directions: Array = result.get("directions", []).duplicate(true)
 	var new_directions: Array = incoming.get("directions", []).duplicate(true)
@@ -850,6 +859,7 @@ static func _store_historical_route(world: Dictionary, route: Dictionary) -> voi
 				var old_complexes:=_direction_complexes(world,old_direction)
 				var replaced:=false
 				for new_direction in route.get("directions",[]):
+					if str(old_direction.get("servicePatternId",""))!=str(new_direction.get("servicePatternId","")) and (not str(old_direction.get("servicePatternId","")).is_empty() or not str(new_direction.get("servicePatternId","")).is_empty()):continue
 					var new_complexes:=_direction_complexes(world,new_direction)
 					if old_complexes==new_complexes or _scope_contains(new_complexes,old_complexes):replaced=true;break
 				if not replaced:retained.append(old_direction)
@@ -1284,6 +1294,12 @@ static func commit_chapter(world: Dictionary, expected_revision: int, checked: D
 	state.milestones.append({"chapterId":str(ch.id),"date":str(ch.date),"title":str(ch.title),"planningDiff":delta,"source":str(ch.get("source","")),"assisted":bool(world.get("storyPlan",{}).get("assisted",false))})
 	world["milestoneBaseline"]=planning.duplicate(true)
 	state.completedChapterIds.append(str(ch.id))
+	# A chapter that was queued for reconfirmation has now been re-confirmed
+	# against the corrected network; keeping it pending would ask again forever.
+	if state.get("serviceReconfirmationIds",[]) is Array:
+		var still_pending:Array=state.get("serviceReconfirmationIds",[])
+		still_pending.erase(str(ch.id))
+		state["serviceReconfirmationIds"]=still_pending
 	var interval:Dictionary=Catalog.milestone_interval(str(world.get("cityId","")),str(ch.id))
 	var event_ids:Array=ch.get("historicalEventIds",[])
 	if event_ids.is_empty():event_ids=[str(ch.id)]

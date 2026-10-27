@@ -6,8 +6,8 @@
 
 | 城市 | 官方线路数／口径 | 地图线路条目 | 地图包独立站点 | 章节数 | 有建设目标章节 | 项目资料条目 | 可玩项目章 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| 上海 | 18 | 18 | 436 | 36 | 35 | 11 | 11 |
-| 北京 | 30 | 25 | 423 | 32 | 29 | 14 | 14 |
+| 上海 | 18 | 18 | 436 | 37 | 36 | 11 | 11 |
+| 北京 | 30 | 25 | 423 | 32 | 29 | 15 | 15 |
 | 广州 | 口径不等同 | 20 | 373 | 35 | 30 | 9 | 9 |
 | 深圳 | 17 | 17 | 364 | 27 | 23 | 13 | 12 |
 | 成都 | 16 | 16 | 375 | 39 | 32 | 7 | 5 |
@@ -47,7 +47,8 @@
 | 1995-04-10—1996-12-28 | 南延伸先行分段试运营 | 已有可玩章节 | 样章目标 1号线南延伸（分段试运营） |
 | 1996-12-28—1997-07-01 | 1号线贯通至莘庄 | 已有可玩章节 | 样章目标 1号线贯通段 |
 | 1997-07-01—2000-12-26 | 3号线一期（明珠线）开通 | 已有可玩章节 | 地图关系 shanghai-r3；样章目标 3号线一期 · 上海南站—江湾镇 |
-| 2000-12-26—2004-12-28 | 1号线北延伸段开通试运营 | 已有可玩章节 | 样章目标 1号线北延伸段 |
+| 2000-12-26—2003-11-25 | 5号线首开：莘庄至闵行开发区 | 已有可玩章节 | 地图关系 shanghai-r5；样章目标 5号线 · 莘庄—闵行开发区 |
+| 2003-11-25—2004-12-28 | 1号线北延伸段开通试运营 | 已有可玩章节 | 样章目标 1号线北延伸段 |
 | 2004-12-28—2006-12-18 | 3号线北延伸开通 | 已有可玩章节 | 地图关系 shanghai-r3；样章目标 3号线北延伸 · 江湾镇—江杨北路 |
 | 2006-12-18—2007-12-29 | 2007年成网：北延、闭环与浦东线首开 | 已有可玩章节 | 地图关系 shanghai-r1, shanghai-r4, shanghai-r6, shanghai-r8, shanghai-r9；样章目标 1号线 · 本期新增段1、1号线 · 本期新增段2、1号线 · 本期新增段3、1号线 · 本期新增段4、1号线 · 本期新增段5、4号线、6号线、9号线、8号线 |
 | 2007-12-29—2008-12-28 | 9号线接入宜山路 | 已有可玩章节 | 地图关系 shanghai-r9；样章目标 9号线 |
@@ -66,19 +67,19 @@
 | 2013-10-16—2015-12-19 | 11号线延伸至康新公路 | 已有可玩章节 | 地图关系 shanghai-r11；样章目标 11号线 · 嘉定北—康新公路、11号线 · 花桥—康新公路 |
 | 2015-12-19—2016-04-26 | 11号线迪士尼站开放 | 已有可玩章节 | 地图关系 shanghai-r11；样章目标 11号线 · 嘉定北—迪士尼、11号线 · 花桥—迪士尼 |
 | 2016-04-26—2017-12-30 | 17号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r17, shanghai-r9；样章目标 17号线、9号线 |
-| 2017-12-30—2018-12-30 | 5号线、12号线本期建设核对 | 已有可玩章节 | 地图关系 shanghai-r12, shanghai-r5；样章目标 5号线、12号线 |
+| 2017-12-30—2018-12-30 | 5号线南延伸：奉贤主线与东川支线 | 已有可玩章节 | 地图关系 shanghai-r12, shanghai-r5；样章目标 12号线、5号线 · 莘庄—奉贤新城、5号线 · 东川路—闵行开发区 |
 | 2018-12-30—2019-09-27 | 16号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r16；样章目标 16号线 |
 | 2019-09-27—2020-08-25 | 11号线运营线路增设陈翔公路 | 已有可玩章节 | 地图关系 shanghai-r11；样章目标 11号线 · 嘉定北—迪士尼、11号线 · 花桥—迪士尼 |
-| 2020-08-25—2020-12-26 | 2号线、10号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r10, shanghai-r2；样章目标 2号线、10号线、18号线 |
+| 2020-08-25—2020-12-26 | 5号线支线恢复直达与10号线延伸 | 已有可玩章节 | 地图关系 shanghai-r10, shanghai-r2, shanghai-r5；样章目标 2号线、10号线、18号线、5号线 · 莘庄—奉贤新城、5号线 · 莘庄—闵行开发区 |
 | 2020-12-26—2021-01-23 | 15号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r15；样章目标 15号线 |
 | 2021-01-23—2021-12-19 | 13号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r13；样章目标 13号线 |
 | 2021-12-19—2021-12-30 | 14号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r14；样章目标 14号线、18号线 |
 | 2021-12-30—2024-09-21 | 松江南站更名上海松江站 | 已有可玩章节 | 地图关系 shanghai-r9；样章目标 9号线 |
 | 2024-09-21—2024-09-28 | 11号线康恒路预留站开放 | 已有可玩章节 | 地图关系 shanghai-r11；样章目标 11号线 · 嘉定北—迪士尼、11号线 · 花桥—迪士尼 |
 | 2024-09-28—2025-12-27 | 18号线建设阶段 | 已有可玩章节 | 地图关系 shanghai-r18；样章目标 18号线二期宝山段 |
-| 2025-12-27—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 shanghai-r1, shanghai-r10, shanghai-r11, shanghai-r12, shanghai-r13, shanghai-r14, shanghai-r15, shanghai-r16, shanghai-r17, shanghai-r18, shanghai-r2, shanghai-r3, shanghai-r4, shanghai-r5, shanghai-r6, shanghai-r7, shanghai-r8, shanghai-r9；样章目标 1号线、2号线、3号线、4号线、5号线 · 莘庄—奉贤新城、5号线 · 莘庄—闵行开发区、6号线、7号线、8号线、9号线、10号线 · 虹桥火车站—基隆路、10号线 · 航中路—基隆路、11号线 · 花桥—迪士尼、11号线 · 嘉定北—迪士尼、12号线、13号线、14号线、15号线、16号线、17号线、18号线 |
+| 2025-12-27—2026-10-01 | 截至2026年10月1日 · 全网核对 | network_reconciliation_complete | 地图关系 shanghai-r1, shanghai-r10, shanghai-r11, shanghai-r12, shanghai-r13, shanghai-r14, shanghai-r15, shanghai-r16, shanghai-r17, shanghai-r18, shanghai-r2, shanghai-r3, shanghai-r4, shanghai-r5, shanghai-r6, shanghai-r7, shanghai-r8, shanghai-r9；样章目标 1号线、2号线、3号线、4号线外圈、4号线内圈、5号线 · 莘庄—奉贤新城、5号线 · 莘庄—闵行开发区、6号线、7号线、8号线、9号线、10号线 · 虹桥火车站—基隆路、10号线 · 航中路—基隆路、11号线 · 花桥—迪士尼、11号线 · 嘉定北—迪士尼、12号线、13号线、14号线、15号线、16号线、17号线、18号线 |
 
-历史事件索引 47 项；当前章节 36 个，其中含铺轨目标 35 个、纯历史节点 1 个、使用整条地图路线目标的章节 13 个。未进入任何章节的事件 0 项。
+历史事件索引 49 项；当前章节 37 个，其中含铺轨目标 36 个、纯历史节点 1 个、使用整条地图路线目标的章节 13 个。未进入任何章节的事件 0 项。
 
 ### 北京
 
@@ -88,7 +89,7 @@
 - [三条地铁新线开通首日](https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202512/t20251228_4370895.html)：2025年12月开通的17号线中段、18号线、6号线南延，以及30条运营线路统计。
 - [2026年北京市轨道交通建设安排](https://www.beijing.gov.cn/ywdt/gzdt/202601/t20260122_4455138.html)：2026年平谷线（22号线）计划及已开通网络里程口径。
 
-截止日建设／规划项目：登记 14 项，可玩建设章 14 项，仍待制作 0 项，另有 0 项政策／规划方向（可选）、0 项联络／扩能工程（不新增车站）。
+截止日建设／规划项目：登记 15 项，可玩建设章 15 项，仍待制作 0 项，另有 0 项政策／规划方向（可选）、0 项联络／扩能工程（不新增车站）。
 
 - [轨道交通22号线（平谷线）](https://zdb.beijing.gov.cn/zdxmjs/gdjtjs/202608/t20260825_4836149.html) · `在建` · 已有可玩建设任务：2026年8月仍在空载试运行，按截止日不计入已开通路网；线路跨北京与河北三河。
 - [M101线一期](https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202606/t20260611_4696243.html) · `在建` · 已有可玩建设任务：2026年一季度车站、区间和停车场均已开始施工。
@@ -104,6 +105,7 @@
 - [亦庄线台湖车辆段加站](https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html) · `截止日前已公开实施范围` · 已有可玩建设任务：从亦庄火车站沿既有入段走廊到试车线新增台湖站。公开工程运营里程约1.7公里，其中新建地面单线约0.3公里；游戏只复现公开连接及地面站，不恢复车辆段门槛，不把示意双向轨道说成实际双线。
 - [15号线新国展二期加站](https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm) · `截止日前已公开实施范围` · 已有可玩建设任务：在国展—花梨坎现有高架区间增设一站；站体形式采用批复和2026年9月环评公开描述，保留两座展馆连廊说明。连廊通往场馆，不是另一条地铁，不生成假换乘。站名“新国展二期”为工程称呼，成果为规划建设完成。
 - [首都机场线望京南加站与天桥换乘](https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html) · `截止日前已公开实施范围` · 已有可玩建设任务：沿既有机场线高架增设独立望京南站，分别核对去T3和由T2返回的共用干线，再明确建立与14号线的天桥联系。站厅、换乘层及站台层来自公开环评；高度为游戏示意。只完成建设方案，不提前开放该站。
+- [11号线二期：连接北京西站与丽泽](https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html) · `一体化方案已获批` · 已有可玩建设任务：复用一期新首钢接头，建设公开的14座新站及连续区间，建立1支线、10、7、9、14、16及机场线换乘。按已获批的一体化范围制作规划建设，不把招标计划当作开工或未来开通公告。衙门口东铁路接驳单列背景；丽金线整体另行核验，不伪造已运营线路。
 
 里程碑区间目录（标为‘内容待制作’的区间不能当作可玩章节）：
 
@@ -334,8 +336,8 @@
 | 1号线 `shanghai-r1` | 28 | 28 | 无 | shanghai-network-reconciliation-2026-10-01 (28), sh-line1-1997 (12), shanghai-historical-milestone-2004-12-28 (10) |
 | 2号线 `shanghai-r2` | 31 | 31 | 无 | shanghai-network-milestone-2020-12-26 (31), shanghai-network-reconciliation-2026-10-01 (31), shanghai-network-milestone-2020-12-26 (3) |
 | 3号线 `shanghai-r3` | 29 | 29 | 无 | shanghai-network-reconciliation-2026-10-01 (29), shanghai-network-milestone-2000-12-26 (19), shanghai-network-milestone-2006-12-18 (11) |
-| 4号线 `shanghai-r4` | 26 | 26 | 无 | shanghai-network-milestone-2007-12-29 (26), shanghai-network-reconciliation-2026-10-01 (26), shanghai-network-milestone-2000-12-26 (10) |
-| 5号线 `shanghai-r5` | 19 | 19 | 无 | shanghai-network-milestone-2018-12-30 (19), shanghai-network-reconciliation-2026-10-01 (15), shanghai-network-reconciliation-2026-10-01 (11) |
+| 4号线 `shanghai-r4` | 26 | 26 | 无 | shanghai-network-milestone-2007-12-29 (26), shanghai-network-reconciliation-2026-10-01 (26), shanghai-network-reconciliation-2026-10-01 (26) |
+| 5号线 `shanghai-r5` | 19 | 19 | 无 | shanghai-network-milestone-2018-12-30 (15), shanghai-network-milestone-2020-12-26 (15), shanghai-network-reconciliation-2026-10-01 (15) |
 | 6号线 `shanghai-r6` | 28 | 28 | 无 | shanghai-network-reconciliation-2026-10-01 (28), shanghai-network-milestone-2007-12-29 (27), shanghai-jiyang-rename-2011 (2) |
 | 7号线 `shanghai-r7` | 35 | 35 | 无 | shanghai-network-milestone-2011-12-28 (35), shanghai-network-reconciliation-2026-10-01 (33), shanghai-network-milestone-2020-12-26 (2) |
 | 8号线 `shanghai-r8` | 30 | 30 | 无 | shanghai-line8-art-2012 (30), shanghai-network-reconciliation-2026-10-01 (30), shanghai-jiyang-rename-2011 (29) |
@@ -357,6 +359,7 @@
 - `sh-line1-south-1996` 1996-12-28 · 1号线南延伸（分段试运营）：4个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
 - `sh-line1-1997` 1997-07-01 · 1号线贯通段：16个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
 - `shanghai-network-milestone-2000-12-26` 2000-12-26 · 3号线一期 · 上海南站—江湾镇：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-line5-first-2003` 2003-11-25 · 5号线 · 莘庄—闵行开发区：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-historical-milestone-2004-12-28` 2004-12-28 · 1号线北延伸段：10个目标站，线位等级 `station_area_approximation`，有章节／线路来源链接
 - `shanghai-network-milestone-2006-12-18` 2006-12-18 · 3号线北延伸 · 江湾镇—江杨北路：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2007-12-29` 2007-12-29 · 1号线 · 本期新增段1：4个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
@@ -395,14 +398,17 @@
 - `shanghai-line11-disney-2016` 2016-04-26 · 11号线 · 花桥—迪士尼：35个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2017-12-30` 2017-12-30 · 17号线：14个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2017-12-30` 2017-12-30 · 9号线：10个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `shanghai-network-milestone-2018-12-30` 2018-12-30 · 5号线：19个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2018-12-30` 2018-12-30 · 12号线：33个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2018-12-30` 2018-12-30 · 5号线 · 莘庄—奉贤新城：15个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2018-12-30` 2018-12-30 · 5号线 · 东川路—闵行开发区：5个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2019-09-27` 2019-09-27 · 16号线：13个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-line11-chenxiang-2020` 2020-08-25 · 11号线 · 嘉定北—迪士尼：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-line11-chenxiang-2020` 2020-08-25 · 11号线 · 花桥—迪士尼：36个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2020-12-26` 2020-12-26 · 2号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2020-12-26` 2020-12-26 · 10号线：37个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2020-12-26` 2020-12-26 · 18号线：8个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2020-12-26` 2020-12-26 · 5号线 · 莘庄—奉贤新城：15个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-milestone-2020-12-26` 2020-12-26 · 5号线 · 莘庄—闵行开发区：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2021-01-23` 2021-01-23 · 15号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2021-12-19` 2021-12-19 · 13号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-milestone-2021-12-30` 2021-12-30 · 14号线：32个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
@@ -414,7 +420,8 @@
 - `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 1号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 2号线：31个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 3号线：29个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
-- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 4号线：26个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 4号线外圈：26个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
+- `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 4号线内圈：26个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 5号线 · 莘庄—奉贤新城：15个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 5号线 · 莘庄—闵行开发区：11个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接
 - `shanghai-network-reconciliation-2026-10-01` 2026-10-01 · 6号线：28个目标站，线位等级 `station_areas_and_approximate_corridor`，有章节／线路来源链接

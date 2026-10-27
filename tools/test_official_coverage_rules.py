@@ -6,6 +6,28 @@ from engineering_scope import coverage_errors as engineering_errors
 
 
 class CoverageRules(unittest.TestCase):
+    def test_later_shanghai_interchange_tasks_keep_guarded_shared_body_corrections(self):
+        chapters=read(ROOT/'data/campaigns.json')['cities']['shanghai']['chapters']
+        checked=0
+        for chapter in chapters:
+            tasks={g['taskId'] for g in chapter.get('lineGroups',[]) if 'taskId' in g}
+            for pair in chapter.get('requiredTransfers',[]):
+                if 'shanghai-line4-4' not in pair.get('lineIds',[]) or not pair.get('physicalSharingSource'):continue
+                position=pair['lineIds'].index('shanghai-line4-4')
+                wanted=pair['stationInstanceIds'][position]
+                matches=[c for c in chapter.get('scopeCorrections',[]) if c.get('transferId')==pair['id'] and any(b.get('newStationInstanceId')==wanted for b in c.get('bodyRebindings',[]))]
+                self.assertEqual(len(matches),1,(chapter['id'],pair['id']))
+                self.assertIn(matches[0]['taskId'],tasks)
+                checked+=1
+        self.assertGreater(checked,5)
+
+    def test_baoshan_directional_platform_rule_cannot_be_removed(self):
+        network=read(ROOT/'data/official_targets_2026-10-01.json')['cities']['shanghai']['cutoffNetwork']
+        self.assertFalse(any('directional' in error for error in cutoff_evidence_errors(network,'2026-10-01')))
+        broken=copy.deepcopy(network)
+        broken['sharedRunningSections'][0]['directionalStationRules']=[]
+        self.assertTrue(any('directional' in error for error in cutoff_evidence_errors(broken,'2026-10-01')))
+
     def test_beijing19_same_id_does_not_excuse_a_wrong_physical_counterpart(self):
         city=read(ROOT/'data/official_targets_2026-10-01.json')['cities']['beijing']
         target=next(p for p in city['projects'] if p['id']=='bj-line19-north-phase2')

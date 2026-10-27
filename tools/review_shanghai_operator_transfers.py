@@ -74,7 +74,16 @@ def main():
     raw=checkpoint.read_bytes();world=json.loads(raw)
     if world.get('cityId')!='shanghai' or not args.output:parser.error('Shanghai checkpoint and output required')
     pairs=[(p['stationName'],*p['lineIds']) for p in evidence['pairs']]
-    report=audit_pairs(world,pairs,evidence,{'新天地':'一大会址·新天地','黄陂南路':'一大会址·黄陂南路'})
+    sharing=json.loads((ROOT/'data/official_evidence/shanghai34_shared_running_review.json').read_text(encoding='utf-8'))
+    rule=sharing['physicalRequirement']
+    if not rule.get('source','').startswith('https://') or not sharing.get('platformChangeSource','').startswith('https://'):raise ValueError('Independent physical-sharing evidence required')
+    shared={(name,*sorted((rule['physicalLineId'],rule['serviceLineId']))) for name in rule['stationNames']}
+    permission={(rule['physicalLineId'],rule['serviceLineId'],name) for name in rule['stationNames']}
+    # Raw operator colour masks describe service relationships, not nine
+    # independent pedestrian passages. Baoshan's split platform remains one.
+    report=audit_pairs(world,[p for p in pairs if p not in shared],evidence,{'新天地':'一大会址·新天地','黄陂南路':'一大会址·黄陂南路'},permission)
+    report.update(rawOperatorPairClaims=len(pairs),sharedPhysicalStopPairs=len(shared),
+        sharedRunningRequiresSeparateGeometryAudit=True,physicalSharingEvidence='res://data/official_evidence/shanghai34_shared_running_review.json')
     report.update(checkpointSha256=hashlib.sha256(raw).hexdigest(),evidenceSha256=hashlib.sha256(EVIDENCE.read_bytes()).hexdigest())
     args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print('SHANGHAI_TRANSFER',report['matchedPairs'],'/',report['expectedPairs'],'matched;',len(report['invalidConnections']),'invalid')

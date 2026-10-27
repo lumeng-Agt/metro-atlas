@@ -128,10 +128,14 @@ def cutoff_evidence_errors(network, cutoff_date):
         errors.append('cutoff shared-running geometry not independently reviewed')
     shared_evidence=network.get('sharedRunningEvidence',[])
     for pair in {(s.get('physicalLineId'),s.get('serviceLineId')) for s in shared_evidence}:
-        expected={s.get('stationName') for s in shared_evidence if (s.get('physicalLineId'),s.get('serviceLineId'))==pair}
+        expected={s.get('stationName') for s in shared_evidence if (s.get('physicalLineId'),s.get('serviceLineId'))==pair and s.get('sharing')!='directional'}
         rules=[s for s in network.get('sharedRunningSections',[]) if (s.get('physicalLineId'),s.get('serviceLineId'))==pair]
         if len(rules)!=1 or set(rules[0].get('stationNames',[]))!=expected or len(rules[0].get('stationNames',[]))!=len(expected) or not str(rules[0].get('source','')).startswith('https://'):
             errors.append('independent shared-running physical scope missing or incomplete')
+        for directional in [s for s in shared_evidence if (s.get('physicalLineId'),s.get('serviceLineId'))==pair and s.get('sharing')=='directional']:
+            matches=[r for section in rules for r in section.get('directionalStationRules',[]) if r.get('stationName')==directional.get('stationName')]
+            if len(matches)!=1 or any(matches[0].get(key)!=directional.get(key) for key in ['sharedPatternId','independentPatternId']) or not str(matches[0].get('source','')).startswith('https://'):
+                errors.append('independent directional shared-platform scope missing or incomplete')
     evidence = network.get('temporalEvidence', [])
     if not evidence:
         errors.append('dated cutoff opening evidence missing')

@@ -72,6 +72,7 @@ static func project_errors(world:Dictionary,project:Dictionary) -> Array[String]
 			if bool(route.get("retired",false)) or (required_status.is_empty() and not construction_only and not bool(route.get("open",true))):continue
 			if str(route.get("historicalLineId",""))!=line_id:continue
 			for direction in route.get("directions",[]):
+				if not str(expected.get("servicePatternId","")).is_empty() and str(direction.get("servicePatternId",""))!=str(expected.servicePatternId):continue
 				var ids:Array=direction.get("stationIds",[])
 				var names:Array=[]
 				for id in ids:

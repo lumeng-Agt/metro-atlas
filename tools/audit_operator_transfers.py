@@ -32,7 +32,7 @@ def expected_pairs(evidence):
     return sorted(pairs)
 
 
-def audit_pairs(world,expected,evidence,aliases=None):
+def audit_pairs(world,expected,evidence,aliases=None,shared_body_claims=()):
     aliases=aliases or {}
     by_instance={s.get('stationInstanceId',s['id']):s for s in world.get('stations',[])}
     served=set()
@@ -50,7 +50,9 @@ def audit_pairs(world,expected,evidence,aliases=None):
             sa=by_instance.get(instances[a],{});sb=by_instance.get(instances[b],{})
             if not sa or not sb or instances[a]==instances[b]:
                 invalid.append(dict(id=connection.get('id'),reason='missing or shared physical body'));continue
-            if any(s.get('stationLineId')!=line for s,line in [(sa,lines[a]),(sb,lines[b])]):
+            if any(s.get('stationLineId')!=line and
+                   (s.get('stationLineId'),line,aliases.get(s.get('name'),s.get('name'))) not in shared_body_claims
+                   for s,line in [(sa,lines[a]),(sb,lines[b])]):
                 invalid.append(dict(id=connection.get('id'),reason='body belongs to another physical line'));continue
             if any((line,s['id']) not in served for s,line in [(sa,lines[a]),(sb,lines[b])]):
                 non_open.append(dict(id=connection.get('id'),reason='construction relationship has no current open service'));continue

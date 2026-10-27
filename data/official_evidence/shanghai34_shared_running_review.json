@@ -1,0 +1,70 @@
+{
+  "cutoff": "2026-10-01",
+  "reviewedAt": "2026-10-26",
+  "commonSectionSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+  "platformChangeSource": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html",
+  "effectiveDate": "2026-02-22",
+  "fullSharedStationNames": [
+    "虹桥路",
+    "延安西路",
+    "中山公园",
+    "金沙江路",
+    "曹杨路",
+    "镇坪路",
+    "中潭路",
+    "上海火车站"
+  ],
+  "partialSharedStationName": "宝山路",
+  "sourcePlatforms": [
+    {
+      "platform": 1,
+      "services": [
+        "4号线外圈"
+      ],
+      "sharing": "independent_track"
+    },
+    {
+      "platform": 2,
+      "services": [
+        "3号线往上海南站"
+      ]
+    },
+    {
+      "platform": 3,
+      "services": [
+        "3号线往江杨北路",
+        "4号线内圈"
+      ]
+    }
+  ],
+  "physicalRequirement": {
+    "id": "shanghai34-common-2026",
+    "physicalLineId": "shanghai-line3-3",
+    "serviceLineId": "shanghai-line4-4",
+    "stationNames": [
+      "虹桥路",
+      "延安西路",
+      "中山公园",
+      "金沙江路",
+      "曹杨路",
+      "镇坪路",
+      "中潭路",
+      "上海火车站"
+    ],
+    "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+    "directionalStationRules": [
+      {
+        "stationName": "宝山路",
+        "precedingStationName": "上海火车站",
+        "sharedPatternId": "sh4-inner-2026",
+        "independentPatternId": "sh4-outer-2026",
+        "sharedStationInstanceId": "shanghai-s45__line3-3",
+        "independentStationInstanceId": "shanghai-s45__line4-4",
+        "source": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html",
+        "effectiveDate": "2026-02-22"
+      }
+    ]
+  },
+  "reviewStatus": "awaiting_actual_replay",
+  "note": "宜山路3/4站体分离，不纳入共轨。原旧版重复站体和轨道不擅自删除；来源只证明真实拓扑，不宣称中心线/新增站台尺寸已测绘。"
+}

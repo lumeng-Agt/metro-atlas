@@ -21,6 +21,14 @@ def world():
 
 
 class OperatorTransferAudit(unittest.TestCase):
+    def test_source_defined_shared_body_owner_still_requires_the_actual_service(self):
+        value=world();value['stations'][1]['stationLineId']='physical-owner'
+        pair=[('示例站','guangzhou-line1','guangzhou-line2-2')]
+        claims={('physical-owner','guangzhou-line2-2','示例站')}
+        self.assertEqual(audit_pairs(value,pair,evidence(),shared_body_claims=claims)['matchedPairs'],1)
+        value['routes'][1]['directions']=[]
+        self.assertEqual(audit_pairs(value,pair,evidence(),shared_body_claims=claims)['matchedPairs'],0)
+
     def test_duplicate_direction_claim_is_one_pair(self):
         report=audit(world(),evidence())
         self.assertEqual(report['expectedPairs'],2)  # 1/2 and 1/3; outside-scope 15 excluded.

@@ -901,6 +901,159 @@
           "eventOnly": false
         },
         {
+          "id": "shanghai-line5-first-2003",
+          "phase": "history",
+          "date": "2003-11-25",
+          "title": "5号线首开：莘庄至闵行开发区",
+          "lineGroups": [
+            {
+              "taskId": "opening:sh5:2003-11-25:pattern-1",
+              "mapRouteId": "shanghai-r5",
+              "name": "5号线 · 莘庄—闵行开发区",
+              "stationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s213",
+                "shanghai-s212",
+                "shanghai-s211",
+                "shanghai-s210"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "开通及交路变更按同期报道和交通委公告核对；近似地理走廊不代表测绘。2018支线在东川路折返，2020才恢复莘庄直达。",
+              "historicalLineId": "shanghai-line5-5",
+              "color": "#AC4FC6",
+              "stationOrderSource": "https://news.sina.cn/sa/2003-11-26/detail-ikkntiak8685403.d.html?vt=4",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "shanghai-s128": "shanghai-s128__line5-5",
+                "shanghai-s219": "shanghai-s219",
+                "shanghai-s218": "shanghai-s218",
+                "shanghai-s217": "shanghai-s217",
+                "shanghai-s216": "shanghai-s216",
+                "shanghai-s215": "shanghai-s215",
+                "shanghai-s214": "shanghai-s214",
+                "shanghai-s213": "shanghai-s213",
+                "shanghai-s212": "shanghai-s212",
+                "shanghai-s211": "shanghai-s211",
+                "shanghai-s210": "shanghai-s210"
+              },
+              "stationNames": {
+                "shanghai-s128": "莘庄",
+                "shanghai-s219": "春申路",
+                "shanghai-s218": "银都路",
+                "shanghai-s217": "颛桥",
+                "shanghai-s216": "北桥",
+                "shanghai-s215": "剑川路",
+                "shanghai-s214": "东川路",
+                "shanghai-s213": "金平路",
+                "shanghai-s212": "华宁路",
+                "shanghai-s211": "文井路",
+                "shanghai-s210": "闵行开发区"
+              },
+              "coverageGroupId": "sh5:2003-11-25:pattern-1",
+              "replaceExistingService": true,
+              "loop": false,
+              "constructionScope": "dated_service_patterns",
+              "sourceStationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s213",
+                "shanghai-s212",
+                "shanghai-s211",
+                "shanghai-s210"
+              ],
+              "constructionScopeNote": "有来源的完整时期交路，复用已建站轨；不模拟发车。",
+              "reconfirmLaterServices": true,
+              "retainDocumentedFutureService": false,
+              "servicePathRevision": "2026.10.27.1"
+            }
+          ],
+          "requireOpen": true,
+          "eventText": "2003-11-25，5号线首开：莘庄至闵行开发区。先复用既有站体，再核对本期两端及支线关系；不能把两个分支串成经过莘庄折返的单一路径。",
+          "precision": "station_areas",
+          "source": "https://news.sina.cn/sa/2003-11-26/detail-ikkntiak8685403.d.html?vt=4",
+          "sourceTitle": "5号线同期首开报道及上海市交通委2020年交路变更公告",
+          "sourceCheckedAt": "2026-10-27",
+          "sourceType": "government_or_operator_route_inventory_and_opening_records",
+          "status": "operated",
+          "geometryStatus": "station_area_approximation",
+          "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
+          "sourcePublicationDate": "2003-11-26",
+          "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
+          "story": {
+            "opening": "2003-11-25，5号线首开：莘庄至闵行开发区。先复用既有站体，再核对本期两端及支线关系；不能把两个分支串成经过莘庄折返的单一路径。",
+            "purpose": "按实际时期的连接关系建设；2018年支线独立折返，2020年线路关系调整后才直达莘庄。",
+            "outcome": "本期站体、区间及线路关系已确认；后续历史另列任务。",
+            "eventKind": "network_expansion",
+            "steps": [
+              {
+                "id": "intro",
+                "action": "read_context"
+              },
+              {
+                "id": "build",
+                "action": "use_construction_tools"
+              },
+              {
+                "id": "check",
+                "action": "validate_official_scope"
+              },
+              {
+                "id": "opening",
+                "action": "confirm_historical_event"
+              },
+              {
+                "id": "outcome",
+                "action": "continue_story"
+              }
+            ],
+            "beats": [],
+            "planVersions": []
+          },
+          "operationType": "extension",
+          "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
+          "historicalEventIds": [
+            "reviewed-sh5:2003-11-25"
+          ],
+          "routeMilestoneIds": [
+            "shanghai-r6"
+          ],
+          "chapterScope": "dated_opening_ranges",
+          "routeTargetCount": 1,
+          "requiredTransfers": [],
+          "eventOnly": false,
+          "scopeRevision": "2026.10.27.1",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": [
+            {
+              "id": "defer-sh5:future-transfer-line15s-wangyuanlu",
+              "taskId": "opening:sh5:2003-11-25:pattern-1",
+              "transferId": "future-transfer-line15s-wangyuanlu",
+              "oldLineIds": [
+                "shanghai-line5-5",
+                "shanghai-line15-15"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s358",
+                "shanghai-s358__line15-15"
+              ],
+              "source": "https://news.sina.cn/sa/2003-11-26/detail-ikkntiak8685403.d.html?vt=4",
+              "description": "该5号线站体不在2003首开范围；保留建设及旧联系记录，待后续规划任务明确重新确认。"
+            }
+          ],
+          "serviceTransitions": []
+        },
+        {
           "id": "shanghai-historical-milestone-2004-12-28",
           "phase": "history",
           "date": "2004-12-28",
@@ -1436,15 +1589,15 @@
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "shanghai-s54": "shanghai-s54__line4-4",
-                "shanghai-s53": "shanghai-s53__line4-4",
-                "shanghai-s52": "shanghai-s52__line4-4",
-                "shanghai-s51": "shanghai-s51__line4-4",
-                "shanghai-s50": "shanghai-s50__line4-4",
-                "shanghai-s49": "shanghai-s49__line4-4",
-                "shanghai-s48": "shanghai-s48__line4-4",
-                "shanghai-s47": "shanghai-s47__line4-4",
-                "shanghai-s46": "shanghai-s46__line4-4",
-                "shanghai-s45": "shanghai-s45__line4-4",
+                "shanghai-s53": "shanghai-s53__line3-3",
+                "shanghai-s52": "shanghai-s52__line3-3",
+                "shanghai-s51": "shanghai-s51__line3-3",
+                "shanghai-s50": "shanghai-s50__line3-3",
+                "shanghai-s49": "shanghai-s49__line3-3",
+                "shanghai-s48": "shanghai-s48__line3-3",
+                "shanghai-s47": "shanghai-s47__line3-3",
+                "shanghai-s46": "shanghai-s46__line3-3",
+                "shanghai-s45": "shanghai-s45__line3-3",
                 "shanghai-s59": "shanghai-s59__line4-4",
                 "shanghai-s61": "shanghai-s61__line4-4",
                 "shanghai-s63": "shanghai-s63__line4-4",
@@ -1454,7 +1607,8 @@
                 "shanghai-s70": "shanghai-s70__line4-4",
                 "shanghai-s71": "shanghai-s71__line4-4",
                 "shanghai-s73": "shanghai-s73__line4-4"
-              }
+              },
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "taskId": "opening:sh6-first",
@@ -1759,150 +1913,6 @@
           "routeTargetCount": 2,
           "requiredTransfers": [
             {
-              "id": "historic-transfer-shanghai-s45-line3-3-line4-4",
-              "name": "宝山路",
-              "complexId": "shanghai-s45",
-              "stationInstanceIds": [
-                "shanghai-s45__line3-3",
-                "shanghai-s45__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s46-line3-3-line4-4",
-              "name": "上海火车站",
-              "complexId": "shanghai-s46",
-              "stationInstanceIds": [
-                "shanghai-s46__line3-3",
-                "shanghai-s46__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s47-line3-3-line4-4",
-              "name": "中潭路",
-              "complexId": "shanghai-s47",
-              "stationInstanceIds": [
-                "shanghai-s47__line3-3",
-                "shanghai-s47__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s48-line3-3-line4-4",
-              "name": "镇坪路",
-              "complexId": "shanghai-s48",
-              "stationInstanceIds": [
-                "shanghai-s48__line3-3",
-                "shanghai-s48__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s49-line3-3-line4-4",
-              "name": "曹杨路",
-              "complexId": "shanghai-s49",
-              "stationInstanceIds": [
-                "shanghai-s49__line3-3",
-                "shanghai-s49__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s50-line3-3-line4-4",
-              "name": "金沙江路",
-              "complexId": "shanghai-s50",
-              "stationInstanceIds": [
-                "shanghai-s50__line3-3",
-                "shanghai-s50__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s51-line3-3-line4-4",
-              "name": "中山公园",
-              "complexId": "shanghai-s51",
-              "stationInstanceIds": [
-                "shanghai-s51__line3-3",
-                "shanghai-s51__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s52-line3-3-line4-4",
-              "name": "延安西路",
-              "complexId": "shanghai-s52",
-              "stationInstanceIds": [
-                "shanghai-s52__line3-3",
-                "shanghai-s52__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s53-line3-3-line4-4",
-              "name": "虹桥路",
-              "complexId": "shanghai-s53",
-              "stationInstanceIds": [
-                "shanghai-s53__line3-3",
-                "shanghai-s53__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
-            },
-            {
               "id": "historic-transfer-shanghai-s54-line3-3-line4-4",
               "name": "宜山路",
               "complexId": "shanghai-s54",
@@ -2016,7 +2026,7 @@
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.24.26",
+          "scopeRevision": "2026.10.26.13",
           "requiresScopeRecheck": true,
           "scopeCorrections": [
             {
@@ -2243,6 +2253,132 @@
               ],
               "source": "https://vic.sina.com.cn/20071228/09261146.shtml",
               "description": "不属于8号线2007首开范围；保留物理站轨，在其所属后续节点重新确认。"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s45-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s45__line3-3",
+                "shanghai-s45__line4-4"
+              ],
+              "description": "宝山路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s46-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s46__line3-3",
+                "shanghai-s46__line4-4"
+              ],
+              "description": "上海火车站：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s47-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s47__line3-3",
+                "shanghai-s47__line4-4"
+              ],
+              "description": "中潭路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s48-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s48__line3-3",
+                "shanghai-s48__line4-4"
+              ],
+              "description": "镇坪路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s49-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s49__line3-3",
+                "shanghai-s49__line4-4"
+              ],
+              "description": "曹杨路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s50-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s50__line3-3",
+                "shanghai-s50__line4-4"
+              ],
+              "description": "金沙江路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s51-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s51__line3-3",
+                "shanghai-s51__line4-4"
+              ],
+              "description": "中山公园：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s52-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s52__line3-3",
+                "shanghai-s52__line4-4"
+              ],
+              "description": "延安西路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4",
+              "transferId": "historic-transfer-shanghai-s53-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s53__line3-3",
+                "shanghai-s53__line4-4"
+              ],
+              "description": "虹桥路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             }
           ]
         },
@@ -2731,7 +2867,7 @@
               "name": "曹杨路",
               "complexId": "shanghai-s49",
               "stationInstanceIds": [
-                "shanghai-s49__line4-4",
+                "shanghai-s49__line3-3",
                 "shanghai-s49__line11-11"
               ],
               "lineIds": [
@@ -2740,11 +2876,12 @@
               ],
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.24.33",
+          "scopeRevision": "2026.10.26.13",
           "requiresScopeRecheck": true,
           "scopeCorrections": [
             {
@@ -2855,6 +2992,23 @@
               ],
               "source": "https://news.sina.com.cn/c/2009-12-31/163619378128.shtml",
               "description": "此11号线站体不属于2009年首开范围；保留物理建设及原联系记录，在其对应的后续开放或规划节点重新确认。"
+            },
+            {
+              "taskId": "opening:sh11-first:pattern-1",
+              "transferId": "historic-transfer-shanghai-s49-line4-4-line11-11",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line11-11"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s49__line4-4",
+                  "newStationInstanceId": "shanghai-s49__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "曹杨路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
             }
           ],
           "serviceTransitions": []
@@ -6065,43 +6219,8 @@
           "id": "shanghai-network-milestone-2018-12-30",
           "phase": "history",
           "date": "2018-12-30",
-          "title": "5号线、12号线本期建设核对",
+          "title": "5号线南延伸：奉贤主线与东川支线",
           "lineGroups": [
-            {
-              "taskId": "route:shanghai-r5",
-              "mapRouteId": "shanghai-r5",
-              "name": "5号线",
-              "stationIds": [
-                "shanghai-s210",
-                "shanghai-s211",
-                "shanghai-s212",
-                "shanghai-s213",
-                "shanghai-s214",
-                "shanghai-s215",
-                "shanghai-s216",
-                "shanghai-s217",
-                "shanghai-s218",
-                "shanghai-s219",
-                "shanghai-s128",
-                "shanghai-s356",
-                "shanghai-s357",
-                "shanghai-s358",
-                "shanghai-s359",
-                "shanghai-s360",
-                "shanghai-s361",
-                "shanghai-s362",
-                "shanghai-s363"
-              ],
-              "toleranceM": 220,
-              "precisionNote": "站区参考来自当前公开站点资料；站间中心线为离线地图近似走廊，不代表隧道测绘。",
-              "historicalLineId": "shanghai-line5-5",
-              "color": "#AC4FC6",
-              "stationOrderSource": "Bundled OpenStreetMap subway relation order; city official station sequence and phase-by-phase opening scope have not yet been reconciled for every route",
-              "alignmentPrecision": "station_areas_and_approximate_corridor",
-              "stationInstances": {
-                "shanghai-s128": "shanghai-s128__line5-5"
-              }
-            },
             {
               "taskId": "route:shanghai-r12",
               "mapRouteId": "shanghai-r12",
@@ -6163,24 +6282,158 @@
                 "shanghai-s203": "shanghai-s203__line12-12",
                 "shanghai-s157": "shanghai-s157__line12-12"
               }
+            },
+            {
+              "taskId": "opening:sh5:2018-12-30:pattern-1",
+              "mapRouteId": "shanghai-r5",
+              "name": "5号线 · 莘庄—奉贤新城",
+              "stationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s363",
+                "shanghai-s362",
+                "shanghai-s361",
+                "shanghai-s360",
+                "shanghai-s359",
+                "shanghai-s358",
+                "shanghai-s357",
+                "shanghai-s356"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "开通及交路变更按同期报道和交通委公告核对；近似地理走廊不代表测绘。2018支线在东川路折返，2020才恢复莘庄直达。",
+              "historicalLineId": "shanghai-line5-5",
+              "color": "#AC4FC6",
+              "stationOrderSource": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "shanghai-s128": "shanghai-s128__line5-5",
+                "shanghai-s219": "shanghai-s219",
+                "shanghai-s218": "shanghai-s218",
+                "shanghai-s217": "shanghai-s217",
+                "shanghai-s216": "shanghai-s216",
+                "shanghai-s215": "shanghai-s215",
+                "shanghai-s214": "shanghai-s214",
+                "shanghai-s363": "shanghai-s363",
+                "shanghai-s362": "shanghai-s362",
+                "shanghai-s361": "shanghai-s361",
+                "shanghai-s360": "shanghai-s360",
+                "shanghai-s359": "shanghai-s359",
+                "shanghai-s358": "shanghai-s358",
+                "shanghai-s357": "shanghai-s357",
+                "shanghai-s356": "shanghai-s356"
+              },
+              "stationNames": {
+                "shanghai-s128": "莘庄",
+                "shanghai-s219": "春申路",
+                "shanghai-s218": "银都路",
+                "shanghai-s217": "颛桥",
+                "shanghai-s216": "北桥",
+                "shanghai-s215": "剑川路",
+                "shanghai-s214": "东川路",
+                "shanghai-s363": "江川路",
+                "shanghai-s362": "西渡",
+                "shanghai-s361": "萧塘",
+                "shanghai-s360": "奉浦大道",
+                "shanghai-s359": "环城东路",
+                "shanghai-s358": "望园路",
+                "shanghai-s357": "金海湖",
+                "shanghai-s356": "奉贤新城"
+              },
+              "coverageGroupId": "sh5:2018-12-30:pattern-1",
+              "replaceExistingService": true,
+              "loop": false,
+              "constructionScope": "dated_service_patterns",
+              "sourceStationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s363",
+                "shanghai-s362",
+                "shanghai-s361",
+                "shanghai-s360",
+                "shanghai-s359",
+                "shanghai-s358",
+                "shanghai-s357",
+                "shanghai-s356"
+              ],
+              "constructionScopeNote": "有来源的完整时期交路，复用已建站轨；不模拟发车。",
+              "reconfirmLaterServices": true,
+              "retainDocumentedFutureService": false,
+              "servicePathRevision": "2026.10.27.1"
+            },
+            {
+              "taskId": "opening:sh5:2018-12-30:pattern-2",
+              "mapRouteId": "shanghai-r5",
+              "name": "5号线 · 东川路—闵行开发区",
+              "stationIds": [
+                "shanghai-s214",
+                "shanghai-s213",
+                "shanghai-s212",
+                "shanghai-s211",
+                "shanghai-s210"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "开通及交路变更按同期报道和交通委公告核对；近似地理走廊不代表测绘。2018支线在东川路折返，2020才恢复莘庄直达。",
+              "historicalLineId": "shanghai-line5-5",
+              "color": "#AC4FC6",
+              "stationOrderSource": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "shanghai-s214": "shanghai-s214",
+                "shanghai-s213": "shanghai-s213",
+                "shanghai-s212": "shanghai-s212",
+                "shanghai-s211": "shanghai-s211",
+                "shanghai-s210": "shanghai-s210"
+              },
+              "stationNames": {
+                "shanghai-s214": "东川路",
+                "shanghai-s213": "金平路",
+                "shanghai-s212": "华宁路",
+                "shanghai-s211": "文井路",
+                "shanghai-s210": "闵行开发区"
+              },
+              "coverageGroupId": "sh5:2018-12-30:pattern-2",
+              "replaceExistingService": false,
+              "loop": false,
+              "constructionScope": "dated_service_patterns",
+              "sourceStationIds": [
+                "shanghai-s214",
+                "shanghai-s213",
+                "shanghai-s212",
+                "shanghai-s211",
+                "shanghai-s210"
+              ],
+              "constructionScopeNote": "有来源的完整时期交路，复用已建站轨；不模拟发车。",
+              "reconfirmLaterServices": true,
+              "retainDocumentedFutureService": false,
+              "servicePathRevision": "2026.10.27.1"
             }
           ],
           "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
+          "eventText": "2018-12-30，5号线南延伸：奉贤主线与东川支线。先复用既有站体，再核对本期两端及支线关系；不能把两个分支串成经过莘庄折返的单一路径。",
           "precision": "station_areas",
-          "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-          "sourceTitle": "上海地铁全网首末班车时刻表（2026年4月）",
-          "sourceCheckedAt": "2026-10-20",
+          "source": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+          "sourceTitle": "5号线同期首开报道及上海市交通委2020年交路变更公告",
+          "sourceCheckedAt": "2026-10-27",
           "sourceType": "government_or_operator_route_inventory_and_opening_records",
           "status": "operated",
           "geometryStatus": "station_area_approximation",
           "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
+          "sourcePublicationDate": "2020-12-25",
           "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
           "story": {
-            "opening": "2018年前后，5号线、8号线、12号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
+            "opening": "2018-12-30，5号线南延伸：奉贤主线与东川支线。先复用既有站体，再核对本期两端及支线关系；不能把两个分支串成经过莘庄折返的单一路径。",
+            "purpose": "按实际时期的连接关系建设；2018年支线独立折返，2020年线路关系调整后才直达莘庄。",
+            "outcome": "本期站体、区间及线路关系已确认；后续历史另列任务。",
             "eventKind": "network_expansion",
             "planVersions": [],
             "steps": [
@@ -6207,11 +6460,11 @@
             ],
             "beats": []
           },
-          "operationType": "milestone_network_build",
+          "operationType": "extension",
           "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
           "historicalEventIds": [
             "shanghai-opening-shanghai-r12-2018-12-30",
-            "shanghai-opening-shanghai-r5-2018-12-30"
+            "reviewed-sh5:2018-12-30"
           ],
           "routeMilestoneIds": [
             "shanghai-r12",
@@ -6399,7 +6652,7 @@
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.24.26",
+          "scopeRevision": "2026.10.27.1",
           "requiresScopeRecheck": true
         },
         {
@@ -6924,7 +7177,7 @@
           "id": "shanghai-network-milestone-2020-12-26",
           "phase": "history",
           "date": "2020-12-26",
-          "title": "2号线、10号线建设阶段",
+          "title": "5号线支线恢复直达与10号线延伸",
           "lineGroups": [
             {
               "taskId": "route:shanghai-r2",
@@ -7090,24 +7343,182 @@
               "loop": false,
               "reconfirmLaterServices": true,
               "servicePathRevision": 5
+            },
+            {
+              "taskId": "opening:sh5:2020-12-26:pattern-1",
+              "mapRouteId": "shanghai-r5",
+              "name": "5号线 · 莘庄—奉贤新城",
+              "stationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s363",
+                "shanghai-s362",
+                "shanghai-s361",
+                "shanghai-s360",
+                "shanghai-s359",
+                "shanghai-s358",
+                "shanghai-s357",
+                "shanghai-s356"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "开通及交路变更按同期报道和交通委公告核对；近似地理走廊不代表测绘。2018支线在东川路折返，2020才恢复莘庄直达。",
+              "historicalLineId": "shanghai-line5-5",
+              "color": "#AC4FC6",
+              "stationOrderSource": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "shanghai-s128": "shanghai-s128__line5-5",
+                "shanghai-s219": "shanghai-s219",
+                "shanghai-s218": "shanghai-s218",
+                "shanghai-s217": "shanghai-s217",
+                "shanghai-s216": "shanghai-s216",
+                "shanghai-s215": "shanghai-s215",
+                "shanghai-s214": "shanghai-s214",
+                "shanghai-s363": "shanghai-s363",
+                "shanghai-s362": "shanghai-s362",
+                "shanghai-s361": "shanghai-s361",
+                "shanghai-s360": "shanghai-s360",
+                "shanghai-s359": "shanghai-s359",
+                "shanghai-s358": "shanghai-s358",
+                "shanghai-s357": "shanghai-s357",
+                "shanghai-s356": "shanghai-s356"
+              },
+              "stationNames": {
+                "shanghai-s128": "莘庄",
+                "shanghai-s219": "春申路",
+                "shanghai-s218": "银都路",
+                "shanghai-s217": "颛桥",
+                "shanghai-s216": "北桥",
+                "shanghai-s215": "剑川路",
+                "shanghai-s214": "东川路",
+                "shanghai-s363": "江川路",
+                "shanghai-s362": "西渡",
+                "shanghai-s361": "萧塘",
+                "shanghai-s360": "奉浦大道",
+                "shanghai-s359": "环城东路",
+                "shanghai-s358": "望园路",
+                "shanghai-s357": "金海湖",
+                "shanghai-s356": "奉贤新城"
+              },
+              "coverageGroupId": "sh5:2020-12-26:pattern-1",
+              "replaceExistingService": true,
+              "loop": false,
+              "constructionScope": "dated_service_patterns",
+              "sourceStationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s363",
+                "shanghai-s362",
+                "shanghai-s361",
+                "shanghai-s360",
+                "shanghai-s359",
+                "shanghai-s358",
+                "shanghai-s357",
+                "shanghai-s356"
+              ],
+              "constructionScopeNote": "有来源的完整时期交路，复用已建站轨；不模拟发车。",
+              "reconfirmLaterServices": true,
+              "retainDocumentedFutureService": false,
+              "servicePathRevision": "2026.10.27.1"
+            },
+            {
+              "taskId": "opening:sh5:2020-12-26:pattern-2",
+              "mapRouteId": "shanghai-r5",
+              "name": "5号线 · 莘庄—闵行开发区",
+              "stationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s213",
+                "shanghai-s212",
+                "shanghai-s211",
+                "shanghai-s210"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "开通及交路变更按同期报道和交通委公告核对；近似地理走廊不代表测绘。2018支线在东川路折返，2020才恢复莘庄直达。",
+              "historicalLineId": "shanghai-line5-5",
+              "color": "#AC4FC6",
+              "stationOrderSource": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "shanghai-s128": "shanghai-s128__line5-5",
+                "shanghai-s219": "shanghai-s219",
+                "shanghai-s218": "shanghai-s218",
+                "shanghai-s217": "shanghai-s217",
+                "shanghai-s216": "shanghai-s216",
+                "shanghai-s215": "shanghai-s215",
+                "shanghai-s214": "shanghai-s214",
+                "shanghai-s213": "shanghai-s213",
+                "shanghai-s212": "shanghai-s212",
+                "shanghai-s211": "shanghai-s211",
+                "shanghai-s210": "shanghai-s210"
+              },
+              "stationNames": {
+                "shanghai-s128": "莘庄",
+                "shanghai-s219": "春申路",
+                "shanghai-s218": "银都路",
+                "shanghai-s217": "颛桥",
+                "shanghai-s216": "北桥",
+                "shanghai-s215": "剑川路",
+                "shanghai-s214": "东川路",
+                "shanghai-s213": "金平路",
+                "shanghai-s212": "华宁路",
+                "shanghai-s211": "文井路",
+                "shanghai-s210": "闵行开发区"
+              },
+              "coverageGroupId": "sh5:2020-12-26:pattern-2",
+              "replaceExistingService": false,
+              "loop": false,
+              "constructionScope": "dated_service_patterns",
+              "sourceStationIds": [
+                "shanghai-s128",
+                "shanghai-s219",
+                "shanghai-s218",
+                "shanghai-s217",
+                "shanghai-s216",
+                "shanghai-s215",
+                "shanghai-s214",
+                "shanghai-s213",
+                "shanghai-s212",
+                "shanghai-s211",
+                "shanghai-s210"
+              ],
+              "constructionScopeNote": "有来源的完整时期交路，复用已建站轨；不模拟发车。",
+              "reconfirmLaterServices": true,
+              "retainDocumentedFutureService": false,
+              "servicePathRevision": "2026.10.27.1"
             }
           ],
           "requireOpen": true,
-          "eventText": "按本期公开的运营线路范围建设并核对站序。站间几何采用现代地理参考，不代表历史隧道中心线。",
+          "eventText": "2020-12-26，5号线支线恢复直达与10号线延伸。先复用既有站体，再核对本期两端及支线关系；不能把两个分支串成经过莘庄折返的单一路径。",
           "precision": "station_areas",
-          "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-          "sourceTitle": "上海地铁全网首末班车时刻表（2026年4月）",
-          "sourceCheckedAt": "2026-10-20",
+          "source": "https://jtw.sh.gov.cn/bmts/20201225/be0cf9f1e8fa4fdf8c81b624df3fda7d.html",
+          "sourceTitle": "5号线同期首开报道及上海市交通委2020年交路变更公告",
+          "sourceCheckedAt": "2026-10-27",
           "sourceType": "government_or_operator_route_inventory_and_opening_records",
           "status": "operated",
           "geometryStatus": "station_area_approximation",
           "alignmentNote": "本章站序与线路范围按公开运营资料整理；底图几何为现代地理位置近似参考。不同日期开通的线路已分章，不把截止日网络倒灌至早期节点。",
-          "sourcePublicationDate": null,
+          "sourcePublicationDate": "2020-12-25",
           "publicationDateNote": "来源页面持续更新；事件日期与页面发布日期分开记录。",
           "story": {
-            "opening": "2020年前后，2号线、10号线建设阶段进入网络建设阶段。",
-            "purpose": "将本期已经开通的线路范围加入城市路网，并与既有线路建立清楚的物理连接。",
-            "outcome": "本章只记录实际建设的站体、区间和线路关系；几何精度以站区及近似走廊为准。",
+            "opening": "2020-12-26，5号线支线恢复直达与10号线延伸。先复用既有站体，再核对本期两端及支线关系；不能把两个分支串成经过莘庄折返的单一路径。",
+            "purpose": "按实际时期的连接关系建设；2018年支线独立折返，2020年线路关系调整后才直达莘庄。",
+            "outcome": "本期站体、区间及线路关系已确认；后续历史另列任务。",
             "eventKind": "network_expansion",
             "planVersions": [],
             "steps": [
@@ -7134,18 +7545,19 @@
             ],
             "beats": []
           },
-          "operationType": "milestone_network_build",
+          "operationType": "reorganization",
           "operationGuide": "建设本期线路站体与相邻区间，再检查线网关系。",
           "historicalEventIds": [
             "shanghai-opening-shanghai-r10-2020-12-26",
-            "shanghai-opening-shanghai-r2-2020-12-26"
+            "shanghai-opening-shanghai-r2-2020-12-26",
+            "reviewed-sh5:2020-12-26"
           ],
           "routeMilestoneIds": [
             "shanghai-r10",
             "shanghai-r2"
           ],
           "chapterScope": "cutoff_route_completion",
-          "routeTargetCount": 2,
+          "routeTargetCount": 5,
           "requiredTransfers": [
             {
               "id": "historic-transfer-shanghai-s232-line16-16-line2-2",
@@ -7280,7 +7692,7 @@
               "name": "中山公园",
               "complexId": "shanghai-s51",
               "stationInstanceIds": [
-                "shanghai-s51__line4-4",
+                "shanghai-s51__line3-3",
                 "shanghai-s51__line2-2"
               ],
               "lineIds": [
@@ -7289,7 +7701,8 @@
               ],
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s53-line3-3-line10-10",
@@ -7312,7 +7725,7 @@
               "name": "虹桥路",
               "complexId": "shanghai-s53",
               "stationInstanceIds": [
-                "shanghai-s53__line4-4",
+                "shanghai-s53__line3-3",
                 "shanghai-s53__line10-10"
               ],
               "lineIds": [
@@ -7321,7 +7734,8 @@
               ],
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s59-line4-4-line10-10",
@@ -7517,9 +7931,44 @@
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.24.23",
+          "scopeRevision": "2026.10.27.1",
           "requiresScopeRecheck": true,
-          "scopeCorrections": []
+          "scopeCorrections": [
+            {
+              "taskId": "route:shanghai-r2",
+              "transferId": "historic-transfer-shanghai-s51-line4-4-line2-2",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line2-2"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s51__line4-4",
+                  "newStationInstanceId": "shanghai-s51__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "中山公园：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            },
+            {
+              "taskId": "route:shanghai-r10",
+              "transferId": "historic-transfer-shanghai-s53-line4-4-line10-10",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line10-10"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s53__line4-4",
+                  "newStationInstanceId": "shanghai-s53__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "虹桥路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            }
+          ]
         },
         {
           "id": "shanghai-network-milestone-2021-01-23",
@@ -7903,7 +8352,7 @@
               "name": "金沙江路",
               "complexId": "shanghai-s50",
               "stationInstanceIds": [
-                "shanghai-s50__line4-4",
+                "shanghai-s50__line3-3",
                 "shanghai-s50__line13-13"
               ],
               "lineIds": [
@@ -7912,7 +8361,8 @@
               ],
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
+              "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s84-line10-10-line13-13",
@@ -7995,7 +8445,28 @@
               "sourceNote": "依据公开运营线路站序中的同名/同址换乘节点；具体站内通道结构不作推断。"
             }
           ],
-          "eventOnly": false
+          "eventOnly": false,
+          "scopeCorrections": [
+            {
+              "taskId": "route:shanghai-r13",
+              "transferId": "historic-transfer-shanghai-s50-line4-4-line13-13",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line13-13"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s50__line4-4",
+                  "newStationInstanceId": "shanghai-s50__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "金沙江路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            }
+          ],
+          "scopeRevision": "2026.10.26.13",
+          "requiresScopeRecheck": true
         },
         {
           "id": "shanghai-network-milestone-2021-12-30",
@@ -9248,36 +9719,36 @@
               "loop": false
             },
             {
-              "taskId": "route:shanghai-r4",
+              "taskId": "route:shanghai-r4:outer",
               "mapRouteId": "shanghai-r4",
-              "name": "4号线",
+              "name": "4号线外圈",
               "stationIds": [
                 "shanghai-s54",
-                "shanghai-s53",
-                "shanghai-s52",
-                "shanghai-s51",
-                "shanghai-s50",
-                "shanghai-s49",
-                "shanghai-s48",
-                "shanghai-s47",
-                "shanghai-s46",
-                "shanghai-s45",
-                "shanghai-s59",
-                "shanghai-s60",
-                "shanghai-s61",
-                "shanghai-s62",
-                "shanghai-s63",
-                "shanghai-s64",
-                "shanghai-s65",
-                "shanghai-s66",
-                "shanghai-s67",
-                "shanghai-s68",
-                "shanghai-s12",
-                "shanghai-s69",
-                "shanghai-s70",
-                "shanghai-s71",
+                "shanghai-s73",
                 "shanghai-s72",
-                "shanghai-s73"
+                "shanghai-s71",
+                "shanghai-s70",
+                "shanghai-s69",
+                "shanghai-s12",
+                "shanghai-s68",
+                "shanghai-s67",
+                "shanghai-s66",
+                "shanghai-s65",
+                "shanghai-s64",
+                "shanghai-s63",
+                "shanghai-s62",
+                "shanghai-s61",
+                "shanghai-s60",
+                "shanghai-s59",
+                "shanghai-s45",
+                "shanghai-s46",
+                "shanghai-s47",
+                "shanghai-s48",
+                "shanghai-s49",
+                "shanghai-s50",
+                "shanghai-s51",
+                "shanghai-s52",
+                "shanghai-s53"
               ],
               "toleranceM": 220,
               "precisionNote": "站序据上海地铁官方逐站接口交叉核对。5/10/11支线分别形成有向服务，花桥换乘不延伸为苏州地铁站序；坐标与隧道为地理参考。截止日前开放证据另按事件核对，不以2026-10取回的接口替代历史资料。",
@@ -9287,14 +9758,14 @@
               "alignmentPrecision": "station_areas_and_approximate_corridor",
               "stationInstances": {
                 "shanghai-s54": "shanghai-s54__line4-4",
-                "shanghai-s53": "shanghai-s53__line4-4",
-                "shanghai-s52": "shanghai-s52__line4-4",
-                "shanghai-s51": "shanghai-s51__line4-4",
-                "shanghai-s50": "shanghai-s50__line4-4",
-                "shanghai-s49": "shanghai-s49__line4-4",
-                "shanghai-s48": "shanghai-s48__line4-4",
-                "shanghai-s47": "shanghai-s47__line4-4",
-                "shanghai-s46": "shanghai-s46__line4-4",
+                "shanghai-s53": "shanghai-s53__line3-3",
+                "shanghai-s52": "shanghai-s52__line3-3",
+                "shanghai-s51": "shanghai-s51__line3-3",
+                "shanghai-s50": "shanghai-s50__line3-3",
+                "shanghai-s49": "shanghai-s49__line3-3",
+                "shanghai-s48": "shanghai-s48__line3-3",
+                "shanghai-s47": "shanghai-s47__line3-3",
+                "shanghai-s46": "shanghai-s46__line3-3",
                 "shanghai-s45": "shanghai-s45__line4-4",
                 "shanghai-s59": "shanghai-s59__line4-4",
                 "shanghai-s60": "shanghai-s60",
@@ -9341,9 +9812,111 @@
                 "shanghai-s72": "上海体育场",
                 "shanghai-s73": "上海体育馆"
               },
-              "coverageGroupId": "shanghai-line4-4",
+              "coverageGroupId": "shanghai-line4-outer-2026",
+              "replaceExistingService": false,
+              "loop": true,
+              "physicalSharingSource": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html",
+              "servicePatternId": "sh4-outer-2026"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "mapRouteId": "shanghai-r4",
+              "name": "4号线内圈",
+              "stationIds": [
+                "shanghai-s54",
+                "shanghai-s53",
+                "shanghai-s52",
+                "shanghai-s51",
+                "shanghai-s50",
+                "shanghai-s49",
+                "shanghai-s48",
+                "shanghai-s47",
+                "shanghai-s46",
+                "shanghai-s45",
+                "shanghai-s59",
+                "shanghai-s60",
+                "shanghai-s61",
+                "shanghai-s62",
+                "shanghai-s63",
+                "shanghai-s64",
+                "shanghai-s65",
+                "shanghai-s66",
+                "shanghai-s67",
+                "shanghai-s68",
+                "shanghai-s12",
+                "shanghai-s69",
+                "shanghai-s70",
+                "shanghai-s71",
+                "shanghai-s72",
+                "shanghai-s73"
+              ],
+              "toleranceM": 220,
+              "precisionNote": "站序据上海地铁官方逐站接口交叉核对。5/10/11支线分别形成有向服务，花桥换乘不延伸为苏州地铁站序；坐标与隧道为地理参考。截止日前开放证据另按事件核对，不以2026-10取回的接口替代历史资料。",
+              "historicalLineId": "shanghai-line4-4",
+              "color": "#5F259F",
+              "stationOrderSource": "https://m.shmetro.com/interface/metromap/metromap.aspx?func=fltime&line=4",
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "stationInstances": {
+                "shanghai-s54": "shanghai-s54__line4-4",
+                "shanghai-s53": "shanghai-s53__line3-3",
+                "shanghai-s52": "shanghai-s52__line3-3",
+                "shanghai-s51": "shanghai-s51__line3-3",
+                "shanghai-s50": "shanghai-s50__line3-3",
+                "shanghai-s49": "shanghai-s49__line3-3",
+                "shanghai-s48": "shanghai-s48__line3-3",
+                "shanghai-s47": "shanghai-s47__line3-3",
+                "shanghai-s46": "shanghai-s46__line3-3",
+                "shanghai-s45": "shanghai-s45__line3-3",
+                "shanghai-s59": "shanghai-s59__line4-4",
+                "shanghai-s60": "shanghai-s60",
+                "shanghai-s61": "shanghai-s61__line4-4",
+                "shanghai-s62": "shanghai-s62",
+                "shanghai-s63": "shanghai-s63__line4-4",
+                "shanghai-s64": "shanghai-s64__line4-4",
+                "shanghai-s65": "shanghai-s65",
+                "shanghai-s66": "shanghai-s66__line4-4",
+                "shanghai-s67": "shanghai-s67",
+                "shanghai-s68": "shanghai-s68",
+                "shanghai-s12": "shanghai-s12__line4-4",
+                "shanghai-s69": "shanghai-s69",
+                "shanghai-s70": "shanghai-s70__line4-4",
+                "shanghai-s71": "shanghai-s71__line4-4",
+                "shanghai-s72": "shanghai-s72",
+                "shanghai-s73": "shanghai-s73__line4-4"
+              },
+              "stationNames": {
+                "shanghai-s54": "宜山路",
+                "shanghai-s53": "虹桥路",
+                "shanghai-s52": "延安西路",
+                "shanghai-s51": "中山公园",
+                "shanghai-s50": "金沙江路",
+                "shanghai-s49": "曹杨路",
+                "shanghai-s48": "镇坪路",
+                "shanghai-s47": "中潭路",
+                "shanghai-s46": "上海火车站",
+                "shanghai-s45": "宝山路",
+                "shanghai-s59": "海伦路",
+                "shanghai-s60": "临平路",
+                "shanghai-s61": "大连路",
+                "shanghai-s62": "杨树浦路",
+                "shanghai-s63": "浦东大道",
+                "shanghai-s64": "世纪大道",
+                "shanghai-s65": "向城路",
+                "shanghai-s66": "蓝村路",
+                "shanghai-s67": "塘桥",
+                "shanghai-s68": "南浦大桥",
+                "shanghai-s12": "西藏南路",
+                "shanghai-s69": "鲁班路",
+                "shanghai-s70": "大木桥路",
+                "shanghai-s71": "东安路",
+                "shanghai-s72": "上海体育场",
+                "shanghai-s73": "上海体育馆"
+              },
+              "coverageGroupId": "shanghai-line4-inner-2026",
               "replaceExistingService": true,
-              "loop": true
+              "loop": true,
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "servicePatternId": "sh4-inner-2026"
             },
             {
               "taskId": "route:shanghai-r5:branch-1",
@@ -11292,30 +11865,14 @@
               ],
               "stationInstanceIds": [
                 "shanghai-s115",
-                "shanghai-s46__line4-4"
+                "shanghai-s46__line3-3"
               ],
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/xbhygq/20231206/646ef8c98d8b4b0995177dd8c71d595c.html",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
               "sourceNote": "上海城市出行码官方说明明确1号线与3/4号线需要出站换乘；铁路直联免安检不是地铁付费区贯通。",
-              "transferKind": "out_of_station"
-            },
-            {
-              "id": "historic-transfer-shanghai-s46-line3-3-line4-4",
-              "name": "上海火车站",
-              "complexId": "shanghai-s46",
-              "stationInstanceIds": [
-                "shanghai-s46__line3-3",
-                "shanghai-s46__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+              "transferKind": "out_of_station",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s269-line15-15-line11-11",
@@ -11543,7 +12100,7 @@
               "name": "中山公园",
               "complexId": "shanghai-s51",
               "stationInstanceIds": [
-                "shanghai-s51__line4-4",
+                "shanghai-s51__line3-3",
                 "shanghai-s51__line2-2"
               ],
               "lineIds": [
@@ -11553,41 +12110,8 @@
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
               "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
-            },
-            {
-              "id": "historic-transfer-shanghai-s51-line3-3-line4-4",
-              "name": "中山公园",
-              "complexId": "shanghai-s51",
-              "stationInstanceIds": [
-                "shanghai-s51__line3-3",
-                "shanghai-s51__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
-            },
-            {
-              "id": "historic-transfer-shanghai-s47-line3-3-line4-4",
-              "name": "中潭路",
-              "complexId": "shanghai-s47",
-              "stationInstanceIds": [
-                "shanghai-s47__line3-3",
-                "shanghai-s47__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s199-line6-6-line14-14",
@@ -12035,23 +12559,6 @@
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
             },
             {
-              "id": "historic-transfer-shanghai-s52-line3-3-line4-4",
-              "name": "延安西路",
-              "complexId": "shanghai-s52",
-              "stationInstanceIds": [
-                "shanghai-s52__line3-3",
-                "shanghai-s52__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
-            },
-            {
               "id": "sh-cutoff-xfer-shanghai-s122-shanghai-line1-shanghai-line11-11",
               "name": "徐家汇",
               "complexId": "shanghai-s122",
@@ -12209,7 +12716,7 @@
               "name": "曹杨路",
               "complexId": "shanghai-s49",
               "stationInstanceIds": [
-                "shanghai-s49__line4-4",
+                "shanghai-s49__line3-3",
                 "shanghai-s49__line11-11"
               ],
               "lineIds": [
@@ -12219,7 +12726,8 @@
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
               "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "sh-cutoff-xfer-shanghai-s399-shanghai-line14-14-shanghai-line3-3",
@@ -12248,29 +12756,13 @@
               ],
               "stationInstanceIds": [
                 "shanghai-s399",
-                "shanghai-s49__line4-4"
+                "shanghai-s49__line3-3"
               ],
               "precision": "schematic",
               "source": "https://service.shmetro.com/czxx/index.htm",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
-            },
-            {
-              "id": "historic-transfer-shanghai-s49-line3-3-line4-4",
-              "name": "曹杨路",
-              "complexId": "shanghai-s49",
-              "stationInstanceIds": [
-                "shanghai-s49__line3-3",
-                "shanghai-s49__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
               "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "sh-cutoff-xfer-shanghai-s152-shanghai-line18-18-shanghai-line9-9",
@@ -12787,7 +13279,7 @@
               "name": "虹桥路",
               "complexId": "shanghai-s53",
               "stationInstanceIds": [
-                "shanghai-s53__line4-4",
+                "shanghai-s53__line3-3",
                 "shanghai-s53__line10-10"
               ],
               "lineIds": [
@@ -12797,24 +13289,8 @@
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
               "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
-            },
-            {
-              "id": "historic-transfer-shanghai-s53-line3-3-line4-4",
-              "name": "虹桥路",
-              "complexId": "shanghai-s53",
-              "stationInstanceIds": [
-                "shanghai-s53__line3-3",
-                "shanghai-s53__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s12-line4-4-line8-8",
@@ -12872,7 +13348,7 @@
               "name": "金沙江路",
               "complexId": "shanghai-s50",
               "stationInstanceIds": [
-                "shanghai-s50__line4-4",
+                "shanghai-s50__line3-3",
                 "shanghai-s50__line13-13"
               ],
               "lineIds": [
@@ -12882,24 +13358,8 @@
               "precision": "schematic",
               "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
               "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
-            },
-            {
-              "id": "historic-transfer-shanghai-s50-line3-3-line4-4",
-              "name": "金沙江路",
-              "complexId": "shanghai-s50",
-              "stationInstanceIds": [
-                "shanghai-s50__line3-3",
-                "shanghai-s50__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
+              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s157-line12-12-line9-9",
@@ -12936,23 +13396,6 @@
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
             },
             {
-              "id": "historic-transfer-shanghai-s48-line3-3-line4-4",
-              "name": "镇坪路",
-              "complexId": "shanghai-s48",
-              "stationInstanceIds": [
-                "shanghai-s48__line3-3",
-                "shanghai-s48__line4-4"
-              ],
-              "lineIds": [
-                "shanghai-line3-3",
-                "shanghai-line4-4"
-              ],
-              "precision": "schematic",
-              "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
-              "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json"
-            },
-            {
               "id": "sh-cutoff-xfer-shanghai-s48-shanghai-line3-3-shanghai-line7-7",
               "name": "镇坪路",
               "complexId": "shanghai-s48",
@@ -12978,13 +13421,14 @@
                 "shanghai-line7-7"
               ],
               "stationInstanceIds": [
-                "shanghai-s48__line4-4",
+                "shanghai-s48__line3-3",
                 "shanghai-s343"
               ],
               "precision": "schematic",
               "source": "https://service.shmetro.com/czxx/index.htm",
               "cutoffEvidence": "res://data/official_evidence/shanghai_interchanges_retrieved2026-10-23.json",
-              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。"
+              "sourceNote": "运营方线路配对核对，包含共线或站外换乘信息；本游戏的联系不声称各站均有独立站厅或已复原精确通道。历史形成日期另核对。",
+              "physicalSharingSource": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
             },
             {
               "id": "historic-transfer-shanghai-s178-line7-7-line13-13",
@@ -13396,7 +13840,7 @@
             }
           ],
           "eventOnly": false,
-          "scopeRevision": "2026.10.26.10",
+          "scopeRevision": "2026.10.26.13",
           "requiresScopeRecheck": true,
           "currentAction": "核对上海地铁各线站序、独立站体及支线；不把花桥换乘的苏州线路当作上海11号线。",
           "scopeCorrections": [
@@ -13484,8 +13928,254 @@
               },
               "description": "莘庄：贯通后保留站体、朝向和轨道，将临时南延段归属更新为1号线。",
               "source": "https://www.shlgbj.gov.cn/view/6181"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s46-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s46__line3-3",
+                "shanghai-s46__line4-4"
+              ],
+              "description": "上海火车站：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s51-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s51__line3-3",
+                "shanghai-s51__line4-4"
+              ],
+              "description": "中山公园：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s47-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s47__line3-3",
+                "shanghai-s47__line4-4"
+              ],
+              "description": "中潭路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s52-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s52__line3-3",
+                "shanghai-s52__line4-4"
+              ],
+              "description": "延安西路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s49-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s49__line3-3",
+                "shanghai-s49__line4-4"
+              ],
+              "description": "曹杨路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s53-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s53__line3-3",
+                "shanghai-s53__line4-4"
+              ],
+              "description": "虹桥路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s50-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s50__line3-3",
+                "shanghai-s50__line4-4"
+              ],
+              "description": "金沙江路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:inner",
+              "transferId": "historic-transfer-shanghai-s48-line3-3-line4-4",
+              "oldLineIds": [
+                "shanghai-line3-3",
+                "shanghai-line4-4"
+              ],
+              "oldStationInstanceIds": [
+                "shanghai-s48__line3-3",
+                "shanghai-s48__line4-4"
+              ],
+              "description": "镇坪路：复用3/4号线真实共用站体及轨道，归档旧版误建的独立步行换乘；原站轨保留。",
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf"
+            },
+            {
+              "taskId": "route:shanghai-r4:outer",
+              "transferId": "sh-cutoff-xfer-shanghai-s115-shanghai-line1-shanghai-line4-4",
+              "oldLineIds": [
+                "shanghai-line1",
+                "shanghai-line4-4"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 1,
+                  "oldStationInstanceId": "shanghai-s46__line4-4",
+                  "newStationInstanceId": "shanghai-s46__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "上海火车站：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            },
+            {
+              "taskId": "route:shanghai-r4:outer",
+              "transferId": "historic-transfer-shanghai-s51-line4-4-line2-2",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line2-2"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s51__line4-4",
+                  "newStationInstanceId": "shanghai-s51__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "中山公园：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            },
+            {
+              "taskId": "route:shanghai-r4:outer",
+              "transferId": "historic-transfer-shanghai-s49-line4-4-line11-11",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line11-11"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s49__line4-4",
+                  "newStationInstanceId": "shanghai-s49__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "曹杨路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            },
+            {
+              "taskId": "route:shanghai-r4:outer",
+              "transferId": "sh-cutoff-xfer-shanghai-s399-shanghai-line14-14-shanghai-line4-4",
+              "oldLineIds": [
+                "shanghai-line14-14",
+                "shanghai-line4-4"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 1,
+                  "oldStationInstanceId": "shanghai-s49__line4-4",
+                  "newStationInstanceId": "shanghai-s49__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "曹杨路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            },
+            {
+              "taskId": "route:shanghai-r4:outer",
+              "transferId": "historic-transfer-shanghai-s53-line4-4-line10-10",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line10-10"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s53__line4-4",
+                  "newStationInstanceId": "shanghai-s53__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "虹桥路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            },
+            {
+              "taskId": "route:shanghai-r4:outer",
+              "transferId": "historic-transfer-shanghai-s50-line4-4-line13-13",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line13-13"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s50__line4-4",
+                  "newStationInstanceId": "shanghai-s50__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "金沙江路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
+            },
+            {
+              "taskId": "route:shanghai-r4:outer",
+              "transferId": "sh-cutoff-xfer-shanghai-s48-shanghai-line4-4-shanghai-line7-7",
+              "oldLineIds": [
+                "shanghai-line4-4",
+                "shanghai-line7-7"
+              ],
+              "bodyRebindings": [
+                {
+                  "index": 0,
+                  "oldStationInstanceId": "shanghai-s48__line4-4",
+                  "newStationInstanceId": "shanghai-s48__line3-3"
+                }
+              ],
+              "source": "https://www.shanghai.gov.cn/cmsres/58/58e17817bef943b3bbb2c757b6b8162e/55e70032e0daa9d630ec35a01252cf5d.pdf",
+              "description": "镇坪路：4号线实际停靠3/4共用站体，保留另一线路独立站体及原换乘性质。"
             }
-          ]
+          ],
+          "stationProfiles": {
+            "shanghai-s45__line4-4": {
+              "id": "sh-baoshan-outer-platform-2026",
+              "form": "宝山路1号站台：4号线外圈独用轨道",
+              "depthM": 10,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.shanghai.gov.cn/nw17239/20260226/73ef09216b6a4558bdbbbacca9a7e887.html"
+              },
+              "note": "2026-02-22启用；共用站区内新增方向性站台，非另一座独立站厅。高度、矩形和中心位置为游戏示意，旧站不自动搬动。"
+            }
+          }
         }
       ],
       "futurePlans": [
@@ -28873,6 +29563,405 @@
           "additionalSources": [
             "https://www.bii.com.cn/file/2024/11/14/1731565997785.pdf",
             "https://zdzqgw.beijing.gov.cn/zqfw/bjsdgjjc/bjsdgjjcdt/202411/t20241119_3945372.html"
+          ]
+        },
+        {
+          "id": "bj-line11-phase2-build",
+          "projectIds": [
+            "bj-line11-phase2"
+          ],
+          "title": "11号线二期：连接北京西站与丽泽",
+          "date": "2026-10-01",
+          "status": "approved",
+          "sourceType": "official_integrated_scheme_approved",
+          "projectType": "approved_project",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html",
+          "sourceTitle": "市重大办2025年四季度：11号线二期线路一体化方案获批",
+          "sourceCheckedAt": "2026-10-27",
+          "description": "复用一期新首钢接头，建设公开的14座新站及连续区间，建立1支线、10、7、9、14、16及机场线换乘。按已获批的一体化范围制作规划建设，不把招标计划当作开工或未来开通公告。衙门口东铁路接驳单列背景；丽金线整体另行核验，不伪造已运营线路。",
+          "sourcePublicationDate": "2026-01-14",
+          "lineGroups": [
+            {
+              "taskId": "project:bj-line11-phase2-build",
+              "mapRouteId": "beijing-future-line11-phase2",
+              "name": "11号线二期：新首钢—丽泽商务区",
+              "historicalLineId": "beijing-line11-11",
+              "color": "#ED796B",
+              "stationIds": [
+                "beijing-s374",
+                "beijing-f11p2-xingcai",
+                "beijing-f11p2-guoluchang",
+                "beijing-f11p2-yamenkouxi",
+                "beijing-f1b-tiyuchangnanjie",
+                "beijing-f11p2-yamenkoudong",
+                "beijing-f11p2-lugu",
+                "beijing-f11p2-wujiacun",
+                "beijing-f11p2-xiaowayao",
+                "beijing-f11p2-qingta",
+                "beijing-f11p2-wanfeng",
+                "beijing-s189",
+                "beijing-s215",
+                "beijing-f11p2-maliandao",
+                "beijing-s287"
+              ],
+              "stationNames": {
+                "beijing-s374": "新首钢",
+                "beijing-f11p2-xingcai": "型材",
+                "beijing-f11p2-guoluchang": "锅炉厂南路",
+                "beijing-f11p2-yamenkouxi": "衙门口西",
+                "beijing-f1b-tiyuchangnanjie": "体育场南街",
+                "beijing-f11p2-yamenkoudong": "衙门口东",
+                "beijing-f11p2-lugu": "鲁谷大街",
+                "beijing-f11p2-wujiacun": "吴家村",
+                "beijing-f11p2-xiaowayao": "小瓦窑",
+                "beijing-f11p2-qingta": "青塔",
+                "beijing-f11p2-wanfeng": "万丰路",
+                "beijing-s189": "莲花桥",
+                "beijing-s215": "北京西站",
+                "beijing-f11p2-maliandao": "马连道",
+                "beijing-s287": "丽泽商务区"
+              },
+              "toleranceM": 650.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "官方14座新站及既有新首钢接头；位置为所经道路的近似站区，非正式站体中心，隧道为近似走廊。体育场南街旧支线位置不自动变更。",
+              "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+              "requireOpen": false,
+              "stationInstances": {
+                "beijing-s374": "beijing-s374",
+                "beijing-f11p2-xingcai": "beijing-f11p2-xingcai__line11-phase2",
+                "beijing-f11p2-guoluchang": "beijing-f11p2-guoluchang__line11-phase2",
+                "beijing-f11p2-yamenkouxi": "beijing-f11p2-yamenkouxi__line11-phase2",
+                "beijing-f1b-tiyuchangnanjie": "beijing-f1b-tiyuchangnanjie__line11-phase2",
+                "beijing-f11p2-yamenkoudong": "beijing-f11p2-yamenkoudong__line11-phase2",
+                "beijing-f11p2-lugu": "beijing-f11p2-lugu__line11-phase2",
+                "beijing-f11p2-wujiacun": "beijing-f11p2-wujiacun__line11-phase2",
+                "beijing-f11p2-xiaowayao": "beijing-f11p2-xiaowayao__line11-phase2",
+                "beijing-f11p2-qingta": "beijing-f11p2-qingta__line11-phase2",
+                "beijing-f11p2-wanfeng": "beijing-f11p2-wanfeng__line11-phase2",
+                "beijing-s189": "beijing-s189__line11-phase2",
+                "beijing-s215": "beijing-s215__line11-phase2",
+                "beijing-f11p2-maliandao": "beijing-f11p2-maliandao__line11-phase2",
+                "beijing-s287": "beijing-s287__line11-phase2"
+              },
+              "stationReferenceIds": {
+                "beijing-f1b-tiyuchangnanjie": "beijing-f11p2-tiyu-reference"
+              },
+              "officialLengthM": 18400,
+              "coverageGroupId": "beijing11-phase2",
+              "constructionVariant": true,
+              "stationNamingSource": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+            }
+          ],
+          "requiredTransfers": [
+            {
+              "id": "future-transfer-bj11phase2-beijing-f1b-tiyuchangnanjie-beijing-lineearly0",
+              "name": "体育场南街",
+              "complexId": "beijing-f1b-tiyuchangnanjie",
+              "stationInstanceIds": [
+                "beijing-f1b-tiyuchangnanjie__line11-phase2",
+                "beijing-f1b-tiyuchangnanjie"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-lineearly0"
+              ],
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+              "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+            },
+            {
+              "id": "future-transfer-bj11phase2-beijing-s189-beijing-line10-10",
+              "name": "莲花桥",
+              "complexId": "beijing-s189",
+              "stationInstanceIds": [
+                "beijing-s189__line11-phase2",
+                "beijing-s189"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-line10-10"
+              ],
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+              "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+            },
+            {
+              "id": "future-transfer-bj11phase2-beijing-s215-beijing-line7-7",
+              "name": "北京西站",
+              "complexId": "beijing-s215",
+              "stationInstanceIds": [
+                "beijing-s215__line11-phase2",
+                "beijing-s215__line7-7"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-line7-7"
+              ],
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+              "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+            },
+            {
+              "id": "future-transfer-bj11phase2-beijing-s215-beijing-line9-9",
+              "name": "北京西站",
+              "complexId": "beijing-s215",
+              "stationInstanceIds": [
+                "beijing-s215__line11-phase2",
+                "beijing-s215__line9-9"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-line9-9"
+              ],
+              "precision": "schematic",
+              "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+              "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+            },
+            {
+              "id": "future-transfer-bj11phase2-beijing-s287-beijing-line14-14",
+              "name": "丽泽商务区",
+              "complexId": "beijing-s287",
+              "stationInstanceIds": [
+                "beijing-s287__line11-phase2",
+                "beijing-s287__line14-14"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-line14-14"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+              "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+            },
+            {
+              "id": "future-transfer-bj11phase2-beijing-s287-beijing-line16-16",
+              "name": "丽泽商务区",
+              "complexId": "beijing-s287",
+              "stationInstanceIds": [
+                "beijing-s287__line11-phase2",
+                "beijing-s287__line16-16"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-line16-16"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+              "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+            },
+            {
+              "id": "future-transfer-bj11phase2-beijing-s287-beijing-route-21",
+              "name": "丽泽商务区",
+              "complexId": "beijing-s287",
+              "stationInstanceIds": [
+                "beijing-s287__line11-phase2",
+                "beijing-s287__line21"
+              ],
+              "lineIds": [
+                "beijing-line11-11",
+                "beijing-route-21"
+              ],
+              "precision": "schematic",
+              "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+              "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+            }
+          ],
+          "scopeRevision": "2026.10.27.2",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": [],
+          "stationProfiles": {
+            "beijing-f11p2-xingcai__line11-phase2": {
+              "id": "bj-line11-phase2-型材",
+              "form": "地下二层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-guoluchang__line11-phase2": {
+              "id": "bj-line11-phase2-锅炉厂南路",
+              "form": "地下二层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-yamenkouxi__line11-phase2": {
+              "id": "bj-line11-phase2-衙门口西",
+              "form": "地下二层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f1b-tiyuchangnanjie__line11-phase2": {
+              "id": "bj-line11-phase2-体育场南街",
+              "form": "地下二层岛式（1号线支线代建预留）",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-yamenkoudong__line11-phase2": {
+              "id": "bj-line11-phase2-衙门口东",
+              "form": "地下三层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-lugu__line11-phase2": {
+              "id": "bj-line11-phase2-鲁谷大街",
+              "form": "地下岛式，层次待按最终工程资料确认",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "schematic",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。 环评总述为全地下线，但表2-2-2该行写地面三层，保留资料差异，不据此生成高架站。"
+            },
+            "beijing-f11p2-wujiacun__line11-phase2": {
+              "id": "bj-line11-phase2-吴家村",
+              "form": "地下二层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-xiaowayao__line11-phase2": {
+              "id": "bj-line11-phase2-小瓦窑",
+              "form": "地下三层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-qingta__line11-phase2": {
+              "id": "bj-line11-phase2-青塔",
+              "form": "两端地下三层、中部单层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-wanfeng__line11-phase2": {
+              "id": "bj-line11-phase2-万丰路",
+              "form": "地下二层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-s189__line11-phase2": {
+              "id": "bj-line11-phase2-莲花桥",
+              "form": "地下三层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-s215__line11-phase2": {
+              "id": "bj-line11-phase2-北京西站",
+              "form": "地下三层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-f11p2-maliandao__line11-phase2": {
+              "id": "bj-line11-phase2-马连道",
+              "form": "地下二层岛式",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            },
+            "beijing-s287__line11-phase2": {
+              "id": "bj-line11-phase2-丽泽商务区",
+              "form": "地下岛式（枢纽整体地下五层口径）",
+              "depthM": -25,
+              "parameterStatus": {
+                "form": "public_reference",
+                "depthM": "game_estimate"
+              },
+              "parameterSources": {
+                "form": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html"
+              },
+              "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+            }
+          },
+          "additionalSources": [
+            "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+            "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+            "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html"
           ]
         }
       ],
@@ -59757,6 +60846,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.26.11",
-  "contentRevisionNote": "19号线北延地铁接口逐组独立核对，区分新龙泽名称沿革和旧龙泽；纠正生命科学园南站公开结构层数。"
+  "contentRevision": "2026.10.27.2",
+  "contentRevisionNote": "补北京11号线二期14座新站、既有接头与独立线路站体换乘；不采用旧洋桥方案，不改变现状开放范围。"
 }

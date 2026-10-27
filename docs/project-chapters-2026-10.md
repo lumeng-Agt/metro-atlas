@@ -38,6 +38,7 @@
 | 亦庄线台湖车辆段加站 | 可玩建设章 | 1 | 2 | station_areas_and_approximate_corridor | [亦庄线台湖车辆段加站](https://ggzyfw.beijing.gov.cn/jyxxgcjszbjh/20251124/5341905.html) |
 | 15号线新国展二期加站 | 可玩建设章 | 1 | 3 | station_areas_and_approximate_corridor | [15号线新国展二期加站](https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202607/t20260721_4774285.htm) |
 | 首都机场线望京南加站与天桥换乘 | 可玩建设章 | 1 | 6 | station_areas_and_approximate_corridor | [首都机场线望京南加站与天桥换乘](https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html) |
+| 11号线二期：连接北京西站与丽泽 | 可玩建设章 | 1 | 15 | station_areas_and_approximate_corridor | [市重大办2025年四季度：11号线二期线路一体化方案获批](https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html) |
 
 ## 广州
 
@@ -85,7 +86,7 @@
 
 ## 合计
 
-- 可玩建设章：51
+- 可玩建设章：52
 - 政策条目：2
 - 工程条目：0
 - 待制作：1

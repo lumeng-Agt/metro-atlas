@@ -1,0 +1,538 @@
+{
+  "city": "beijing",
+  "projectIds": [
+    "bj-line11-phase2"
+  ],
+  "stations": [
+    {
+      "id": "beijing-s374",
+      "name": "新首钢",
+      "existing": true
+    },
+    {
+      "id": "beijing-f1b-tiyuchangnanjie",
+      "name": "体育场南街",
+      "existing": true
+    },
+    {
+      "id": "beijing-s189",
+      "name": "莲花桥",
+      "existing": true
+    },
+    {
+      "id": "beijing-s215",
+      "name": "北京西站",
+      "existing": true
+    },
+    {
+      "id": "beijing-s287",
+      "name": "丽泽商务区",
+      "existing": true
+    },
+    {
+      "id": "beijing-f11p2-xingcai",
+      "name": "型材",
+      "latlng": [
+        39.8987,
+        116.1699
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "规划二型材南路西段／北辛安路走廊；现状路网尚未完整实施。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-guoluchang",
+      "name": "锅炉厂南路",
+      "latlng": [
+        39.8962,
+        116.181
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "人民渠路西部弯曲段与锅炉厂南路走廊。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-yamenkouxi",
+      "name": "衙门口西",
+      "latlng": [
+        39.8951,
+        116.1908
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "人民渠路／古城南街一带，非把同名公交站当作地铁中心。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-yamenkoudong",
+      "name": "衙门口东",
+      "latlng": [
+        39.8946,
+        116.2144
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "市郊铁路衙门口东站附近的独立地铁站区；不复用铁路站台。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-lugu",
+      "name": "鲁谷大街",
+      "latlng": [
+        39.8928,
+        116.2246
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "鲁谷大街南部、莲石东路与吴家村路衔接走廊。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-wujiacun",
+      "name": "吴家村",
+      "latlng": [
+        39.8884,
+        116.2361
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "吴家村路沿线站区。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-xiaowayao",
+      "name": "小瓦窑",
+      "latlng": [
+        39.8884,
+        116.247
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "吴家村路向大成路衔接的站区。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-qingta",
+      "name": "青塔",
+      "latlng": [
+        39.8884,
+        116.2586
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "大成路与青塔西路附近站区。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-wanfeng",
+      "name": "万丰路",
+      "latlng": [
+        39.8915,
+        116.2891
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "万丰路北部、向莲花池西路衔接走廊。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-maliandao",
+      "name": "马连道",
+      "latlng": [
+        39.8805,
+        116.3204
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 600,
+      "coordinateNote": "马连道路南部站区；与铁路及公交同名对象分开。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    },
+    {
+      "id": "beijing-f11p2-tiyu-reference",
+      "name": "体育场南街",
+      "latlng": [
+        39.89512,
+        116.19979
+      ],
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateAccuracyM": 650,
+      "coordinateNote": "人民渠路现状way/948716213东段附近的近似站区。旧1号线支线站址也是走廊估计，本任务不移动旧站，不把两处参考差异解释成真实650米通道。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "main",
+      "coverageGroupId": "beijing11-phase2",
+      "mapRouteId": "beijing-future-line11-phase2",
+      "historicalLineId": "beijing-line11-11",
+      "name": "11号线二期：新首钢—丽泽商务区",
+      "color": "#ED796B",
+      "stationIds": [
+        "beijing-s374",
+        "beijing-f11p2-xingcai",
+        "beijing-f11p2-guoluchang",
+        "beijing-f11p2-yamenkouxi",
+        "beijing-f1b-tiyuchangnanjie",
+        "beijing-f11p2-yamenkoudong",
+        "beijing-f11p2-lugu",
+        "beijing-f11p2-wujiacun",
+        "beijing-f11p2-xiaowayao",
+        "beijing-f11p2-qingta",
+        "beijing-f11p2-wanfeng",
+        "beijing-s189",
+        "beijing-s215",
+        "beijing-f11p2-maliandao",
+        "beijing-s287"
+      ],
+      "stationInstances": {
+        "beijing-s374": "beijing-s374",
+        "beijing-f11p2-xingcai": "beijing-f11p2-xingcai__line11-phase2",
+        "beijing-f11p2-guoluchang": "beijing-f11p2-guoluchang__line11-phase2",
+        "beijing-f11p2-yamenkouxi": "beijing-f11p2-yamenkouxi__line11-phase2",
+        "beijing-f1b-tiyuchangnanjie": "beijing-f1b-tiyuchangnanjie__line11-phase2",
+        "beijing-f11p2-yamenkoudong": "beijing-f11p2-yamenkoudong__line11-phase2",
+        "beijing-f11p2-lugu": "beijing-f11p2-lugu__line11-phase2",
+        "beijing-f11p2-wujiacun": "beijing-f11p2-wujiacun__line11-phase2",
+        "beijing-f11p2-xiaowayao": "beijing-f11p2-xiaowayao__line11-phase2",
+        "beijing-f11p2-qingta": "beijing-f11p2-qingta__line11-phase2",
+        "beijing-f11p2-wanfeng": "beijing-f11p2-wanfeng__line11-phase2",
+        "beijing-s189": "beijing-s189__line11-phase2",
+        "beijing-s215": "beijing-s215__line11-phase2",
+        "beijing-f11p2-maliandao": "beijing-f11p2-maliandao__line11-phase2",
+        "beijing-s287": "beijing-s287__line11-phase2"
+      },
+      "stationReferenceIds": {
+        "beijing-f1b-tiyuchangnanjie": "beijing-f11p2-tiyu-reference"
+      },
+      "toleranceM": 650,
+      "constructionVariant": true,
+      "stationNamingSource": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "stationOrderSource": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+      "precisionNote": "官方14座新站及既有新首钢接头；位置为所经道路的近似站区，非正式站体中心，隧道为近似走廊。体育场南街旧支线位置不自动变更。",
+      "officialLengthM": 18400
+    }
+  ],
+  "transfers": [
+    {
+      "id": "future-transfer-bj11phase2-beijing-f1b-tiyuchangnanjie-beijing-lineearly0",
+      "name": "体育场南街",
+      "complexId": "beijing-f1b-tiyuchangnanjie",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-lineearly0"
+      ],
+      "stationInstanceIds": [
+        "beijing-f1b-tiyuchangnanjie__line11-phase2",
+        "beijing-f1b-tiyuchangnanjie"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s189-beijing-line10-10",
+      "name": "莲花桥",
+      "complexId": "beijing-s189",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line10-10"
+      ],
+      "stationInstanceIds": [
+        "beijing-s189__line11-phase2",
+        "beijing-s189"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s215-beijing-line7-7",
+      "name": "北京西站",
+      "complexId": "beijing-s215",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line7-7"
+      ],
+      "stationInstanceIds": [
+        "beijing-s215__line11-phase2",
+        "beijing-s215__line7-7"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s215-beijing-line9-9",
+      "name": "北京西站",
+      "complexId": "beijing-s215",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line9-9"
+      ],
+      "stationInstanceIds": [
+        "beijing-s215__line11-phase2",
+        "beijing-s215__line9-9"
+      ],
+      "source": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s287-beijing-line14-14",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line14-14"
+      ],
+      "stationInstanceIds": [
+        "beijing-s287__line11-phase2",
+        "beijing-s287__line14-14"
+      ],
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s287-beijing-line16-16",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-line16-16"
+      ],
+      "stationInstanceIds": [
+        "beijing-s287__line11-phase2",
+        "beijing-s287__line16-16"
+      ],
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    },
+    {
+      "id": "future-transfer-bj11phase2-beijing-s287-beijing-route-21",
+      "name": "丽泽商务区",
+      "complexId": "beijing-s287",
+      "lineIds": [
+        "beijing-line11-11",
+        "beijing-route-21"
+      ],
+      "stationInstanceIds": [
+        "beijing-s287__line11-phase2",
+        "beijing-s287__line21"
+      ],
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html",
+      "precision": "schematic",
+      "sourceNote": "已公布的线路换乘关系，各线采用独立站体；没有隧道或通道测绘，不把近似中心差当作真实通道长度。"
+    }
+  ],
+  "plan": {
+    "id": "bj-line11-phase2-build",
+    "title": "11号线二期：连接北京西站与丽泽",
+    "date": "2026-10-01",
+    "status": "approved",
+    "projectType": "approved_project",
+    "required": true,
+    "sourceType": "official_integrated_scheme_approved",
+    "source": "https://zdb.beijing.gov.cn/zfxxgk/zfxxgkzl/fdzdgknr/ghxx/202601/t20260114_4429896.html",
+    "sourceTitle": "市重大办2025年四季度：11号线二期线路一体化方案获批",
+    "sourcePublicationDate": "2026-01-14",
+    "sourceCheckedAt": "2026-10-27",
+    "additionalSources": [
+      "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+      "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf",
+      "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html"
+    ],
+    "contentRevision": "2026.10.27.2",
+    "requiresScopeRecheck": true,
+    "stationProfiles": {
+      "beijing-f11p2-xingcai__line11-phase2": {
+        "id": "bj-line11-phase2-型材",
+        "form": "地下二层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-guoluchang__line11-phase2": {
+        "id": "bj-line11-phase2-锅炉厂南路",
+        "form": "地下二层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-yamenkouxi__line11-phase2": {
+        "id": "bj-line11-phase2-衙门口西",
+        "form": "地下二层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f1b-tiyuchangnanjie__line11-phase2": {
+        "id": "bj-line11-phase2-体育场南街",
+        "form": "地下二层岛式（1号线支线代建预留）",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-yamenkoudong__line11-phase2": {
+        "id": "bj-line11-phase2-衙门口东",
+        "form": "地下三层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-lugu__line11-phase2": {
+        "id": "bj-line11-phase2-鲁谷大街",
+        "form": "地下岛式，层次待按最终工程资料确认",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "schematic",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。 环评总述为全地下线，但表2-2-2该行写地面三层，保留资料差异，不据此生成高架站。"
+      },
+      "beijing-f11p2-wujiacun__line11-phase2": {
+        "id": "bj-line11-phase2-吴家村",
+        "form": "地下二层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-xiaowayao__line11-phase2": {
+        "id": "bj-line11-phase2-小瓦窑",
+        "form": "地下三层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-qingta__line11-phase2": {
+        "id": "bj-line11-phase2-青塔",
+        "form": "两端地下三层、中部单层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-wanfeng__line11-phase2": {
+        "id": "bj-line11-phase2-万丰路",
+        "form": "地下二层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-s189__line11-phase2": {
+        "id": "bj-line11-phase2-莲花桥",
+        "form": "地下三层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-s215__line11-phase2": {
+        "id": "bj-line11-phase2-北京西站",
+        "form": "地下三层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-f11p2-maliandao__line11-phase2": {
+        "id": "bj-line11-phase2-马连道",
+        "form": "地下二层岛式",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.bii.com.cn/file/2025/07/28/1753687412210.pdf"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      },
+      "beijing-s287__line11-phase2": {
+        "id": "bj-line11-phase2-丽泽商务区",
+        "form": "地下岛式（枢纽整体地下五层口径）",
+        "depthM": -25,
+        "parameterStatus": {
+          "form": "public_reference",
+          "depthM": "game_estimate"
+        },
+        "parameterSources": {
+          "form": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260313_4556163.html"
+        },
+        "note": "地面位置、矩形、朝向和显示深度为游戏示意；不以未公开工程尺寸设置通关门槛。"
+      }
+    },
+    "description": "复用一期新首钢接头，建设公开的14座新站及连续区间，建立1支线、10、7、9、14、16及机场线换乘。按已获批的一体化范围制作规划建设，不把招标计划当作开工或未来开通公告。衙门口东铁路接驳单列背景；丽金线整体另行核验，不伪造已运营线路。"
+  }
+}

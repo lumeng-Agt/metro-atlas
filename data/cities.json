@@ -16308,6 +16308,160 @@
           "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202604/t20260407_4575686.html",
           "sourceCheckedAt": "2026-10-26",
           "coordinateAccuracyM": 250
+        },
+        {
+          "id": "beijing-f11p2-xingcai",
+          "name": "型材",
+          "latlng": [
+            39.8987,
+            116.1699
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "规划二型材南路西段／北辛安路走廊；现状路网尚未完整实施。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-guoluchang",
+          "name": "锅炉厂南路",
+          "latlng": [
+            39.8962,
+            116.181
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "人民渠路西部弯曲段与锅炉厂南路走廊。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-yamenkouxi",
+          "name": "衙门口西",
+          "latlng": [
+            39.8951,
+            116.1908
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "人民渠路／古城南街一带，非把同名公交站当作地铁中心。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-yamenkoudong",
+          "name": "衙门口东",
+          "latlng": [
+            39.8946,
+            116.2144
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "市郊铁路衙门口东站附近的独立地铁站区；不复用铁路站台。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-lugu",
+          "name": "鲁谷大街",
+          "latlng": [
+            39.8928,
+            116.2246
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "鲁谷大街南部、莲石东路与吴家村路衔接走廊。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-wujiacun",
+          "name": "吴家村",
+          "latlng": [
+            39.8884,
+            116.2361
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "吴家村路沿线站区。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-xiaowayao",
+          "name": "小瓦窑",
+          "latlng": [
+            39.8884,
+            116.247
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "吴家村路向大成路衔接的站区。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-qingta",
+          "name": "青塔",
+          "latlng": [
+            39.8884,
+            116.2586
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "大成路与青塔西路附近站区。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-wanfeng",
+          "name": "万丰路",
+          "latlng": [
+            39.8915,
+            116.2891
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "万丰路北部、向莲花池西路衔接走廊。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-maliandao",
+          "name": "马连道",
+          "latlng": [
+            39.8805,
+            116.3204
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "马连道路南部站区；与铁路及公交同名对象分开。 按官方线路所经道路及许可OSM地理参照作约600米精度站区估计；不是已核验站体中心。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 600
+        },
+        {
+          "id": "beijing-f11p2-tiyu-reference",
+          "name": "体育场南街",
+          "latlng": [
+            39.89512,
+            116.19979
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "人民渠路现状way/948716213东段附近的近似站区。旧1号线支线站址也是走廊估计，本任务不移动旧站，不把两处参考差异解释成真实650米通道。",
+          "source": "https://www.beijing.gov.cn/ywdt/gzdt/202505/t20250503_4080250.html",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 650
         }
       ],
       "lines": [

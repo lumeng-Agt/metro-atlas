@@ -153,8 +153,14 @@ func _run() -> void:
 			if str(app.world.storyState.get("phase","history"))=="future" and not include_future:break
 			var chapter:Dictionary=Story.chapter(app.world)
 			var id:=str(chapter.id)
-			if visited.has(id):_fail(str(city),id,"navigation","chapter did not advance");break
-			visited[id]=true
+			# A dated backfill legitimately reopens later chapters that already
+			# modelled the corrected line. Replaying one of those again is real
+			# progress; re-entering a confirmed chapter, or reopening the same one
+			# more than twice, still means navigation is stuck.
+			var seen:=int(visited.get(id,0))
+			if seen>0 and app.world.storyState.get("completedChapterIds",[]).has(id):_fail(str(city),id,"navigation","confirmed chapter was offered again");break
+			if seen>=2:_fail(str(city),id,"navigation","chapter reopened more than twice");break
+			visited[id]=seen+1
 			print("REPLAY_CHAPTER_START ",city," ",index," ",id)
 			if not _construct_chapter(str(city),chapter):break
 			print("REPLAY_CHAPTER_OK ",city," ",id," stations=",app.world.stations.size()," edges=",app.world.trackEdges.size())
