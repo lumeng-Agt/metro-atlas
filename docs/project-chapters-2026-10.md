@@ -82,13 +82,13 @@
 | 27号线二期（蜀鑫路—黄田坝） | 可玩建设章 | 1 | 4 | corridor_only | [四川省人民政府新闻办公室四川发布2025-11-06：27号线二期工程概况](https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html) |
 | 10号线四期（人民公园—白莲池） | 可玩建设章 | 1 | 9 | corridor_only | [四川省政府新闻办四川发布2025-11-06：10号线四期8站工程概况](https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html) |
 | 18号线四期（北段及简阳南东段） | 可玩建设章 | 1 | 6 | station_areas_and_approximate_corridor | [四川省政府新闻办四川发布2025-11-06：18号线四期工程概况](https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html) |
-| 12号线一期（普安—舜和家园） | 待制作 | 0 | — | — | [成都轨道集团2026-08-26首次环评：34.2千米、28座车站](https://www.chengdurail.com/info/1171/134904.htm) |
+| 12号线一期（普安—舜和家园） | 可玩建设章 | 1 | 4 | station_areas_and_approximate_corridor | [成都市规划和自然资源局2026-08-12：成都轨道交通12号线详细规划方案（普安站—通港路站）公告](https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml) |
 
 ## 合计
 
-- 可玩建设章：52
+- 可玩建设章：53
 - 政策条目：2
 - 工程条目：0
-- 待制作：1
+- 待制作：0
 
 走廊复现章（`corridor_only`）只表示按官方公开资料可核对的端点／换乘站与走廊，未公开的逐站站位不虚构坐标；判定依据见各章 `precisionNote`。

@@ -29,8 +29,17 @@ def main() -> int:
 
     beijing = cities["beijing"]
     bj_line4 = next(line for line in beijing["lines"] if line["id"] == "beijing-r4")
-    if len(bj_line4["stationIds"]) != 24 or "beijing-s239" in bj_line4["stationIds"]:
-        failures.append("Beijing Line 4 must have the 24 official stations and exclude the unnamed duplicate anchor")
+    # Line 4 and the Daxing Line run through as one service: 24 stations on
+    # Line 4 proper plus the 11 Daxing stations. The duplicate anchor must
+    # never come back, and neither half may silently lose or gain a station.
+    daxing_ids = [sid for sid in bj_line4["stationIds"] if sid.startswith("beijing-daxing-")]
+    line4_ids = [sid for sid in bj_line4["stationIds"] if not sid.startswith("beijing-daxing-")]
+    if len(line4_ids) != 24:
+        failures.append("Beijing Line 4 proper must keep its 24 official stations")
+    if len(daxing_ids) != 11 or len(bj_line4["stationIds"]) != 35:
+        failures.append("Beijing Line 4 through service must keep the 11 Daxing Line stations")
+    if "beijing-s239" in bj_line4["stationIds"]:
+        failures.append("Beijing Line 4 still contains the unnamed duplicate anchor")
     if len(bj_line4.get("directions", [])) >= 2 and bj_line4["directions"][1]["stationIds"] != list(reversed(bj_line4["directions"][0]["stationIds"])):
         failures.append("Beijing Line 4 directions are not reciprocal after deduplicating Taoranting")
 
@@ -44,20 +53,31 @@ def main() -> int:
     chengdu = campaigns["chengdu"]
     if chengdu.get("stationInstanceAliases", {}).get("chengdu-line1|chengdu-s12") != "chengdu-s12":
         failures.append("Chengdu Line 1 must reuse its original South Railway Station body identity")
+    # A transfer requirement legitimately appears again in a later chapter
+    # that re-checks the same interchange, but never twice inside one chapter.
+    # Every occurrence must still point at the original Line 1 station body.
     transfer_rows = [
-        transfer
+        (chapter.get("id"), transfer)
         for chapter in chengdu.get("chapters", [])
         for transfer in chapter.get("requiredTransfers", [])
         if transfer.get("id") == "historic-transfer-chengdu-s12-line7-7-line1"
     ]
-    if len(transfer_rows) != 1 or transfer_rows[0].get("stationInstanceIds", [None, None])[1] != "chengdu-s12":
-        failures.append("Chengdu Line 7/Line 1 transfer still references the duplicate Line 1 body")
+    if not transfer_rows:
+        failures.append("Chengdu Line 7/Line 1 transfer requirement is missing")
+    for chapter_id, row in transfer_rows:
+        if row.get("stationInstanceIds", [None, None])[1] != "chengdu-s12":
+            failures.append(f"Chengdu Line 7/Line 1 transfer in {chapter_id} still references the duplicate Line 1 body")
 
     for city_id, city_config in campaigns.items():
         aliases = city_config.get("stationInstanceAliases", {})
         complex_aliases = city_config.get("stationComplexAliases", {})
         for chapter in city_config.get("chapters", []):
+            seen_transfers: set[str] = set()
             for transfer in chapter.get("requiredTransfers", []):
+                transfer_id = str(transfer.get("id", ""))
+                if transfer_id in seen_transfers:
+                    failures.append(f"{city_id} chapter {chapter.get('id')} lists transfer {transfer_id} twice")
+                seen_transfers.add(transfer_id)
                 complex_id = str(transfer.get("complexId", ""))
                 if complex_aliases.get(complex_id, complex_id) != complex_id:
                     failures.append(f"{city_id} transfer {transfer.get('id')} does not use its canonical historical complex ID")

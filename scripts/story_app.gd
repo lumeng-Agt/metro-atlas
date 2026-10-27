@@ -1763,6 +1763,32 @@ func _tutorial_map_rect(latlng:Array,step_id:String,radius:float) -> Rect2:
 	var point:=map_view._to_screen(latlng)+map_area.position
 	return Rect2(point-Vector2(radius,radius),Vector2(radius*2,radius*2))
 
+## Two different neighbours must not share one platform end. A ring closes
+## through the opposite end of its first station, so a section that simply took
+## the facing end again would leave both the closing section and the departure
+## on one end and the ring could never be confirmed.
+func _free_end_for(state:Dictionary,station:Dictionary,side:String,other_id:String) -> String:
+	var node_id:=TrackNetwork.station_node_id(station,side)
+	if node_id.is_empty():return side
+	var other_side:="end" if side=="start" else "start"
+	var other_node:=TrackNetwork.station_node_id(station,other_side)
+	var facing_used_by:=_edge_neighbour_station(state,node_id,str(station.get("id","")))
+	var other_used_by:=_edge_neighbour_station(state,other_node,str(station.get("id","")))
+	if facing_used_by.is_empty() or facing_used_by==other_id:return side
+	if other_used_by.is_empty() or other_used_by==other_id:return other_side
+	return side
+
+func _edge_neighbour_station(state:Dictionary,node_id:String,own_station_id:String) -> String:
+	if node_id.is_empty():return ""
+	for edge in TrackNetwork.all_physical_edges(state):
+		var ends:Array=TrackNetwork._edge_node_ids(edge,state)
+		if ends.size()!=2 or not ends.has(node_id):continue
+		var far_node:=str(ends[0]) if str(ends[1])==node_id else str(ends[1])
+		var far_station:=str(TrackNetwork.find_node(state,far_node).get("stationId",""))
+		if far_station.is_empty() or far_station==own_station_id:continue
+		return far_station
+	return ""
+
 func _facing(a:Dictionary,b:Dictionary) -> Array:
 	var alignment:=ReferenceAlignment.for_stations(a,b)
 	if not alignment.is_empty():return ReferenceAlignment.sides(a,b,alignment,float(WorldData.city(str(world.cityId)).center[0]))
@@ -1823,7 +1849,11 @@ func _required_extension_port(state:Dictionary,station_id:String,other_id:String
 			for direction in route.get("directions",[]):
 				var ids:Array=direction.get("stationIds",[]);var paths:Array=direction.get("edgePathsBySegment",[])
 				var at:=int(ids.find(station_id))
-				if at<0 or paths.size()!=ids.size()-1:continue
+				# Only an interior station has one neighbour on each side. A
+				# terminal has a single neighbour, and extending from it must use
+				# the free end instead of stacking onto the neighbour it already
+				# serves.
+				if at<=0 or at+1>=ids.size() or paths.size()!=ids.size()-1:continue
 				var neighbours:Array=[]
 				if at>0:neighbours.append(at-1)
 				if at+1<ids.size():neighbours.append(at+1)
@@ -1838,7 +1868,20 @@ func _required_extension_port(state:Dictionary,station_id:String,other_id:String
 	var used:=_existing_terminal_port(state,station_id,line_id,path_index,ref_lat)
 	if used.is_empty():return ""
 	var station:=WorldData.find_station(state,station_id)
-	return TrackNetwork.station_node_id(station,"end" if used==TrackNetwork.station_node_id(station,"start") else "start")
+	var free_side:="end" if used==TrackNetwork.station_node_id(station,"start") else "start"
+	var free_node:=TrackNetwork.station_node_id(station,free_side)
+	# Only a terminal keeps a genuinely unused end. A through station already
+	# serves two different neighbours; taking that end again would stack a
+	# second section onto the neighbour that owns it, so a ring could never
+	# close and the loop would report the same platform end twice. Leave the
+	# port open here and let the path search reuse the existing section.
+	for edge in TrackNetwork.all_physical_edges(state):
+		var ends:Array=TrackNetwork._edge_node_ids(edge,state)
+		if ends.size()!=2 or not ends.has(free_node):continue
+		var other_node:=str(ends[0]) if str(ends[1])==free_node else str(ends[1])
+		var other_station_id:=str(TrackNetwork.find_node(state,other_node).get("stationId",""))
+		if not other_station_id.is_empty() and other_station_id!=other_id:return ""
+	return free_node
 
 func _assist_required_ports(state:Dictionary,group:Dictionary,index:int,prior_arrival:String,path_index:Dictionary,ref_lat:float) -> Array:
 	var ids:Array=group.get("stationIds",[]);var line_id:=str(group.get("historicalLineId",""))
@@ -1919,6 +1962,8 @@ func _assist_candidate() -> Dictionary:
 				if first_departure.is_empty():first_departure=str(reusable.edges[0].get("fromNodeId",""))
 				prior_arrival=str(reusable.edges[-1].get("toNodeId",""));continue
 			var ends:=_facing(a,b)
+			ends[0]=_free_end_for(candidate,a,str(ends[0]),str(b.id))
+			ends[1]=_free_end_for(candidate,b,str(ends[1]),str(a.id))
 			if not str(required_ports[0]).is_empty():ends[0]="start" if required_ports[0]==TrackNetwork.station_node_id(a,"start") else "end"
 			if not str(required_ports[1]).is_empty():ends[1]="start" if required_ports[1]==TrackNetwork.station_node_id(b,"start") else "end"
 			if bool(group.get("loop",false)) and index==ids.size()-2 and not first_departure.is_empty():ends[1]="end" if first_departure==TrackNetwork.station_node_id(b,"start") else "start"

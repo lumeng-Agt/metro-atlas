@@ -40804,6 +40804,62 @@
           "source": "https://k.sina.cn/article_1905843503_7198dd2f02001fwk6.html",
           "sourceCheckedAt": "2026-10-24",
           "coordinateAccuracyM": 700
+        },
+        {
+          "id": "chengdu-f12-puan",
+          "name": "普安",
+          "latlng": [
+            30.7865618,
+            103.8718141
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "2026-08-12详细规划公告：普安站位于西源大道与华港路北段交叉口附近。取西源大道（OSM way/849817405）与华港路（way/250862730）交点作站区近似，非站体中心测绘。",
+          "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 150
+        },
+        {
+          "id": "chengdu-f12-tongganglu",
+          "name": "通港路",
+          "latlng": [
+            30.7800492,
+            103.8841247
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "同一详细规划公告：通港路站位于西源大道与正港路交叉口附近。取西源大道（way/849817405）与正港路（way/250862732）交点。",
+          "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 150
+        },
+        {
+          "id": "chengdu-f12-tianshenglu",
+          "name": "天盛路",
+          "latlng": [
+            30.7678876,
+            103.900929
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "2026-08-14详细规划公告：天盛路站位于合信路与天盛路交叉口附近。取合信路（way/250861520）与天盛路（way/250861992）交点。",
+          "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 150
+        },
+        {
+          "id": "chengdu-f12-guangmingcun",
+          "name": "光明村",
+          "latlng": [
+            30.7599129,
+            103.9081635
+          ],
+          "schematic": true,
+          "coordinateSource": "official_project_statement_and_local_road_geometry",
+          "coordinateNote": "同一详细规划公告：光明村站位于合信路与天彩路交叉口附近。取合信路（way/250861520）与天彩路（way/510945633）交点。",
+          "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml",
+          "sourceCheckedAt": "2026-10-27",
+          "coordinateAccuracyM": 150
         }
       ],
       "lines": [

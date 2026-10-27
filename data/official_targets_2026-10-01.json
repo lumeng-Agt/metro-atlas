@@ -12736,6 +12736,42 @@
           "transfers": [
             "future-transfer-cd18-shuangshuinian-27"
           ]
+        },
+        {
+          "id": "cd-line12-phase1",
+          "reviewStatus": "verified",
+          "constructionOnly": true,
+          "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml",
+          "sourcePublicationDate": "2026-08-12",
+          "sourceCheckedAt": "2026-10-27",
+          "additionalSources": [
+            "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml",
+            "https://sina.cn/news/detail/5336287474091136.html"
+          ],
+          "scopeNote": "环评只公布34.2公里、28站、13换乘与端点，未发布站名表；只有普安—通港路、天盛路—光明村两段有详细规划公告。独立目标只核对这4站两段，其余24站与13座换乘登记为未公布，不得用第三方站表补成官方站序。",
+          "groups": [
+            {
+              "id": "chengdu-line12-phase1-puan",
+              "historicalLineId": "chengdu-line12",
+              "scopeType": "stations",
+              "stationNames": [
+                "普安",
+                "通港路"
+              ],
+              "allowReverse": true
+            },
+            {
+              "id": "chengdu-line12-phase1-tiansheng",
+              "historicalLineId": "chengdu-line12",
+              "scopeType": "stations",
+              "stationNames": [
+                "天盛路",
+                "光明村"
+              ],
+              "allowReverse": true
+            }
+          ],
+          "transfers": []
         }
       ],
       "cutoffNetwork": {

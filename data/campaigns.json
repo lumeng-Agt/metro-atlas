@@ -60697,6 +60697,79 @@
           "scopeRevision": "2026.10.24.9",
           "requiresScopeRecheck": true,
           "scopeCorrections": []
+        },
+        {
+          "id": "cd-line12-phase1-build",
+          "projectIds": [
+            "cd-line12-phase1"
+          ],
+          "title": "12号线一期：已公示的西端两段",
+          "date": "2026-10-01",
+          "status": "approved_preparatory",
+          "sourceType": "municipal_planning_bureau_detail_plan_announcement",
+          "projectType": "approved_preparatory",
+          "required": true,
+          "requireOpen": false,
+          "serviceStatusSchema": 2,
+          "dataStatus": "blueprint_ready",
+          "exactAlignment": "corridor_only",
+          "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml",
+          "sourceTitle": "成都市规划和自然资源局2026-08-12：成都轨道交通12号线详细规划方案（普安站—通港路站）公告",
+          "sourceCheckedAt": "2026-10-27",
+          "description": "环评信息公开（2026-08-26）只公布全线34.2公里、28座车站、普安—舜和家园及13座换乘，没有站名表；仅普安—通港路、天盛路—光明村两段有详细规划公告确定站位。本任务只建设这两段共4座已公示车站，其余24座未公布车站不虚构、不连成假走廊；不把详细规划公示当作开工或运营许可。",
+          "sourcePublicationDate": "2026-08-12",
+          "lineGroups": [
+            {
+              "taskId": "project:cd-line12-phase1-build:puan",
+              "mapRouteId": "chengdu-future-line12-phase1-puan",
+              "name": "12号线一期：普安—通港路（已公示）",
+              "historicalLineId": "chengdu-line12",
+              "color": "#4B1F6F",
+              "stationIds": [
+                "chengdu-f12-puan",
+                "chengdu-f12-tongganglu"
+              ],
+              "stationNames": {
+                "chengdu-f12-puan": "普安",
+                "chengdu-f12-tongganglu": "通港路"
+              },
+              "toleranceM": 250.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "两站位置来自2026-08-12详细规划公告的路口描述，站区约150米精度；区间线位未公布，按西源大道走廊示意，不冒充隧道中心线。",
+              "stationOrderSource": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml",
+              "requireOpen": false,
+              "coverageGroupId": "chengdu-line12-phase1-puan"
+            },
+            {
+              "taskId": "project:cd-line12-phase1-build:tiansheng",
+              "mapRouteId": "chengdu-future-line12-phase1-tiansheng",
+              "name": "12号线一期：天盛路—光明村（已公示）",
+              "historicalLineId": "chengdu-line12",
+              "color": "#4B1F6F",
+              "stationIds": [
+                "chengdu-f12-tianshenglu",
+                "chengdu-f12-guangmingcun"
+              ],
+              "stationNames": {
+                "chengdu-f12-tianshenglu": "天盛路",
+                "chengdu-f12-guangmingcun": "光明村"
+              },
+              "toleranceM": 250.0,
+              "alignmentPrecision": "station_areas_and_approximate_corridor",
+              "precisionNote": "两站位置来自2026-08-14详细规划公告的路口描述，站区约150米精度；区间线位未公布，按合信路走廊示意。",
+              "stationOrderSource": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml",
+              "requireOpen": false,
+              "coverageGroupId": "chengdu-line12-phase1-tiansheng"
+            }
+          ],
+          "requiredTransfers": [],
+          "scopeRevision": "2026.10.27.3",
+          "requiresScopeRecheck": true,
+          "scopeCorrections": [],
+          "additionalSources": [
+            "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml",
+            "https://sina.cn/news/detail/5336287474091136.html"
+          ]
         }
       ],
       "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
@@ -60846,6 +60919,6 @@
   },
   "verifiedAt": "2026-10-17",
   "contentVersion": "0.25.0",
-  "contentRevision": "2026.10.27.2",
-  "contentRevisionNote": "补北京11号线二期14座新站、既有接头与独立线路站体换乘；不采用旧洋桥方案，不改变现状开放范围。"
+  "contentRevision": "2026.10.27.3",
+  "contentRevisionNote": "补入成都12号线一期两段已公示详细规划，只建4座有官方路口的车站，未公布区段保留缺项。"
 }

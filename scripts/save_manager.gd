@@ -278,6 +278,10 @@ static func load_file(path: String, confirm_recovery: bool = false) -> Dictionar
 	# a persisted gap phase must resume into the first new dated chapter even
 	# when their data format is already current.
 	var loaded_world:Dictionary=raw.data.duplicate(true)
+	if _repair_legacy_network(loaded_world):
+		var repaired:=_preserve_original(str(raw.text),"network_repair")
+		if not bool(repaired.get("ok",false)):return repaired
+		loaded_world["migrationNotice"]="已修正旧档中两处建设记录：把首尾重复的服务方向还原为单向，并把同一对站体之间的重复区间合并为一段。原有车站与轨道位置未改动，修正前原档已独立备份。"
 	var content_recheck:=_recheck_expanded_projects(loaded_world)
 	if bool(content_recheck.get("changed",false)):
 		var preserved:=_preserve_original(str(raw.text),"content_upgrade")
@@ -370,6 +374,7 @@ static func migrate(data: Dictionary, original_text: String = "") -> Dictionary:
 	result["schemaVersion"]=WorldData.SAVE_VERSION
 	if not (result.get("serviceRanges",null) is Array):result["serviceRanges"]=[]
 	_upgrade_station_complexes(result)
+	_repair_legacy_network(result)
 	if old_version>=19 and old_version<WorldData.SAVE_VERSION:
 		result["referenceDataVersion"]=ReferenceAlignment.version()
 		if not (result.get("storyState",null) is Dictionary):
@@ -484,6 +489,155 @@ static func _upgrade_station_complexes(result:Dictionary) -> void:
 		if not complex_id.is_empty() and not complexes.has(complex_id):
 			var complex:Dictionary={"id":complex_id,"name":str(station.get("name","历史站区")),"locationPrecision":"station_area_approximation","structureStatus":"legacy_unresolved"}
 			result.stationComplexes.append(complex);complexes[complex_id]=complex
+
+## Two superseded builds left physical or service records that the current
+## engine can no longer run. Both are repaired on load, because a player who
+## saved on those builds must keep the network they already built.
+static func _repair_legacy_network(world:Dictionary) -> bool:
+	var collapsed:=_collapse_self_reversing_directions(world)
+	var deduplicated:=_drop_parallel_station_sections(world)
+	return collapsed or deduplicated
+
+
+## A superseded build stored a run out to the terminus and its return leg as
+## one direction, so that direction reversed at its middle station. A service
+## direction never turns back on itself, and the return leg runs over the very
+## same sections, so only the outbound half is kept. A ring also starts and
+## ends at one station but never reuses a section in reverse, so requiring the
+## mirrored sections tells the two apart.
+static func _collapse_self_reversing_directions(world:Dictionary) -> bool:
+	var changed:=false
+	for route in world.get("routes",[]):
+		if not route is Dictionary:continue
+		var collapsed_size:=0
+		for direction in route.get("directions",[]):
+			if not direction is Dictionary:continue
+			var ids:Array=direction.get("stationIds",[])
+			var paths:Array=direction.get("edgePathsBySegment",[])
+			if ids.size()<5 or ids.size()%2==0 or paths.size()!=ids.size()-1:continue
+			if not _mirrored_sequence(ids) or not _mirrored_sections(paths):continue
+			var center:=int((ids.size()-1)/2)
+			collapsed_size=ids.size()
+			direction["stationIds"]=ids.slice(0,center+1)
+			direction["edgePathsBySegment"]=paths.slice(0,center)
+			var statuses:Array=direction.get("serviceStatusBySegment",[])
+			if statuses.size()==paths.size():direction["serviceStatusBySegment"]=statuses.slice(0,center)
+			changed=true
+		var order:Array=route.get("stationOrder",[])
+		if collapsed_size>0 and order.size()==collapsed_size and _mirrored_sequence(order):
+			route["stationOrder"]=order.slice(0,int((order.size()-1)/2)+1)
+	return changed
+
+static func _mirrored_sections(paths:Array) -> bool:
+	for index in range(paths.size()/2):
+		if _section_signature(paths[index])!=_section_signature(paths[paths.size()-1-index]):return false
+	return true
+
+static func _section_signature(section:Array) -> String:
+	var parts:Array=[]
+	for record in section:
+		if record is Dictionary:parts.append(str(record.get("id","")))
+	return "|".join(parts)
+
+static func _mirrored_sequence(ids:Array) -> bool:
+	for index in range(ids.size()/2):
+		if str(ids[index])!=str(ids[ids.size()-1-index]):return false
+	return true
+
+## A superseded build could add a second section between the same two station
+## bodies instead of using the platform end that was still free. That leaves
+## one end carrying two neighbours and the other end empty, so every service
+## over it reverses inside the station. Keep the section that spreads the two
+## neighbours across both ends and remove the duplicate.
+static func _drop_parallel_station_sections(world:Dictionary) -> bool:
+	var station_of:Dictionary={}
+	for node in world.get("trackNodes",[]):
+		if node is Dictionary:station_of[str(node.get("id",""))]=str(node.get("stationId",""))
+	var node_load:Dictionary={}
+	var groups:Dictionary={}
+	var order:Array=[]
+	for edge in world.get("trackEdges",[]):
+		if not edge is Dictionary:continue
+		var ends:Array=TrackNetwork._edge_node_ids(edge,world)
+		if ends.size()!=2:continue
+		var first:=str(station_of.get(str(ends[0]),""));var second:=str(station_of.get(str(ends[1]),""))
+		if first.is_empty() or second.is_empty() or first==second:continue
+		var key_parts:Array=[first,second];key_parts.sort()
+		var key:="%s|%s" % [str(key_parts[0]),str(key_parts[1])]
+		if not groups.has(key):groups[key]=[];order.append(key)
+		groups[key].append({"edge":edge,"ends":ends})
+		for node_id in ends:
+			var node_key:=str(node_id)
+			var far:=second if str(node_id)==str(ends[0]) else first
+			if not node_load.has(node_key):node_load[node_key]={}
+			node_load[node_key][far]=true
+	var dropped:Dictionary={}
+	for key in order:
+		var rows:Array=groups[key]
+		if rows.size()<2:continue
+		# Only a repeated build of the same service produces this defect. Two
+		# different services sharing a corridor keep their own sections, and a
+		# group whose sections never touch one platform end is not crowded.
+		var route_ids:Array=_sorted_route_ids(rows[0].edge)
+		var same_service:=true
+		var shares_end:=false
+		for index in range(rows.size()):
+			if _sorted_route_ids(rows[index].edge)!=route_ids:same_service=false
+			for other in range(index+1,rows.size()):
+				for node_id in rows[index].ends:
+					if rows[other].ends.has(node_id):shares_end=true
+		if not same_service or not shares_end:continue
+		var keep_index:=0;var best:=INF
+		for index in range(rows.size()):
+			var row:Dictionary=rows[index]
+			var score:=0.0
+			for node_id in row.ends:score+=float(node_load.get(str(node_id),{}).size())
+			if score<best:best=score;keep_index=index
+		for index in range(rows.size()):
+			if index==keep_index:continue
+			var edge:Dictionary=rows[index].edge
+			dropped[str(edge.get("id",""))]=true
+	if dropped.is_empty():return false
+	var kept:Array=[]
+	for edge in world.get("trackEdges",[]):
+		if edge is Dictionary and dropped.has(str(edge.get("id",""))):continue
+		kept.append(edge)
+	world["trackEdges"]=kept
+	_reresolve_dropped_segments(world,dropped)
+	return true
+
+static func _sorted_route_ids(edge:Dictionary) -> Array:
+	var ids:Array=[]
+	for id in edge.get("routeIds",[]):ids.append(str(id))
+	ids.sort()
+	return ids
+
+## Removing a duplicate section leaves stored segment records pointing at an id
+## that no longer exists. Re-resolve only those segments from the physical
+## graph so every other authored alignment stays exactly as it was.
+static func _reresolve_dropped_segments(world:Dictionary,dropped:Dictionary) -> void:
+	var ref_lat:=float(WorldData.city(str(world.get("cityId",""))).get("center",[0])[0])
+	var path_index:=TrackNetwork.build_path_index(world,ref_lat)
+	for route in world.get("routes",[]):
+		if not route is Dictionary:continue
+		for direction in route.get("directions",[]):
+			if not direction is Dictionary:continue
+			var ids:Array=direction.get("stationIds",[])
+			var paths:Array=direction.get("edgePathsBySegment",[])
+			for index in range(paths.size()):
+				var segment:Array=paths[index]
+				if index+1>=ids.size():continue
+				var stale:=false
+				for record in segment:
+					if record is Dictionary and dropped.has(str(record.get("id",""))):stale=true;break
+				if not stale:continue
+				var resolved:=TrackNetwork.shortest_station_path_indexed(str(ids[index]),str(ids[index+1]),world,path_index,ref_lat)
+				if not bool(resolved.get("valid",false)):continue
+				var records:Array=[]
+				for connection in resolved.get("edges",[]):
+					if bool(connection.edge.get("platform",false)):continue
+					records.append({"id":str(connection.edge.get("id","")),"forward":bool(connection.forward)})
+				if not records.is_empty():paths[index]=records
 
 static func _index_usable(data:Dictionary) -> bool:
 	if data.has("stations"):return validate(data).is_empty()

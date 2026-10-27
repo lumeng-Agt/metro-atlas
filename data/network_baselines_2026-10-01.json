@@ -77761,13 +77761,13 @@
           "id": "cd-line12-phase1",
           "name": "12号线一期（普安—舜和家园）",
           "projectType": "approved_preparatory",
+          "status": "已立项，前期环评与设计",
           "statusAtCutoff": "已立项，前期环评与设计",
-          "source": "https://www.chengdurail.com/info/1171/134904.htm",
-          "sourceTitle": "成都轨道集团2026-08-26首次环评：34.2千米、28座车站",
-          "note": "独立登记必做项目。完整站名表尚未在此次公告中公布，不能拿已制作的其他三项第五期工程代替本线；须制作有依据的站区和走廊任务。",
-          "sourceCheckedAt": "2026-10-24",
-          "playabilityStatus": "registered_geometry_and_playable_task_pending",
-          "status": "已立项，前期环评与设计"
+          "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml",
+          "sourceTitle": "成都市规划和自然资源局2026-08-12：成都轨道交通12号线详细规划方案（普安站—通港路站）公告",
+          "sourceCheckedAt": "2026-10-27",
+          "playabilityStatus": "playable_build_task",
+          "note": "仅两段详细规划已公示，制作4座有官方路口的车站；其余24座车站与13座换乘未公布，保留缺项，不虚构站名与走廊。"
         }
       ],
       "documentedMilestones": [
@@ -91818,5 +91818,5 @@
     }
   },
   "contentStatus": "playable_cutoff_route_inventories",
-  "contentRevision": "2026.10.27.2"
+  "contentRevision": "2026.10.27.3"
 }

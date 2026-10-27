@@ -1,0 +1,112 @@
+{
+  "city": "chengdu",
+  "projectIds": [
+    "cd-line12-phase1"
+  ],
+  "stations": [
+    {
+      "id": "chengdu-f12-puan",
+      "name": "普安",
+      "latlng": [
+        30.7865618,
+        103.8718141
+      ],
+      "coordinateAccuracyM": 150,
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "2026-08-12详细规划公告：普安站位于西源大道与华港路北段交叉口附近。取西源大道（OSM way/849817405）与华港路（way/250862730）交点作站区近似，非站体中心测绘。",
+      "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml"
+    },
+    {
+      "id": "chengdu-f12-tongganglu",
+      "name": "通港路",
+      "latlng": [
+        30.7800492,
+        103.8841247
+      ],
+      "coordinateAccuracyM": 150,
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "同一详细规划公告：通港路站位于西源大道与正港路交叉口附近。取西源大道（way/849817405）与正港路（way/250862732）交点。",
+      "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml"
+    },
+    {
+      "id": "chengdu-f12-tianshenglu",
+      "name": "天盛路",
+      "latlng": [
+        30.7678876,
+        103.900929
+      ],
+      "coordinateAccuracyM": 150,
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "2026-08-14详细规划公告：天盛路站位于合信路与天盛路交叉口附近。取合信路（way/250861520）与天盛路（way/250861992）交点。",
+      "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml"
+    },
+    {
+      "id": "chengdu-f12-guangmingcun",
+      "name": "光明村",
+      "latlng": [
+        30.7599129,
+        103.9081635
+      ],
+      "coordinateAccuracyM": 150,
+      "coordinateSource": "official_project_statement_and_local_road_geometry",
+      "coordinateNote": "同一详细规划公告：光明村站位于合信路与天彩路交叉口附近。取合信路（way/250861520）与天彩路（way/510945633）交点。",
+      "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml"
+    }
+  ],
+  "lineGroups": [
+    {
+      "key": "puan",
+      "mapRouteId": "chengdu-future-line12-phase1-puan",
+      "coverageGroupId": "chengdu-line12-phase1-puan",
+      "name": "12号线一期：普安—通港路（已公示）",
+      "historicalLineId": "chengdu-line12",
+      "color": "#4B1F6F",
+      "stationIds": [
+        "chengdu-f12-puan",
+        "chengdu-f12-tongganglu"
+      ],
+      "toleranceM": 250,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "两站位置来自2026-08-12详细规划公告的路口描述，站区约150米精度；区间线位未公布，按西源大道走廊示意，不冒充隧道中心线。",
+      "stationOrderSource": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml"
+    },
+    {
+      "key": "tiansheng",
+      "mapRouteId": "chengdu-future-line12-phase1-tiansheng",
+      "coverageGroupId": "chengdu-line12-phase1-tiansheng",
+      "name": "12号线一期：天盛路—光明村（已公示）",
+      "historicalLineId": "chengdu-line12",
+      "color": "#4B1F6F",
+      "stationIds": [
+        "chengdu-f12-tianshenglu",
+        "chengdu-f12-guangmingcun"
+      ],
+      "toleranceM": 250,
+      "alignmentPrecision": "station_areas_and_approximate_corridor",
+      "precisionNote": "两站位置来自2026-08-14详细规划公告的路口描述，站区约150米精度；区间线位未公布，按合信路走廊示意。",
+      "stationOrderSource": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml"
+    }
+  ],
+  "transfers": [],
+  "plan": {
+    "id": "cd-line12-phase1-build",
+    "title": "12号线一期：已公示的西端两段",
+    "date": "2026-10-01",
+    "status": "approved_preparatory",
+    "projectType": "approved_preparatory",
+    "sourceType": "municipal_planning_bureau_detail_plan_announcement",
+    "required": true,
+    "source": "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/12/content_41c22b9b0dfe480b9768ce96099c2f86.shtml",
+    "additionalSources": [
+      "https://mpnr.chengdu.gov.cn/ghhzrzyj/kzxxgh/2026-08/14/content_2af2add8e3224ef8a0b0772b8d5f05a8.shtml",
+      "https://sina.cn/news/detail/5336287474091136.html"
+    ],
+    "sourceTitle": "成都市规划和自然资源局2026-08-12：成都轨道交通12号线详细规划方案（普安站—通港路站）公告",
+    "sourcePublicationDate": "2026-08-12",
+    "sourceCheckedAt": "2026-10-27",
+    "description": "环评信息公开（2026-08-26）只公布全线34.2公里、28座车站、普安—舜和家园及13座换乘，没有站名表；仅普安—通港路、天盛路—光明村两段有详细规划公告确定站位。本任务只建设这两段共4座已公示车站，其余24座未公布车站不虚构、不连成假走廊；不把详细规划公示当作开工或运营许可。",
+    "contentRevision": "2026.10.27.3",
+    "requiresScopeRecheck": true,
+    "contentRevisionNote": "补入成都12号线一期两段已公示详细规划，只建4座有官方路口的车站，未公布区段保留缺项。"
+  }
+}
