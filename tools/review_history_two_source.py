@@ -71,24 +71,25 @@ def _subsequence(seq, official):
 
 
 def alignment(names, official):
-    if names == official or names == list(reversed(official)):
-        return 'exact', {}
-    size = len(names)
-    for candidate in (names, list(reversed(names))):
+    """Try both service directions: a chapter may list the order either way."""
+    for reverse, candidate in ((False, list(names)), (True, list(reversed(names)))):
+        if candidate == official:
+            return 'exact', {'reverse': reverse}
+        size = len(candidate)
         for start in range(len(official) - size + 1):
             if official[start:start + size] == candidate:
-                return 'contiguous', {'start': start}
-    ok, skipped = _subsequence(names, official)
-    if ok:
-        return 'subsequence', {'skipped': skipped}
-    lead = []
-    rest = list(names)
-    while rest and rest[0] not in official:
-        lead.append(rest.pop(0))
-    if lead and rest:
-        ok, skipped = _subsequence(rest, official)
+                return 'contiguous', {'start': start, 'reverse': reverse}
+        ok, skipped = _subsequence(candidate, official)
         if ok:
-            return 'existing_lead', {'lead': lead, 'skipped': skipped}
+            return 'subsequence', {'skipped': skipped, 'reverse': reverse}
+        lead = []
+        rest = list(candidate)
+        while rest and rest[0] not in official:
+            lead.append(rest.pop(0))
+        if lead and rest:
+            ok, skipped = _subsequence(rest, official)
+            if ok:
+                return 'existing_lead', {'lead': lead, 'skipped': skipped, 'reverse': reverse}
     return 'unaligned', {}
 
 
