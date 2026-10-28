@@ -104,6 +104,8 @@ def main() -> None:
     if record.get("version") != args.version:
         raise RuntimeError(f"Gameplay record is for {record.get('version')}, not {args.version}")
     summary = record.get("summary", {})
+    if record.get("aborted"):
+        raise RuntimeError(f"Gameplay verification aborted before finishing: {record['aborted']}")
     if int(summary.get("failed", 1)) != 0:
         raise RuntimeError(f"Gameplay verification failed {summary.get('failed')} check(s)")
     required = required_ids()

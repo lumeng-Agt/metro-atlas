@@ -16,7 +16,6 @@ import argparse
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
 import time
@@ -32,6 +31,10 @@ ROOT = Path(__file__).resolve().parents[1]
 GODOT = ROOT / '.tools/godot/Godot_v4.7.2-stable_win64_console.exe'
 GODOT_PROFILE = ROOT / '.tools/profile'
 DATA_ROOT = Path('D:/gam1/testdata/gameplay-verify')
+# Each run gets its own data root. Previous runs' saves are left in place
+# instead of deleted up front: a bulk recursive delete trips the host's delete
+# guard, and a check that never started must not be mistaken for one that ran.
+RUN_ROOT = DATA_ROOT
 MAX_WORKERS = 5
 
 FAILURES = re.compile(r'REPLAY_FAILURES\s+(\d+)\s+checkpoints=(\d+)')
@@ -52,6 +55,17 @@ def _godot_env():
     # inside the repository so the toolchain stays self-contained.
     env['APPDATA'] = str(GODOT_PROFILE)
     return env
+
+
+def _fresh_dir(leaf):
+    """A directory that did not exist before this run, so no stale save is read."""
+    path = RUN_ROOT / leaf
+    suffix = 1
+    while path.exists():
+        path = RUN_ROOT / f'{leaf}-{suffix}'
+        suffix += 1
+    path.mkdir(parents=True, exist_ok=True)
+    return path
 
 
 def _run_godot(script, data_dir, extra_env=None, timeout=3600):
@@ -86,8 +100,7 @@ def _replay_check(city, data_dir, extra_env):
 
 
 def check_fresh(city):
-    data_dir = DATA_ROOT / f'{city}-fresh'
-    shutil.rmtree(data_dir, ignore_errors=True)
+    data_dir = _fresh_dir(f'{city}-fresh')
     row = _replay_check(city, data_dir, {'METRO_REPLAY_FREE_UNLOCK': '1'})
     floor = gameplay_spec.CHECKPOINT_FLOOR[city]
     row['checkpointFloor'] = floor
@@ -100,8 +113,7 @@ def check_fresh(city):
 
 def check_resume(city):
     """Run half the city, then pick the save up in a second process."""
-    data_dir = DATA_ROOT / f'{city}-resume'
-    shutil.rmtree(data_dir, ignore_errors=True)
+    data_dir = _fresh_dir(f'{city}-resume')
     part = _replay_check(city, data_dir, {'METRO_REPLAY_STOP_AFTER_INDEX': str(gameplay_spec.RESUME_BREAKPOINT)})
     resumed = _replay_check(city, data_dir, {'METRO_REPLAY_RESUME': '1'}) if part['exitCode'] == 0 else {
         'exitCode': 1, 'failures': None, 'checkpoints': 0, 'visited': 0, 'endPhase': '',
@@ -119,8 +131,7 @@ def check_resume(city):
 
 
 def check_gd(name, script):
-    data_dir = DATA_ROOT / f'{name.replace(".", "-")}'
-    shutil.rmtree(data_dir, ignore_errors=True)
+    data_dir = _fresh_dir(name.replace('.', '-'))
     result, elapsed = _run_godot(script, data_dir, timeout=1800)
     output = result.stdout + result.stderr
     errors = _script_errors(output)
@@ -158,34 +169,40 @@ def main():
 
     if not GODOT.is_file():
         raise SystemExit(f'Godot binary missing: {GODOT}')
-    DATA_ROOT.mkdir(parents=True, exist_ok=True)
+    global RUN_ROOT
+    RUN_ROOT = _fresh_dir('run-' + datetime.now().strftime('%Y%m%d-%H%M%S'))
     print(f'verifying {args.version}; fingerprint before run: {source_manifest_hash()[:16]}…')
 
     checks = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        futures = [(city, pool.submit(check_fresh, city)) for city in gameplay_spec.REPLAY_CITIES]
-        for city, future in futures:
-            row = _rerun_serially(future.result(), lambda c=city: check_fresh(c))
-            checks.append(row)
-            print(f"  {row['id']:34s} ok={row['ok']} checkpoints={row.get('checkpoints')} free={row.get('freeUnlock')}")
-        futures = [(city, pool.submit(check_resume, city)) for city in gameplay_spec.REPLAY_CITIES]
-        for city, future in futures:
-            row = _rerun_serially(future.result(), lambda c=city: check_resume(c))
-            checks.append(row)
-            print(f"  {row['id']:34s} ok={row['ok']} resume={row['resume'].get('checkpoints')}")
+    crashed = None
+    try:
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+            futures = [(city, pool.submit(check_fresh, city)) for city in gameplay_spec.REPLAY_CITIES]
+            for city, future in futures:
+                row = _rerun_serially(future.result(), lambda c=city: check_fresh(c))
+                checks.append(row)
+                print(f"  {row['id']:34s} ok={row['ok']} checkpoints={row.get('checkpoints')} free={row.get('freeUnlock')}")
+            futures = [(city, pool.submit(check_resume, city)) for city in gameplay_spec.REPLAY_CITIES]
+            for city, future in futures:
+                row = _rerun_serially(future.result(), lambda c=city: check_resume(c))
+                checks.append(row)
+                print(f"  {row['id']:34s} ok={row['ok']} resume={row['resume'].get('checkpoints')}")
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        gd_futures = [(name, script, pool.submit(check_gd, name, script))
-                      for name, script in gameplay_spec.GD_SCRIPTS]
-        for name, script, future in gd_futures:
-            row = _rerun_serially(future.result(), lambda n=name, s=script: check_gd(n, s))
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+            gd_futures = [(name, script, pool.submit(check_gd, name, script))
+                          for name, script in gameplay_spec.GD_SCRIPTS]
+            for name, script, future in gd_futures:
+                row = _rerun_serially(future.result(), lambda n=name, s=script: check_gd(n, s))
+                checks.append(row)
+                print(f"  {row['id']:34s} ok={row['ok']}")
+
+        for name, command in gameplay_spec.PY_CHECKS:
+            row = check_py(name, command)
             checks.append(row)
             print(f"  {row['id']:34s} ok={row['ok']}")
-
-    for name, command in gameplay_spec.PY_CHECKS:
-        row = check_py(name, command)
-        checks.append(row)
-        print(f"  {row['id']:34s} ok={row['ok']}")
+    except Exception as error:  # a half-finished run must not look like a record
+        crashed = f'{type(error).__name__}: {error}'
+        print(f'ABORTED after {len(checks)} checks: {crashed}')
 
     required = gameplay_spec.required_ids()
     present = {check['id'] for check in checks}
@@ -197,6 +214,7 @@ def main():
         'generatedAt': datetime.now().astimezone().isoformat(timespec='seconds'),
         'manifestHash': source_manifest_hash(),
         'godot': '4.7.2-stable.win64.console',
+        'aborted': crashed,
         'requiredChecks': required,
         'missingChecks': missing,
         'checks': checks,
@@ -207,6 +225,8 @@ def main():
     out.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f"RECORD {out}")
     print(f"GAMEPLAY {passed}/{len(checks)} passed; missing {len(missing)}; failed {len(checks) - passed}")
+    if crashed:
+        return 2
     return 0 if passed == len(checks) and not missing else 1
 
 

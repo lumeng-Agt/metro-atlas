@@ -8,6 +8,11 @@ func _initialize() -> void:call_deferred("_run")
 func _check(ok:bool,message:String) -> void:
 	checks+=1
 	if not ok:failures.append(message)
+## The city-wide project scope to audit. Read from the official target data
+## rather than the campaign catalog, because this fixture deliberately trims
+## the catalog down to line 13 — auditing the trimmed list would ask nothing.
+func city_project_ids() -> Array:
+	return OfficialNetworkAudit.target_data().get("cities",{}).get("shenzhen",{}).get("requiredProjectIds",[])
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():quit(2);return
 	WorldData.load_assets()
@@ -66,7 +71,16 @@ func _run() -> void:
 	broken.trackEdges.remove_at(broken.trackEdges.size()-1)
 	_check(not OfficialNetworkAudit.project_errors(broken,final_target).is_empty(),"missing northern physical segment fails official final scope")
 	_check(app.world.stations.all(func(s:Dictionary):return not str(s.name).contains("西丽高铁")),"announced skipped Xili station is not an open stop")
-	_check(not bool(Story.completion_eligibility(app.world).get("ok",false)),"single-line success cannot certify the full city")
+	# Only line 13 exists in this fixture. The city-wide audit is what the
+	# release evidence reads, so it has to report the missing scope — that is
+	# the check that a single-line success cannot be recorded as a whole city.
+	# (The `completion_eligibility` object cannot stand in for it here: the
+	# fixture restores the untouched catalog, so no required future plan is
+	# staged for it to evaluate, and it would read `ok` on the built chapter
+	# alone. `tests/story_checks.gd` covers the forged-flag path.)
+	var city_audit:Array=OfficialNetworkAudit.current_project_errors(app.world,city_project_ids())
+	_check(not city_audit.is_empty(),"official audit reports the single-line fixture's missing city scope")
+	_check(city_audit.any(func(text:String):return text.contains("shenzhen-line15-15")),"audit names the concrete missing official scope")
 	CampaignSystem._catalog.cities.shenzhen=original
 	app.queue_free();await process_frame
 	print("SHENZHEN13_OPENING_CHECKS ",checks," FAILURES ",failures.size())
