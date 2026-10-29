@@ -350,6 +350,17 @@ func _select_chapter_task(task_id:String) -> void:
 	if has_draft:_confirm("切换本章任务","当前有未提交建设草稿。丢弃草稿并切换任务吗？正式路网不会改变。",apply)
 	else:apply.call()
 
+## Jump to the first line this chapter still needs confirmed on its own.
+func _confirm_pending_tasks() -> void:
+	var chapter:=Story.chapter(world)
+	if chapter.is_empty():return
+	var groups:Array=Story.groups(world,true)
+	for index in range(groups.size()):
+		var task:=Story.task_id(chapter,groups[index],index)
+		if Story.task_confirmed(world,task):continue
+		_select_chapter_task(task)
+		return
+
 func _save(_rotate:bool=false) -> bool:
 	if world.is_empty():return true
 	var requested_id:=str(world.gameId)
@@ -1131,6 +1142,8 @@ func _right() -> void:
 		else:
 			for issue in evaluation.get("issues",[]):
 				right.add_child(label(str(issue.get("text","未完成")),16))
+				if issue.has("pendingTasks"):
+					right.add_child(button("逐项确认本章线路建设",_confirm_pending_tasks))
 				if issue.has("stationBindingRepair"):
 					right.add_child(button("保留现有轨道，修复站体关联",_repair_legacy_station_binding.bind(issue)))
 				if issue.has("referenceTargetId"):
@@ -1649,7 +1662,12 @@ func _commit_chapter() -> void:
 		return
 	var teaching:=Tutorial.active(world)
 	var result:=Story.commit_chapter(world,int(evaluation.get("revision",-1)),evaluation)
-	if not bool(result.get("ok",false)):problem=str(result.get("error","无法确认"));_check();return
+	if not bool(result.get("ok",false)):
+		# A refusal only in the bottom strip reads as a dead button.
+		problem=str(result.get("error","无法确认"))
+		_message("历史节点未确认",problem)
+		_check()
+		return
 	_play_feedback("chapter")
 	if teaching:
 		world.storyState.tutorialEnabled=false;world.storyState.tutorialStatus="completed";world.storyState.learnedTools=true

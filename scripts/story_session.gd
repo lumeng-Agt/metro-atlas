@@ -507,6 +507,19 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 		service_transitions.append(proposal)
 		if not _has_service_range(world, str(proposal.id)):
 			issues.append({"text":"请明确确认%s「%s」的%s范围。" % [str(transition.get("historicalLineId","本期线路")),"—".join(transition.get("displayStationNames",[])),service_status_label(str(transition.get("status","built")))],"kind":"service","objectId":str(proposal.id),"latlng":proposal.get("focusLatlng",[])})
+	# A chapter with several lines is confirmed task by task first, and the
+	# chapter-wide confirmation deliberately refuses to stand in for them. Say so
+	# here, in the evaluation the screen draws its button from: otherwise a player
+	# who has built every line is offered "confirm the chapter" and only gets the
+	# refusal after pressing it.
+	if selected_task_id.is_empty() and all_groups.size()>1:
+		var pending_tasks:Array[String]=[]
+		for pending_index in range(all_groups.size()):
+			if task_confirmed(world,task_id(ch,all_groups[pending_index],pending_index)):continue
+			var pending_group:Dictionary=all_groups[pending_index]
+			pending_tasks.append(str(pending_group.get("name",pending_group.get("historicalLineId","本期线路"))))
+		if not pending_tasks.is_empty():
+			issues.append({"text":"本章 %d 项线路建设要先逐项确认：%s" % [pending_tasks.size(),"、".join(pending_tasks)],"kind":"task","pendingTasks":pending_tasks})
 	return {"complete":issues.is_empty() and routes.size()+engineering_complete==scoped_groups.size(),"issues":issues,"routes":routes,"engineeringComplete":engineering_complete,"serviceRanges":world.get("serviceRanges",[]).duplicate(true),"serviceTransitions":service_transitions,"requiredTransfers":[] if not selected_task_id.is_empty() else ch.get("requiredTransfers",[]),"revision":int(world.get("revision",0)),"chapterId":str(ch.get("id","")),"taskId":selected_task_id,"taskScoped":not selected_task_id.is_empty(),"taskCount":all_groups.size()}
 
 static func _has_service_range(world:Dictionary,range_id:String) -> bool:
