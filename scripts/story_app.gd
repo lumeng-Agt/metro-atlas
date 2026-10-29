@@ -31,6 +31,7 @@ var face: Font
 var strong_face: Font
 var frame: VBoxContainer
 var map_area: Control
+var map_hint: Label
 var left_panel: PanelContainer
 var right_panel: PanelContainer
 var left: VBoxContainer
@@ -147,6 +148,14 @@ func _build() -> void:
 	var rb:=VBoxContainer.new();right_panel.add_child(rb)
 	var rs:=ScrollContainer.new();rs.size_flags_vertical=Control.SIZE_EXPAND_FILL;rs.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;rb.add_child(rs)
 	right=VBoxContainer.new();right.size_flags_horizontal=Control.SIZE_EXPAND_FILL;rs.add_child(right)
+	# The earliest chapters are dated before the city had a metro, so the map is
+	# legitimately empty. Say so on the map itself; otherwise a blank basemap
+	# reads as a rendering failure.
+	map_hint=label("",17);map_hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	map_hint.add_theme_color_override("font_color",Color("#16202e"))
+	map_hint.add_theme_color_override("font_outline_color",Color(1,1,1,0.92))
+	map_hint.add_theme_constant_override("outline_size",6)
+	map_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE;map_hint.hide();map_area.add_child(map_hint)
 	actions=VBoxContainer.new();rb.add_child(actions)
 	var bottom_panel:=PanelContainer.new();frame.add_child(bottom_panel)
 	var bottom:=VBoxContainer.new();bottom_panel.add_child(bottom)
@@ -202,6 +211,12 @@ func _layout() -> void:
 	right_panel.size=Vector2(minf(w,map_area.size.x-24),h);right_panel.position=Vector2(map_area.size.x-right_panel.size.x-12,12)
 	left_panel.visible=show_left and not world.is_empty();right_panel.visible=show_right and not world.is_empty()
 	if _narrow() and show_left and show_right:left_panel.hide()
+	if is_instance_valid(map_hint) and map_hint.visible:
+		var hint_width:=minf(560*ui_scale,maxf(220,map_area.size.x-64))
+		map_hint.size=Vector2(hint_width,0)
+		map_hint.reset_size()
+		map_hint.size.x=hint_width
+		map_hint.position=Vector2((map_area.size.x-hint_width)*0.5,maxf(56,map_area.size.y*0.40))
 	if is_instance_valid(beat_panel):
 		var available := usable_map_rect()
 		beat_panel.size=Vector2(minf(380,available.size.x-16),minf(230,available.size.y-16))
@@ -470,7 +485,22 @@ func _refresh() -> void:
 	line_button.tooltip_text="普通章节由检查结果生成历史线路；重组章节再使用此工具。" if line_button.disabled else "核对本章线路重组，或在作品中整理线路。"
 	year.text="%s · %s" % [str(world.get("cityName","")),Story.node_date(world)+" · "+Story.plan_status(world) if str(world.mode)=="campaign" else "路网作品"]
 	undo_button.disabled=history.undo_label().is_empty();undo_button.tooltip_text=history.undo_label();redo_button.disabled=history.redo_label().is_empty();redo_button.tooltip_text=history.redo_label()
+	_update_map_hint()
 	_left();_right();_instruction();_layout()
+
+## Explain an empty map instead of leaving the player to guess.
+func _update_map_hint() -> void:
+	if not is_instance_valid(map_hint):return
+	if world.is_empty() or not world.get("stations",[]).is_empty():map_hint.hide();return
+	var chapter:=Story.chapter(world)
+	var city:=str(world.get("cityName","本市"))
+	if not chapter.is_empty() and bool(chapter.get("eventOnly",false)):
+		map_hint.text="截至 %s，%s还没有开通任何地铁线路。\n本节点只登记史料，不需要建站或铺轨。" % [Story.node_date(world),city]
+	elif not chapter.is_empty():
+		map_hint.text="%s的路网还没有开始建设。\n按右侧提示放置本章目标站，或点「展开本章蓝图」查看本期范围。" % city
+	else:
+		map_hint.text="%s还没有已建线路。\n点下方「车站」开始建设。" % city
+	map_hint.show()
 
 func _left() -> void:
 	clear(left);begin_button=null;revision_button=null;check_button=null

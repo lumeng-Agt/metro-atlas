@@ -122,7 +122,12 @@ func _advance_introductions(app:Control) -> bool:
 	for _event in range(20):
 		var chapter:=Story.chapter(app.world)
 		if not bool(chapter.get("eventOnly",false)):return not chapter.is_empty()
-		app._begin_chapter();app._check();app._commit_chapter()
+		app._begin_chapter();app._check()
+		# These opening nodes predate the city's metro, so the map is empty on
+		# purpose. It has to say so rather than look like a failed render.
+		if app.world.get("stations",[]).is_empty():
+			_check(app.map_hint.visible and app.map_hint.text.contains("还没有开通"),"资料节点说明地图为何为空")
+		app._commit_chapter()
 		if str(app.world.storyState.stage)!="outcome":push_error("Introductory historical event did not confirm normally");return false
 		while app.saves_in_flight>0:await process_frame
 		app._next()
