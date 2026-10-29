@@ -1,8 +1,8 @@
 {
   "schema": "gameplay-verification/1",
   "version": "0.26.0",
-  "generatedAt": "2026-10-29T19:36:01+08:00",
-  "manifestHash": "b4e8bca02e1431bd430b9d02db4ac6245a2bf810d4fc27f3b3d585392ab8ba68",
+  "generatedAt": "2026-10-29T22:14:38+08:00",
+  "manifestHash": "be95dc58a4420698cf4cff40b09bb34fec945ce46814c456fb8f74b94c7cd5c1",
   "godot": "4.7.2-stable.win64.console",
   "aborted": null,
   "requiredChecks": [
@@ -47,7 +47,7 @@
       "endPhase": "future_gap",
       "freeUnlock": true,
       "scriptErrors": 0,
-      "durationSeconds": 1888.3,
+      "durationSeconds": 1763.9,
       "evidence": "REPLAY_FAILURES 0 checkpoints=110 | REPLAY_CITY_DONE shenzhen visited=39 phase=future_gap",
       "checkpointFloor": 110,
       "ok": true
@@ -64,7 +64,7 @@
       "endPhase": "future_gap",
       "freeUnlock": true,
       "scriptErrors": 0,
-      "durationSeconds": 2511.4,
+      "durationSeconds": 2346.8,
       "evidence": "REPLAY_FAILURES 0 checkpoints=143 | REPLAY_CITY_DONE shanghai visited=47 phase=future_gap",
       "checkpointFloor": 143,
       "ok": true
@@ -81,7 +81,7 @@
       "endPhase": "future_gap",
       "freeUnlock": true,
       "scriptErrors": 0,
-      "durationSeconds": 3174.1,
+      "durationSeconds": 3045.9,
       "evidence": "REPLAY_FAILURES 0 checkpoints=139 | REPLAY_CITY_DONE beijing visited=47 phase=future_gap",
       "checkpointFloor": 139,
       "ok": true
@@ -98,7 +98,7 @@
       "endPhase": "future_gap",
       "freeUnlock": true,
       "scriptErrors": 0,
-      "durationSeconds": 1643.3,
+      "durationSeconds": 1557.1,
       "evidence": "REPLAY_FAILURES 0 checkpoints=127 | REPLAY_CITY_DONE guangzhou visited=44 phase=future_gap",
       "checkpointFloor": 127,
       "ok": true
@@ -115,7 +115,7 @@
       "endPhase": "future_gap",
       "freeUnlock": true,
       "scriptErrors": 0,
-      "durationSeconds": 1202.1,
+      "durationSeconds": 1180.3,
       "evidence": "REPLAY_FAILURES 0 checkpoints=114 | REPLAY_CITY_DONE chengdu visited=45 phase=future_gap",
       "checkpointFloor": 114,
       "ok": true
@@ -142,7 +142,7 @@
         "endPhase": "future_gap",
         "scriptErrors": 0
       },
-      "durationSeconds": 1772.3,
+      "durationSeconds": 1844.3,
       "evidence": "part REPLAY_FAILURES 0 checkpoints=33 | REPLAY_CITY_DONE shenzhen visited=16 phase=history || resume REPLAY_FAILURES 0 checkpoints=77 | REPLAY_CITY_DONE shenzhen visited=23 phase=future_gap"
     },
     {
@@ -167,7 +167,7 @@
         "endPhase": "future_gap",
         "scriptErrors": 0
       },
-      "durationSeconds": 2398.7,
+      "durationSeconds": 2475.4,
       "evidence": "part REPLAY_FAILURES 0 checkpoints=42 | REPLAY_CITY_DONE shanghai visited=16 phase=history || resume REPLAY_FAILURES 0 checkpoints=101 | REPLAY_CITY_DONE shanghai visited=31 phase=future_gap"
     },
     {
@@ -192,7 +192,7 @@
         "endPhase": "future_gap",
         "scriptErrors": 0
       },
-      "durationSeconds": 3076.0,
+      "durationSeconds": 3238.5,
       "evidence": "part REPLAY_FAILURES 0 checkpoints=33 | REPLAY_CITY_DONE beijing visited=16 phase=history || resume REPLAY_FAILURES 0 checkpoints=106 | REPLAY_CITY_DONE beijing visited=31 phase=future_gap"
     },
     {
@@ -217,7 +217,7 @@
         "endPhase": "future_gap",
         "scriptErrors": 0
       },
-      "durationSeconds": 1445.6,
+      "durationSeconds": 1549.3,
       "evidence": "part REPLAY_FAILURES 0 checkpoints=35 | REPLAY_CITY_DONE guangzhou visited=16 phase=history || resume REPLAY_FAILURES 0 checkpoints=92 | REPLAY_CITY_DONE guangzhou visited=28 phase=future_gap"
     },
     {
@@ -242,7 +242,7 @@
         "endPhase": "future_gap",
         "scriptErrors": 0
       },
-      "durationSeconds": 1111.0,
+      "durationSeconds": 1232.5,
       "evidence": "part REPLAY_FAILURES 0 checkpoints=27 | REPLAY_CITY_DONE chengdu visited=16 phase=history || resume REPLAY_FAILURES 0 checkpoints=87 | REPLAY_CITY_DONE chengdu visited=29 phase=future_gap"
     },
     {
@@ -252,7 +252,7 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 10.7,
+      "durationSeconds": 11.0,
       "evidence": "Audit playable targets in 27 chapters for shenzhen | Audit playable targets in 39 chapters for chengdu | PASS: 1368 story checks"
     },
     {
@@ -262,7 +262,7 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 7.0,
+      "durationSeconds": 7.1,
       "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | OFFICIAL_TARGET_CHECKS 172 FAILURES 0"
     },
     {
@@ -272,8 +272,8 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 2.5,
-      "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | PASS: 65 story save checks"
+      "durationSeconds": 2.1,
+      "evidence": "PASS: 65 story save checks | ERROR: Failed to open 'user://logs/godot2026-10-29T22.14.19.log'. |    at: copy (core/io/dir_access.cpp:429)"
     },
     {
       "id": "gd.save_roundtrip_checks",
@@ -292,7 +292,7 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 2.5,
+      "durationSeconds": 2.6,
       "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | ENGINEERING_CONSTRUCTION_CHECKS 56 FAILURES 0"
     },
     {
@@ -302,7 +302,7 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 3.2,
+      "durationSeconds": 3.3,
       "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | YIZHUANG_CONNECTOR_CHECKS 20 FAILURES 0"
     },
     {
@@ -312,7 +312,7 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 2.5,
+      "durationSeconds": 2.6,
       "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | SHENZHEN13_OPENING_CHECKS 41 FAILURES 0"
     },
     {
@@ -322,8 +322,8 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 14.1,
-      "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | PASS: 255 story layout checks"
+      "durationSeconds": 15.0,
+      "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | PASS: 267 story layout checks"
     },
     {
       "id": "gd.map_hit_checks",
@@ -332,7 +332,7 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 1.3,
+      "durationSeconds": 1.0,
       "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | PASS: 20 map hit checks"
     },
     {
@@ -352,8 +352,8 @@
       "ok": true,
       "exitCode": 0,
       "scriptErrors": 0,
-      "durationSeconds": 1.2,
-      "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | CHAPTER_LOOKUP_TIMING {\"iterations\":100,\"oldWholeCityAverageMs\":1.1175,\"scope\":\"Definition lookup only, not rendered FPS or maximum-network acceptance.\",\"singleChapterAverageMs\":0.01094} | CHAPTER_LOOKUP_CHECKS 55 FAILURES 0"
+      "durationSeconds": 1.3,
+      "evidence": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org | CHAPTER_LOOKUP_TIMING {\"iterations\":100,\"oldWholeCityAverageMs\":1.44817,\"scope\":\"Definition lookup only, not rendered FPS or maximum-network acceptance.\",\"singleChapterAverageMs\":0.01051} | CHAPTER_LOOKUP_CHECKS 55 FAILURES 0"
     },
     {
       "id": "gd.legacy_network_repair_checks",
@@ -371,7 +371,7 @@
       "command": "tools/test_campaign_task_integrity.py",
       "ok": true,
       "exitCode": 0,
-      "durationSeconds": 0.7,
+      "durationSeconds": 0.8,
       "evidence": "PASS: campaign task route integrity (416 groups checked)"
     },
     {
@@ -380,8 +380,8 @@
       "command": "tools/test_official_coverage_rules.py",
       "ok": true,
       "exitCode": 0,
-      "durationSeconds": 0.8,
-      "evidence": "---------------------------------------------------------------------- | Ran 45 tests in 0.066s | OK"
+      "durationSeconds": 0.9,
+      "evidence": "---------------------------------------------------------------------- | Ran 45 tests in 0.071s | OK"
     },
     {
       "id": "py.project_plans",
@@ -398,7 +398,7 @@
       "command": "tools/report_project_chapters.py --check",
       "ok": true,
       "exitCode": 0,
-      "durationSeconds": 0.5,
+      "durationSeconds": 0.4,
       "evidence": "PASS: project chapter report is up to date"
     }
   ],
