@@ -359,6 +359,10 @@ func _confirm_pending_tasks() -> void:
 		var task:=Story.task_id(chapter,groups[index],index)
 		if Story.task_confirmed(world,task):continue
 		_select_chapter_task(task)
+		# With no draft to discard the switch is immediate, so the confirmation
+		# dialog can follow in the same click. With a draft the switch asks first,
+		# and the player lands on that task's own confirm button.
+		if _active_task_id()==task:_confirm_active_task()
 		return
 
 func _save(_rotate:bool=false) -> bool:
