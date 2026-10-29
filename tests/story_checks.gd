@@ -51,7 +51,7 @@ func _run() -> void:
 	_confirm_service_transitions(beijing_built,built_eval)
 	# Two independently built sections are two tasks. Confirming the built range
 	# alone does not finish the chapter; each section still has to be confirmed.
-	_check(not bool(Story.evaluate(beijing_built).complete),"1969北京两段建成范围确认后仍需逐项确认工程任务")
+	_check(Story.evaluate(beijing_built).get("pendingTasks",[]).size()==2,"1969北京两段建成范围确认后仍需逐项确认工程任务")
 	var beijing_groups:Array=Story.groups(beijing_built,true)
 	for beijing_index in range(beijing_groups.size()):
 		var beijing_task:=Story.task_id(Story.chapter(beijing_built),beijing_groups[beijing_index],beijing_index)
@@ -135,15 +135,18 @@ func _run() -> void:
 	# Building every line is not the same as confirming each one. The chapter-wide
 	# button must not appear while the per-line confirmations are still owed: the
 	# chapter commit refuses in that state, so offering it is a dead button.
-	_check(interchange_result.issues.any(func(issue:Dictionary):return issue.has("pendingTasks")),"建设完成但未逐项确认时，界面不会提前给出章节确认按钮")
+	# `complete` still answers "is the track built" — line reorganisation and the
+	# load-time scope recheck depend on that — so the pending lines are reported
+	# beside it rather than folded into it.
 	var interchange_groups:Array=Story.groups(separate_interchange,true)
+	_check(interchange_result.get("pendingTasks",[]).size()==interchange_groups.size(),"建设完成但未逐项确认时，界面不会提前给出章节确认按钮")
 	for group_index in range(interchange_groups.size()):
 		var group:Dictionary=interchange_groups[group_index]
 		var task_id:=Story.task_id(Story.chapter(separate_interchange),group,group_index)
 		var task_result:=Story.confirm_task(separate_interchange,task_id,int(separate_interchange.revision))
 		_check(bool(task_result.get("ok",false)),"深圳首章可单独确认%s建设任务：%s" % [str(group.get("name",task_id)),str(task_result.get("error",""))])
 	_check(Story.confirmed_task_count(separate_interchange)==interchange_groups.size(),"多线路章节逐项记录线路任务确认")
-	_check(not Story.evaluate(separate_interchange).issues.any(func(issue:Dictionary):return issue.has("pendingTasks")),"逐项确认后不再重复要求确认任务")
+	_check(Story.evaluate(separate_interchange).get("pendingTasks",[]).is_empty(),"逐项确认后不再重复要求确认任务")
 	_confirm_required_transfers(separate_interchange,interchange_result)
 	interchange_result=Story.evaluate(separate_interchange)
 	_check(bool(interchange_result.complete),"明确建立独立站体换乘联系后通过章节检查")

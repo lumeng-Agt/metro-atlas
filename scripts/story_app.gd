@@ -1123,7 +1123,8 @@ func _right() -> void:
 			confirm_button=button("确认线路",_workshop_line);actions.add_child(confirm_button)
 	elif not evaluation.is_empty():
 		right.add_child(label("本章复现检查",24,true))
-		if bool(evaluation.get("complete",false)):
+		var pending_lines:Array=evaluation.get("pendingTasks",[])
+		if bool(evaluation.get("complete",false)) and pending_lines.is_empty():
 			if bool(Story.chapter(world).get("eventOnly",false)):
 				right.add_child(label("本节点的来源与日期已登记；没有新增铺轨目标。",18))
 			else:
@@ -1146,13 +1147,16 @@ func _right() -> void:
 		else:
 			for issue in evaluation.get("issues",[]):
 				right.add_child(label(str(issue.get("text","未完成")),16))
-				if issue.has("pendingTasks"):
-					right.add_child(button("逐项确认本章线路建设",_confirm_pending_tasks))
 				if issue.has("stationBindingRepair"):
 					right.add_child(button("保留现有轨道，修复站体关联",_repair_legacy_station_binding.bind(issue)))
 				if issue.has("referenceTargetId"):
 					right.add_child(button("预览调整到参考站区",_preview_reference_station_adjustment.bind(str(issue.get("objectId","")))))
 				if issue.has("objectId"):right.add_child(button("定位问题",_locate_issue.bind(issue)))
+			# Track is complete but the lines are not confirmed one by one yet. The
+			# chapter-wide confirmation would refuse, so offer the step that works.
+			if bool(evaluation.get("complete",false)) and not pending_lines.is_empty():
+				right.add_child(label("本章 %d 项线路建设要先逐项确认：%s" % [pending_lines.size(),"、".join(pending_lines)],16,true))
+				right.add_child(button("逐项确认本章线路建设",_confirm_pending_tasks))
 	elif selected_kind=="station":
 		var st:=WorldData.find_station(world,selected_id)
 		if st.is_empty():return
@@ -1765,7 +1769,7 @@ func _focus_tutorial() -> void:
 					rect=_tutorial_map_rect(ll,"track:"+("start" if map_view.track_start_ref.is_empty() else "end"),18);text="点击这里的车站接轨端"
 		elif bool(Story.chapter(world).get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):
 			target=confirm_button if tool=="line" else line_button;text="确认贯通站序" if tool=="line" else "点击下方「线路整理」核对贯通"
-		elif bool(evaluation.get("complete",false)):target=confirm_button;text="确认本章历史节点"
+		elif bool(evaluation.get("complete",false)) and evaluation.get("pendingTasks",[]).is_empty():target=confirm_button;text="确认本章历史节点"
 		else:target=check_button;text="在故事页检查本章复现"
 	if is_instance_valid(target) and target.is_visible_in_tree():
 		var ancestor:=target.get_parent()
