@@ -1308,7 +1308,7 @@ static func commit_chapter(world: Dictionary, expected_revision: int, checked: D
 	var h := CommandHistory.new(); h.attach(world)
 	var planning := h._capture_planning()
 	var delta := h._build_diff(world.get("milestoneBaseline",{}),planning)
-	state.milestones.append({"chapterId":str(ch.id),"date":str(ch.date),"title":str(ch.title),"planningDiff":delta,"source":str(ch.get("source","")),"assisted":bool(world.get("storyPlan",{}).get("assisted",false))})
+	state.milestones.append({"chapterId":str(ch.id),"date":str(ch.date),"title":str(ch.title),"planningDiff":delta,"source":str(ch.get("source","")),"phase":str(state.get("phase","history")),"assisted":bool(world.get("storyPlan",{}).get("assisted",false))})
 	world["milestoneBaseline"]=planning.duplicate(true)
 	state.completedChapterIds.append(str(ch.id))
 	# A chapter that was queued for reconfirmation has now been re-confirmed

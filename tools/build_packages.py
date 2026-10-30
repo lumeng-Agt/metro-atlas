@@ -92,6 +92,11 @@ def main() -> None:
     args = parser.parse_args()
 
     from gameplay_spec import required_ids
+    from collection_release import issues as collection_issues
+
+    pending_collection = collection_issues(ROOT)
+    if pending_collection:
+        raise RuntimeError("History collection release is incomplete: " + "; ".join(pending_collection))
 
     # What decides whether this build may ship is whether the game plays, not
     # how much of the archive has been reviewed. The record has to come from a
@@ -136,6 +141,11 @@ def main() -> None:
         staged_build_info = stage / "build-info.txt"
         staged_checksums = stage / CHECKSUM_FILE.name
         copy_verified(source_exe, staged_exe)
+        staged_media = stage / "media"
+        staged_media.mkdir()
+        media_names = ("ffmpeg.exe", "ffprobe.exe", "LICENSE.txt", "SOURCE.txt")
+        for name in media_names:
+            copy_verified(ROOT / ".tools/media-runtime" / name, staged_media / name)
 
         readme_text = (RELEASE / "README.txt").read_text(encoding="utf-8")
         readme_text = re.sub(r"(?m)^造一座地铁 · Windows 免安装版 [^\r\n]+$", f"造一座地铁 · Windows 免安装版 {args.version} · 存档格式 {current_save_version()}", readme_text)
@@ -188,6 +198,7 @@ def main() -> None:
             (ROOT / "docs" / "migration-20.md", "docs/migration-20.md"),
             (ROOT / "data" / "reference_alignments.json", "data/reference_alignments.json"),
         ])
+        distribution_files.extend((staged_media / name, f"media/{name}") for name in media_names)
         previews: list[str] = []
         with ZipFile(staged_zip, "w", ZIP_DEFLATED, compresslevel=7) as archive:
             for source, archive_name in distribution_files:
@@ -204,9 +215,13 @@ def main() -> None:
             packaged_exe_hash = hashlib.sha256(archive.read("造一座地铁.exe")).hexdigest()
             if packaged_exe_hash != sha256(staged_exe):
                 raise RuntimeError("Packaged executable does not match the verified export")
+            for name in media_names:
+                if hashlib.sha256(archive.read(f"media/{name}")).hexdigest() != sha256(staged_media / name):
+                    raise RuntimeError(f"Packaged media component differs: {name}")
 
         staged_checksums.write_text(
-            f"{sha256(staged_exe)}  {STABLE_EXE.name}\n{sha256(staged_zip)}  {STABLE_ZIP.name}\n",
+            f"{sha256(staged_exe)}  {STABLE_EXE.name}\n{sha256(staged_zip)}  {STABLE_ZIP.name}\n"
+            + "".join(f"{sha256(staged_media / name)}  media/{name}\n" for name in media_names),
             encoding="utf-8",
         )
 
@@ -215,16 +230,35 @@ def main() -> None:
         rollback_exe = stage / "previous.exe"
         rollback_zip = stage / "previous.zip"
         had_exe, had_zip = STABLE_EXE.is_file(), STABLE_ZIP.is_file()
+        final_media = RELEASE / "media"
+        rollback_media = stage / "previous-media"
+        if final_media.resolve().parent != RELEASE.resolve() or rollback_media.resolve().parent != stage:
+            raise RuntimeError("Media replacement paths escaped release staging")
+        had_media = final_media.exists()
+        media_moved = False
+        media_installed = False
         if had_exe:
             copy_verified(STABLE_EXE, rollback_exe)
         if had_zip:
             copy_verified(STABLE_ZIP, rollback_zip)
         try:
+            if had_media:
+                os.replace(final_media, rollback_media)
+                media_moved = True
+            os.replace(staged_media, final_media)
+            media_installed = True
             os.replace(staged_exe, STABLE_EXE)
             os.replace(staged_zip, STABLE_ZIP)
         except OSError:
             if had_exe and rollback_exe.exists(): os.replace(rollback_exe, STABLE_EXE)
             if had_zip and rollback_zip.exists(): os.replace(rollback_zip, STABLE_ZIP)
+            # Restore each registered file, never recursively remove an unknown directory.
+            if media_installed and final_media.is_dir():
+                for name in media_names:
+                    component = final_media / name
+                    if component.is_file(): component.unlink()
+                final_media.rmdir()
+            if media_moved and rollback_media.exists(): os.replace(rollback_media, final_media)
             raise
 
         (RELEASE / "README.txt").write_text(readme_text, encoding="utf-8")

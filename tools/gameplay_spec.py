@@ -22,6 +22,8 @@ CHECKPOINT_FLOOR = {
 RESUME_BREAKPOINT = 15
 
 GD_SCRIPTS = (
+    ('gd.history_collection_checks', 'tests/history_collection_checks.gd'),
+    ('gd.history_collection_flow', 'tests/history_collection_flow.gd'),
     ('gd.story_checks', 'tests/story_checks.gd'),
     ('gd.official_target_checks', 'tests/official_target_checks.gd'),
     ('gd.story_save_checks', 'tests/story_save_checks.gd'),

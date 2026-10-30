@@ -1,0 +1,911 @@
+{
+  "schemaVersion": 1,
+  "version": "2026.10.30.1",
+  "locations": [],
+  "questions": [
+    {
+      "id": "shanghai-early",
+      "type": "order",
+      "cityId": "shanghai",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "prompt": "上海：下面哪一项按历史先后排列正确？",
+      "options": [
+        "徐家汇—锦江乐园段试运营 → 上海火车站—锦江乐园段试运营 → 1号线延伸至莘庄",
+        "上海火车站—锦江乐园段试运营 → 徐家汇—锦江乐园段试运营 → 1号线延伸至莘庄",
+        "1号线延伸至莘庄 → 上海火车站—锦江乐园段试运营 → 徐家汇—锦江乐园段试运营"
+      ],
+      "answer": 0,
+      "explanation": "1993-05-28：徐家汇—锦江乐园段试运营；1995-04-10：上海火车站—锦江乐园段试运营；1997-07-01：1号线延伸至莘庄。",
+      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html",
+      "events": [
+        {
+          "date": "1993-05-28",
+          "title": "徐家汇—锦江乐园段试运营"
+        },
+        {
+          "date": "1995-04-10",
+          "title": "上海火车站—锦江乐园段试运营"
+        },
+        {
+          "date": "1997-07-01",
+          "title": "1号线延伸至莘庄"
+        }
+      ]
+    },
+    {
+      "id": "beijing-early",
+      "type": "order",
+      "cityId": "beijing",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "prompt": "北京：下面哪一项按历史先后排列正确？",
+      "options": [
+        "一期工程试运营，以参观票接待市民 → 地铁一期工程建成 → 一期工程正式对社会运营",
+        "一期工程正式对社会运营 → 一期工程试运营，以参观票接待市民 → 地铁一期工程建成",
+        "地铁一期工程建成 → 一期工程试运营，以参观票接待市民 → 一期工程正式对社会运营"
+      ],
+      "answer": 2,
+      "explanation": "1969-10-01：地铁一期工程建成；1971-01-15：一期工程试运营，以参观票接待市民；1981-09-15：一期工程正式对社会运营。",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+      "events": [
+        {
+          "date": "1969-10-01",
+          "title": "地铁一期工程建成"
+        },
+        {
+          "date": "1971-01-15",
+          "title": "一期工程试运营，以参观票接待市民"
+        },
+        {
+          "date": "1981-09-15",
+          "title": "一期工程正式对社会运营"
+        }
+      ]
+    },
+    {
+      "id": "guangzhou-early",
+      "type": "order",
+      "cityId": "guangzhou",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "prompt": "广州：下面哪一项按历史先后排列正确？",
+      "options": [
+        "1号线全线正式运营 → 西塱—黄沙段观光试运营 → 1号线正式开工",
+        "1号线正式开工 → 西塱—黄沙段观光试运营 → 1号线全线正式运营",
+        "西塱—黄沙段观光试运营 → 1号线正式开工 → 1号线全线正式运营"
+      ],
+      "answer": 1,
+      "explanation": "1993-12-28：1号线正式开工；1997-06-28：西塱—黄沙段观光试运营；1999-06-28：1号线全线正式运营。",
+      "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+      "events": [
+        {
+          "date": "1993-12-28",
+          "title": "1号线正式开工"
+        },
+        {
+          "date": "1997-06-28",
+          "title": "西塱—黄沙段观光试运营"
+        },
+        {
+          "date": "1999-06-28",
+          "title": "1号线全线正式运营"
+        }
+      ]
+    },
+    {
+      "id": "shenzhen-network",
+      "type": "order",
+      "cityId": "shenzhen",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "prompt": "深圳：下面哪一项按历史先后排列正确？",
+      "options": [
+        "一期1号线与4号线开通 → 二期线网集中开通 → 7号线与9号线一期开通",
+        "二期线网集中开通 → 一期1号线与4号线开通 → 7号线与9号线一期开通",
+        "7号线与9号线一期开通 → 二期线网集中开通 → 一期1号线与4号线开通"
+      ],
+      "answer": 0,
+      "explanation": "2004-12-28：一期1号线与4号线开通；2011-06-28：二期线网集中开通；2016-10-28：7号线与9号线一期开通。",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_10280298.html",
+      "events": [
+        {
+          "date": "2004-12-28",
+          "title": "一期1号线与4号线开通"
+        },
+        {
+          "date": "2011-06-28",
+          "title": "二期线网集中开通"
+        },
+        {
+          "date": "2016-10-28",
+          "title": "7号线与9号线一期开通"
+        }
+      ]
+    },
+    {
+      "id": "chengdu-network",
+      "type": "order",
+      "cityId": "chengdu",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "prompt": "成都：下面哪一项按历史先后排列正确？",
+      "options": [
+        "2号线一期形成十字骨架 → 1号线一期开通 → 7号线环线开通",
+        "7号线环线开通 → 2号线一期形成十字骨架 → 1号线一期开通",
+        "1号线一期开通 → 2号线一期形成十字骨架 → 7号线环线开通"
+      ],
+      "answer": 2,
+      "explanation": "2010-09-27：1号线一期开通；2012-09-16：2号线一期形成十字骨架；2017-12-06：7号线环线开通。",
+      "source": "https://sc.people.com.cn/BIG5/n2/2020/0927/c345167-34319467.html",
+      "events": [
+        {
+          "date": "2010-09-27",
+          "title": "1号线一期开通"
+        },
+        {
+          "date": "2012-09-16",
+          "title": "2号线一期形成十字骨架"
+        },
+        {
+          "date": "2017-12-06",
+          "title": "7号线环线开通"
+        }
+      ]
+    },
+    {
+      "id": "shanghai-xinlonghua",
+      "type": "former_name",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "prompt": "徐汇区志记载：上海地铁1号线“新龙华站”后来使用哪个站名？",
+      "options": [
+        "上海南站",
+        "上海体育馆",
+        "龙华"
+      ],
+      "answer": 0,
+      "explanation": "区志明确将上海南站标注为原新龙华站。这里考的是站名沿革，不把历史位置视为始终不变。",
+      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html"
+    },
+    {
+      "id": "shanghai-hongmeilu",
+      "type": "former_name",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "prompt": "徐汇区志记载：锦江乐园站在1997年曾改用哪个名称？",
+      "options": [
+        "虹梅路",
+        "虹桥路",
+        "虹漕路"
+      ],
+      "answer": 0,
+      "explanation": "区志记载其1997年1月曾改名虹梅路站，后来又使用锦江乐园站名。",
+      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html"
+    }
+  ],
+  "days": {
+    "2026-10-30": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 1
+    },
+    "2026-10-31": {
+      "questionId": "beijing-early",
+      "reviewCycle": 1
+    },
+    "2026-11-01": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 1
+    },
+    "2026-11-02": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 1
+    },
+    "2026-11-03": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 1
+    },
+    "2026-11-04": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 1
+    },
+    "2026-11-05": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 1
+    },
+    "2026-11-06": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 2
+    },
+    "2026-11-07": {
+      "questionId": "beijing-early",
+      "reviewCycle": 2
+    },
+    "2026-11-08": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 2
+    },
+    "2026-11-09": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 2
+    },
+    "2026-11-10": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 2
+    },
+    "2026-11-11": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 2
+    },
+    "2026-11-12": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 2
+    },
+    "2026-11-13": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 3
+    },
+    "2026-11-14": {
+      "questionId": "beijing-early",
+      "reviewCycle": 3
+    },
+    "2026-11-15": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 3
+    },
+    "2026-11-16": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 3
+    },
+    "2026-11-17": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 3
+    },
+    "2026-11-18": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 3
+    },
+    "2026-11-19": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 3
+    },
+    "2026-11-20": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 4
+    },
+    "2026-11-21": {
+      "questionId": "beijing-early",
+      "reviewCycle": 4
+    },
+    "2026-11-22": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 4
+    },
+    "2026-11-23": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 4
+    },
+    "2026-11-24": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 4
+    },
+    "2026-11-25": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 4
+    },
+    "2026-11-26": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 4
+    },
+    "2026-11-27": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 5
+    },
+    "2026-11-28": {
+      "questionId": "beijing-early",
+      "reviewCycle": 5
+    },
+    "2026-11-29": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 5
+    },
+    "2026-11-30": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 5
+    },
+    "2026-12-01": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 5
+    },
+    "2026-12-02": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 5
+    },
+    "2026-12-03": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 5
+    },
+    "2026-12-04": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 6
+    },
+    "2026-12-05": {
+      "questionId": "beijing-early",
+      "reviewCycle": 6
+    },
+    "2026-12-06": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 6
+    },
+    "2026-12-07": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 6
+    },
+    "2026-12-08": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 6
+    },
+    "2026-12-09": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 6
+    },
+    "2026-12-10": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 6
+    },
+    "2026-12-11": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 7
+    },
+    "2026-12-12": {
+      "questionId": "beijing-early",
+      "reviewCycle": 7
+    },
+    "2026-12-13": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 7
+    },
+    "2026-12-14": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 7
+    },
+    "2026-12-15": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 7
+    },
+    "2026-12-16": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 7
+    },
+    "2026-12-17": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 7
+    },
+    "2026-12-18": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 8
+    },
+    "2026-12-19": {
+      "questionId": "beijing-early",
+      "reviewCycle": 8
+    },
+    "2026-12-20": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 8
+    },
+    "2026-12-21": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 8
+    },
+    "2026-12-22": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 8
+    },
+    "2026-12-23": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 8
+    },
+    "2026-12-24": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 8
+    },
+    "2026-12-25": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 9
+    },
+    "2026-12-26": {
+      "questionId": "beijing-early",
+      "reviewCycle": 9
+    },
+    "2026-12-27": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 9
+    },
+    "2026-12-28": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 9
+    },
+    "2026-12-29": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 9
+    },
+    "2026-12-30": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 9
+    },
+    "2026-12-31": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 9
+    },
+    "2027-01-01": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 10
+    },
+    "2027-01-02": {
+      "questionId": "beijing-early",
+      "reviewCycle": 10
+    },
+    "2027-01-03": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 10
+    },
+    "2027-01-04": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 10
+    },
+    "2027-01-05": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 10
+    },
+    "2027-01-06": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 10
+    },
+    "2027-01-07": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 10
+    },
+    "2027-01-08": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 11
+    },
+    "2027-01-09": {
+      "questionId": "beijing-early",
+      "reviewCycle": 11
+    },
+    "2027-01-10": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 11
+    },
+    "2027-01-11": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 11
+    },
+    "2027-01-12": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 11
+    },
+    "2027-01-13": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 11
+    },
+    "2027-01-14": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 11
+    },
+    "2027-01-15": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 12
+    },
+    "2027-01-16": {
+      "questionId": "beijing-early",
+      "reviewCycle": 12
+    },
+    "2027-01-17": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 12
+    },
+    "2027-01-18": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 12
+    },
+    "2027-01-19": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 12
+    },
+    "2027-01-20": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 12
+    },
+    "2027-01-21": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 12
+    },
+    "2027-01-22": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 13
+    },
+    "2027-01-23": {
+      "questionId": "beijing-early",
+      "reviewCycle": 13
+    },
+    "2027-01-24": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 13
+    },
+    "2027-01-25": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 13
+    },
+    "2027-01-26": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 13
+    },
+    "2027-01-27": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 13
+    },
+    "2027-01-28": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 13
+    },
+    "2027-01-29": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 14
+    },
+    "2027-01-30": {
+      "questionId": "beijing-early",
+      "reviewCycle": 14
+    },
+    "2027-01-31": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 14
+    },
+    "2027-02-01": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 14
+    },
+    "2027-02-02": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 14
+    },
+    "2027-02-03": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 14
+    },
+    "2027-02-04": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 14
+    },
+    "2027-02-05": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 15
+    },
+    "2027-02-06": {
+      "questionId": "beijing-early",
+      "reviewCycle": 15
+    },
+    "2027-02-07": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 15
+    },
+    "2027-02-08": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 15
+    },
+    "2027-02-09": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 15
+    },
+    "2027-02-10": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 15
+    },
+    "2027-02-11": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 15
+    },
+    "2027-02-12": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 16
+    },
+    "2027-02-13": {
+      "questionId": "beijing-early",
+      "reviewCycle": 16
+    },
+    "2027-02-14": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 16
+    },
+    "2027-02-15": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 16
+    },
+    "2027-02-16": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 16
+    },
+    "2027-02-17": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 16
+    },
+    "2027-02-18": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 16
+    },
+    "2027-02-19": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 17
+    },
+    "2027-02-20": {
+      "questionId": "beijing-early",
+      "reviewCycle": 17
+    },
+    "2027-02-21": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 17
+    },
+    "2027-02-22": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 17
+    },
+    "2027-02-23": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 17
+    },
+    "2027-02-24": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 17
+    },
+    "2027-02-25": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 17
+    },
+    "2027-02-26": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 18
+    },
+    "2027-02-27": {
+      "questionId": "beijing-early",
+      "reviewCycle": 18
+    },
+    "2027-02-28": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 18
+    },
+    "2027-03-01": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 18
+    },
+    "2027-03-02": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 18
+    },
+    "2027-03-03": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 18
+    },
+    "2027-03-04": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 18
+    },
+    "2027-03-05": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 19
+    },
+    "2027-03-06": {
+      "questionId": "beijing-early",
+      "reviewCycle": 19
+    },
+    "2027-03-07": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 19
+    },
+    "2027-03-08": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 19
+    },
+    "2027-03-09": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 19
+    },
+    "2027-03-10": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 19
+    },
+    "2027-03-11": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 19
+    },
+    "2027-03-12": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 20
+    },
+    "2027-03-13": {
+      "questionId": "beijing-early",
+      "reviewCycle": 20
+    },
+    "2027-03-14": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 20
+    },
+    "2027-03-15": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 20
+    },
+    "2027-03-16": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 20
+    },
+    "2027-03-17": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 20
+    },
+    "2027-03-18": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 20
+    },
+    "2027-03-19": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 21
+    },
+    "2027-03-20": {
+      "questionId": "beijing-early",
+      "reviewCycle": 21
+    },
+    "2027-03-21": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 21
+    },
+    "2027-03-22": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 21
+    },
+    "2027-03-23": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 21
+    },
+    "2027-03-24": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 21
+    },
+    "2027-03-25": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 21
+    },
+    "2027-03-26": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 22
+    },
+    "2027-03-27": {
+      "questionId": "beijing-early",
+      "reviewCycle": 22
+    },
+    "2027-03-28": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 22
+    },
+    "2027-03-29": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 22
+    },
+    "2027-03-30": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 22
+    },
+    "2027-03-31": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 22
+    },
+    "2027-04-01": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 22
+    },
+    "2027-04-02": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 23
+    },
+    "2027-04-03": {
+      "questionId": "beijing-early",
+      "reviewCycle": 23
+    },
+    "2027-04-04": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 23
+    },
+    "2027-04-05": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 23
+    },
+    "2027-04-06": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 23
+    },
+    "2027-04-07": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 23
+    },
+    "2027-04-08": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 23
+    },
+    "2027-04-09": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 24
+    },
+    "2027-04-10": {
+      "questionId": "beijing-early",
+      "reviewCycle": 24
+    },
+    "2027-04-11": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 24
+    },
+    "2027-04-12": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 24
+    },
+    "2027-04-13": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 24
+    },
+    "2027-04-14": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 24
+    },
+    "2027-04-15": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 24
+    },
+    "2027-04-16": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 25
+    },
+    "2027-04-17": {
+      "questionId": "beijing-early",
+      "reviewCycle": 25
+    },
+    "2027-04-18": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 25
+    },
+    "2027-04-19": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 25
+    },
+    "2027-04-20": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 25
+    },
+    "2027-04-21": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 25
+    },
+    "2027-04-22": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 25
+    },
+    "2027-04-23": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 26
+    },
+    "2027-04-24": {
+      "questionId": "beijing-early",
+      "reviewCycle": 26
+    },
+    "2027-04-25": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 26
+    },
+    "2027-04-26": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 26
+    },
+    "2027-04-27": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 26
+    }
+  },
+  "reviewNote": "位置题须独立核验误差不超过25米；不得把建设容差或OSM坐标的小数位数当作精度证明。每日题待独立审定后编排180天。",
+  "scheduleNote": "180个日期，7道已审历史知识题循环复习；尚未包含位置题，不宣称180道独立题或三种题型齐备。"
+}

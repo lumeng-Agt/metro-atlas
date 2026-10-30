@@ -87,6 +87,7 @@ var feedback_volume := 0.35
 var feedback_player: AudioStreamPlayer
 var feedback_audio: Dictionary = {}
 var outcome_comparison := false
+var construction_feedback:Control
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=false
@@ -135,6 +136,7 @@ func _build() -> void:
 	map_area=Control.new();map_area.size_flags_vertical=Control.SIZE_EXPAND_FILL;frame.add_child(map_area)
 	map_view=MapScript.new();map_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);map_area.add_child(map_view)
 	map_view.bold_font=strong_face;map_view.ui_scale=ui_scale
+	construction_feedback=preload("res://scripts/construction_feedback.gd").new();construction_feedback.map=map_view;map_view.add_child(construction_feedback)
 	map_view.map_clicked.connect(_click);map_view.cancel_requested.connect(_cancel)
 	map_view.station_dragged.connect(_drag_station);map_view.station_drag_finished.connect(_finish_station_drag)
 	map_view.draft_station_changed.connect(_station_changed)
@@ -180,8 +182,8 @@ func _setup_feedback_audio() -> void:
 	if DisplayServer.get_name()=="headless":return
 	# Finite, cached cues end naturally; a generator would keep an audio
 	# playback alive after its last buffer (and leaked during quick teardown).
-	for kind in ["track","station","chapter"]:
-		var frequency:=720.0 if kind=="station" else 880.0 if kind=="chapter" else 620.0
+	for kind in ["track","station","chapter","transfer"]:
+		var frequency:=720.0 if kind=="station" else 880.0 if kind=="chapter" else 1040.0 if kind=="transfer" else 620.0
 		var rate:=22050;var count:=roundi(rate*0.11)
 		var frames:=PackedByteArray();frames.resize(count*2)
 		for index in range(count):
@@ -272,6 +274,7 @@ func _show_menu() -> void:
 	continue_button.disabled=not FileAccess.file_exists(SaveManager.root_path().path_join("last_game.json")) and not FileAccess.file_exists(SaveManager.root_path().path_join("last_game.json.bak"));body.add_child(continue_button)
 	body.add_child(button("选择城市 · 开始新故事",_show_new_game))
 	body.add_child(button("存档与路网作品",_saves))
+	body.add_child(button("地铁挑战 · 默写与每日题",_open_challenges))
 	var extra:=HFlowContainer.new();body.add_child(extra)
 	extra.add_child(button("设置",_settings));extra.add_child(button("基本操作练习",_restart_guide));extra.add_child(button("退出",func():get_tree().quit()))
 	body.add_child(label("五城 · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。",16))
@@ -510,6 +513,7 @@ func _left() -> void:
 		var tab:=button(str(entry[0]),_open_page.bind(str(entry[1])));tab.toggle_mode=true;tab.button_pressed=page==str(entry[1]);nav.add_child(tab)
 	if page=="timeline":
 		left.add_child(label("城市时间轴",24,true))
+		left.add_child(button("观看发展史／导出视频",_open_history_player))
 		for entry in Story.config(world).get("historicalEvents",[]):left.add_child(label("%s · %s" % [str(entry.get("date","")),str(entry.get("title",""))],16))
 		for index in range(world.get("storyState",{}).get("milestones",[]).size()):
 			var milestone:Dictionary=world.storyState.milestones[index]
@@ -651,6 +655,8 @@ func _left() -> void:
 			map_view.chapter_baseline_overlay=Story.chapter_baseline_world(world) if outcome_comparison else {}
 			map_view.requested_redraw();_left()))
 		left.add_child(button("保存纪念图 PNG",_save_commemorative_image))
+		left.add_child(button("线路图视图",_open_schematic))
+		left.add_child(button("观看发展史／导出视频",_open_history_player))
 		left.add_child(label("列车只作开通展示；车型、站体尺寸及未核验工程参数均为游戏示意。",15))
 		left.add_child(button("继续下一章",_next));left.add_child(button("暂停／继续开通展示",func():display_paused=not display_paused))
 	else:
@@ -1534,6 +1540,22 @@ func _execute(title:String,mutation:Callable) -> void:
 	elif title=="添加建设阶段":fields=["planningPhases","currentPlanningPhaseId"]
 	elif title=="辅助完成重复建设":fields=["stations","stationComplexes","transferConnections","trackNodes","trackEdges","storyPlan"]
 	if not history.execute(title,mutation,fields):return
+	var coordinates:Array=[]
+	var diff:Dictionary=world.history.undo.back().get("diff",{}).get("fields",{})
+	for item in diff.get("stations",{}).get("items",{}).values():
+		if item.get("before")==null and item.get("after") is Dictionary:coordinates.append(item.after.latlng)
+	for item in diff.get("trackEdges",{}).get("items",{}).values():
+		if item.get("before")==null and item.get("after") is Dictionary:
+			var geometry:=TrackNetwork.edge_points(item.after,world,float(WorldData.city(str(world.cityId)).center[0]),8)
+			if not geometry.is_empty():coordinates.append(geometry[geometry.size()/2])
+	if title=="建立换乘联系":
+		_play_feedback("transfer")
+		for item in diff.get("transferConnections",{}).get("items",{}).values():
+			if item.get("after") is Dictionary:
+				for instance_id in item.after.get("stationInstanceIds",[]):
+					for station in world.stations:
+						if station.get("stationInstanceId","")==instance_id:coordinates.append(station.latlng)
+	construction_feedback.pulse(coordinates)
 	evaluation={};problem="";rules.world=world;_mark_dirty();_refresh()
 
 func _select(kind:String,id:String) -> void:
@@ -2138,10 +2160,36 @@ func _replay(index:int) -> void:
 		if copy.is_empty():_message("无法安全复盘","旧章节未能匹配当前资料包，已保留原记录；当前进度不会被替换。");return
 		_leave(func():_enter(copy);_save()))
 
+func _open_history_player() -> void:
+	var player:=preload("res://scripts/history_player.gd").new()
+	add_child(player)
+	set_process_unhandled_key_input(false)
+	player.tree_exiting.connect(func():set_process_unhandled_key_input(true))
+	player.open(world)
+
+func _open_challenges() -> void:
+	var hub:=preload("res://scripts/challenge_hub.gd").new()
+	add_child(hub)
+	hub.open()
+
+func _open_schematic() -> void:
+	var canvas_size:=Vector2(minf(1400,size.x-96),minf(800,size.y-180))
+	var layout:=preload("res://scripts/schematic_layout.gd").build(world,canvas_size)
+	if not layout.get("ok",false):problem=str(layout.get("reason","线路图暂不可用。"));_instruction();return
+	var dialog:=_dialog("游戏线路示意图 · %s"%str(world.get("cityName","")))
+	var column:=VBoxContainer.new();dialog.add_child(column)
+	var view:=preload("res://scripts/schematic_view.gd").new();view.layout=layout;view.font=face;view.custom_minimum_size=canvas_size;column.add_child(view)
+	column.add_child(label("游戏线路示意图 · 按已确认线路关系绘制 · 虚线表示换乘联系",15))
+	dialog.popup_centered_ratio(0.9)
+
 func _dialog(title:String) -> AcceptDialog:
 	var d:=AcceptDialog.new();d.title=title;d.ok_button_text="关闭";add_child(d);d.confirmed.connect(d.queue_free);d.close_requested.connect(d.queue_free);return d
 
 func _message(title:String,text:String) -> void:
+	if not world.is_empty() and title in ["本期范围暂不可确认","本期范围已确认","换乘联系尚不能建立","换乘关系已存在","换乘预览无效","换乘联系未建立","预留接口尚未就绪","预留接口未确认","规划已变化","方案未采用","辅助建设不可应用","辅助建设未应用"]:
+		problem=text;show_right=true;_right()
+		var inline_note:=label(title+"\n"+text,16,true);right.add_child(inline_note);right.move_child(inline_note,0)
+		_instruction();_layout();return
 	var d:=_dialog(title);d.dialog_autowrap=true;d.dialog_text=text;d.popup_centered(Vector2i(mini(780,int(size.x-32)),340))
 
 func _confirm(title:String,text:String,callback:Callable,cancel_callback:Callable=Callable()) -> void:
@@ -2259,6 +2307,8 @@ func _settings() -> void:
 	trains.toggled.connect(func(value:bool):display_enabled=value;map_view.show_train_display=value;map_view.requested_train_redraw())
 	body.add_child(button("暂停／继续展示",func():display_paused=not display_paused))
 	body.add_child(label("建设反馈音效",18,true))
+	var motion_toggle:=CheckButton.new();motion_toggle.text="减少建设动画";motion_toggle.button_pressed=not Prefs.load_ui_motion_enabled();body.add_child(motion_toggle)
+	motion_toggle.toggled.connect(func(value:bool):Prefs.save_ui_motion_enabled(not value))
 	var audio_toggle:=CheckButton.new();audio_toggle.text="播放建站、接轨和历史节点提示音";audio_toggle.button_pressed=feedback_enabled;body.add_child(audio_toggle)
 	audio_toggle.toggled.connect(func(value:bool):
 		feedback_enabled=value;Prefs.save_feedback_enabled(value)
