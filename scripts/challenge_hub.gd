@@ -261,6 +261,6 @@ func _share_card(result:Dictionary) -> void:
 		var background:=ColorRect.new();background.color=Color("#182733");background.size=Vector2(900,600);viewport.add_child(background)
 		var text:=Label.new();text.theme=theme;text.position=Vector2(48,80);text.size=Vector2(804,440);text.add_theme_font_size_override("font_size",28);text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;text.text=Session.share_text(daily_question,result);viewport.add_child(text)
 		await RenderingServer.frame_post_draw
-		var error:=viewport.get_texture().get_image().save_png(path);viewport.queue_free()
+		var error:=preload("res://scripts/media_export_job.gd").save_png_atomic(viewport.get_texture().get_image(),path);viewport.queue_free()
 		_label("分享卡已导出。" if error==OK else "分享卡写入失败。"))
 	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered_ratio(0.7)

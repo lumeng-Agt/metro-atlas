@@ -440,7 +440,7 @@ func _write_commemorative_image(path:String) -> void:
 	box.add_child(label("本期路网 %d 站 · %d 条线路 · 精度：%s" % [world.get("stations",[]).size(),world.get("routes",[]).size(),str(Story.chapter(world).get("alignmentNote", "历史位置资料待核验"))],15))
 	box.add_child(label("现代地理参考 · © OpenStreetMap contributors · 地图日期：%s" % str(map_view.base_map_snapshot),15))
 	await RenderingServer.frame_post_draw
-	var image:=view.get_texture().get_image();var result:=image.save_png(path);view.queue_free()
+	var image:=view.get_texture().get_image();var result:=preload("res://scripts/media_export_job.gd").save_png_atomic(image,path);view.queue_free()
 	if result!=OK:_message("纪念图保存失败","无法写入所选文件：%s" % path)
 	else:_message("纪念图已保存",path)
 
@@ -2209,7 +2209,7 @@ func _export_schematic(layout:Dictionary) -> void:
 			var text:=Label.new();text.theme=theme;text.add_theme_color_override("font_color",Color("#223745"));text.add_theme_font_size_override("font_size",15);text.position=Vector2(layout.bounds.x+52,68+index*44);text.size=Vector2(310,44);text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;text.text=str(stroke.name)+("（规划）" if stroke.get("planned",false) else "");viewport.add_child(text)
 		var footer:=Label.new();footer.theme=theme;footer.add_theme_color_override("font_color",Color("#223745"));footer.position=Vector2(32,viewport.size.y-48);footer.text="玩家复现 · 虚线线路为规划建设，细虚线为换乘 · 现代地理参考 · © OpenStreetMap contributors";viewport.add_child(footer)
 		await RenderingServer.frame_post_draw
-		var error:=viewport.get_texture().get_image().save_png(path);viewport.queue_free()
+		var error:=preload("res://scripts/media_export_job.gd").save_png_atomic(viewport.get_texture().get_image(),path);viewport.queue_free()
 		_message("线路图已保存" if error==OK else "线路图保存失败",path if error==OK else error_string(error)))
 	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered_ratio(0.7)
 

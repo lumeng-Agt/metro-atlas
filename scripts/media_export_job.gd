@@ -8,6 +8,18 @@ var worker := Thread.new()
 var temporary_files: Array[String] = []
 var temporary_dir := ""
 
+static func save_png_atomic(frame:Image,path:String) -> Error:
+	if frame==null or frame.is_empty() or not path.is_absolute_path():return ERR_INVALID_PARAMETER
+	var temporary:=path.get_base_dir().path_join(".metro-png-%d.png"%Time.get_ticks_usec())
+	var result:=frame.save_png(temporary)
+	if result==OK:
+		var verified:=Image.new()
+		result=verified.load(temporary)
+		if result==OK and verified.get_size()!=frame.get_size():result=ERR_FILE_CORRUPT
+	if result==OK:result=DirAccess.rename_absolute(temporary,path)
+	if FileAccess.file_exists(temporary):DirAccess.remove_absolute(temporary)
+	return result
+
 func cancel() -> void:
 	cancelled=true
 	if pid>0 and OS.is_process_running(pid):OS.kill(pid)

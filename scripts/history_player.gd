@@ -98,7 +98,7 @@ func _cover() -> void:
 	dialog.file_selected.connect(func(path:String):
 		dialog.hide()
 		await RenderingServer.frame_post_draw
-		var error:=get_viewport().get_texture().get_image().save_png(path)
+		var error:=preload("res://scripts/media_export_job.gd").save_png_atomic(get_viewport().get_texture().get_image(),path)
 		status.text="画面已导出。" if error==OK else "画面写入失败。"
 		dialog.queue_free())
 	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered_ratio(0.7)
