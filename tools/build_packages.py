@@ -183,6 +183,13 @@ def main() -> None:
         stage = Path(temp_name).resolve()
         if stage.parent != RELEASE.resolve():
             raise RuntimeError("Package staging directory escaped release directory")
+        inspection = subprocess.run(
+            [str(ROOT / ".tools/godot/Godot_v4.7.2-stable_win64_console.exe"), "--headless", "--main-pack", str(source_exe),
+             "--script", str(ROOT / "tests/package_resource_checks.gd"), "--", f"--data-dir={(stage / 'inspection').as_posix()}"],
+            cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
+        inspection_text = inspection.stdout + inspection.stderr
+        if inspection.returncode or "SCRIPT ERROR:" in inspection_text or "ERROR:" in inspection_text or "PASS: packaged roots" not in inspection_text:
+            raise RuntimeError("Exported resources failed inspection: " + inspection_text[-3000:])
         staged_exe = stage / "造一座地铁.exe"
         staged_zip = stage / STABLE_ZIP.name
         staged_readme = stage / "README.txt"
