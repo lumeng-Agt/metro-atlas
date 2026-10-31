@@ -1,7 +1,7 @@
 extends SceneTree
 const App=preload("res://scripts/main.gd")
 const Story=preload("res://scripts/story_session.gd")
-var report:Dictionary={"kind":"native-renderer-smoke","version":"0.25.0","notFullAcceptance":true,"scenarios":[]}
+var report:Dictionary={"kind":"native-renderer-smoke","version":"0.27.0","notFullAcceptance":true,"scenarios":[]}
 func _initialize() -> void:call_deferred("_run")
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir() or DisplayServer.get_name()=="headless":push_error("Native rendering and isolated --data-dir required");quit(2);return

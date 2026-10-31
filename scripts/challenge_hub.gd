@@ -22,6 +22,7 @@ var answer_locked:=false
 var results:Array=[]
 var daily_question:Dictionary={}
 var save_problem:=""
+var ambiguity_buttons:Array[Button]=[]
 
 func open() -> void:
 	theme=get_parent().theme;set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -44,7 +45,9 @@ func open() -> void:
 	body=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(body)
 	map=preload("res://scripts/map_view.gd").new();map.size_flags_horizontal=Control.SIZE_EXPAND_FILL;map.bold_font=theme.default_font;map.show_train_display=false;split.add_child(map)
 	map.map_clicked.connect(func(ll:Array,_kind:String,_id:String,_side:String,_t:float):
+		if mode=="daily_location" and not answer_locked:candidate=ll.duplicate();_draw_found(true);return
 		if mode=="location" and not answer_locked and question_index<questions.size():candidate=ll.duplicate();_draw_found(true))
+	var attribution:=Label.new();attribution.text="现代地理参考 · © OpenStreetMap contributors · 站位奖牌仅对照游戏参考坐标，不代表测绘精度。";attribution.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;attribution.add_theme_font_size_override("font_size",15);column.add_child(attribution)
 	_periods()
 
 func _add_button(parent:Node,text:String,callback:Callable) -> Button:
@@ -71,10 +74,12 @@ func _periods() -> void:
 	_select_scope()
 
 func _clear() -> void:
+	_clear_ambiguity()
 	for child in body.get_children():body.remove_child(child);child.queue_free()
 
 func _select_scope() -> void:
 	_clear();candidate=[];results=[];question_index=0;practice=false;found={}
+	map.highlight_path_points=[]
 	var city:=str(cities.get_selected_metadata());var date:=str(periods.get_selected_metadata())
 	map.set_context(WorldData.city(city),{"cityId":city,"mode":"workshop","stations":[],"routes":[],"revision":0})
 	if profile.has("error"):_label(str(profile.error));return
@@ -86,7 +91,7 @@ func _select_scope() -> void:
 			practice_pool.shuffle()
 			for station in practice_pool.slice(0,5):
 				var question:Dictionary=station.duplicate(true)
-				question.merge({"period":date,"practiceOnly":true,"fact":"相对游戏参考站位进行练习；该坐标没有25米精度证明，不授予奖牌。","hint":"可按道路、水系和地标判断大致位置。"},true)
+				question.merge({"period":date,"practiceOnly":true,"fact":"此题尚未绑定完整参考版本，仅作位置练习，不授奖牌。","hint":"可按道路、水系和地标判断大致位置。"},true)
 				questions.append(question)
 			if questions.size()<5:_label("本范围不足5个站点，请选择较晚时期或全部线路。");return
 		questions=questions.slice(0,5);_location_question();return
@@ -96,6 +101,7 @@ func _select_scope() -> void:
 	found=profile.get("memory",{}).get(memory_key,{}).duplicate(true)
 	_label("站名默写 · %s"%date)
 	_label("输入这一时期已发布建设目标的站名。可接受有记录的曾用名；换乘站只计一次。")
+	_label("站名")
 	answer_edit=LineEdit.new();answer_edit.placeholder_text="输入站名，按回车确认";answer_edit.custom_minimum_size.y=44;body.add_child(answer_edit)
 	answer_edit.text_submitted.connect(_answer)
 	note=_label("")
@@ -105,20 +111,32 @@ func _select_scope() -> void:
 
 func _answer(text:String) -> void:
 	if not DisplayServer.ime_get_text().is_empty():return
+	_clear_ambiguity()
 	var matches:=Session.match_name(stations,text)
 	if matches.is_empty():note.text="本范围没有匹配的站名，请检查时期和线路。";return
 	if matches.size()>1:
 		note.text="同名站，请选择对应线路："
 		for station in matches:
 			var entry:Dictionary=station
-			_add_button(body,"%s · %s"%[entry.name,entry.line],func():_accept(entry))
+			ambiguity_buttons.append(_add_button(body,"%s · %s"%[entry.name,entry.line],func():_accept(entry)))
 		return
 	_accept(matches[0])
 
 func _accept(station:Dictionary) -> void:
+	_clear_ambiguity()
 	var id:=str(station.historicalId)
 	if found.has(id):note.text="这座站已经点亮。";return
-	found[id]="independent";_persist_memory();_draw_found();_memory_note();answer_edit.clear();answer_edit.grab_focus()
+	found[id]="independent";_persist_memory();_draw_found();_memory_note()
+	note.text+="\n本期名称："+str(station.name)
+	if not station.get("aliases",[]).is_empty():note.text+="\n记录中的曾用名："+"、".join(station.aliases)
+	answer_edit.clear();answer_edit.grab_focus()
+
+func _clear_ambiguity() -> void:
+	for button in ambiguity_buttons:
+		if is_instance_valid(button):
+			if button.get_parent()!=null:button.get_parent().remove_child(button)
+			button.queue_free()
+	ambiguity_buttons.clear()
 
 func _persist_memory() -> void:
 	if not profile.has("memory"):profile.memory={}
@@ -153,12 +171,13 @@ func _location_question() -> void:
 	map.highlight_path_points=[];_draw_found()
 	if question_index>=questions.size():
 		_label("本局已完成")
-		for result in results:_label("偏差 %d 米 · %s"%[result.displayDistanceM,result.medal])
+		for result in results:_label("偏差约 %d 米 · %s"%[result.displayDistanceM,result.medal])
 		return
 	var question:Dictionary=questions[question_index]
 	practice=bool(question.get("practiceOnly",false))
 	_label("第 %d / 5 题\n%s · %s · %s"%[question_index+1,question.name,question.line,question.period])
-	if practice:_label("位置练习 · 不授奖牌\n参考坐标精度尚未独立核定；显示距离只用于本游戏对照。")
+	if question.get("referenceBasis","")=="game_reference":_label("按游戏参考坐标评分，不代表测绘精度。")
+	if practice:_label("位置练习 · 不授奖牌\n显示距离只用于本游戏对照。")
 	note=_label("点击地图放置答案，再确认。")
 	var submit:Button
 	submit=_add_button(body,"确认落点",func():
@@ -175,7 +194,7 @@ func _location_question() -> void:
 		profile.location.append(result.duplicate(true))
 		while profile.location.size()>500:profile.location.pop_front()
 		var saved:=Session.save_profile(profile)
-		note.text="偏差 %d 米 · %s\n%s"%[result.displayDistanceM,result.medal,question.get("fact","")]
+		note.text="偏差约 %d 米 · %s\n%s"%[result.displayDistanceM,result.medal,question.get("fact","")]
 		if not saved.get("ok",false):note.text+="\n成绩保存失败，请重试。"
 		map.highlight_path_points=[candidate.duplicate(),question.latlng.duplicate()]
 		var shown:Dictionary={"id":"reference","name":"参考位置 · "+str(question.name),"latlng":question.latlng.duplicate(),"heading":90,"lengthM":20,"widthM":10,"depthM":-15}
@@ -187,19 +206,20 @@ func _location_question() -> void:
 	_draw_found()
 
 func _daily() -> void:
-	mode="daily";_clear();_draw_found()
+	mode="daily";candidate=[];map.highlight_path_points=[];_clear();_draw_found()
 	var bank:=Catalog.load_bank();var date:=Session.beijing_date(Time.get_unix_time_from_system())
 	var assigned:=Session.daily(bank,date)
 	if assigned.is_empty():_label("今天没有已审核的每日题；可以选择站名默写进行练习。");return
 	daily_question={}
 	for question in bank.get("questions",[]):
-		if str(question.get("id",""))==str(assigned.get("questionId","")) and question.get("reviewStatus","")=="verified":daily_question=question.duplicate(true)
+		if str(question.get("id",""))==str(assigned.get("questionId","")) and (question.get("reviewStatus","")=="verified" or (question.get("type","")=="location" and Session.eligible(question))):daily_question=question.duplicate(true)
 	if daily_question.is_empty():_label("每日题缺失，未记成绩。");return
 	daily_question.merge({"date":date,"version":bank.version},true)
 	_label("每日一题 · "+date);_label("历史知识循环复习 · 第%d轮"%int(assigned.get("reviewCycle",1)));_label(str(daily_question.prompt))
 	var daily_key:="%s:%s"%[bank.version,date]
 	var previous:Dictionary=profile.get("daily",{}).get(daily_key,{})
 	if not previous.is_empty():_label("今日首次结果已保存，再答为练习。")
+	if daily_question.get("type","")=="location":_daily_location(daily_key);return
 	for index in range(daily_question.get("options",[]).size()):
 		var choice:=index
 		_add_button(body,str(daily_question.options[index]),func():
@@ -212,8 +232,29 @@ func _daily() -> void:
 			_add_button(body,"打开题目来源",func():OS.shell_open(str(daily_question.source)))
 			_add_button(body,"导出分享卡 PNG",func():_share_card(result)))
 
+func _daily_location(key:String) -> void:
+	mode="daily_location";answer_locked=false;candidate=[];practice=profile.get("daily",{}).has(key)
+	map.set_context(WorldData.city(str(daily_question.cityId)),{"stations":[],"routes":[],"mode":"workshop"})
+	_label("按游戏参考坐标评分，不代表测绘精度。")
+	note=_label("在地图上点击落点，再确认答案。")
+	_add_button(body,"确认今日落点",func():
+		if answer_locked:return
+		var result:=Session.location_result(daily_question,candidate,practice)
+		if not result.get("ok",false):note.text="请先在地图放置有效落点。";return
+		answer_locked=true
+		Session.record_daily(profile,key,result)
+		var saved:=Session.save_profile(profile)
+		_clear();_label("相对参考坐标偏差约 %d 米 · %s\n不代表测绘精度。"%[result.displayDistanceM,result.medal])
+		if not saved.get("ok",false):_label("成绩保存失败，请重试。")
+		map.highlight_path_points=[candidate.duplicate(),daily_question.latlng.duplicate()]
+		map.set_world({"stations":[{"id":"reference","name":"参考位置 · "+str(daily_question.name),"latlng":daily_question.latlng.duplicate(),"heading":90,"lengthM":20,"widthM":10,"depthM":-15}],"routes":[],"mode":"workshop","revision":Time.get_ticks_usec()})
+		_add_button(body,"查看参考来源",func():OS.shell_open(str(daily_question.source)))
+		_add_button(body,"导出分享卡 PNG",func():_share_card(result)))
+	_add_button(body,"提示（本题转练习）",func():practice=true;note.text=str(daily_question.get("hint","请观察道路与地标。")))
+
 func _share_card(result:Dictionary) -> void:
 	var dialog:=FileDialog.new();dialog.access=FileDialog.ACCESS_FILESYSTEM;dialog.file_mode=FileDialog.FILE_MODE_SAVE_FILE;dialog.add_filter("*.png","PNG分享卡");dialog.current_file="每日地铁题.png";add_child(dialog)
+	dialog.title="保存每日题分享卡";dialog.ok_button_text="保存分享卡";dialog.cancel_button_text="取消"
 	dialog.file_selected.connect(func(path:String):
 		dialog.queue_free()
 		var viewport:=SubViewport.new();viewport.size=Vector2i(900,600);viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS;add_child(viewport)

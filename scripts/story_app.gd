@@ -1,6 +1,6 @@
 extends Control
 
-const BUILD_VERSION := "0.26.0 · 2026.10.27"
+const BUILD_VERSION := "0.27.0 · 2026.10.31"
 const SaveWriter = preload("res://scripts/save_coordinator.gd")
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
@@ -88,6 +88,8 @@ var feedback_player: AudioStreamPlayer
 var feedback_audio: Dictionary = {}
 var outcome_comparison := false
 var construction_feedback:Control
+var announcement_player:AnnouncementPlayer
+var presentation_overlays:=0
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=false
@@ -104,6 +106,7 @@ func _ready() -> void:
 	_build()
 	add_child(save_writer)
 	_setup_feedback_audio()
+	announcement_player=preload("res://scripts/announcement_player.gd").new();add_child(announcement_player)
 	resized.connect(_layout)
 	_show_menu()
 
@@ -231,8 +234,11 @@ func _narrow() -> bool:
 	return size.x<1650 or ui_scale>1.25
 
 func _process(delta:float) -> void:
-	if world.is_empty() or is_instance_valid(menu):return
-	if display_enabled and not display_paused:
+	if world.is_empty() or is_instance_valid(menu):
+		if is_instance_valid(announcement_player):announcement_player.stop()
+		return
+	announcement_player.update_from_map(map_view,display_seconds,display_enabled and not display_paused and presentation_overlays==0)
+	if display_enabled and not display_paused and presentation_overlays==0:
 		display_seconds+=delta;map_view.presentation_seconds=display_seconds;map_view.requested_train_redraw()
 	if auto_enabled:
 		auto_seconds+=delta
@@ -241,6 +247,7 @@ func _process(delta:float) -> void:
 			if dirty:
 				if not (await _save()):auto_retry_seconds=60.0
 			else:auto_seconds=0.0
+	if presentation_overlays>0:return
 	if tool=="track" and not map_view.track_start_ref.is_empty() and map_view.track_end_ref.is_empty() and not map_view.hover_latlng.is_empty() and Time.get_ticks_usec()-last_preview_usec>33333:
 		last_preview_usec=Time.get_ticks_usec()
 		var hit:=map_view._pick(map_view._to_screen(map_view.hover_latlng))
@@ -274,7 +281,7 @@ func _show_menu() -> void:
 	continue_button.disabled=not FileAccess.file_exists(SaveManager.root_path().path_join("last_game.json")) and not FileAccess.file_exists(SaveManager.root_path().path_join("last_game.json.bak"));body.add_child(continue_button)
 	body.add_child(button("选择城市 · 开始新故事",_show_new_game))
 	body.add_child(button("存档与路网作品",_saves))
-	body.add_child(button("地铁挑战 · 默写与每日题",_open_challenges))
+	body.add_child(button("地铁挑战 · 猜站位、默写与每日题",_open_challenges))
 	var extra:=HFlowContainer.new();body.add_child(extra)
 	extra.add_child(button("设置",_settings));extra.add_child(button("基本操作练习",_restart_guide));extra.add_child(button("退出",func():get_tree().quit()))
 	body.add_child(label("五城 · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。",16))
@@ -2163,6 +2170,8 @@ func _replay(index:int) -> void:
 func _open_history_player() -> void:
 	var player:=preload("res://scripts/history_player.gd").new()
 	add_child(player)
+	presentation_overlays+=1
+	player.tree_exiting.connect(func():presentation_overlays=maxi(0,presentation_overlays-1))
 	set_process_unhandled_key_input(false)
 	player.tree_exiting.connect(func():set_process_unhandled_key_input(true))
 	player.open(world)
@@ -2170,17 +2179,39 @@ func _open_history_player() -> void:
 func _open_challenges() -> void:
 	var hub:=preload("res://scripts/challenge_hub.gd").new()
 	add_child(hub)
+	presentation_overlays+=1
+	hub.tree_exiting.connect(func():presentation_overlays=maxi(0,presentation_overlays-1))
 	hub.open()
 
 func _open_schematic() -> void:
-	var canvas_size:=Vector2(minf(1400,size.x-96),minf(800,size.y-180))
-	var layout:=preload("res://scripts/schematic_layout.gd").build(world,canvas_size)
-	if not layout.get("ok",false):problem=str(layout.get("reason","线路图暂不可用。"));_instruction();return
-	var dialog:=_dialog("游戏线路示意图 · %s"%str(world.get("cityName","")))
-	var column:=VBoxContainer.new();dialog.add_child(column)
-	var view:=preload("res://scripts/schematic_view.gd").new();view.layout=layout;view.font=face;view.custom_minimum_size=canvas_size;column.add_child(view)
-	column.add_child(label("游戏线路示意图 · 按已确认线路关系绘制 · 虚线表示换乘联系",15))
-	dialog.popup_centered_ratio(0.9)
+	var panel:=preload("res://scripts/schematic_panel.gd").new();add_child(panel)
+	presentation_overlays+=1;set_process_unhandled_key_input(false)
+	panel.tree_exiting.connect(func():presentation_overlays=maxi(0,presentation_overlays-1);set_process_unhandled_key_input(true))
+	panel.export_requested.connect(_export_schematic)
+	panel.open(world,face)
+
+func _export_schematic(layout:Dictionary) -> void:
+	var caption:="%s · %s · 游戏线路示意图"%[str(world.get("cityName","")),Story.node_date(world)]
+	var dialog:=FileDialog.new();dialog.access=FileDialog.ACCESS_FILESYSTEM;dialog.file_mode=FileDialog.FILE_MODE_SAVE_FILE;dialog.add_filter("*.png","线路示意图 PNG");dialog.current_file="游戏线路示意图.png";add_child(dialog)
+	dialog.title="保存线路示意图";dialog.ok_button_text="保存线路图";dialog.cancel_button_text="取消"
+	dialog.file_selected.connect(func(path:String):
+		dialog.queue_free()
+		var legend:Array=[];var seen:={}
+		for stroke in layout.strokes:
+			var key:=str(stroke.name)+str(stroke.color)
+			if not seen.has(key):legend.append(stroke);seen[key]=true
+		var viewport:=SubViewport.new();viewport.size=Vector2i(int(layout.bounds.x)+380,maxi(int(layout.bounds.y)+96,legend.size()*44+120));viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS;add_child(viewport)
+		var view:=preload("res://scripts/schematic_view.gd").new();view.layout=layout;view.font=face;view.size=Vector2(viewport.size);viewport.add_child(view)
+		var title:=Label.new();title.theme=theme;title.add_theme_color_override("font_color",Color("#223745"));title.position=Vector2(32,16);title.text=caption;viewport.add_child(title)
+		for index in range(legend.size()):
+			var stroke:Dictionary=legend[index]
+			var swatch:=ColorRect.new();swatch.color=Color(str(stroke.color));swatch.position=Vector2(layout.bounds.x+24,80+index*44);swatch.size=Vector2(20,6);viewport.add_child(swatch)
+			var text:=Label.new();text.theme=theme;text.add_theme_color_override("font_color",Color("#223745"));text.add_theme_font_size_override("font_size",15);text.position=Vector2(layout.bounds.x+52,68+index*44);text.size=Vector2(310,44);text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;text.text=str(stroke.name)+("（规划）" if stroke.get("planned",false) else "");viewport.add_child(text)
+		var footer:=Label.new();footer.theme=theme;footer.add_theme_color_override("font_color",Color("#223745"));footer.position=Vector2(32,viewport.size.y-48);footer.text="玩家复现 · 虚线线路为规划建设，细虚线为换乘 · 现代地理参考 · © OpenStreetMap contributors";viewport.add_child(footer)
+		await RenderingServer.frame_post_draw
+		var error:=viewport.get_texture().get_image().save_png(path);viewport.queue_free()
+		_message("线路图已保存" if error==OK else "线路图保存失败",path if error==OK else error_string(error)))
+	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered_ratio(0.7)
 
 func _dialog(title:String) -> AcceptDialog:
 	var d:=AcceptDialog.new();d.title=title;d.ok_button_text="关闭";add_child(d);d.confirmed.connect(d.queue_free);d.close_requested.connect(d.queue_free);return d
@@ -2307,6 +2338,10 @@ func _settings() -> void:
 	trains.toggled.connect(func(value:bool):display_enabled=value;map_view.show_train_display=value;map_view.requested_train_redraw())
 	body.add_child(button("暂停／继续展示",func():display_paused=not display_paused))
 	body.add_child(label("建设反馈音效",18,true))
+	var announcement_toggle:=CheckButton.new();announcement_toggle.text="展示列车播放普通话示意报站";announcement_toggle.button_pressed=announcement_player.enabled;body.add_child(announcement_toggle)
+	announcement_toggle.toggled.connect(func(value:bool):
+		announcement_player.enabled=value;Prefs.save_announcements_enabled(value)
+		if not value:announcement_player.stop())
 	var motion_toggle:=CheckButton.new();motion_toggle.text="减少建设动画";motion_toggle.button_pressed=not Prefs.load_ui_motion_enabled();body.add_child(motion_toggle)
 	motion_toggle.toggled.connect(func(value:bool):Prefs.save_ui_motion_enabled(not value))
 	var audio_toggle:=CheckButton.new();audio_toggle.text="播放建站、接轨和历史节点提示音";audio_toggle.button_pressed=feedback_enabled;body.add_child(audio_toggle)

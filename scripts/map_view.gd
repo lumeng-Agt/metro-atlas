@@ -208,10 +208,11 @@ func _rebuild_route_path_cache() -> void:
 		var station_id := str(station.get("id", ""))
 		station_by_id[station_id] = station
 		station_local_cache[station_id] = Geo.local_m(station.get("latlng", [0.0, 0.0]), geometry_ref_lat)
+	var shared_path_index:=TrackNetwork.build_path_index(world,geometry_ref_lat)
 	for route in world.get("routes", []):
 		route_cache_by_id[str(route.get("id", ""))] = route
 		if not bool(route.get("open", false)): continue
-		var canonical:=RoutePathScript.for_route(route,world,geometry_ref_lat)
+		var canonical:=RoutePathScript.for_route(route,world,geometry_ref_lat,shared_path_index)
 		canonical["presentationDirections"]=RoutePathScript.presentation_directions(canonical,route)
 		var display_paths:Array=[]
 		for direction in canonical.presentationDirections.slice(0,2):display_paths.append(DisplayGeometry.prepare(direction,geometry_ref_lat))

@@ -3,6 +3,18 @@ extends RefCounted
 
 const SCALE_OPTIONS := [1.0, 1.25, 1.5, 1.75]
 
+static func load_announcements_enabled() -> bool:
+	var config:=ConfigFile.new()
+	if config.load(path())!=OK:return true
+	return bool(config.get_value("audio","announcements_enabled",true))
+
+static func save_announcements_enabled(value:bool) -> Error:
+	var target:=path()
+	if target.is_empty():return ERR_INVALID_PARAMETER
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(target.get_base_dir()))
+	var config:=ConfigFile.new();config.load(target);config.set_value("audio","announcements_enabled",value)
+	return config.save(target)
+
 static func path() -> String:
 	var data_root:=SaveManager.root_path()
 	if data_root.is_empty():return ""

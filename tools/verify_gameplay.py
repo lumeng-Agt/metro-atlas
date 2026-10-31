@@ -75,8 +75,12 @@ def _run_godot(script, data_dir, extra_env=None, timeout=3600):
     command = [str(GODOT), '--headless', '--path', str(ROOT), '--script', f'res://{script}',
                '--', f'--data-dir={data_dir.as_posix()}']
     started = time.time()
-    result = subprocess.run(command, cwd=ROOT, env=env, capture_output=True, text=True,
-                            timeout=timeout, errors='replace')
+    log = data_dir / 'verification.log'
+    with log.open('w', encoding='utf-8') as stream:
+        result = subprocess.run(command, cwd=ROOT, env=env, stdout=stream, stderr=subprocess.STDOUT,
+                                timeout=timeout)
+    result.stdout = log.read_text(encoding='utf-8', errors='replace')
+    result.stderr = ''
     return result, time.time() - started
 
 
@@ -158,6 +162,7 @@ def _rerun_serially(check, builder):
         return check
     retry = builder()
     retry['retriedSerially'] = True
+    retry['initialAttempt'] = check
     return retry
 
 
@@ -171,30 +176,35 @@ def main():
         raise SystemExit(f'Godot binary missing: {GODOT}')
     global RUN_ROOT
     RUN_ROOT = _fresh_dir('run-' + datetime.now().strftime('%Y%m%d-%H%M%S'))
-    print(f'verifying {args.version}; fingerprint before run: {source_manifest_hash()[:16]}…')
+    initial_fingerprint = source_manifest_hash(gameplay_only=True)
+    print(f'verifying {args.version}; fingerprint before run: {initial_fingerprint[:16]}…')
 
     checks = []
     crashed = None
     try:
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
             futures = [(city, pool.submit(check_fresh, city)) for city in gameplay_spec.REPLAY_CITIES]
-            for city, future in futures:
-                row = _rerun_serially(future.result(), lambda c=city: check_fresh(c))
-                checks.append(row)
-                print(f"  {row['id']:34s} ok={row['ok']} checkpoints={row.get('checkpoints')} free={row.get('freeUnlock')}")
+            fresh = [(city, future.result()) for city, future in futures]
+        for city, initial in fresh:
+            row = _rerun_serially(initial, lambda c=city: check_fresh(c))
+            checks.append(row)
+            print(f"  {row['id']:34s} ok={row['ok']} checkpoints={row.get('checkpoints')} free={row.get('freeUnlock')}")
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
             futures = [(city, pool.submit(check_resume, city)) for city in gameplay_spec.REPLAY_CITIES]
-            for city, future in futures:
-                row = _rerun_serially(future.result(), lambda c=city: check_resume(c))
-                checks.append(row)
-                print(f"  {row['id']:34s} ok={row['ok']} resume={row['resume'].get('checkpoints')}")
+            resumed = [(city, future.result()) for city, future in futures]
+        for city, initial in resumed:
+            row = _rerun_serially(initial, lambda c=city: check_resume(c))
+            checks.append(row)
+            print(f"  {row['id']:34s} ok={row['ok']} resume={row['resume'].get('checkpoints')}")
 
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
             gd_futures = [(name, script, pool.submit(check_gd, name, script))
                           for name, script in gameplay_spec.GD_SCRIPTS]
-            for name, script, future in gd_futures:
-                row = _rerun_serially(future.result(), lambda n=name, s=script: check_gd(n, s))
-                checks.append(row)
-                print(f"  {row['id']:34s} ok={row['ok']}")
+            gd_results = [(name, script, future.result()) for name, script, future in gd_futures]
+        for name, script, initial in gd_results:
+            row = _rerun_serially(initial, lambda n=name, s=script: check_gd(n, s))
+            checks.append(row)
+            print(f"  {row['id']:34s} ok={row['ok']}")
 
         for name, command in gameplay_spec.PY_CHECKS:
             row = check_py(name, command)
@@ -208,11 +218,17 @@ def main():
     present = {check['id'] for check in checks}
     missing = [name for name in required if name not in present]
     passed = sum(1 for check in checks if check['ok'])
+    final_fingerprint = source_manifest_hash(gameplay_only=True)
+    if final_fingerprint != initial_fingerprint:
+        crashed = "Gameplay inputs changed while verification was running; the run cannot certify either version"
     record = {
         'schema': 'gameplay-verification/1',
         'version': args.version,
         'generatedAt': datetime.now().astimezone().isoformat(timespec='seconds'),
-        'manifestHash': source_manifest_hash(),
+        'manifestKind': 'gameplay-inputs/1',
+        'manifestHash': initial_fingerprint,
+        'endManifestHash': final_fingerprint,
+        'sourceTreeHashAtFinish': source_manifest_hash(),
         'godot': '4.7.2-stable.win64.console',
         'aborted': crashed,
         'requiredChecks': required,

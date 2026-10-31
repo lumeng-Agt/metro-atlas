@@ -31,7 +31,7 @@ static func build(source: Dictionary) -> Dictionary:
 		history.attach(seed)
 		history._apply_diff(diff, false)
 		next_dates[lane] = date
-	return {"frames": frames, "warning": warning, "cityId": source.get("cityId", ""), "cityName": source.get("cityName", "")}
+	return {"frames": frames, "initialWorld":seed.duplicate(true), "warning": warning, "cityId": source.get("cityId", ""), "cityName": source.get("cityName", "")}
 
 static func _matches(state: Dictionary, diff: Dictionary) -> bool:
 	if not diff.get("fields", {}) is Dictionary: return false

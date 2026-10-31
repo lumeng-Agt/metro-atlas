@@ -20,6 +20,8 @@ func _exit_tree() -> void:
 func encoder_path(name:String) -> String:
 	var bundled:=OS.get_executable_path().get_base_dir().path_join("media").path_join(name+".exe")
 	if FileAccess.file_exists(bundled):return bundled
+	var development:=ProjectSettings.globalize_path("res://.tools/media-runtime/"+name+".exe")
+	if FileAccess.file_exists(development):return development
 	# Development can use an explicitly installed component. Release packaging
 	# must supply media/ with its redistribution notices and source information.
 	for folder in OS.get_environment("PATH").split(";"):
@@ -41,6 +43,7 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 	var column:=VBoxContainer.new();column.size=Vector2(1920,1080);column.theme=ui_theme;viewport.add_child(column)
 	var title:=Label.new();title.custom_minimum_size.y=80;title.add_theme_font_size_override("font_size",28);column.add_child(title)
 	var map:=preload("res://scripts/map_view.gd").new();map.custom_minimum_size=Vector2(1920,930);map.bold_font=ui_theme.default_font;map.show_train_display=false;column.add_child(map)
+	var growth:=preload("res://scripts/history_growth.gd").new();growth.map=map;map.add_child(growth)
 	var attribution:=Label.new();attribution.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;attribution.add_theme_font_size_override("font_size",15);attribution.text="玩家复现 · 现代地理参考 · © OpenStreetMap contributors";column.add_child(attribution)
 	var final_world:Dictionary=archive.frames.back().world
 	map.set_context(WorldData.city(str(archive.cityId)),final_world.duplicate(true))
@@ -63,23 +66,33 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 	if map._base_map_thread_busy or not map._base_map_pending_request.is_empty():
 		viewport.queue_free();return _finish(false,"本地地图仍未就绪，请稍后重试导出。")
 	var concat:=""
+	var last_file:=""
 	for index in range(archive.frames.size()):
 		if cancelled:break
 		var frame:Dictionary=archive.frames[index]
 		title.text="%s · %s · %s  %s"%[archive.cityName,frame.date,frame.title,"规划建设展示" if frame.planning else ""]
 		attribution.text="玩家复现 · 现代地理参考 · © OpenStreetMap contributors · 地图日期：%s\n节点来源：%s"%[map.base_map_snapshot,str(frame.get("source","未保留来源"))]
-		map.set_world(frame.world.duplicate(true))
-		await get_tree().process_frame
-		await RenderingServer.frame_post_draw
-		var file:="frame-%05d.png"%index
-		var frame_path:=temporary_dir.path_join(file);temporary_files.append(frame_path)
-		if viewport.get_texture().get_image().save_png(frame_path)!=OK:
-			viewport.queue_free();return _finish(false,"无法写入视频帧，请检查磁盘空间。")
-		concat+="file '%s'\nduration %.9f\n"%[file,duration/archive.frames.size()]
+		var before:Dictionary=frame.get("beforeWorld",archive.frames[index-1].world if index>0 else archive.get("initialWorld",{}))
+		growth.prepare(before,frame.world,map.geometry_ref_lat)
+		var samples:=16 if growth.total_m>0 or not growth.stations.is_empty() else 1
+		map.set_world(before.duplicate(true) if samples>1 else frame.world.duplicate(true))
+		for sample_index in range(samples):
+			if cancelled:break
+			growth.progress=float(sample_index)/maxi(1,samples-1) if samples>1 else 1.0
+			if sample_index==samples-1:map.set_world(frame.world.duplicate(true))
+			growth.queue_redraw()
+			await get_tree().process_frame
+			await RenderingServer.frame_post_draw
+			var file:="frame-%05d-%02d.png"%[index,sample_index]
+			var frame_path:=temporary_dir.path_join(file);temporary_files.append(frame_path)
+			if _write_frame(viewport.get_texture().get_image(),frame_path)!=OK:
+				viewport.queue_free();return _finish(false,"无法写入视频帧，请检查磁盘空间。")
+			concat+="file '%s'\nduration %.9f\n"%[file,duration/archive.frames.size()/samples]
+			last_file=file
 		progress.emit("准备历史节点 %d / %d；可取消导出。"%[index+1,archive.frames.size()])
 	viewport.queue_free()
 	if cancelled:return _finish(false,"导出已取消。")
-	concat+="file 'frame-%05d.png'\n"%(archive.frames.size()-1)
+	concat+="file '%s'\n"%last_file
 	var list_path:=temporary_dir.path_join("frames.txt");temporary_files.append(list_path)
 	var list_file:=FileAccess.open(list_path,FileAccess.WRITE)
 	if list_file==null:return _finish(false,"无法写入编码清单。")
@@ -102,8 +115,14 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 		push_warning("Media verification: encoder=%s probe=%s"%[encoder_exit,JSON.stringify(verified)])
 		return _finish(false,"视频校验失败，原目标文件已保留。")
 	if cancelled:return _finish(false,"导出已取消。")
-	if DirAccess.rename_absolute(output,path)!=OK:return _finish(false,"无法替换目标文件，原文件已保留。")
+	if _replace_output(output,path)!=OK:return _finish(false,"无法替换目标文件，原文件已保留。")
 	return _finish(true,"发展史视频已导出："+path)
+
+func _write_frame(frame:Image,path:String) -> Error:
+	return frame.save_png(path)
+
+func _replace_output(source:String,target:String) -> Error:
+	return DirAccess.rename_absolute(source,target)
 
 static func valid_probe(result:Dictionary,duration:float) -> bool:
 	if int(result.get("code",-1))!=0 or not result.get("data") is Dictionary:return false

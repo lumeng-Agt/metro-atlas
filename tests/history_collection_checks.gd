@@ -10,6 +10,7 @@ func check(value:bool,message:String) -> void:
 	if not value:failures.append(message)
 
 func _initialize() -> void:
+	if not SaveManager.using_explicit_data_dir():quit(2);return
 	var seed:={"stations":[],"routes":[],"trackLinks":[]}
 	var history:=CommandHistory.new();history.attach(seed)
 	var original:=history._capture_planning()
@@ -56,17 +57,26 @@ func _initialize() -> void:
 	check(not Challenge.record_daily(profile,"version:date",{"correct":false}) and profile.daily["version:date"].correct,"retry cannot overwrite first result")
 	var share:=Challenge.share_text({"date":"2026-10-30","version":"one","id":"q1","answer":"secret","path":"private"},{})
 	check(not share.contains("secret") and not share.contains("private"),"share allowlist does not leak answers or paths")
+	check(not Challenge.share_text({"id":"station-secret-answer"},{}).contains("secret"),"semantic question ids are not leaked on share cards")
 	var saved:=Challenge.save_profile(profile)
 	check(saved.get("ok",false) and Challenge.load_profile().daily==profile.daily,"separate profile survives reload")
+	var profile_path:=SaveManager.root_path().path_join("challenges.json")
+	SaveManager._write_atomic(profile_path,JSON.stringify({"schemaVersion":1,"daily":[],"memory":{},"location":[]}))
+	var damaged_hash:=FileAccess.get_sha256(profile_path)
+	var damaged:=Challenge.load_profile()
+	check(damaged.has("error"),"malformed profile structure rejected")
+	check(not Challenge.save_profile(damaged).get("ok",true) and FileAccess.get_sha256(profile_path)==damaged_hash,"rejected profile never overwrites original")
+	Challenge.save_profile(profile)
 	check(Export.valid_probe({"code":0,"data":{"format":{"duration":"60.0"},"streams":[{"codec_name":"vp9","width":1920,"height":1080,"r_frame_rate":"30/1"}]}},60),"valid video accepted")
 	check(not Export.valid_probe({"code":0,"data":{"format":{"duration":"10"},"streams":[]}},60),"truncated video cannot replace output")
 	var bank:=preload("res://scripts/challenge_catalog.gd").load_bank()
 	check(bank.days.size()==180,"180 explicit daily dates supplied")
 	var ids:={}
 	for question in bank.questions:
-		check(not ids.has(question.id) and question.reviewStatus=="verified" and str(question.source).begins_with("https://"),"unique reviewed question with source")
+		check(not ids.has(question.id) and (question.reviewStatus=="verified" or Challenge.eligible(question)) and str(question.source).begins_with("https://"),"unique reviewed or explicitly game-reference question with source")
 		ids[question.id]=true
-		check(int(question.answer)>=0 and int(question.answer)<question.options.size(),"answer belongs to explicit options")
+		if question.type!="location":check(int(question.answer)>=0 and int(question.answer)<question.options.size(),"answer belongs to explicit options")
+		else:check(question.referenceBasis=="game_reference" and SaveManager._coordinate_valid(question.latlng),"location answer explicitly binds game reference")
 	for day in bank.days:check(ids.has(bank.days[day].questionId),"scheduled day refers to existing question")
 	if failures.is_empty():print("PASS: %d history collection checks"%checks)
 	else:

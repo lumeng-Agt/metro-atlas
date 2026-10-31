@@ -27,7 +27,7 @@ jobs:
       - name: Story, construction, saves and offline maps
         shell: pwsh
         run: |
-          foreach ($test in @('history_collection_checks.gd','history_collection_flow.gd')) {
+          foreach ($test in @('history_collection_checks.gd','history_collection_flow.gd','announcement_checks.gd')) {
             $data = Join-Path $env:RUNNER_TEMP ("metro-collection-" + [guid]::NewGuid().ToString("N"))
             $output = godot --headless --path . --script "res://tests/$test" -- "--data-dir=$data" 2>&1
             $code = $LASTEXITCODE

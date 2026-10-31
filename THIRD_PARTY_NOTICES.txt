@@ -34,3 +34,36 @@ Source Han Sans (思源黑体)
 The bundled Chinese font is licensed under the SIL Open Font License 1.1.
 The complete font license is provided in fonts/OFL.txt in the project and
 OFL.txt in the portable release package.
+
+
+MeloTTS offline announcement voice (2026-10-31)
+The pre-generated demonstration announcements use the MIT-licensed MyShell.ai MeloTTS Chinese voice, converted by sherpa-onnx.
+Model: https://huggingface.co/myshell-ai/MeloTTS-Chinese
+Conversion: https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models
+Only generated Ogg Vorbis audio is included; the model and Python environment are not part of the game.
+These are synthetic demonstration announcements, not recordings or imitations of transit operators.
+
+Copyright (c) 2024 MyShell.ai
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+FFmpeg media export helpers
+Unmodified FFmpeg 8.1 LGPL-3.0-or-later helpers run as separate processes.
+Full license, exact version, archive checksum and source/build information are supplied in media/LICENSE.txt and media/SOURCE.txt.
+Component hashes are recorded in data/media_runtime_manifest.json and SHA256SUMS.txt.

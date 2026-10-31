@@ -36,7 +36,9 @@ class StrokeBatch extends RefCounted:
 ## Built once with the route cache; no scheduling or authoritative state.
 static func prepare(direction:Dictionary,ref_lat:float) -> Dictionary:
 	var points:=PackedVector2Array();var distances:=PackedFloat64Array();var total:=0.0
+	var stops:Array=[]
 	for segment in direction.get("segments",[]):
+		if stops.is_empty() and segment.has("fromStationId"):stops.append({"stationId":str(segment.fromStationId),"distanceM":total})
 		for geographic in segment.get("points",[]):
 			var point:=Geo.local_m(geographic,ref_lat)
 			if not points.is_empty():
@@ -44,7 +46,8 @@ static func prepare(direction:Dictionary,ref_lat:float) -> Dictionary:
 				if length<=0.001:continue
 				total+=length
 			points.append(point);distances.append(total)
-	return {"points":points,"distances":distances,"lengthM":total}
+		if segment.has("toStationId"):stops.append({"stationId":str(segment.toStationId),"distanceM":total})
+	return {"points":points,"distances":distances,"lengthM":total,"stops":stops}
 
 static func sample(path:Dictionary,distance:float) -> Dictionary:
 	var points:PackedVector2Array=path.get("points",PackedVector2Array())

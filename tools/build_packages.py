@@ -53,7 +53,13 @@ def git_state() -> tuple[str, str, str]:
     return commit, "clean" if not status.strip() else "dirty (changes not committed)", source_manifest_hash()
 
 
-def source_manifest_hash() -> str:
+def gameplay_input(name: str) -> bool:
+    parts = Path(name).parts
+    return bool(parts) and (parts[0] in {"scripts", "scenes", "data", "assets", "fonts", "tests", "tools"}
+                            or name in {"project.godot", "export_presets.cfg"})
+
+
+def source_manifest_hash(gameplay_only: bool = False) -> str:
     digest = hashlib.sha256()
     excluded_dirs = {".git", ".godot", ".tools", "Godot", "release", "test-artifacts", "__pycache__"}
     # Hash tracked and non-ignored working-tree sources so dirty builds still
@@ -64,6 +70,8 @@ def source_manifest_hash() -> str:
     source_names.update(name for name in untracked.split("\0") if name)
     for path in sorted(ROOT / name for name in source_names):
         relative_parts = path.relative_to(ROOT).parts
+        if gameplay_only and not gameplay_input(path.relative_to(ROOT).as_posix()):
+            continue
         if not path.is_file() or any(part in excluded_dirs or part.startswith("test-") for part in relative_parts):
             continue
         if path.suffix in {".exe", ".zip", ".pck", ".tmp", ".bak"}:
@@ -83,6 +91,46 @@ def copy_verified(source: Path, target: Path) -> None:
     shutil.copy2(source, target)
     if sha256(source) != sha256(target):
         raise RuntimeError(f"Copy verification failed: {source.name}")
+
+
+def install_bundle(stage: Path, release: Path, file_names: tuple[str, ...], media_names: tuple[str, ...]) -> None:
+    """Replace programs, helpers and receipts together; restore all on failure."""
+    stage, release = stage.resolve(), release.resolve()
+    if stage.parent != release:
+        raise RuntimeError("Replacement staging escaped the release directory")
+    if any(Path(name).name != name for name in (*file_names, *media_names)):
+        raise RuntimeError("Only registered direct filenames may be replaced")
+    rollback = stage / "rollback"
+    rollback.mkdir()
+    existed = {}
+    installed = []
+    final_media = release / "media"
+    previous_media = rollback / "media"
+    had_media = final_media.exists()
+    moved_media = installed_media = False
+    for name in file_names:
+        existed[name] = (release / name).is_file()
+        if existed[name]: copy_verified(release / name, rollback / name)
+    try:
+        if had_media:
+            os.replace(final_media, previous_media)
+            moved_media = True
+        os.replace(stage / "media", final_media)
+        installed_media = True
+        for name in file_names:
+            os.replace(stage / name, release / name)
+            installed.append(name)
+    except OSError:
+        for name in reversed(installed):
+            if existed[name]: os.replace(rollback / name, release / name)
+            else: (release / name).unlink()
+        if installed_media:
+            for name in media_names:
+                component = final_media / name
+                if component.is_file(): component.unlink()
+            final_media.rmdir()
+        if moved_media: os.replace(previous_media, final_media)
+        raise
 
 
 def main() -> None:
@@ -118,7 +166,7 @@ def main() -> None:
     missing = [name for name in required if name not in passed_ids]
     if missing:
         raise RuntimeError("Gameplay verification is missing passing checks: " + ", ".join(missing))
-    if record.get("manifestHash") != source_manifest_hash():
+    if record.get("manifestKind") != "gameplay-inputs/1" or record.get("manifestHash") != source_manifest_hash(gameplay_only=True):
         raise RuntimeError("Gameplay record was produced against a different source tree; rerun tools/verify_gameplay.py")
 
     source_exe = args.exe.resolve() if args.exe else STABLE_EXE
@@ -143,7 +191,7 @@ def main() -> None:
         copy_verified(source_exe, staged_exe)
         staged_media = stage / "media"
         staged_media.mkdir()
-        media_names = ("ffmpeg.exe", "ffprobe.exe", "LICENSE.txt", "SOURCE.txt")
+        media_names = ("ffmpeg.exe", "ffprobe.exe", "LICENSE.txt", "GPL-3.0.txt", "SOURCE.txt")
         for name in media_names:
             copy_verified(ROOT / ".tools/media-runtime" / name, staged_media / name)
 
@@ -225,45 +273,8 @@ def main() -> None:
             encoding="utf-8",
         )
 
-        # Keep a temporary rollback copy so the stable EXE and ZIP remain a matching pair
-        # if either final rename fails. No versioned EXEs or ZIPs are produced.
-        rollback_exe = stage / "previous.exe"
-        rollback_zip = stage / "previous.zip"
-        had_exe, had_zip = STABLE_EXE.is_file(), STABLE_ZIP.is_file()
-        final_media = RELEASE / "media"
-        rollback_media = stage / "previous-media"
-        if final_media.resolve().parent != RELEASE.resolve() or rollback_media.resolve().parent != stage:
-            raise RuntimeError("Media replacement paths escaped release staging")
-        had_media = final_media.exists()
-        media_moved = False
-        media_installed = False
-        if had_exe:
-            copy_verified(STABLE_EXE, rollback_exe)
-        if had_zip:
-            copy_verified(STABLE_ZIP, rollback_zip)
-        try:
-            if had_media:
-                os.replace(final_media, rollback_media)
-                media_moved = True
-            os.replace(staged_media, final_media)
-            media_installed = True
-            os.replace(staged_exe, STABLE_EXE)
-            os.replace(staged_zip, STABLE_ZIP)
-        except OSError:
-            if had_exe and rollback_exe.exists(): os.replace(rollback_exe, STABLE_EXE)
-            if had_zip and rollback_zip.exists(): os.replace(rollback_zip, STABLE_ZIP)
-            # Restore each registered file, never recursively remove an unknown directory.
-            if media_installed and final_media.is_dir():
-                for name in media_names:
-                    component = final_media / name
-                    if component.is_file(): component.unlink()
-                final_media.rmdir()
-            if media_moved and rollback_media.exists(): os.replace(rollback_media, final_media)
-            raise
-
-        (RELEASE / "README.txt").write_text(readme_text, encoding="utf-8")
-        os.replace(staged_build_info, RELEASE / "build-info.txt")
-        os.replace(staged_checksums, CHECKSUM_FILE)
+        install_bundle(stage, RELEASE,
+                       (STABLE_EXE.name, STABLE_ZIP.name, "README.txt", "build-info.txt", CHECKSUM_FILE.name), media_names)
 
     print(f"Installed stable EXE: {STABLE_EXE} ({STABLE_EXE.stat().st_size:,} bytes)")
     print(f"Installed single Windows package: {STABLE_ZIP} ({STABLE_ZIP.stat().st_size:,} bytes)")

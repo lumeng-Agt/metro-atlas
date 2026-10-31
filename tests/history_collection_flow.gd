@@ -24,6 +24,7 @@ func run() -> void:
 	var before:=JSON.stringify(app.world)
 	app._open_history_player();await process_frame
 	var player=app.get_child(app.get_child_count()-1)
+	while not player.prepared:await process_frame
 	check(player.archive.frames.size()>0,"actual confirmed save reconstructs")
 	var deadline:=Time.get_ticks_msec()+30000
 	await process_frame
@@ -35,19 +36,28 @@ func run() -> void:
 		root.get_texture().get_image().save_png(SaveManager.root_path().path_join("history-player.png"))
 	player.queue_free();await process_frame
 	check(JSON.stringify(app.world)==before,"viewing actual history leaves mainline byte-equivalent")
+	app._open_schematic();await process_frame
+	var schematic_panel=app.get_child(app.get_child_count()-1)
+	while not schematic_panel.prepared:await process_frame
+	check(schematic_panel.result.get("ok",false),"threaded schematic panel uses actual confirmed paths")
+	if DisplayServer.get_name()!="headless":
+		await RenderingServer.frame_post_draw
+		root.get_texture().get_image().save_png(SaveManager.root_path().path_join("schematic.png"))
+	schematic_panel.queue_free();await process_frame
+	check(JSON.stringify(app.world)==before,"schematic view leaves mainline byte-equivalent")
 	var memory:=preload("res://scripts/challenge_catalog.gd").memory_stations("shanghai","1993-05-28")
 	check(memory.size()>0,"historical memory catalog contains real first-period stations")
 	app._open_challenges();await process_frame
 	var hub=app.get_child(app.get_child_count()-1)
 	check(hub.stations.size()>0,"memory UI loads actual catalog")
 	hub.mode="location";hub._select_scope()
-	check(hub.questions.size()==5,"five location practice questions are playable")
+	check(hub.questions.size()==5,"five reference-location questions are playable")
 	for index in range(5):
 		var question:Dictionary=hub.questions[index]
 		hub.map.map_clicked.emit(question.latlng.duplicate(),"","","",0.0)
 		for button in hub.body.get_children():
 			if button is Button and button.text=="确认落点":button.pressed.emit();break
-		check(hub.results.size()==index+1 and hub.results.back().practice,"actual map answer commits only practice credit")
+		check(hub.results.size()==index+1 and hub.results.back().referenceBasis=="game_reference" and hub.results.back().medal=="金牌","actual map answer scores against declared game reference")
 		for button in hub.body.get_children():
 			if button is Button and button.text=="下一题":button.pressed.emit();break
 	check(hub.question_index==5,"five-answer flow reaches results")
@@ -55,8 +65,26 @@ func run() -> void:
 		hub.cities.select(city_index);hub.mode="location";hub._periods()
 		check(hub.questions.size()==5,"five-city practice pool exists: %s"%str(hub.cities.get_selected_metadata()))
 		for question in hub.questions:
-			check(bool(question.get("practiceOnly",false)) and SaveManager._coordinate_valid(question.latlng),"unreviewed five-city positions remain practice only")
+			check(question.get("referenceBasis","")=="game_reference" and SaveManager._coordinate_valid(question.latlng),"five-city positions explicitly bind game reference")
 	hub.mode="memory";hub._select_scope()
+	check(hub.map.highlight_path_points.is_empty(),"switching from location to memory clears the previous answer path")
+	var bank:=preload("res://scripts/challenge_catalog.gd").load_bank()
+	hub.daily_question=bank.locations[0].duplicate(true)
+	hub.daily_question.merge({"date":"2026-10-30","version":bank.version},true)
+	var daily_key:="test-first:%s"%str(bank.version)
+	hub._clear();hub._daily_location(daily_key)
+	hub.map.map_clicked.emit(hub.daily_question.latlng.duplicate(),"","","",0.0)
+	for button in hub.body.get_children():
+		if button is Button and button.text=="确认今日落点":button.pressed.emit();break
+	check(hub.profile.daily[daily_key].medal=="金牌","daily map question awards reference-based medal")
+	var first_result:=JSON.stringify(hub.profile.daily[daily_key])
+	hub._clear();hub._daily_location(daily_key)
+	hub.map.map_clicked.emit(Geo.offset(hub.daily_question.latlng,1000,0),"","","",0.0)
+	for button in hub.body.get_children():
+		if button is Button and button.text=="确认今日落点":button.pressed.emit();break
+	check(JSON.stringify(hub.profile.daily[daily_key])==first_result,"repeated daily map submission preserves first result")
+	hub.mode="memory";hub._select_scope()
+	check(hub.map.highlight_path_points.is_empty(),"switching from daily position clears the previous answer path")
 	deadline=Time.get_ticks_msec()+30000
 	while hub.map._base_map_thread_busy or not hub.map._base_map_pending_request.is_empty():
 		if Time.get_ticks_msec()>deadline:check(false,"challenge basemap readiness timeout");break
@@ -73,12 +101,18 @@ func run() -> void:
 				app.theme=preload("res://scripts/ui_theme.gd").create_theme(app.face,app.strong_face,scale)
 				app._open_history_player();await process_frame;await process_frame
 				var matrix_player=app.get_child(app.get_child_count()-1)
+				while not matrix_player.prepared:await process_frame
 				check(_buttons_inside(matrix_player,Rect2(Vector2.ZERO,Vector2(window_size))),"history buttons inside %s/%s"%[window_size,scale])
 				matrix_player.queue_free();await process_frame
 				app._open_challenges();await process_frame;await process_frame
 				var matrix_hub=app.get_child(app.get_child_count()-1)
 				check(_buttons_inside(matrix_hub,Rect2(Vector2.ZERO,Vector2(window_size))),"challenge buttons inside %s/%s"%[window_size,scale])
 				matrix_hub.queue_free();await process_frame
+				app._open_schematic();await process_frame
+				var matrix_schematic=app.get_child(app.get_child_count()-1)
+				while not matrix_schematic.prepared:await process_frame
+				check(_buttons_inside(matrix_schematic,Rect2(Vector2.ZERO,Vector2(window_size))),"schematic buttons inside %s/%s"%[window_size,scale])
+				matrix_schematic.queue_free();await process_frame
 	if OS.get_cmdline_user_args().has("--video-smoke") and DisplayServer.get_name()!="headless":
 		var archive:=Playback.build(app.world)
 		var job:=preload("res://scripts/media_export_job.gd").new();app.add_child(job)

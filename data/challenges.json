@@ -1,23 +1,1411 @@
 {
-  "schemaVersion": 1,
-  "version": "2026.10.30.1",
-  "locations": [],
+  "days": {
+    "2026-10-30": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s122",
+      "reviewCycle": 1
+    },
+    "2026-10-31": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 1
+    },
+    "2026-11-01": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 1
+    },
+    "2026-11-02": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s73",
+      "reviewCycle": 1
+    },
+    "2026-11-03": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 1
+    },
+    "2026-11-04": {
+      "questionId": "beijing-early",
+      "reviewCycle": 1
+    },
+    "2026-11-05": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s123",
+      "reviewCycle": 1
+    },
+    "2026-11-06": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 2
+    },
+    "2026-11-07": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 1
+    },
+    "2026-11-08": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s124",
+      "reviewCycle": 1
+    },
+    "2026-11-09": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 2
+    },
+    "2026-11-10": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 1
+    },
+    "2026-11-11": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s125",
+      "reviewCycle": 1
+    },
+    "2026-11-12": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 3
+    },
+    "2026-11-13": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 1
+    },
+    "2026-11-14": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s66",
+      "reviewCycle": 1
+    },
+    "2026-11-15": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 3
+    },
+    "2026-11-16": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 2
+    },
+    "2026-11-17": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s65",
+      "reviewCycle": 1
+    },
+    "2026-11-18": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 4
+    },
+    "2026-11-19": {
+      "questionId": "beijing-early",
+      "reviewCycle": 2
+    },
+    "2026-11-20": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s64",
+      "reviewCycle": 1
+    },
+    "2026-11-21": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 4
+    },
+    "2026-11-22": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 2
+    },
+    "2026-11-23": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s63",
+      "reviewCycle": 1
+    },
+    "2026-11-24": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 5
+    },
+    "2026-11-25": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 2
+    },
+    "2026-11-26": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s62",
+      "reviewCycle": 1
+    },
+    "2026-11-27": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 5
+    },
+    "2026-11-28": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 2
+    },
+    "2026-11-29": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s27",
+      "reviewCycle": 1
+    },
+    "2026-11-30": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 6
+    },
+    "2026-12-01": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 3
+    },
+    "2026-12-02": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s168",
+      "reviewCycle": 1
+    },
+    "2026-12-03": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 6
+    },
+    "2026-12-04": {
+      "questionId": "beijing-early",
+      "reviewCycle": 3
+    },
+    "2026-12-05": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s169",
+      "reviewCycle": 1
+    },
+    "2026-12-06": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 7
+    },
+    "2026-12-07": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 3
+    },
+    "2026-12-08": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s170",
+      "reviewCycle": 1
+    },
+    "2026-12-09": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 7
+    },
+    "2026-12-10": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 3
+    },
+    "2026-12-11": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s116",
+      "reviewCycle": 1
+    },
+    "2026-12-12": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 8
+    },
+    "2026-12-13": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 3
+    },
+    "2026-12-14": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s1",
+      "reviewCycle": 1
+    },
+    "2026-12-15": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 8
+    },
+    "2026-12-16": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 4
+    },
+    "2026-12-17": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s2",
+      "reviewCycle": 1
+    },
+    "2026-12-18": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 9
+    },
+    "2026-12-19": {
+      "questionId": "beijing-early",
+      "reviewCycle": 4
+    },
+    "2026-12-20": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s3",
+      "reviewCycle": 1
+    },
+    "2026-12-21": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 9
+    },
+    "2026-12-22": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 4
+    },
+    "2026-12-23": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s4",
+      "reviewCycle": 1
+    },
+    "2026-12-24": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 10
+    },
+    "2026-12-25": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 4
+    },
+    "2026-12-26": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s5",
+      "reviewCycle": 1
+    },
+    "2026-12-27": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 10
+    },
+    "2026-12-28": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 4
+    },
+    "2026-12-29": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s23",
+      "reviewCycle": 1
+    },
+    "2026-12-30": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 11
+    },
+    "2026-12-31": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 5
+    },
+    "2027-01-01": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s22",
+      "reviewCycle": 1
+    },
+    "2027-01-02": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 11
+    },
+    "2027-01-03": {
+      "questionId": "beijing-early",
+      "reviewCycle": 5
+    },
+    "2027-01-04": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s21",
+      "reviewCycle": 1
+    },
+    "2027-01-05": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 12
+    },
+    "2027-01-06": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 5
+    },
+    "2027-01-07": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s20",
+      "reviewCycle": 1
+    },
+    "2027-01-08": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 12
+    },
+    "2027-01-09": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 5
+    },
+    "2027-01-10": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s19",
+      "reviewCycle": 1
+    },
+    "2027-01-11": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 13
+    },
+    "2027-01-12": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 5
+    },
+    "2027-01-13": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s122",
+      "reviewCycle": 2
+    },
+    "2027-01-14": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 13
+    },
+    "2027-01-15": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 6
+    },
+    "2027-01-16": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s73",
+      "reviewCycle": 2
+    },
+    "2027-01-17": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 14
+    },
+    "2027-01-18": {
+      "questionId": "beijing-early",
+      "reviewCycle": 6
+    },
+    "2027-01-19": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s123",
+      "reviewCycle": 2
+    },
+    "2027-01-20": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 14
+    },
+    "2027-01-21": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 6
+    },
+    "2027-01-22": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s124",
+      "reviewCycle": 2
+    },
+    "2027-01-23": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 15
+    },
+    "2027-01-24": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 6
+    },
+    "2027-01-25": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s125",
+      "reviewCycle": 2
+    },
+    "2027-01-26": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 15
+    },
+    "2027-01-27": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 6
+    },
+    "2027-01-28": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s66",
+      "reviewCycle": 2
+    },
+    "2027-01-29": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 16
+    },
+    "2027-01-30": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 7
+    },
+    "2027-01-31": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s65",
+      "reviewCycle": 2
+    },
+    "2027-02-01": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 16
+    },
+    "2027-02-02": {
+      "questionId": "beijing-early",
+      "reviewCycle": 7
+    },
+    "2027-02-03": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s64",
+      "reviewCycle": 2
+    },
+    "2027-02-04": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 17
+    },
+    "2027-02-05": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 7
+    },
+    "2027-02-06": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s63",
+      "reviewCycle": 2
+    },
+    "2027-02-07": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 17
+    },
+    "2027-02-08": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 7
+    },
+    "2027-02-09": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s62",
+      "reviewCycle": 2
+    },
+    "2027-02-10": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 18
+    },
+    "2027-02-11": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 7
+    },
+    "2027-02-12": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s27",
+      "reviewCycle": 2
+    },
+    "2027-02-13": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 18
+    },
+    "2027-02-14": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 8
+    },
+    "2027-02-15": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s168",
+      "reviewCycle": 2
+    },
+    "2027-02-16": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 19
+    },
+    "2027-02-17": {
+      "questionId": "beijing-early",
+      "reviewCycle": 8
+    },
+    "2027-02-18": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s169",
+      "reviewCycle": 2
+    },
+    "2027-02-19": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 19
+    },
+    "2027-02-20": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 8
+    },
+    "2027-02-21": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s170",
+      "reviewCycle": 2
+    },
+    "2027-02-22": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 20
+    },
+    "2027-02-23": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 8
+    },
+    "2027-02-24": {
+      "questionId": "reference:guangzhou:2026-10-01:guangzhou-s116",
+      "reviewCycle": 2
+    },
+    "2027-02-25": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 20
+    },
+    "2027-02-26": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 8
+    },
+    "2027-02-27": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s1",
+      "reviewCycle": 2
+    },
+    "2027-02-28": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 21
+    },
+    "2027-03-01": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 9
+    },
+    "2027-03-02": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s2",
+      "reviewCycle": 2
+    },
+    "2027-03-03": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 21
+    },
+    "2027-03-04": {
+      "questionId": "beijing-early",
+      "reviewCycle": 9
+    },
+    "2027-03-05": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s3",
+      "reviewCycle": 2
+    },
+    "2027-03-06": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 22
+    },
+    "2027-03-07": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 9
+    },
+    "2027-03-08": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s4",
+      "reviewCycle": 2
+    },
+    "2027-03-09": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 22
+    },
+    "2027-03-10": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 9
+    },
+    "2027-03-11": {
+      "questionId": "reference:shenzhen:2026-10-01:shenzhen-s5",
+      "reviewCycle": 2
+    },
+    "2027-03-12": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 23
+    },
+    "2027-03-13": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 9
+    },
+    "2027-03-14": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s23",
+      "reviewCycle": 2
+    },
+    "2027-03-15": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 23
+    },
+    "2027-03-16": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 10
+    },
+    "2027-03-17": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s22",
+      "reviewCycle": 2
+    },
+    "2027-03-18": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 24
+    },
+    "2027-03-19": {
+      "questionId": "beijing-early",
+      "reviewCycle": 10
+    },
+    "2027-03-20": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s21",
+      "reviewCycle": 2
+    },
+    "2027-03-21": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 24
+    },
+    "2027-03-22": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 10
+    },
+    "2027-03-23": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s20",
+      "reviewCycle": 2
+    },
+    "2027-03-24": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 25
+    },
+    "2027-03-25": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 10
+    },
+    "2027-03-26": {
+      "questionId": "reference:chengdu:2026-10-01:chengdu-s19",
+      "reviewCycle": 2
+    },
+    "2027-03-27": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 25
+    },
+    "2027-03-28": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 10
+    },
+    "2027-03-29": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s122",
+      "reviewCycle": 3
+    },
+    "2027-03-30": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 26
+    },
+    "2027-03-31": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 11
+    },
+    "2027-04-01": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s73",
+      "reviewCycle": 3
+    },
+    "2027-04-02": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 26
+    },
+    "2027-04-03": {
+      "questionId": "beijing-early",
+      "reviewCycle": 11
+    },
+    "2027-04-04": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s123",
+      "reviewCycle": 3
+    },
+    "2027-04-05": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 27
+    },
+    "2027-04-06": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 11
+    },
+    "2027-04-07": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s124",
+      "reviewCycle": 3
+    },
+    "2027-04-08": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 27
+    },
+    "2027-04-09": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 11
+    },
+    "2027-04-10": {
+      "questionId": "reference:shanghai:2026-10-01:shanghai-s125",
+      "reviewCycle": 3
+    },
+    "2027-04-11": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 28
+    },
+    "2027-04-12": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 11
+    },
+    "2027-04-13": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s66",
+      "reviewCycle": 3
+    },
+    "2027-04-14": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 28
+    },
+    "2027-04-15": {
+      "questionId": "shanghai-early",
+      "reviewCycle": 12
+    },
+    "2027-04-16": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s65",
+      "reviewCycle": 3
+    },
+    "2027-04-17": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 29
+    },
+    "2027-04-18": {
+      "questionId": "beijing-early",
+      "reviewCycle": 12
+    },
+    "2027-04-19": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s64",
+      "reviewCycle": 3
+    },
+    "2027-04-20": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 29
+    },
+    "2027-04-21": {
+      "questionId": "guangzhou-early",
+      "reviewCycle": 12
+    },
+    "2027-04-22": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s63",
+      "reviewCycle": 3
+    },
+    "2027-04-23": {
+      "questionId": "shanghai-xinlonghua",
+      "reviewCycle": 30
+    },
+    "2027-04-24": {
+      "questionId": "shenzhen-network",
+      "reviewCycle": 12
+    },
+    "2027-04-25": {
+      "questionId": "reference:beijing:2026-10-01:beijing-s62",
+      "reviewCycle": 3
+    },
+    "2027-04-26": {
+      "questionId": "shanghai-hongmeilu",
+      "reviewCycle": 30
+    },
+    "2027-04-27": {
+      "questionId": "chengdu-network",
+      "reviewCycle": 12
+    }
+  },
+  "locations": [
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s122",
+      "id": "reference:shanghai:2026-10-01:shanghai-s122",
+      "latlng": [
+        31.1950844,
+        121.4338794
+      ],
+      "line": "11号线 · 花桥—迪士尼",
+      "name": "徐家汇",
+      "period": "2026-10-01",
+      "prompt": "上海 · 11号线 · 花桥—迪士尼：请在地图上找到徐家汇。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s145",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s145__line11-11",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s73",
+      "id": "reference:shanghai:2026-10-01:shanghai-s73",
+      "latlng": [
+        31.1838605,
+        121.4317914
+      ],
+      "line": "4号线外圈",
+      "name": "上海体育馆",
+      "period": "2026-10-01",
+      "prompt": "上海 · 4号线外圈：请在地图上找到上海体育馆。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s73",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s73__line4-4",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s123",
+      "id": "reference:shanghai:2026-10-01:shanghai-s123",
+      "latlng": [
+        31.1700701,
+        121.4302635
+      ],
+      "line": "12号线",
+      "name": "漕宝路",
+      "period": "2026-10-01",
+      "prompt": "上海 · 12号线：请在地图上找到漕宝路。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s123",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s123__line12-12",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [
+        "新龙华"
+      ],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s124",
+      "id": "reference:shanghai:2026-10-01:shanghai-s124",
+      "latlng": [
+        31.1588762,
+        121.4257075
+      ],
+      "line": "15号线",
+      "name": "上海南站",
+      "period": "2026-10-01",
+      "prompt": "上海 · 15号线：请在地图上找到上海南站。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s422",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s422__line15-15",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s125",
+      "id": "reference:shanghai:2026-10-01:shanghai-s125",
+      "latlng": [
+        31.1440955,
+        121.4094802
+      ],
+      "line": "1号线",
+      "name": "锦江乐园",
+      "period": "2026-10-01",
+      "prompt": "上海 · 1号线：请在地图上找到锦江乐园。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s125",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s125",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s66",
+      "id": "reference:beijing:2026-10-01:beijing-s66",
+      "latlng": [
+        39.9244157,
+        116.1712875
+      ],
+      "line": "6号线",
+      "name": "苹果园",
+      "period": "2026-10-01",
+      "prompt": "北京 · 6号线：请在地图上找到苹果园。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s343",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s343",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s65",
+      "id": "reference:beijing:2026-10-01:beijing-s65",
+      "latlng": [
+        39.9061512,
+        116.184298
+      ],
+      "line": "1号线",
+      "name": "古城",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到古城。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s65",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s65",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s64",
+      "id": "reference:beijing:2026-10-01:beijing-s64",
+      "latlng": [
+        39.9062236,
+        116.229682
+      ],
+      "line": "1号线",
+      "name": "八宝山",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到八宝山。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s64",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s64",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s63",
+      "id": "reference:beijing:2026-10-01:beijing-s63",
+      "latlng": [
+        39.9062251,
+        116.246901
+      ],
+      "line": "1号线",
+      "name": "玉泉路",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到玉泉路。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s63",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s63",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s62",
+      "id": "reference:beijing:2026-10-01:beijing-s62",
+      "latlng": [
+        39.9062622,
+        116.2680332
+      ],
+      "line": "1号线",
+      "name": "五棵松",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到五棵松。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s62",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s62",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [
+        "西朗"
+      ],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s27",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s27",
+      "latlng": [
+        23.0681627,
+        113.2266854
+      ],
+      "line": "广佛线",
+      "name": "西塱",
+      "period": "2026-10-01",
+      "prompt": "广州 · 广佛线：请在地图上找到西塱。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s27",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s27__line20",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s168",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s168",
+      "latlng": [
+        23.0816737,
+        113.2271528
+      ],
+      "line": "1号线",
+      "name": "坑口",
+      "period": "2026-10-01",
+      "prompt": "广州 · 1号线：请在地图上找到坑口。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s168",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s168",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s169",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s169",
+      "latlng": [
+        23.0897795,
+        113.2287005
+      ],
+      "line": "1号线",
+      "name": "花地湾",
+      "period": "2026-10-01",
+      "prompt": "广州 · 1号线：请在地图上找到花地湾。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s169",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s169",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s170",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s170",
+      "latlng": [
+        23.1012187,
+        113.2306468
+      ],
+      "line": "11号线",
+      "name": "芳村",
+      "period": "2026-10-01",
+      "prompt": "广州 · 11号线：请在地图上找到芳村。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s170",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s170__line11-11",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s116",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s116",
+      "latlng": [
+        23.1127079,
+        113.2347979
+      ],
+      "line": "6号线",
+      "name": "黄沙",
+      "period": "2026-10-01",
+      "prompt": "广州 · 6号线：请在地图上找到黄沙。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s116",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s116__line6-6",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s1",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s1",
+      "latlng": [
+        22.5333096,
+        114.1132515
+      ],
+      "line": "1号线",
+      "name": "罗湖",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 1号线：请在地图上找到罗湖。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s1",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s1",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s2",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s2",
+      "latlng": [
+        22.5424431,
+        114.1138096
+      ],
+      "line": "1号线",
+      "name": "国贸",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 1号线：请在地图上找到国贸。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s2",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s2",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s3",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s3",
+      "latlng": [
+        22.5470714,
+        114.1108235
+      ],
+      "line": "3号线",
+      "name": "老街",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 3号线：请在地图上找到老街。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s3",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s3__line3-3",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s4",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s4",
+      "latlng": [
+        22.5446999,
+        114.1028545
+      ],
+      "line": "5号线",
+      "name": "大剧院",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 5号线：请在地图上找到大剧院。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s4",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s4__line5-5",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s5",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s5",
+      "latlng": [
+        22.5431472,
+        114.0897624
+      ],
+      "line": "6号线",
+      "name": "科学馆",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 6号线：请在地图上找到科学馆。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s270",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s270",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s23",
+      "id": "reference:chengdu:2026-10-01:chengdu-s23",
+      "latlng": [
+        30.7070132,
+        104.0810072
+      ],
+      "line": "1号线",
+      "name": "升仙湖",
+      "period": "2026-10-01",
+      "prompt": "成都 · 1号线：请在地图上找到升仙湖。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s23",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s23",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s22",
+      "id": "reference:chengdu:2026-10-01:chengdu-s22",
+      "latlng": [
+        30.6980112,
+        104.0714886
+      ],
+      "line": "7号线",
+      "name": "火车北站",
+      "period": "2026-10-01",
+      "prompt": "成都 · 7号线：请在地图上找到火车北站。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s22",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s22__line7-7",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s21",
+      "id": "reference:chengdu:2026-10-01:chengdu-s21",
+      "latlng": [
+        30.6874324,
+        104.070635
+      ],
+      "line": "6号线",
+      "name": "人民北路",
+      "period": "2026-10-01",
+      "prompt": "成都 · 6号线：请在地图上找到人民北路。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s21",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s21__line6-6",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s20",
+      "id": "reference:chengdu:2026-10-01:chengdu-s20",
+      "latlng": [
+        30.6744839,
+        104.0651794
+      ],
+      "line": "1号线",
+      "name": "文殊院",
+      "period": "2026-10-01",
+      "prompt": "成都 · 1号线：请在地图上找到文殊院。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s20",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s20",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s19",
+      "id": "reference:chengdu:2026-10-01:chengdu-s19",
+      "latlng": [
+        30.6686515,
+        104.0631281
+      ],
+      "line": "4号线",
+      "name": "骡马市",
+      "period": "2026-10-01",
+      "prompt": "成都 · 4号线：请在地图上找到骡马市。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s19",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s19__line4-4",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    }
+  ],
   "questions": [
     {
-      "id": "shanghai-early",
-      "type": "order",
+      "answer": 0.0,
       "cityId": "shanghai",
-      "reviewStatus": "verified",
-      "reviewedAt": "2026-10-30",
-      "prompt": "上海：下面哪一项按历史先后排列正确？",
-      "options": [
-        "徐家汇—锦江乐园段试运营 → 上海火车站—锦江乐园段试运营 → 1号线延伸至莘庄",
-        "上海火车站—锦江乐园段试运营 → 徐家汇—锦江乐园段试运营 → 1号线延伸至莘庄",
-        "1号线延伸至莘庄 → 上海火车站—锦江乐园段试运营 → 徐家汇—锦江乐园段试运营"
-      ],
-      "answer": 0,
-      "explanation": "1993-05-28：徐家汇—锦江乐园段试运营；1995-04-10：上海火车站—锦江乐园段试运营；1997-07-01：1号线延伸至莘庄。",
-      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html",
       "events": [
         {
           "date": "1993-05-28",
@@ -31,23 +1419,23 @@
           "date": "1997-07-01",
           "title": "1号线延伸至莘庄"
         }
-      ]
-    },
-    {
-      "id": "beijing-early",
-      "type": "order",
-      "cityId": "beijing",
+      ],
+      "explanation": "1993-05-28：徐家汇—锦江乐园段试运营；1995-04-10：上海火车站—锦江乐园段试运营；1997-07-01：1号线延伸至莘庄。",
+      "id": "shanghai-early",
+      "options": [
+        "徐家汇—锦江乐园段试运营 → 上海火车站—锦江乐园段试运营 → 1号线延伸至莘庄",
+        "上海火车站—锦江乐园段试运营 → 徐家汇—锦江乐园段试运营 → 1号线延伸至莘庄",
+        "1号线延伸至莘庄 → 上海火车站—锦江乐园段试运营 → 徐家汇—锦江乐园段试运营"
+      ],
+      "prompt": "上海：下面哪一项按历史先后排列正确？",
       "reviewStatus": "verified",
       "reviewedAt": "2026-10-30",
-      "prompt": "北京：下面哪一项按历史先后排列正确？",
-      "options": [
-        "一期工程试运营，以参观票接待市民 → 地铁一期工程建成 → 一期工程正式对社会运营",
-        "一期工程正式对社会运营 → 一期工程试运营，以参观票接待市民 → 地铁一期工程建成",
-        "地铁一期工程建成 → 一期工程试运营，以参观票接待市民 → 一期工程正式对社会运营"
-      ],
-      "answer": 2,
-      "explanation": "1969-10-01：地铁一期工程建成；1971-01-15：一期工程试运营，以参观票接待市民；1981-09-15：一期工程正式对社会运营。",
-      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html",
+      "type": "order"
+    },
+    {
+      "answer": 2.0,
+      "cityId": "beijing",
       "events": [
         {
           "date": "1969-10-01",
@@ -61,23 +1449,23 @@
           "date": "1981-09-15",
           "title": "一期工程正式对社会运营"
         }
-      ]
-    },
-    {
-      "id": "guangzhou-early",
-      "type": "order",
-      "cityId": "guangzhou",
+      ],
+      "explanation": "1969-10-01：地铁一期工程建成；1971-01-15：一期工程试运营，以参观票接待市民；1981-09-15：一期工程正式对社会运营。",
+      "id": "beijing-early",
+      "options": [
+        "一期工程试运营，以参观票接待市民 → 地铁一期工程建成 → 一期工程正式对社会运营",
+        "一期工程正式对社会运营 → 一期工程试运营，以参观票接待市民 → 地铁一期工程建成",
+        "地铁一期工程建成 → 一期工程试运营，以参观票接待市民 → 一期工程正式对社会运营"
+      ],
+      "prompt": "北京：下面哪一项按历史先后排列正确？",
       "reviewStatus": "verified",
       "reviewedAt": "2026-10-30",
-      "prompt": "广州：下面哪一项按历史先后排列正确？",
-      "options": [
-        "1号线全线正式运营 → 西塱—黄沙段观光试运营 → 1号线正式开工",
-        "1号线正式开工 → 西塱—黄沙段观光试运营 → 1号线全线正式运营",
-        "西塱—黄沙段观光试运营 → 1号线正式开工 → 1号线全线正式运营"
-      ],
-      "answer": 1,
-      "explanation": "1993-12-28：1号线正式开工；1997-06-28：西塱—黄沙段观光试运营；1999-06-28：1号线全线正式运营。",
-      "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+      "source": "https://www.beijing.gov.cn/ywdt/gzdt/202410/t20241005_3911383.html",
+      "type": "order"
+    },
+    {
+      "answer": 1.0,
+      "cityId": "guangzhou",
       "events": [
         {
           "date": "1993-12-28",
@@ -91,23 +1479,23 @@
           "date": "1999-06-28",
           "title": "1号线全线正式运营"
         }
-      ]
-    },
-    {
-      "id": "shenzhen-network",
-      "type": "order",
-      "cityId": "shenzhen",
+      ],
+      "explanation": "1993-12-28：1号线正式开工；1997-06-28：西塱—黄沙段观光试运营；1999-06-28：1号线全线正式运营。",
+      "id": "guangzhou-early",
+      "options": [
+        "1号线全线正式运营 → 西塱—黄沙段观光试运营 → 1号线正式开工",
+        "1号线正式开工 → 西塱—黄沙段观光试运营 → 1号线全线正式运营",
+        "西塱—黄沙段观光试运营 → 1号线正式开工 → 1号线全线正式运营"
+      ],
+      "prompt": "广州：下面哪一项按历史先后排列正确？",
       "reviewStatus": "verified",
       "reviewedAt": "2026-10-30",
-      "prompt": "深圳：下面哪一项按历史先后排列正确？",
-      "options": [
-        "一期1号线与4号线开通 → 二期线网集中开通 → 7号线与9号线一期开通",
-        "二期线网集中开通 → 一期1号线与4号线开通 → 7号线与9号线一期开通",
-        "7号线与9号线一期开通 → 二期线网集中开通 → 一期1号线与4号线开通"
-      ],
-      "answer": 0,
-      "explanation": "2004-12-28：一期1号线与4号线开通；2011-06-28：二期线网集中开通；2016-10-28：7号线与9号线一期开通。",
-      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_10280298.html",
+      "source": "https://www.gzwxb.gov.cn/context/contextId/205622",
+      "type": "order"
+    },
+    {
+      "answer": 0.0,
+      "cityId": "shenzhen",
       "events": [
         {
           "date": "2004-12-28",
@@ -121,23 +1509,23 @@
           "date": "2016-10-28",
           "title": "7号线与9号线一期开通"
         }
-      ]
-    },
-    {
-      "id": "chengdu-network",
-      "type": "order",
-      "cityId": "chengdu",
+      ],
+      "explanation": "2004-12-28：一期1号线与4号线开通；2011-06-28：二期线网集中开通；2016-10-28：7号线与9号线一期开通。",
+      "id": "shenzhen-network",
+      "options": [
+        "一期1号线与4号线开通 → 二期线网集中开通 → 7号线与9号线一期开通",
+        "二期线网集中开通 → 一期1号线与4号线开通 → 7号线与9号线一期开通",
+        "7号线与9号线一期开通 → 二期线网集中开通 → 一期1号线与4号线开通"
+      ],
+      "prompt": "深圳：下面哪一项按历史先后排列正确？",
       "reviewStatus": "verified",
       "reviewedAt": "2026-10-30",
-      "prompt": "成都：下面哪一项按历史先后排列正确？",
-      "options": [
-        "2号线一期形成十字骨架 → 1号线一期开通 → 7号线环线开通",
-        "7号线环线开通 → 2号线一期形成十字骨架 → 1号线一期开通",
-        "1号线一期开通 → 2号线一期形成十字骨架 → 7号线环线开通"
-      ],
-      "answer": 2,
-      "explanation": "2010-09-27：1号线一期开通；2012-09-16：2号线一期形成十字骨架；2017-12-06：7号线环线开通。",
-      "source": "https://sc.people.com.cn/BIG5/n2/2020/0927/c345167-34319467.html",
+      "source": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_10280298.html",
+      "type": "order"
+    },
+    {
+      "answer": 2.0,
+      "cityId": "chengdu",
       "events": [
         {
           "date": "2010-09-27",
@@ -151,761 +1539,732 @@
           "date": "2017-12-06",
           "title": "7号线环线开通"
         }
-      ]
-    },
-    {
-      "id": "shanghai-xinlonghua",
-      "type": "former_name",
+      ],
+      "explanation": "2010-09-27：1号线一期开通；2012-09-16：2号线一期形成十字骨架；2017-12-06：7号线环线开通。",
+      "id": "chengdu-network",
+      "options": [
+        "2号线一期形成十字骨架 → 1号线一期开通 → 7号线环线开通",
+        "7号线环线开通 → 2号线一期形成十字骨架 → 1号线一期开通",
+        "1号线一期开通 → 2号线一期形成十字骨架 → 7号线环线开通"
+      ],
+      "prompt": "成都：下面哪一项按历史先后排列正确？",
       "reviewStatus": "verified",
       "reviewedAt": "2026-10-30",
-      "prompt": "徐汇区志记载：上海地铁1号线“新龙华站”后来使用哪个站名？",
+      "source": "https://sc.people.com.cn/BIG5/n2/2020/0927/c345167-34319467.html",
+      "type": "order"
+    },
+    {
+      "answer": 0.0,
+      "explanation": "区志明确将上海南站标注为原新龙华站。这里考的是站名沿革，不把历史位置视为始终不变。",
+      "id": "shanghai-xinlonghua",
       "options": [
         "上海南站",
         "上海体育馆",
         "龙华"
       ],
-      "answer": 0,
-      "explanation": "区志明确将上海南站标注为原新龙华站。这里考的是站名沿革，不把历史位置视为始终不变。",
-      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html"
-    },
-    {
-      "id": "shanghai-hongmeilu",
-      "type": "former_name",
+      "prompt": "徐汇区志记载：上海地铁1号线“新龙华站”后来使用哪个站名？",
       "reviewStatus": "verified",
       "reviewedAt": "2026-10-30",
-      "prompt": "徐汇区志记载：锦江乐园站在1997年曾改用哪个名称？",
+      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html",
+      "type": "former_name"
+    },
+    {
+      "answer": 0.0,
+      "explanation": "区志记载其1997年1月曾改名虹梅路站，后来又使用锦江乐园站名。",
+      "id": "shanghai-hongmeilu",
       "options": [
         "虹梅路",
         "虹桥路",
         "虹漕路"
       ],
-      "answer": 0,
-      "explanation": "区志记载其1997年1月曾改名虹梅路站，后来又使用锦江乐园站名。",
-      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html"
+      "prompt": "徐汇区志记载：锦江乐园站在1997年曾改用哪个名称？",
+      "reviewStatus": "verified",
+      "reviewedAt": "2026-10-30",
+      "source": "https://www.xuhui.gov.cn/xhda/xhda/xhbl/xhqz/2017/03/24/d_105505.html",
+      "type": "former_name"
+    },
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s122",
+      "id": "reference:shanghai:2026-10-01:shanghai-s122",
+      "latlng": [
+        31.1950844,
+        121.4338794
+      ],
+      "line": "11号线 · 花桥—迪士尼",
+      "name": "徐家汇",
+      "period": "2026-10-01",
+      "prompt": "上海 · 11号线 · 花桥—迪士尼：请在地图上找到徐家汇。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s145",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s145__line11-11",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s73",
+      "id": "reference:shanghai:2026-10-01:shanghai-s73",
+      "latlng": [
+        31.1838605,
+        121.4317914
+      ],
+      "line": "4号线外圈",
+      "name": "上海体育馆",
+      "period": "2026-10-01",
+      "prompt": "上海 · 4号线外圈：请在地图上找到上海体育馆。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s73",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s73__line4-4",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s123",
+      "id": "reference:shanghai:2026-10-01:shanghai-s123",
+      "latlng": [
+        31.1700701,
+        121.4302635
+      ],
+      "line": "12号线",
+      "name": "漕宝路",
+      "period": "2026-10-01",
+      "prompt": "上海 · 12号线：请在地图上找到漕宝路。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s123",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s123__line12-12",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [
+        "新龙华"
+      ],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s124",
+      "id": "reference:shanghai:2026-10-01:shanghai-s124",
+      "latlng": [
+        31.1588762,
+        121.4257075
+      ],
+      "line": "15号线",
+      "name": "上海南站",
+      "period": "2026-10-01",
+      "prompt": "上海 · 15号线：请在地图上找到上海南站。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s422",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s422__line15-15",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shanghai",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shanghai-s125",
+      "id": "reference:shanghai:2026-10-01:shanghai-s125",
+      "latlng": [
+        31.1440955,
+        121.4094802
+      ],
+      "line": "1号线",
+      "name": "锦江乐园",
+      "period": "2026-10-01",
+      "prompt": "上海 · 1号线：请在地图上找到锦江乐园。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shanghai-s125",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.shanghai.gov.cn/nw17239/20260413/d8e14c16213246eba8fac7c23b2b04af.html",
+      "stationInstanceId": "shanghai-s125",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s66",
+      "id": "reference:beijing:2026-10-01:beijing-s66",
+      "latlng": [
+        39.9244157,
+        116.1712875
+      ],
+      "line": "6号线",
+      "name": "苹果园",
+      "period": "2026-10-01",
+      "prompt": "北京 · 6号线：请在地图上找到苹果园。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s343",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s343",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s65",
+      "id": "reference:beijing:2026-10-01:beijing-s65",
+      "latlng": [
+        39.9061512,
+        116.184298
+      ],
+      "line": "1号线",
+      "name": "古城",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到古城。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s65",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s65",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s64",
+      "id": "reference:beijing:2026-10-01:beijing-s64",
+      "latlng": [
+        39.9062236,
+        116.229682
+      ],
+      "line": "1号线",
+      "name": "八宝山",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到八宝山。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s64",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s64",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s63",
+      "id": "reference:beijing:2026-10-01:beijing-s63",
+      "latlng": [
+        39.9062251,
+        116.246901
+      ],
+      "line": "1号线",
+      "name": "玉泉路",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到玉泉路。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s63",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s63",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "beijing",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "beijing-s62",
+      "id": "reference:beijing:2026-10-01:beijing-s62",
+      "latlng": [
+        39.9062622,
+        116.2680332
+      ],
+      "line": "1号线",
+      "name": "五棵松",
+      "period": "2026-10-01",
+      "prompt": "北京 · 1号线：请在地图上找到五棵松。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "beijing-s62",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202201/t20220101_2581335.html",
+      "stationInstanceId": "beijing-s62",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [
+        "西朗"
+      ],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s27",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s27",
+      "latlng": [
+        23.0681627,
+        113.2266854
+      ],
+      "line": "广佛线",
+      "name": "西塱",
+      "period": "2026-10-01",
+      "prompt": "广州 · 广佛线：请在地图上找到西塱。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s27",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s27__line20",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s168",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s168",
+      "latlng": [
+        23.0816737,
+        113.2271528
+      ],
+      "line": "1号线",
+      "name": "坑口",
+      "period": "2026-10-01",
+      "prompt": "广州 · 1号线：请在地图上找到坑口。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s168",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s168",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s169",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s169",
+      "latlng": [
+        23.0897795,
+        113.2287005
+      ],
+      "line": "1号线",
+      "name": "花地湾",
+      "period": "2026-10-01",
+      "prompt": "广州 · 1号线：请在地图上找到花地湾。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s169",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s169",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s170",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s170",
+      "latlng": [
+        23.1012187,
+        113.2306468
+      ],
+      "line": "11号线",
+      "name": "芳村",
+      "period": "2026-10-01",
+      "prompt": "广州 · 11号线：请在地图上找到芳村。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s170",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s170__line11-11",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "guangzhou",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "guangzhou-s116",
+      "id": "reference:guangzhou:2026-10-01:guangzhou-s116",
+      "latlng": [
+        23.1127079,
+        113.2347979
+      ],
+      "line": "6号线",
+      "name": "黄沙",
+      "period": "2026-10-01",
+      "prompt": "广州 · 6号线：请在地图上找到黄沙。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "guangzhou-s116",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.gz.gov.cn/zwgk/fggw/szfgz/content/post_10694346.html",
+      "stationInstanceId": "guangzhou-s116__line6-6",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s1",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s1",
+      "latlng": [
+        22.5333096,
+        114.1132515
+      ],
+      "line": "1号线",
+      "name": "罗湖",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 1号线：请在地图上找到罗湖。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s1",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s1",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s2",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s2",
+      "latlng": [
+        22.5424431,
+        114.1138096
+      ],
+      "line": "1号线",
+      "name": "国贸",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 1号线：请在地图上找到国贸。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s2",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s2",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s3",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s3",
+      "latlng": [
+        22.5470714,
+        114.1108235
+      ],
+      "line": "3号线",
+      "name": "老街",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 3号线：请在地图上找到老街。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s3",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s3__line3-3",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s4",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s4",
+      "latlng": [
+        22.5446999,
+        114.1028545
+      ],
+      "line": "5号线",
+      "name": "大剧院",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 5号线：请在地图上找到大剧院。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s4",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s4__line5-5",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "shenzhen",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "shenzhen-s5",
+      "id": "reference:shenzhen:2026-10-01:shenzhen-s5",
+      "latlng": [
+        22.5431472,
+        114.0897624
+      ],
+      "line": "6号线",
+      "name": "科学馆",
+      "period": "2026-10-01",
+      "prompt": "深圳 · 6号线：请在地图上找到科学馆。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "shenzhen-s270",
+      "reviewStatus": "reference_bound",
+      "source": "https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12849099.html",
+      "stationInstanceId": "shenzhen-s270",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s23",
+      "id": "reference:chengdu:2026-10-01:chengdu-s23",
+      "latlng": [
+        30.7070132,
+        104.0810072
+      ],
+      "line": "1号线",
+      "name": "升仙湖",
+      "period": "2026-10-01",
+      "prompt": "成都 · 1号线：请在地图上找到升仙湖。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s23",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s23",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s22",
+      "id": "reference:chengdu:2026-10-01:chengdu-s22",
+      "latlng": [
+        30.6980112,
+        104.0714886
+      ],
+      "line": "7号线",
+      "name": "火车北站",
+      "period": "2026-10-01",
+      "prompt": "成都 · 7号线：请在地图上找到火车北站。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s22",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s22__line7-7",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s21",
+      "id": "reference:chengdu:2026-10-01:chengdu-s21",
+      "latlng": [
+        30.6874324,
+        104.070635
+      ],
+      "line": "6号线",
+      "name": "人民北路",
+      "period": "2026-10-01",
+      "prompt": "成都 · 6号线：请在地图上找到人民北路。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s21",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s21__line6-6",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s20",
+      "id": "reference:chengdu:2026-10-01:chengdu-s20",
+      "latlng": [
+        30.6744839,
+        104.0651794
+      ],
+      "line": "1号线",
+      "name": "文殊院",
+      "period": "2026-10-01",
+      "prompt": "成都 · 1号线：请在地图上找到文殊院。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s20",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s20",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
+    },
+    {
+      "aliases": [],
+      "cityId": "chengdu",
+      "contentRevision": "2026.10.28.1",
+      "fact": "按游戏参考坐标评分，不代表测绘精度。",
+      "hint": "观察道路、水系和地标。",
+      "historicalId": "chengdu-s19",
+      "id": "reference:chengdu:2026-10-01:chengdu-s19",
+      "latlng": [
+        30.6686515,
+        104.0631281
+      ],
+      "line": "4号线",
+      "name": "骡马市",
+      "period": "2026-10-01",
+      "prompt": "成都 · 4号线：请在地图上找到骡马市。",
+      "referenceBasis": "game_reference",
+      "referenceDataVersion": "osm-corridors-2026-10-17-v1",
+      "referenceId": "chengdu-s19",
+      "reviewStatus": "reference_bound",
+      "source": "https://www.chengdurail.com/gywm.htm",
+      "stationInstanceId": "chengdu-s19__line4-4",
+      "type": "location",
+      "validFrom": "2026-10-01",
+      "validTo": "2026-10-01",
+      "version": "2026.10.30.2"
     }
   ],
-  "days": {
-    "2026-10-30": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 1
-    },
-    "2026-10-31": {
-      "questionId": "beijing-early",
-      "reviewCycle": 1
-    },
-    "2026-11-01": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 1
-    },
-    "2026-11-02": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 1
-    },
-    "2026-11-03": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 1
-    },
-    "2026-11-04": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 1
-    },
-    "2026-11-05": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 1
-    },
-    "2026-11-06": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 2
-    },
-    "2026-11-07": {
-      "questionId": "beijing-early",
-      "reviewCycle": 2
-    },
-    "2026-11-08": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 2
-    },
-    "2026-11-09": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 2
-    },
-    "2026-11-10": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 2
-    },
-    "2026-11-11": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 2
-    },
-    "2026-11-12": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 2
-    },
-    "2026-11-13": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 3
-    },
-    "2026-11-14": {
-      "questionId": "beijing-early",
-      "reviewCycle": 3
-    },
-    "2026-11-15": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 3
-    },
-    "2026-11-16": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 3
-    },
-    "2026-11-17": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 3
-    },
-    "2026-11-18": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 3
-    },
-    "2026-11-19": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 3
-    },
-    "2026-11-20": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 4
-    },
-    "2026-11-21": {
-      "questionId": "beijing-early",
-      "reviewCycle": 4
-    },
-    "2026-11-22": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 4
-    },
-    "2026-11-23": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 4
-    },
-    "2026-11-24": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 4
-    },
-    "2026-11-25": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 4
-    },
-    "2026-11-26": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 4
-    },
-    "2026-11-27": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 5
-    },
-    "2026-11-28": {
-      "questionId": "beijing-early",
-      "reviewCycle": 5
-    },
-    "2026-11-29": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 5
-    },
-    "2026-11-30": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 5
-    },
-    "2026-12-01": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 5
-    },
-    "2026-12-02": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 5
-    },
-    "2026-12-03": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 5
-    },
-    "2026-12-04": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 6
-    },
-    "2026-12-05": {
-      "questionId": "beijing-early",
-      "reviewCycle": 6
-    },
-    "2026-12-06": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 6
-    },
-    "2026-12-07": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 6
-    },
-    "2026-12-08": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 6
-    },
-    "2026-12-09": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 6
-    },
-    "2026-12-10": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 6
-    },
-    "2026-12-11": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 7
-    },
-    "2026-12-12": {
-      "questionId": "beijing-early",
-      "reviewCycle": 7
-    },
-    "2026-12-13": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 7
-    },
-    "2026-12-14": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 7
-    },
-    "2026-12-15": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 7
-    },
-    "2026-12-16": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 7
-    },
-    "2026-12-17": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 7
-    },
-    "2026-12-18": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 8
-    },
-    "2026-12-19": {
-      "questionId": "beijing-early",
-      "reviewCycle": 8
-    },
-    "2026-12-20": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 8
-    },
-    "2026-12-21": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 8
-    },
-    "2026-12-22": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 8
-    },
-    "2026-12-23": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 8
-    },
-    "2026-12-24": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 8
-    },
-    "2026-12-25": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 9
-    },
-    "2026-12-26": {
-      "questionId": "beijing-early",
-      "reviewCycle": 9
-    },
-    "2026-12-27": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 9
-    },
-    "2026-12-28": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 9
-    },
-    "2026-12-29": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 9
-    },
-    "2026-12-30": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 9
-    },
-    "2026-12-31": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 9
-    },
-    "2027-01-01": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 10
-    },
-    "2027-01-02": {
-      "questionId": "beijing-early",
-      "reviewCycle": 10
-    },
-    "2027-01-03": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 10
-    },
-    "2027-01-04": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 10
-    },
-    "2027-01-05": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 10
-    },
-    "2027-01-06": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 10
-    },
-    "2027-01-07": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 10
-    },
-    "2027-01-08": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 11
-    },
-    "2027-01-09": {
-      "questionId": "beijing-early",
-      "reviewCycle": 11
-    },
-    "2027-01-10": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 11
-    },
-    "2027-01-11": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 11
-    },
-    "2027-01-12": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 11
-    },
-    "2027-01-13": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 11
-    },
-    "2027-01-14": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 11
-    },
-    "2027-01-15": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 12
-    },
-    "2027-01-16": {
-      "questionId": "beijing-early",
-      "reviewCycle": 12
-    },
-    "2027-01-17": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 12
-    },
-    "2027-01-18": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 12
-    },
-    "2027-01-19": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 12
-    },
-    "2027-01-20": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 12
-    },
-    "2027-01-21": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 12
-    },
-    "2027-01-22": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 13
-    },
-    "2027-01-23": {
-      "questionId": "beijing-early",
-      "reviewCycle": 13
-    },
-    "2027-01-24": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 13
-    },
-    "2027-01-25": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 13
-    },
-    "2027-01-26": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 13
-    },
-    "2027-01-27": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 13
-    },
-    "2027-01-28": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 13
-    },
-    "2027-01-29": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 14
-    },
-    "2027-01-30": {
-      "questionId": "beijing-early",
-      "reviewCycle": 14
-    },
-    "2027-01-31": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 14
-    },
-    "2027-02-01": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 14
-    },
-    "2027-02-02": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 14
-    },
-    "2027-02-03": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 14
-    },
-    "2027-02-04": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 14
-    },
-    "2027-02-05": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 15
-    },
-    "2027-02-06": {
-      "questionId": "beijing-early",
-      "reviewCycle": 15
-    },
-    "2027-02-07": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 15
-    },
-    "2027-02-08": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 15
-    },
-    "2027-02-09": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 15
-    },
-    "2027-02-10": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 15
-    },
-    "2027-02-11": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 15
-    },
-    "2027-02-12": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 16
-    },
-    "2027-02-13": {
-      "questionId": "beijing-early",
-      "reviewCycle": 16
-    },
-    "2027-02-14": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 16
-    },
-    "2027-02-15": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 16
-    },
-    "2027-02-16": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 16
-    },
-    "2027-02-17": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 16
-    },
-    "2027-02-18": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 16
-    },
-    "2027-02-19": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 17
-    },
-    "2027-02-20": {
-      "questionId": "beijing-early",
-      "reviewCycle": 17
-    },
-    "2027-02-21": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 17
-    },
-    "2027-02-22": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 17
-    },
-    "2027-02-23": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 17
-    },
-    "2027-02-24": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 17
-    },
-    "2027-02-25": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 17
-    },
-    "2027-02-26": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 18
-    },
-    "2027-02-27": {
-      "questionId": "beijing-early",
-      "reviewCycle": 18
-    },
-    "2027-02-28": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 18
-    },
-    "2027-03-01": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 18
-    },
-    "2027-03-02": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 18
-    },
-    "2027-03-03": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 18
-    },
-    "2027-03-04": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 18
-    },
-    "2027-03-05": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 19
-    },
-    "2027-03-06": {
-      "questionId": "beijing-early",
-      "reviewCycle": 19
-    },
-    "2027-03-07": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 19
-    },
-    "2027-03-08": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 19
-    },
-    "2027-03-09": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 19
-    },
-    "2027-03-10": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 19
-    },
-    "2027-03-11": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 19
-    },
-    "2027-03-12": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 20
-    },
-    "2027-03-13": {
-      "questionId": "beijing-early",
-      "reviewCycle": 20
-    },
-    "2027-03-14": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 20
-    },
-    "2027-03-15": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 20
-    },
-    "2027-03-16": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 20
-    },
-    "2027-03-17": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 20
-    },
-    "2027-03-18": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 20
-    },
-    "2027-03-19": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 21
-    },
-    "2027-03-20": {
-      "questionId": "beijing-early",
-      "reviewCycle": 21
-    },
-    "2027-03-21": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 21
-    },
-    "2027-03-22": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 21
-    },
-    "2027-03-23": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 21
-    },
-    "2027-03-24": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 21
-    },
-    "2027-03-25": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 21
-    },
-    "2027-03-26": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 22
-    },
-    "2027-03-27": {
-      "questionId": "beijing-early",
-      "reviewCycle": 22
-    },
-    "2027-03-28": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 22
-    },
-    "2027-03-29": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 22
-    },
-    "2027-03-30": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 22
-    },
-    "2027-03-31": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 22
-    },
-    "2027-04-01": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 22
-    },
-    "2027-04-02": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 23
-    },
-    "2027-04-03": {
-      "questionId": "beijing-early",
-      "reviewCycle": 23
-    },
-    "2027-04-04": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 23
-    },
-    "2027-04-05": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 23
-    },
-    "2027-04-06": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 23
-    },
-    "2027-04-07": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 23
-    },
-    "2027-04-08": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 23
-    },
-    "2027-04-09": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 24
-    },
-    "2027-04-10": {
-      "questionId": "beijing-early",
-      "reviewCycle": 24
-    },
-    "2027-04-11": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 24
-    },
-    "2027-04-12": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 24
-    },
-    "2027-04-13": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 24
-    },
-    "2027-04-14": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 24
-    },
-    "2027-04-15": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 24
-    },
-    "2027-04-16": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 25
-    },
-    "2027-04-17": {
-      "questionId": "beijing-early",
-      "reviewCycle": 25
-    },
-    "2027-04-18": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 25
-    },
-    "2027-04-19": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 25
-    },
-    "2027-04-20": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 25
-    },
-    "2027-04-21": {
-      "questionId": "shanghai-xinlonghua",
-      "reviewCycle": 25
-    },
-    "2027-04-22": {
-      "questionId": "shanghai-hongmeilu",
-      "reviewCycle": 25
-    },
-    "2027-04-23": {
-      "questionId": "shanghai-early",
-      "reviewCycle": 26
-    },
-    "2027-04-24": {
-      "questionId": "beijing-early",
-      "reviewCycle": 26
-    },
-    "2027-04-25": {
-      "questionId": "guangzhou-early",
-      "reviewCycle": 26
-    },
-    "2027-04-26": {
-      "questionId": "shenzhen-network",
-      "reviewCycle": 26
-    },
-    "2027-04-27": {
-      "questionId": "chengdu-network",
-      "reviewCycle": 26
-    }
-  },
-  "reviewNote": "位置题须独立核验误差不超过25米；不得把建设容差或OSM坐标的小数位数当作精度证明。每日题待独立审定后编排180天。",
-  "scheduleNote": "180个日期，7道已审历史知识题循环复习；尚未包含位置题，不宣称180道独立题或三种题型齐备。"
+  "reviewNote": "历史知识题逐题保留出处；位置题相对已发布游戏参考坐标评分，不代表测绘精度，不声称25米精度。",
+  "scheduleNote": "180个明确日期，站位／曾用名／历史顺序三种类型轮换；32道基础题循环复习。",
+  "schemaVersion": 1.0,
+  "version": "2026.10.30.2"
 }

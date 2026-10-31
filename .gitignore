@@ -10,9 +10,11 @@ __pycache__/
 /release/*.pck
 /release/build-info.txt
 /release/SHA256SUMS.txt
+/release/media/
 /release-candidate/*.exe
 /release-candidate/*.zip
 /release-candidate/SHA256SUMS.txt
+/release-candidate/media/
 
 # Machine-local Godot editor settings, templates, and signing keys
 /Godot/
