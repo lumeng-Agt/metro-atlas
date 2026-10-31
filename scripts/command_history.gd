@@ -20,6 +20,8 @@ func execute(label: String, mutation: Callable, affected_fields: Array = []) -> 
 	mutation.call(world)
 	if _planning_equal(before, world): return false
 	var after := _capture_planning(affected_fields)
+	# Published steps are immutable checkpoint values. Move/copy them between
+	# lists; restore copies into the editable world, never modify a saved step.
 	var step := {"label": label, "diff": _build_diff(before, after)}
 	var history: Dictionary = world.history
 	var undo: Array = history.get("undo", [])

@@ -10,6 +10,24 @@ func _run() -> void:
 	WorldData.load_assets()
 	var writer:=Writer.new();root.add_child(writer)
 	var world:=WorldData.new_world("shanghai","workshop")
+	# Historical archive descendants are immutable; live construction, story
+	# flags and outer history membership remain editable after capture.
+	var history:=CommandHistory.new();history.attach(world)
+	history.execute("archive fixture",func(w:Dictionary):w.storyPlan["fixture"]=1,["storyPlan"])
+	world.storyState.milestones.append({"chapterId":"fixture","planningDiff":{"fields":{}}})
+	world.milestoneBaseline={"storyPlan":{"fixture":1}}
+	var expected:=JSON.stringify(world)
+	var checkpoint:=Writer._capture_checkpoint(world)
+	check(JSON.stringify(checkpoint)==expected,"checkpoint changed archived or editable content")
+	world.storyState.beatRead["later"]=true
+	world.storyState.milestones.append({"chapterId":"later","planningDiff":{"fields":{}}})
+	world.milestoneBaseline={"storyPlan":{"fixture":2}}
+	history.undo()
+	check(JSON.stringify(checkpoint)==expected,"live story or undo mutated captured archives")
+	history.redo()
+	check(JSON.stringify(checkpoint)==expected,"redo mutated captured command values")
+	checkpoint.storyState.beatRead["snapshot-only"]=true
+	check(not world.storyState.beatRead.has("snapshot-only"),"editable story flags share checkpoint state")
 	world.title="snapshot one"
 	var one:=writer.request(world,1)
 	world.title="snapshot two"

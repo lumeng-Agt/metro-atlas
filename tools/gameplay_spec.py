@@ -28,6 +28,7 @@ GD_SCRIPTS = (
     ('gd.story_checks', 'tests/story_checks.gd'),
     ('gd.official_target_checks', 'tests/official_target_checks.gd'),
     ('gd.story_save_checks', 'tests/story_save_checks.gd'),
+    ('gd.save_queue_checks', 'tests/save_queue_checks.gd'),
     ('gd.save_roundtrip_checks', 'tests/save_roundtrip_checks.gd'),
     ('gd.engineering_construction_checks', 'tests/engineering_construction_checks.gd'),
     ('gd.yizhuang_connector_checks', 'tests/yizhuang_connector_checks.gd'),
