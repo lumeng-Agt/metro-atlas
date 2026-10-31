@@ -195,7 +195,9 @@ def main() -> None:
         for name in media_names:
             copy_verified(ROOT / ".tools/media-runtime" / name, staged_media / name)
 
-        readme_text = (RELEASE / "README.txt").read_text(encoding="utf-8")
+        readme_source = ROOT / "docs" / f"README-{args.version}.txt"
+        if not readme_source.is_file(): readme_source = RELEASE / "README.txt"
+        readme_text = readme_source.read_text(encoding="utf-8")
         readme_text = re.sub(r"(?m)^造一座地铁 · Windows 免安装版 [^\r\n]+$", f"造一座地铁 · Windows 免安装版 {args.version} · 存档格式 {current_save_version()}", readme_text)
         readme_text = re.sub(r"(?m)^更新内容：[^\r\n]+$", f"更新内容：压缩包内 update-notes-{args.version}.txt", readme_text)
         readme_text = re.sub(r"(?m)^测试记录：[^\r\n]+$", "测试记录：压缩包内 test-record.txt", readme_text)
