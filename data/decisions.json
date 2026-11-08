@@ -1,8 +1,40 @@
 {
-  "version": "2026.11.08.1",
+  "version": "2026.11.08.2",
   "cityId": "shenzhen",
   "sourceNote": "每条决策卡的处境、选项与揭晓内容都取自官方页面原文；选项中的非历史分支只用于对照，不宣称发生过。",
   "decisions": [
+    {
+      "id": "shenzhen-1992-prepare",
+      "chapterId": "shenzhen-historical-milestone-1992-07",
+      "date": "1992-07",
+      "prompt": "建立经济特区后，深圳的经济和人口迅速增长；又因为毗邻香港，两地交流频繁，过境客流量剧增。市政府在考虑要不要修一条大容量快速轨道交通。你会怎么定？",
+      "options": [
+        {
+          "id": "a",
+          "label": "启动筹建，先做前期工作",
+          "summary": "成立机构、开展规划与预可行性研究"
+        },
+        {
+          "id": "b",
+          "label": "先靠道路和公交扩容",
+          "summary": "投资更低，见效更快"
+        },
+        {
+          "id": "c",
+          "label": "等客流再涨一些",
+          "summary": "推迟启动，观察增长趋势"
+        }
+      ],
+      "actual": "a",
+      "reveal": "1992 年 7 月，深圳市开始筹建地铁。官方记载的出发点是：为缓解交通压力、满足旅客过境需求，深圳市政府一直酝酿建设一条大容量快速轨道交通。从筹建到 1998 年 5 月国务院批复项目建议书，前期工作用了近六年。",
+      "sources": [
+        {
+          "title": "“十年磨一剑”：从无到有的深圳地铁",
+          "url": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
     {
       "id": "shenzhen-1998-phase1-scale",
       "chapterId": "shenzhen-historical-milestone-1998-05",

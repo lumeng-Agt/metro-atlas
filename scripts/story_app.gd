@@ -8,6 +8,8 @@ const Story = preload("res://scripts/story_session.gd")
 const Engineering = preload("res://scripts/engineering_construction.gd")
 const Catalog = preload("res://scripts/campaign_system.gd")
 const DecisionSystem = preload("res://scripts/decision_system.gd")
+const ProposalScoring = preload("res://scripts/proposal_scoring.gd")
+const CityContext = preload("res://scripts/city_context.gd")
 const MapScript = preload("res://scripts/map_view.gd")
 const Rules = preload("res://scripts/story_construction.gd")
 const Ui = preload("res://scripts/ui_theme.gd")
@@ -284,7 +286,7 @@ func _show_menu() -> void:
 	body.add_child(button("存档与路网作品",_saves))
 	body.add_child(button("地铁挑战 · 猜站位、默写与每日题",_open_challenges))
 	var extra:=HFlowContainer.new();body.add_child(extra)
-	extra.add_child(button("设置",_settings));extra.add_child(button("基本操作练习",_restart_guide));extra.add_child(button("退出",func():get_tree().quit()))
+	extra.add_child(button("设置",_settings));extra.add_child(button("基本操作练习",_restart_guide));extra.add_child(button("城市背景",_city_context_dialog));extra.add_child(button("退出",func():get_tree().quit()))
 	body.add_child(label(_menu_subtitle(),16))
 	body.add_child(label(BUILD_VERSION+"  ·  离线地图 / 本地保存",15))
 	_layout()
@@ -314,6 +316,97 @@ func _show_new_game() -> void:
 	if tutorial.disabled:body.add_child(label("基本操作已学会；新城市直接开始故事，可从菜单进入独立练习。",15))
 	body.add_child(button("进入城市故事  →",func():_new_game(str(cities.get_item_metadata(cities.selected)),tutorial.button_pressed)))
 	_layout()
+
+## Shows the published station order and interchanges for a project, and scores
+## the line the player has built so far against it. This is a comparison view:
+## it does not gate the chapter, change the blueprint or alter the save.
+func _public_plan_reference(left:VBoxContainer,chapter:Dictionary) -> void:
+	var groups:Array=chapter.get("lineGroups",[])
+	if groups.is_empty():return
+	var group:Dictionary=groups[0]
+	var names:Dictionary=group.get("stationNames",{})
+	var order:Array=[]
+	for station_id in group.get("stationIds",[]):order.append(str(names.get(str(station_id),station_id)))
+	if order.is_empty():return
+	left.add_child(label("公开方案 · %d 站" % order.size(),18,true))
+	left.add_child(label("、".join(order),15))
+	var transfers:Array=chapter.get("requiredTransfers",[])
+	if not transfers.is_empty():
+		var transfer_names:Array=[]
+		for item in transfers:
+			var name:=str(item.get("name",""))
+			if not name.is_empty() and not transfer_names.has(name):transfer_names.append(name)
+		if not transfer_names.is_empty():left.add_child(label("换乘要求：%s" % "、".join(transfer_names),15))
+	if str(group.get("alignmentPrecision",""))=="corridor_only":
+		left.add_child(label("本章只核对走廊走向与站序，不核对精确线位。",15))
+	left.add_child(button("对照我建成的线路",func():_score_built_line(chapter)))
+
+## Confirms the opening run of source-only chapters in one go. Each one still
+## goes through the normal commit path and is recorded separately; the button
+## only removes the repeated clicks.
+## Why the network looks the way it does: the cross-border traffic the city had
+## to serve. Markers sit on existing stations and every note is quoted from the
+## dated official source.
+func _city_context_dialog() -> void:
+	var city_id:=str(WorldData.cities()[0].get("id","shenzhen")) if not WorldData.cities().is_empty() else "shenzhen"
+	var rows:=CityContext.usable_markers(city_id)
+	var d:=_dialog("城市背景 · %s" % str(CityContext.for_city(city_id).get("name",city_id)))
+	var body:=VBoxContainer.new();body.add_theme_constant_override("separation",10);d.add_child(body)
+	body.add_child(label(CityContext.summary(city_id),16))
+	if rows.is_empty():
+		body.add_child(label("本城暂无可核对的背景标注。",15))
+	else:
+		body.add_child(label("过境通道",18,true))
+		for marker in rows:
+			body.add_child(label("%s（%s）\n%s" % [str(marker.get("name","")),str(marker.get("stationName","")),str(marker.get("note",""))],15))
+	var source:=CityContext.source(city_id)
+	if not str(source.get("url","")).is_empty():
+		var url:=str(source.get("url",""))
+		body.add_child(button("来源：%s（核验 %s）" % [str(source.get("title","官方资料")),str(source.get("checkedAt",""))],func():OS.shell_open(url)))
+	d.popup_centered(Vector2i(mini(720,int(size.x)-32),min(560,int(size.y)-48)))
+
+func _skip_historical_run() -> void:
+	var result:=Story.skip_historical_run(world)
+	if not bool(result.get("ok",false)):
+		_message("未能连续确认",str(result.get("error","")))
+		return
+	var confirmed:Array=result.get("confirmed",[])
+	_mark_dirty();_refresh();_locate_chapter();_save()
+	var next_id:=str(result.get("stoppedAt",""))
+	var next_chapter:Dictionary=Story.chapter(world)
+	var text:="已确认 %d 个资料节点：%s\n\n下一章：%s" % [confirmed.size(),"、".join(confirmed),str(next_chapter.get("title",next_id))]
+	if not bool(result.get("eventOnly",false)):text+="\n\n这一章需要你建设线路。"
+	_message("连续确认完成",text)
+
+func _score_built_line(chapter:Dictionary) -> void:
+	var groups:Array=chapter.get("lineGroups",[])
+	if groups.is_empty():return
+	var group:Dictionary=groups[0]
+	var targets:Array=Story.targets(world,true,str(group.get("taskId","")))
+	var built:=ProposalScoring.built_count(targets)
+	if built<2:
+		_message("还不能对照","本线目前只建成 %d 站，至少需要 2 站才能形成走向。先按蓝图建设，再回来对照。" % built)
+		return
+	var line:=ProposalScoring.built_line(world,targets)
+	var station_rows:Array=[]
+	var names:Dictionary=group.get("stationNames",{})
+	for target in targets:
+		var position:Variant=target.get("latlng",[])
+		if position is Array and position.size()>=2:
+			station_rows.append({"id":str(target.get("id","")),"name":str(names.get(str(target.get("referenceId",target.get("id",""))),target.get("name",""))),"latlng":position})
+	var transfer_names:Array=[]
+	for item in chapter.get("requiredTransfers",[]):
+		var name:=str(item.get("name",""))
+		if not name.is_empty() and not transfer_names.has(name):transfer_names.append(name)
+	var result:=ProposalScoring.evaluate(line,group,station_rows,transfer_names)
+	var body:="%d 分 · %s\n\n走廊贴合 %d%%\n站点覆盖 %d / %d\n换乘命中 %d / %d\n\n%s" % [
+		int(result.score),str(result.grade),roundi(float(result.corridorRatio)*100.0),
+		int(result.stationCovered),int(result.stationTotal),
+		(result.transfersHit as Array).size(),transfer_names.size(),
+		str(result.notice)]
+	if not (result.missedStations as Array).is_empty():
+		body+="\n\n尚未覆盖：%s" % "、".join(result.missedStations)
+	_message("对照公开方案",body)
 
 ## A source-only chapter can carry one recorded decision. The card asks what the
 ## player would have chosen, keeps the answer out of the world save, and shows
@@ -676,9 +769,12 @@ func _left() -> void:
 		if is_project_phase:
 			left.add_child(label("项目状态：%s。完成后记录为规划建设成果，不计作已开通线路。" % str(chapter.get("status","截止日后建设")),15,true))
 			left.add_child(label(str(chapter.get("description","按截止日后的项目范围建设本期目标。")),15))
+			_public_plan_reference(left,chapter)
 		if bool(chapter.get("eventOnly",false)):
 			left.add_child(label("此节点没有可核实的新增站段，不会要求你铺设虚构线路。",15))
 			_decision_card(left,chapter)
+			var run:=Story.historical_run_length(world)
+			if run>1:left.add_child(button("连续确认这 %d 个资料节点" % run,_skip_historical_run))
 		begin_button=button("查看并确认历史节点" if bool(chapter.get("eventOnly",false)) else "展开本章蓝图",_begin_chapter);left.add_child(begin_button)
 	elif stage=="outcome":
 		left.add_child(label("历史节点已确认",20,true));left.add_child(label(str(story.get("outcome",chapter.get("eventText",""))),18))

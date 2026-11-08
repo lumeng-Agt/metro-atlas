@@ -1264,6 +1264,48 @@ static func confirm_task(world: Dictionary, selected_task_id: String, expected_r
 	world["revision"] = int(world.get("revision", 0)) + 1
 	return {"ok":true,"taskOnly":true,"taskId":selected_task_id,"confirmedTaskCount":int(progress.confirmedTaskCount),"taskCount":all_groups.size(),"allTasksConfirmed":int(progress.confirmedTaskCount) >= all_groups.size(),"revision":int(world.get("revision", 0))}
 
+## Confirms the run of source-only chapters that starts here, one chapter at a
+## time through the normal commit path, and stops at the first chapter that
+## asks the player to build something. Nothing is skipped silently: the caller
+## reports which chapters were confirmed.
+static func skip_historical_run(world: Dictionary) -> Dictionary:
+	var confirmed: Array = []
+	var guard := 0
+	while guard < 8:
+		guard += 1
+		var ch := chapter(world)
+		if not bool(ch.get("eventOnly", false)):
+			break
+		if str(world.get("storyState", {}).get("stage", "")) != "intro":
+			break
+		world.storyState["stage"] = "build"
+		var result := commit_chapter(world, int(world.get("revision", 0)))
+		if not bool(result.get("ok", false)):
+			return {"ok": false, "error": str(result.get("error", "历史节点未能确认。")), "confirmed": confirmed}
+		confirmed.append(str(ch.get("id", "")))
+		world.storyState["stage"] = "outcome"
+		next_chapter(world)
+	return {"ok": true, "confirmed": confirmed, "stoppedAt": str(chapter(world).get("id", "")), "eventOnly": bool(chapter(world).get("eventOnly", false))}
+
+## How many source-only chapters run from the current one before the first
+## chapter that asks for construction.
+static func historical_run_length(world: Dictionary) -> int:
+	var chapters: Array = config(world).get("chapters", [])
+	var current_id := str(chapter(world).get("id", ""))
+	var start := -1
+	for index in range(chapters.size()):
+		if str(chapters[index].get("id", "")) == current_id:
+			start = index
+			break
+	if start < 0:
+		return 0
+	var run := 0
+	for index in range(start, chapters.size()):
+		if not bool(chapters[index].get("eventOnly", false)):
+			break
+		run += 1
+	return run
+
 static func commit_chapter(world: Dictionary, expected_revision: int, checked: Dictionary = {}) -> Dictionary:
 	if expected_revision != int(world.get("revision",0)): return {"ok":false,"error":"规划已变化，请重新检查本章。"}
 	var current_chapter := chapter(world)

@@ -1,0 +1,52 @@
+{
+  "version": "2026.11.08.1",
+  "note": "城市背景图层。位置取自现有站点坐标，说明文字引用官方原文；不新增未经核对的地理数据。",
+  "cities": {
+    "shenzhen": {
+      "name": "深圳",
+      "summary": "建立经济特区后，深圳的经济、人口迅速发展；又因为毗邻香港，两地交流频繁，过境客流量剧增。",
+      "source": {
+        "title": "“十年磨一剑”：从无到有的深圳地铁",
+        "url": "https://www.sz.gov.cn/szstory/202212/content/post_10343762.html",
+        "checkedAt": "2026-11-08"
+      },
+      "markers": [
+        {
+          "id": "port-luohu",
+          "kind": "port",
+          "name": "罗湖口岸",
+          "stationId": "shenzhen-s1",
+          "note": "1 号线东端起点即罗湖站；一期工程由罗湖口岸站至世界之窗站。"
+        },
+        {
+          "id": "port-huanggang",
+          "kind": "port",
+          "name": "皇岗口岸",
+          "stationId": "shenzhen-s216",
+          "note": "4 号线南端起点；一期 4 号线自皇岗站穿过市中心区至水晶岛站。"
+        },
+        {
+          "id": "port-futian",
+          "kind": "port",
+          "name": "福田口岸",
+          "stationId": "shenzhen-s68",
+          "note": "4 号线南端；2004 年一期开通时 4 号线为福田口岸站至少年宫站。"
+        },
+        {
+          "id": "port-shenzhenwan",
+          "kind": "port",
+          "name": "深圳湾口岸",
+          "stationId": "shenzhen-s390",
+          "note": "深圳湾口岸，深港西部通道。"
+        },
+        {
+          "id": "port-liantang",
+          "kind": "port",
+          "name": "莲塘口岸",
+          "stationId": "shenzhen-s109",
+          "note": "莲塘口岸，深港东部通道。"
+        }
+      ]
+    }
+  }
+}

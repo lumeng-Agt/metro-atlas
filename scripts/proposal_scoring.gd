@@ -68,6 +68,30 @@ static func station_coverage(player: Array, stations: Array, ref_lat: float, tol
 			missed.append(str(station.get("name", station.get("id", ""))))
 	return {"covered": covered, "total": stations.size(), "ratio": float(covered) / float(max(1, stations.size())), "missed": missed}
 
+## The line a player has actually built for a project, taken from the world
+## save in the published station order. Stations that are not built yet are
+## skipped, so the result describes what exists rather than what is planned.
+static func built_line(world: Dictionary, targets: Array) -> Array:
+	var by_id: Dictionary = {}
+	for target in targets:
+		var position: Variant = target.get("latlng", [])
+		if position is Array and position.size() >= 2 and bool(target.get("built", false)):
+			by_id[str(target.get("stationInstanceId", target.get("id", "")))] = position
+	var line: Array = []
+	for target in targets:
+		var key := str(target.get("stationInstanceId", target.get("id", "")))
+		if by_id.has(key):
+			line.append(by_id[key])
+	return line
+
+## How many of a project's stations the player has built so far.
+static func built_count(targets: Array) -> int:
+	var built := 0
+	for target in targets:
+		if bool(target.get("built", false)):
+			built += 1
+	return built
+
 static func grade(score: float) -> String:
 	if score >= GRADE_EXCELLENT:
 		return "贴合公开方案"
