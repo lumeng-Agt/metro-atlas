@@ -39,6 +39,7 @@ GD_SCRIPTS = (
     ('gd.chapter_lookup_checks', 'tests/chapter_lookup_checks.gd'),
     ('gd.published_cities_checks', 'tests/published_cities_checks.gd'),
     ('gd.decision_checks', 'tests/decision_checks.gd'),
+    ('gd.proposal_checks', 'tests/proposal_checks.gd'),
     ('gd.legacy_network_repair_checks', 'tests/legacy_network_repair_checks.gd'),
 )
 
