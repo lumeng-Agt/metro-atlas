@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 
 const Story = preload("res://scripts/story_session.gd")
 const Catalog = preload("res://scripts/campaign_system.gd")
@@ -146,8 +146,8 @@ func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():push_error("isolated --data-dir required");quit(2);return
 	WorldData.load_assets()
 	print("REPLAY_OFFICIAL_TARGET_SHA256 ",OfficialNetworkAudit.target_snapshot_sha256())
-	var catalog_errors:=Catalog.validate_catalog(WorldData.cities())
-	catalog_errors.append_array(Catalog.validate_network_baseline(WorldData.cities()))
+	var catalog_errors:=Catalog.validate_catalog(WorldData.all_cities())
+	catalog_errors.append_array(Catalog.validate_network_baseline(WorldData.all_cities()))
 	if not catalog_errors.is_empty():
 		_fail("catalog","startup","references",JSON.stringify(catalog_errors));quit(1);return
 	print("REPLAY_CONTENT_VERSION ",Catalog.content_version()," REVISION ",Catalog.content_revision())

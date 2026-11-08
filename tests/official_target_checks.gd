@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 
 const Story=preload("res://scripts/story_session.gd")
 const App=preload("res://scripts/main.gd")
@@ -29,8 +29,8 @@ func _run() -> void:
 	_check(not bool(OfficialNetworkAudit.backfill_requirements(dated).ok),"backfill cannot waive an intermediate independently required stop")
 	dated.groups[0].constructionStationNames=["B","C"];dated.groups[0].fullServiceOrder=false
 	_check(not bool(OfficialNetworkAudit.backfill_requirements(dated).ok),"backfill needs a reviewed full-service scope")
-	_check(CampaignSystem.validate_catalog(WorldData.cities()).is_empty(),"test fixtures require valid real catalogue references")
-	_check(CampaignSystem.validate_network_baseline(WorldData.cities()).is_empty(),"a stale timeline chapter reference fails the checks rather than only logging an error")
+	_check(CampaignSystem.validate_catalog(WorldData.all_cities()).is_empty(),"test fixtures require valid real catalogue references")
+	_check(CampaignSystem.validate_network_baseline(WorldData.all_cities()).is_empty(),"a stale timeline chapter reference fails the checks rather than only logging an error")
 	var app:=App.new();root.add_child(app);await process_frame
 	# A focused project fixture, not evidence of cumulative city completion.
 	var world:=WorldData.new_world("shenzhen","campaign")
@@ -519,7 +519,7 @@ func _run() -> void:
 	_check(not OfficialNetworkAudit.project_errors(nineteen_wrong,nineteen_expected).is_empty(),"public/open status cannot substitute for the required trial stage")
 	_check(bool(SaveManager.save_world(nineteen_world).get("ok",false)),"trial service survives saved-world validation")
 	nineteen_first.lineGroups[0].defaultServiceStatus="not-a-service-state"
-	_check(not CampaignSystem.validate_catalog(WorldData.cities()).is_empty(),"catalogue rejects an unknown explicit service status")
+	_check(not CampaignSystem.validate_catalog(WorldData.all_cities()).is_empty(),"catalogue rejects an unknown explicit service status")
 	CampaignSystem._catalog.cities.beijing.chapters.pop_back()
 	app.queue_free();await process_frame
 	print("OFFICIAL_TARGET_CHECKS ",checks," FAILURES ",failures.size())

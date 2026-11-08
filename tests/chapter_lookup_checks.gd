@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 const Story=preload("res://scripts/story_session.gd")
 var checks:=0
 var failures:Array[String]=[]
@@ -9,7 +9,7 @@ func _check(ok:bool,message:String) -> void:
 func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():quit(2);return
 	WorldData.load_assets()
-	for city in WorldData.cities():
+	for city in WorldData.all_cities():
 		var id:=str(city.id);var world:=WorldData.new_world(id,"campaign");var config:Dictionary=CampaignSystem.city_config(id)
 		var first:Dictionary=config.chapters[0];var construction_id:=CampaignSystem.first_chapter_id(id)
 		_check(Story.chapter(world)==first,"new game retains its first sourced history event: "+id)

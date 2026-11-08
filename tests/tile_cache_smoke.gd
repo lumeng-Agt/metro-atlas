@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -14,7 +14,7 @@ func _run() -> void:
 	manifest_file.close()
 	var ok: bool = manifest.get("cities", {}).size() == 5
 	var verified_chunks := 0
-	for city in WorldData.cities():
+	for city in WorldData.all_cities():
 		var city_id := str(city.get("id", ""))
 		var package: Dictionary = manifest.get("cities", {}).get(city_id, {})
 		var chunks: Array = package.get("chunks", [])

@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 const Story = preload("res://scripts/story_session.gd")
 
 ## Run with the exported executable mounted as --main-pack. This verifies the
@@ -11,7 +11,7 @@ func _run() -> void:
 	if not FileAccess.file_exists(OfficialNetworkAudit.TARGET_PATH):push_error("Missing exported official target manifest");quit(1);return
 	ReferenceAlignment.load_data()
 	if ReferenceAlignment._data.get("alignments",[]).size()!=81:push_error("Missing exported reference corridors");quit(1);return
-	if WorldData.cities().size()!=5 or not CampaignSystem.validate_catalog(WorldData.cities()).is_empty():push_error("Missing exported city/story data");quit(1);return
+	if WorldData.all_cities().size()!=5 or not CampaignSystem.validate_catalog(WorldData.all_cities()).is_empty():push_error("Missing exported city/story data");quit(1);return
 	if not ResourceLoader.exists("res://fonts/NotoSansSC.ttf"):push_error("Missing exported font");quit(1);return
 	var file:=FileAccess.open("res://data/basemap/manifest.json",FileAccess.READ)
 	if file==null:push_error("Missing map manifest");quit(1);return

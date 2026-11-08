@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 const Flow=preload("res://tests/story_test_flow.gd")
 const Playback=preload("res://scripts/history_playback.gd")
 var failures:Array[String]=[]
@@ -61,7 +61,7 @@ func run() -> void:
 		for button in hub.body.get_children():
 			if button is Button and button.text=="下一题":button.pressed.emit();break
 	check(hub.question_index==5,"five-answer flow reaches results")
-	for city_index in range(WorldData.cities().size()):
+	for city_index in range(WorldData.all_cities().size()):
 		hub.cities.select(city_index);hub.mode="location";hub._periods()
 		check(hub.questions.size()==5,"five-city practice pool exists: %s"%str(hub.cities.get_selected_metadata()))
 		for question in hub.questions:

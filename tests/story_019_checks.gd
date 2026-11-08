@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 
 const App=preload("res://scripts/main.gd")
 const Story=preload("res://scripts/story_session.gd")
@@ -30,7 +30,7 @@ func _run() -> void:
 	app._next();app._begin_chapter();app._focus_tutorial()
 	check(not bool(app.world.storyState.tutorialEnabled),"第二章不继承教程开关")
 	check(Story.blueprint(app.world).stations.size()==Story.targets(app.world).size(),"第二章显示全部本期目标")
-	for city in WorldData.cities():
+	for city in WorldData.all_cities():
 		app._new_game(str(city.id),true)
 		check(not StoryTutorial.active(app.world),"已学会后%s首章不自动教学" % city.id)
 		for chapter in CampaignSystem.city_config(str(city.id)).chapters:

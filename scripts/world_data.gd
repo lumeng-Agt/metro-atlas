@@ -3,8 +3,14 @@ extends RefCounted
 
 const SAVE_VERSION := 25
 const CampaignSystemScript = preload("res://scripts/campaign_system.gd")
+const DecisionCatalog = preload("res://scripts/decision_system.gd")
 const CITIES_PATH := "res://data/cities.json"
 const VEHICLES_PATH := "res://data/vehicles.json"
+
+## Cities offered in this release. The other cities stay in the data files so
+## that catalog validation, historical replay and existing saves keep working;
+## they are simply not presented as new games.
+const PUBLISHED_CITY_IDS := ["shenzhen"]
 
 static var _dataset: Dictionary = {}
 static var _vehicle_profiles: Array = []
@@ -21,15 +27,28 @@ static func load_assets() -> void:
 	var vehicle_file := FileAccess.open(VEHICLES_PATH, FileAccess.READ)
 	if vehicle_file:
 		_vehicle_profiles = JSON.parse_string(vehicle_file.get_as_text())
+	DecisionCatalog.load_catalog()
 
+## Cities a player may start or pick in this build.
 static func cities() -> Array:
+	var published: Array = []
+	for item in all_cities():
+		if PUBLISHED_CITY_IDS.has(str(item.get("id", ""))):
+			published.append(item)
+	return published
+
+## Every city present in the data files, including ones not published yet.
+static func all_cities() -> Array:
 	return _dataset.get("cities", [])
+
+static func is_published(city_id: String) -> bool:
+	return PUBLISHED_CITY_IDS.has(city_id)
 
 static func vehicles() -> Array:
 	return _vehicle_profiles
 
 static func city(city_id: String) -> Dictionary:
-	for item in cities():
+	for item in all_cities():
 		if item.get("id", "") == city_id:
 			return item
 	return {}

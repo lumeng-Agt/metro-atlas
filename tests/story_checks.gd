@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 
 const Story=preload("res://scripts/story_session.gd")
 const Catalog=preload("res://scripts/campaign_system.gd")
@@ -12,8 +12,8 @@ func _initialize() -> void:
 func _run() -> void:
 	WorldData.load_assets()
 	_check(WorldData.SAVE_VERSION==25,"故事存档格式25")
-	_check(Catalog.validate_catalog(WorldData.cities()).is_empty(),"五城资料引用校验")
-	_check(Catalog.validate_network_baseline(WorldData.cities()).is_empty(),"五城截止日路网基准引用校验")
+	_check(Catalog.validate_catalog(WorldData.all_cities()).is_empty(),"五城资料引用校验")
+	_check(Catalog.validate_network_baseline(WorldData.all_cities()).is_empty(),"五城截止日路网基准引用校验")
 	var gz_future:Array=Catalog.playable_future_plans("guangzhou")
 	var gz_future_ids:Array=gz_future.map(func(plan:Dictionary):return str(plan.get("id","")))
 	_check(gz_future.size()==9 and ["gz-line12-mid-build","gz-line13-phase2-west-build","gz-line8-north-branch-build","gz-line8-north-build","gz-line8-east-build","gz-line18-remainder-build","gz-line14-remainder-build","gz-line10-remainder-build","gz-line11-railway-build"].all(func(id:String):return gz_future_ids.has(id)),"广州九项已制作工程均进入可玩项目篇，10/14号线剩余段及11号线补站不可漏项")
@@ -77,7 +77,7 @@ func _run() -> void:
 	_check(str(Story.chapter(identified).id)=="sh-line1-1995","章节稳定编号优先于数组位置，内容插入不改当前章")
 	identified.storyState.chapterId="unknown-removed-chapter"
 	_check(Story.chapter(identified).is_empty(),"章节无法映射时不静默跳到另一章")
-	for city in WorldData.cities():
+	for city in WorldData.all_cities():
 		_check(not city.has("demand"),"%s不加载旧需求数据" % str(city.id))
 		var sample:=WorldData.new_world(str(city.id),"campaign")
 		_check(not sample.has("simulation") and not sample.has("cityProgression"),"%s无客流或旧任务会话" % str(city.id))
@@ -203,7 +203,7 @@ func _run() -> void:
 		_check(api.world.stations.size()==2 and not bool(api.world.storyPlan.get("assisted",false)),"撤销辅助同时恢复站轨和辅助标记")
 		api._undo(true)
 		_check(api.world.stations.size()==5 and bool(api.world.storyPlan.get("assisted",false)),"重做辅助完整恢复")
-	for city in WorldData.cities():
+	for city in WorldData.all_cities():
 		api._new_game(str(city.id),false);await _reach_first_construction(api);api.world.storyState.learnedTools=true
 		var chapter_count:int=Catalog.city_config(str(city.id)).get("chapters",[]).size()
 		# The interface path is exercised once per city. All chapter task groups

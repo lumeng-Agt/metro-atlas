@@ -1,4 +1,4 @@
-extends SceneTree
+﻿extends SceneTree
 
 const Story = preload("res://scripts/story_session.gd")
 const App = preload("res://scripts/main.gd")
@@ -18,7 +18,7 @@ func _run() -> void:
 	if not SaveManager.using_explicit_data_dir():
 		push_error("Isolated --data-dir is required."); quit(2); return
 	WorldData.load_assets()
-	for city in WorldData.cities():
+	for city in WorldData.all_cities():
 		var config := Story.config({"cityId": str(city.id)})
 		for chapter in config.get("chapters", []):
 			var pedestrian_action:bool=str(chapter.get("operationType",""))=="transfer_connection" and chapter.get("lineGroups",[]).is_empty() and not chapter.get("requiredTransfers",[]).is_empty() and not bool(chapter.get("eventOnly",false))

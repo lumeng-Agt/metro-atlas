@@ -7,6 +7,7 @@ const Beats = preload("res://scripts/story_beats.gd")
 const Story = preload("res://scripts/story_session.gd")
 const Engineering = preload("res://scripts/engineering_construction.gd")
 const Catalog = preload("res://scripts/campaign_system.gd")
+const DecisionSystem = preload("res://scripts/decision_system.gd")
 const MapScript = preload("res://scripts/map_view.gd")
 const Rules = preload("res://scripts/story_construction.gd")
 const Ui = preload("res://scripts/ui_theme.gd")
@@ -284,16 +285,22 @@ func _show_menu() -> void:
 	body.add_child(button("地铁挑战 · 猜站位、默写与每日题",_open_challenges))
 	var extra:=HFlowContainer.new();body.add_child(extra)
 	extra.add_child(button("设置",_settings));extra.add_child(button("基本操作练习",_restart_guide));extra.add_child(button("退出",func():get_tree().quit()))
-	body.add_child(label("五城 · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。",16))
+	body.add_child(label(_menu_subtitle(),16))
 	body.add_child(label(BUILD_VERSION+"  ·  离线地图 / 本地保存",15))
 	_layout()
+
+func _menu_subtitle() -> String:
+	var published:=WorldData.cities()
+	if published.size()==1:
+		return "%s · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。" % str(published[0].get("name",""))
+	return "五城 · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。"
 
 func _show_new_game() -> void:
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free()
 	menu=PanelContainer.new();add_child(menu)
 	var sc:=ScrollContainer.new();sc.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;menu.add_child(sc)
 	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",16);sc.add_child(body)
-	body.add_child(button("← 返回",_show_menu));body.add_child(label("选择一座城市",30,true))
+	body.add_child(button("← 返回",_show_menu));body.add_child(label("深圳" if WorldData.cities().size()==1 else "选择一座城市",30,true))
 	body.add_child(label("沿历史蓝图建设，用自己的操作见证路网形成。",18))
 	var cities:=OptionButton.new();cities.custom_minimum_size.y=48*ui_scale
 	for city in WorldData.cities():cities.add_item(str(city.name));cities.set_item_metadata(cities.item_count-1,str(city.id))
@@ -307,6 +314,37 @@ func _show_new_game() -> void:
 	if tutorial.disabled:body.add_child(label("基本操作已学会；新城市直接开始故事，可从菜单进入独立练习。",15))
 	body.add_child(button("进入城市故事  →",func():_new_game(str(cities.get_item_metadata(cities.selected)),tutorial.button_pressed)))
 	_layout()
+
+## A source-only chapter can carry one recorded decision. The card asks what the
+## player would have chosen, keeps the answer out of the world save, and shows
+## the official record once answered. Chapters without a sourced card are
+## unchanged.
+func _decision_card(left:VBoxContainer,chapter:Dictionary) -> void:
+	var card:=DecisionSystem.for_chapter(str(chapter.get("id","")))
+	if not DecisionSystem.usable(card):return
+	var picked:=DecisionSystem.choice(str(card.get("id","")))
+	if picked.is_empty():
+		left.add_child(label("当时的选择",20,true))
+		left.add_child(label(str(card.get("prompt","")),16))
+		for option in card.get("options",[]):
+			var option_id:=str(option.get("id",""))
+			var text:="%s\n%s" % [str(option.get("label","")),str(option.get("summary",""))]
+			left.add_child(button(text,func():
+				var saved:=DecisionSystem.record(str(card.get("id","")),option_id)
+				if not bool(saved.get("ok",false)):_message("决策未记录",str(saved.get("error","")));return
+				_left()))
+		left.add_child(label("选择只影响这一页的对照，不改变本章建设与历史判定。",15))
+		return
+	var actual:=str(card.get("actual",""))
+	var actual_option:=DecisionSystem.option(card,actual)
+	var chosen_option:=DecisionSystem.option(card,picked)
+	left.add_child(label("当时的选择",20,true))
+	left.add_child(label("你的选择：%s" % str(chosen_option.get("label","")),16))
+	left.add_child(label("历史实际：%s" % str(actual_option.get("label","")),16,true))
+	left.add_child(label(str(card.get("reveal","")),16))
+	for source in card.get("sources",[]):
+		var url:=str(source.get("url",""))
+		left.add_child(button("来源：%s（核验 %s）" % [str(source.get("title","官方资料")),str(source.get("checkedAt",""))],func():OS.shell_open(url)))
 
 func _game_menu() -> void:
 	var d:=_dialog("城市地铁故事")
@@ -640,6 +678,7 @@ func _left() -> void:
 			left.add_child(label(str(chapter.get("description","按截止日后的项目范围建设本期目标。")),15))
 		if bool(chapter.get("eventOnly",false)):
 			left.add_child(label("此节点没有可核实的新增站段，不会要求你铺设虚构线路。",15))
+			_decision_card(left,chapter)
 		begin_button=button("查看并确认历史节点" if bool(chapter.get("eventOnly",false)) else "展开本章蓝图",_begin_chapter);left.add_child(begin_button)
 	elif stage=="outcome":
 		left.add_child(label("历史节点已确认",20,true));left.add_child(label(str(story.get("outcome",chapter.get("eventText",""))),18))
