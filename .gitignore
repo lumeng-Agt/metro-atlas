@@ -29,6 +29,7 @@ __pycache__/
 /test-artifacts/
 /test-*/
 /docs/*.import
+/docs/**/*.import
 Thumbs.db
 Desktop.ini
 
