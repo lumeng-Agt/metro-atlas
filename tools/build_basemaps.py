@@ -11,6 +11,7 @@ import gzip
 import hashlib
 import json
 import math
+import re
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -176,6 +177,15 @@ def playable_bounds(city: dict) -> list[float]:
     return [south, west, north, east]
 
 
+def published_city_ids() -> list[str] | None:
+    """Read the release list from the game, or None to build every city."""
+    source = (ROOT / "scripts" / "world_data.gd").read_text(encoding="utf-8")
+    match = re.search(r'PUBLISHED_CITY_IDS\s*:?=\s*\[([^\]]*)\]', source)
+    if not match:
+        raise RuntimeError("Cannot read PUBLISHED_CITY_IDS from scripts/world_data.gd")
+    return re.findall(r'"([^"]+)"', match.group(1))
+
+
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     dataset = json.loads(CITIES.read_text(encoding="utf-8"))
@@ -183,8 +193,14 @@ def main() -> None:
     previous_manifest = json.loads(old_manifest_path.read_text(encoding="utf-8")) if old_manifest_path.exists() else {}
     manifest = {"schemaVersion": 1, "generatedAt": datetime.now(timezone.utc).isoformat(), "license": "ODbL-1.0", "attribution": "© OpenStreetMap contributors", "cities": {}}
     source_metadata: dict[str, dict] = {}
+    published = published_city_ids()
     for city in dataset["cities"]:
         city_id = city["id"]
+        # Only the cities this build publishes need tiles. The rest stay in
+        # cities.json for catalog validation, but shipping their tiles would
+        # add tens of megabytes that no code path ever reads.
+        if published is not None and city_id not in published:
+            continue
         url = EXTRACTS[city_id]
         source_path = SOURCE_DIR / (url.rsplit("/", 1)[-1])
         if url not in source_metadata:

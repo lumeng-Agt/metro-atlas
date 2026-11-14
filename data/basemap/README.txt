@@ -9,8 +9,8 @@ Database license text: https://opendatacommons.org/licenses/odbl/1-0/
 
 The exact source URLs, extract timestamps, package bounds, feature counts, and
 source checksums are recorded in manifest.json. The data was downloaded from
-Geofabrik extracts during the October 2026 build. Guangzhou and Shenzhen use
-the same Guangdong province extract, clipped to their respective play areas.
+the Geofabrik Guangdong province extract during the October 2026 build,
+clipped to the playable area.
 
 The basemap is a visual reference only. It does not constitute a verified
 pedestrian network, cadastral boundary, building survey, or engineering survey.

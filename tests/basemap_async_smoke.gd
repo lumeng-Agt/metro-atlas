@@ -14,14 +14,14 @@ func _run() -> void:
 	var map := MapViewScript.new()
 	map.size = Vector2(1600, 980)
 	root.add_child(map)
-	var world := WorldData.new_world("shanghai", "blank")
+	var world := WorldData.new_world("shenzhen", "blank")
 	world.view.zoom = 15
-	map.set_context(WorldData.city("shanghai"), world)
-	var short_road := {"id":"short-main-road", "kind":"road_major", "points":[[31.23, 121.47], [31.2301, 121.47]]}
-	_check(MapViewScript._prepare_base_features_for([short_road], 12, 10.0, 31.23).size() == 1, "短主路片段不会因长度阈值从城市骨架中消失")
-	var primary_road := {"id":"city-primary-road", "kind":"road_primary", "points":[[31.23, 121.47], [31.231, 121.47]]}
-	_check(MapViewScript._prepare_base_features_for([primary_road], 12, 10.0, 31.23).is_empty(), "城市总览暂不绘制过密的城市主路")
-	_check(MapViewScript._prepare_base_features_for([primary_road], 13, 10.0, 31.23).size() == 1, "放大至城区尺度后显示城市主路")
+	map.set_context(WorldData.city("shenzhen"), world)
+	var short_road := {"id":"short-main-road", "kind":"road_major", "points":[[22.545, 114.054], [22.5451, 114.054]]}
+	_check(MapViewScript._prepare_base_features_for([short_road], 12, 10.0, 22.545).size() == 1, "短主路片段不会因长度阈值从城市骨架中消失")
+	var primary_road := {"id":"city-primary-road", "kind":"road_primary", "points":[[22.545, 114.054], [22.546, 114.054]]}
+	_check(MapViewScript._prepare_base_features_for([primary_road], 12, 10.0, 22.545).is_empty(), "城市总览暂不绘制过密的城市主路")
+	_check(MapViewScript._prepare_base_features_for([primary_road], 13, 10.0, 22.545).size() == 1, "放大至城区尺度后显示城市主路")
 	var timeout:=Time.get_ticks_msec()+20000
 	while Time.get_ticks_msec()<timeout:
 		await process_frame

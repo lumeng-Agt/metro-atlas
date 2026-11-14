@@ -19,6 +19,13 @@ __pycache__/
 # Machine-local Godot editor settings, templates, and signing keys
 /Godot/
 
+# Basemap tiles are only committed for cities this build publishes. The rest
+# stay buildable from tools/build_basemaps.py but are not shipped.
+/data/basemap/beijing/
+/data/basemap/shanghai/
+/data/basemap/guangzhou/
+/data/basemap/chengdu/
+
 # Temporary and machine-local files
 *.tmp
 .tmp-*

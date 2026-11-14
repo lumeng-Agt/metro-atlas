@@ -1,4 +1,4 @@
-﻿extends SceneTree
+extends SceneTree
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -12,9 +12,9 @@ func _run() -> void:
 		return
 	var manifest: Dictionary = JSON.parse_string(manifest_file.get_as_text())
 	manifest_file.close()
-	var ok: bool = manifest.get("cities", {}).size() == 5
+	var ok: bool = manifest.get("cities", {}).size() == WorldData.cities().size()
 	var verified_chunks := 0
-	for city in WorldData.all_cities():
+	for city in WorldData.cities():
 		var city_id := str(city.get("id", ""))
 		var package: Dictionary = manifest.get("cities", {}).get(city_id, {})
 		var chunks: Array = package.get("chunks", [])
@@ -50,7 +50,7 @@ func _run() -> void:
 		else:
 			print("PASS: %s offline map chunk · %d features · checksum OK" % [city_id, parsed.get("features", []).size()])
 	if ok:
-		print("PASS: all five cities have readable offline vector map packages · %d chunks checksummed" % verified_chunks)
+		print("PASS: all published cities have readable offline vector map packages · %d chunks checksummed" % verified_chunks)
 		quit(0)
 	else:
 		quit(1)
