@@ -1,6 +1,6 @@
 extends Control
 
-const BUILD_VERSION := "0.27.0 · 2026.10.31"
+const BUILD_VERSION := "0.28.0 · 2026.11.09"
 const SaveWriter = preload("res://scripts/save_coordinator.gd")
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
@@ -9,6 +9,7 @@ const Engineering = preload("res://scripts/engineering_construction.gd")
 const Catalog = preload("res://scripts/campaign_system.gd")
 const DecisionSystem = preload("res://scripts/decision_system.gd")
 const ProposalScoring = preload("res://scripts/proposal_scoring.gd")
+const ProposalSession = preload("res://scripts/proposal_session.gd")
 const CityContext = preload("res://scripts/city_context.gd")
 const MapScript = preload("res://scripts/map_view.gd")
 const Rules = preload("res://scripts/story_construction.gd")
@@ -32,7 +33,11 @@ var evaluation: Dictionary = {}
 var ui_scale := 1.0
 var face: Font
 var strong_face: Font
-var frame: VBoxContainer
+var frame: Control
+var top_panel: PanelContainer
+var dock: PanelContainer
+var attribution: LinkButton
+var layer_button: Button
 var map_area: Control
 var map_hint: Label
 var left_panel: PanelContainer
@@ -40,6 +45,7 @@ var right_panel: PanelContainer
 var left: VBoxContainer
 var right: VBoxContainer
 var actions: VBoxContainer
+var menu_bg: Control
 var menu: PanelContainer
 var save_overlay: Control
 var save_panel: PanelContainer
@@ -48,9 +54,12 @@ var save_badge: Button
 var hint: Label
 var undo_button: Button
 var redo_button: Button
+var select_button: Button
 var station_button: Button
 var track_button: Button
 var line_button: Button
+var line_rule: Control
+var end_rule: Control
 var begin_button: Button
 var revision_button: Button
 var check_button: Button
@@ -58,6 +67,12 @@ var confirm_button: Button
 var spotlight: Control
 var page := "story"
 var dirty := false
+## The proposal being drawn on the current planning chapter. It lives in the
+## UI until submitted, so an unfinished drawing never reaches the save.
+var proposal_chapter_id := ""
+var proposal_candidates: Array = []
+var proposal_picked: Array = []
+var proposal_goal := ""
 var save_error := ""
 var save_writer:=SaveWriter.new()
 var save_change_serial:=0
@@ -72,6 +87,7 @@ var display_paused := false
 var display_enabled := true
 var last_preview_usec := 0
 var show_left := true
+var left_expanded := true
 var show_right := false
 var line_stops: Array[String] = []
 var preview_station: Dictionary = {}
@@ -84,7 +100,9 @@ var guide_map_step := ""
 var advanced_edit := false
 var end_button:Button
 var nav_pages:HFlowContainer
-var tool_flow:HFlowContainer
+var tool_flow:HBoxContainer
+var timeline_bar:PanelContainer
+var timeline_flow:HBoxContainer
 var feedback_enabled := true
 var feedback_volume := 0.35
 var feedback_player: AudioStreamPlayer
@@ -115,31 +133,104 @@ func _ready() -> void:
 
 func button(text:String,callback:Callable) -> Button:
 	var b:=Button.new();b.text=text;b.custom_minimum_size.y=44*ui_scale
+	b.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	b.add_theme_font_size_override("font_size",roundi(18*ui_scale));b.pressed.connect(callback)
-	if text.begins_with("确认") or text.begins_with("进入") or text.begins_with("展开本章"):
-		b.add_theme_stylebox_override("normal",Ui._box(Ui.ACCENT,Ui.ACCENT,6));b.add_theme_stylebox_override("hover",Ui._box(Color("#73d6c4"),Ui.ACCENT,6))
-		b.add_theme_color_override("font_color",Color("#102b2b"));b.add_theme_color_override("font_hover_color",Color("#102b2b"))
+	if text.begins_with("确认") or text.begins_with("进入") or text.begins_with("开启") or text.begins_with("展开") or text.begins_with("查看") or text.begins_with("查阅") or text.begins_with("提交") or text.begins_with("检查") or text.begins_with("验收") or text.begins_with("线路工程验收") or text.begins_with("全线工程验收") or text.begins_with("采纳") or text.begins_with("对比") or text.begins_with("继续") or text.begins_with("立即保存") or text.begins_with("核验") or text.begins_with("打通换乘通道") or text.begins_with("载入城市史志"):
+		b.add_theme_stylebox_override("normal",Ui.primary_button_box(false))
+		b.add_theme_stylebox_override("hover",Ui.primary_button_box(true))
+		b.add_theme_stylebox_override("pressed",Ui.primary_button_box(true))
+		b.add_theme_color_override("font_color",Ui.ON_ACCENT);b.add_theme_color_override("font_hover_color",Ui.ON_ACCENT);b.add_theme_color_override("font_pressed_color",Ui.ON_ACCENT)
+		b.add_theme_font_override("font",strong_face)
 	return b
+
+func toolbar_button(text:String,callback:Callable) -> Button:
+	var b:=Button.new();b.text=text;b.custom_minimum_size.y=36*ui_scale
+	b.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	b.add_theme_font_size_override("font_size",roundi(16*ui_scale));b.pressed.connect(callback)
+	b.add_theme_stylebox_override("normal",Ui.toolbar_button_box(false))
+	b.add_theme_stylebox_override("hover",Ui.toolbar_button_box(true))
+	b.add_theme_stylebox_override("pressed",Ui.toolbar_button_box(true))
+	b.add_theme_color_override("font_color",Ui.INK)
+	b.add_theme_color_override("font_hover_color",Ui.ACCENT)
+	return b
+
+func menu_entry_button(text:String,callback:Callable,primary:bool=false) -> Button:
+	var b:=Button.new();b.text=text;b.custom_minimum_size.y=50*ui_scale
+	b.alignment=HORIZONTAL_ALIGNMENT_LEFT
+	b.add_theme_font_size_override("font_size",roundi(18*ui_scale));b.pressed.connect(callback)
+	b.add_theme_stylebox_override("normal",Ui.menu_entry_box(primary,false))
+	b.add_theme_stylebox_override("hover",Ui.menu_entry_box(primary,true))
+	b.add_theme_stylebox_override("pressed",Ui.menu_entry_box(primary,true))
+	if primary:
+		b.add_theme_color_override("font_color",Ui.ON_ACCENT);b.add_theme_color_override("font_hover_color",Ui.ON_ACCENT);b.add_theme_color_override("font_pressed_color",Ui.ON_ACCENT)
+		b.add_theme_font_override("font",strong_face)
+	return b
+
+## A hairline between tool modes. The bar reads as one line of text divided by
+## rules, not as a row of boxes.
+func _tool_rule() -> Control:
+	var rule:=ColorRect.new();rule.color=Ui.BORDER
+	rule.custom_minimum_size=Vector2(1,20)
+	rule.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	return rule
 
 func label(text:String,pixels:int=18,bold:bool=false) -> Label:
 	var l:=Label.new();l.text=text;l.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;l.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	l.custom_minimum_size.x=220 if text.length()>14 or text.is_empty() else 0
 	l.add_theme_font_size_override("font_size",roundi(pixels*ui_scale));l.add_theme_font_override("font",strong_face if bold else face)
 	return l
 
 func clear(node:Node) -> void:
 	for child in node.get_children():node.remove_child(child);child.queue_free()
 
+## Groups a run of related rows so the panel reads as sections instead of one
+## flat list. `tight` keeps a heading bound to its body; `loose` separates
+## unrelated sections. Rhythm comes from the gap, not from extra containers.
+func section(parent:VBoxContainer,tight:bool=true) -> VBoxContainer:
+	var box:=VBoxContainer.new();box.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation",6 if tight else 16)
+	parent.add_child(box)
+	return box
+
+func section_rule(parent:VBoxContainer) -> void:
+	var rule:=HSeparator.new();rule.add_theme_constant_override("separation",16);parent.add_child(rule)
+
+## A section inside a panel. Sections are separated by a rule, not by a card:
+## the panel stays one surface and grouping comes from the divider and spacing.
+func card_panel(parent:VBoxContainer) -> VBoxContainer:
+	if parent.get_child_count()>0:
+		var rule:=HSeparator.new();rule.add_theme_constant_override("separation",18);parent.add_child(rule)
+	var box:=VBoxContainer.new();box.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation",8)
+	parent.add_child(box)
+	return box
+
+func card_box(parent:VBoxContainer) -> VBoxContainer:
+	var panel := PanelContainer.new()
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	panel.add_theme_stylebox_override("panel", Ui.card_box())
+	parent.add_child(panel)
+	var box := VBoxContainer.new()
+	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation", 6)
+	panel.add_child(box)
+	return box
+
+func quote_card(parent:VBoxContainer) -> VBoxContainer:
+	var panel := PanelContainer.new()
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	panel.add_theme_stylebox_override("panel", Ui.accent_card_box())
+	parent.add_child(panel)
+	var box := VBoxContainer.new()
+	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation", 4)
+	panel.add_child(box)
+	return box
+
 func _build() -> void:
-	frame=VBoxContainer.new();frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);frame.add_theme_constant_override("separation",0);add_child(frame)
-	var top_panel:=PanelContainer.new();frame.add_child(top_panel)
-	var top:=HFlowContainer.new();top_panel.add_child(top)
-	top.add_child(button("☰  故事",_open_page.bind("story")))
-	year=label("",18,true);year.custom_minimum_size.x=240;year.size_flags_horizontal=Control.SIZE_EXPAND_FILL;top.add_child(year)
-	undo_button=button("↶",_undo.bind(false));top.add_child(undo_button)
-	redo_button=button("↷",_undo.bind(true));top.add_child(redo_button)
-	save_badge=button("保存",_save);top.add_child(save_badge)
-	top.add_child(button("存档",_saves));top.add_child(button("菜单",_game_menu))
-	map_area=Control.new();map_area.size_flags_vertical=Control.SIZE_EXPAND_FILL;frame.add_child(map_area)
+	menu_bg=preload("res://scripts/menu_art.gd").new();menu_bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(menu_bg)
+	frame=Control.new();frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(frame)
+	map_area=Control.new();map_area.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);map_area.clip_contents=true;frame.add_child(map_area)
 	map_view=MapScript.new();map_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);map_area.add_child(map_view)
 	map_view.bold_font=strong_face;map_view.ui_scale=ui_scale
 	construction_feedback=preload("res://scripts/construction_feedback.gd").new();construction_feedback.map=map_view;map_view.add_child(construction_feedback)
@@ -149,37 +240,66 @@ func _build() -> void:
 	map_view.curve_control_previewed.connect(_preview_curve);map_view.curve_control_finished.connect(_finish_curve)
 	map_view.camera_changed.connect(func(_center:Array,_zoom:int):pass)
 	rules.map_view=map_view
+
 	left_panel=PanelContainer.new();map_area.add_child(left_panel)
+	left_panel.add_theme_stylebox_override("panel",Ui.chapter_box())
 	var ls:=ScrollContainer.new();ls.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;left_panel.add_child(ls)
-	left=VBoxContainer.new();left.size_flags_horizontal=Control.SIZE_EXPAND_FILL;ls.add_child(left)
+	left=VBoxContainer.new();left.size_flags_horizontal=Control.SIZE_EXPAND_FILL;left.add_theme_constant_override("separation",10);ls.add_child(left)
+
 	right_panel=PanelContainer.new();map_area.add_child(right_panel)
+	right_panel.add_theme_stylebox_override("panel",Ui.floating_box())
 	var rb:=VBoxContainer.new();right_panel.add_child(rb)
 	var rs:=ScrollContainer.new();rs.size_flags_vertical=Control.SIZE_EXPAND_FILL;rs.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;rb.add_child(rs)
 	right=VBoxContainer.new();right.size_flags_horizontal=Control.SIZE_EXPAND_FILL;rs.add_child(right)
-	# The earliest chapters are dated before the city had a metro, so the map is
-	# legitimately empty. Say so on the map itself; otherwise a blank basemap
-	# reads as a rendering failure.
-	map_hint=label("",17);map_hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	map_hint.add_theme_color_override("font_color",Color("#16202e"))
-	map_hint.add_theme_color_override("font_outline_color",Color(1,1,1,0.92))
-	map_hint.add_theme_constant_override("outline_size",6)
-	map_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE;map_hint.hide();map_area.add_child(map_hint)
 	actions=VBoxContainer.new();rb.add_child(actions)
-	var bottom_panel:=PanelContainer.new();frame.add_child(bottom_panel)
-	var bottom:=VBoxContainer.new();bottom_panel.add_child(bottom)
-	var center:=CenterContainer.new();bottom.add_child(center)
-	var tools:=HFlowContainer.new();tools.alignment=FlowContainer.ALIGNMENT_CENTER;tool_flow=tools;center.add_child(tools)
-	tools.add_child(button("选择",_tool.bind("select")))
+
+	top_panel=PanelContainer.new();top_panel.add_theme_stylebox_override("panel",Ui.shell_box());frame.add_child(top_panel)
+	var top:=HBoxContainer.new();top.add_theme_constant_override("separation",8);top_panel.add_child(top)
+	top.add_child(toolbar_button("☰ 档案",func():show_left=not show_left;_layout()))
+	# One language in the bar: the dark METRO chip fought the pill buttons and
+	# the date line, so the city and period carry the identity on their own.
+	year=label("",18,true);year.autowrap_mode=TextServer.AUTOWRAP_OFF;year.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;year.size_flags_horizontal=Control.SIZE_EXPAND_FILL;top.add_child(year)
+	undo_button=toolbar_button("↶ 撤销",_undo.bind(false));top.add_child(undo_button)
+	redo_button=toolbar_button("↷ 重做",_undo.bind(true));top.add_child(redo_button)
+	top.add_child(_tool_rule())
+	save_badge=toolbar_button("已保存",_save);top.add_child(save_badge)
+	top.add_child(toolbar_button("存档",_saves));top.add_child(toolbar_button("菜单",_game_menu))
+
+	dock=PanelContainer.new();dock.add_theme_stylebox_override("panel",Ui.dock_box());dock.size_flags_vertical=Control.SIZE_SHRINK_CENTER;frame.add_child(dock)
+	var tools:=HBoxContainer.new();tools.add_theme_constant_override("separation",4);tool_flow=tools
+	tools.size_flags_vertical=Control.SIZE_SHRINK_CENTER;dock.add_child(tools)
+	select_button=button("选择",_tool.bind("select"));tools.add_child(select_button)
 	station_button=button("车站",_tool.bind("station"));tools.add_child(station_button)
 	track_button=button("铺轨",_tool.bind("track"));tools.add_child(track_button)
+	line_rule=_tool_rule();tools.add_child(line_rule)
 	line_button=button("线路整理",_tool.bind("line"));tools.add_child(line_button)
+	end_rule=_tool_rule();tools.add_child(end_rule)
 	end_button=button("结束操作",_tool.bind("select"));tools.add_child(end_button)
-	tools.add_child(button("图层",_layers))
-	hint=label("",15);bottom.add_child(hint)
-	var attribution:=LinkButton.new();attribution.text="© OpenStreetMap · 现代地理参考底图";attribution.pressed.connect(func():_message("地图来源","现代底图仅作位置参考，不是当年的城市环境或工程线位。OSM / Geofabrik派生数据依据ODbL 1.0提供。"))
-	attribution.custom_minimum_size.y=24;attribution.add_theme_font_size_override("font_size",12);bottom.add_child(attribution)
+	tools.add_child(_tool_rule())
+	layer_button=button("图层",_layers);layer_button.size_flags_vertical=Control.SIZE_SHRINK_CENTER;tools.add_child(layer_button)
+
+	timeline_bar = PanelContainer.new()
+	timeline_bar.add_theme_stylebox_override("panel", Ui.dock_box())
+	timeline_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	timeline_bar.mouse_filter = Control.MOUSE_FILTER_PASS
+	frame.add_child(timeline_bar)
+	timeline_flow = HBoxContainer.new()
+	timeline_flow.add_theme_constant_override("separation", 6)
+	timeline_flow.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	timeline_bar.add_child(timeline_flow)
+	timeline_bar.hide()
+
+	hint=label("",15);hint.autowrap_mode=TextServer.AUTOWRAP_OFF;frame.add_child(hint)
+	attribution=LinkButton.new();attribution.text="© OpenStreetMap · 现代地理参考底图";attribution.pressed.connect(func():_message("地图来源","现代底图仅作位置参考，不是当年的城市环境或工程线位。OSM / Geofabrik派生数据依据ODbL 1.0提供。"))
+	attribution.add_theme_font_size_override("font_size",14)
+	attribution.add_theme_color_override("font_color",Ui.MUTED);attribution.add_theme_color_override("font_hover_color",Ui.ACCENT)
+	frame.add_child(attribution)
+
+	map_hint=label("",18);map_hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	map_hint.add_theme_stylebox_override("normal",Ui.note_box())
+	map_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE;map_hint.hide();map_area.add_child(map_hint)
+
 	spotlight=Spotlight.new();add_child(spotlight)
-	map_area.resized.connect(_layout)
 	call_deferred("_layout")
 
 func _setup_feedback_audio() -> void:
@@ -213,25 +333,109 @@ func _exit_tree() -> void:
 
 func _layout() -> void:
 	if not is_instance_valid(map_area):return
-	if is_instance_valid(tool_flow):tool_flow.custom_minimum_size.x=minf(740*ui_scale,maxf(220,size.x-48))
-	var w:=minf(420,maxf(320,320*ui_scale));var h:=maxf(100,map_area.size.y-24)
-	left_panel.position=Vector2(12,12);left_panel.size=Vector2(minf(w,map_area.size.x-24),h)
-	right_panel.size=Vector2(minf(w,map_area.size.x-24),h);right_panel.position=Vector2(map_area.size.x-right_panel.size.x-12,12)
-	left_panel.visible=show_left and not world.is_empty();right_panel.visible=show_right and not world.is_empty()
-	if _narrow() and show_left and show_right:left_panel.hide()
+	if is_instance_valid(menu_bg):menu_bg.queue_redraw()
+	var screen_w := size.x
+	var screen_h := size.y
+
+	# Top Floating Island
+	var top_h := 46.0 * ui_scale
+	if is_instance_valid(top_panel):
+		var top_w := minf(screen_w - 32.0, 1260.0 * ui_scale)
+		top_panel.size = Vector2(top_w, top_h)
+		top_panel.position = Vector2((screen_w - top_w) * 0.5, 12.0)
+		top_h = top_panel.size.y
+
+	# Bottom Floating Capsule Dock
+	if is_instance_valid(dock):
+		dock.reset_size()
+		dock.position = Vector2((screen_w - dock.size.x) * 0.5, screen_h - dock.size.y - 18.0)
+
+	# Bottom Horizontal Timeline Ribbon
+	if is_instance_valid(timeline_bar) and timeline_bar.visible:
+		timeline_bar.reset_size()
+		var dock_y := dock.position.y if is_instance_valid(dock) else (screen_h - 60.0)
+		timeline_bar.position = Vector2((screen_w - timeline_bar.size.x) * 0.5, dock_y - timeline_bar.size.y - 8.0)
+
+	# Floating Attribution & Hint
+	if is_instance_valid(attribution):
+		attribution.reset_size()
+		attribution.position = Vector2(18.0, screen_h - attribution.size.y - 14.0)
+	if is_instance_valid(hint):
+		hint.reset_size()
+		var att_h := attribution.size.y if is_instance_valid(attribution) else 0.0
+		hint.position = Vector2(18.0, screen_h - att_h - hint.size.y - 18.0)
+
+	# Left Panel (Floating Card)
+	var top_bound := (top_panel.position.y + top_panel.size.y + 12.0) if is_instance_valid(top_panel) else 14.0
+	var bottom_bound := (dock.position.y - 14.0) if is_instance_valid(dock) else (screen_h - 14.0)
+	var max_h := maxf(120.0, bottom_bound - top_bound)
+	var w := minf(400.0, maxf(340.0, 360.0 * ui_scale))
+	if not left_expanded: w = minf(340.0, maxf(280.0, 290.0 * ui_scale))
+	var left_h := max_h
+	if is_instance_valid(left):
+		var target_h := left.get_combined_minimum_size().y + 36.0
+		left_h = clampf(target_h, 120.0, minf(680.0 * ui_scale, max_h))
+		if OS.has_environment("DSH_UI_DEBUG"):
+			print("[left] min=", left.get_combined_minimum_size().y, " target=", target_h, " left_h=", left_h)
+			for i in left.get_child_count():
+				var ch := left.get_child(i) as Control
+				if is_instance_valid(ch):
+					print("   L", i, " ", ch.get_class(), " min=", ch.get_combined_minimum_size().y)
+	left_panel.size = Vector2(minf(w, screen_w - 32.0), left_h)
+	left_panel.position = Vector2(16.0, top_bound)
+
+	# Right Panel (Floating Card)
+	var right_h := max_h
+	if is_instance_valid(right) and is_instance_valid(actions):
+		right_h = minf(max_h, maxf(140.0, right.get_combined_minimum_size().y + actions.get_combined_minimum_size().y + 44.0))
+	right_panel.size = Vector2(minf(w, screen_w - 32.0), right_h)
+	right_panel.position = Vector2(screen_w - right_panel.size.x - 16.0, top_bound)
+
+	left_panel.visible = show_left and not world.is_empty()
+	right_panel.visible = show_right and not world.is_empty()
+	if _narrow() and show_left and show_right: left_panel.hide()
+
 	if is_instance_valid(map_hint) and map_hint.visible:
-		var hint_width:=minf(560*ui_scale,maxf(220,map_area.size.x-64))
-		map_hint.size=Vector2(hint_width,0)
+		var avail := usable_map_rect()
+		var hint_width := minf(520.0 * ui_scale, maxf(240.0, avail.size.x - 32.0))
+		map_hint.custom_minimum_size.x = hint_width
 		map_hint.reset_size()
-		map_hint.size.x=hint_width
-		map_hint.position=Vector2((map_area.size.x-hint_width)*0.5,maxf(56,map_area.size.y*0.40))
+		map_hint.size.x = hint_width
+		# Centre on the map area, not on the space left of the chapter card:
+		# centring inside the remainder pushed the note visibly right.
+		var map_left := left_panel.position.x + left_panel.size.x if (left_panel.visible and is_instance_valid(left_panel)) else 0.0
+		var map_right := right_panel.position.x if (right_panel.visible and is_instance_valid(right_panel)) else screen_w
+		var map_centre := (map_left + map_right) * 0.5
+		map_hint.position = Vector2(map_centre - map_hint.size.x * 0.5, top_bound + (bottom_bound - top_bound - map_hint.size.y) * 0.45)
+
 	if is_instance_valid(beat_panel):
 		var available := usable_map_rect()
-		beat_panel.size=Vector2(minf(380,available.size.x-16),minf(230,available.size.y-16))
-		beat_panel.position=Vector2(available.position.x+8,available.end.y-beat_panel.size.y-8)
+		beat_panel.size = Vector2(minf(380.0, available.size.x - 16.0), minf(230.0, available.size.y - 16.0))
+		beat_panel.reset_size()
+		beat_panel.size.x = minf(380.0, available.size.x - 16.0)
+		beat_panel.position = Vector2(available.position.x + 8.0, maxf(top_bound, available.end.y - beat_panel.size.y - 8.0))
+
 	if is_instance_valid(save_panel):
-		save_panel.size=Vector2(minf(1050,size.x-32),minf(740,size.y-32));save_panel.position=(size-save_panel.size)*0.5
-	if is_instance_valid(menu):menu.size=Vector2(minf(760*minf(ui_scale,1.15),size.x-40),minf(700*minf(ui_scale,1.15),size.y-40));menu.position=(size-menu.size)*0.5
+		save_panel.size = Vector2(minf(1020.0, size.x - 32.0), minf(720.0, size.y - 32.0))
+		save_panel.position = (size - save_panel.size) * 0.5
+
+	if is_instance_valid(menu):
+		var menu_w := minf(680.0 * minf(ui_scale, 1.15), size.x - 40.0)
+		var menu_h := minf(640.0 * minf(ui_scale, 1.15), size.y - 40.0)
+		if menu.get_child_count() > 0:
+			var body_ctrl := menu.get_child(0) as Control
+			if is_instance_valid(body_ctrl):
+				body_ctrl.custom_minimum_size.x = maxf(240.0, menu_w - 56.0)
+				var wanted := body_ctrl.get_combined_minimum_size().y + 48.0
+				menu_h = minf(maxf(360.0, wanted), size.y - 40.0)
+				if OS.has_environment("DSH_UI_DEBUG"):
+					print("[menu] body_min=", body_ctrl.get_combined_minimum_size().y, " menu_h=", menu_h)
+					for i in body_ctrl.get_child_count():
+						var ch := body_ctrl.get_child(i) as Control
+						if is_instance_valid(ch):
+							print("  child ", i, " ", ch.get_class(), " min=", ch.get_combined_minimum_size().y, " vis=", ch.visible)
+		menu.size = Vector2(menu_w, menu_h)
+		menu.position = (size - menu.size) * 0.5
 
 func _narrow() -> bool:
 	return size.x<1650 or ui_scale>1.25
@@ -270,51 +474,133 @@ func _notification(what:int) -> void:
 func _show_menu() -> void:
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free()
 	world={};outcome_comparison=false;map_view.chapter_baseline_overlay={};map_view.set_world({});map_view.set_blueprint({});map_view.requested_redraw();frame.hide();spotlight.clear_focus()
-	menu=PanelContainer.new();add_child(menu)
-	var margin:=MarginContainer.new()
-	for side in ["margin_left","margin_right","margin_top","margin_bottom"]:margin.add_theme_constant_override(side,24)
-	menu.add_child(margin)
-	var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;margin.add_child(scroll)
-	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",12);scroll.add_child(body)
-	body.add_child(label("METRO ATLAS  /  城市建设档案",15))
+	if is_instance_valid(timeline_bar):timeline_bar.hide()
+	if is_instance_valid(menu_bg):menu_bg.show();menu_bg.queue_redraw()
+	menu=PanelContainer.new();menu.add_theme_stylebox_override("panel",Ui.menu_card_box());add_child(menu)
+	# No scroll container: the entry list is short, and a scroll child reports
+	# the full available height, which left a blank tail inside the card.
+	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",12);menu.add_child(body)
+	var header_row:=HBoxContainer.new();header_row.add_theme_constant_override("separation",10);body.add_child(header_row)
+	var badge:=PanelContainer.new();badge.add_theme_stylebox_override("panel",Ui.badge_box());badge.size_flags_vertical=Control.SIZE_SHRINK_CENTER;header_row.add_child(badge)
+	var badge_lbl:=label("METRO ATLAS",15,true);badge_lbl.autowrap_mode=TextServer.AUTOWRAP_OFF;badge_lbl.add_theme_color_override("font_color",Ui.ON_ACCENT);badge.add_child(badge_lbl)
+	var sub_tag:=label("城市轨道交通历史建设志",15,true);sub_tag.autowrap_mode=TextServer.AUTOWRAP_OFF;sub_tag.add_theme_color_override("font_color",Ui.ACCENT);header_row.add_child(sub_tag)
 	body.add_child(label("造一座地铁",44,true))
-	body.add_child(label("一座城市，一段亲手重现的地铁历史。",20))
+	var title_lead := body.get_child(body.get_child_count()-1) as Label
+	# A display line never wraps: smart wrapping measured the CJK run at the
+	# minimum width and reported six lines for a five-character title.
+	if is_instance_valid(title_lead):
+		title_lead.autowrap_mode=TextServer.AUTOWRAP_OFF
+		title_lead.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+		title_lead.custom_minimum_size.x=0
+		title_lead.update_minimum_size()
+	var tagline:=label("一座城市，一段亲手重现的地铁建设史。",18);tagline.add_theme_color_override("font_color",Ui.MUTED);body.add_child(tagline)
 	var divider:=HSeparator.new();body.add_child(divider)
-	var continue_button:=button("继续城市故事  →",func():_load_result(SaveManager.load_last_game()))
-	continue_button.disabled=not FileAccess.file_exists(SaveManager.root_path().path_join("last_game.json")) and not FileAccess.file_exists(SaveManager.root_path().path_join("last_game.json.bak"));body.add_child(continue_button)
-	body.add_child(button("选择城市 · 开始新故事",_show_new_game))
-	body.add_child(button("存档与路网作品",_saves))
-	body.add_child(button("地铁挑战 · 猜站位、默写与每日题",_open_challenges))
-	var extra:=HFlowContainer.new();body.add_child(extra)
-	extra.add_child(button("设置",_settings));extra.add_child(button("基本操作练习",_restart_guide));extra.add_child(button("城市背景",_city_context_dialog));extra.add_child(button("退出",func():get_tree().quit()))
-	body.add_child(label(_menu_subtitle(),16))
-	body.add_child(label(BUILD_VERSION+"  ·  离线地图 / 本地保存",15))
+	var has_continue:=_last_game_is_published()
+	# One primary action: resume when there is a save to resume, otherwise start
+	# a new story. Both are the same shape so the eye reads one lead entry.
+	var continue_button:=menu_entry_button("继续城市故事  →",func():_continue_last_game(),has_continue)
+	continue_button.disabled=not has_continue;body.add_child(continue_button)
+	body.add_child(menu_entry_button("选择城市 · 开始新故事  →",_show_new_game,not has_continue))
+	body.add_child(menu_entry_button("存档与路网作品",_saves,false))
+	body.add_child(menu_entry_button("地铁知识挑战 · 猜站位、默写与每日一题",_open_challenges,false))
+	var extra:=HBoxContainer.new();extra.add_theme_constant_override("separation",8);body.add_child(extra)
+	# Utility actions sit as quiet links under the entries, not as a second row
+	# of equal-weight buttons competing with them.
+	for item in [["设置",_settings],["基本操作练习",_restart_guide],["城市背景",_city_context_dialog],["退出",func():get_tree().quit()]]:
+		var b:=button(str(item[0]),item[1]);b.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		b.custom_minimum_size.y=38*ui_scale;b.add_theme_font_size_override("font_size",roundi(16*ui_scale))
+		b.alignment=HORIZONTAL_ALIGNMENT_CENTER
+		b.add_theme_color_override("font_color",Ui.MUTED);b.add_theme_color_override("font_hover_color",Ui.ACCENT)
+		b.add_theme_stylebox_override("normal",Ui.quiet_link_box())
+		b.add_theme_stylebox_override("hover",Ui.quiet_link_box(true))
+		extra.add_child(b)
+	var footer_card:=PanelContainer.new();footer_card.add_theme_stylebox_override("panel",Ui.card_box());body.add_child(footer_card)
+	var footer_box:=VBoxContainer.new();footer_box.add_theme_constant_override("separation",4);footer_card.add_child(footer_box)
+	# Two single lines instead of one wrapped string: smart wrapping measured
+	# the CJK run far taller than it renders and left a blank tail in the card.
+	for line in _menu_subtitle().split("\n"):
+		var foot := label(str(line),15)
+		foot.autowrap_mode=TextServer.AUTOWRAP_OFF
+		foot.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+		foot.custom_minimum_size.x=0
+		footer_box.add_child(foot)
+	var ver:=label(BUILD_VERSION+"  ·  离线地图 / 本地保存",15);ver.add_theme_color_override("font_color",Ui.MUTED)
+	ver.autowrap_mode=TextServer.AUTOWRAP_OFF;ver.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN;ver.custom_minimum_size.x=0
+	footer_box.add_child(ver)
 	_layout()
+
+## Whether the last played save belongs to a city this release ships.
+##
+## `last_game.json` is only an index (gameId + schemaVersion); the city lives in
+## the game's own `current.json`. Both are read and nothing is moved or deleted.
+func _last_game_is_published() -> bool:
+	for name in ["last_game.json","last_game.json.bak"]:
+		var path:=SaveManager.root_path().path_join(name)
+		if not FileAccess.file_exists(path):continue
+		var index:=_read_json_file(path)
+		if index.is_empty():continue
+		var city_id:=str(index.get("cityId",""))
+		if city_id.is_empty() and index.get("world") is Dictionary:
+			city_id=str((index.get("world") as Dictionary).get("cityId",""))
+		if city_id.is_empty():
+			# Follow the index to the save it points at.
+			var game_id:=str(index.get("gameId",""))
+			if game_id.is_empty():continue
+			var game_path:=SaveManager.root_path().path_join("games").path_join(game_id).path_join("current.json")
+			var world:=_read_json_file(game_path)
+			city_id=str(world.get("cityId",""))
+			if city_id.is_empty() and world.get("world") is Dictionary:
+				city_id=str((world.get("world") as Dictionary).get("cityId",""))
+		if city_id.is_empty():continue
+		return WorldData.is_published(city_id)
+	return false
+
+func _read_json_file(path:String) -> Dictionary:
+	if not FileAccess.file_exists(path):return {}
+	var file:=FileAccess.open(path,FileAccess.READ)
+	if file==null:return {}
+	var text:=file.get_as_text();file.close()
+	var parsed:Variant=JSON.parse_string(text)
+	return parsed if parsed is Dictionary else {}
+
+func _continue_last_game() -> void:
+	if not _last_game_is_published():
+		_message("没有可继续的故事","当前没有属于本版本的进度。开始新故事即可。")
+		return
+	_load_result(SaveManager.load_last_game())
 
 func _menu_subtitle() -> String:
 	var published:=WorldData.cities()
 	if published.size()==1:
-		return "%s · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。" % str(published[0].get("name",""))
-	return "五城 · 截止日路网建设章节\n从早期线路逐阶段建设，并在终章核对2026年10月1日路网。"
+		return "%s · 城市轨道建设历史演进\n从最初的骨干线路出发，按历史时期复现城市地铁网络的发展历程。" % str(published[0].get("name",""))
+	return "城市轨道交通演进录\n选择城市，按历史时期复现线网规划与建设历程。"
 
 func _show_new_game() -> void:
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free()
-	menu=PanelContainer.new();add_child(menu)
-	var sc:=ScrollContainer.new();sc.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;menu.add_child(sc)
-	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",16);sc.add_child(body)
-	body.add_child(button("← 返回",_show_menu));body.add_child(label("深圳" if WorldData.cities().size()==1 else "选择一座城市",30,true))
-	body.add_child(label("沿历史蓝图建设，用自己的操作见证路网形成。",18))
+	if is_instance_valid(menu_bg):menu_bg.show();menu_bg.queue_redraw()
+	menu=PanelContainer.new();menu.add_theme_stylebox_override("panel",Ui.menu_card_box());add_child(menu)
+	var sc:=ScrollContainer.new();sc.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;sc.size_flags_vertical=Control.SIZE_EXPAND_FILL;sc.size_flags_horizontal=Control.SIZE_EXPAND_FILL;menu.add_child(sc)
+	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",14);sc.add_child(body)
+	var top_row:=HBoxContainer.new();body.add_child(top_row)
+	var back_btn:=button("← 返回主菜单",_show_menu);top_row.add_child(back_btn)
+	var spacer:=Control.new();spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL;top_row.add_child(spacer)
+	var tag:=label("新建城市建设档案",15,true);tag.autowrap_mode=TextServer.AUTOWRAP_OFF;tag.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;tag.size_flags_horizontal=Control.SIZE_SHRINK_END;tag.add_theme_color_override("font_color",Ui.ACCENT);top_row.add_child(tag)
+	body.add_child(label("深圳" if WorldData.cities().size()==1 else "选择一座城市",24,true))
+	var sub:=label("按真实历史规划推进各期工程，复现线网建设演进历程。",18);sub.add_theme_color_override("font_color",Ui.MUTED);body.add_child(sub)
 	var cities:=OptionButton.new();cities.custom_minimum_size.y=48*ui_scale
 	for city in WorldData.cities():cities.add_item(str(city.name));cities.set_item_metadata(cities.item_count-1,str(city.id))
 	body.add_child(cities)
-	var summary:=label("",16);body.add_child(summary)
+	var info_card:=PanelContainer.new();info_card.add_theme_stylebox_override("panel",Ui.card_box());body.add_child(info_card)
+	var summary:=label("",16);info_card.add_child(summary)
 	var describe:=func(index:int):
 		var config:=Story.config({"cityId":cities.get_item_metadata(index)})
-		summary.text="已发布 %d 章 · %s\n%s" % [config.get("chapters",[]).size(),str(config.get("chapters",[])[0].get("title","")),str(config.get("coverageNote",""))]
+		summary.text="收录 %d 个历史章节 · 首章「%s」\n%s" % [config.get("chapters",[]).size(),str(config.get("chapters",[])[0].get("title","")),str(config.get("coverageNote",""))]
 	cities.item_selected.connect(describe);describe.call(0)
-	var tutorial:=CheckButton.new();tutorial.text="首章逐步教学";tutorial.button_pressed=not Prefs.load_onboarding_completed();tutorial.disabled=Prefs.load_onboarding_completed();body.add_child(tutorial)
-	if tutorial.disabled:body.add_child(label("基本操作已学会；新城市直接开始故事，可从菜单进入独立练习。",15))
-	body.add_child(button("进入城市故事  →",func():_new_game(str(cities.get_item_metadata(cities.selected)),tutorial.button_pressed)))
+	var tutorial:=CheckButton.new();tutorial.text="开启首章互动操作引导";tutorial.button_pressed=not Prefs.load_onboarding_completed();tutorial.disabled=Prefs.load_onboarding_completed();body.add_child(tutorial)
+	if tutorial.disabled:
+		var note:=label("你已掌握基本操作，新故事将直接开始；随时可从主菜单重温「基本操作练习」。",15);note.add_theme_color_override("font_color",Ui.MUTED);body.add_child(note)
+	var start_btn:=button("进入城市故事  →",func():_new_game(str(cities.get_item_metadata(cities.selected)),tutorial.button_pressed))
+	start_btn.custom_minimum_size.y=50*ui_scale;body.add_child(start_btn)
 	_layout()
 
 ## Shows the published station order and interchanges for a project, and scores
@@ -351,7 +637,7 @@ func _city_context_dialog() -> void:
 	var city_id:=str(WorldData.cities()[0].get("id","shenzhen")) if not WorldData.cities().is_empty() else "shenzhen"
 	var rows:=CityContext.usable_markers(city_id)
 	var d:=_dialog("城市背景 · %s" % str(CityContext.for_city(city_id).get("name",city_id)))
-	var body:=VBoxContainer.new();body.add_theme_constant_override("separation",10);d.add_child(body)
+	var body:=VBoxContainer.new();body.add_theme_constant_override("separation",12);d.add_child(body)
 	body.add_child(label(CityContext.summary(city_id),16))
 	if rows.is_empty():
 		body.add_child(label("本城暂无可核对的背景标注。",15))
@@ -417,7 +703,70 @@ func _decision_card(left:VBoxContainer,chapter:Dictionary) -> void:
 	if not DecisionSystem.usable(card):return
 	var picked:=DecisionSystem.choice(str(card.get("id","")))
 	if picked.is_empty():
-		left.add_child(label("当时的选择",20,true))
+		var ask:=card_panel(left)
+		ask.add_child(label("当时的选择",20,true))
+		ask.add_child(label(str(card.get("prompt","")),16))
+		var options:=section(left,false)
+		for option in card.get("options",[]):
+			var option_id:=str(option.get("id",""))
+			var text:="%s\n%s" % [str(option.get("label","")),str(option.get("summary",""))]
+			options.add_child(button(text,func():
+				var saved:=DecisionSystem.record(str(card.get("id","")),option_id)
+				if not bool(saved.get("ok",false)):_message("决策未记录",str(saved.get("error","")));return
+				_left()))
+		section(left).add_child(label("选择只影响这一页的对照，不改变本章建设与历史判定。",15))
+		return
+	var actual:=str(card.get("actual",""))
+	var actual_option:=DecisionSystem.option(card,actual)
+	var chosen_option:=DecisionSystem.option(card,picked)
+	var compare:=section(left)
+	compare.add_child(label("当时的选择",20,true))
+	compare.add_child(label("你的选择：%s" % str(chosen_option.get("label","")),16))
+	compare.add_child(label("历史实际：%s" % str(actual_option.get("label","")),16,true))
+	section(left,false).add_child(label(str(card.get("reveal","")),16))
+	for source in card.get("sources",[]):
+		var url:=str(source.get("url",""))
+		left.add_child(button("来源：%s（核验 %s）" % [str(source.get("title","官方资料")),str(source.get("checkedAt",""))],func():OS.shell_open(url)))
+
+## The proposal panel: the chapter's own goal, then the published stations the
+## player taps in order. Nothing here states what the official plan chose; that
+## is revealed after the proposal is submitted.
+func _proposal_panel(left:VBoxContainer) -> void:
+	if proposal_chapter_id.is_empty():
+		proposal_chapter_id=str(Story.chapter(world).get("id",""))
+		proposal_candidates=ProposalSession.candidate_stations(world,Story.chapter(world))
+		proposal_goal=ProposalSession.goal_text(Story.chapter(world))
+	left.add_child(label("本期提案",20,true))
+	# A planning card states the choice the published plan had to make. It is
+	# shown before the proposal so the player knows what is at stake, and it is
+	# only shown when the record carries a dated official source.
+	_planning_decision_card(left,Story.chapter(world))
+	left.add_child(label(proposal_goal,16))
+	left.add_child(label("先按你的判断决定这条线经过哪些站、按什么顺序走。提交后才揭示公开方案，并进入建设。提案不改变本章的检查条件。",15))
+	if proposal_candidates.is_empty():
+		left.add_child(label("本章没有可提案的公开站序。",15))
+		return
+	left.add_child(label("已选 %d / %d 站" % [proposal_picked.size(),proposal_candidates.size()],16,true))
+	for row in proposal_candidates:
+		var station_id:=str(row.get("id",""))
+		var order:=proposal_picked.find(station_id)
+		var text:=str(row.get("name",station_id))
+		if order>=0:text="%d. %s" % [order+1,text]
+		left.add_child(button(text,_toggle_proposal_station.bind(station_id)))
+	if proposal_picked.size()>=2:
+		left.add_child(button("提交提案并进入建设",_submit_proposal))
+	left.add_child(button("不做提案，直接建设",_skip_proposal))
+	left.add_child(label("提案只记录你选的站序，不写入路网；建设完成后仍要通过本章全部检查。",15))
+
+## A planning decision card: the trade-off behind the published plan. The
+## answer is recorded beside the challenge profile, never in the world save,
+## and the card is skipped entirely when it has no dated official source.
+func _planning_decision_card(left:VBoxContainer,chapter:Dictionary) -> void:
+	var card:=DecisionSystem.planning_for_chapter(str(chapter.get("id","")))
+	if not DecisionSystem.usable(card):return
+	var picked:=DecisionSystem.choice(str(card.get("id","")))
+	if picked.is_empty():
+		left.add_child(label("当时的取舍",20,true))
 		left.add_child(label(str(card.get("prompt","")),16))
 		for option in card.get("options",[]):
 			var option_id:=str(option.get("id",""))
@@ -425,15 +774,15 @@ func _decision_card(left:VBoxContainer,chapter:Dictionary) -> void:
 			left.add_child(button(text,func():
 				var saved:=DecisionSystem.record(str(card.get("id","")),option_id)
 				if not bool(saved.get("ok",false)):_message("决策未记录",str(saved.get("error","")));return
-				_left()))
-		left.add_child(label("选择只影响这一页的对照，不改变本章建设与历史判定。",15))
+				_refresh()))
+		left.add_child(label("选择只用于对照，不改变本章建设范围。",15))
 		return
 	var actual:=str(card.get("actual",""))
 	var actual_option:=DecisionSystem.option(card,actual)
 	var chosen_option:=DecisionSystem.option(card,picked)
-	left.add_child(label("当时的选择",20,true))
+	left.add_child(label("当时的取舍",20,true))
 	left.add_child(label("你的选择：%s" % str(chosen_option.get("label","")),16))
-	left.add_child(label("历史实际：%s" % str(actual_option.get("label","")),16,true))
+	left.add_child(label("官方方案：%s" % str(actual_option.get("label","")),16,true))
 	left.add_child(label(str(card.get("reveal","")),16))
 	for source in card.get("sources",[]):
 		var url:=str(source.get("url",""))
@@ -459,6 +808,7 @@ func _enter(state:Dictionary) -> void:
 	if str(world.get("storyState",{}).get("tutorialStatus",""))=="completed":Prefs.save_onboarding_completed(true)
 	if str(world.get("mode",""))=="campaign" and str(world.get("storyState",{}).get("chapterId","")).is_empty():world.storyState["chapterId"]=str(Story.chapter(world).get("id",""))
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free();menu=null
+	if is_instance_valid(menu_bg):menu_bg.hide()
 	frame.show();history.attach(world);rules.world=world;rules.active_city_id=str(world.cityId)
 	map_view.set_context(WorldData.city(str(world.cityId)),world);map_view.show_road_names=Prefs.load_road_names();map_view.show_train_display=display_enabled
 	selected_id="";selected_kind="";show_left=true;show_right=false;page="story";dirty=false;save_error="";evaluation={};display_seconds=0;auto_seconds=0;auto_retry_seconds=0;pending_beat_id=""
@@ -561,11 +911,11 @@ func _write_commemorative_image(path:String) -> void:
 	if captured.is_empty():_message("纪念图失败","无法读取当前画面。");return
 	var footer_height:=140
 	var output:=Image.create(captured.get_width(),captured.get_height()+footer_height,false,Image.FORMAT_RGBA8)
-	output.fill(Color("#111923"));output.blit_rect(captured,Rect2i(Vector2i.ZERO,captured.get_size()),Vector2i.ZERO)
+	output.fill(Ui.CANVAS);output.blit_rect(captured,Rect2i(Vector2i.ZERO,captured.get_size()),Vector2i.ZERO)
 	var view:=SubViewport.new();view.size=Vector2i(output.get_width(),output.get_height());view.transparent_bg=false;view.render_target_update_mode=SubViewport.UPDATE_ONCE;add_child(view)
 	var root:=Control.new();root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);view.add_child(root)
 	var image_texture:=TextureRect.new();image_texture.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);image_texture.texture=ImageTexture.create_from_image(captured);image_texture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;root.add_child(image_texture)
-	var footer:=PanelContainer.new();footer.position=Vector2(0,captured.get_height());footer.size=Vector2(captured.get_width(),footer_height);footer.add_theme_stylebox_override("panel",Ui._box(Color("#111923"),Color("#344353"),0));root.add_child(footer)
+	var footer:=PanelContainer.new();footer.position=Vector2(0,captured.get_height());footer.size=Vector2(captured.get_width(),footer_height);footer.add_theme_stylebox_override("panel",Ui._box(Ui.CANVAS,Ui.BORDER,0));root.add_child(footer)
 	var box:=VBoxContainer.new();footer.add_child(box)
 	box.add_child(label("%s · %s · %s" % [city_name,Story.node_date(world),str(Story.chapter(world).get("title", "地铁建设纪念"))],22,true))
 	box.add_child(label("本期路网 %d 站 · %d 条线路 · 精度：%s" % [world.get("stations",[]).size(),world.get("routes",[]).size(),str(Story.chapter(world).get("alignmentNote", "历史位置资料待核验"))],15))
@@ -595,6 +945,12 @@ func _load_result(result:Dictionary) -> void:
 		_confirm("发现可用备份","主档有问题：%s\n备份时间：%s\n确认后保留独立恢复副本再载入。" % [str(result.get("error","")),str(result.get("backupAt","未知"))],func():_load_result(SaveManager.load_last_game(true) if str(result.get("recoveryKind",""))=="continue_index" else SaveManager.load_file(str(result.path),true)));return
 	if not bool(result.get("ok",false)):_message("载入失败",str(result.get("error","无法载入")));return
 	var loaded:Dictionary=result.world
+	# Every load path converges here: continue, the save list and JSON import.
+	# A save from a city this release does not ship stays on disk but is never
+	# opened, so the player is not shown a city the build cannot continue.
+	if not WorldData.is_published(str(loaded.get("cityId",""))):
+		_message("该进度属于其他城市","本版本只提供深圳。这份存档仍保留在原处，不会被删除或改动。")
+		return
 	_leave(func():_enter(loaded);_save())
 
 func _open_page(value:String) -> void:
@@ -610,11 +966,20 @@ func _refresh() -> void:
 	var ch:=Story.chapter(world)
 	map_view.story_markers=Beats.markers(world) if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)) else []
 	line_button.visible=str(world.mode)!="campaign" or bool(ch.get("requiresLineReorganization",false))
+	line_rule.visible=line_button.visible
 	end_button.visible=tool!="select"
+	end_rule.visible=end_button.visible
 	var waiting_for_plan:=str(world.mode)=="campaign" and str(world.storyState.get("stage",""))=="build" and not Story.plan_is_final(world)
 	var transfer_only:=str(world.mode)=="campaign" and str(ch.get("operationType",""))=="transfer_connection"
-	station_button.disabled=waiting_for_plan or transfer_only;track_button.disabled=waiting_for_plan or transfer_only
-	if transfer_only:
+	# While the player is drawing a proposal the chapter is not open for
+	# construction: building first would let them answer the plan by accident.
+	var drawing_proposal:=str(world.mode)=="campaign" and str(world.storyState.get("stage",""))==ProposalSession.STAGE_PROPOSAL
+	station_button.disabled=waiting_for_plan or transfer_only or drawing_proposal
+	track_button.disabled=waiting_for_plan or transfer_only or drawing_proposal
+	if drawing_proposal:
+		station_button.tooltip_text="先提交或跳过本期提案，再开始建设。"
+		track_button.tooltip_text=station_button.tooltip_text
+	elif transfer_only:
 		station_button.tooltip_text="本期连接既有线路的独立站体，无需新建车站。请在故事页预览并建立换乘。"
 		track_button.tooltip_text=station_button.tooltip_text
 	elif waiting_for_plan:
@@ -627,6 +992,7 @@ func _refresh() -> void:
 	year.text="%s · %s" % [str(world.get("cityName","")),Story.node_date(world)+" · "+Story.plan_status(world) if str(world.mode)=="campaign" else "路网作品"]
 	undo_button.disabled=history.undo_label().is_empty();undo_button.tooltip_text=history.undo_label();redo_button.disabled=history.redo_label().is_empty();redo_button.tooltip_text=history.redo_label()
 	_update_map_hint()
+	_update_timeline_bar()
 	_left();_right();_instruction();_layout()
 
 ## Explain an empty map instead of leaving the player to guess.
@@ -634,21 +1000,129 @@ func _update_map_hint() -> void:
 	if not is_instance_valid(map_hint):return
 	if world.is_empty() or not world.get("stations",[]).is_empty():map_hint.hide();return
 	var chapter:=Story.chapter(world)
+	if not chapter.is_empty() and not bool(chapter.get("eventOnly",false)) and str(world.get("storyState",{}).get("stage",""))=="build":
+		map_hint.hide();return
 	var city:=str(world.get("cityName","本市"))
 	if not chapter.is_empty() and bool(chapter.get("eventOnly",false)):
-		map_hint.text="截至 %s，%s还没有开通任何地铁线路。\n本节点只登记史料，不需要建站或铺轨。" % [Story.node_date(world),city]
+		map_hint.text="截至 %s，%s还没有开通任何地铁线路。\n可在左侧查阅历史背景，确认后进入后续建设章节。" % [Story.node_date(world),city]
 	elif not chapter.is_empty():
-		map_hint.text="%s的路网还没有开始建设。\n按右侧提示放置本章目标站，或点「展开本章蓝图」查看本期范围。" % city
+		map_hint.text="%s首期工程即将动工。\n点击左侧「开启本期工程」查看规划站位，开始建设。" % city
 	else:
-		map_hint.text="%s还没有已建线路。\n点下方「车站」开始建设。" % city
+		map_hint.text="%s尚未建设线路。\n点击底部「车站」开始放置站体。" % city
 	map_hint.show()
+
+func _update_timeline_bar() -> void:
+	if not is_instance_valid(timeline_bar) or not is_instance_valid(timeline_flow): return
+	if world.is_empty() or str(world.get("mode", "")) != "campaign" or is_instance_valid(menu):
+		timeline_bar.hide()
+		return
+	clear(timeline_flow)
+	var chapters: Array = Story.config(world).get("chapters", [])
+	if chapters.is_empty():
+		timeline_bar.hide()
+		return
+	timeline_bar.show()
+
+	var current_chapter := Story.chapter(world)
+	var current_idx := int(world.get("storyState", {}).get("chapterIndex", 0))
+
+	var sample_indices: Array[int] = []
+	if chapters.size() <= 6:
+		for i in range(chapters.size()): sample_indices.append(i)
+	else:
+		sample_indices.append(0)
+		var step := float(chapters.size() - 1) / 5.0
+		for k in range(1, 5):
+			var idx := clampi(roundi(k * step), 1, chapters.size() - 2)
+			if not sample_indices.has(idx): sample_indices.append(idx)
+		if not sample_indices.has(chapters.size() - 1): sample_indices.append(chapters.size() - 1)
+		if not sample_indices.has(current_idx) and current_idx >= 0 and current_idx < chapters.size():
+			sample_indices.append(current_idx)
+		sample_indices.sort()
+
+	var lead_badge := PanelContainer.new()
+	lead_badge.add_theme_stylebox_override("panel", Ui.badge_box())
+	lead_badge.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	var lead_lbl := label("年表", 12, true)
+	lead_lbl.autowrap_mode = TextServer.AUTOWRAP_OFF
+	lead_lbl.add_theme_color_override("font_color", Ui.ON_ACCENT)
+	lead_badge.add_child(lead_lbl)
+	timeline_flow.add_child(lead_badge)
+
+	for s_i in range(sample_indices.size()):
+		var idx := sample_indices[s_i]
+		var ch: Dictionary = chapters[idx]
+		var ch_date: String = str(ch.get("date", ""))
+		var year_str := ch_date.substr(0, 4) if ch_date.length() >= 4 else ch_date
+		var is_active := (idx == current_idx)
+		var is_past := (idx < current_idx)
+
+		if s_i > 0:
+			var sep := label("──", 11)
+			sep.autowrap_mode = TextServer.AUTOWRAP_OFF
+			sep.add_theme_color_override("font_color", Ui.BORDER_STRONG if is_past else Color(Ui.BORDER, 0.7))
+			sep.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			timeline_flow.add_child(sep)
+
+		var pill := Button.new()
+		pill.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		pill.custom_minimum_size.y = 28 * ui_scale
+
+		if is_active:
+			pill.text = "%s  %s" % [ch_date, str(ch.get("title", "")).substr(0, 10)]
+			pill.add_theme_stylebox_override("normal", Ui.primary_button_box(false))
+			pill.add_theme_stylebox_override("hover", Ui.primary_button_box(true))
+			pill.add_theme_stylebox_override("pressed", Ui.primary_button_box(true))
+			pill.add_theme_color_override("font_color", Ui.ON_ACCENT)
+			pill.add_theme_font_override("font", strong_face)
+			pill.add_theme_font_size_override("font_size", roundi(13 * ui_scale))
+			pill.pressed.connect(_locate_chapter)
+		else:
+			pill.text = year_str
+			pill.add_theme_stylebox_override("normal", Ui.toolbar_button_box(false))
+			pill.add_theme_stylebox_override("hover", Ui.toolbar_button_box(true))
+			pill.add_theme_stylebox_override("pressed", Ui.toolbar_button_box(true))
+			pill.add_theme_color_override("font_color", Ui.INK if is_past else Ui.MUTED)
+			pill.add_theme_color_override("font_hover_color", Ui.ACCENT)
+			pill.add_theme_font_size_override("font_size", roundi(13 * ui_scale))
+			pill.tooltip_text = "%s · %s" % [ch_date, str(ch.get("title", ""))]
+			pill.pressed.connect(func(): _open_page("timeline"))
+		timeline_flow.add_child(pill)
 
 func _left() -> void:
 	clear(left);begin_button=null;revision_button=null;check_button=null
 	if world.is_empty():return
-	var nav:=HFlowContainer.new();left.add_child(nav)
-	for entry in [["本章","story"],["时间轴","timeline"],["资料","sources"]]:
-		var tab:=button(str(entry[0]),_open_page.bind(str(entry[1])));tab.toggle_mode=true;tab.button_pressed=page==str(entry[1]);nav.add_child(tab)
+	var tab_dock:=PanelContainer.new();tab_dock.add_theme_stylebox_override("panel",Ui.dock_box());left.add_child(tab_dock)
+	var nav:=HBoxContainer.new();nav.add_theme_constant_override("separation",4);tab_dock.add_child(nav)
+	for entry in [["本章工程","story"],["城市年表","timeline"],["史志档案","sources"]]:
+		var tab:=button(str(entry[0]),_open_page.bind(str(entry[1])))
+		tab.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		tab.custom_minimum_size.y=30*ui_scale
+		tab.add_theme_font_size_override("font_size",roundi(14*ui_scale))
+		if page==str(entry[1]):
+			tab.add_theme_stylebox_override("normal",Ui.segment_active_box())
+			tab.add_theme_stylebox_override("hover",Ui.segment_active_box())
+			tab.add_theme_color_override("font_color",Ui.ON_ACCENT)
+			tab.add_theme_color_override("font_hover_color",Ui.ON_ACCENT)
+			tab.add_theme_font_override("font",strong_face)
+		else:
+			tab.add_theme_stylebox_override("normal",Ui.segment_idle_box(false))
+			tab.add_theme_stylebox_override("hover",Ui.segment_idle_box(true))
+			tab.add_theme_color_override("font_color",Ui.INK)
+			tab.add_theme_color_override("font_hover_color",Ui.ACCENT)
+		nav.add_child(tab)
+	if page=="story" and str(world.mode)=="campaign" and not left_expanded:
+		var ch:=Story.chapter(world)
+		var head:=card_panel(left)
+		var ch_title := label(str(ch.get("title","本章")),20,true)
+		ch_title.autowrap_mode=TextServer.AUTOWRAP_OFF
+		ch_title.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+		ch_title.custom_minimum_size.x=0
+		head.add_child(ch_title)
+		head.add_child(label("历史里程碑 %d / %d" % [int(world.storyState.get("chapterIndex",0))+1,maxi(1,Story.config(world).get("historicalEvents",[]).size())],15))
+		var toggle:=button("展开详情",func():left_expanded=true;_left();_layout())
+		head.add_child(toggle)
+		return
 	if page=="timeline":
 		left.add_child(label("城市时间轴",24,true))
 		left.add_child(button("观看发展史／导出视频",_open_history_player))
@@ -684,8 +1158,8 @@ func _left() -> void:
 		if world.has("legacyArchive"):left.add_child(label(str(world.legacyArchive.get("note","")),15))
 		return
 	var chapter:=Story.chapter(world)
-	left.add_child(label("%s · 地铁故事" % str(world.cityName),20,true))
 	if chapter.is_empty():
+		left.add_child(label("%s · 史志与边界" % str(world.cityName),20,true))
 		var phase:=str(world.get("storyState",{}).get("phase",""))
 		var coverage:Dictionary={}
 		if phase in ["history_gap","history_content_gap","future_gap"]:
@@ -750,175 +1224,392 @@ func _left() -> void:
 		elif phase=="history_content_gap":left.add_child(label("地图线路目标已列入章节，但五城逐期建设和截止日后的项目任务仍未补齐。",18,true))
 		else:left.add_child(label("历史篇已完成；后续建设规划与截止日路网分开呈现。",18,true))
 		return
-	left.add_child(label("%s\n%s" % [Story.node_date(world),str(chapter.title)],24,true))
+	# Chapter Header
+	var header_bar := HBoxContainer.new()
+	header_bar.add_theme_constant_override("separation", 8)
+	left.add_child(header_bar)
+
+	var date_badge := PanelContainer.new()
+	date_badge.add_theme_stylebox_override("panel", Ui.badge_box())
+	header_bar.add_child(date_badge)
+	var date_lbl := label(Story.node_date(world), 14, true)
+	date_lbl.autowrap_mode = TextServer.AUTOWRAP_OFF
+	date_lbl.add_theme_color_override("font_color", Ui.ON_ACCENT)
+	date_badge.add_child(date_lbl)
+	date_badge.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+
 	var is_project_phase:=str(world.get("storyState",{}).get("phase",""))=="future"
 	var chapter_rows:Array=Catalog.playable_future_plans(str(world.get("cityId",""))) if is_project_phase else Story.config(world).get("chapters",[])
 	var chapter_position:=0
 	for chapter_index in range(chapter_rows.size()):
 		if str(chapter_rows[chapter_index].get("id",""))==str(chapter.get("id","")):chapter_position=chapter_index+1;break
-	if chapter_position>0:left.add_child(label(("截止日后项目建设 %d / %d" if is_project_phase else "历史里程碑 %d / %d · 截止2026-10-01") % [chapter_position,chapter_rows.size()],15,true))
+	if chapter_position>0:
+		var pos_lbl := label(("远期规划建设 %d / %d" if is_project_phase else "历史年表 · 第 %d / %d 篇") % [chapter_position,chapter_rows.size()], 13, true)
+		pos_lbl.autowrap_mode = TextServer.AUTOWRAP_OFF
+		pos_lbl.add_theme_color_override("font_color", Ui.MUTED)
+		header_bar.add_child(pos_lbl)
+
+	var title_lbl := label(str(chapter.title), 22, true)
+	# A chapter title is a display line. Smart wrapping measured the CJK run at
+	# the minimum width and reported 285px for a single line.
+	title_lbl.autowrap_mode = TextServer.AUTOWRAP_OFF
+	title_lbl.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	title_lbl.custom_minimum_size.x = 0
+	left.add_child(title_lbl)
+
 	var milestone_interval:Dictionary=CampaignSystem.milestone_interval(str(world.get("cityId","")),str(chapter.get("id","")))
 	if not milestone_interval.is_empty():
 		var interval_start:=str(milestone_interval.get("periodStartExclusive",""))
 		var interval_end:=str(milestone_interval.get("periodEndInclusive",chapter.get("date","")))
-		left.add_child(label("本章建设区间：%s—%s" % [interval_start if not interval_start.is_empty() else "历史起点",interval_end],15,true))
+		var interval_lbl := label("工程纪期：%s 至 %s" % [interval_start if not interval_start.is_empty() else "初始",interval_end], 13, true)
+		interval_lbl.add_theme_color_override("font_color", Ui.MUTED)
+		left.add_child(interval_lbl)
+
 	var story:Dictionary=chapter.get("story",{})
 	var stage:=str(world.storyState.get("stage","intro"))
 	if stage=="intro":
-		left.add_child(label("历史节点" if bool(chapter.get("eventOnly",false)) else "本期建设",18,true));left.add_child(label(str(story.get("opening",chapter.get("eventText",""))),18));left.add_child(label(str(story.get("purpose","按目标站区和站序完成本章建设。")),16))
+		var quote := quote_card(left)
+		quote.add_child(label("城市史志档案" if bool(chapter.get("eventOnly",false)) else "本期史志背景", 16, true))
+		var intro_opening := str(story.get("opening",chapter.get("eventText",""))).strip_edges()
+		var intro_purpose := str(story.get("purpose","")).strip_edges()
+		if not intro_opening.is_empty():
+			quote.add_child(label(intro_opening, 15))
+		if not intro_purpose.is_empty() and intro_purpose != intro_opening:
+			var intro_p_lbl := label(intro_purpose, 14)
+			intro_p_lbl.add_theme_color_override("font_color", Ui.MUTED)
+			quote.add_child(intro_p_lbl)
 		if is_project_phase:
-			left.add_child(label("项目状态：%s。完成后记录为规划建设成果，不计作已开通线路。" % str(chapter.get("status","截止日后建设")),15,true))
-			left.add_child(label(str(chapter.get("description","按截止日后的项目范围建设本期目标。")),15))
-			_public_plan_reference(left,chapter)
+			var prj := card_box(left)
+			prj.add_child(label("工程阶段：%s · 完工后记入远期线网成果。" % str(chapter.get("status","规划建设")), 15, true))
+			prj.add_child(label(str(chapter.get("description","按公布规划实施本期建设。")), 15))
+			_public_plan_reference(prj,chapter)
 		if bool(chapter.get("eventOnly",false)):
-			left.add_child(label("此节点没有可核实的新增站段，不会要求你铺设虚构线路。",15))
-			_decision_card(left,chapter)
+			var event_card := card_box(left)
+			event_card.add_child(label("此节点为重大历史规划档案，研读史志文献后即可继续推进年表。", 15))
+			_decision_card(event_card,chapter)
 			var run:=Story.historical_run_length(world)
-			if run>1:left.add_child(button("连续确认这 %d 个资料节点" % run,_skip_historical_run))
-		begin_button=button("查看并确认历史节点" if bool(chapter.get("eventOnly",false)) else "展开本章蓝图",_begin_chapter);left.add_child(begin_button)
+			if run>1:event_card.add_child(button("连续归档 %d 处前期历史文献" % run,_skip_historical_run))
+		var proposal_open:=_proposal_offered()
+		if proposal_open:_proposal_panel(left)
+		begin_button=button("查阅历史档案" if bool(chapter.get("eventOnly",false)) else ("提交规划预案" if proposal_open else "开启本期工程"),_begin_chapter)
+		left.add_child(begin_button)
+	elif stage==ProposalSession.STAGE_PROPOSAL:
+		var quote := quote_card(left)
+		quote.add_child(label("本期建设", 16, true))
+		quote.add_child(label("先按你的想法勾勒线路走向，提交后再来看看当年的真实方案。", 15))
+		_proposal_panel(left)
 	elif stage=="outcome":
-		left.add_child(label("历史节点已确认",20,true));left.add_child(label(str(story.get("outcome",chapter.get("eventText",""))),18))
+		var quote := quote_card(left)
+		quote.add_child(label("本章已载入城市发展史", 18, true))
+		quote.add_child(label(str(story.get("outcome",chapter.get("eventText",""))), 16))
 		var changes:=Story.chapter_changes(world)
 		if changes.is_empty():
-			left.add_child(label("本章路网变化正在整理；历史节点已保存。",16))
+			var card := card_box(left)
+			card.add_child(label("本章历史记录已妥善归档。", 15))
 		else:
-			left.add_child(label("本章变化",20,true))
-			left.add_child(label("新增车站：%s" % ("、".join(changes.addedStations) if not changes.addedStations.is_empty() else "无；复用既有站点 %s" % ("、".join(changes.reusedStations) if not changes.reusedStations.is_empty() else "无")),16))
-			left.add_child(label("新增轨道 %d 段 · 约 %.1f 公里" % [int(changes.addedTrackSections),float(changes.addedLengthM)/1000.0],16))
+			var res_card := card_box(left)
+			res_card.add_child(label("本期建设成果", 18, true))
+			res_card.add_child(label("新增车站：%s" % ("、".join(changes.addedStations) if not changes.addedStations.is_empty() else "无（复用既有站点 %s）" % ("、".join(changes.reusedStations) if not changes.reusedStations.is_empty() else "无")), 15))
+			res_card.add_child(label("新铺轨道 %d 段 · 约 %.1f 公里" % [int(changes.addedTrackSections),float(changes.addedLengthM)/1000.0], 15))
 			for pair in changes.focusPairs:
-				var relation:="未形成连续线路" if not bool(pair.connected) else "同线直达" if int(pair.transfers)==0 else "最少换乘 %d 次" % int(pair.transfers)
-				left.add_child(label("%s → %s：%s" % [str(pair.from),str(pair.to),relation],16))
-			if not changes.newInterchanges.is_empty():left.add_child(label("新形成换乘：%s" % "、".join(changes.newInterchanges),16))
-			if not changes.newRoutes.is_empty():left.add_child(label("本期线路：%s" % "、".join(changes.newRoutes),16))
-			if not changes.serviceChanges.is_empty():left.add_child(label("历史服务阶段：%s" % "；".join(changes.serviceChanges),16))
-			if not changes.nextTargets.is_empty():left.add_child(label("后续接口：%s" % "、".join(changes.nextTargets),16))
-		left.add_child(button("返回本章现状" if outcome_comparison else "对照本章建设前",func():
+				var relation:="尚未连通" if not bool(pair.connected) else "同线直达" if int(pair.transfers)==0 else "需换乘 %d 次" % int(pair.transfers)
+				res_card.add_child(label("%s → %s：%s" % [str(pair.from),str(pair.to),relation], 15))
+			if not changes.newInterchanges.is_empty():res_card.add_child(label("新增换乘枢纽：%s" % "、".join(changes.newInterchanges), 15))
+			if not changes.newRoutes.is_empty():res_card.add_child(label("通车线路：%s" % "、".join(changes.newRoutes), 15))
+			if not changes.serviceChanges.is_empty():res_card.add_child(label("运营阶段变化：%s" % "；".join(changes.serviceChanges), 15))
+			if not changes.nextTargets.is_empty():res_card.add_child(label("后续延伸方向：%s" % "、".join(changes.nextTargets), 15))
+		var actions_card := card_box(left)
+		actions_card.add_child(button("返回本章现状" if outcome_comparison else "对比本章动工前",func():
 			outcome_comparison=not outcome_comparison
 			map_view.chapter_baseline_overlay=Story.chapter_baseline_world(world) if outcome_comparison else {}
 			map_view.requested_redraw();_left()))
-		left.add_child(button("保存纪念图 PNG",_save_commemorative_image))
-		left.add_child(button("线路图视图",_open_schematic))
-		left.add_child(button("观看发展史／导出视频",_open_history_player))
-		left.add_child(label("列车只作开通展示；车型、站体尺寸及未核验工程参数均为游戏示意。",15))
-		left.add_child(button("继续下一章",_next));left.add_child(button("暂停／继续开通展示",func():display_paused=not display_paused))
+		actions_card.add_child(button("保存纪念图 PNG",_save_commemorative_image))
+		actions_card.add_child(button("拓扑管线图",_open_schematic))
+		actions_card.add_child(button("线网演进史 · 回放与导出",_open_history_player))
+		actions_card.add_child(label("新线已正式交付通车，地图上正在重现当年的行车动态。", 14))
+		actions_card.add_child(button("推进城市年表 · 下一章",_next))
+		actions_card.add_child(button("暂停 / 继续列车演示",func():display_paused=not display_paused))
 	else:
-		var versions:Array=story.get("planVersions",[])
-		left.add_child(label(("历史资料：" if bool(chapter.get("eventOnly",false)) else "为什么建设：")+str(story.get("purpose","复现本期历史建设。")),15))
+		var quote := quote_card(left)
+		var narrative_text := str(story.get("opening", "")).strip_edges()
+		var purpose_text := str(story.get("purpose", chapter.get("eventText", ""))).strip_edges()
+		if narrative_text.is_empty(): narrative_text = purpose_text
+		if not narrative_text.is_empty():
+			quote.add_child(label(narrative_text, 14))
+		if not bool(chapter.get("eventOnly", false)):
+			var action_desc := Story.current_action(world)
+			if not action_desc.is_empty():
+				var action_lbl := label("● 实施重点 · " + action_desc, 13, true)
+				action_lbl.add_theme_color_override("font_color", Ui.ACCENT)
+				quote.add_child(action_lbl)
+
 		if bool(chapter.get("eventOnly",false)):
-			left.add_child(label("资料节点 · 无新增建设任务",20,true))
-			if not str(chapter.get("source","" )).is_empty():left.add_child(button("查看本节点来源",func():OS.shell_open(str(chapter.get("source","")))))
-			left.add_child(button("确认并继续时间线",_check))
+			var ev_card := card_box(left)
+			var ev_title := label("重大历史档案 · 本期无土建施工", 18, true)
+			ev_title.autowrap_mode=TextServer.AUTOWRAP_OFF
+			ev_title.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+			ev_title.custom_minimum_size.x=0
+			ev_card.add_child(ev_title)
+			# One lead action; the source link is a quiet secondary so the card
+			# does not present two equal primary buttons.
+			var load_btn := button("载入城市史志",_check)
+			load_btn.add_theme_stylebox_override("normal",Ui._box(Ui.ACCENT,Ui.ACCENT,4))
+			load_btn.add_theme_stylebox_override("hover",Ui._box(Ui.ACCENT_HOVER,Ui.ACCENT,4))
+			load_btn.add_theme_color_override("font_color",Ui.ON_ACCENT)
+			load_btn.add_theme_color_override("font_hover_color",Ui.ON_ACCENT)
+			ev_card.add_child(load_btn)
+			if not str(chapter.get("source","" )).is_empty():
+				var src_btn := button("查阅文献档案出处",func():OS.shell_open(str(chapter.get("source",""))))
+				src_btn.custom_minimum_size.y=38*ui_scale
+				src_btn.add_theme_font_size_override("font_size",roundi(16*ui_scale))
+				src_btn.add_theme_color_override("font_color",Ui.MUTED)
+				src_btn.add_theme_color_override("font_hover_color",Ui.ACCENT)
+				src_btn.add_theme_stylebox_override("normal",Ui.quiet_link_box())
+				src_btn.add_theme_stylebox_override("hover",Ui.quiet_link_box(true))
+				ev_card.add_child(src_btn)
+
+		var versions:Array=story.get("planVersions",[])
 		if not versions.is_empty():
+			var rev_card := card_box(left)
 			var index:=clampi(int(world.storyPlan.get("planIndex",0)),0,versions.size()-1)
-			left.add_child(label(str(versions[index].get("title","方案")),20,true));left.add_child(label(str(versions[index].get("description","")),16))
+			rev_card.add_child(label(str(versions[index].get("title","方案")), 16, true))
+			rev_card.add_child(label(str(versions[index].get("description","")), 14))
 			if not Story.plan_is_final(world):
-				left.add_child(label("尚未实施的历史草案；采用修订方案后再建设最终范围。",16))
-				revision_button=button("对比并采用下一版方案",_revise);left.add_child(revision_button)
-		if not bool(chapter.get("eventOnly",false)):
-			left.add_child(label("现在要做："+Story.current_action(world),18,true))
-			left.add_child(label("本章操作："+_operation_label(chapter),16,true))
-			left.add_child(label(str(chapter.get("operationGuide","按目标站区、站序与参考走廊复现本期范围。")),15))
-		var chapter_groups:Array=Story.groups(world,true)
-		if chapter_groups.size()>1:
-			var selected_task:=_active_task_id()
-			var task_progress:Dictionary=world.get("storyState",{}).get("chapterTaskProgress",{}).get(str(chapter.get("id","")),{}).get("tasks",{})
-			left.add_child(label("本章建设任务 · %d 项" % chapter_groups.size(),18,true))
+				rev_card.add_child(label("前期规划方案研讨中，采纳实施定案后动工。", 13))
+				revision_button=button("采纳本期实施定案" if index+1==versions.size()-1 else "对比下一轮规划调整",_revise)
+				rev_card.add_child(revision_button)
+
+		# Unified Construction Execution Card
+		var build_card := card_box(left)
+		var chapter_groups:Array = Story.groups(world,true)
+		var selected_task := _active_task_id()
+		var task_progress:Dictionary = world.get("storyState",{}).get("chapterTaskProgress",{}).get(str(chapter.get("id","")),{}).get("tasks",{})
+
+		if chapter_groups.size() > 1:
+			build_card.add_child(label("在建线路工程 · 共 %d 条" % chapter_groups.size(), 14, true))
+			var line_row := HBoxContainer.new()
+			line_row.add_theme_constant_override("separation", 6)
+			build_card.add_child(line_row)
 			for group_index in range(chapter_groups.size()):
-				var task_group:Dictionary=chapter_groups[group_index]
-				var task_id:=Story.task_id(chapter,task_group,group_index)
-				var task_targets:=Story.targets(world,true,task_id)
-				var task_built:=task_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
-				var task_name:=str(task_group.get("name",task_group.get("historicalLineId","本期线路")))
-				var task_confirmed:=str(task_progress.get(task_id,{}).get("status",""))=="confirmed"
-				var task_state:="已确认" if task_confirmed else "站体 %d/%d" % [task_built,task_targets.size()]
-				if task_targets.size()>0 and task_built==task_targets.size():task_state="站体已就位 · 待核对区间"
-				if Engineering.is_group(task_group):task_state="轨道接口工程 · 待检查"
-				if task_confirmed:task_state="已确认"
-				left.add_child(button(("当前 · " if task_id==selected_task else "")+task_name+"  ·  "+task_state,_select_chapter_task.bind(task_id)))
-				if task_id==selected_task and not str(task_group.get("constructionScopeNote","")).is_empty():left.add_child(label(str(task_group.get("constructionScopeNote","")),15))
-			if not selected_task.is_empty():
-				left.add_child(button("检查并确认当前建设任务",_confirm_active_task))
-				left.add_child(label("每项任务单独确认；确认一条线路不会替本章其他线路或历史事件盖章。",15))
-		for transition_index in range(chapter.get("serviceTransitions",[]).size()):
-			var transition:Dictionary=chapter.serviceTransitions[transition_index]
-			var proposal:=_service_transition_proposal(transition,transition_index)
-			var transition_confirmed:=not proposal.is_empty() and Story._has_service_range(world,str(proposal.get("id","")))
-			left.add_child(label("本期状态 · %s：%s%s" % [str(transition.get("historicalLineId","线路")),Story.service_status_label(str(transition.get("status","built")))," · 已确认" if transition_confirmed else ""],16,true))
-			if transition_confirmed:
-				left.add_child(label("范围：%s" % "—".join(proposal.get("displayStationNames",[])),15))
-			else:
-				var status_button:=button("预览并确认本期范围",_preview_service_transition.bind(transition,transition_index))
-				status_button.disabled=proposal.is_empty()
-				left.add_child(status_button)
-				if proposal.is_empty():left.add_child(label("先完成该线路的目标站和连续轨道，才能确认历史服务范围。",15))
-		var active_targets:=Story.targets(world,true,_active_task_id())
-		var active_groups:=Story.groups(world,true,_active_task_id())
-		var engineering_only:=not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group))
-		var built:=active_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
-		var transfer_only:=str(chapter.get("operationType",""))=="transfer_connection" and active_groups.is_empty()
-		if transfer_only:
-			var linked:int=chapter.get("requiredTransfers",[]).filter(func(t:Dictionary):return _transfer_connected(t)).size()
-			left.add_child(label("本期换乘联系 %d / %d"%[linked,chapter.get("requiredTransfers",[]).size()],20,true))
-		elif engineering_only:
-			var new_station_count:=0
-			for group in active_groups:new_station_count+=group.get("newStationIds",[]).size()
-			left.add_child(label("轨道接口工程 · 本任务不新增车站" if new_station_count==0 else "工程轨道与 %d 座本线新站体"%new_station_count,18,true))
-		elif not bool(chapter.get("eventOnly",false)):left.add_child(label("当前任务站体 %d / %d" % [built,active_targets.size()],20,true))
-		var missing_targets:Array[Dictionary]=active_targets.filter(func(target:Dictionary):return not bool(target.built))
-		if not missing_targets.is_empty():
-			left.add_child(label("尚未建设：",15,true))
-			for missing_target in missing_targets.slice(0,4):
-				left.add_child(label("· %s · %s线站体" % [str(missing_target.get("name","目标站")),str(missing_target.get("historicalLineName",missing_target.get("historicalLineId","本期")))],15))
-			if missing_targets.size()>4:left.add_child(label("另有 %d 座目标站体" % (missing_targets.size()-4),15))
-		elif engineering_only:left.add_child(label("沿本期走廊连接目标站端与工程接口；方形接口不是车站。未纳入本期的界外区间不会自动补齐，完成工程不会生成运营线路。",15))
-		elif transfer_only:left.add_child(label("既有线路和轨道保持原样；通过下面的换乘预览确认联系。",15))
-		elif not bool(chapter.get("eventOnly",false)):left.add_child(label("目标站体已建齐；还需核对连续轨道、本期站序和线路关系。",15))
-		if bool(chapter.get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):left.add_child(label("原有站轨保留：请点击下方「线路整理」，核对分段记录的贯通站序。",18))
-		var transfer_evaluation:Dictionary=Story.evaluate(world) if not chapter.get("requiredTransfers",[]).is_empty() else {}
-		var pending_transfers:Array=chapter.get("requiredTransfers",[]).filter(func(t:Dictionary):return not _transfer_connected(t))
-		if chapter.get("requiredTransfers",[]).size()>3:
-			left.add_child(label("换乘联系：已确认 %d / %d" % [chapter.get("requiredTransfers",[]).size()-pending_transfers.size(),chapter.get("requiredTransfers",[]).size()],16,true))
-			left.add_child(button("查看全部换乘联系",_transfer_list))
-		for transfer in pending_transfers.slice(0,3):
-			var transfer_line_names:=_transfer_line_names(transfer)
-			var transfer_title:=str(transfer.get("name","换乘站"))
-			var transfer_pair:=" ↔ ".join(transfer_line_names)
-			if str(transfer.get("status",""))=="reserved":
-				var passage:bool=str(transfer.get("reservationKind",""))=="pedestrian_passage"
-				left.add_child(label(("规划通道 · " if passage else "预留换乘 · ")+transfer_title,18,true))
-				left.add_child(label(transfer_pair+"；保留独立站体，工程尚未开放，不计为现状站内换乘。",15))
-				if _transfer_connected(transfer):left.add_child(label("已记录规划通道" if passage else "已确认预留接口",16,true))
+				var task_group:Dictionary = chapter_groups[group_index]
+				var task_id := Story.task_id(chapter,task_group,group_index)
+				var task_targets := Story.targets(world,true,task_id)
+				var task_built := task_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
+				var task_name := str(task_group.get("name",task_group.get("historicalLineId","本期线路")))
+				var task_confirmed := str(task_progress.get(task_id,{}).get("status",""))=="confirmed"
+				var task_state := "已验收" if task_confirmed else "%d/%d 站" % [task_built,task_targets.size()]
+				if task_targets.size()>0 and task_built==task_targets.size():task_state="待核区间"
+				if Engineering.is_group(task_group):task_state="接口待验"
+				if task_confirmed:task_state="已验收"
+				var is_curr := (task_id == selected_task)
+				var task_btn := Button.new()
+				task_btn.text = ("%s %s" if not is_curr else "▶ %s %s") % [task_name, task_state]
+				task_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				task_btn.custom_minimum_size.y = 34 * ui_scale
+				task_btn.add_theme_font_size_override("font_size", roundi(13 * ui_scale))
+				task_btn.pressed.connect(_select_chapter_task.bind(task_id))
+				if is_curr:
+					task_btn.add_theme_stylebox_override("normal", Ui.primary_button_box(false))
+					task_btn.add_theme_stylebox_override("hover", Ui.primary_button_box(true))
+					task_btn.add_theme_color_override("font_color", Ui.ON_ACCENT)
+					task_btn.add_theme_font_override("font", strong_face)
 				else:
-					var reservation_button:=button("预览并确认规划通道" if passage else "预览并确认预留接口",_preview_transfer.bind(transfer));reservation_button.disabled=not _transfer_ready(transfer,transfer_evaluation);left.add_child(reservation_button)
-					if reservation_button.disabled:
-						for reason in TransferReservation.errors(world,transfer,Story.groups(world,true)):left.add_child(label(reason,15))
-				continue
-			left.add_child(label("换乘站 · %s" % transfer_title,18,true))
-			left.add_child(label("%d座独立站体：%s" % [transfer.get("stationInstanceIds",[]).size(),transfer_pair],15))
-			if str(transfer.get("transferKind",""))=="out_of_station":left.add_child(label("出闸换乘：按导向经公共区域步行至另一站体，两侧名称与实体保留。",15))
-			left.add_child(label("建立的是站体之间的换乘联系；不会合并站厅，也不会把两条轨道接在一起。",15))
-			if _transfer_connected(transfer):left.add_child(label("已建立换乘联系 · %s" % transfer_pair,16,true))
+					task_btn.add_theme_stylebox_override("normal", Ui.secondary_button_box())
+					task_btn.add_theme_stylebox_override("hover", Ui.secondary_button_hover_box())
+					task_btn.add_theme_color_override("font_color", Ui.INK)
+				line_row.add_child(task_btn)
+			if not selected_task.is_empty():
+				var sel_task_name := "当前线路"
+				for g in chapter_groups:
+					if Story.task_id(chapter, g, chapter_groups.find(g)) == selected_task:
+						sel_task_name = str(g.get("name", sel_task_name))
+						break
+				var confirm_task_btn := button("线路工程验收 · " + sel_task_name, _confirm_active_task)
+				build_card.add_child(confirm_task_btn)
+
+		for transition_index in range(chapter.get("serviceTransitions",[]).size()):
+			var transition:Dictionary = chapter.serviceTransitions[transition_index]
+			var proposal := _service_transition_proposal(transition,transition_index)
+			var transition_confirmed := not proposal.is_empty() and Story._has_service_range(world,str(proposal.get("id","")))
+			build_card.add_child(label("本期状态 · %s：%s%s" % [str(transition.get("historicalLineId","线路")),Story.service_status_label(str(transition.get("status","built")))," · 已确认" if transition_confirmed else ""], 14, true))
+			if transition_confirmed:
+				build_card.add_child(label("范围：%s" % "—".join(proposal.get("displayStationNames",[])), 14))
 			else:
-				var transfer_button:=button("建立换乘关系 · %s" % transfer_pair,_preview_transfer.bind(transfer));transfer_button.disabled=not _transfer_ready(transfer,transfer_evaluation);left.add_child(transfer_button)
-				if transfer_button.disabled:
-					for status_line in _transfer_status_lines(transfer,transfer_evaluation):left.add_child(label(status_line,15))
-					left.add_child(label("两侧都显示“已接入本期线路”后，才能建立换乘关系。",15))
-		if pending_transfers.size()>3:left.add_child(label("另有 %d 组待确认；完成后依次显示，也可从全部列表选择。" % (pending_transfers.size()-3),15))
-		if not bool(chapter.get("eventOnly",false)):check_button=button("检查本章复现",_check);left.add_child(check_button)
-		if not engineering_only and bool(world.storyState.get("learnedTools",false)) and Story.plan_is_final(world):left.add_child(button("连续复现相邻区间",_begin_batch_tracks))
+				var status_button := button("预览并确认本期范围",_preview_service_transition.bind(transition,transition_index))
+				status_button.disabled = proposal.is_empty()
+				build_card.add_child(status_button)
+
+		var active_targets := Story.targets(world,true,_active_task_id())
+		var active_groups := Story.groups(world,true,_active_task_id())
+		var engineering_only := not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group))
+		var built := active_targets.filter(func(target:Dictionary):return bool(target.get("built",false))).size()
+		var transfer_only := str(chapter.get("operationType",""))=="transfer_connection" and active_groups.is_empty()
+
+		if transfer_only:
+			var linked:int = chapter.get("requiredTransfers",[]).filter(func(t:Dictionary):return _transfer_connected(t)).size()
+			build_card.add_child(label("换乘连接 %d / %d"%[linked,chapter.get("requiredTransfers",[]).size()], 16, true))
+		elif engineering_only:
+			var new_station_count := 0
+			for group in active_groups:new_station_count+=group.get("newStationIds",[]).size()
+			build_card.add_child(label("轨道接口工程 · 本任务不新增车站" if new_station_count==0 else "工程轨道与 %d 座本线新站体"%new_station_count, 15, true))
+		elif not bool(chapter.get("eventOnly",false)):
+			build_card.add_child(label("已建车站 %d / %d" % [built,active_targets.size()], 16, true))
+
+		var missing_targets:Array[Dictionary] = active_targets.filter(func(target:Dictionary):return not bool(target.built))
+		if not missing_targets.is_empty():
+			var missing_names: Array[String] = []
+			for m in missing_targets.slice(0, 3): missing_names.append(str(m.get("name", "站")))
+			var m_text := "待建站点：" + "、".join(missing_names)
+			if missing_targets.size() > 3: m_text += " 等 %d 站" % missing_targets.size()
+			var m_lbl := label(m_text, 13)
+			m_lbl.add_theme_color_override("font_color", Ui.MUTED)
+			build_card.add_child(m_lbl)
+
+		var transfer_evaluation:Dictionary = Story.evaluate(world) if not chapter.get("requiredTransfers",[]).is_empty() else {}
+		var pending_transfers:Array = chapter.get("requiredTransfers",[]).filter(func(t:Dictionary):return not _transfer_connected(t))
+		for transfer in pending_transfers.slice(0,2):
+			var transfer_line_names := _transfer_line_names(transfer)
+			var transfer_title := str(transfer.get("name","换乘站"))
+			var transfer_pair := " ↔ ".join(transfer_line_names)
+			if _transfer_connected(transfer):
+				build_card.add_child(label("已打通换乘 · %s (%s)" % [transfer_title, transfer_pair], 14, true))
+			else:
+				var transfer_button := button("打通换乘 · %s" % transfer_title,_preview_transfer.bind(transfer))
+				transfer_button.disabled = not _transfer_ready(transfer,transfer_evaluation)
+				build_card.add_child(transfer_button)
+
+		if bool(chapter.get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):
+			build_card.add_child(label("请点击底部「线路整理」，将分段线路合并为贯通运营线。", 14))
+
 		if not bool(chapter.get("eventOnly",false)):
-			if not engineering_only:left.add_child(button("核对区间走向",_path_picker))
-			if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)):left.add_child(button("预览工程轨道" if engineering_only else "预览辅助完成重复建设",_assist))
-			left.add_child(button("返回本章位置",_locate_chapter))
+			check_button = button("全线工程验收 · 交付通车",_check)
+			build_card.add_child(check_button)
+
+		var helpers := HBoxContainer.new()
+		helpers.add_theme_constant_override("separation", 6)
+		build_card.add_child(helpers)
+		var reset_btn := toolbar_button("⊙ 重置视野", _locate_chapter)
+		reset_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		helpers.add_child(reset_btn)
+		if not engineering_only and bool(world.storyState.get("learnedTools",false)) and Story.plan_is_final(world):
+			var auto_btn := toolbar_button("⚡ 自动铺轨", _begin_batch_tracks)
+			auto_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			helpers.add_child(auto_btn)
+		if not Tutorial.active(world) or bool(world.storyState.get("learnedTools",false)):
+			var assist_btn := toolbar_button("👁 全貌预览", _assist)
+			assist_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			helpers.add_child(assist_btn)
 		if Tutorial.active(world):
-			left.add_child(button("跳过操作引导",func():Tutorial.skip(world);_mark_dirty();spotlight.clear_focus();_refresh()))
-		else:left.add_child(label("需要重学基本操作时，可从菜单进入独立练习。",15))
+			var skip_btn := toolbar_button("跳过教学", func():Tutorial.skip(world);_mark_dirty();spotlight.clear_focus();_refresh())
+			skip_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			helpers.add_child(skip_btn)
 	if world.has("practiceOf"):left.add_child(button("结束练习，返回原进度",_return_from_practice))
-	left.add_child(label("现代地理参考 · 蓝色虚线为近似走廊；灰色虚线为示意。",15))
+	var footer_note := label("底图基于现代街道地理绘制 · 蓝虚线为规划走廊，灰虚线为方向示意。", 13)
+	footer_note.add_theme_color_override("font_color", Ui.MUTED)
+	left.add_child(footer_note)
 
 func _begin_chapter() -> void:
 	guide_map_step=""
+	# A planning chapter opens with a proposal: the player draws before the
+	# published plan is revealed. Construction is still the only thing that
+	# confirms a chapter, so this stage never skips a check.
+	if _proposal_offered():
+		_open_proposal()
+		return
 	world.storyState.stage="build";_mark_dirty();_refresh();_locate_chapter()
+
+## Whether the current chapter offers a proposal the player has not answered.
+func _proposal_offered() -> bool:
+	if str(world.get("storyState",{}).get("stage",""))!="intro":return false
+	var chapter:=Story.chapter(world)
+	if not ProposalSession.eligible(chapter):return false
+	return Story.proposal_for(world,str(chapter.get("id",""))).is_empty()
+
+func _open_proposal() -> void:
+	var chapter:=Story.chapter(world)
+	# The stage is owned by StorySession so a save, a reload and the replay all
+	# agree on whether the player is still drawing.
+	var opened:=Story.begin_proposal(world,int(world.get("revision",0)))
+	if not bool(opened.get("ok",false)):
+		_message("无法进入提案",str(opened.get("error","请重新检查本章。")))
+		return
+	proposal_chapter_id=str(chapter.get("id",""))
+	proposal_candidates=ProposalSession.candidate_stations(world,chapter)
+	proposal_picked=[]
+	proposal_goal=ProposalSession.goal_text(chapter)
+	_mark_dirty();_refresh()
+
+## The proposal is drawn by tapping published stations in order. Tapping the
+## last station again removes it, so a mistake never needs a restart.
+func _toggle_proposal_station(station_id:String) -> void:
+	if proposal_picked.has(station_id):
+		proposal_picked.erase(station_id)
+	elif proposal_picked.size()==proposal_candidates.size():
+		_message("提案已满","本期公开站序共 %d 站，已经全部选中。" % proposal_candidates.size());return
+	else:
+		proposal_picked.append(station_id)
+	_refresh()
+
+func _submit_proposal() -> void:
+	var chapter:=Story.chapter(world)
+	var candidates:=proposal_candidates.duplicate()
+	var picked:=proposal_picked.duplicate()
+	var result:=Story.submit_proposal(world,picked)
+	if not bool(result.get("ok",false)):
+		_message("提案未提交",str(result.get("error","请至少选择两座车站。")))
+		return
+	proposal_picked=[];proposal_chapter_id="";proposal_candidates=[];proposal_goal=""
+	_mark_dirty();_refresh();_locate_chapter()
+	_show_proposal_result(chapter,candidates,picked)
+
+## The published plan is revealed only after the player has committed to their
+## own. The comparison quotes the record rather than asserting what the player
+## should have drawn.
+func _show_proposal_result(chapter:Dictionary,candidates:Array,picked:Array) -> void:
+	var published:Array=[]
+	var names:Dictionary={}
+	for row in candidates:
+		var id:=str(row.get("id",""))
+		published.append(id)
+		names[id]=str(row.get("name",id))
+	# A proposal stores station ids, so the required interchanges are resolved to
+	# the candidate ids that carry their name. A name the chapter lists but the
+	# published order does not place is left out rather than guessed at.
+	var transfer_ids:Array=[]
+	for item in chapter.get("requiredTransfers",[]):
+		var name:=str(item.get("name",""))
+		if name.is_empty():continue
+		for row in candidates:
+			if str(row.get("name",""))!=name:continue
+			var id:=str(row.get("id",""))
+			if not transfer_ids.has(id):transfer_ids.append(id)
+	var result:=ProposalScoring.compare_order(picked,published,transfer_ids)
+	var body:="%d 分 · %s\n\n站点覆盖 %d / %d\n站序一致度 %d%%\n换乘命中 %d / %d\n\n%s" % [
+		int(result.score),str(result.grade),
+		int(result.served),int(result.total),
+		roundi(float(result.orderRatio)*100.0),
+		(result.transfersHit as Array).size(),transfer_ids.size(),
+		str(result.notice)]
+	var missed:Array=result.missedStationIds
+	if not missed.is_empty():
+		var missed_names:Array=[]
+		for id in missed:
+			missed_names.append(str(names.get(str(id),str(id))))
+		body+="\n\n公开方案设有、你未选的站：%s" % "、".join(missed_names)
+	var ordered:Array=[]
+	for id in published:
+		ordered.append(str(names.get(str(id),str(id))))
+	body+="\n\n公开方案站序：%s" % " → ".join(ordered)
+	body+="\n\n提案只记录你的选择，不改变本章建设范围。现在按蓝图建设，完成后仍要通过全部检查。"
+	_message("公开方案对照",body)
+
+func _skip_proposal() -> void:
+	var result:=Story.skip_proposal(world)
+	if not bool(result.get("ok",false)):
+		_message("未能跳过",str(result.get("error","当前不在提案阶段。")))
+		return
+	proposal_picked=[];proposal_chapter_id="";proposal_candidates=[];proposal_goal=""
+	_mark_dirty();_refresh();_locate_chapter()
 
 func _service_transition_proposal(transition:Dictionary,transition_index:int) -> Dictionary:
 	var expected_id:="service_%s_%s" % [str(Story.chapter(world).get("id","")),str(transition.get("id","%s_%d" % [str(transition.get("historicalLineId","")),transition_index]))]
@@ -1249,23 +1940,23 @@ func _right() -> void:
 	right.add_child(button("收起详情",func():show_right=false;_layout()))
 	if not map_view.draft_station.is_empty():
 		var st:Dictionary=map_view.draft_station
-		right.add_child(label("车站预览",24,true));right.add_child(label(str(st.name),20,true));right.add_child(label("拖动换位置；R旋转；确认后加入本章。",16))
-		var elevation_text:="地下示意深度 %.0f 米" % -float(st.get("depthM",-15))
-		if float(st.get("depthM",-15))>0:elevation_text="高架示意高度 %.0f 米" % float(st.depthM)
-		elif is_zero_approx(float(st.get("depthM",-15))):elevation_text="地面示意站体"
-		_angle(st,true);right.add_child(label("站体 %.0f × %.0f 米 · %s\n尺寸为游戏简化表达。" % [float(st.get("lengthM",119)),float(st.get("widthM",20)),elevation_text],16))
+		right.add_child(label("车站预览",24,true));right.add_child(label(str(st.name),20,true));right.add_child(label("拖动车站可微调位置，按 R 键旋转朝向，合适后点击下方确认。",16))
+		var elevation_text:="地下约 %.0f 米" % -float(st.get("depthM",-15))
+		if float(st.get("depthM",-15))>0:elevation_text="高架约 %.0f 米" % float(st.depthM)
+		elif is_zero_approx(float(st.get("depthM",-15))):elevation_text="地面站体"
+		_angle(st,true);right.add_child(label("站台规模约 %.0f × %.0f 米 · %s" % [float(st.get("lengthM",119)),float(st.get("widthM",20)),elevation_text],16))
 		var details:=CheckButton.new();details.text="建设资料与高级参数";details.button_pressed=advanced_edit;details.toggled.connect(func(value:bool):advanced_edit=value;_right());right.add_child(details)
 		if advanced_edit:right.add_child(label(str(st.get("constructionNote","原始站体尺寸与埋深待核验，当前为游戏示意。")),15))
 		confirm_button=button("确认车站",_commit_station);actions.add_child(confirm_button)
 	elif not map_view.track_end_ref.is_empty():
-		right.add_child(label("复现这一段",24,true));right.add_child(label("%s → %s" % [_ref_name(map_view.track_start_ref),_ref_name(map_view.track_end_ref)],18))
-		right.add_child(label("长度 %.0f 米\n%s" % [float(pending_track.get("lengthM",0)),str(pending_track.get("issue",""))],16))
+		right.add_child(label("铺轨预览",24,true));right.add_child(label("%s → %s" % [_ref_name(map_view.track_start_ref),_ref_name(map_view.track_end_ref)],18))
+		right.add_child(label("区间长度约 %.0f 米\n%s" % [float(pending_track.get("lengthM",0)),str(pending_track.get("issue",""))],16))
 		right.add_child(label(str(pending_track.get("referenceLabel","手工示意连接")),15))
 		if not str(pending_track.get("advisory","")).is_empty():right.add_child(label(str(pending_track.advisory),15))
 		confirm_button=button("确认轨道段",_commit_track);actions.add_child(confirm_button)
 	elif tool=="track" and batch_track_mode:
 		right.add_child(label("连续复现相邻区间",24,true))
-		right.add_child(label("按本章站序点击已经建设的相邻目标站。全部区间共用一次确认与撤销。",16))
+		right.add_child(label("顺着本章站序依次点击已建好的相邻车站，可一次性预览并铺通整条走廊。",16))
 		for index in range(batch_track_targets.size()):
 			var target_name:=_historical_target_name(batch_track_targets[index])
 			right.add_child(label("%d. %s" % [index+1,target_name],16))
@@ -1279,48 +1970,48 @@ func _right() -> void:
 		var batch_valid:=not batch_track_segments.is_empty() and batch_track_segments.all(func(segment:Dictionary):return str(segment.get("issue", "")).is_empty())
 		confirm_button=button("确认全部 %d 段区间" % batch_track_segments.size(),_commit_batch_tracks);confirm_button.disabled=not batch_valid;actions.add_child(confirm_button)
 	elif tool=="station":
-		right.add_child(label("放置车站",24,true));right.add_child(label("点击地图中的历史目标站区，调整朝向后确认。尚未放置预览，不会修改正式路网。",18))
+		right.add_child(label("放置车站",24,true));right.add_child(label("点击地图上的目标圆圈即可放置车站预览，按 R 键可调整站体朝向。",18))
 	elif tool=="track":
-		right.add_child(label("连接轨道",24,true));right.add_child(label("点站端或节点，再点终点。自由端点标为待连接。",18))
+		right.add_child(label("铺设轨道",24,true));right.add_child(label("先点一处车站端点作为起点，再点击下一座相邻车站的端点完成连线。",18))
 		if str(world.get("mode", ""))=="campaign" and bool(world.storyState.get("learnedTools",false)):
 			right.add_child(button("连续复现本章相邻区间",_begin_batch_tracks))
 		var advanced:=CheckButton.new();advanced.text="高级编辑";advanced.button_pressed=advanced_edit;advanced.toggled.connect(func(value:bool):advanced_edit=value;_cancel_drafts();_right());right.add_child(advanced)
 		if advanced_edit or str(world.mode)!="campaign":
 			var continuous:=CheckButton.new();continuous.text="连续铺设至空地";continuous.button_pressed=map_view.continuous_track;continuous.toggled.connect(func(value:bool):map_view.continuous_track=value);right.add_child(continuous)
 			var depth:=SpinBox.new();depth.min_value=5;depth.max_value=60;depth.step=5;depth.value=-map_view.current_depth_m;depth.suffix=" 米深（游戏示意）";depth.value_changed.connect(func(value:float):map_view.current_depth_m=-value);right.add_child(depth)
-		else:right.add_child(label("选择相邻两站，沿本区间参考走廊生成完整预览。接头会适配站位；主体走向保持。",16))
+		else:right.add_child(label("选择相邻两站后，系统会自动沿着参考走廊生成平滑的轨道预览。",16))
 	elif tool=="line":
 		right.add_child(label("线路整理",24,true))
 		if str(world.mode)=="campaign":
-			right.add_child(label("核对分期记录合并后的贯通站序。已有站轨保持，旧分段记录在确认历史节点后归档。",18))
+			right.add_child(label("核对分段线路合并后的完整贯通站序。原有的车站与轨道将悉数保留。",18))
 			for target in Story.targets(world,true):right.add_child(label(str(target.name),16))
 			if bool(Story.chapter(world).get("requiresLineReorganization",false)):confirm_button=button("确认贯通站序",_confirm_line_reorganization);actions.add_child(confirm_button)
 		else:
-			right.add_child(label("依次点击已接轨车站，再确认线路。",18))
+			right.add_child(label("按顺序依次点击已接通轨道的车站，串联成一条新线路。",18))
 			for id in line_stops:right.add_child(label(str(WorldData.find_station(world,id).get("name","车站")),16))
 			confirm_button=button("确认线路",_workshop_line);actions.add_child(confirm_button)
 	elif not evaluation.is_empty():
-		right.add_child(label("本章复现检查",24,true))
+		right.add_child(label("本章建设检查",24,true))
 		var pending_lines:Array=evaluation.get("pendingTasks",[])
 		if bool(evaluation.get("complete",false)) and pending_lines.is_empty():
 			if bool(Story.chapter(world).get("eventOnly",false)):
-				right.add_child(label("本节点的来源与日期已登记；没有新增铺轨目标。",18))
+				right.add_child(label("本章历史背景已确认，可继续推进时间轴。",18))
 			else:
-				right.add_child(label("目标站、站序和连续轨道已符合本章范围。",18))
+				right.add_child(label("目标车站、站序与区间轨道均已核对无误。",18))
 			var facts:=Story.factual_report(world)
 			if not facts.stationOffsets.is_empty():
-				right.add_child(label("站区位置事实（相对现代地理参考，不是工程测量）",16,true))
+				right.add_child(label("站位参考对照",16,true))
 				for fact in facts.stationOffsets.slice(0,5):
-					right.add_child(label("%s：距参考站区中心 %.0f 米；章节容差 %.0f 米" % [str(fact.name),float(fact.distanceM),float(fact.toleranceM)],15))
+					right.add_child(label("%s：距参考中心约 %.0f 米（允许范围 %.0f 米）" % [str(fact.name),float(fact.distanceM),float(fact.toleranceM)],15))
 			if not facts.segments.is_empty():
-				right.add_child(label("区间资料",16,true))
+				right.add_child(label("区间里程一览",16,true))
 				for fact in facts.segments.slice(0,6):
 					var line_text:="· %s · %.2f 公里" % [str(fact.precision),float(fact.lengthM)/1000.0]
-					if fact.has("meanDeviationM"):line_text+=" · 核验线位平均偏差 %.0f 米，最大 %.0f 米" % [float(fact.meanDeviationM),float(fact.maxDeviationM)]
+					if fact.has("meanDeviationM"):line_text+=" · 平均偏差 %.0f 米，最大 %.0f 米" % [float(fact.meanDeviationM),float(fact.maxDeviationM)]
 					right.add_child(label("%s—%s %s" % [str(fact.from),str(fact.to),line_text],15))
 			var current_chapter:=Story.chapter(world)
-			var confirmation_label:="确认历史节点并开通展示" if bool(current_chapter.get("requireOpen",true)) else "确认建成节点（暂不运营）"
-			if bool(current_chapter.get("eventOnly",false)):confirmation_label="确认历史资料节点"
+			var confirmation_label:="确认通车并开启列车演示" if bool(current_chapter.get("requireOpen",true)) else "确认工程建成（暂不载客）"
+			if bool(current_chapter.get("eventOnly",false)):confirmation_label="确认收录此历史节点"
 			confirm_button=button(confirmation_label,_commit_chapter);actions.add_child(confirm_button)
 		else:
 			for issue in evaluation.get("issues",[]):
@@ -1355,9 +2046,11 @@ func _right() -> void:
 		var advanced:=CheckButton.new();advanced.text="高级几何编辑";advanced.button_pressed=advanced_edit;advanced.toggled.connect(func(value:bool):advanced_edit=value;_right());right.add_child(advanced)
 		if advanced_edit:_angle(st,false)
 		right.add_child(button("从A端铺轨",_from_station.bind(str(st.id),"start")));right.add_child(button("从B端铺轨",_from_station.bind(str(st.id),"end")))
-		right.add_child(label("建设形式："+str(st.get("constructionForm","待核验")),15))
-		right.add_child(label(str(st.get("constructionNote","车型、站体及埋深为游戏示意，历史参数待核验。")),15))
-		right.add_child(label("历史身份：%s" % str(st.get("historicalId","自定车站")),15))
+		right.add_child(label("站体结构："+str(st.get("constructionForm","标准地下站")),15))
+		var c_note:=str(st.get("constructionNote",""))
+		if not c_note.is_empty() and not c_note.contains("待核验"):
+			right.add_child(label(c_note,15))
+		right.add_child(label("站点编号：%s" % str(st.get("historicalId","自定义车站")),15))
 		var complex_id:=Catalog.canonical_station_complex(str(world.cityId),str(st.get("stationComplexId","")))
 		if not complex_id.is_empty():
 			right.add_child(label("所属换乘站区：%s" % complex_id,16,true))
@@ -1377,6 +2070,21 @@ func _right() -> void:
 		right.add_child(label("历史服务阶段："+Story.service_status_label(str(route.get("serviceStatus","open" if bool(route.get("open",false)) else "built"))),16))
 		for id in route.get("stationOrder",[]):right.add_child(label(str(WorldData.find_station(world,str(id)).get("name","车站")),16))
 		actions.add_child(button("删除线路记录（保留轨道）",_delete))
+	elif selected_kind=="blueprint":
+		var target:Dictionary={}
+		for candidate in Story.targets(world,true):
+			if str(candidate.get("id",""))==selected_id:target=candidate;break
+		if not target.is_empty():
+			right.add_child(label("历史目标站区",24,true));right.add_child(label("%s · %s" % [str(target.get("historicalLineId","本期线路")),str(target.get("name","目标站"))],20,true))
+			if bool(target.get("built",false)):
+				right.add_child(label("这座车站已经建好，无需重复放置。",16))
+				var existing:=Story.bound_station(world,str(target.get("id","")),str(target.get("stationInstanceId","")))
+				if not existing.is_empty():right.add_child(button("查看已建站体",_select.bind("station",str(existing.id))))
+			elif not Story.plan_is_final(world):
+				right.add_child(label("当前显示的是前期规划比选方案，采纳最终定案后即可动工建设。",16,true));right.add_child(button("采纳本期实施定案",_revise))
+			else:
+				right.add_child(label("可以动工 · 参考站区范围约 %.0f 米（不代表资料测量精度）。" % float(target.get("toleranceM",100)),16))
+				right.add_child(button("按参考位置与朝向放置",func():_tool("station");_click(target.get("latlng",[]),"blueprint",str(target.get("id","")),"")))
 	if not problem.is_empty():actions.add_child(label(problem,15,true))
 	if tool!="select":actions.add_child(button("取消本步",_cancel));actions.add_child(button("结束操作",_tool.bind("select")))
 
@@ -1402,7 +2110,7 @@ func _tool(value:String) -> void:
 	if value in ["station","track","line"] and plan_view_index>=0:
 		plan_view_index=-1;map_view.set_blueprint(Story.blueprint(world,true))
 	if value in ["station","track","line"] and str(world.get("mode",""))=="campaign" and not Story.plan_is_final(world):
-		page="story";show_left=true;show_right=false;problem="当前显示的是未实施历史草案。请先点击左侧“对比并采用下一版方案”，之后才能建设。";_refresh();return
+		page="story";show_left=true;show_right=false;problem="当前显示的是未实施规划草案。请先在左侧采纳本期实施定案，之后即可动工建设。";_refresh();return
 	if value!="select":selected_id="";selected_kind="";map_view.selected_id=""
 	_cancel_drafts();tool=value;map_view.tool=value;line_stops.clear();evaluation={};problem="";show_right=value!="select"
 	if show_right and _narrow():show_left=false
@@ -1505,7 +2213,7 @@ func _click(ll:Array,kind:String,id:String,side:String,t:float=-1) -> void:
 	elif kind=="blueprint":
 		selected_kind="blueprint";selected_id=id;map_view.selected_id=id;map_view.selected_type="blueprint";show_right=true;evaluation={}
 		if _narrow():show_left=false
-		_trigger_beat("select",[id]);problem="已选中历史目标站区。右侧显示能否建设及下一步。";_right();_instruction();_layout()
+		_trigger_beat("select",[id]);problem="已选中目标站区，可在右侧查看站点信息并直接放置车站。";_right();_instruction();_layout()
 	else:show_left=false;show_right=false;selected_id="";selected_kind="";map_view.selected_id="";map_view.requested_redraw();_layout()
 
 func _ref(ll:Array,kind:String,id:String,side:String,t:float=-1) -> Dictionary:
@@ -1920,21 +2628,47 @@ func _locate_chapter() -> void:
 		if (hi-lo).x<=usable.x and (hi-lo).y<=usable.y:
 			map_view.center_on(Geo.unproject((lo+hi)*0.5-Vector2((left_width-right_width)*0.5,0),z),z);return
 
+## The active tool reads as a pressed segment: station-green fill, white label.
+## A bare underline was too quiet to answer "which tool am I in".
+func _mark_tools() -> void:
+	var pairs:=[[select_button,"select"],[station_button,"station"],[track_button,"track"],[line_button,"line"]]
+	for pair in pairs:
+		var b=pair[0] as Button
+		if not is_instance_valid(b):continue
+		var active:=tool==str(pair[1])
+		if active:
+			b.add_theme_stylebox_override("normal",Ui.segment_active_box())
+			b.add_theme_stylebox_override("hover",Ui.segment_active_box())
+			b.add_theme_color_override("font_color",Ui.ON_ACCENT)
+			b.add_theme_color_override("font_hover_color",Ui.ON_ACCENT)
+			b.add_theme_font_override("font",strong_face)
+		else:
+			b.add_theme_stylebox_override("normal",Ui.segment_idle_box(false))
+			b.add_theme_stylebox_override("hover",Ui.segment_idle_box(true))
+			b.add_theme_color_override("font_color",Ui.INK)
+			b.add_theme_color_override("font_hover_color",Ui.ACCENT)
+			b.add_theme_font_override("font",face)
+
 func _instruction() -> void:
+	_mark_tools()
 	if not problem.is_empty():hint.text=problem
+	elif str(world.get("storyState",{}).get("stage",""))==ProposalSession.STAGE_PROPOSAL:
+		# The map is not being edited yet; say so rather than offering the
+		# ordinary selection hint for a page that has nothing to select.
+		hint.text="提案：顺着你的设想在左侧按顺序点选车站，选够两站后提交对比，也可以直接跳过进入建设。"
 	elif tool=="station":
 		var next_target:Dictionary={}
 		for item in Story.targets(world,true,_active_task_id()):
 			if not bool(item.get("built",false)):next_target=item;break
-		hint.text="站点：下一目标「%s」· 点击目标圈预览，调整后确认。R旋转。" % str(next_target.get("name","点击目标站区"))
+		hint.text="建站：下一站「%s」 · 点击地图上的目标圆圈放置预览，按 R 键可旋转朝向。" % str(next_target.get("name","点击目标站区"))
 	elif tool=="track" and batch_track_mode:
 		var selected_names:Array[String]=[]
 		for id in batch_track_targets:
 			var target:=Story.targets(world,true).filter(func(item:Dictionary):return str(item.id)==id)
 			if not target.is_empty():selected_names.append(str(target[0].name))
-		hint.text="连续复现：%s · 点击下一座相邻目标站；确认会一次提交全部区间。" % (" → ".join(selected_names) if not selected_names.is_empty() else "请选择起始目标站")
-	elif tool=="track":hint.text="轨道：%s → 请选择终点；自由端点待连接。" % _ref_name(map_view.track_start_ref) if not map_view.track_start_ref.is_empty() else "轨道：点击站端或节点选择起点。"
-	else:hint.text="点击选择；拖动空白处平移，滚轮缩放。Esc取消，Ctrl+Z撤销。"
+		hint.text="连续复现：%s · 依次点击下一座相邻车站，确认后将一次性铺通整段区间。" % (" → ".join(selected_names) if not selected_names.is_empty() else "请点击起始目标站")
+	elif tool=="track":hint.text="铺轨：已选起点 %s → 请点击下一处站端或节点完成连接。" % _ref_name(map_view.track_start_ref) if not map_view.track_start_ref.is_empty() else "铺轨：点击车站两端接口或轨道节点，开始连接相邻车站。"
+	else:hint.text="左键选择 · 拖拽平移 · 滚轮缩放 · Esc 取消，Ctrl+Z 撤销"
 
 func _focus_tutorial() -> void:
 	for child in get_children():
@@ -1942,8 +2676,11 @@ func _focus_tutorial() -> void:
 	if is_instance_valid(save_overlay):spotlight.clear_focus();return
 	if not Tutorial.active(world):spotlight.clear_focus();return
 	var target:Control=null;var rect:=Rect2();var text:=""
-	if str(world.storyState.get("stage","intro"))=="intro":target=begin_button;text="展开本章蓝图"
-	elif not Story.plan_is_final(world):target=revision_button;text="查看并采用下一版方案"
+	# A proposal page has no build target to point at; the guide stays quiet
+	# rather than focusing a button this page does not render.
+	if str(world.storyState.get("stage",""))==ProposalSession.STAGE_PROPOSAL:spotlight.clear_focus();return
+	if str(world.storyState.get("stage","intro"))=="intro":target=begin_button;text="开启本期工程"
+	elif not Story.plan_is_final(world):target=revision_button;text="采纳本期实施定案"
 	elif is_instance_valid(confirm_button) and (not map_view.draft_station.is_empty() or not map_view.track_end_ref.is_empty()):target=confirm_button;text="点击这里确认本次建设"
 	else:
 		var missing:Dictionary={}
@@ -2337,12 +3074,12 @@ func _export_schematic(layout:Dictionary) -> void:
 			if not seen.has(key):legend.append(stroke);seen[key]=true
 		var viewport:=SubViewport.new();viewport.size=Vector2i(int(layout.bounds.x)+380,maxi(int(layout.bounds.y)+96,legend.size()*44+120));viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS;add_child(viewport)
 		var view:=preload("res://scripts/schematic_view.gd").new();view.layout=layout;view.font=face;view.size=Vector2(viewport.size);viewport.add_child(view)
-		var title:=Label.new();title.theme=theme;title.add_theme_color_override("font_color",Color("#223745"));title.position=Vector2(32,16);title.text=caption;viewport.add_child(title)
+		var title:=Label.new();title.theme=theme;title.add_theme_color_override("font_color",Ui.INK_ON_LIGHT);title.position=Vector2(32,16);title.text=caption;viewport.add_child(title)
 		for index in range(legend.size()):
 			var stroke:Dictionary=legend[index]
 			var swatch:=ColorRect.new();swatch.color=Color(str(stroke.color));swatch.position=Vector2(layout.bounds.x+24,80+index*44);swatch.size=Vector2(20,6);viewport.add_child(swatch)
-			var text:=Label.new();text.theme=theme;text.add_theme_color_override("font_color",Color("#223745"));text.add_theme_font_size_override("font_size",15);text.position=Vector2(layout.bounds.x+52,68+index*44);text.size=Vector2(310,44);text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;text.text=str(stroke.name)+("（规划）" if stroke.get("planned",false) else "");viewport.add_child(text)
-		var footer:=Label.new();footer.theme=theme;footer.add_theme_color_override("font_color",Color("#223745"));footer.position=Vector2(32,viewport.size.y-48);footer.text="玩家复现 · 虚线线路为规划建设，细虚线为换乘 · 现代地理参考 · © OpenStreetMap contributors";viewport.add_child(footer)
+			var text:=Label.new();text.theme=theme;text.add_theme_color_override("font_color",Ui.INK_ON_LIGHT);text.add_theme_font_size_override("font_size",15);text.position=Vector2(layout.bounds.x+52,68+index*44);text.size=Vector2(310,44);text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;text.text=str(stroke.name)+("（规划）" if stroke.get("planned",false) else "");viewport.add_child(text)
+		var footer:=Label.new();footer.theme=theme;footer.add_theme_color_override("font_color",Ui.INK_ON_LIGHT);footer.position=Vector2(32,viewport.size.y-48);footer.text="玩家复现 · 虚线线路为规划建设，细虚线为换乘 · 现代地理参考 · © OpenStreetMap contributors";viewport.add_child(footer)
 		await RenderingServer.frame_post_draw
 		var error:=preload("res://scripts/media_export_job.gd").save_png_atomic(viewport.get_texture().get_image(),path);viewport.queue_free()
 		_message("线路图已保存" if error==OK else "线路图保存失败",path if error==OK else error_string(error)))
@@ -2376,12 +3113,15 @@ func _text_prompt(title:String,initial:String,callback:Callable) -> void:
 func _open_sheet(title:String) -> Dictionary:
 	if is_instance_valid(save_overlay):save_overlay.queue_free()
 	var d:=Control.new();d.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(d);save_overlay=d
-	var shade:=ColorRect.new();shade.color=Color(0,0,0,0.35);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);d.add_child(shade)
-	save_panel=PanelContainer.new();d.add_child(save_panel)
-	save_panel.size=Vector2(minf(1050,size.x-32),minf(740,size.y-32));save_panel.position=(size-save_panel.size)*0.5
-	var viewport_box:=Control.new();viewport_box.clip_contents=true;save_panel.add_child(viewport_box)
-	var body:=VBoxContainer.new();body.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);viewport_box.add_child(body)
-	var heading:=HFlowContainer.new();body.add_child(heading);heading.add_child(label(title,24,true));heading.add_child(button("关闭",d.queue_free))
+	var shade:=ColorRect.new();shade.color=Color(0.06,0.10,0.08,0.45);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);d.add_child(shade)
+	save_panel=PanelContainer.new();save_panel.add_theme_stylebox_override("panel",Ui.menu_card_box());d.add_child(save_panel)
+	save_panel.size=Vector2(minf(1020,size.x-32),minf(720,size.y-32));save_panel.position=(size-save_panel.size)*0.5
+	var viewport_box:=Control.new();viewport_box.clip_contents=true;viewport_box.size_flags_horizontal=Control.SIZE_EXPAND_FILL;viewport_box.size_flags_vertical=Control.SIZE_EXPAND_FILL;save_panel.add_child(viewport_box)
+	var body:=VBoxContainer.new();body.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);body.add_theme_constant_override("separation",14);viewport_box.add_child(body)
+	var heading:=HBoxContainer.new();heading.add_theme_constant_override("separation",12);body.add_child(heading)
+	var title_lbl:=label(title,24,true);title_lbl.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(title_lbl)
+	heading.add_child(button("关闭",d.queue_free))
+	body.add_child(HSeparator.new())
 	_layout()
 	return {"overlay":d,"body":body}
 
@@ -2393,12 +3133,17 @@ func _saves() -> void:
 	var summary:=label("",15);body.add_child(summary)
 	var refresh:=func(_query:String=""):
 		clear(list)
-		var entries:=SaveManager.list_saves();var total:=0
-		for row in entries:
+		# This release ships one city. Saves from other cities are left on disk
+		# untouched but are not offered here, so the game never presents a city
+		# the player cannot enter.
+		var entries:Array=[];var total:=0
+		for row in SaveManager.list_saves():
+			if not WorldData.is_published(str(row.get("cityId",row.get("city","")))):continue
+			entries.append(row)
 			total+=int(row.bytes)
 			if not search.text.is_empty() and not (str(row.title)+str(row.city)+str(row.kind)).to_lower().contains(search.text.to_lower()):continue
 			_save_row(row,list,d)
-		summary.text="共%d份 · %.1f MB；新自动保存覆盖单一进度槽，旧版自动历史可逐份删除。" % [entries.size(),float(total)/1048576.0]
+		summary.text="共 %d 份存档（%.1f MB） · 自动保存会实时更新当前进度，历史备份也可随时清理。" % [entries.size(),float(total)/1048576.0]
 	search.text_changed.connect(refresh);refresh.call()
 	var row:=HFlowContainer.new();body.add_child(row)
 	if not world.is_empty():
@@ -2432,7 +3177,7 @@ func _save_row(entry:Dictionary,list:VBoxContainer,dialog:Control) -> void:
 	if str(entry.kind) in ["自动进度","自动历史","旧版自动历史原件","手动存档"]:
 		var deletion:=button("删除",_delete_save.bind(entry,dialog));buttons.add_child(deletion)
 		if str(entry.kind)=="自动进度" and str(entry.gameId)==str(world.get("gameId","")):
-			deletion.disabled=true;content.add_child(label("正在使用：请先返回主菜单，再删除此自动进度。",15))
+			deletion.disabled=true;content.add_child(label("当前正在游玩此进度，如需删除请先返回主菜单。",15))
 
 func _delete_save(entry:Dictionary,dialog:Control) -> void:
 	var scope:="仅删除这一份文件。"
@@ -2495,6 +3240,7 @@ func _settings() -> void:
 func _rescale() -> void:
 	var current:=world
 	if is_instance_valid(menu):remove_child(menu);menu.queue_free();menu=null
+	if is_instance_valid(menu_bg):remove_child(menu_bg);menu_bg.queue_free();menu_bg=null
 	remove_child(frame);frame.queue_free();remove_child(spotlight);spotlight.queue_free();_build()
 	if current.is_empty():_show_menu()
 	else:_enter(current)
@@ -2517,22 +3263,7 @@ func _unhandled_key_input(event:InputEvent) -> void:
 	elif (event.ctrl_pressed or event.meta_pressed) and event.keycode==KEY_Y:_undo(true)
 	elif event.keycode==KEY_R:
 		if not map_view.draft_station.is_empty():map_view.draft_station.heading=fposmod(float(map_view.draft_station.heading)+15,360);_station_changed();_right()
-	elif selected_kind=="blueprint":
-		var target:Dictionary={}
-		for candidate in Story.targets(world,true):
-			if str(candidate.get("id",""))==selected_id:target=candidate;break
-		if target.is_empty():return
-		right.add_child(label("历史目标站区",24,true));right.add_child(label("%s · %s" % [str(target.get("historicalLineId","本期线路")),str(target.get("name","目标站"))],20,true))
-		if bool(target.get("built",false)):
-			right.add_child(label("已建设；该目标不会重复放置。",16))
-			var existing:=Story.bound_station(world,str(target.get("id","")),str(target.get("stationInstanceId","")))
-			if not existing.is_empty():right.add_child(button("查看已建站体",_select.bind("station",str(existing.id))))
-		elif not Story.plan_is_final(world):
-			right.add_child(label("当前显示的是未实施历史草案，尚不能建设。",16,true));right.add_child(button("对比并采用下一版方案",_revise))
-		else:
-			right.add_child(label("可建设 · 参考站区容差 %.0f 米；该容差不代表资料测量精度。" % float(target.get("toleranceM",100)),16))
-			right.add_child(button("按参考位置与朝向放置",func():_tool("station");_click(target.get("latlng",[]),"blueprint",str(target.get("id","")),"")))
-	elif selected_kind=="station":
+		elif selected_kind=="station":
 			var candidate:=WorldData.find_station(world,selected_id).duplicate(true);candidate.heading=fposmod(float(candidate.get("heading",90))+15,360);_apply_station(candidate)
 	elif event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN] and tool in ["station","track"]:
 		map_view.current_depth_m=clampf(map_view.current_depth_m+(5 if event.keycode==KEY_PAGEUP else -5),-60,-5)
@@ -2542,9 +3273,9 @@ func _unhandled_key_input(event:InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 func usable_map_rect() -> Rect2:
-	var left_edge:float=left_panel.size.x+24 if left_panel.visible else 12.0
-	var right_edge:float=right_panel.size.x+24 if right_panel.visible else 12.0
-	return Rect2(Vector2(left_edge,12),Vector2(maxf(240,map_area.size.x-left_edge-right_edge),maxf(160,map_area.size.y-24)))
+	var left_edge: float = left_panel.size.x + 24.0 if (left_panel.visible and is_instance_valid(left_panel)) else 12.0
+	var right_edge: float = right_panel.size.x + 24.0 if (right_panel.visible and is_instance_valid(right_panel)) else 12.0
+	return Rect2(Vector2(left_edge, 12.0), Vector2(maxf(240.0, size.x - left_edge - right_edge), maxf(160.0, size.y - 24.0)))
 
 func _close_beat() -> void:
 	if is_instance_valid(beat_panel):beat_panel.queue_free()
@@ -2554,7 +3285,7 @@ func _show_beat(beat:Dictionary) -> void:
 	if beat.is_empty():return
 	_close_beat();active_beat_id=str(beat.id)
 	Beats.mark_read(world,active_beat_id);_mark_dirty()
-	beat_panel=PanelContainer.new();map_area.add_child(beat_panel)
+	beat_panel=PanelContainer.new();beat_panel.add_theme_stylebox_override("panel",Ui.note_box());map_area.add_child(beat_panel)
 	var box:=VBoxContainer.new();beat_panel.add_child(box)
 	var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;box.add_child(scroll)
 	var text_box:=VBoxContainer.new();text_box.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(text_box)
