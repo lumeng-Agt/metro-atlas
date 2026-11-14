@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from engineering_scope import definition_errors as engineering_definition_errors
 from transfer_scope import is_transfer_task
 from collections import Counter
@@ -66,7 +67,19 @@ def playable_future_project_ids(campaign: dict[str, Any], city: dict[str, Any]) 
     return playable
 
 
-def build_report(cities_doc: dict[str, Any], campaigns_doc: dict[str, Any], baseline_doc: dict[str, Any], cutoff: str) -> dict[str, Any]:
+PUBLISHED_CITY_IDS = ["shenzhen"]
+
+
+def published_city_ids() -> list[str]:
+    """Read the release list from the game so the report cannot drift from it."""
+    source = (Path(__file__).resolve().parent.parent / "scripts" / "world_data.gd").read_text(encoding="utf-8")
+    match = re.search(r'PUBLISHED_CITY_IDS\s*:?=\s*\[([^\]]*)\]', source)
+    if not match:
+        raise RuntimeError("Cannot read PUBLISHED_CITY_IDS from scripts/world_data.gd")
+    return re.findall(r'"([^"]+)"', match.group(1))
+
+
+def build_report(cities_doc: dict[str, Any], campaigns_doc: dict[str, Any], baseline_doc: dict[str, Any], cutoff: str, only_cities: list[str] | None = None) -> dict[str, Any]:
     report: dict[str, Any] = {
         "cutoffDate": cutoff,
         "generatedAt": cities_doc.get("generatedAt", "unknown"),
@@ -79,6 +92,11 @@ def build_report(cities_doc: dict[str, Any], campaigns_doc: dict[str, Any], base
     }
     for city in cities_doc.get("cities", []):
         city_id = str(city.get("id", ""))
+        # The report covers what this build offers. Other cities stay in the
+        # data files for catalog validation and existing saves, but naming them
+        # in a shipped document would describe a game the player cannot reach.
+        if only_cities is not None and city_id not in only_cities:
+            continue
         catalog = campaigns_doc.get("cities", {}).get(city_id, {})
         stations = {str(item.get("id", "")): item for item in city.get("stations", [])}
         chapters = catalog.get("chapters", [])
@@ -331,8 +349,10 @@ def main() -> None:
     parser.add_argument("--cutoff", default="2026-10-01")
     parser.add_argument("--json-out", type=Path, default=Path("docs/network-coverage-2026-10-01.json"))
     parser.add_argument("--markdown-out", type=Path, default=Path("docs/network-coverage-2026-10-01.md"))
+    parser.add_argument("--all-cities", action="store_true", help="Include cities this build does not publish")
     args = parser.parse_args()
-    report = build_report(read_json(args.cities), read_json(args.campaigns), read_json(args.baseline), args.cutoff)
+    only = None if args.all_cities else published_city_ids()
+    report = build_report(read_json(args.cities), read_json(args.campaigns), read_json(args.baseline), args.cutoff, only)
     if str(read_json(args.baseline).get("cutoffDate", "")) != args.cutoff:
         raise SystemExit("Requested cutoff does not match the source-controlled network baseline")
     args.json_out.parent.mkdir(parents=True, exist_ok=True)
