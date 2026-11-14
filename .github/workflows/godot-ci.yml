@@ -20,9 +20,12 @@ jobs:
       - name: Import project and parse scripts
         shell: pwsh
         run: |
+          Write-Output "godot on PATH: $((Get-Command godot -ErrorAction SilentlyContinue).Source)"
           godot --version
+          Write-Output "--- import start ---"
           $output = godot --headless --path . --editor --quit 2>&1
           $code = $LASTEXITCODE
+          Write-Output "--- import done, exit=$code, lines=$($output.Count) ---"
           $output | Write-Output
           # Name the offending lines: a bare "failed" leaves the run unreadable.
           $bad = $output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script'
