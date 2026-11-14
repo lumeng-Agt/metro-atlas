@@ -9,7 +9,13 @@ if (-not [System.IO.Path]::IsPathRooted($DataDir)) { throw "DataDir must be abso
 Write-Host "Isolated data directory: $DataDir"
 for ($round=0; $round -lt 5; $round++) {
   $output = & $Godot --headless --path $projectRoot --script res://tests/story_restart_process.gd -- "--data-dir=$DataDir" "--round=$round" 2>&1
-  $code = $LASTEXITCODE
+  $ok = $?
+  # A wrapper script on PATH leaves $LASTEXITCODE null, and $null -ne 0 is
+  # true, so judge by $? and the output instead.
   $output | Write-Output
-  if ($code -ne 0 -or ($output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script')) { throw "Independent restart round failed: $round" }
+  $bad = $output | Select-String -Pattern 'SCRIPT ERROR:|Failed to load script'
+  if (-not $ok -or $bad) {
+    if ($bad) { $bad | Select-Object -First 10 | ForEach-Object { Write-Output "OFFENDING: $($_.Line)" } }
+    throw "Independent restart round failed: $round"
+  }
 }
