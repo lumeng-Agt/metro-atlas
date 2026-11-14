@@ -1,33 +1,81 @@
 extends Control
 
-func _draw() -> void:
-	var area := Rect2(Vector2(4, 4), size - Vector2(8, 8))
-	draw_rect(area, Color("#F0F1EB"), true)
-	draw_rect(area, Color("#D6D8CE"), false, 1.2, true)
-	var inner := area.grow(-20.0)
-	var grid := Color("#D7DDD4", 0.78)
-	for row in range(7):
-		var y := inner.position.y + 22.0 + row * (inner.size.y - 44.0) / 6.0
-		draw_line(Vector2(inner.position.x + 10, y), Vector2(inner.end.x - 10, y + 8.0 * sin(float(row))), grid, 1.0, true)
-	for column in range(6):
-		var x := inner.position.x + 16.0 + column * (inner.size.x - 32.0) / 5.0
-		draw_line(Vector2(x, inner.position.y + 8), Vector2(x + 12.0 * cos(float(column)), inner.end.y - 8), grid, 1.0, true)
+func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	var west := Vector2(inner.position.x + inner.size.x * 0.12, inner.position.y + inner.size.y * 0.75)
-	var center := Vector2(inner.position.x + inner.size.x * 0.49, inner.position.y + inner.size.y * 0.48)
-	var east := Vector2(inner.position.x + inner.size.x * 0.86, inner.position.y + inner.size.y * 0.23)
-	var north := Vector2(inner.position.x + inner.size.x * 0.54, inner.position.y + inner.size.y * 0.12)
-	var south := Vector2(inner.position.x + inner.size.x * 0.57, inner.position.y + inner.size.y * 0.87)
-	var blue_line := PackedVector2Array([west, Vector2(center.x - 58, center.y + 42), center, Vector2(center.x + 54, center.y - 26), east])
-	var green_line := PackedVector2Array([north, Vector2(north.x - 16, center.y - 6), center, Vector2(south.x + 8, center.y + 36), south])
-	draw_polyline(blue_line, Color("#365F8C", 0.12), 13.0, true)
-	draw_polyline(blue_line, Color("#5B82A8"), 5.0, true)
-	draw_polyline(green_line, Color("#24745E", 0.12), 13.0, true)
-	draw_polyline(green_line, Color("#24745E"), 5.0, true)
-	for point in [west, center, east, north, south]:
-		draw_circle(point, 10.0, Color("#24332F"))
-		draw_circle(point, 6.0, Color("#FFFEFA"))
-		draw_circle(point, 2.8, Color("#FFFEFA"))
-	draw_circle(center, 15.0, Color("#B57A29", 0.17))
-	draw_circle(center, 8.0, Color("#B57A29"))
-	draw_circle(center, 3.0, Color("#24332F"))
+func _draw() -> void:
+	var w := size.x
+	var h := size.y
+	if w <= 10.0 or h <= 10.0:
+		return
+	draw_rect(Rect2(Vector2.ZERO, size), Color("#EFEFE7"), true)
+
+	var minor_color := Color("#E2E1D8", 0.75)
+	var major_color := Color("#D2D1C6", 0.85)
+	var step := 32.0
+	var cols := int(ceil(w / step))
+	var rows := int(ceil(h / step))
+	for c in range(cols + 1):
+		var x := float(c) * step
+		var is_major := (c % 5) == 0
+		draw_line(Vector2(x, 0), Vector2(x, h), major_color if is_major else minor_color, 1.0)
+	for r in range(rows + 1):
+		var y := float(r) * step
+		var is_major := (r % 5) == 0
+		draw_line(Vector2(0, y), Vector2(w, y), major_color if is_major else minor_color, 1.0)
+
+	# Registration marks on major intersections
+	var cross_color := Color("#B8B7AC", 0.9)
+	for c in range(0, cols + 1, 5):
+		for r in range(0, rows + 1, 5):
+			var pt := Vector2(float(c) * step, float(r) * step)
+			draw_line(pt - Vector2(5, 0), pt + Vector2(5, 0), cross_color, 1.2)
+			draw_line(pt - Vector2(0, 5), pt + Vector2(0, 5), cross_color, 1.2)
+
+	# Octilinear transit schematic lines framing the canvas
+	var line_green := PackedVector2Array([
+		Vector2(0, h * 0.78),
+		Vector2(w * 0.16, h * 0.78),
+		Vector2(w * 0.30, h * 0.56),
+		Vector2(w * 0.70, h * 0.56),
+		Vector2(w * 0.84, h * 0.34),
+		Vector2(w, h * 0.34)
+	])
+	var line_blue := PackedVector2Array([
+		Vector2(w * 0.14, 0),
+		Vector2(w * 0.14, h * 0.28),
+		Vector2(w * 0.28, h * 0.50),
+		Vector2(w * 0.72, h * 0.50),
+		Vector2(w * 0.86, h * 0.72),
+		Vector2(w * 0.86, h)
+	])
+	var line_red := PackedVector2Array([
+		Vector2(0, h * 0.22),
+		Vector2(w * 0.22, h * 0.22),
+		Vector2(w * 0.38, h * 0.38),
+		Vector2(w * 0.62, h * 0.38),
+		Vector2(w * 0.78, h * 0.22),
+		Vector2(w, h * 0.22)
+	])
+
+	draw_polyline(line_green, Color("#1B5E4F", 0.08), 14.0, true)
+	draw_polyline(line_green, Color("#1B5E4F", 0.22), 4.5, true)
+	draw_polyline(line_blue, Color("#2B6CB0", 0.07), 14.0, true)
+	draw_polyline(line_blue, Color("#2B6CB0", 0.20), 4.5, true)
+	draw_polyline(line_red, Color("#C4553B", 0.06), 12.0, true)
+	draw_polyline(line_red, Color("#C4553B", 0.18), 3.5, true)
+
+	for station in [
+		Vector2(w * 0.16, h * 0.78),
+		Vector2(w * 0.84, h * 0.34),
+		Vector2(w * 0.14, h * 0.28),
+		Vector2(w * 0.86, h * 0.72),
+		Vector2(w * 0.22, h * 0.22),
+		Vector2(w * 0.78, h * 0.22)
+	]:
+		draw_circle(station, 8.0, Color("#1B5E4F", 0.28))
+		draw_circle(station, 4.5, Color("#EFEFE7"))
+
+	# Outer engineering sheet frame rule
+	var frame_rect := Rect2(Vector2(16, 16), size - Vector2(32, 32))
+	draw_rect(frame_rect, Color("#C2C1B6", 0.8), false, 1.0)

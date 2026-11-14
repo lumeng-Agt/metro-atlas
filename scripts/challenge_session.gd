@@ -19,7 +19,7 @@ static func eligible(question:Dictionary) -> bool:
 	return question.get("reviewStatus","")=="verified" and question.has("positionErrorM") and float(question.positionErrorM)>=0 and float(question.positionErrorM)<=25 and SaveManager._coordinate_valid(question.get("latlng")) and not str(question.get("source","")).is_empty()
 
 static func location_result(question:Dictionary,answer:Array,practice:bool=false) -> Dictionary:
-	if not eligible(question) or not SaveManager._coordinate_valid(answer):return {"ok":false,"error":"题目缺少可靠的位置核验，不能评奖。"}
+	if not eligible(question) or not SaveManager._coordinate_valid(answer):return {"ok":false,"error":"题目缺少核验位置数据，无法评定奖牌。"}
 	var distance:=Geo.local_m(answer,float(question.latlng[0])).distance_to(Geo.local_m(question.latlng,float(question.latlng[0])))
 	var medal:="金牌" if distance<=100.0 else "银牌" if distance<=250.0 else "铜牌" if distance<=500.0 else "已完成"
 	return {"ok":true,"distanceM":distance,"displayDistanceM":roundi(distance/10)*10,"medal":medal if not practice else "练习","practice":practice,"questionId":question.get("id",""),"catalogVersion":question.get("version","unknown"),"referenceDataVersion":question.get("referenceDataVersion","unknown"),"contentRevision":question.get("contentRevision","unknown"),"referenceBasis":question.get("referenceBasis","verified_position"),"notice":"相对游戏参考坐标评分，不代表测绘精度。"}

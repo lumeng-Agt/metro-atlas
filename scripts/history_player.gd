@@ -2,6 +2,7 @@ extends Control
 
 signal closed
 const Playback = preload("res://scripts/history_playback.gd")
+const Ui = preload("res://scripts/ui_theme.gd")
 var archive: Dictionary
 var map: MapView
 var caption: Label
@@ -24,10 +25,10 @@ var cancel_build:=false
 
 func open(source: Dictionary) -> void:
 	theme=get_parent().theme;set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var loading:=ColorRect.new();loading.color=Color("#111923");loading.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(loading)
-	var loading_text:=Label.new();loading_text.text="正在恢复已确认的城市发展史……";loading_text.position=Vector2(32,80);loading.add_child(loading_text)
-	var cancel:=Button.new();cancel.text="取消返回";cancel.custom_minimum_size=Vector2(160,44);loading.add_child(cancel)
-	cancel.pressed.connect(func():cancel_build=true;loading_text.text="正在结束恢复，请稍候。")
+	var loading:=ColorRect.new();loading.color=Ui.CANVAS;loading.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(loading)
+	var loading_text:=Label.new();loading_text.text="正在加载城市发展史……";loading_text.position=Vector2(32,80);loading.add_child(loading_text)
+	var cancel:=Button.new();cancel.text="取消";cancel.custom_minimum_size=Vector2(160,44);loading.add_child(cancel)
+	cancel.pressed.connect(func():cancel_build=true;loading_text.text="正在取消，请稍候。")
 	# The modal overlay holds the formal world read-only until restoration ends.
 	# Only detached planning dictionaries are produced on this worker.
 	build_worker.start(func():return Playback.build(source))
@@ -39,7 +40,7 @@ func open(source: Dictionary) -> void:
 	all_frames=archive.frames.duplicate()
 	theme = get_parent().theme
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var background := ColorRect.new(); background.color=Color("#111923");background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); add_child(background)
+	var background := ColorRect.new(); background.color=Ui.CANVAS;background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); add_child(background)
 	var column := VBoxContainer.new(); column.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); add_child(column)
 	var top := HBoxContainer.new(); column.add_child(top)
 	back = Button.new(); back.text = "← 返回建设"; back.custom_minimum_size.y = 44; top.add_child(back)
@@ -53,23 +54,23 @@ func open(source: Dictionary) -> void:
 		if current>=0:
 			var url:=str(archive.frames[current].source)
 			if url.begins_with("https://") or url.begins_with("http://"): OS.shell_open(url))
-	var lane:=OptionButton.new();lane.add_item("历史成果");lane.add_item("规划建设展示");top.add_child(lane)
+	var lane:=OptionButton.new();lane.add_item("历史通车成果");lane.add_item("规划展示");top.add_child(lane)
 	lane.item_selected.connect(func(index:int):_select_lane(index==1))
 	map = preload("res://scripts/map_view.gd").new(); map.size_flags_vertical=Control.SIZE_EXPAND_FILL; column.add_child(map)
 	map.resized.connect(_fit)
 	map.bold_font=theme.default_font; map.tool="select"; map.show_train_display=false
 	growth=preload("res://scripts/history_growth.gd").new();growth.map=map;map.add_child(growth)
 	var controls := HFlowContainer.new(); column.add_child(controls)
-	var play := Button.new(); play.text="播放／暂停"; play.custom_minimum_size.y=44; controls.add_child(play); play.pressed.connect(func(): playing=not playing)
+	var play := Button.new(); play.text="播放 / 暂停"; play.custom_minimum_size.y=44; controls.add_child(play); play.pressed.connect(func(): playing=not playing)
 	slider=HSlider.new(); slider.custom_minimum_size=Vector2(220,44);slider.min_value=0; slider.max_value=maxi(0,archive.frames.size()-1); slider.step=1; slider.size_flags_horizontal=Control.SIZE_EXPAND_FILL; controls.add_child(slider)
 	slider.value_changed.connect(func(value:float): elapsed=value/maxf(1,archive.frames.size())*duration; _show_frame(int(value)))
 	var length:=OptionButton.new()
 	for seconds in [30,60,120]: length.add_item("%d秒"%seconds); length.set_item_metadata(length.item_count-1,seconds)
 	length.select(1); controls.add_child(length); length.item_selected.connect(func(index:int):duration=float(length.get_item_metadata(index)))
-	var export_button:=Button.new(); export_button.text="导出视频 WebM"; controls.add_child(export_button); export_button.pressed.connect(_export)
-	var cover:=Button.new();cover.text="导出当前画面 PNG";controls.add_child(cover);cover.pressed.connect(_cover)
+	var export_button:=Button.new(); export_button.text="导出视频 (WebM)"; controls.add_child(export_button); export_button.pressed.connect(_export)
+	var cover:=Button.new();cover.text="导出当前画面 (PNG)";controls.add_child(cover);cover.pressed.connect(_cover)
 	status=Label.new(); status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; status.text=str(archive.warning)+"\n玩家复现 · 现代地理参考 · © OpenStreetMap contributors"; column.add_child(status)
-	if archive.frames.is_empty(): caption.text="尚无已确认成果"; play.disabled=true; export_button.disabled=true;prepared=true; return
+	if archive.frames.is_empty(): caption.text="暂无已通车成果"; play.disabled=true; export_button.disabled=true;prepared=true; return
 	map.set_context(WorldData.city(str(source.cityId)), archive.frames.back().world.duplicate(true))
 	_fit()
 	_select_lane(false)
@@ -88,18 +89,18 @@ func _select_lane(planning:bool) -> void:
 		frame["beforeWorld"]=all_frames[index-1].world if index>0 else archive.get("initialWorld",{})
 		if bool(frame.planning)==planning:archive.frames.append(frame)
 	slider.max_value=maxi(0,archive.frames.size()-1);slider.set_value_no_signal(0)
-	if archive.frames.is_empty():caption.text="本进度没有已确认的"+("规划成果" if planning else "历史成果");map.set_world({});return
+	if archive.frames.is_empty():caption.text="当前存档暂无已确认的"+("规划展示" if planning else "历史通车成果");map.set_world({});return
 	_fit();_show_frame(0)
 
 func _cover() -> void:
 	if current<0:return
-	var dialog:=FileDialog.new();dialog.access=FileDialog.ACCESS_FILESYSTEM;dialog.file_mode=FileDialog.FILE_MODE_SAVE_FILE;dialog.add_filter("*.png","PNG纪念图");dialog.current_file="地铁发展史.png";add_child(dialog)
+	var dialog:=FileDialog.new();dialog.access=FileDialog.ACCESS_FILESYSTEM;dialog.file_mode=FileDialog.FILE_MODE_SAVE_FILE;dialog.add_filter("*.png","PNG 图片");dialog.current_file="地铁发展史.png";add_child(dialog)
 	dialog.title="保存发展史画面";dialog.ok_button_text="保存画面";dialog.cancel_button_text="取消"
 	dialog.file_selected.connect(func(path:String):
 		dialog.hide()
 		await RenderingServer.frame_post_draw
 		var error:=preload("res://scripts/media_export_job.gd").save_png_atomic(get_viewport().get_texture().get_image(),path)
-		status.text="画面已导出。" if error==OK else "画面写入失败。"
+		status.text="画面已导出。" if error==OK else "画面保存失败，请检查写入权限。"
 		dialog.queue_free())
 	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered_ratio(0.7)
 
@@ -124,7 +125,7 @@ func _show_frame(index:int) -> void:
 	growth.prepare(frame.get("beforeWorld",{}),frame.world,map.geometry_ref_lat)
 	growth.progress=1 if settled else 0
 	map.set_world((frame.world if settled else frame.get("beforeWorld",{})).duplicate(true))
-	caption.text="%s · %s · %s\n%s" % [archive.cityName, frame.date, frame.title, "规划建设展示" if frame.planning else "玩家历史复现"]
+	caption.text="%s · %s · %s\n%s" % [archive.cityName, frame.date, frame.title, "规划展示" if frame.planning else "历史复现"]
 
 func _process(delta:float) -> void:
 	if not prepared:return
@@ -140,10 +141,10 @@ func _process(delta:float) -> void:
 	if elapsed>=duration:playing=false; elapsed=0
 
 func _export() -> void:
-	if archive.frames.is_empty():status.text="当前栏没有可导出的已确认成果。";return
+	if archive.frames.is_empty():status.text="当前分类下没有可导出的记录。";return
 	if is_instance_valid(export_job):export_job.cancel();return
 	playing=false
-	var dialog:=FileDialog.new(); dialog.access=FileDialog.ACCESS_FILESYSTEM; dialog.file_mode=FileDialog.FILE_MODE_SAVE_FILE; dialog.add_filter("*.webm","WebM视频"); dialog.current_file="地铁发展史.webm"; add_child(dialog)
+	var dialog:=FileDialog.new(); dialog.access=FileDialog.ACCESS_FILESYSTEM; dialog.file_mode=FileDialog.FILE_MODE_SAVE_FILE; dialog.add_filter("*.webm","WebM 视频"); dialog.current_file="地铁发展史.webm"; add_child(dialog)
 	dialog.title="导出发展史视频";dialog.ok_button_text="导出视频";dialog.cancel_button_text="取消"
 	dialog.file_selected.connect(func(path:String):
 		dialog.queue_free()

@@ -714,13 +714,16 @@ func _draw_campaign_targets() -> void:
 		var point := _to_screen(latlng)
 		if not Rect2(Vector2(-60, -60), size + Vector2(120, 120)).has_point(point): continue
 		var radius := _blueprint_target_radius(target)
-		var color := Color("#278568") if bool(target.get("built", false)) else Color("#b18032")
+		var color := Color("#1B5E4F") if bool(target.get("built", false)) else Color("#2A75A9")
 		_draw_cached_symbol(point,color,radius,"target")
 		var separate_instance:=str(target.get("stationInstanceId",""))!=str(target.get("stationComplexId",""))
 		if current_zoom >= 14 and (not bool(target.get("built",false)) or separate_instance):
-			var title:="目标站区 · %s" % str(target.get("name", ""))
-			if separate_instance:title="%s站体 · %s" % [str(target.get("historicalLineName",target.get("historicalLineId","本线"))),str(target.get("name","换乘站"))]
-			var offset_y:=9.0
+			var title := str(target.get("name", "目标站"))
+			if separate_instance:
+				var line_tag := str(target.get("historicalLineName", target.get("historicalLineId", "本线")))
+				line_tag = line_tag.replace("一期", "").replace("二期", "").replace("首通段", "")
+				title = "%s · %s" % [line_tag, str(target.get("name", "换乘站"))]
+			var offset_y := 9.0
 			if separate_instance:
 				var complex_id:=CampaignSystem.canonical_station_complex(str(world.get("cityId","")),str(target.get("stationComplexId","")))
 				var siblings:Array=blueprint_complex_bodies.get(complex_id,[])
@@ -768,14 +771,17 @@ func _draw_cached_local_basemap(visible: Rect2, inside_package: bool) -> void:
 	var primary_lines: PackedVector2Array = batches.get("primaryLines", PackedVector2Array())
 	var secondary_lines: PackedVector2Array = batches.get("secondaryLines", PackedVector2Array())
 	var local_lines: PackedVector2Array = batches.get("localLines", PackedVector2Array())
-	if not water_lines.is_empty(): draw_multiline(water_lines, Style.WATER_EDGE, (0.8 if current_zoom < 14 else 1.6) * _camera_mpp, false)
+	if not water_lines.is_empty() and Style.road_visible("water_line", current_zoom): draw_multiline(water_lines, Style.WATER_EDGE, (0.8 if current_zoom < 14 else 1.6) * _camera_mpp, false)
 	for road in [["road_local",local_lines],["road_secondary",secondary_lines],["road_primary",primary_lines],["road_major",major_lines]]:
 		var kind: String = road[0]
 		var lines: PackedVector2Array = road[1]
 		if lines.is_empty() or not Style.road_visible(kind,current_zoom): continue
 		var width: float = Style.road_width(kind,current_zoom)
-		draw_multiline(lines,Style.ROAD_EDGE,(width+1.5)*_camera_mpp,false)
-		draw_multiline(lines,Style.MAJOR_ROAD if kind=="road_major" else Style.ROAD,width*_camera_mpp,false)
+		if kind == "road_local":
+			draw_multiline(lines, Style.ROAD_EDGE, 0.9 * _camera_mpp, false)
+		else:
+			draw_multiline(lines, Style.ROAD_EDGE, (width + 1.2) * _camera_mpp, false)
+			draw_multiline(lines, Style.MAJOR_ROAD if kind == "road_major" else Style.ROAD, width * _camera_mpp, false)
 	var building_indices: PackedInt32Array = batches.get("buildingIndices", PackedInt32Array())
 	var building_outline: PackedVector2Array = batches.get("buildingOutline", PackedVector2Array())
 	if not building_indices.is_empty(): RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), building_indices, batches.buildingPoints, batches.buildingColors)
@@ -1635,16 +1641,24 @@ func _draw_cached_symbol(center:Vector2,color:Color,radius:float,kind:String,sel
 	var key:="%s|%s|%.2f|%s"%[kind,color.to_html(),rounded_radius,selected]
 	if not _symbol_textures.has(key):
 		if _symbol_textures.size()>=512:_symbol_textures.clear()
-		var extent:=maxf(rounded_radius,11.0 if kind=="transfer" else rounded_radius)+2.0
+		var extent:=maxf(rounded_radius,12.0 if kind=="transfer" else 9.0)+4.0
 		var diameter:=ceili(extent*2)
 		var middle:=float(diameter)*0.5
 		var hex:="#"+color.to_html(false)
 		var svg:='<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d"><g transform="translate(%.2f %.2f)">'%[diameter,diameter,middle,middle]
 		if kind=="target":
-			svg+='<circle r="%.2f" fill="%s" fill-opacity="0.055" stroke="%s" stroke-opacity="0.62" stroke-width="1.6"/><circle r="4.5" fill="#fffdf7"/><circle r="3" fill="%s"/>'%[rounded_radius,hex,hex,hex]
+			svg+='<circle r="%.2f" fill="%s" fill-opacity="0.06" stroke="%s" stroke-opacity="0.65" stroke-width="1.5" stroke-dasharray="4 3"/>'%[rounded_radius,hex,hex]
+			svg+='<line x1="-5" y1="0" x2="5" y2="0" stroke="%s" stroke-width="1.2" stroke-opacity="0.75"/><line x1="0" y1="-5" x2="0" y2="5" stroke="%s" stroke-width="1.2" stroke-opacity="0.75"/>'%[hex,hex]
+			svg+='<circle r="3.2" fill="#ffffff" stroke="%s" stroke-width="1.4"/><circle r="1.4" fill="%s"/>'%[hex,hex]
+		elif kind=="transfer":
+			svg+='<circle r="%.2f" fill="#ffffff" stroke="%s" stroke-width="2.6"/>'%[maxf(rounded_radius, 10.5), hex]
+			svg+='<circle r="5.2" fill="#ffffff" stroke="%s" stroke-width="1.8"/>'%hex
+			svg+='<circle r="2.2" fill="%s"/>'%hex
+			if selected: svg+='<circle r="%.2f" fill="none" stroke="#D97706" stroke-width="2.2" stroke-dasharray="3 2"/>'%[maxf(rounded_radius, 10.5) + 3.0]
 		else:
-			svg+='<circle r="%.2f" fill="white"/><circle r="%.2f" fill="%s"/>'%[rounded_radius,7.5 if selected else 5.5,hex]
-			if kind=="transfer":svg+='<circle r="4" fill="white"/><circle r="10" fill="none" stroke="%s" stroke-width="2"/>'%hex
+			svg+='<circle r="%.2f" fill="#ffffff" stroke="%s" stroke-width="2.6"/>'%[maxf(rounded_radius, 7.5), hex]
+			svg+='<circle r="2.2" fill="%s"/>'%hex
+			if selected: svg+='<circle r="%.2f" fill="none" stroke="#D97706" stroke-width="2.2" stroke-dasharray="3 2"/>'%[maxf(rounded_radius, 7.5) + 3.0]
 		var image:=Image.new()
 		var error:=image.load_svg_from_string(svg+"</g></svg>")
 		if error!=OK:return

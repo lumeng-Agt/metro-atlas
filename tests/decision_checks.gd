@@ -5,6 +5,7 @@ extends SceneTree
 
 const Story = preload("res://scripts/story_session.gd")
 const DecisionSystem = preload("res://scripts/decision_system.gd")
+const ProposalSession = preload("res://scripts/proposal_session.gd")
 
 var checks := 0
 var failures: Array[String] = []
@@ -36,8 +37,19 @@ func _run() -> void:
 			if str(entry.get("id", "")) == chapter_id:
 				found = entry
 				break
+		# A planning card points at a future plan rather than a historical
+		# chapter, so both collections are searched.
+		if found.is_empty():
+			for entry in config.get("futurePlans", []):
+				if str(entry.get("id", "")) == chapter_id:
+					found = entry
+					break
 		_check(not found.is_empty(), "%s points at an existing chapter" % chapter_id)
-		_check(bool(found.get("eventOnly", false)), "%s is a source-only chapter" % chapter_id)
+		if DecisionSystem.kind(card) == DecisionSystem.KIND_PLANNING:
+			_check(not bool(found.get("eventOnly", false)), "%s is a planning chapter" % chapter_id)
+			_check(ProposalSession.eligible(found), "%s offers a proposal" % chapter_id)
+		else:
+			_check(bool(found.get("eventOnly", false)), "%s is a source-only chapter" % chapter_id)
 	# A card whose source is missing must not be shown.
 	var broken: Dictionary = (cards[0] as Dictionary).duplicate(true)
 	broken["sources"] = []

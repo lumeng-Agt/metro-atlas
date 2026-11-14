@@ -39,6 +39,24 @@ static func for_id(decision_id: String) -> Dictionary:
 			return entry
 	return {}
 
+## A card is either a historical decision (shown before a source-only chapter)
+## or a planning decision (shown before a planning chapter's proposal). The
+## kind decides where the card appears; both need a dated official source.
+const KIND_HISTORICAL := "historical"
+const KIND_PLANNING := "planning"
+
+static func kind(entry: Dictionary) -> String:
+	var value := str(entry.get("kind", KIND_HISTORICAL))
+	return value if value in [KIND_HISTORICAL, KIND_PLANNING] else KIND_HISTORICAL
+
+static func planning_for_chapter(chapter_id: String) -> Dictionary:
+	for entry in all():
+		if kind(entry) != KIND_PLANNING:
+			continue
+		if str(entry.get("chapterId", "")) == chapter_id:
+			return entry
+	return {}
+
 ## Problems that would make a card untrustworthy. A card without a dated
 ## official source is not shown at all.
 static func validate(entry: Dictionary) -> Array:
@@ -47,6 +65,9 @@ static func validate(entry: Dictionary) -> Array:
 		problems.append("missing id")
 	if str(entry.get("chapterId", "")).is_empty():
 		problems.append("missing chapterId")
+	var card_kind := str(entry.get("kind", KIND_HISTORICAL))
+	if not card_kind in [KIND_HISTORICAL, KIND_PLANNING]:
+		problems.append("unknown kind")
 	var options: Array = entry.get("options", [])
 	if options.size() < 2:
 		problems.append("needs at least two options")

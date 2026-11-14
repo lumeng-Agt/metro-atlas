@@ -1,4 +1,5 @@
 extends Control
+const Ui=preload("res://scripts/ui_theme.gd")
 signal export_requested(layout:Dictionary)
 var worker:=Thread.new()
 var prepared:=false
@@ -7,13 +8,13 @@ var result:Dictionary={}
 
 func open(source:Dictionary,font:Font) -> void:
 	theme=get_parent().theme;set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var background:=ColorRect.new();background.color=Color("#111923");background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(background)
+	var background:=ColorRect.new();background.color=Ui.CANVAS;background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(background)
 	var column:=VBoxContainer.new();column.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(column)
 	var top:=HBoxContainer.new();column.add_child(top)
 	var back:=Button.new();back.text="← 返回建设";back.custom_minimum_size.y=44;top.add_child(back)
-	var status:=Label.new();status.text="正在布局线路示意图……";status.size_flags_horizontal=Control.SIZE_EXPAND_FILL;top.add_child(status)
+	var status:=Label.new();status.text="正在生成线路拓扑示意图……";status.size_flags_horizontal=Control.SIZE_EXPAND_FILL;top.add_child(status)
 	back.pressed.connect(func():
-		if worker.is_alive():cancelled=true;status.text="正在结束布局，请稍候。"
+		if worker.is_alive():cancelled=true;status.text="正在取消，请稍候。"
 		else:queue_free())
 	var preferred:=Vector2(clampf(get_viewport_rect().size.x-96,400,1400),clampf(get_viewport_rect().size.y-180,260,800))
 	worker.start(func():return SchematicLayout.fit(source,preferred))
@@ -21,9 +22,9 @@ func open(source:Dictionary,font:Font) -> void:
 	result=worker.wait_to_finish()
 	if cancelled:queue_free();return
 	prepared=true
-	if not result.get("ok",false):status.text=str(result.get("reason","请使用地理视图核对。"));return
-	status.text="游戏线路示意图 · 虚线线路表示规划建设 · 细虚线表示换乘"
-	var save:=Button.new();save.text="保存PNG";save.custom_minimum_size.y=44;top.add_child(save);save.pressed.connect(func():export_requested.emit(result))
+	if not result.get("ok",false):status.text=str(result.get("reason","请使用地理视图查看。"));return
+	status.text="线路示意图 · 虚线表示规划线路 · 细虚线表示换乘通道"
+	var save:=Button.new();save.text="导出示意图 PNG";save.custom_minimum_size.y=44;top.add_child(save);save.pressed.connect(func():export_requested.emit(result))
 	var split:=HSplitContainer.new();split.size_flags_vertical=Control.SIZE_EXPAND_FILL;column.add_child(split)
 	var scroll:=ScrollContainer.new();scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL;split.add_child(scroll)
 	var view:=preload("res://scripts/schematic_view.gd").new();view.layout=result;view.font=font;view.custom_minimum_size=result.bounds;scroll.add_child(view)

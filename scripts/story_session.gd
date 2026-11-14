@@ -7,6 +7,7 @@ const Catalog = preload("res://scripts/campaign_system.gd")
 const Paths = preload("res://scripts/route_path.gd")
 const Engineering = preload("res://scripts/engineering_construction.gd")
 const Reservation = preload("res://scripts/transfer_reservation.gd")
+const ProposalSession = preload("res://scripts/proposal_session.gd")
 
 static func config(world: Dictionary) -> Dictionary:
 	return Catalog.city_config(str(world.get("cityId", "")))
@@ -296,7 +297,7 @@ static func evaluate(world: Dictionary, selected_task_id: String = "") -> Dictio
 				break
 		if scoped_groups.is_empty():
 			return {"complete":false,"issues":[{"text":"当前建设任务已不存在，请刷新任务列表。","kind":"task"}],"routes":[],"revision":int(world.get("revision",0)),"taskId":selected_task_id}
-	if not plan_is_final(world): issues.append({"text":"请先在故事页对比并采用本章的最终修订方案。", "kind":"plan"})
+	if not plan_is_final(world): issues.append({"text":"当前仍处方案比选阶段，请先在左侧采纳本期实施定案。", "kind":"plan"})
 	if bool(ch.get("requiresLineReorganization",false)) and not bool(world.get("storyPlan",{}).get("reorganizationAccepted",false)):issues.append({"text":"请使用下方「线路整理」核对并确认本期贯通站序。","kind":"plan"})
 	var reference_lat := float(WorldData.city(str(world.cityId)).get("center", [31.23])[0])
 	var path_index := TrackNetwork.build_path_index(world, reference_lat)
@@ -1287,6 +1288,65 @@ static func skip_historical_run(world: Dictionary) -> Dictionary:
 		next_chapter(world)
 	return {"ok": true, "confirmed": confirmed, "stoppedAt": str(chapter(world).get("id", "")), "eventOnly": bool(chapter(world).get("eventOnly", false))}
 
+## Opens the proposal stage of a planning chapter. The player draws before the
+## published plan is revealed; nothing is written into the network here.
+static func begin_proposal(world: Dictionary, expected_revision: int) -> Dictionary:
+	if int(world.get("revision", 0)) != expected_revision:
+		return {"ok": false, "error": "进度已变化，请重新进入本章。"}
+	var ch := chapter(world)
+	if ch.is_empty():
+		return {"ok": false, "error": "当前没有可提案的章节。"}
+	if not ProposalSession.eligible(ch):
+		return {"ok": false, "error": "本章没有可提案的线路。"}
+	if str(world.get("storyState", {}).get("stage", "")) != ProposalSession.STAGE_INTRO:
+		return {"ok": false, "error": "本章已经进入建设阶段。"}
+	world.storyState["stage"] = ProposalSession.STAGE_PROPOSAL
+	return {"ok": true, "chapterId": str(ch.get("id", "")), "goal": ProposalSession.goal_text(ch),
+		"stations": ProposalSession.candidate_stations(world, ch)}
+
+## Records the drawn proposal and opens construction. The proposal is kept in
+## the story state so the comparison can quote it, and the chapter still has to
+## pass the normal build checks: a proposal is not a shortcut.
+static func submit_proposal(world: Dictionary, station_ids: Array) -> Dictionary:
+	if str(world.get("storyState", {}).get("stage", "")) != ProposalSession.STAGE_PROPOSAL:
+		return {"ok": false, "error": "当前不在提案阶段。"}
+	var ch := chapter(world)
+	var candidates := ProposalSession.candidate_stations(world, ch)
+	var clean := ProposalSession.sanitize(station_ids, candidates)
+	if not ProposalSession.is_usable(clean):
+		return {"ok": false, "error": "至少选择 %d 座车站才能形成一条走向。" % ProposalSession.MIN_STATIONS}
+	# A save written by an older build, or one repaired by hand, may carry a
+	# value of the wrong type here. Read it untyped first so the check can run
+	# instead of failing on the assignment itself.
+	var stored: Variant = world.storyState.get("proposals", {})
+	var proposals: Dictionary = stored if stored is Dictionary else {}
+	proposals[str(ch.get("id", ""))] = {
+		"stationIds": clean,
+		"submittedAt": Time.get_datetime_string_from_system(false, true),
+		"catalogVersion": str(world.storyState.get("catalogVersion", "")),
+	}
+	world.storyState["proposals"] = proposals
+	world.storyState["stage"] = ProposalSession.STAGE_BUILD
+	world["revision"] = int(world.get("revision", 0)) + 1
+	return {"ok": true, "chapterId": str(ch.get("id", "")), "stationIds": clean, "revision": int(world["revision"])}
+
+## Skips the proposal and goes straight to construction. A player who does not
+## want to draw is not blocked; the chapter simply has no proposal to compare.
+static func skip_proposal(world: Dictionary) -> Dictionary:
+	if str(world.get("storyState", {}).get("stage", "")) != ProposalSession.STAGE_PROPOSAL:
+		return {"ok": false, "error": "当前不在提案阶段。"}
+	world.storyState["stage"] = ProposalSession.STAGE_BUILD
+	world["revision"] = int(world.get("revision", 0)) + 1
+	return {"ok": true, "revision": int(world["revision"])}
+
+## The proposal a player recorded for a chapter, or an empty dictionary.
+static func proposal_for(world: Dictionary, chapter_id: String) -> Dictionary:
+	var proposals: Variant = world.get("storyState", {}).get("proposals", {})
+	if not proposals is Dictionary:
+		return {}
+	var entry: Variant = proposals.get(chapter_id, {})
+	return entry if entry is Dictionary else {}
+
 ## How many source-only chapters run from the current one before the first
 ## chapter that asks for construction.
 static func historical_run_length(world: Dictionary) -> int:
@@ -1308,6 +1368,10 @@ static func historical_run_length(world: Dictionary) -> int:
 
 static func commit_chapter(world: Dictionary, expected_revision: int, checked: Dictionary = {}) -> Dictionary:
 	if expected_revision != int(world.get("revision",0)): return {"ok":false,"error":"规划已变化，请重新检查本章。"}
+	# A proposal is a plan, not a build. The chapter cannot be confirmed while
+	# the player is still drawing it.
+	if str(world.get("storyState", {}).get("stage", "")) == ProposalSession.STAGE_PROPOSAL:
+		return {"ok":false,"error":"请先提交或跳过本期提案，再进入建设。"}
 	var current_chapter := chapter(world)
 	if not checked.is_empty() and (int(checked.get("revision", -1)) != expected_revision or str(checked.get("chapterId", "")) != str(current_chapter.get("id", ""))): return {"ok":false,"error":"本章检查已过期，请重新检查。"}
 	var result := checked if not checked.is_empty() else evaluate(world)
@@ -1759,19 +1823,19 @@ static func plan_status(world:Dictionary) -> String:
 		if phase=="history_content_gap":return "现有线路任务已完成，逐期历史仍待补齐"
 		if phase=="future_gap":return "已完成截至日历史建设；截止日后的项目篇尚未数字化"
 		return "资料边界"
-	if str(world.get("storyState",{}).get("stage","intro"))=="outcome":return "历史节点已确认"
-	return "本期建成目标" if plan_is_final(world) else "未实施的历史方案"
+	if str(world.get("storyState",{}).get("stage","intro"))=="outcome":return "本章已归档"
+	return "工程实施期" if plan_is_final(world) else "规划方案比选"
 
 static func current_action(world:Dictionary) -> String:
-	if bool(chapter(world).get("eventOnly",false)):return "查看来源并确认这个历史节点；本节点没有新增铺轨范围。"
-	if str(chapter(world).get("operationType",""))=="transfer_connection":return "查看两侧独立站体，预览并建立本期换乘联系；无需新铺轨道。"
-	if not plan_is_final(world):return "对比新旧方案，再采用下一版调整。"
+	if bool(chapter(world).get("eventOnly",false)):return "查阅重大历史节点，收录史志档案。"
+	if str(chapter(world).get("operationType",""))=="transfer_connection":return "连通两侧独立站体，打通枢纽换乘通道。"
+	if not plan_is_final(world):return "研读前期规划线位，确定实施定案后动工。"
 	var active_groups:=groups(world,true,str(world.get("storyState",{}).get("activeTaskId","")))
-	if not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group)):return "预览并连接工程轨道，再检查确认；接口不是车站。"
-	if bool(chapter(world).get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):return "在「线路整理」确认贯通站序。"
+	if not active_groups.is_empty() and active_groups.all(func(group:Dictionary):return Engineering.is_group(group)):return "沿工程走廊铺设跨界联络线与出入段线，完成区间贯通。"
+	if bool(chapter(world).get("requiresLineReorganization",false)) and not bool(world.storyPlan.get("reorganizationAccepted",false)):return "整理分段走向，核准全线贯通运营站序。"
 	for target in targets(world,true):
-		if not bool(target.built):return "建设本期目标站，并连接相邻站端。"
-	return "核对区间连接，检查并确认历史节点。"
+		if not bool(target.built):return "在规划走廊放置车站，并沿线铺设区间轨道。"
+	return "全线车站已就位，铺通区间轨道后即可核验通车。"
 
 static func profile(world:Dictionary,historical_id:String="") -> Dictionary:
 	var ch:=chapter(world)

@@ -46,7 +46,7 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 	if archive.get("frames",[]).is_empty():return {"ok":false,"error":"没有可导出的历史节点。"}
 	var encoder:=encoder_path("ffmpeg");var probe:=encoder_path("ffprobe")
 	if encoder.is_empty() or probe.is_empty():
-		progress.emit("未找到视频编码组件；发行包需包含 media/ffmpeg.exe 和 ffprobe.exe。")
+		progress.emit("未检测到视频编码组件（需要 media/ffmpeg.exe 与 ffprobe.exe）。")
 		return {"ok":false,"error":"缺少视频编码组件。"}
 	busy=true;cancelled=false
 	temporary_dir=path.get_base_dir().path_join(".metro-export-%d"%Time.get_ticks_usec())
@@ -76,13 +76,13 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 		if cancelled:break
 		if not map._base_map_thread_busy and map._base_map_pending_request.is_empty():break
 	if map._base_map_thread_busy or not map._base_map_pending_request.is_empty():
-		viewport.queue_free();return _finish(false,"本地地图仍未就绪，请稍后重试导出。")
+		viewport.queue_free();return _finish(false,"底图瓦片尚未加载完成，请稍后重试导出。")
 	var concat:=""
 	var last_file:=""
 	for index in range(archive.frames.size()):
 		if cancelled:break
 		var frame:Dictionary=archive.frames[index]
-		title.text="%s · %s · %s  %s"%[archive.cityName,frame.date,frame.title,"规划建设展示" if frame.planning else ""]
+		title.text="%s · %s · %s  %s"%[archive.cityName,frame.date,frame.title,"规划展示" if frame.planning else ""]
 		attribution.text="玩家复现 · 现代地理参考 · © OpenStreetMap contributors · 地图日期：%s\n节点来源：%s"%[map.base_map_snapshot,str(frame.get("source","未保留来源"))]
 		var before:Dictionary=frame.get("beforeWorld",archive.frames[index-1].world if index>0 else archive.get("initialWorld",{}))
 		growth.prepare(before,frame.world,map.geometry_ref_lat)
@@ -98,10 +98,10 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 			var file:="frame-%05d-%02d.png"%[index,sample_index]
 			var frame_path:=temporary_dir.path_join(file);temporary_files.append(frame_path)
 			if _write_frame(viewport.get_texture().get_image(),frame_path)!=OK:
-				viewport.queue_free();return _finish(false,"无法写入视频帧，请检查磁盘空间。")
+				viewport.queue_free();return _finish(false,"视频帧写入失败，请检查磁盘可用空间。")
 			concat+="file '%s'\nduration %.9f\n"%[file,duration/archive.frames.size()/samples]
 			last_file=file
-		progress.emit("准备历史节点 %d / %d；可取消导出。"%[index+1,archive.frames.size()])
+		progress.emit("正在渲染历史节点 %d / %d……"%[index+1,archive.frames.size()])
 	viewport.queue_free()
 	if cancelled:return _finish(false,"导出已取消。")
 	concat+="file '%s'\n"%last_file
@@ -112,7 +112,7 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 	var output:=temporary_dir.path_join("result.webm");temporary_files.append(output)
 	pid=OS.create_process(encoder,PackedStringArray(["-hide_banner","-loglevel","error","-nostdin","-y","-f","concat","-safe","0","-i",list_path,"-an","-vf","fps=30,tpad=stop_mode=clone:stop_duration=120","-c:v","libvpx-vp9","-deadline","realtime","-cpu-used","6","-crf","35","-b:v","0","-pix_fmt","yuv420p","-r","30","-frames:v",str(roundi(duration*30)),"-t",str(duration),output]),false)
 	if pid<=0:return _finish(false,"无法启动视频编码。")
-	progress.emit("正在编码1920×1080视频；可继续操作或取消。")
+	progress.emit("正在编码 1080p 视频，可继续操作或取消……")
 	while OS.is_process_running(pid):await get_tree().process_frame
 	var encoder_exit:=OS.get_process_exit_code(pid)
 	pid=-1
@@ -125,10 +125,10 @@ func export_video(archive:Dictionary,path:String,duration:float,ui_theme:Theme) 
 	var verified:Dictionary=worker.wait_to_finish()
 	if not valid_probe(verified,duration):
 		push_warning("Media verification: encoder=%s probe=%s"%[encoder_exit,JSON.stringify(verified)])
-		return _finish(false,"视频校验失败，原目标文件已保留。")
+		return _finish(false,"视频完整性校验失败，原文件未作修改。")
 	if cancelled:return _finish(false,"导出已取消。")
-	if _replace_output(output,path)!=OK:return _finish(false,"无法替换目标文件，原文件已保留。")
-	return _finish(true,"发展史视频已导出："+path)
+	if _replace_output(output,path)!=OK:return _finish(false,"目标文件写入失败，原文件未作修改。")
+	return _finish(true,"发展史视频导出完成："+path)
 
 func _write_frame(frame:Image,path:String) -> Error:
 	return frame.save_png(path)

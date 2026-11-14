@@ -1,0 +1,1122 @@
+{
+  "schema": "metro-native-performance/2",
+  "version": "0.27.0",
+  "generatedAt": "2026-10-31T13:44:17+08:00",
+  "status": "awaiting_final_hour",
+  "notFullAcceptance": true,
+  "currentMeasuredThresholdsPassed": false,
+  "saveCoordinatorSha256": "e74f440ec2b26ee166fa911cea18fde7ef7c13997585584d0896b02a81a1e951",
+  "saveOptimizationCommit": "8438a44",
+  "shortRunsBeforeSaveOptimization": {
+    "blueprintTargets": 509,
+    "contentRevision": "2026.10.28.1",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "date": "2026-10-31T11:58:06",
+    "engineVersion": "4.7.2-stable (official)",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "harnessSha256": "a113ae2d22aa83fdd298c1d6d4e39147215cf0cc1f51afd2f1b5ae2d266d09df",
+    "history": 200,
+    "kind": "native-renderer-smoke",
+    "mapSourceSha256": "20d3867c3b4be3ff3bff200be7bcb15f9cdb15e3b7fa3a32e2ed5a9f7ea6c2c2",
+    "measuredThresholdsPassed": true,
+    "notFullAcceptance": true,
+    "overlayFixture": true,
+    "overlayNote": "Real cutoff blueprint and sourced story markers with a full assisted-preview display fixture. This does not advance or certify history.",
+    "presentationGeometrySha256": "b6fe05bbb2e2c6e7534284c47c2135471f267119f0c75638423fb9183d655b67",
+    "previewStationCount": 580,
+    "repeats": 3,
+    "resolution": [
+      1600,
+      980
+    ],
+    "routes": 18,
+    "saveMainThreadRequestMs": 12.056,
+    "saveOk": true,
+    "saveSnapshotMs": 11.924,
+    "saveTotalMs": 186.695,
+    "saveWorkerMs": 164.528,
+    "scenarios": [
+      {
+        "averageFps": 56.0161681122181,
+        "drawPhases": {
+          "basemap": {
+            "count": 1681,
+            "maxMs": 2.971,
+            "totalMs": 2303.994
+          },
+          "blueprint_corridors": {
+            "count": 1681,
+            "maxMs": 2.093,
+            "totalMs": 1498.65
+          },
+          "blueprint_targets": {
+            "count": 1681,
+            "maxMs": 3.413,
+            "totalMs": 3934.355
+          },
+          "built_tracks": {
+            "count": 1681,
+            "maxMs": 3.66,
+            "totalMs": 3601.993
+          },
+          "draft": {
+            "count": 1681,
+            "maxMs": 0.894,
+            "totalMs": 538.4
+          },
+          "hints": {
+            "count": 1681,
+            "maxMs": 0.032,
+            "totalMs": 6.9329999999998
+          },
+          "road_labels": {
+            "count": 1681,
+            "maxMs": 0.084,
+            "totalMs": 17.908
+          },
+          "selected_geometry": {
+            "count": 1681,
+            "maxMs": 0.014,
+            "totalMs": 7.69199999999981
+          },
+          "stations": {
+            "count": 1681,
+            "maxMs": 4.33,
+            "totalMs": 5228.88899999999
+          },
+          "story_markers": {
+            "count": 1681,
+            "maxMs": 0.416,
+            "totalMs": 163.6
+          },
+          "train_display": {
+            "count": 3361,
+            "maxMs": 0.426,
+            "totalMs": 425.211999999996
+          }
+        },
+        "engineStaticMiB": 172.726455688477,
+        "firstFrameMs": 52.561,
+        "frames": 1681,
+        "mapReady": true,
+        "maxFrameMs": 30.634,
+        "p95Ms": 19.392,
+        "prepareMs": 1898.098,
+        "pressureGoalMet": true,
+        "run": 0,
+        "scenario": "overview"
+      },
+      {
+        "averageFps": 54.5217492790032,
+        "drawPhases": {
+          "basemap": {
+            "count": 1636,
+            "maxMs": 4.965,
+            "totalMs": 2340.058
+          },
+          "blueprint_corridors": {
+            "count": 1636,
+            "maxMs": 2.197,
+            "totalMs": 1498.282
+          },
+          "blueprint_targets": {
+            "count": 1636,
+            "maxMs": 4.491,
+            "totalMs": 3874.03999999999
+          },
+          "built_tracks": {
+            "count": 1636,
+            "maxMs": 4.779,
+            "totalMs": 3564.205
+          },
+          "draft": {
+            "count": 1636,
+            "maxMs": 1.154,
+            "totalMs": 564.131000000001
+          },
+          "hints": {
+            "count": 1636,
+            "maxMs": 0.014,
+            "totalMs": 6.73599999999982
+          },
+          "road_labels": {
+            "count": 1636,
+            "maxMs": 0.064,
+            "totalMs": 17.6079999999999
+          },
+          "selected_geometry": {
+            "count": 1636,
+            "maxMs": 0.14,
+            "totalMs": 8.05599999999985
+          },
+          "stations": {
+            "count": 1636,
+            "maxMs": 5.471,
+            "totalMs": 5141.799
+          },
+          "story_markers": {
+            "count": 1636,
+            "maxMs": 0.253,
+            "totalMs": 163.208
+          },
+          "train_display": {
+            "count": 3272,
+            "maxMs": 0.463,
+            "totalMs": 433.105000000002
+          }
+        },
+        "engineStaticMiB": 172.802622795105,
+        "firstFrameMs": 17.466,
+        "frames": 1636,
+        "mapReady": true,
+        "maxFrameMs": 34.581,
+        "p95Ms": 20.454,
+        "prepareMs": 17.471,
+        "pressureGoalMet": true,
+        "run": 1,
+        "scenario": "overview"
+      },
+      {
+        "averageFps": 54.7647772818504,
+        "drawPhases": {
+          "basemap": {
+            "count": 1643,
+            "maxMs": 3.761,
+            "totalMs": 2309.459
+          },
+          "blueprint_corridors": {
+            "count": 1643,
+            "maxMs": 2.313,
+            "totalMs": 1501.078
+          },
+          "blueprint_targets": {
+            "count": 1643,
+            "maxMs": 4.334,
+            "totalMs": 3921.105
+          },
+          "built_tracks": {
+            "count": 1643,
+            "maxMs": 4.167,
+            "totalMs": 3600.249
+          },
+          "draft": {
+            "count": 1643,
+            "maxMs": 1.03,
+            "totalMs": 541.258999999999
+          },
+          "hints": {
+            "count": 1643,
+            "maxMs": 0.028,
+            "totalMs": 6.78699999999984
+          },
+          "road_labels": {
+            "count": 1643,
+            "maxMs": 0.038,
+            "totalMs": 17.75
+          },
+          "selected_geometry": {
+            "count": 1643,
+            "maxMs": 0.02,
+            "totalMs": 7.48599999999981
+          },
+          "stations": {
+            "count": 1643,
+            "maxMs": 5.853,
+            "totalMs": 5213.112
+          },
+          "story_markers": {
+            "count": 1643,
+            "maxMs": 0.341,
+            "totalMs": 164.313
+          },
+          "train_display": {
+            "count": 3286,
+            "maxMs": 0.43,
+            "totalMs": 450.957000000002
+          }
+        },
+        "engineStaticMiB": 172.862002372742,
+        "firstFrameMs": 18.695,
+        "frames": 1643,
+        "mapReady": true,
+        "maxFrameMs": 32.159,
+        "p95Ms": 20.929,
+        "prepareMs": 18.709,
+        "pressureGoalMet": true,
+        "run": 2,
+        "scenario": "overview"
+      },
+      {
+        "averageFps": 44.7568470144317,
+        "drawPhases": {
+          "basemap": {
+            "count": 1345,
+            "maxMs": 15.948,
+            "totalMs": 11860.265
+          },
+          "blueprint_corridors": {
+            "count": 1345,
+            "maxMs": 0.929,
+            "totalMs": 524.105
+          },
+          "blueprint_targets": {
+            "count": 1345,
+            "maxMs": 3.533,
+            "totalMs": 2076.705
+          },
+          "built_tracks": {
+            "count": 1345,
+            "maxMs": 2.154,
+            "totalMs": 1420.231
+          },
+          "draft": {
+            "count": 1345,
+            "maxMs": 1.21,
+            "totalMs": 536.232000000001
+          },
+          "hints": {
+            "count": 1345,
+            "maxMs": 0.023,
+            "totalMs": 5.5179999999999
+          },
+          "road_labels": {
+            "count": 1345,
+            "maxMs": 2.784,
+            "totalMs": 1679.739
+          },
+          "selected_geometry": {
+            "count": 1345,
+            "maxMs": 0.03,
+            "totalMs": 5.37699999999993
+          },
+          "stations": {
+            "count": 1345,
+            "maxMs": 3.228,
+            "totalMs": 2437.907
+          },
+          "story_markers": {
+            "count": 1345,
+            "maxMs": 0.049,
+            "totalMs": 17.1129999999999
+          },
+          "train_display": {
+            "count": 2685,
+            "maxMs": 0.342,
+            "totalMs": 285.645999999998
+          }
+        },
+        "engineStaticMiB": 192.084681510925,
+        "firstFrameMs": 22.607,
+        "frames": 1343,
+        "mapReady": true,
+        "maxFrameMs": 41.897,
+        "p95Ms": 27.388,
+        "prepareMs": 743.698,
+        "pressureGoalMet": true,
+        "run": 0,
+        "scenario": "blocks"
+      },
+      {
+        "averageFps": 43.6310310692606,
+        "drawPhases": {
+          "basemap": {
+            "count": 1311,
+            "maxMs": 15.781,
+            "totalMs": 11882.745
+          },
+          "blueprint_corridors": {
+            "count": 1311,
+            "maxMs": 0.87,
+            "totalMs": 518.329
+          },
+          "blueprint_targets": {
+            "count": 1311,
+            "maxMs": 2.895,
+            "totalMs": 2041.01
+          },
+          "built_tracks": {
+            "count": 1311,
+            "maxMs": 1.868,
+            "totalMs": 1396.339
+          },
+          "draft": {
+            "count": 1311,
+            "maxMs": 1.465,
+            "totalMs": 536.345
+          },
+          "hints": {
+            "count": 1311,
+            "maxMs": 0.012,
+            "totalMs": 5.54599999999989
+          },
+          "road_labels": {
+            "count": 1311,
+            "maxMs": 2.868,
+            "totalMs": 1744.936
+          },
+          "selected_geometry": {
+            "count": 1311,
+            "maxMs": 0.116,
+            "totalMs": 5.64499999999991
+          },
+          "stations": {
+            "count": 1311,
+            "maxMs": 3.507,
+            "totalMs": 2406.147
+          },
+          "story_markers": {
+            "count": 1311,
+            "maxMs": 0.036,
+            "totalMs": 17.089
+          },
+          "train_display": {
+            "count": 2618,
+            "maxMs": 0.372,
+            "totalMs": 303.230999999999
+          }
+        },
+        "engineStaticMiB": 192.098403930664,
+        "firstFrameMs": 21.432,
+        "frames": 1309,
+        "mapReady": true,
+        "maxFrameMs": 41.562,
+        "p95Ms": 27.024,
+        "prepareMs": 21.439,
+        "pressureGoalMet": true,
+        "run": 1,
+        "scenario": "blocks"
+      },
+      {
+        "averageFps": 45.6988103076383,
+        "drawPhases": {
+          "basemap": {
+            "count": 1373,
+            "maxMs": 21.992,
+            "totalMs": 11833.808
+          },
+          "blueprint_corridors": {
+            "count": 1373,
+            "maxMs": 1.184,
+            "totalMs": 537.518
+          },
+          "blueprint_targets": {
+            "count": 1373,
+            "maxMs": 4.349,
+            "totalMs": 2121.728
+          },
+          "built_tracks": {
+            "count": 1373,
+            "maxMs": 2.205,
+            "totalMs": 1452.502
+          },
+          "draft": {
+            "count": 1373,
+            "maxMs": 1.098,
+            "totalMs": 526.885
+          },
+          "hints": {
+            "count": 1373,
+            "maxMs": 0.01,
+            "totalMs": 5.41299999999991
+          },
+          "road_labels": {
+            "count": 1373,
+            "maxMs": 4.136,
+            "totalMs": 1609.613
+          },
+          "selected_geometry": {
+            "count": 1373,
+            "maxMs": 0.019,
+            "totalMs": 5.56499999999989
+          },
+          "stations": {
+            "count": 1373,
+            "maxMs": 4.767,
+            "totalMs": 2482.787
+          },
+          "story_markers": {
+            "count": 1373,
+            "maxMs": 0.038,
+            "totalMs": 16.7979999999998
+          },
+          "train_display": {
+            "count": 2742,
+            "maxMs": 0.354,
+            "totalMs": 312.053999999998
+          }
+        },
+        "engineStaticMiB": 192.112484931946,
+        "firstFrameMs": 24.861,
+        "frames": 1371,
+        "mapReady": true,
+        "maxFrameMs": 43.784,
+        "p95Ms": 26.732,
+        "prepareMs": 24.867,
+        "pressureGoalMet": true,
+        "run": 2,
+        "scenario": "blocks"
+      },
+      {
+        "averageFps": 118.642265907312,
+        "drawPhases": {
+          "basemap": {
+            "count": 58,
+            "maxMs": 15.316,
+            "totalMs": 360.636
+          },
+          "blueprint_corridors": {
+            "count": 58,
+            "maxMs": 0.777,
+            "totalMs": 19.186
+          },
+          "blueprint_targets": {
+            "count": 58,
+            "maxMs": 2.644,
+            "totalMs": 73.806
+          },
+          "built_tracks": {
+            "count": 58,
+            "maxMs": 1.792,
+            "totalMs": 59.19
+          },
+          "draft": {
+            "count": 58,
+            "maxMs": 1.032,
+            "totalMs": 26.475
+          },
+          "hints": {
+            "count": 58,
+            "maxMs": 0.011,
+            "totalMs": 0.273
+          },
+          "road_labels": {
+            "count": 58,
+            "maxMs": 3.849,
+            "totalMs": 68.693
+          },
+          "selected_geometry": {
+            "count": 58,
+            "maxMs": 0.016,
+            "totalMs": 0.264
+          },
+          "stations": {
+            "count": 58,
+            "maxMs": 3.059,
+            "totalMs": 84.745
+          },
+          "story_markers": {
+            "count": 58,
+            "maxMs": 0.04,
+            "totalMs": 0.848000000000001
+          },
+          "train_display": {
+            "count": 3588,
+            "maxMs": 0.754,
+            "totalMs": 529.107999999998
+          }
+        },
+        "engineStaticMiB": 208.146394729614,
+        "firstFrameMs": 23.495,
+        "frames": 3560,
+        "mapReady": true,
+        "maxFrameMs": 38.544,
+        "p95Ms": 8.387,
+        "prepareMs": 348.998,
+        "pressureGoalMet": true,
+        "run": 0,
+        "scenario": "zoom"
+      },
+      {
+        "averageFps": 118.280858214446,
+        "drawPhases": {
+          "basemap": {
+            "count": 58,
+            "maxMs": 12.691,
+            "totalMs": 417.682
+          },
+          "blueprint_corridors": {
+            "count": 58,
+            "maxMs": 0.932,
+            "totalMs": 23.023
+          },
+          "blueprint_targets": {
+            "count": 58,
+            "maxMs": 2.266,
+            "totalMs": 80.033
+          },
+          "built_tracks": {
+            "count": 58,
+            "maxMs": 2.41,
+            "totalMs": 67.276
+          },
+          "draft": {
+            "count": 58,
+            "maxMs": 0.905,
+            "totalMs": 28.448
+          },
+          "hints": {
+            "count": 58,
+            "maxMs": 0.017,
+            "totalMs": 0.3
+          },
+          "road_labels": {
+            "count": 58,
+            "maxMs": 2.322,
+            "totalMs": 69.162
+          },
+          "selected_geometry": {
+            "count": 58,
+            "maxMs": 0.013,
+            "totalMs": 0.285
+          },
+          "stations": {
+            "count": 58,
+            "maxMs": 2.685,
+            "totalMs": 89.182
+          },
+          "story_markers": {
+            "count": 58,
+            "maxMs": 0.07,
+            "totalMs": 0.92
+          },
+          "train_display": {
+            "count": 3578,
+            "maxMs": 0.713,
+            "totalMs": 576.572999999999
+          }
+        },
+        "engineStaticMiB": 208.158977508545,
+        "firstFrameMs": 15.011,
+        "frames": 3549,
+        "mapReady": true,
+        "maxFrameMs": 31.728,
+        "p95Ms": 8.416,
+        "prepareMs": 15.015,
+        "pressureGoalMet": true,
+        "run": 1,
+        "scenario": "zoom"
+      },
+      {
+        "averageFps": 118.26950617899,
+        "drawPhases": {
+          "basemap": {
+            "count": 58,
+            "maxMs": 15.64,
+            "totalMs": 392.261
+          },
+          "blueprint_corridors": {
+            "count": 58,
+            "maxMs": 0.925,
+            "totalMs": 21.591
+          },
+          "blueprint_targets": {
+            "count": 58,
+            "maxMs": 4.189,
+            "totalMs": 81.025
+          },
+          "built_tracks": {
+            "count": 58,
+            "maxMs": 2.407,
+            "totalMs": 65.306
+          },
+          "draft": {
+            "count": 58,
+            "maxMs": 0.762,
+            "totalMs": 27.963
+          },
+          "hints": {
+            "count": 58,
+            "maxMs": 0.016,
+            "totalMs": 0.283
+          },
+          "road_labels": {
+            "count": 58,
+            "maxMs": 2.706,
+            "totalMs": 68.803
+          },
+          "selected_geometry": {
+            "count": 58,
+            "maxMs": 0.016,
+            "totalMs": 0.298
+          },
+          "stations": {
+            "count": 58,
+            "maxMs": 4.447,
+            "totalMs": 89.162
+          },
+          "story_markers": {
+            "count": 58,
+            "maxMs": 0.026,
+            "totalMs": 0.847000000000001
+          },
+          "train_display": {
+            "count": 3578,
+            "maxMs": 0.673,
+            "totalMs": 588.688999999998
+          }
+        },
+        "engineStaticMiB": 208.157688140869,
+        "firstFrameMs": 18.115,
+        "frames": 3549,
+        "mapReady": true,
+        "maxFrameMs": 44.088,
+        "p95Ms": 8.42,
+        "prepareMs": 18.123,
+        "pressureGoalMet": true,
+        "run": 2,
+        "scenario": "zoom"
+      },
+      {
+        "averageFps": 58.2577804132276,
+        "drawPhases": {
+          "basemap": {
+            "count": 1748,
+            "maxMs": 10.588,
+            "totalMs": 8324.82700000001
+          },
+          "blueprint_corridors": {
+            "count": 1748,
+            "maxMs": 0.854,
+            "totalMs": 523.051000000001
+          },
+          "blueprint_targets": {
+            "count": 1748,
+            "maxMs": 2.283,
+            "totalMs": 1806.021
+          },
+          "built_tracks": {
+            "count": 1748,
+            "maxMs": 3.032,
+            "totalMs": 1809.52
+          },
+          "draft": {
+            "count": 1748,
+            "maxMs": 1.255,
+            "totalMs": 802.894
+          },
+          "hints": {
+            "count": 1748,
+            "maxMs": 0.022,
+            "totalMs": 8.70899999999978
+          },
+          "road_labels": {
+            "count": 1748,
+            "maxMs": 2.842,
+            "totalMs": 961.607
+          },
+          "selected_geometry": {
+            "count": 1748,
+            "maxMs": 0.019,
+            "totalMs": 8.32099999999979
+          },
+          "stations": {
+            "count": 1748,
+            "maxMs": 4.898,
+            "totalMs": 1935.984
+          },
+          "story_markers": {
+            "count": 1748,
+            "maxMs": 0.055,
+            "totalMs": 23.0259999999999
+          },
+          "train_display": {
+            "count": 3495,
+            "maxMs": 0.415,
+            "totalMs": 396.572
+          }
+        },
+        "engineStaticMiB": 208.126926422119,
+        "firstFrameMs": 15.793,
+        "frames": 1748,
+        "mapReady": true,
+        "maxFrameMs": 29.929,
+        "p95Ms": 19.46,
+        "prepareMs": 15.801,
+        "pressureGoalMet": true,
+        "run": 0,
+        "scenario": "buildings"
+      },
+      {
+        "averageFps": 57.8328128380178,
+        "drawPhases": {
+          "basemap": {
+            "count": 1735,
+            "maxMs": 11.051,
+            "totalMs": 8347.06099999999
+          },
+          "blueprint_corridors": {
+            "count": 1735,
+            "maxMs": 1.146,
+            "totalMs": 527.603
+          },
+          "blueprint_targets": {
+            "count": 1735,
+            "maxMs": 3.368,
+            "totalMs": 1815.428
+          },
+          "built_tracks": {
+            "count": 1735,
+            "maxMs": 3.426,
+            "totalMs": 1825.457
+          },
+          "draft": {
+            "count": 1735,
+            "maxMs": 1.704,
+            "totalMs": 804.042
+          },
+          "hints": {
+            "count": 1735,
+            "maxMs": 0.055,
+            "totalMs": 8.86899999999979
+          },
+          "road_labels": {
+            "count": 1735,
+            "maxMs": 1.447,
+            "totalMs": 966.761000000001
+          },
+          "selected_geometry": {
+            "count": 1735,
+            "maxMs": 0.109,
+            "totalMs": 8.36199999999981
+          },
+          "stations": {
+            "count": 1735,
+            "maxMs": 4.45,
+            "totalMs": 1933.182
+          },
+          "story_markers": {
+            "count": 1735,
+            "maxMs": 0.065,
+            "totalMs": 23.0019999999999
+          },
+          "train_display": {
+            "count": 3470,
+            "maxMs": 0.622,
+            "totalMs": 395.085
+          }
+        },
+        "engineStaticMiB": 208.140558242798,
+        "firstFrameMs": 16.906,
+        "frames": 1735,
+        "mapReady": true,
+        "maxFrameMs": 29.421,
+        "p95Ms": 20.403,
+        "prepareMs": 16.91,
+        "pressureGoalMet": true,
+        "run": 1,
+        "scenario": "buildings"
+      },
+      {
+        "averageFps": 54.9189848332292,
+        "drawPhases": {
+          "basemap": {
+            "count": 1648,
+            "maxMs": 12.353,
+            "totalMs": 8367.26
+          },
+          "blueprint_corridors": {
+            "count": 1648,
+            "maxMs": 1.602,
+            "totalMs": 526.698
+          },
+          "blueprint_targets": {
+            "count": 1648,
+            "maxMs": 2.231,
+            "totalMs": 1778.928
+          },
+          "built_tracks": {
+            "count": 1648,
+            "maxMs": 3.849,
+            "totalMs": 1811.506
+          },
+          "draft": {
+            "count": 1648,
+            "maxMs": 2.356,
+            "totalMs": 811.571
+          },
+          "hints": {
+            "count": 1648,
+            "maxMs": 0.045,
+            "totalMs": 8.50799999999984
+          },
+          "road_labels": {
+            "count": 1648,
+            "maxMs": 1.942,
+            "totalMs": 958.709000000001
+          },
+          "selected_geometry": {
+            "count": 1648,
+            "maxMs": 0.173,
+            "totalMs": 8.85099999999987
+          },
+          "stations": {
+            "count": 1648,
+            "maxMs": 2.645,
+            "totalMs": 1905.638
+          },
+          "story_markers": {
+            "count": 1648,
+            "maxMs": 0.107,
+            "totalMs": 22.801
+          },
+          "train_display": {
+            "count": 3296,
+            "maxMs": 0.812,
+            "totalMs": 390.537999999998
+          }
+        },
+        "engineStaticMiB": 208.146815299988,
+        "firstFrameMs": 17.678,
+        "frames": 1648,
+        "mapReady": true,
+        "maxFrameMs": 36.533,
+        "p95Ms": 23.338,
+        "prepareMs": 17.687,
+        "pressureGoalMet": true,
+        "run": 2,
+        "scenario": "buildings"
+      }
+    ],
+    "secondsPerScenario": 30.0,
+    "stations": 580,
+    "storyMarkers": 4,
+    "version": "0.27.0"
+  },
+  "firstHourBeforeSaveOptimization": {
+    "blueprintTargets": 509,
+    "contentRevision": "2026.10.28.1",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "date": "2026-10-31T12:07:38",
+    "engineVersion": "4.7.2-stable (official)",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "harnessSha256": "a113ae2d22aa83fdd298c1d6d4e39147215cf0cc1f51afd2f1b5ae2d266d09df",
+    "history": 200,
+    "kind": "native-renderer-smoke",
+    "mapSourceSha256": "20d3867c3b4be3ff3bff200be7bcb15f9cdb15e3b7fa3a32e2ed5a9f7ea6c2c2",
+    "measuredThresholdsPassed": false,
+    "notFullAcceptance": true,
+    "overlayFixture": true,
+    "overlayNote": "Real cutoff blueprint and sourced story markers with a full assisted-preview display fixture. This does not advance or certify history.",
+    "presentationGeometrySha256": "b6fe05bbb2e2c6e7534284c47c2135471f267119f0c75638423fb9183d655b67",
+    "previewStationCount": 642,
+    "repeats": 1,
+    "resolution": [
+      1600,
+      980
+    ],
+    "routes": 25,
+    "saveMainThreadRequestMs": 215.309,
+    "saveOk": true,
+    "saveSnapshotMs": 214.354,
+    "saveTotalMs": 825.196,
+    "saveWorkerMs": 564.749,
+    "scenarios": [
+      {
+        "averageFps": 39.9274771858832,
+        "drawPhases": {
+          "basemap": {
+            "count": 144120,
+            "maxMs": 41.371,
+            "totalMs": 1342855.62999999
+          },
+          "blueprint_corridors": {
+            "count": 144120,
+            "maxMs": 3.0,
+            "totalMs": 60586.8740000008
+          },
+          "blueprint_targets": {
+            "count": 144120,
+            "maxMs": 8.052,
+            "totalMs": 275798.136999998
+          },
+          "built_tracks": {
+            "count": 144120,
+            "maxMs": 0.443,
+            "totalMs": 3298.22899999818
+          },
+          "draft": {
+            "count": 144120,
+            "maxMs": 8.852,
+            "totalMs": 171115.954999998
+          },
+          "hints": {
+            "count": 144120,
+            "maxMs": 0.334,
+            "totalMs": 844.967999998878
+          },
+          "road_labels": {
+            "count": 144120,
+            "maxMs": 7.98,
+            "totalMs": 194752.197000001
+          },
+          "selected_geometry": {
+            "count": 144120,
+            "maxMs": 0.153,
+            "totalMs": 638.111000000752
+          },
+          "stations": {
+            "count": 144120,
+            "maxMs": 13.73,
+            "totalMs": 426115.478999998
+          },
+          "story_markers": {
+            "count": 144120,
+            "maxMs": 0.198,
+            "totalMs": 1948.31299999609
+          },
+          "train_display": {
+            "count": 157056,
+            "maxMs": 1.834,
+            "totalMs": 17841.5899999945
+          }
+        },
+        "engineStaticMiB": 242.22449016571,
+        "firstFrameMs": 126.307,
+        "frames": 143739,
+        "mapReady": true,
+        "maxFrameMs": 153.242,
+        "p95Ms": 32.18,
+        "prepareMs": 851.291,
+        "pressureGoalMet": true,
+        "run": 0,
+        "scenario": "blocks"
+      }
+    ],
+    "secondsPerScenario": 3600.0,
+    "sourceCheckpointSha256": "267e54bd587f579d1d1ee11d7563912704163302a7f9e1ce0aeb895f46f48dec",
+    "stations": 642,
+    "storyMarkers": 4,
+    "version": "0.27.0"
+  },
+  "fullHistorySaveAfterOptimization": {
+    "city": "shanghai",
+    "concurrencyNote": "Other formal city replays may be running. These are diagnostic request/worker times, not final EXE frame-rate or isolated performance acceptance.",
+    "contentRevision": "2026.10.28.1",
+    "date": "2026-10-31T13:14:25",
+    "edges": 637,
+    "kind": "actual-replay-save-diagnostic",
+    "milestones": 47,
+    "requestThresholdPassed": true,
+    "samples": [
+      {
+        "mainRequestMs": 25.611,
+        "ok": true,
+        "run": 0,
+        "snapshotMs": 25.25,
+        "totalMs": 568.372,
+        "workerMs": 530.439
+      },
+      {
+        "mainRequestMs": 14.049,
+        "ok": true,
+        "run": 1,
+        "snapshotMs": 13.969,
+        "totalMs": 2046.037,
+        "workerMs": 2024.28
+      },
+      {
+        "mainRequestMs": 16.975,
+        "ok": true,
+        "run": 2,
+        "snapshotMs": 16.828,
+        "totalMs": 2059.652,
+        "workerMs": 2028.477
+      }
+    ],
+    "saveCoordinatorSha256": "e74f440ec2b26ee166fa911cea18fde7ef7c13997585584d0896b02a81a1e951",
+    "saveManagerSha256": "26bd98dfd3186aa0817afefc83ffb9d2f1459c5a4a9a04df217d5326a48ddbfd",
+    "sourceSha256": "267e54bd587f579d1d1ee11d7563912704163302a7f9e1ce0aeb895f46f48dec",
+    "stations": 642,
+    "undoSteps": 200
+  },
+  "finalHourAfterSaveOptimization": null,
+  "operatingSystemMemorySamples": {
+    "scope": "Partial observations near the end or during each run; not a continuous full-hour memory trace.",
+    "firstRun": [
+      {
+        "time": "2026-10-31T12:52:40.0208236+08:00",
+        "id": 14084,
+        "workingSetBytes": 228864000,
+        "peakWorkingSetBytes": 565284864,
+        "privateBytes": 619184128,
+        "cpuSeconds": 2728.171875
+      },
+      {
+        "time": "2026-10-31T12:57:56.1481900+08:00",
+        "id": 14084,
+        "workingSetBytes": 229261312,
+        "peakWorkingSetBytes": 565284864,
+        "privateBytes": 619249664,
+        "cpuSeconds": 3043.21875
+      },
+      {
+        "time": "2026-10-31T13:01:54.6984086+08:00",
+        "id": 14084,
+        "workingSetBytes": 229855232,
+        "peakWorkingSetBytes": 565284864,
+        "privateBytes": 619741184,
+        "cpuSeconds": 3282.15625
+      },
+      {
+        "time": "2026-10-31T13:06:31.6042668+08:00",
+        "id": 14084,
+        "workingSetBytes": 230060032,
+        "peakWorkingSetBytes": 565284864,
+        "privateBytes": 621404160,
+        "cpuSeconds": 3560.5625
+      }
+    ],
+    "finalRun": [
+      {
+        "cpuSeconds": 59.109375,
+        "peakWorkingSetBytes": 548294656,
+        "privateBytes": 592338944,
+        "id": 35852,
+        "time": "2026-10-31T13:43:15.4297551+08:00",
+        "workingSetBytes": 548204544
+      },
+      {
+        "cpuSeconds": 115.828125,
+        "peakWorkingSetBytes": 550445056,
+        "privateBytes": 593895424,
+        "id": 35852,
+        "time": "2026-10-31T13:44:15.4544929+08:00",
+        "workingSetBytes": 550416384
+      }
+    ]
+  },
+  "measurementContext": [
+    "All world writes used isolated explicit data directories; no player saves were modified.",
+    "The short run and first hour overlapped candidate builds, video exports, native QA and/or five-city headless replays. They are not exclusive-machine benchmarks.",
+    "The final hour overlapped five-city headless replay, headless resource inspection and a headless candidate export. No new native UI or video-encoding test was launched during that hour.",
+    "First-hour map, presentation and harness hashes are retained; unrelated PNG-export code changed while that old process ran. The final run began after the save optimization and freezes runtime inputs.",
+    "Frame intervals are end-to-end frame measurements; an isolated long interval is not sufficient evidence of which CPU/GPU/OS operation caused it.",
+    "First frames, asynchronous map readiness, main-thread snapshot/request, background worker and total save duration are reported separately."
+  ],
+  "retainedFailures": [
+    "First hour: 153.242 ms longest frame, 126.307 ms first frame, 215.309 ms save request; measuredThresholdsPassed=false despite passing average/P95.",
+    "A binary-serialization snapshot experiment was slower (about 145-191 ms) and was not adopted."
+  ],
+  "interruptedRun": {
+    "observedAt": "2026-10-31T13:42:14.796734+08:00",
+    "status": "ended_without_report",
+    "countedAsPassed": false,
+    "lastObservedAlive": "2026-10-31T13:26:16+08:00",
+    "firstObservedAbsent": "2026-10-31T13:39:33+08:00",
+    "wrapperPid": 33264,
+    "nativePid": 708,
+    "cause": "Not established; stdout/stderr have no completion report."
+  },
+  "finalRunMonitor": {
+    "startedAt": "2026-10-31T13:42:15.3966369+08:00",
+    "pid": 35852,
+    "harness": "title-and-provenance-only copy of tests/story_performance_smoke.gd",
+    "sourceRevision": "8438a44",
+    "status": "running"
+  },
+  "unexecuted": [
+    "new-player observation",
+    "clean Windows compatibility",
+    "complete human listening review of all announcement names"
+  ]
+}

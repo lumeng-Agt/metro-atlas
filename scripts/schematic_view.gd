@@ -1,4 +1,5 @@
 extends Control
+const Ui=preload("res://scripts/ui_theme.gd")
 var layout:Dictionary={}
 var font:Font
 func _draw() -> void:
@@ -19,11 +20,11 @@ func _draw() -> void:
 			if section.openColors.has(section.colors[index]):draw_line(section.a+offset,section.b+offset,Color(section.colors[index]),3 if section.colors.size()>1 else 5,true)
 			else:draw_dashed_line(section.a+offset,section.b+offset,Color(section.colors[index]),3,8,true)
 	for pair in layout.transfers:
-		draw_dashed_line(layout.positions[str(pair[0])],layout.positions[str(pair[1])],Color("#223745"),3,5,true)
-		draw_arc(layout.positions[str(pair[0])],9,0,TAU,24,Color("#223745"),2,true)
+		draw_dashed_line(layout.positions[str(pair[0])],layout.positions[str(pair[1])],Ui.INK_ON_LIGHT,3,5,true)
+		draw_arc(layout.positions[str(pair[0])],9,0,TAU,24,Ui.INK_ON_LIGHT,2,true)
 	for id in layout.positions:
-		draw_circle(layout.positions[id],5,Color.WHITE);draw_arc(layout.positions[id],5,0,TAU,20,Color("#223745"),2,true)
+		draw_circle(layout.positions[id],5,Color.WHITE);draw_arc(layout.positions[id],5,0,TAU,20,Ui.INK_ON_LIGHT,2,true)
 	for id in layout.labels:
 		var point:Vector2=layout.positions[id];var label_position:Vector2=layout.labels[id]
 		if point.distance_to(label_position)>70:draw_line(point,label_position+Vector2(0,13),Color("#9daeb8"),1,true)
-		draw_string(font,layout.labels[id]+Vector2(0,21),layout.names[id],HORIZONTAL_ALIGNMENT_LEFT,-1,17,Color("#223745"))
+		draw_string(font,layout.labels[id]+Vector2(0,21),layout.names[id],HORIZONTAL_ALIGNMENT_LEFT,-1,17,Ui.INK_ON_LIGHT)

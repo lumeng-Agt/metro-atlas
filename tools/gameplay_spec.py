@@ -5,10 +5,17 @@ reads the same list back and refuses a record that is short of it. Keeping the
 list here means a record cannot be made to pass by quietly dropping a check.
 """
 
-REPLAY_CITIES = ('shenzhen', 'shanghai', 'beijing', 'guangzhou', 'chengdu')
+# This release ships one city. Only Shenzhen is replayed end to end, because
+# only Shenzhen is a game a player can actually finish. The other cities stay in
+# the data files and are still checked for integrity by the catalog and baseline
+# validators, but replaying them would gate a release on content no player can
+# reach.
+REPLAY_CITIES = ('shenzhen',)
 
-# Checkpoints each city's full replay has produced. The check is `>=` so a
-# longer run passes, while a truncated or partly-failed run does not.
+# Checkpoints a city's full replay has produced. The check is `>=` so a longer
+# run passes, while a truncated or partly-failed run does not. The four other
+# cities keep their historical counts as a record of what they last produced;
+# they are not part of the release gate while only Shenzhen ships.
 CHECKPOINT_FLOOR = {
     'shenzhen': 110,
     'shanghai': 143,
@@ -38,8 +45,19 @@ GD_SCRIPTS = (
     ('gd.presentation_geometry_checks', 'tests/presentation_geometry_checks.gd'),
     ('gd.chapter_lookup_checks', 'tests/chapter_lookup_checks.gd'),
     ('gd.published_cities_checks', 'tests/published_cities_checks.gd'),
+    ('gd.published_only_checks', 'tests/published_only_checks.gd'),
     ('gd.decision_checks', 'tests/decision_checks.gd'),
     ('gd.proposal_checks', 'tests/proposal_checks.gd'),
+    ('gd.proposal_session_checks', 'tests/proposal_session_checks.gd'),
+    ('gd.proposal_order_checks', 'tests/proposal_order_checks.gd'),
+    ('gd.proposal_ui_checks', 'tests/proposal_ui_checks.gd'),
+    ('gd.city_boundary_checks', 'tests/city_boundary_checks.gd'),
+    ('gd.hub_city_checks', 'tests/hub_city_checks.gd'),
+    ('gd.proposal_compat_checks', 'tests/proposal_compat_checks.gd'),
+    ('gd.proposal_resume_checks', 'tests/proposal_resume_checks.gd'),
+    ('gd.proposal_panel_checks', 'tests/proposal_panel_checks.gd'),
+    ('gd.proposal_scale_checks', 'tests/proposal_scale_checks.gd'),
+    ('gd.proposal_input_checks', 'tests/proposal_input_checks.gd'),
     ('gd.historical_skip_checks', 'tests/historical_skip_checks.gd'),
     ('gd.city_context_checks', 'tests/city_context_checks.gd'),
     ('gd.legacy_network_repair_checks', 'tests/legacy_network_repair_checks.gd'),

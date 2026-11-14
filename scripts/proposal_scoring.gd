@@ -10,9 +10,12 @@ extends RefCounted
 ## interchanges. It never claims surveying accuracy, and it never touches
 ## passenger demand, ridership or operations.
 
-const CORRIDOR_POINTS := 60.0
-const STATION_POINTS := 30.0
-const TRANSFER_POINTS := 10.0
+# Order carries as much weight as coverage: a proposal that serves every
+# published station in the wrong sequence has not followed the project, and the
+# score has to say so. Coverage alone would let a reversed pick pass.
+const CORRIDOR_POINTS := 35.0
+const STATION_POINTS := 45.0
+const TRANSFER_POINTS := 20.0
 
 const GRADE_EXCELLENT := 85.0
 const GRADE_PASS := 60.0
@@ -91,6 +94,81 @@ static func built_count(targets: Array) -> int:
 		if bool(target.get("built", false)):
 			built += 1
 	return built
+
+## Compare a player's own station order with the published one.
+##
+## This is the proposal comparison: the player picked which published stations
+## to serve and in what order, so the honest measures are how many published
+## stations they served, how closely their order follows the published order,
+## and whether the required interchanges are among them. It never invents a
+## coordinate for a station the record does not place.
+## transfer_ids: the station ids of the project's required interchanges. The
+## caller resolves names to ids because a proposal stores ids, and matching a
+## name against an id list would silently score every interchange as missed.
+static func compare_order(picked_ids: Array, published_ids: Array, transfer_ids: Array = []) -> Dictionary:
+	var published_set: Dictionary = {}
+	for index in range(published_ids.size()):
+		published_set[str(published_ids[index])] = index
+	var served: Array = []
+	for raw in picked_ids:
+		var id := str(raw)
+		if published_set.has(id) and not served.has(id):
+			served.append(id)
+	var total := published_ids.size()
+	var missed: Array = []
+	for raw in published_ids:
+		if not served.has(str(raw)):
+			missed.append(str(raw))
+	# Order agreement: the longest run of the player's order that is already in
+	# published order. A player who serves every station in the right sequence
+	# scores 1.0; a player who serves them backwards scores near 0.
+	# Order agreement is measured against the published sequence, not against
+	# the player's own length: serving two stations in order is not the same
+	# achievement as serving all of them in order.
+	var order_ratio := 0.0
+	if served.size() >= 2:
+		var positions: Array = []
+		for id in served:
+			positions.append(int(published_set[id]))
+		var longest := 1
+		var current := 1
+		for index in range(1, positions.size()):
+			if positions[index] > positions[index - 1]:
+				current += 1
+				longest = maxi(longest, current)
+			else:
+				current = 1
+		# Rescale so the two ends are the honest ones: a run of one station is
+		# no order at all, and a fully reversed pick scores zero rather than
+		# collecting a share just for having picked the stations.
+		order_ratio = float(longest - 1) / float(maxi(1, total - 1))
+	var coverage_ratio := 0.0 if total == 0 else float(served.size()) / float(total)
+	var hit: Array = []
+	var missed_transfers: Array = []
+	for raw in transfer_ids:
+		if served.has(str(raw)):
+			hit.append(str(raw))
+		else:
+			missed_transfers.append(str(raw))
+	var transfer_ratio := 1.0 if transfer_ids.is_empty() else float(hit.size()) / float(transfer_ids.size())
+	# A proposal that serves nothing is not a proposal. Without this guard an
+	# empty pick would still collect the whole interchange share whenever a
+	# chapter lists no required interchange.
+	var score := 0.0
+	if served.size() >= 2:
+		score = coverage_ratio * CORRIDOR_POINTS + order_ratio * STATION_POINTS + transfer_ratio * TRANSFER_POINTS
+	return {
+		"score": roundi(score),
+		"grade": grade(score),
+		"coverageRatio": coverage_ratio,
+		"orderRatio": order_ratio,
+		"served": served.size(),
+		"total": total,
+		"missedStationIds": missed,
+		"transfersHit": hit,
+		"transfersMissed": missed_transfers,
+		"notice": "按公开站序比对，不代表测绘精度，也不评估客流。",
+	}
 
 static func grade(score: float) -> String:
 	if score >= GRADE_EXCELLENT:

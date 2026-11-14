@@ -225,19 +225,19 @@ static func save_world(world: Dictionary, rotate: bool = false) -> Dictionary:
 	if not index_is_current:
 		if bool(prior_index.get("ok",false)) and _index_usable(prior_index.data):
 			result=_write_atomic(index_path+".bak",str(prior_index.text))
-			if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续索引备份失败，请重试。"}
+			if not bool(result.ok):return {"ok":false,"error":"进度已保存，但索引备份失败，请重试。"}
 		elif FileAccess.file_exists(index_path) and prior_index.has("text"):
 			var preserved_index:=_preserve_original(str(prior_index.text),"replaced_continue_index")
 			if not bool(preserved_index.get("ok",false)):return preserved_index
 		result=_write_atomic(index_path,JSON.stringify({"schemaVersion":WorldData.SAVE_VERSION,"gameId":id}))
-		if not bool(result.ok):return {"ok":false,"error":"进度已写入，但继续游戏索引失败，请重试。"}
+		if not bool(result.ok):return {"ok":false,"error":"进度已保存，但索引更新失败，请重试。"}
 	var backup_index:=_read(index_path+".bak")
 	if not bool(backup_index.get("ok",false)) or not _index_usable(backup_index.data):
 		if backup_index.has("text"):
 			var preserved_backup:=_preserve_original(str(backup_index.text),"replaced_continue_backup")
 			if not bool(preserved_backup.get("ok",false)):return preserved_backup
 		result=_write_atomic(index_path+".bak",JSON.stringify({"schemaVersion":WorldData.SAVE_VERSION,"gameId":id}))
-		if not bool(result.get("ok",false)):return {"ok":false,"error":"进度已写入，但继续索引恢复备份失败，请重试。"}
+		if not bool(result.get("ok",false)):return {"ok":false,"error":"进度已保存，但索引备份恢复失败，请重试。"}
 	world["savedAt"]=current.savedAt
 	return {"ok":true,"path":path}
 
@@ -651,7 +651,7 @@ static func load_last_game(confirm_recovery:bool=false) -> Dictionary:
 	if not bool(index.get("ok",false)) or not _index_usable(index.data):
 		var backup:=_read(index_path+".bak")
 		if not bool(backup.get("ok",false)) or not _index_usable(backup.data):
-			if str(index.get("status",""))=="not_found" and str(backup.get("status",""))=="not_found":return {"ok":false,"status":"not_found","error":"还没有继续进度，请开始城市故事。"}
+			if str(index.get("status",""))=="not_found" and str(backup.get("status",""))=="not_found":return {"ok":false,"status":"not_found","error":"暂无进行中的进度，请选择城市开始建造。"}
 			return {"ok":false,"status":"corrupt","error":"继续记录损坏，请从存档中心载入。"}
 		if not confirm_recovery:return {"ok":false,"status":"recovery_available","recoveryKind":"continue_index","path":index_path,"error":"继续记录损坏。","backupAt":str(backup.data.get("savedAt","上一次有效继续记录"))}
 		for source in [index,backup]:
@@ -707,7 +707,7 @@ static func list_saves() -> Array[Dictionary]:
 static func _append_row(rows: Array[Dictionary],path:String,kind:String,id:String) -> void:
 	var raw:=_read(path)
 	var data:Dictionary=raw.get("data",{})
-	rows.append({"path":path,"gameId":id,"kind":kind,"title":str(data.get("title",data.get("cityName","损坏存档"))),"city":str(data.get("cityName","")),"stations":data.get("stations",[]).size() if data.get("stations",[]) is Array else 0,"routes":data.get("routes",[]).size() if data.get("routes",[]) is Array else 0,"savedAt":str(data.get("savedAt","旧存档")),"modified":FileAccess.get_modified_time(path),"bytes":str(raw.get("text","")).to_utf8_buffer().size()})
+	rows.append({"path":path,"gameId":id,"kind":kind,"cityId":str(data.get("cityId","")),"title":str(data.get("title",data.get("cityName","损坏存档"))),"city":str(data.get("cityName","")),"stations":data.get("stations",[]).size() if data.get("stations",[]) is Array else 0,"routes":data.get("routes",[]).size() if data.get("routes",[]) is Array else 0,"savedAt":str(data.get("savedAt","旧存档")),"modified":FileAccess.get_modified_time(path),"bytes":str(raw.get("text","")).to_utf8_buffer().size()})
 
 static func save_named(world:Dictionary,title:String) -> Dictionary:
 	var problem:=validate(world)
@@ -753,7 +753,7 @@ static func delete_legacy_auto_history(path:String) -> Dictionary:
 
 static func delete_game(id:String,active_id:String="") -> Dictionary:
 	if not valid_id(id):return {"ok":false,"error":"无效游戏编号。"}
-	if id==active_id:return {"ok":false,"error":"请先返回主菜单再删除当前自动进度。"}
+	if id==active_id:return {"ok":false,"error":"当前存档正在使用中，请返回主菜单后再删除。"}
 	var path:=save_path(id)
 	var files:Array[String]=[path,path+".bak"]
 	var dir:=DirAccess.open(game_dir(id).path_join("auto"))

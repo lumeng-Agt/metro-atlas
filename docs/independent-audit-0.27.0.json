@@ -1,0 +1,41 @@
+{
+  "cities": {
+    "beijing": {
+      "ok": false,
+      "reasons": [
+        "各历史里程碑的官方范围尚未全部核对。",
+        "项目bj-line13-capacity的完整换乘范围尚未核对。",
+        "项目bj-yizhuang-connector的完整换乘范围尚未核对。",
+        "项目bj-line11-phase2的完整换乘范围尚未核对。"
+      ]
+    },
+    "chengdu": {
+      "ok": false,
+      "reasons": [
+        "截止日项目与路网清单尚未完成独立核对。",
+        "各历史里程碑的官方范围尚未全部核对。"
+      ]
+    },
+    "guangzhou": {
+      "ok": false,
+      "reasons": [
+        "各历史里程碑的官方范围尚未全部核对。"
+      ]
+    },
+    "shanghai": {
+      "ok": false,
+      "reasons": [
+        "各历史里程碑的官方范围尚未全部核对。",
+        "截止日开放范围缺少独立日期证据，现行时刻表不能代替。",
+        "截止日全量换乘联系尚未完成独立核对。",
+        "项目sh-line19的完整换乘范围尚未核对。"
+      ]
+    },
+    "shenzhen": {
+      "ok": true,
+      "reasons": []
+    }
+  },
+  "contentRevision": "2026.10.28.1",
+  "date": "2026-10-31"
+}

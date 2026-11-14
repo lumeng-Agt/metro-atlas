@@ -8,7 +8,7 @@ static func build(source: Dictionary) -> Dictionary:
 	var frames: Array[Dictionary] = []
 	var warning := ""
 	if seed.is_empty() or milestones.is_empty():
-		return {"frames": frames, "warning": "还没有可恢复的已确认里程碑。"}
+		return {"frames": frames, "warning": "暂无可回放的已确认通车里程碑。"}
 	var next_dates := {"history":"9999-99-99","future":"9999-99-99"}
 	var future_ids:={}
 	for plan in CampaignSystem.city_config(str(source.get("cityId",""))).get("futurePlans",[]):future_ids[str(plan.get("id",""))]=true
@@ -18,11 +18,11 @@ static func build(source: Dictionary) -> Dictionary:
 		var planning:=str(milestone.get("phase","history"))=="future" or future_ids.has(str(milestone.get("chapterId",""))) or date > "2026-10-01"
 		var lane:="future" if planning else "history"
 		if date > str(next_dates[lane]):
-			warning = "早期记录包含回补修订，仅回放后续连续记录。"
+			warning = "早期记录存在结构修订，仅回放后续连续里程碑。"
 			break
 		var diff: Dictionary = milestone.get("planningDiff", {})
 		if not _matches(seed, diff):
-			warning = "更早记录缺少一致的建设差量，回放从可恢复节点开始。"
+			warning = "更早记录缺少差量数据，回放将从首个完整节点开始。"
 			break
 		var state := seed.duplicate(true)
 		state.merge({"cityId": source.get("cityId", ""), "mode": "work", "revision": index+1}, true)

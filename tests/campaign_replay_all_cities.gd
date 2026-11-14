@@ -1,7 +1,8 @@
-﻿extends SceneTree
+extends SceneTree
 
 const Story = preload("res://scripts/story_session.gd")
 const Catalog = preload("res://scripts/campaign_system.gd")
+const ProposalSession = preload("res://scripts/proposal_session.gd")
 const App = preload("res://scripts/main.gd")
 var app: Control
 var failures := 0
@@ -54,6 +55,17 @@ func _checkpoint(city:String,chapter:String,task:String) -> bool:
 func _construct_chapter(city:String,chapter:Dictionary) -> bool:
 	var id:=str(chapter.id)
 	app._begin_chapter()
+	# A planning chapter opens with a proposal. The replay exercises that stage
+	# with the published order, then checks that the chapter still has to be
+	# built and confirmed exactly as before: a proposal is not a shortcut.
+	if str(app.world.storyState.get("stage",""))=="proposal":
+		var candidates:Array=ProposalSession.candidate_stations(app.world,chapter)
+		var picked:Array=[]
+		for row in candidates:picked.append(str(row.get("id","")))
+		var submitted:Dictionary=Story.submit_proposal(app.world,picked)
+		if not bool(submitted.get("ok",false)):return _fail(city,id,"proposal",str(submitted.get("error","")))
+		if str(app.world.storyState.get("stage",""))!="build":return _fail(city,id,"proposal","submitting a proposal did not open construction")
+		print("REPLAY_PROPOSAL_OK ",city," ",id," stations=",picked.size())
 	var versions:Array=chapter.get("story",{}).get("planVersions",[])
 	while not Story.plan_is_final(app.world):
 		var revision_result:Dictionary=app._commit_plan_revision(int(app.world.storyPlan.get("planIndex",0))+1,int(app.world.revision))
