@@ -2,7 +2,7 @@ class_name StoryConstruction
 extends RefCounted
 
 var world: Dictionary = {}
-var active_city_id := "shanghai"
+var active_city_id := "shenzhen"
 var map_view: MapView
 
 func track_preview(start: Dictionary, finish: Dictionary, control: Array = [], historical_context: bool = false) -> Dictionary:

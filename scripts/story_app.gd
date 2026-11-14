@@ -1917,7 +1917,7 @@ func _restart_guide() -> void:
 	_confirm("独立操作练习","当前进度会先保存。练习使用首章的新副本，结束后可回到原进度。",func():
 		_leave(func():
 			practice_return=world.duplicate(true)
-			var city_id:=str(world.get("cityId","shanghai"))
+			var city_id:=str(world.get("cityId","shenzhen"))
 			var practice:=WorldData.new_world(city_id,"campaign")
 			practice["title"]="操作练习 · "+str(practice.cityName)
 			practice["practiceOf"]=str(world.get("gameId",""))

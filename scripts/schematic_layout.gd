@@ -6,7 +6,7 @@ static func build(world:Dictionary,bounds:Vector2) -> Dictionary:
 	return _build(_snapshot(world),bounds)
 
 static func _snapshot(world:Dictionary) -> Dictionary:
-	var result:={"cityId":world.get("cityId","shanghai")}
+	var result:={"cityId":world.get("cityId","shenzhen")}
 	for key in ["stations","routes","trackNodes","trackEdges","trackLinks","transferConnections"]:result[key]=world.get(key,[]).duplicate(true)
 	return result
 
@@ -16,7 +16,7 @@ static func _build(world:Dictionary,bounds:Vector2) -> Dictionary:
 	var stations:Dictionary={};var by_instance:Dictionary={}
 	for station in world.get("stations",[]):
 		stations[str(station.id)]=station;by_instance[str(station.get("stationInstanceId",station.id))]=str(station.id)
-	var ref_lat:=float(WorldData.city(str(world.get("cityId","shanghai"))).get("center",[31,121])[0])
+	var ref_lat:=float(WorldData.city(str(world.get("cityId","shenzhen"))).get("center",[22.545,114.054])[0])
 	var path_index:=TrackNetwork.build_path_index(world,ref_lat)
 	var low:=Vector2(INF,INF);var high:=Vector2(-INF,-INF)
 	for route in world.get("routes",[]):
