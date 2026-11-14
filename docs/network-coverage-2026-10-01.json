@@ -23829,7 +23829,7 @@
       "untargetedOrPartialRouteIds": [],
       "historyStatus": "route_inventory_complete",
       "futureStatus": "partial",
-      "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
+      "coverageNote": "收录上海 1990 年开工至 2026 年秋的轨道交通建设历程。按历史时期逐步铺设各条线路，重现上海线网从单线贯通到超大规模网络的演进过程。",
       "chapterGroups": [
         {
           "chapterId": "sh-line1-1993",
@@ -24987,7 +24987,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2011-12-28",
-          "chapterTitle": "7号线建设阶段",
+          "chapterTitle": "7号线成网扩展",
           "chapterDate": "2011-12-28",
           "lineId": "shanghai-line7-7",
           "lineName": "7号线",
@@ -25803,7 +25803,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2017-12-30",
-          "chapterTitle": "17号线建设阶段",
+          "chapterTitle": "17号线成网扩展",
           "chapterDate": "2017-12-30",
           "lineId": "shanghai-line17-17",
           "lineName": "17号线",
@@ -25846,7 +25846,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2017-12-30",
-          "chapterTitle": "17号线建设阶段",
+          "chapterTitle": "17号线成网扩展",
           "chapterDate": "2017-12-30",
           "lineId": "shanghai-line9-9",
           "lineName": "9号线",
@@ -26032,7 +26032,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2019-09-27",
-          "chapterTitle": "16号线建设阶段",
+          "chapterTitle": "16号线成网扩展",
           "chapterDate": "2019-09-27",
           "lineId": "shanghai-line16-16",
           "lineName": "16号线",
@@ -26518,7 +26518,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2021-01-23",
-          "chapterTitle": "15号线建设阶段",
+          "chapterTitle": "15号线成网扩展",
           "chapterDate": "2021-01-23",
           "lineId": "shanghai-line15-15",
           "lineName": "15号线",
@@ -26597,7 +26597,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2021-12-19",
-          "chapterTitle": "13号线建设阶段",
+          "chapterTitle": "13号线成网扩展",
           "chapterDate": "2021-12-19",
           "lineId": "shanghai-line13-13",
           "lineName": "13号线",
@@ -26674,7 +26674,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2021-12-30",
-          "chapterTitle": "14号线建设阶段",
+          "chapterTitle": "14号线成网扩展",
           "chapterDate": "2021-12-30",
           "lineId": "shanghai-line14-14",
           "lineName": "14号线",
@@ -26753,7 +26753,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2021-12-30",
-          "chapterTitle": "14号线建设阶段",
+          "chapterTitle": "14号线成网扩展",
           "chapterDate": "2021-12-30",
           "lineId": "shanghai-line18-18",
           "lineName": "18号线",
@@ -26995,7 +26995,7 @@
         },
         {
           "chapterId": "shanghai-network-milestone-2025-12-27",
-          "chapterTitle": "18号线建设阶段",
+          "chapterTitle": "18号线成网扩展",
           "chapterDate": "2025-12-27",
           "lineId": "shanghai-line18-18",
           "lineName": "18号线二期宝山段",
@@ -52319,7 +52319,7 @@
       "untargetedOrPartialRouteIds": [],
       "historyStatus": "route_inventory_complete",
       "futureStatus": "partial",
-      "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
+      "coverageNote": "收录北京 1965 年规划、1969 年一期建成至 2026 年秋的轨道交通建设历程。按历史时期推进各阶段工程，重现首都地铁线网的发展脉络。",
       "chapterGroups": [
         {
           "chapterId": "bj-phase1-built-1969",
@@ -52516,7 +52516,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-1987-12-28",
-          "chapterTitle": "2号线建设阶段",
+          "chapterTitle": "2号线成网扩展",
           "chapterDate": "1987-12-28",
           "lineId": "beijing-lineearly1",
           "lineName": "环线成环：复用南段并闭合18站",
@@ -52631,7 +52631,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2007-10-07",
-          "chapterTitle": "5号线建设阶段",
+          "chapterTitle": "5号线成网扩展",
           "chapterDate": "2007-10-07",
           "lineId": "beijing-line5-5",
           "lineName": "5号线",
@@ -52751,7 +52751,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2009-09-28",
-          "chapterTitle": "4号线建设阶段",
+          "chapterTitle": "4号线成网扩展",
           "chapterDate": "2009-09-28",
           "lineId": "beijing-line4-4",
           "lineName": "4号线",
@@ -52814,7 +52814,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2010-12-30",
-          "chapterTitle": "亦庄线建设阶段",
+          "chapterTitle": "亦庄线成网扩展",
           "chapterDate": "2010-12-30",
           "lineId": "beijing-route-24",
           "lineName": "亦庄线",
@@ -52857,7 +52857,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2010-12-30",
-          "chapterTitle": "亦庄线建设阶段",
+          "chapterTitle": "亦庄线成网扩展",
           "chapterDate": "2010-12-30",
           "lineId": "beijing-line4-4",
           "lineName": "大兴线：公益西桥—天宫院贯通",
@@ -52896,7 +52896,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2010-12-30",
-          "chapterTitle": "亦庄线建设阶段",
+          "chapterTitle": "亦庄线成网扩展",
           "chapterDate": "2010-12-30",
           "lineId": "beijing-route-20",
           "lineName": "昌平线一期七站试运营",
@@ -52925,7 +52925,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2012-12-30",
-          "chapterTitle": "9号线建设阶段",
+          "chapterTitle": "9号线成网扩展",
           "chapterDate": "2012-12-30",
           "lineId": "beijing-line9-9",
           "lineName": "9号线",
@@ -52966,7 +52966,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2012-12-30",
-          "chapterTitle": "9号线建设阶段",
+          "chapterTitle": "9号线成网扩展",
           "chapterDate": "2012-12-30",
           "lineId": "beijing-line10-10",
           "lineName": "10号线二期先行段：大C形运行",
@@ -53065,7 +53065,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2013-05-05",
-          "chapterTitle": "10号线建设阶段",
+          "chapterTitle": "10号线成网扩展",
           "chapterDate": "2013-05-05",
           "lineId": "beijing-line10-10",
           "lineName": "10号线45站成环",
@@ -53197,7 +53197,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2017-12-30",
-          "chapterTitle": "房山线建设阶段",
+          "chapterTitle": "房山线成网扩展",
           "chapterDate": "2017-12-30",
           "lineId": "beijing-route-22",
           "lineName": "房山线",
@@ -53244,7 +53244,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2017-12-30",
-          "chapterTitle": "房山线建设阶段",
+          "chapterTitle": "房山线成网扩展",
           "chapterDate": "2017-12-30",
           "lineId": "beijing-lineyanfang",
           "lineName": "燕房线",
@@ -53277,7 +53277,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2019-09-26",
-          "chapterTitle": "大兴机场线建设阶段",
+          "chapterTitle": "大兴机场线成网扩展",
           "chapterDate": "2019-09-26",
           "lineId": "beijing-route-21",
           "lineName": "大兴机场线",
@@ -53298,7 +53298,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2019-12-28",
-          "chapterTitle": "7号线建设阶段",
+          "chapterTitle": "7号线成网扩展",
           "chapterDate": "2019-12-28",
           "lineId": "beijing-line7-7",
           "lineName": "7号线",
@@ -53422,7 +53422,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-08-26",
-          "chapterTitle": "1号线建设阶段",
+          "chapterTitle": "1号线成网扩展",
           "chapterDate": "2021-08-26",
           "lineId": "beijing-lineearly0",
           "lineName": "1号线 · 本期新增段1",
@@ -53487,7 +53487,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-08-26",
-          "chapterTitle": "1号线建设阶段",
+          "chapterTitle": "1号线成网扩展",
           "chapterDate": "2021-08-26",
           "lineId": "beijing-lineearly0",
           "lineName": "1号线 · 补齐既有西段连接",
@@ -53510,7 +53510,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
-          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段",
+          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线成网扩展",
           "chapterDate": "2021-12-31",
           "lineId": "beijing-line8-8",
           "lineName": "8号线",
@@ -53595,7 +53595,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
-          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段",
+          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线成网扩展",
           "chapterDate": "2021-12-31",
           "lineId": "beijing-line14-14",
           "lineName": "14号线",
@@ -53676,7 +53676,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
-          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段",
+          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线成网扩展",
           "chapterDate": "2021-12-31",
           "lineId": "beijing-route-23",
           "lineName": "首都机场线",
@@ -53701,7 +53701,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
-          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段",
+          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线成网扩展",
           "chapterDate": "2021-12-31",
           "lineId": "beijing-line17-17",
           "lineName": "17号线",
@@ -53730,7 +53730,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
-          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段",
+          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线成网扩展",
           "chapterDate": "2021-12-31",
           "lineId": "beijing-line19-19",
           "lineName": "19号线",
@@ -53757,7 +53757,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
-          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段",
+          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线成网扩展",
           "chapterDate": "2021-12-31",
           "lineId": "beijing-route-20",
           "lineName": "昌平线南延至清河",
@@ -53776,7 +53776,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2021-12-31",
-          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线建设阶段",
+          "chapterTitle": "8号线、11号线、14号线、19号线、昌平线、首都机场线成网扩展",
           "chapterDate": "2021-12-31",
           "lineId": "beijing-line11-11",
           "lineName": "11号线西段首开三站",
@@ -53832,7 +53832,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2022-12-31",
-          "chapterTitle": "15号线建设阶段",
+          "chapterTitle": "15号线成网扩展",
           "chapterDate": "2022-12-31",
           "lineId": "beijing-line15-15",
           "lineName": "15号线",
@@ -53914,7 +53914,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2023-12-30",
-          "chapterTitle": "16号线建设阶段",
+          "chapterTitle": "16号线成网扩展",
           "chapterDate": "2023-12-30",
           "lineId": "beijing-line16-16",
           "lineName": "16号线",
@@ -53989,7 +53989,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2023-12-30",
-          "chapterTitle": "16号线建设阶段",
+          "chapterTitle": "16号线成网扩展",
           "chapterDate": "2023-12-30",
           "lineId": "beijing-line17-17",
           "lineName": "17号线",
@@ -54022,7 +54022,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2023-12-30",
-          "chapterTitle": "16号线建设阶段",
+          "chapterTitle": "16号线成网扩展",
           "chapterDate": "2023-12-30",
           "lineId": "beijing-line11-11",
           "lineName": "11号线模式口站开放",
@@ -54041,7 +54041,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2024-12-15",
-          "chapterTitle": "3号线、12号线建设阶段",
+          "chapterTitle": "3号线、12号线成网扩展",
           "chapterDate": "2024-12-15",
           "lineId": "beijing-line3-3",
           "lineName": "3号线",
@@ -54076,7 +54076,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2024-12-15",
-          "chapterTitle": "3号线、12号线建设阶段",
+          "chapterTitle": "3号线、12号线成网扩展",
           "chapterDate": "2024-12-15",
           "lineId": "beijing-line12-12",
           "lineName": "12号线",
@@ -54131,7 +54131,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2024-12-15",
-          "chapterTitle": "3号线、12号线建设阶段",
+          "chapterTitle": "3号线、12号线成网扩展",
           "chapterDate": "2024-12-15",
           "lineId": "beijing-route-20",
           "lineName": "朱房北与蓟门桥开放",
@@ -54186,7 +54186,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2025-12-27",
-          "chapterTitle": "6号线、18号线建设阶段",
+          "chapterTitle": "6号线、18号线成网扩展",
           "chapterDate": "2025-12-27",
           "lineId": "beijing-line6-6",
           "lineName": "6号线",
@@ -54271,7 +54271,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2025-12-27",
-          "chapterTitle": "6号线、18号线建设阶段",
+          "chapterTitle": "6号线、18号线成网扩展",
           "chapterDate": "2025-12-27",
           "lineId": "beijing-line18-18",
           "lineName": "18号线",
@@ -54308,7 +54308,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2025-12-27",
-          "chapterTitle": "6号线、18号线建设阶段",
+          "chapterTitle": "6号线、18号线成网扩展",
           "chapterDate": "2025-12-27",
           "lineId": "beijing-line17-17",
           "lineName": "17号线",
@@ -54361,7 +54361,7 @@
         },
         {
           "chapterId": "beijing-network-milestone-2026-01-31",
-          "chapterTitle": "17号线建设阶段",
+          "chapterTitle": "17号线成网扩展",
           "chapterDate": "2026-01-31",
           "lineId": "beijing-line17-17",
           "lineName": "17号线",
@@ -75784,7 +75784,7 @@
       "untargetedOrPartialRouteIds": [],
       "historyStatus": "route_inventory_complete",
       "futureStatus": "partial",
-      "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
+      "coverageNote": "收录广州 1997 年 1 号线首通段至 2026 年秋的轨道交通建设历程。沿珠江两岸逐步推进各期线路工程，重现羊城轨道线网的演进历程。",
       "chapterGroups": [
         {
           "chapterId": "gz-line1-1997",
@@ -75813,7 +75813,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-1999-06-28",
-          "chapterTitle": "1号线建设阶段",
+          "chapterTitle": "1号线成网扩展",
           "chapterDate": "1999-06-28",
           "lineId": "guangzhou-line1",
           "lineName": "1号线 · 本期新增段1",
@@ -75832,7 +75832,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-1999-06-28",
-          "chapterTitle": "1号线建设阶段",
+          "chapterTitle": "1号线成网扩展",
           "chapterDate": "1999-06-28",
           "lineId": "guangzhou-line1",
           "lineName": "1号线 · 本期新增段2",
@@ -76795,7 +76795,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2019-12-28",
-          "chapterTitle": "8号线建设阶段",
+          "chapterTitle": "8号线成网扩展",
           "chapterDate": "2019-12-28",
           "lineId": "guangzhou-line8-8",
           "lineName": "8号线",
@@ -76897,7 +76897,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2021-12-28",
-          "chapterTitle": "佛山2号线建设阶段",
+          "chapterTitle": "佛山2号线成网扩展",
           "chapterDate": "2021-12-28",
           "lineId": "guangzhou-foshan-line2-18",
           "lineName": "佛山2号线",
@@ -77114,7 +77114,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2024-08-23",
-          "chapterTitle": "佛山3号线建设阶段",
+          "chapterTitle": "佛山3号线成网扩展",
           "chapterDate": "2024-08-23",
           "lineId": "guangzhou-foshan-line3-19",
           "lineName": "佛山3号线",
@@ -77322,7 +77322,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2025-06-29",
-          "chapterTitle": "10号线、12号线建设阶段",
+          "chapterTitle": "10号线、12号线成网扩展",
           "chapterDate": "2025-06-29",
           "lineId": "guangzhou-line10-10",
           "lineName": "10号线",
@@ -77361,7 +77361,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2025-06-29",
-          "chapterTitle": "10号线、12号线建设阶段",
+          "chapterTitle": "10号线、12号线成网扩展",
           "chapterDate": "2025-06-29",
           "lineId": "guangzhou-line12-12",
           "lineName": "十二号线东段首开（赤岗暂缓）",
@@ -77392,7 +77392,7 @@
         },
         {
           "chapterId": "guangzhou-network-milestone-2025-06-29",
-          "chapterTitle": "10号线、12号线建设阶段",
+          "chapterTitle": "10号线、12号线成网扩展",
           "chapterDate": "2025-06-29",
           "lineId": "guangzhou-line12-12",
           "lineName": "12号线西段（浔峰岗—广州体育馆）",
@@ -95302,11 +95302,11 @@
       "untargetedOrPartialRouteIds": [],
       "historyStatus": "route_inventory_complete",
       "futureStatus": "partial",
-      "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
+      "coverageNote": "收录深圳 1992 年筹建至 2026 年秋的轨道交通建设历程。涵盖早期规划档案、各期开通线路与关键换乘枢纽，完整呈现特区线网演进。",
       "chapterGroups": [
         {
           "chapterId": "sz-initial-cross-2004",
-          "chapterTitle": "一期十字线网",
+          "chapterTitle": "一期十字线网通车",
           "chapterDate": "2004-12-28",
           "lineId": "shenzhen-line1",
           "lineName": "1号线一期",
@@ -95351,7 +95351,7 @@
         },
         {
           "chapterId": "sz-initial-cross-2004",
-          "chapterTitle": "一期十字线网",
+          "chapterTitle": "一期十字线网通车",
           "chapterDate": "2004-12-28",
           "lineId": "shenzhen-line4",
           "lineName": "4号线一期",
@@ -95374,7 +95374,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2009-09-28",
-          "chapterTitle": "1号线增加白石洲、高新园、深大三站、二期首通段开通",
+          "chapterTitle": "1 号线西延深大 · 二期首通段迎客",
           "chapterDate": "2009-09-28",
           "lineId": "shenzhen-line1",
           "lineName": "1号线二期首通段",
@@ -95397,7 +95397,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2010-12-28",
-          "chapterTitle": "2号线一期与3号线一期开通",
+          "chapterTitle": "2 号线与 3 号线首通段开通",
           "chapterDate": "2010-12-28",
           "lineId": "shenzhen-line2-2",
           "lineName": "2号线一期",
@@ -95436,7 +95436,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2010-12-28",
-          "chapterTitle": "2号线一期与3号线一期开通",
+          "chapterTitle": "2 号线与 3 号线首通段开通",
           "chapterDate": "2010-12-28",
           "lineId": "shenzhen-line3-3",
           "lineName": "3号线一期",
@@ -95483,7 +95483,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2011-06-15",
-          "chapterTitle": "1号线建设阶段",
+          "chapterTitle": "1 号线全线贯通：直抵宝安机场",
           "chapterDate": "2011-06-15",
           "lineId": "shenzhen-line1",
           "lineName": "1号线 · 本期新增段4",
@@ -95524,7 +95524,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2011-06-16",
-          "chapterTitle": "4号线延至清湖",
+          "chapterTitle": "4 号线北延清湖：打通龙华中轴",
           "chapterDate": "2011-06-16",
           "lineId": "shenzhen-line4",
           "lineName": "4号线北延伸",
@@ -95569,7 +95569,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2011-06-22",
-          "chapterTitle": "5号线一期前海湾—黄贝岭开通",
+          "chapterTitle": "5 号线一期开通：环抱特区东西",
           "chapterDate": "2011-06-22",
           "lineId": "shenzhen-line5-5",
           "lineName": "5号线一期",
@@ -95638,7 +95638,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2011-06-28",
-          "chapterTitle": "2号线延至新秀、3号线延至益田",
+          "chapterTitle": "2、3 号线全线贯通：五线网络成型",
           "chapterDate": "2011-06-28",
           "lineId": "shenzhen-line2-2",
           "lineName": "2号线二期",
@@ -95689,7 +95689,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2011-06-28",
-          "chapterTitle": "2号线延至新秀、3号线延至益田",
+          "chapterTitle": "2、3 号线全线贯通：五线网络成型",
           "chapterDate": "2011-06-28",
           "lineId": "shenzhen-line3-3",
           "lineName": "3号线二期",
@@ -95734,7 +95734,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2016-06-28",
-          "chapterTitle": "11号线福田枢纽—碧头开通",
+          "chapterTitle": "11 号线开通：时速 120 公里的机场快线",
           "chapterDate": "2016-06-28",
           "lineId": "shenzhen-line11-12",
           "lineName": "11号线一期",
@@ -95785,7 +95785,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2016-10-28",
-          "chapterTitle": "7号线与9号线一期开通，线网进入新一轮成网阶段",
+          "chapterTitle": "7 号线与 9 号线一期同日迎客",
           "chapterDate": "2016-10-28",
           "lineId": "shenzhen-line9-10",
           "lineName": "9号线一期",
@@ -95844,7 +95844,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2016-10-28",
-          "chapterTitle": "7号线与9号线一期开通，线网进入新一轮成网阶段",
+          "chapterTitle": "7 号线与 9 号线一期同日迎客",
           "chapterDate": "2016-10-28",
           "lineId": "shenzhen-line7-8",
           "lineName": "7号线一期",
@@ -95913,7 +95913,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2019-09-28",
-          "chapterTitle": "5号线二期赤湾—前海湾开通",
+          "chapterTitle": "5 号线二期南延：深入前海蛇口",
           "chapterDate": "2019-09-28",
           "lineId": "shenzhen-line5-5",
           "lineName": "5号线西延段",
@@ -95944,7 +95944,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2019-12-08",
-          "chapterTitle": "9号线建设阶段",
+          "chapterTitle": "9 号线西延前海：横贯三区全线贯通",
           "chapterDate": "2019-12-08",
           "lineId": "shenzhen-line9-10",
           "lineName": "9号线",
@@ -95981,7 +95981,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2020-08-18",
-          "chapterTitle": "6、10号线首开：岗厦北暂不开放",
+          "chapterTitle": "6、10 号线双线齐发：光明与平湖通地铁",
           "chapterDate": "2020-08-18",
           "lineId": "shenzhen-line6-6",
           "lineName": "6号线",
@@ -96050,7 +96050,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2020-08-18",
-          "chapterTitle": "6、10号线首开：岗厦北暂不开放",
+          "chapterTitle": "6、10 号线双线齐发：光明与平湖通地铁",
           "chapterDate": "2020-08-18",
           "lineId": "shenzhen-line10-11",
           "lineName": "10号线",
@@ -96111,7 +96111,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2020-10-28",
-          "chapterTitle": "2号线、4号线建设阶段",
+          "chapterTitle": "2 号线东延莲塘 · 4 号线北延牛湖",
           "chapterDate": "2020-10-28",
           "lineId": "shenzhen-line2-2",
           "lineName": "2号线三期至莲塘",
@@ -96134,7 +96134,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2020-10-28",
-          "chapterTitle": "2号线、4号线建设阶段",
+          "chapterTitle": "2 号线东延莲塘 · 4 号线北延牛湖",
           "chapterDate": "2020-10-28",
           "lineId": "shenzhen-line4",
           "lineName": "4号线北延至牛湖",
@@ -96167,7 +96167,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2020-10-28",
-          "chapterTitle": "2号线、4号线建设阶段",
+          "chapterTitle": "2 号线东延莲塘 · 4 号线北延牛湖",
           "chapterDate": "2020-10-28",
           "lineId": "shenzhen-line8-9",
           "lineName": "8号线一期至盐田路",
@@ -96196,7 +96196,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2020-10-28",
-          "chapterTitle": "2号线、4号线建设阶段",
+          "chapterTitle": "2 号线东延莲塘 · 4 号线北延牛湖",
           "chapterDate": "2020-10-28",
           "lineId": "shenzhen-line3-3",
           "lineName": "3号线南延至福保",
@@ -96215,7 +96215,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2021-12-28",
-          "chapterTitle": "20号线建设阶段",
+          "chapterTitle": "20 号线一期开通：首条全自动无人驾驶线",
           "chapterDate": "2021-12-28",
           "lineId": "shenzhen-line20-17",
           "lineName": "20号线",
@@ -96240,7 +96240,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2022-10-28",
-          "chapterTitle": "两线三枢纽：岗厦北四线换乘",
+          "chapterTitle": "14 号线东部快线通车 · 岗厦北四线换乘",
           "chapterDate": "2022-10-28",
           "lineId": "shenzhen-line14-15",
           "lineName": "14号线",
@@ -96291,7 +96291,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2022-10-28",
-          "chapterTitle": "两线三枢纽：岗厦北四线换乘",
+          "chapterTitle": "14 号线东部快线通车 · 岗厦北四线换乘",
           "chapterDate": "2022-10-28",
           "lineId": "shenzhen-line11-12",
           "lineName": "11号线东延至岗厦北",
@@ -96310,7 +96310,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2022-10-28",
-          "chapterTitle": "两线三枢纽：岗厦北四线换乘",
+          "chapterTitle": "14 号线东部快线通车 · 岗厦北四线换乘",
           "chapterDate": "2022-10-28",
           "lineId": "shenzhen-line10-11",
           "lineName": "10号线",
@@ -96373,7 +96373,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2022-11-28",
-          "chapterTitle": "6号线支线与12号线开通",
+          "chapterTitle": "12 号线与 6 号线支线同日迎客",
           "chapterDate": "2022-11-28",
           "lineId": "shenzhen-line6-7",
           "lineName": "6号线支线一期",
@@ -96396,7 +96396,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2022-11-28",
-          "chapterTitle": "6号线支线与12号线开通",
+          "chapterTitle": "12 号线与 6 号线支线同日迎客",
           "chapterDate": "2022-11-28",
           "lineId": "shenzhen-line12-13",
           "lineName": "12号线一期",
@@ -96477,7 +96477,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2022-12-28",
-          "chapterTitle": "16号线开通",
+          "chapterTitle": "16 号线一期开通：串联龙岗与坪山",
           "chapterDate": "2022-12-28",
           "lineId": "shenzhen-line16-16",
           "lineName": "16号线一期",
@@ -96540,7 +96540,7 @@
         },
         {
           "chapterId": "shenzhen-historical-milestone-2023-12-27",
-          "chapterTitle": "8号线二期延至小梅沙",
+          "chapterTitle": "8 号线二期通车：坐着地铁去大小梅沙看海",
           "chapterDate": "2023-12-27",
           "lineId": "shenzhen-line8-9",
           "lineName": "8号线二期至小梅沙",
@@ -96565,7 +96565,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2024-12-28",
-          "chapterTitle": "3号线、7号线、12号线建设阶段",
+          "chapterTitle": "2024 年底多线齐发：3、7、12 号线延伸迎客",
           "chapterDate": "2024-12-28",
           "lineId": "shenzhen-line3-3",
           "lineName": "3号线四期东延至坪地六联",
@@ -96596,7 +96596,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2024-12-28",
-          "chapterTitle": "3号线、7号线、12号线建设阶段",
+          "chapterTitle": "2024 年底多线齐发：3、7、12 号线延伸迎客",
           "chapterDate": "2024-12-28",
           "lineId": "shenzhen-line7-8",
           "lineName": "7号线二期至深大丽湖",
@@ -96617,7 +96617,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2024-12-28",
-          "chapterTitle": "3号线、7号线、12号线建设阶段",
+          "chapterTitle": "2024 年底多线齐发：3、7、12 号线延伸迎客",
           "chapterDate": "2024-12-28",
           "lineId": "shenzhen-line12-13",
           "lineName": "12号线二期至松岗",
@@ -96646,7 +96646,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2024-12-28",
-          "chapterTitle": "3号线、7号线、12号线建设阶段",
+          "chapterTitle": "2024 年底多线齐发：3、7、12 号线延伸迎客",
           "chapterDate": "2024-12-28",
           "lineId": "shenzhen-line11-12",
           "lineName": "11号线二期岗厦北至华强南段",
@@ -96665,7 +96665,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2024-12-28",
-          "chapterTitle": "3号线、7号线、12号线建设阶段",
+          "chapterTitle": "2024 年底多线齐发：3、7、12 号线延伸迎客",
           "chapterDate": "2024-12-28",
           "lineId": "shenzhen-line13-14",
           "lineName": "13号线南段：深圳湾口岸至高新中",
@@ -96694,7 +96694,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2025-09-28",
-          "chapterTitle": "6号线支线、16号线建设阶段",
+          "chapterTitle": "6 号线支线二期与 16 号线二期开通",
           "chapterDate": "2025-09-28",
           "lineId": "shenzhen-line6-7",
           "lineName": "6号线支线",
@@ -96717,7 +96717,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2025-09-28",
-          "chapterTitle": "6号线支线、16号线建设阶段",
+          "chapterTitle": "6 号线支线二期与 16 号线二期开通",
           "chapterDate": "2025-09-28",
           "lineId": "shenzhen-line16-16",
           "lineName": "16号线",
@@ -96750,7 +96750,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2025-12-28",
-          "chapterTitle": "5号线、8号线、11号线建设阶段",
+          "chapterTitle": "5 号线西延大剧院 · 8 号线直达溪涌 · 11 号线东延红岭南",
           "chapterDate": "2025-12-28",
           "lineId": "shenzhen-line5-5",
           "lineName": "5号线西延至大剧院",
@@ -96773,7 +96773,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2025-12-28",
-          "chapterTitle": "5号线、8号线、11号线建设阶段",
+          "chapterTitle": "5 号线西延大剧院 · 8 号线直达溪涌 · 11 号线东延红岭南",
           "chapterDate": "2025-12-28",
           "lineId": "shenzhen-line8-9",
           "lineName": "8号线三期至溪涌",
@@ -96792,7 +96792,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2025-12-28",
-          "chapterTitle": "5号线、8号线、11号线建设阶段",
+          "chapterTitle": "5 号线西延大剧院 · 8 号线直达溪涌 · 11 号线东延红岭南",
           "chapterDate": "2025-12-28",
           "lineId": "shenzhen-line11-12",
           "lineName": "11号线二期华强南至红岭南段",
@@ -96813,7 +96813,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2025-12-28",
-          "chapterTitle": "5号线、8号线、11号线建设阶段",
+          "chapterTitle": "5 号线西延大剧院 · 8 号线直达溪涌 · 11 号线东延红岭南",
           "chapterDate": "2025-12-28",
           "lineId": "shenzhen-line13-14",
           "lineName": "13号线一期贯通至上屋",
@@ -96846,7 +96846,7 @@
         },
         {
           "chapterId": "shenzhen-network-milestone-2026-06-28",
-          "chapterTitle": "13号线建设阶段",
+          "chapterTitle": "13 号线一期全线贯通：深圳湾口岸直达上屋",
           "chapterDate": "2026-06-28",
           "lineId": "shenzhen-line13-14",
           "lineName": "13号线二期北延至李松蓢",
@@ -96885,7 +96885,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line1",
           "lineName": "1号线",
@@ -96960,7 +96960,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line2-2",
           "lineName": "2号线",
@@ -97039,7 +97039,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line3-3",
           "lineName": "3号线",
@@ -97130,7 +97130,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line4",
           "lineName": "4号线",
@@ -97191,7 +97191,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line5-5",
           "lineName": "5号线",
@@ -97280,7 +97280,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line6-6",
           "lineName": "6号线",
@@ -97349,7 +97349,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line6-7",
           "lineName": "6号线支线",
@@ -97378,7 +97378,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line7-8",
           "lineName": "7号线",
@@ -97451,7 +97451,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line8-9",
           "lineName": "8号线",
@@ -97490,7 +97490,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line9-10",
           "lineName": "9号线",
@@ -97569,7 +97569,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line10-11",
           "lineName": "10号线",
@@ -97632,7 +97632,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line11-12",
           "lineName": "11号线",
@@ -97691,7 +97691,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line12-13",
           "lineName": "12号线",
@@ -97784,7 +97784,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line13-14",
           "lineName": "13号线",
@@ -97851,7 +97851,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line14-15",
           "lineName": "14号线",
@@ -97902,7 +97902,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line16-16",
           "lineName": "16号线",
@@ -97981,7 +97981,7 @@
         },
         {
           "chapterId": "shenzhen-network-reconciliation-2026-10-01",
-          "chapterTitle": "截至2026年10月1日 · 全网核对",
+          "chapterTitle": "2026 年金秋 · 深圳地铁全网总核对",
           "chapterDate": "2026-10-01",
           "lineId": "shenzhen-line20-17",
           "lineName": "20号线",
@@ -114922,7 +114922,7 @@
       "untargetedOrPartialRouteIds": [],
       "historyStatus": "route_inventory_complete",
       "futureStatus": "partial",
-      "coverageNote": "所有已登记来源日期均可在时间轴中逐项查看；有明确站段范围的节点可建设，缺少站段资料的节点不伪装成铺轨关卡。截止日现状线路另有全网核对。未覆盖的中间分期和截止日后工程继续列明。",
+      "coverageNote": "收录成都 2005 年 1 号线动工至 2026 年秋的轨道交通建设历程。沿城市发展骨架逐步铺展各期线路，呈现成都轨道交通的线网演进。",
       "chapterGroups": [
         {
           "chapterId": "cd-line1-2010",
