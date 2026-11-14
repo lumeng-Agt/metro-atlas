@@ -1,4 +1,4 @@
-造一座地铁 · Windows 免安装版 0.26.0 · 存档格式 25
+造一座地铁 · Windows 免安装版 0.29.0 · 存档格式 25
 
 双击“造一座地铁.exe”运行，无需安装 Godot 或联网加载地图。
 
@@ -6,7 +6,7 @@
 
 注意：这不是五城逐站全史完成版。部分线路的中间分段开通尚未拆成任务，截止日仍在建及已批准项目也未全部制作成可玩章节。请查看压缩包中的 docs/campaign-content-audit.md、docs/network-coverage-2026-10-01.md 和 docs/test-record.txt，确认内容范围与未完成验收。
 
-更新内容：压缩包内 update-notes-0.26.0.txt
+更新内容：压缩包内 update-notes-0.29.0.txt
 测试记录：压缩包内 test-record.txt
 性能记录：压缩包内 docs/performance-0.26.0.json（本版未重测，沿用 0.25.0 实测基线）
 迁移说明：压缩包内 docs/migration-25.md

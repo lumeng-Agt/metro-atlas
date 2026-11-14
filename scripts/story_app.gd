@@ -1,6 +1,6 @@
 extends Control
 
-const BUILD_VERSION := "0.28.0 · 2026.11.09"
+const BUILD_VERSION := "0.29.0 · 2026.11.14"
 const SaveWriter = preload("res://scripts/save_coordinator.gd")
 const Tutorial = preload("res://scripts/story_tutorial.gd")
 const Beats = preload("res://scripts/story_beats.gd")
@@ -476,6 +476,11 @@ func _show_menu() -> void:
 	world={};outcome_comparison=false;map_view.chapter_baseline_overlay={};map_view.set_world({});map_view.set_blueprint({});map_view.requested_redraw();frame.hide();spotlight.clear_focus()
 	if is_instance_valid(timeline_bar):timeline_bar.hide()
 	if is_instance_valid(menu_bg):menu_bg.show();menu_bg.queue_redraw()
+	# The card is a fixed list of entries, so at 150% and 175% on a 1366x768
+	# window the scaled rows outgrew the window and the card was pushed off the
+	# top. Cap the scale the entries are built at by the height they need.
+	var full_scale := ui_scale
+	ui_scale = _menu_scale()
 	menu=PanelContainer.new();menu.add_theme_stylebox_override("panel",Ui.menu_card_box());add_child(menu)
 	# No scroll container: the entry list is short, and a scroll child reports
 	# the full available height, which left a blank tail inside the card.
@@ -527,7 +532,20 @@ func _show_menu() -> void:
 	var ver:=label(BUILD_VERSION+"  ·  离线地图 / 本地保存",15);ver.add_theme_color_override("font_color",Ui.MUTED)
 	ver.autowrap_mode=TextServer.AUTOWRAP_OFF;ver.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN;ver.custom_minimum_size.x=0
 	footer_box.add_child(ver)
+	ui_scale = full_scale
 	_layout()
+
+## The scale the menu entries are built at: the requested scale, reduced until
+## the fixed entry list fits the window with room for the card margins.
+func _menu_scale() -> float:
+	var wanted := ui_scale
+	# Rows at scale 1.0 total about 560px; the card adds 48px of padding and the
+	# window keeps 40px of breathing room.
+	var room := size.y - 88.0
+	if room <= 0.0:return wanted
+	var scaled := 560.0 * wanted
+	if scaled <= room:return wanted
+	return clampf(wanted * room / scaled, 0.8, wanted)
 
 ## Whether the last played save belongs to a city this release ships.
 ##
